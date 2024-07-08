@@ -1,10 +1,11 @@
+import { uploadResizedImage } from "../utils/resizeImageFile";
 import ButtonForm from "./ButtonForm";
+import { useState } from "react";
 import ReactCrop, {
   centerCrop,
   convertToPixelCrop,
   makeAspectCrop,
 } from "react-image-crop";
-import { useState } from "react";
 
 const ImagesHandleCrop = ({
   imgRef,
@@ -14,34 +15,43 @@ const ImagesHandleCrop = ({
   crop,
   circle,
 }) => {
-  
   const [imgSrc, setImgSrc] = useState();
   const [error, setError] = useState("");
 
   const MIN_DIMENSION = circle ? 200 : 250;
   const ASPECT_RATIO = circle ? 1 : 10 / 3.5;
 
-  const onSelectFile = (e) => {
+  const onSelectFile = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.addEventListener("load", () => {
-      const imageElement = new Image();
-      const imageUrl = reader.result?.toString() || "";
-      imageElement.src = imageUrl;
+    try {
+      const resizedFile = await uploadResizedImage(file, 700, 700, 85);
 
-      imageElement.addEventListener("load", (e) => {
-        if (error) setError("");
-        const { naturalWidth, naturalHeight } = e.currentTarget;
-        if (naturalWidth < MIN_DIMENSION || naturalHeight < MIN_DIMENSION) {
-          setError("Image must be at least 150 x 150 pixels.");
-          return setImgSrc("");
-        }
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        const imageUrl = reader.result?.toString() || "";
+        const imageElement = new Image();
+        imageElement.src = imageUrl;
+
+        imageElement.addEventListener("load", () => {
+          // const { naturalWidth, naturalHeight } = imageElement;
+
+          // if (naturalWidth < MIN_DIMENSION || naturalHeight < MIN_DIMENSION) {
+          //   setError("Image must be at least 150 x 150 pixels.");
+          //   return setImgSrc("");
+          // }
+
+          setImgSrc(imageUrl);
+          setError("");
+        });
       });
-      setImgSrc(imageUrl);
-    });
-    reader.readAsDataURL(file);
+      
+      reader.readAsDataURL(resizedFile); // make sure that resizedFile is a Blob or File type.
+      // reader.readAsDataURL(file);
+    } catch (error) {
+      console.error("Error resizing image:", error);
+    }
   };
 
   const onImageLoad = (e) => {
@@ -124,6 +134,3 @@ const ImagesHandleCrop = ({
 };
 
 export default ImagesHandleCrop;
-
-
-// w384 x h256

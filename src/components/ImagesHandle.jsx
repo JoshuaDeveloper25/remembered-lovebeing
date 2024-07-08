@@ -1,3 +1,4 @@
+import { uploadResizedImage } from "../utils/resizeImageFile";
 import { IoCloudUploadSharp } from "react-icons/io5";
 import { LuPencilLine } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
@@ -8,11 +9,26 @@ import ReactImageUploading, {
 import React from "react";
 
 const ImagesHandle = ({ setImages, images }) => {
-  const onChange = (imageList, addUpdateIndex) => {
-    // data for submit
-    // console.log(imageList, addUpdateIndex);
-    setImages(imageList);
-    console.log(imageList);
+  const onChange = async (imageList, addUpdateIndex) => {
+    // Redimention images before the state
+    const resizedImageList = await Promise.all(
+      imageList.map(async (image) => {
+        const resizedFile = await uploadResizedImage(image.file, 700, 700, 85);
+        const reader = new FileReader();
+
+        return new Promise((resolve) => {
+          reader.onloadend = () => {
+            resolve({
+              dataURL: reader.result,
+              file: resizedFile,
+            });
+          };
+          reader.readAsDataURL(resizedFile);
+        });
+      })
+    );
+
+    setImages(resizedImageList);
   };
 
   return (

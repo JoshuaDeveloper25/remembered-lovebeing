@@ -2,15 +2,35 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { EffectFlip, Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 // Import Swiper styles
-import "swiper/css";
 import "swiper/css/effect-flip";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css";
 
 const Carousel = ({ galleryImages }) => {
   const params = useParams();
+
+  useEffect(() => {
+    // Ensure the DOM element exists
+    const container = document.querySelector(".masonry-gallery-demo");
+    if (container) {
+      // Initialize Masonry
+      const msnry = new Masonry(container, {
+        itemSelector: ".gallery-item",
+        columnWidth: ".grid-sizer",
+        percentPosition: true,
+      });
+
+      // Use imagesLoaded with Masonry
+      imagesLoaded(container).on("progress", function () {
+        // Layout Masonry after each image loads
+        msnry.layout();
+      });
+    }
+  }, []);
 
   return (
     <div className="relative mb-8">

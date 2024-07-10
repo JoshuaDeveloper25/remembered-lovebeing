@@ -70,6 +70,7 @@ const UploadGalleryImage = () => {
         handleSubmit={handleSubmitGalleryImage}
         setOpenModal={setOpenModalGallery}
         openModal={openModalGallery}
+        modalForm={true}
       >
         <FormGalleryImages
           isPending={addGalleryImageMutation?.isPending}

@@ -82,6 +82,7 @@ const MyProfiles = () => {
             handleSubmit={handleSubmit}
             setOpenModal={setOpenModal}
             openModal={openModal}
+            modalForm={true}
           >
             <FormCreateProfile isPending={createProfileMutation?.isPending} />
           </Modal>

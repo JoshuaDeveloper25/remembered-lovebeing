@@ -4,6 +4,8 @@ const Modal = ({
   titleModal,
   openModal,
   setOpenModal,
+  editableWidth,
+  modalForm,
 }) => {
   const handleCloseModal = () => {
     setOpenModal(false);
@@ -19,7 +21,11 @@ const Modal = ({
           aria-hidden="true"
           className="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[100] flex justify-center items-center w-full min-h-full bg-black/50"
         >
-          <div className="relative p-4 w-full max-w-md mx-auto ">
+          <div
+            className={`relative p-4 w-full ${
+              editableWidth ? editableWidth : "max-w-md"
+            } mx-auto`}
+          >
             {/* Modal content */}
             <div className="relative rounded-lg shadow dark:bg-white max-h-[80vh] overflow-y-auto">
               {/* Modal header */}
@@ -53,10 +59,19 @@ const Modal = ({
                 </button>
               </div>
 
-              {/*  Modal body */}
-              <form onSubmit={handleSubmit} className="p-4 md:p-5">
+              {/* <form onSubmit={handleSubmit} className="p-4 md:p-5">
                 {children}
-              </form>
+              </form> */}
+
+              {modalForm === false ? (
+                <div className="p-4 md:p-5">{children}</div>
+              ) : (
+                <>
+                  <form onSubmit={handleSubmit} className="p-4 md:p-5">
+                    {children}
+                  </form>
+                </>
+              )}
             </div>
           </div>
         </div>

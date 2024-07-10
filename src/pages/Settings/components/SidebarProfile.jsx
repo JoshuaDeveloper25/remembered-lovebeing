@@ -214,6 +214,7 @@ const SidebarProfile = ({
         handleSubmit={handleSubmitCoverImage}
         setOpenModal={setOpenModal}
         openModal={openModal}
+        modalForm={true}
       >
         <FormCover
           isPending={changeImageCoverMutation?.isPending}
@@ -230,6 +231,7 @@ const SidebarProfile = ({
         handleSubmit={handleSubmitProfileImage}
         setOpenModal={setOpenModalProfile}
         openModal={openModalProfile}
+        modalForm={true}
       >
         <FormProfile
           isPending={changeImageProfileMutation?.isPending}

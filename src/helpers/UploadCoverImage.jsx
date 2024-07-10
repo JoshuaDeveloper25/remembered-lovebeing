@@ -88,6 +88,7 @@ const UploadCoverImage = () => {
         handleSubmit={handleSubmitCoverImage}
         setOpenModal={setOpenModalCover}
         openModal={openModalCover}
+        modalForm={true}
       >
         <FormCover
           isPending={changeImageCoverMutation?.isPending}

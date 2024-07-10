@@ -87,6 +87,7 @@ const UploadProfileImage = () => {
         handleSubmit={handleSubmitProfileImage}
         setOpenModal={setOpenModalProfile}
         openModal={openModalProfile}
+        modalForm={true}
       >
         <FormProfile
           isPending={changeImageProfileMutation?.isPending}

@@ -1,5 +1,6 @@
 import TabLinkContent from "../pages/MyProfiles/components/TabLinkContent";
 import MansoryGallery from "../pages/Settings/components/MansoryGallery";
+import CarouselPosts from "../pages/Settings/components/CarouselPosts";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import UploadProfileImage from "../helpers/UploadProfileImage";
 import UploadGalleryImage from "../helpers/UploadGalleryImage";
@@ -7,6 +8,7 @@ import TabLink from "../pages/MyProfiles/components/TabLink";
 import UploadCoverImage from "../helpers/UploadCoverImage";
 import { getLivedDays } from "../utils/getLivedDays";
 import { useQuery } from "@tanstack/react-query";
+import UploadPost from "../helpers/UploadPost";
 import { useParams } from "react-router-dom";
 import Carousel from "./Carousel";
 import { useState } from "react";
@@ -33,6 +35,12 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
       await axios.get(
         `${import.meta.env.VITE_BASE_URL}/remembereds/get-own-profiles`
       ),
+  });
+
+  const postsQuery = useQuery({
+    queryKey: ["posts"],
+    queryFn: async () =>
+      await axios.get(`${import.meta.env.VITE_BASE_URL}/posts/${params?.id}`),
   });
 
   if (isPending) {
@@ -262,11 +270,20 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
             >
               <TabLink
                 setOpenTab={setOpenTab}
+                linkTab={"#posts"}
+                textTab={"Posts"}
+                // iconTab={<FaHeart className="text-red-500" />}
+                openTab={openTab}
+                numberTab={1}
+              />
+
+              <TabLink
+                setOpenTab={setOpenTab}
                 textTab={"Media"}
                 linkTab={"#media"}
                 // iconTab={<FaCross className="text-primary-color" />}
                 openTab={openTab}
-                numberTab={1}
+                numberTab={2}
               />
 
               <TabLink
@@ -275,7 +292,7 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
                 textTab={"Favourites"}
                 // iconTab={<FaHeart className="text-red-500" />}
                 openTab={openTab}
-                numberTab={2}
+                numberTab={3}
               />
             </ul>
 
@@ -285,6 +302,50 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
                   <TabLinkContent
                     openTab={openTab}
                     numberTab={1}
+                    idTab={"#posts"}
+                  >
+                    <div className="flex flex-col sm:flex-row justify-between items-center mb-7">
+                      <h2 className="text-primary-color font-bold text-xl sm:my-0 my-3">
+                        Posts
+                      </h2>
+
+                      <UploadPost rememberedProfiles={ownProfilesQuery?.data} />
+                    </div>
+
+                    {postsQuery?.data?.data?.map((item) => {
+                      return (
+                        <div
+                          key={item?.id}
+                          className="border-b [&:not(:last-child)]:border-gray-400/50 pt-3"
+                        >
+                          <div className="flex items-center gap-3 pb-2">
+                            <img
+                              className="w-16 rounded-full"
+                              src={
+                                item?.profile_image
+                                  ? `${item?.profile_image?.cloud_front_domain}/${item?.profile_image?.aws_file_name}`
+                                  : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                              }
+                            />
+
+                            <h3 className="font-medium text-base">
+                              {data?.data?.name}
+                            </h3>
+                          </div>
+
+                          <h2 className="mb-5 text-primary-color font-light">
+                            {item?.content}
+                          </h2>
+
+                          <CarouselPosts galleryImages={item?.gallery_images} />
+                        </div>
+                      );
+                    })}
+                  </TabLinkContent>
+
+                  <TabLinkContent
+                    openTab={openTab}
+                    numberTab={2}
                     idTab={"#media"}
                   >
                     <div className="flex flex-col sm:flex-row justify-between items-center mb-7">
@@ -304,7 +365,7 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
 
                   <TabLinkContent
                     openTab={openTab}
-                    numberTab={2}
+                    numberTab={3}
                     idTab={"#favourites"}
                   ></TabLinkContent>
                 </div>

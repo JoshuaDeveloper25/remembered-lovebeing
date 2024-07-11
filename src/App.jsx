@@ -8,9 +8,9 @@ import { ToastContainer } from "react-toastify";
 import Spinner from "./components/Spinner";
 
 // --> 🔗	Styles
-import "./styles/index.css";
-import "react-toastify/dist/ReactToastify.css";
 import "react-image-crop/dist/ReactCrop.css";
+import "react-toastify/dist/ReactToastify.css";
+import "./styles/index.css";
 
 // --> 📄 Pages
 const Root = lazy(() => import("./pages/Root"));
@@ -18,9 +18,13 @@ const SignUp = lazy(() => import("./pages/SignUp/SignUp"));
 const Verified = lazy(() => import("./pages/Verified/Verified"));
 const SignIn = lazy(() => import("./pages/SignIn/SignIn"));
 const Home = lazy(() => import("./pages/Home/Home"));
-const EditProfile = lazy(() => import("./pages/EditProfile/EditProfile"));
+const EditProfileRemembered = lazy(() =>
+  import("./pages/EditProfileRemembered/EditProfileRemembered")
+);
 const MyProfiles = lazy(() => import("./pages/MyProfiles/MyProfiles"));
-const Remembered = lazy(() => import("./pages/Remembered/Remembered"));
+const PreviewProfileRemembered = lazy(() =>
+  import("./pages/PreviewProfileRemembered/PreviewProfileRemembered")
+);
 
 const PublicRoutes = lazy(() => import("./auth/PublicRoutes"));
 const PrivateRoutes = lazy(() => import("./auth/PrivateRoutes"));
@@ -68,7 +72,7 @@ const router = createBrowserRouter([
           },
 
           {
-            element: <EditProfile />,
+            element: <EditProfileRemembered />,
             path: "/remembered-profile-edit/:id",
           },
         ],
@@ -80,7 +84,7 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       {
-        element: <Remembered />,
+        element: <PreviewProfileRemembered />,
         path: "/remembered-profile-preview/:id",
       },
     ],

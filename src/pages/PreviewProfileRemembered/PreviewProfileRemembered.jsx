@@ -1,6 +1,6 @@
 import RememberProfile from "../../components/RememberProfile";
 
-const Remembered = () => {
+const PreviewProfileRemembered = () => {
   return (
     <div className="mt-10">
       <RememberProfile
@@ -11,4 +11,4 @@ const Remembered = () => {
   );
 };
 
-export default Remembered;
+export default PreviewProfileRemembered;

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import FormCover from "../pages/EditProfile/components/FormCover";
+import FormCover from "../pages/EditProfileRemembered/components/FormCover";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import setCanvasPreview from "../utils/setCanvasPreview";
 import { convertToPixelCrop } from "react-image-crop";

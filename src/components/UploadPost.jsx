@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import FormPost from "../pages/EditProfile/components/FormPost";
+import FormPost from "../pages/EditProfileRemembered/components/FormPost";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import { useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";

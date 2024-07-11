@@ -1,4 +1,4 @@
-import FormGalleryImages from "../pages/EditProfile/components/FormGalleryImages";
+import FormGalleryImages from "../pages/EditProfileRemembered/components/FormGalleryImages";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import { useParams } from "react-router-dom";

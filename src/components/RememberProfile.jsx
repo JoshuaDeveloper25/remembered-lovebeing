@@ -1,7 +1,7 @@
-import PublishedPostsImages from "../pages/EditProfile/components/PublishedPostsImages";
-import CarouselProfiles from "../pages/Remembered/components/CarouselProfiles";
+import PublishedPostsImages from "../pages/EditProfileRemembered/components/PublishedPostsImages";
+import CarouselProfiles from "../pages/PreviewProfileRemembered/components/CarouselProfiles";
+import MansoryGallery from "../pages/EditProfileRemembered/components/MansoryGallery";
 import TabLinkContent from "../pages/MyProfiles/components/TabLinkContent";
-import MansoryGallery from "../pages/EditProfile/components/MansoryGallery";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import TabLink from "../pages/MyProfiles/components/TabLink";
 import UploadProfileImage from "./UploadProfileImage";

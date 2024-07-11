@@ -18,7 +18,7 @@ const SignUp = lazy(() => import("./pages/SignUp/SignUp"));
 const Verified = lazy(() => import("./pages/Verified/Verified"));
 const SignIn = lazy(() => import("./pages/SignIn/SignIn"));
 const Home = lazy(() => import("./pages/Home/Home"));
-const Settings = lazy(() => import("./pages/Settings/Settings"));
+const EditProfile = lazy(() => import("./pages/EditProfile/EditProfile"));
 const MyProfiles = lazy(() => import("./pages/MyProfiles/MyProfiles"));
 const Remembered = lazy(() => import("./pages/Remembered/Remembered"));
 
@@ -68,8 +68,8 @@ const router = createBrowserRouter([
           },
 
           {
-            element: <Settings />,
-            path: "/settings/:id",
+            element: <EditProfile />,
+            path: "/remembered-profile-edit/:id",
           },
         ],
       },
@@ -81,7 +81,7 @@ const router = createBrowserRouter([
     children: [
       {
         element: <Remembered />,
-        path: "/remembered/:id",
+        path: "/remembered-profile-preview/:id",
       },
     ],
   },

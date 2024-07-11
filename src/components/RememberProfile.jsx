@@ -1,6 +1,7 @@
+import PublishedPostsImages from "../pages/EditProfile/components/PublishedPostsImages";
+import CarouselProfiles from "../pages/Remembered/components/CarouselProfiles";
 import TabLinkContent from "../pages/MyProfiles/components/TabLinkContent";
-import MansoryGallery from "../pages/Settings/components/MansoryGallery";
-import CarouselPosts from "../pages/Settings/components/CarouselPosts";
+import MansoryGallery from "../pages/EditProfile/components/MansoryGallery";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import TabLink from "../pages/MyProfiles/components/TabLink";
 import UploadProfileImage from "./UploadProfileImage";
@@ -10,7 +11,6 @@ import UploadCoverImage from "./UploadCoverImage";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import UploadPost from "./UploadPost";
-import Carousel from "./Carousel";
 import { useState } from "react";
 import axios from "axios";
 
@@ -261,7 +261,9 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
               <h2 className="font-bold text-primary-color text-xl mb-2">
                 My family members...
               </h2>
-              <Carousel rememberedProfiles={ownProfilesQuery?.data?.data} />
+              <CarouselProfiles
+                rememberedProfiles={ownProfilesQuery?.data?.data}
+              />
             </div>
 
             <ul
@@ -337,7 +339,7 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
                             {item?.content}
                           </h2>
 
-                          <CarouselPosts
+                          <PublishedPostsImages
                             rememberName={data?.data?.name}
                             galleryImages={item?.gallery_images}
                           />

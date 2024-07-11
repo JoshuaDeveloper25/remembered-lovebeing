@@ -8,7 +8,7 @@ import { ImUser } from "react-icons/im";
 import "swiper/css/pagination";
 import "swiper/css";
 
-const Carousel = ({ rememberedProfiles }) => {
+const CarouselProfiles = ({ rememberedProfiles }) => {
   const params = useParams();
 
   return (
@@ -76,7 +76,7 @@ const Carousel = ({ rememberedProfiles }) => {
               </h3>
 
               <Link
-                to={`/remembered/${remember?.id}`}
+                to={`/remembered-profile-preview/${remember?.id}`}
                 target="_blank"
                 className="btn btn-blue block w-full text-center mt-2"
               >
@@ -90,4 +90,4 @@ const Carousel = ({ rememberedProfiles }) => {
   );
 };
 
-export default Carousel;
+export default CarouselProfiles;

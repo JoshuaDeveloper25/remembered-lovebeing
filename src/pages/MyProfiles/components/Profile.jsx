@@ -147,7 +147,7 @@ const Profile = ({ item, isPending }) => {
           {/* Buttons */}
           {deleteProfileMutation?.isPending ? null : (
             <div className="flex gap-3">
-              <Link className="flex-1" to={`/remembered/${item?.id}`}>
+              <Link className="flex-1" to={`/remembered-profile-preview/${item?.id}`}>
                 <button
                   disabled={deleteProfileMutation?.isPending}
                   className={`btn bg-[#00A2B3] text-white hover:bg-[#00A2B3]/80 animation-fade rounded-sm text-sm ${
@@ -160,7 +160,7 @@ const Profile = ({ item, isPending }) => {
                 </button>
               </Link>
 
-              <Link className="flex-1" to={`/settings/${item?.id}`}>
+              <Link className="flex-1" to={`/remembered-profile-edit/${item?.id}`}>
                 <button
                   disabled={deleteProfileMutation?.isPending}
                   className={`btn text-[#00A2B3] animation-fade  hover:bg-[#00A2B3] hover:text-white border border-[#00A2B3] rounded-sm text-sm ${

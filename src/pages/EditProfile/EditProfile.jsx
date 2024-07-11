@@ -1,6 +1,6 @@
 import RememberProfile from "../../components/RememberProfile";
 
-const Settings = () => {
+const EditProfile = () => {
   return (
     <div className="flex h-full min-h-[100vh]">
       <main className="flex-[75%] min-[1200px]:pt-5 pt-0 ">
@@ -13,4 +13,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default EditProfile;

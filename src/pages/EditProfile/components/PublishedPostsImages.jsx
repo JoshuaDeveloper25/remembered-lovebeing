@@ -1,10 +1,10 @@
-import lgZoom from "lightgallery/plugins/zoom";
 import lgShare from "lightgallery/plugins/share";
+import lgZoom from "lightgallery/plugins/zoom";
 import lgHash from "lightgallery/plugins/hash";
 import LightGallery from "lightgallery/react";
 import { useParams } from "react-router-dom";
 
-const Carousel = ({ rememberName, galleryImages }) => {
+const PublishedPostsImages = ({ rememberName, galleryImages }) => {
   const params = useParams();
 
   return (
@@ -40,4 +40,4 @@ const Carousel = ({ rememberName, galleryImages }) => {
   );
 };
 
-export default Carousel;
+export default PublishedPostsImages;

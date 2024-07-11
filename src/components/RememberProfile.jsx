@@ -316,7 +316,7 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
                       return (
                         <div
                           key={item?.id}
-                          className="border-b [&:not(:last-child)]:border-gray-400/50 pt-3"
+                          className="border-b [&:not(:last-child)]:border-gray-400/50 py-3"
                         >
                           <div className="flex items-center gap-3 pb-2">
                             <img
@@ -337,7 +337,10 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
                             {item?.content}
                           </h2>
 
-                          <CarouselPosts galleryImages={item?.gallery_images} />
+                          <CarouselPosts
+                            rememberName={data?.data?.name}
+                            galleryImages={item?.gallery_images}
+                          />
                         </div>
                       );
                     })}

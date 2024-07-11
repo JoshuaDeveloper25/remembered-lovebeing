@@ -1,64 +1,41 @@
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { EffectFlip, Pagination, Navigation } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Link, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import lgZoom from "lightgallery/plugins/zoom";
+import lgShare from "lightgallery/plugins/share";
+import lgHash from "lightgallery/plugins/hash";
+import LightGallery from "lightgallery/react";
+import { useParams } from "react-router-dom";
 
-// Import Swiper styles
-import "swiper/css/effect-flip";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import "swiper/css";
-
-const Carousel = ({ galleryImages }) => {
+const Carousel = ({ rememberName, galleryImages }) => {
   const params = useParams();
 
-  useEffect(() => {
-    // Ensure the DOM element exists
-    const container = document.querySelector(".masonry-gallery-demo");
-    if (container) {
-      // Initialize Masonry
-      const msnry = new Masonry(container, {
-        itemSelector: ".gallery-item",
-        columnWidth: ".grid-sizer",
-        percentPosition: true,
-      });
-
-      // Use imagesLoaded with Masonry
-      imagesLoaded(container).on("progress", function () {
-        // Layout Masonry after each image loads
-        msnry.layout();
-      });
-    }
-  }, []);
-
   return (
-    <div className="relative mb-8">
-      <Swiper
-        effect={"flip"}
-        grabCursor={true}
-        pagination={{ clickable: true }}
-        // navigation={true}
-        modules={[EffectFlip, Pagination, Navigation]}
-        className="mySwiper"
+    <div className="galleryPost h-screen max-h-96 overflow-y-auto">
+      <LightGallery
+        elementClassNames={"gallery"}
+        plugins={[lgZoom, lgShare, lgHash]}
+        speed={500}
       >
         {galleryImages
           ?.filter((item) => item?.id !== +params?.id)
           ?.map((remember, index) => (
-            <SwiperSlide key={index} className="">
+            <div
+              key={index}
+              className="pics"
+              data-src={`${remember?.cloud_front_domain}/${remember?.aws_file_name}`}
+              data-sub-html={`<h4>Uploaded by - ${rememberName}</h4><p> This is a souvenir from this lovebeing...</p>`}
+            >
               <img
-                className="w-72 h-72 object-cover mx-auto rounded-md shadow-lg"
                 loading="lazy"
                 decoding="async"
+                className="w-full"
                 src={
                   remember?.id
                     ? `${remember?.cloud_front_domain}/${remember?.aws_file_name}`
                     : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
                 }
               />
-            </SwiperSlide>
+            </div>
           ))}
-      </Swiper>
+      </LightGallery>
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { convertToPixelCrop } from "react-image-crop";
 import { FaCameraRetro } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { useRef, useState } from "react";
-import Modal from "../components/Modal";
+import Modal from "./Modal";
 import { toast } from "react-toastify";
 import axios from "axios";
 

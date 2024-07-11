@@ -1,3 +1,4 @@
+/* Imports for fonts, and lightgallery popup animation for images onclick */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lightgallery.css");
 @import url("https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lg-zoom.css");
@@ -76,7 +77,7 @@ body {
   border: 0 !important;
 }
 
-/* Mansory Code */
+/* Mansory Code of A Grid Gallery or Image Gallery */
 .gallery {
   -webkit-column-count: 3;
   -moz-column-count: 3;

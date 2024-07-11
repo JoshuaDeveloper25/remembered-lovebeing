@@ -2,14 +2,14 @@ import TabLinkContent from "../pages/MyProfiles/components/TabLinkContent";
 import MansoryGallery from "../pages/Settings/components/MansoryGallery";
 import CarouselPosts from "../pages/Settings/components/CarouselPosts";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
-import UploadProfileImage from "../helpers/UploadProfileImage";
-import UploadGalleryImage from "../helpers/UploadGalleryImage";
 import TabLink from "../pages/MyProfiles/components/TabLink";
-import UploadCoverImage from "../helpers/UploadCoverImage";
+import UploadProfileImage from "./UploadProfileImage";
+import UploadGalleryImage from "./UploadGalleryImage";
 import { getLivedDays } from "../utils/getLivedDays";
+import UploadCoverImage from "./UploadCoverImage";
 import { useQuery } from "@tanstack/react-query";
-import UploadPost from "../helpers/UploadPost";
 import { useParams } from "react-router-dom";
+import UploadPost from "./UploadPost";
 import Carousel from "./Carousel";
 import { useState } from "react";
 import axios from "axios";
@@ -65,7 +65,7 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
 
   return (
     <section className="container-page">
-      <article className=" rounded-lg">
+      <article className="rounded-lg">
         {/* Cover Image */}
         <div className="relative">
           <img

@@ -5,8 +5,8 @@ import { Link, useParams } from "react-router-dom";
 import { ImUser } from "react-icons/im";
 
 // Import Swiper styles
-import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css";
 
 const Carousel = ({ rememberedProfiles }) => {
   const params = useParams();
@@ -70,9 +70,11 @@ const Carousel = ({ rememberedProfiles }) => {
                     : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
                 }
               />
+              
               <h3 className="text-center mt-2 font-bold text-primary-color">
                 {remember?.name}
               </h3>
+
               <Link
                 to={`/remembered/${remember?.id}`}
                 target="_blank"

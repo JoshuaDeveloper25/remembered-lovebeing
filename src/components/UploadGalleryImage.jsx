@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import { useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
-import Modal from "../components/Modal";
+import Modal from "./Modal";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import axios from "axios";

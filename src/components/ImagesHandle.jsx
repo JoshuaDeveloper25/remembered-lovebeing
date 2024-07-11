@@ -33,7 +33,7 @@ const ImagesHandle = ({ setImages, images }) => {
 
   return (
     <ReactImageUploading
-      acceptType={["jpg", "jpeg"]}
+      acceptType={["jpg", "jpeg", "png"]}
       multiple={true}
       onChange={onChange}
       value={images}
@@ -80,6 +80,7 @@ const ImagesHandle = ({ setImages, images }) => {
                     >
                       <LuPencilLine size={20} />
                     </button>
+
                     <button
                       className="hover:bg-red-500/90 hover:text-secondary bg-red-500/85 rounded-full text-white p-1"
                       type="button"

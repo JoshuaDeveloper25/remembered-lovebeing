@@ -13,6 +13,7 @@ import { useParams } from "react-router-dom";
 import UploadPost from "./UploadPost";
 import { useState } from "react";
 import axios from "axios";
+import Post from "./Post";
 
 const RememberProfile = ({ queryKey, apiUrl }) => {
   const [triggerEffect, setTriggerEffect] = useState(false);
@@ -42,6 +43,8 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
     queryFn: async () =>
       await axios.get(`${import.meta.env.VITE_BASE_URL}/posts/${params?.id}`),
   });
+
+  console.log(postsQuery?.data?.data)
 
   if (isPending) {
     return (
@@ -314,36 +317,13 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
                       <UploadPost rememberedProfiles={ownProfilesQuery?.data} />
                     </div>
 
-                    {postsQuery?.data?.data?.map((item) => {
+                    {postsQuery?.data?.data?.map((post) => {
                       return (
-                        <div
-                          key={item?.id}
-                          className="border-b [&:not(:last-child)]:border-gray-400/50 py-3"
-                        >
-                          <div className="flex items-center gap-3 pb-2">
-                            <img
-                              className="w-16 rounded-full"
-                              src={
-                                item?.profile_image
-                                  ? `${item?.profile_image?.cloud_front_domain}/${item?.profile_image?.aws_file_name}`
-                                  : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-                              }
-                            />
-
-                            <h3 className="font-medium text-base">
-                              {data?.data?.name}
-                            </h3>
-                          </div>
-
-                          <h2 className="mb-5 text-primary-color font-light">
-                            {item?.content}
-                          </h2>
-
-                          <PublishedPostsImages
-                            rememberName={data?.data?.name}
-                            galleryImages={item?.gallery_images}
-                          />
-                        </div>
+                        <Post
+                          rememberName={data?.data?.name}
+                          post={post}
+                          key={post?.id}
+                        />
                       );
                     })}
                   </TabLinkContent>

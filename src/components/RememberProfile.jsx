@@ -44,8 +44,6 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
       await axios.get(`${import.meta.env.VITE_BASE_URL}/posts/${params?.id}`),
   });
 
-  console.log(postsQuery?.data?.data)
-
   if (isPending) {
     return (
       <div className="container-page">
@@ -318,6 +316,7 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
                     </div>
 
                     {postsQuery?.data?.data?.map((post) => {
+                      console.log(post)
                       return (
                         <Post
                           rememberName={data?.data?.name}

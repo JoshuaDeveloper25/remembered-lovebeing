@@ -3,6 +3,7 @@ import publishCommentPost from "../helpers/publishCommentPost";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../utils/getFastApiErrors";
+import { FaQuoteLeft } from "react-icons/fa";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -36,6 +37,8 @@ const Post = ({ post, rememberName }) => {
     if (!commentInfo?.content) return toast.error(`Fill up the blank!`);
 
     publishCommentPostMutation.mutate(commentInfo);
+
+    e?.target?.reset();
   };
 
   return (
@@ -83,7 +86,19 @@ const Post = ({ post, rememberName }) => {
           Publish
         </button>
 
-        <p className="py-3">No comments added yet...</p>
+        {!post?.comments?.length ? (
+          <p className="py-3">No comments added yet... </p>
+        ) : (
+          post?.comments?.map((item, index) => (
+            <div
+              className="bg-primary-color/10 py-9 px-5 rounded-md my-4 relative"
+              key={index}
+            >
+              <p className="text-sm font-thin text-black">{item?.content}</p>
+              <FaQuoteLeft className="absolute top-3 size-5 text-primary-color/90" />
+            </div>
+          ))
+        )}
       </form>
     </div>
   );

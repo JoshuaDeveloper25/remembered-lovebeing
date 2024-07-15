@@ -3,8 +3,8 @@ import AppContext from "../context/AppProvider";
 import { useContext, useState } from "react";
 import { FaHeart } from "react-icons/fa6";
 import { createPortal } from "react-dom";
-import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { setUserInfo, userInfo } = useContext(AppContext);

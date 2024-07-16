@@ -25,6 +25,7 @@ const MyProfiles = lazy(() => import("./pages/MyProfiles/MyProfiles"));
 const PreviewProfileRemembered = lazy(() =>
   import("./pages/PreviewProfileRemembered/PreviewProfileRemembered")
 );
+const Memorials = lazy(() => import("./pages/Memorials/Memorials"));
 
 const PublicRoutes = lazy(() => import("./auth/PublicRoutes"));
 const PrivateRoutes = lazy(() => import("./auth/PrivateRoutes"));
@@ -86,6 +87,11 @@ const router = createBrowserRouter([
       {
         element: <PreviewProfileRemembered />,
         path: "/remembered-profile-preview/:id",
+      },
+
+      {
+        element: <Memorials />,
+        path: "/memorials",
       },
     ],
   },

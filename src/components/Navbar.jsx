@@ -1,9 +1,9 @@
 import NavbarDropdownLink from "./NavbarDropdownLink";
+import { Link, NavLink } from "react-router-dom";
 import AppContext from "../context/AppProvider";
+import { LiaCrossSolid } from "react-icons/lia";
 import { useContext, useState } from "react";
-import { FaHeart } from "react-icons/fa6";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Navbar = () => {
@@ -27,52 +27,72 @@ const Navbar = () => {
               </Link>
             </div>
 
-            <div className="relative">
-              <button
-                id="dropdownDividerButton"
-                data-dropdown-toggle="dropdownDivider"
-                className="animation-fade text-xl hover:rounded-full hover:opacity-45 hover:bg-black/20 p-2"
-                onClick={() => setOpenDropDown(!openDropDown)}
-                type="button"
+            <div className="flex items-center gap-5">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? `nav-active` : `nav-inactive`
+                }
+                to={"/memorials"}
               >
-                <FaHeart size={24} className="text-red-500" />
-              </button>
+                Memorials
+              </NavLink>
+              
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? `nav-active` : `nav-inactive`
+                }
+                to={"/posts"}
+              >
+                Posts
+              </NavLink>
 
-              {openDropDown && (
-                <>
-                  {createPortal(
-                    <div
-                      onClick={() => setOpenDropDown(!openDropDown)}
-                      className="h-[100vh] fixed top-0 w-full"
-                    ></div>,
-                    document.body
-                  )}
+              <div className="relative">
+                <button
+                  id="dropdownDividerButton"
+                  data-dropdown-toggle="dropdownDivider"
+                  className="animation-fade text-xl hover:rounded-full  hover:bg-white/20 p-2"
+                  onClick={() => setOpenDropDown(!openDropDown)}
+                  type="button"
+                >
+                  <LiaCrossSolid size={28} className="text-white-500" />
+                </button>
 
-                  {userInfo?.access_token && (
-                    <ul className="absolute right-5 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
-                      <NavbarDropdownLink
-                        hoverBgLink={"hover:bg-primary-color"}
-                        linkText={"My Profiles"}
-                        onClick={() => setOpenDropDown(false)}
-                        linkTo={"/my-profiles/"}
-                      />
+                {openDropDown && (
+                  <>
+                    {createPortal(
+                      <div
+                        onClick={() => setOpenDropDown(!openDropDown)}
+                        className="h-[100vh] fixed top-0 w-full"
+                      ></div>,
+                      document.body
+                    )}
 
-                      <NavbarDropdownLink
-                        hoverBgLink={"hover:bg-primary-color"}
-                        linkText={"Settings"}
-                        onClick={() => setOpenDropDown(false)}
-                        linkTo={"#"}
-                      />
+                    {userInfo?.access_token && (
+                      <ul className="absolute right-5 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
+                        <NavbarDropdownLink
+                          hoverBgLink={"hover:bg-primary-color"}
+                          linkText={"My Profiles"}
+                          onClick={() => setOpenDropDown(false)}
+                          linkTo={"/my-profiles/"}
+                        />
 
-                      <NavbarDropdownLink
-                        hoverBgLink={"hover:bg-red-500"}
-                        linkText={"Log Out"}
-                        onClick={handleLogOut}
-                      />
-                    </ul>
-                  )}
-                </>
-              )}
+                        <NavbarDropdownLink
+                          hoverBgLink={"hover:bg-primary-color"}
+                          linkText={"Settings"}
+                          onClick={() => setOpenDropDown(false)}
+                          linkTo={"#"}
+                        />
+
+                        <NavbarDropdownLink
+                          hoverBgLink={"hover:bg-red-500"}
+                          linkText={"Log Out"}
+                          onClick={handleLogOut}
+                        />
+                      </ul>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>

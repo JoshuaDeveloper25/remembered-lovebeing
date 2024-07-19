@@ -2,16 +2,24 @@ import PublishedPostsImages from "../pages/EditProfileRemembered/components/Publ
 import PostCommentModal from "../pages/EditProfileRemembered/components/PostCommentModal";
 import publishCommentPost from "../helpers/publishCommentPost";
 
+import EditPostForm from "../pages/EditProfileRemembered/components/EditPostForm";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import CarouselCommentPosts from "./CarouselCommentPosts";
 import getFastApiErrors from "../utils/getFastApiErrors";
+import NavbarDropdownLink from "./NavbarDropdownLink";
+import { HiDotsVertical } from "react-icons/hi";
 import { FaQuoteLeft } from "react-icons/fa";
+import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Modal from "./Modal";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Post = ({ post, rememberName }) => {
+  const [openModalEditPost, setOpenModalEditPost] = useState(false);
   const [modalPostComments, setModalPostComments] = useState(false);
+  const [openPostDropDown, setOpenPostDropDown] = useState(false);
   const [comment, setComment] = useState("");
   const queryClient = useQueryClient();
 
@@ -47,28 +55,106 @@ const Post = ({ post, rememberName }) => {
     setComment("");
   };
 
+  const deletePostMutation = useMutation({
+    mutationFn: async (commentInfo) =>
+      await axios.delete(`${import.meta.env.VITE_BASE_URL}/posts/${post?.id}`),
+    onSuccess: (res) => {
+      toast.success("Post deleted successfully!");
+      queryClient.invalidateQueries(["postComments"]);
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(getFastApiErrors(err));
+    },
+  });
+
+  const handleDeletePost = () => {
+    const user_request = confirm(`Are you sure you want to delete this post?`);
+
+    if (!user_request) return;
+
+    deletePostMutation.mutate();
+  };
+
   return (
     <div className="border-b [&:not(:last-child)]:border-gray-400/50 py-3">
-      <div className="flex items-center gap-3 pb-2">
-        <img
-          className="w-16 rounded-full"
-          src={
-            post?.profile_image
-              ? `${post?.profile_image?.cloud_front_domain}/${post?.profile_image?.aws_file_name}`
-              : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-          }
-        />
+      {/* Header of the post */}
+      <div className="flex justify-between items-center gap-3">
+        <div className="flex items-center gap-3">
+          <img
+            className="w-16 rounded-full"
+            src={
+              post?.profile_image
+                ? `${post?.profile_image?.cloud_front_domain}/${post?.profile_image?.aws_file_name}`
+                : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+            }
+          />
 
-        <h3 className="font-medium text-base">{rememberName}</h3>
+          <h3 className="font-medium text-base">{rememberName}</h3>
+        </div>
+
+        {/* Vertical Dots Dropdown */}
+        <div>
+          <div className="relative">
+            <button
+              id="dropdownDividerButton"
+              data-dropdown-toggle="dropdownDivider"
+              className="animation-fade text-xl hover:rounded-full  hover:bg-white/20 p-2"
+              onClick={() => setOpenPostDropDown(!openPostDropDown)}
+              type="button"
+            >
+              <HiDotsVertical size={23} />
+            </button>
+
+            {openPostDropDown && (
+              <>
+                {createPortal(
+                  <div
+                    onClick={() => setOpenPostDropDown(!openPostDropDown)}
+                    className="h-[100vh] fixed top-0 w-full"
+                  ></div>,
+                  document.body
+                )}
+
+                <ul className="absolute right-5 shadow-lg bg-gray-200 py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
+                  {/* Edit Post */}
+                  <NavbarDropdownLink
+                    hoverBgLink={"hover:bg-secondary-color"}
+                    linkText={"Edit Post"}
+                    onClick={() => {
+                      setOpenPostDropDown(false);
+                      setOpenModalEditPost(true);
+                    }}
+                  />
+
+                  <EditPostLogic
+                    setOpenModalEditPost={setOpenModalEditPost}
+                    openModalEditPost={openModalEditPost}
+                    post={post}
+                  />
+
+                  {/* Delete Post */}
+                  <NavbarDropdownLink
+                    hoverBgLink={"hover:bg-red-500"}
+                    linkText={"Delete Post"}
+                    onClick={handleDeletePost}
+                  />
+                </ul>
+              </>
+            )}
+          </div>
+        </div>
       </div>
 
       <h2 className="mb-5 text-primary-color font-light">{post?.content}</h2>
 
+      {/* Images Gallery Mansory */}
       <PublishedPostsImages
         rememberName={rememberName}
         galleryImages={post?.gallery_images}
       />
 
+      {/* Footer of the post */}
       <div className="flex justify-between items-center my-5">
         <button
           onClick={() => setModalPostComments(!modalPostComments)}
@@ -82,6 +168,7 @@ const Post = ({ post, rememberName }) => {
         </h3>
       </div>
 
+      {/* Modal to preview post with its comments and images */}
       <PostCommentModal
         openModal={modalPostComments}
         setOpenModal={setModalPostComments}
@@ -92,7 +179,9 @@ const Post = ({ post, rememberName }) => {
           </article>
 
           <article
-            className={`relative flex-1 flex flex-col justify-between ${!post?.comments?.length ? 'overflow-y-hidden' : 'overflow-y-auto'} max-h-[100%]`}
+            className={`relative flex-1 flex flex-col justify-between ${
+              !post?.comments?.length ? "overflow-y-hidden" : "overflow-y-auto"
+            } max-h-[100%]`}
             onSubmit={handleSubmitPublishComment}
           >
             {!post?.comments?.length ? (
@@ -133,7 +222,7 @@ const Post = ({ post, rememberName }) => {
             )}
 
             <form
-              className={`self-end w-full sticky bottom-0 bg-transparent z-50`}
+              className={`self-end w-full sticky bottom-0 bg-transparent z-[9999]`}
             >
               <div className="relative">
                 <textarea
@@ -168,3 +257,52 @@ const Post = ({ post, rememberName }) => {
 };
 
 export default Post;
+
+// Edit Post
+const EditPostLogic = ({ setOpenModalEditPost, openModalEditPost, post }) => {
+  const queryClient = useQueryClient();
+
+  const editPostMutation = useMutation({
+    mutationFn: async (commentInfo) =>
+      await axios.put(
+        `${import.meta.env.VITE_BASE_URL}/posts/${post?.id}`,
+        commentInfo
+      ),
+    onSuccess: (res) => {
+      toast.success("Post edited successfully!");
+      queryClient.invalidateQueries(["postComments"]);
+      setOpenModalEditPost(!openModalEditPost);
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(getFastApiErrors(err));
+    },
+  });
+
+  const handleSubmitEditPost = (e) => {
+    e.preventDefault();
+
+    const commentInfo = {
+      content: e?.target?.content?.value,
+    };
+
+    // Form validation
+    if (!commentInfo?.content) return toast.error(`Fill up the blank!`);
+
+    editPostMutation.mutate(commentInfo);
+  };
+
+  return (
+    <>
+      <Modal
+        titleModal={"Edit Post"}
+        handleSubmit={handleSubmitEditPost}
+        setOpenModal={setOpenModalEditPost}
+        openModal={openModalEditPost}
+        modalForm={true}
+      >
+        <EditPostForm post={post} editPostMutation={editPostMutation} />
+      </Modal>
+    </>
+  );
+};

@@ -264,7 +264,9 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
               onClick={() => setShowMembers(!showMembers)}
               className="btn btn-blue w-auto mb-3"
             >
-              {showMembers ? 'Hide My Family Members' : 'Show My Family Members'}
+              {showMembers
+                ? "Hide My Family Members"
+                : "Show My Family Members"}
             </button>
 
             {showMembers ? (
@@ -325,16 +327,21 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
 
                       <UploadPost rememberedProfiles={ownProfilesQuery?.data} />
                     </div>
-                    {postsQuery?.data?.data?.map((post) => {
-                      return (
-                        <Post
-                          rememberName={data?.data?.name}
-                          totalComments={postsQuery?.data?.data?.comments}
-                          post={post}
-                          key={post?.id}
-                        />
-                      );
-                    })}
+
+                    {!postsQuery?.data?.data?.length ? (
+                      <h2 className="text-center font-bold text-xl text-primary-color my-5">There's no posts in this profile yet...</h2>
+                    ) : (
+                      postsQuery?.data?.data?.map((post) => {
+                        return (
+                          <Post
+                            rememberName={data?.data?.name}
+                            totalComments={postsQuery?.data?.data?.comments}
+                            post={post}
+                            key={post?.id}
+                          />
+                        );
+                      })
+                    )}
                   </TabLinkContent>
 
                   <TabLinkContent

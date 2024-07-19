@@ -12,7 +12,7 @@ const CarouselProfiles = ({ rememberedProfiles }) => {
   const params = useParams();
 
   return (
-    <div className="relative mb-8">
+    <div className="relative">
       {rememberedProfiles?.length === 0 ? null : (
         <>
           <div className="swiper-button image-swiper-button-next absolute z-50 cursor-pointer top-24 xl:-right-7 right-0">
@@ -28,7 +28,7 @@ const CarouselProfiles = ({ rememberedProfiles }) => {
       <Swiper
         centeredSlides={false}
         modules={[Pagination, Navigation]}
-        className="mySwiper"
+        className="carouselProfilesSwiper"
         navigation={{
           nextEl: ".image-swiper-button-next",
           prevEl: ".image-swiper-button-prev",
@@ -40,14 +40,20 @@ const CarouselProfiles = ({ rememberedProfiles }) => {
             slidesPerView: 1,
             spaceBetween: 30,
           },
+
+          // when window width is >= 340px
+          500: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+          },
           // when window width is >= 640px
           640: {
-            slidesPerView: 2,
+            slidesPerView: 3,
             spaceBetween: 30,
           },
           // when window width is >= 768px
           950: {
-            slidesPerView: 3,
+            slidesPerView: 4,
             spaceBetween: 30,
           },
         }}
@@ -61,7 +67,7 @@ const CarouselProfiles = ({ rememberedProfiles }) => {
               className="bg-white border-2 shadow-xl rounded-md py-3 px-3"
             >
               <img
-                className="w-44 mx-auto"
+                className="w-28 mx-auto rounded-md"
                 loading="lazy"
                 decoding="async"
                 src={
@@ -70,7 +76,7 @@ const CarouselProfiles = ({ rememberedProfiles }) => {
                     : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
                 }
               />
-              
+
               <h3 className="text-center mt-2 font-bold text-primary-color">
                 {remember?.name}
               </h3>
@@ -78,6 +84,7 @@ const CarouselProfiles = ({ rememberedProfiles }) => {
               <Link
                 to={`/remembered-profile-preview/${remember?.id}`}
                 target="_blank"
+                style={{ fontSize: ".8rem" }}
                 className="btn btn-blue block w-full text-center mt-2"
               >
                 <ImUser className="inline-block align-baseline me-1" />

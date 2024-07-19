@@ -8,7 +8,7 @@ const PublishedPostsImages = ({ rememberName, galleryImages }) => {
   const params = useParams();
 
   return (
-    <div className="galleryPost h-screen max-h-96 overflow-y-auto">
+    <div className="galleryPost h-screen max-h-72 overflow-y-auto">
       <LightGallery
         elementClassNames={"gallery"}
         plugins={[lgZoom, lgShare, lgHash]}

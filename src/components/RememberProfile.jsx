@@ -16,6 +16,7 @@ import axios from "axios";
 import Post from "./Post";
 
 const RememberProfile = ({ queryKey, apiUrl }) => {
+  const [showMembers, setShowMembers] = useState(false);
   const [triggerEffect, setTriggerEffect] = useState(false);
   const [profilePosition, setProfilePosition] = useState("left");
   const [profileShapeImage, setProfileShapeImage] = useState("circle");
@@ -194,11 +195,11 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
           </div>
 
           <div className="lg:self-end">
-            <h2 className="font-semibold text-gray-500">
+            <h2 className="font-semibold text-muted-color">
               {data?.data?.epitaph || "In loving memory of"}
             </h2>
             <h3 className="text-2xl font-bold mb-1">{data?.data?.name}</h3>
-            <h3 className="text-gray-500">
+            <h3 className="text-muted-color">
               <span className="font-bold">Lifetime</span>:{" "}
               {data?.data?.birth_date} <span className="font-bold">X</span>{" "}
               {data?.data?.death_date}
@@ -225,11 +226,11 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
                 <UploadProfileImage />
               </div>
             </div>
-            <h3 className="font-bold text-sm text-gray-500 mt-3 capitalize">
+            <h3 className="font-bold text-sm text-muted-color mt-3 capitalize">
               {data?.data?.epitaph || "In loving memory of"}
             </h3>
             <h3 className="font-bold capitalize text-xl">{data?.data?.name}</h3>
-            <p className="text-gray-600 mt-2 text-xs leading-4">
+            <p className="text-muted-color mt-2 text-xs leading-4">
               <span className="block font-bold mb-1 text-sm"> Lifetime:</span>{" "}
               {data?.data?.birth_date} <span className="font-bold mx-1">X</span>{" "}
               {data?.data?.death_date}{" "}
@@ -252,20 +253,30 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
                 className="hover:text-[#00A2B3] animation-fade cursor-pointer"
               />
             </div>
-            <p className="text-gray-600 text-xs font-bold mt-2 leading-4">
+            <p className="text-muted-color text-xs font-bold mt-2 leading-4">
               Member since Nov 15, 2021
             </p>
           </article>
 
           <article className="col-span-3 my-8">
-            <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
-              <h2 className="font-bold text-primary-color text-xl mb-2">
-                My family members...
-              </h2>
-              <CarouselProfiles
-                rememberedProfiles={ownProfilesQuery?.data?.data}
-              />
-            </div>
+            <button
+              type="button"
+              onClick={() => setShowMembers(!showMembers)}
+              className="btn btn-blue w-auto mb-3"
+            >
+              {showMembers ? 'Hide My Family Members' : 'Show My Family Members'}
+            </button>
+
+            {showMembers ? (
+              <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
+                <h2 className="font-bold text-primary-color text-xl mb-2">
+                  My family members...
+                </h2>
+                <CarouselProfiles
+                  rememberedProfiles={ownProfilesQuery?.data?.data}
+                />
+              </div>
+            ) : null}
 
             <ul
               className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
@@ -314,12 +325,11 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
 
                       <UploadPost rememberedProfiles={ownProfilesQuery?.data} />
                     </div>
-
                     {postsQuery?.data?.data?.map((post) => {
-                      console.log(post)
                       return (
                         <Post
                           rememberName={data?.data?.name}
+                          totalComments={postsQuery?.data?.data?.comments}
                           post={post}
                           key={post?.id}
                         />

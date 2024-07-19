@@ -81,7 +81,7 @@ const ImagesHandleCrop = ({
           name="uploadImages"
           accept="png, jpeg"
           onChange={onSelectFile}
-          className="block w-full text-sm text-slate-500 file:py-1 file:px-2 file:rounded-full file:border-0 file:text-xs file:bg-gray-700 file:text-sky-300 hover:file:bg-gray-600"
+          className="block w-full text-sm text-tertiary-color file:py-1 file:px-2 file:rounded-full file:border-0 file:text-xs file:bg-black file:text-white hover:file:text-tertiary-color hover:file:bg-black/90"
         />
       </label>
 

@@ -46,13 +46,13 @@ const VerifyingContent = ({ isPending, error }) => {
               Your account has been verified!
             </h2>
 
-            <p className="text-center my-5 text-2xl text-primary-colour/70">
+            <p className="text-center my-5 text-2xl text-primary-color/70">
               We care about your security!
             </p>
 
             <div className="text-center">
               <Link
-                className="text-center text-primary-colour text-lg"
+                className="text-center text-primary-color text-lg"
                 to={`/`}
               >
                 Log In

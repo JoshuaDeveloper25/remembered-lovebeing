@@ -19,7 +19,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-black/80 text-white py-2">
-        <div className="container-page px-2">
+        <div className="container-page">
           <div className="flex justify-between items-center">
             <div>
               <Link to={"/"}>
@@ -36,7 +36,7 @@ const Navbar = () => {
               >
                 Memorials
               </NavLink>
-              
+
               <NavLink
                 className={({ isActive }) =>
                   isActive ? `nav-active` : `nav-inactive`

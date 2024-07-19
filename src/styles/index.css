@@ -56,12 +56,18 @@ body {
   }
 
   .nav-active {
-    border-bottom: 1px solid #FFFFFF;
+    border-bottom: 1px solid #ffffff;
     font-weight: bold;
   }
 
   .nav-inactive {
-    color: #FFFFFF;
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  .image-polygon {
+    clip-path: polygon(100% 0%, 100% 100%, 50% 65%, 0% 100%, 0% 0%);
   }
 }
 
@@ -179,5 +185,18 @@ body {
 @media (max-width: 63.25em) {
   .objectViewBoxImages {
     object-view-box: inset(0);
-  } 
-} 
+  }
+}
+
+.profile-image {
+  transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+}
+
+.hover\:scale-image:hover .profile-image {
+  transform: scale(1.2); /* Ajusta el valor de escala según lo necesites */
+  transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+}
+
+.carouselProfilesSwiper .swiper-slide {
+  width: 174px!important;
+}

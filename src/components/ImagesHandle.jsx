@@ -51,7 +51,7 @@ const ImagesHandle = ({ setImages, images }) => {
               {...dragProps}
               type="button"
               onClick={onImageUpload}
-              className="w-full bg-white text-gray-500 font-semibold text-base rounded max-w-md h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed mx-auto font-[sans-serif]"
+              className="w-full bg-white text-tertiary-color font-semibold text-base rounded max-w-md h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed mx-auto font-[sans-serif]"
             >
               <IoCloudUploadSharp size={35} />
               {isDragging ? "Drop it here" : "Upload file"}

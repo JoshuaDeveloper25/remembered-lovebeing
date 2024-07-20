@@ -94,55 +94,53 @@ const Post = ({ post, rememberName }) => {
         </div>
 
         {/* Vertical Dots Dropdown */}
-        <div>
-          <div className="relative">
-            <button
-              id="dropdownDividerButton"
-              data-dropdown-toggle="dropdownDivider"
-              className="animation-fade text-xl hover:rounded-full  hover:bg-white/20 p-2"
-              onClick={() => setOpenPostDropDown(!openPostDropDown)}
-              type="button"
-            >
-              <HiDotsVertical size={23} />
-            </button>
+        <div className="relative">
+          <button
+            id="dropdownDividerButton"
+            data-dropdown-toggle="dropdownDivider"
+            className="animation-fade text-xl hover:rounded-full  hover:bg-white/20 p-2"
+            onClick={() => setOpenPostDropDown(!openPostDropDown)}
+            type="button"
+          >
+            <HiDotsVertical size={23} />
+          </button>
 
-            {openPostDropDown && (
-              <>
-                {createPortal(
-                  <div
-                    onClick={() => setOpenPostDropDown(!openPostDropDown)}
-                    className="h-[100vh] fixed top-0 w-full"
-                  ></div>,
-                  document.body
-                )}
+          {openPostDropDown && (
+            <>
+              {createPortal(
+                <div
+                  onClick={() => setOpenPostDropDown(!openPostDropDown)}
+                  className="h-[100vh] fixed top-0 w-full"
+                ></div>,
+                document.body
+              )}
 
-                <ul className="absolute right-5 shadow-lg bg-gray-200 py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
-                  {/* Edit Post */}
-                  <NavbarDropdownLink
-                    hoverBgLink={"hover:bg-secondary-color"}
-                    linkText={"Edit Post"}
-                    onClick={() => {
-                      setOpenPostDropDown(false);
-                      setOpenModalEditPost(true);
-                    }}
-                  />
+              <ul className="absolute right-5 shadow-lg bg-gray-200 py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
+                {/* Edit Post */}
+                <NavbarDropdownLink
+                  hoverBgLink={"hover:bg-secondary-color"}
+                  linkText={"Edit Post"}
+                  onClick={() => {
+                    setOpenPostDropDown(false);
+                    setOpenModalEditPost(true);
+                  }}
+                />
 
-                  <EditPostLogic
-                    setOpenModalEditPost={setOpenModalEditPost}
-                    openModalEditPost={openModalEditPost}
-                    post={post}
-                  />
+                <EditPostLogic
+                  setOpenModalEditPost={setOpenModalEditPost}
+                  openModalEditPost={openModalEditPost}
+                  post={post}
+                />
 
-                  {/* Delete Post */}
-                  <NavbarDropdownLink
-                    hoverBgLink={"hover:bg-red-500"}
-                    linkText={"Delete Post"}
-                    onClick={handleDeletePost}
-                  />
-                </ul>
-              </>
-            )}
-          </div>
+                {/* Delete Post */}
+                <NavbarDropdownLink
+                  hoverBgLink={"hover:bg-red-500"}
+                  linkText={"Delete Post"}
+                  onClick={handleDeletePost}
+                />
+              </ul>
+            </>
+          )}
         </div>
       </div>
 

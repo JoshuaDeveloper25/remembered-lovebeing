@@ -122,7 +122,7 @@ const Post = ({ post, rememberName }) => {
                   linkText={"Edit Post"}
                   onClick={() => {
                     setOpenPostDropDown(false);
-                    setOpenModalEditPost(true);
+                    setOpenModalEditPost(true)
                   }}
                 />
 

@@ -81,7 +81,7 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
             className="max-h-[24rem] w-full shadow-2xl min-[1200px]:rounded-t-lg rounded-t-none object-cover z-10"
           />
 
-          <div className="absolute bottom-3 right-3 z-[100] cursor-pointer">
+          <div className="absolute bottom-3 right-3 cursor-pointer">
             <UploadCoverImage />
           </div>
         </div>
@@ -178,7 +178,7 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
                 </div>
               )} */}
 
-          <div className="sm:max-w-none max-w-[5rem] sm:-mt-20 -mt-10 relative z-20">
+          <div className="sm:max-w-none max-w-[5rem] sm:-mt-20 -mt-10 sticky z-20">
             <img
               className="sm:h-[168px] w-full sm:w-[168px] h-full rounded-full"
               loading="lazy"
@@ -213,7 +213,7 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
         {/* Desktop - from 768px to up */}
         <div className="grid md:grid-cols-4 grid-cols-1 items-start md:gap-8 px-5">
           <article className="col-span-1 sticky top-0 min-w-44 text-center border md:mb-0 mb-8 bg-white shadow-2xl rounded-xl md:-mt-12 py-5 px-4 md:block hidden">
-            <div className="relative">
+            <div className="sticky z-20">
               <img
                 className="w-36 h-36 object-cover mx-auto rounded-full shadow-lg"
                 src={

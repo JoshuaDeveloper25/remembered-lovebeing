@@ -11,10 +11,10 @@ import { HiDotsVertical } from "react-icons/hi";
 import { FaQuoteLeft } from "react-icons/fa";
 import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from "./Modal";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import formatDate from "../utils/formatDate";
 
 const Post = ({ post, rememberName }) => {
   const [openModalEditPost, setOpenModalEditPost] = useState(false);
@@ -22,6 +22,7 @@ const Post = ({ post, rememberName }) => {
   const [openPostDropDown, setOpenPostDropDown] = useState(false);
   const [comment, setComment] = useState("");
   const queryClient = useQueryClient();
+  console.log(post);
 
   const publishCommentPostMutation = useMutation({
     mutationFn: async (commentInfo) =>
@@ -84,8 +85,8 @@ const Post = ({ post, rememberName }) => {
           <img
             className="w-16 rounded-full"
             src={
-              post?.profile_image
-                ? `${post?.profile_image?.cloud_front_domain}/${post?.profile_image?.aws_file_name}`
+              post?.remembered?.profile_images
+                ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
                 : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
             }
           />
@@ -98,7 +99,7 @@ const Post = ({ post, rememberName }) => {
           <button
             id="dropdownDividerButton"
             data-dropdown-toggle="dropdownDivider"
-            className="animation-fade text-xl hover:rounded-full  hover:bg-white/20 p-2"
+            className="animation-fade text-xl hover:rounded-full  hover:bg-white/20"
             onClick={() => setOpenPostDropDown(!openPostDropDown)}
             type="button"
           >
@@ -122,7 +123,7 @@ const Post = ({ post, rememberName }) => {
                   linkText={"Edit Post"}
                   onClick={() => {
                     setOpenPostDropDown(false);
-                    setOpenModalEditPost(true)
+                    setOpenModalEditPost(true);
                   }}
                 />
 
@@ -144,7 +145,10 @@ const Post = ({ post, rememberName }) => {
         </div>
       </div>
 
-      <h2 className="mb-5 text-primary-color font-light">{post?.content}</h2>
+      <div className="flex justify-between mb-5">
+        <h2 className="text-primary-color font-light">{post?.content}</h2>
+        <h4 className="text-xs text-tertiary-color">Created: {formatDate(post?.created_at)}</h4>
+      </div>
 
       {/* Images Gallery Mansory */}
       <PublishedPostsImages
@@ -182,6 +186,7 @@ const Post = ({ post, rememberName }) => {
             } max-h-[100%]`}
             onSubmit={handleSubmitPublishComment}
           >
+            {console.log(post?.remembered?.profile_images)}
             {!post?.comments?.length ? (
               <div className="flex justify-center items-center h-full">
                 <p className="py-3 px-4 text-center text-xl font-bold">
@@ -200,8 +205,8 @@ const Post = ({ post, rememberName }) => {
                       <img
                         className="h-10 w-10 rounded-full border-2 border-primary-color/50"
                         src={
-                          post?.profile_image
-                            ? `${post?.profile_image?.cloud_front_domain}/${post?.profile_image?.aws_file_name}`
+                          post?.remembered?.profile_images
+                            ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
                             : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
                         }
                       />

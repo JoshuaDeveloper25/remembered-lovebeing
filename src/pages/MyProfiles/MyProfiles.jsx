@@ -43,7 +43,7 @@ const MyProfiles = () => {
     e.preventDefault();
 
     const profileInfo = {
-      name: e?.target?.name?.value?.trim(),
+      first_name: e?.target?.first_name?.value?.trim(),
       birth_date: e?.target?.birth_date?.value?.trim(),
       death_date: e?.target?.death_date?.value?.trim(),
       epitaph: e?.target?.epitaph?.value?.trim(),

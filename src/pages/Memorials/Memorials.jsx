@@ -7,7 +7,7 @@ const Memorials = () => {
     queryKey: ["memorials"],
     queryFn: async () =>
       await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/remembereds/get-remembereds`
+        `${import.meta.env.VITE_BASE_URL}/remembereds/get-remembereds?page=1&size=5`
       ),
   });
 
@@ -25,7 +25,7 @@ const Memorials = () => {
       </div>
 
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-1 gap-7 my-9">
-        {data?.data?.map((item) => {
+        {data?.data?.items?.map((item) => {
           return <Memorial item={item} key={item?.id} />;
         })}
       </div>

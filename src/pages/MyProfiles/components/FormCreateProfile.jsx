@@ -10,7 +10,7 @@ const Form = ({ isPending }) => {
             inputLabel="Name"
             inputClassNameAdd={"mb-1"}
             inputType="text"
-            inputName="name"
+            inputName="first_name"
             labelClassNameAdd={"mb-0"}
           />
         </div>

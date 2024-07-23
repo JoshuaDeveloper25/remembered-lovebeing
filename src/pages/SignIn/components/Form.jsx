@@ -15,7 +15,7 @@ const Form = ({ handleSubmit }) => {
 
       <InputForm
         inputName={"email"}
-        inputType={"email"}
+        inputType={"text"}
         inputLabel={"Email Address"}
         inputPlaceholder={"Enter your email"}
         inputLabelClassName={"relative my-6 block"}

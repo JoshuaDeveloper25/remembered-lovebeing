@@ -122,7 +122,7 @@ const Post = ({ post, rememberName }) => {
                   hoverBgLink={"hover:bg-secondary-color"}
                   linkText={"Edit Post"}
                   onClick={() => {
-                    setOpenPostDropDown(false);
+                    // setOpenPostDropDown(false);
                     setOpenModalEditPost(true);
                   }}
                 />
@@ -147,7 +147,9 @@ const Post = ({ post, rememberName }) => {
 
       <div className="flex justify-between mb-5">
         <h2 className="text-primary-color font-light">{post?.content}</h2>
-        <h4 className="text-xs text-tertiary-color">Created: {formatDate(post?.created_at)}</h4>
+        <h4 className="text-xs text-tertiary-color">
+          Created: {formatDate(post?.created_at)}
+        </h4>
       </div>
 
       {/* Images Gallery Mansory */}

@@ -7,7 +7,7 @@ const Memorials = () => {
     queryKey: ["memorials"],
     queryFn: async () =>
       await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/remembereds/get-remembereds?page=1&size=5`
+        `${import.meta.env.VITE_BASE_URL}/remembereds/get-remembereds?page=1&size=100`
       ),
   });
 
@@ -29,6 +29,7 @@ const Memorials = () => {
           return <Memorial item={item} key={item?.id} />;
         })}
       </div>
+
     </section>
   );
 };

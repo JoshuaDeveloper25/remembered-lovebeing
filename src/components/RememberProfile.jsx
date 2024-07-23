@@ -213,6 +213,8 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
         {/* Desktop - from 768px to up */}
         <div className="grid md:grid-cols-4 grid-cols-1 items-start md:gap-8 px-5">
           <article className="col-span-1 sticky top-0 min-w-44 text-center border md:mb-0 mb-8 bg-white shadow-2xl rounded-xl md:-mt-12 py-5 px-4 md:block hidden">
+
+            
             <div className="sticky z-20">
               <img
                 className="w-36 h-36 object-cover mx-auto rounded-full shadow-lg"
@@ -226,6 +228,7 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
                 <UploadProfileImage />
               </div>
             </div>
+
             <h3 className="font-bold text-sm text-muted-color mt-3 capitalize">
               {data?.data?.epitaph || "In loving memory of"}
             </h3>
@@ -312,7 +315,7 @@ const RememberProfile = ({ queryKey, apiUrl }) => {
               />
             </ul>
 
-            <div className="relative flex flex-col min-w-0 break-words bg-white rounded-lg w-full mb-6 shadow-lg">
+            <div className="flex flex-col min-w-0 break-words bg-white rounded-lg w-full mb-6 shadow-lg">
               <div className="px-4 py-5 flex-auto">
                 <div className="tab-content tab-space">
                   <TabLinkContent

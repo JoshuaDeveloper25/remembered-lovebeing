@@ -7,6 +7,10 @@ export const getLivedDays = (date1, date2) => {
 
   let result = "";
 
+  if (date1 === date2) {
+    return `0 days ago`;
+  }
+
   if (years > 0) {
     result += `${years} year${years > 1 ? "s" : ""}`;
   }

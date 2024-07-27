@@ -12,14 +12,14 @@ const CarouselProfiles = ({ rememberedProfiles }) => {
   const params = useParams();
 
   return (
-    <div className="relative">
+    <div className="sticky">
       {rememberedProfiles?.length === 0 ? null : (
         <>
-          <div className="swiper-button image-swiper-button-next absolute z-50 cursor-pointer top-24 xl:-right-7 right-0">
+          <div className="swiper-button image-swiper-button-next absolute z-50 cursor-pointer top-20 xl:-right-7 right-0">
             <IoIosArrowForward className="text-white bg-black/50 rounded-full p-1 size-6" />
           </div>
 
-          <div className="swiper-button image-swiper-button-prev absolute z-50 cursor-pointer top-24 xl:-left-7 left-0">
+          <div className="swiper-button image-swiper-button-prev absolute z-50 cursor-pointer top-20 xl:-left-7 left-0">
             <IoIosArrowBack className="text-white bg-black/50 rounded-full p-1 size-6" />
           </div>
         </>
@@ -82,7 +82,7 @@ const CarouselProfiles = ({ rememberedProfiles }) => {
               </h3>
 
               <Link
-                to={`/remembered-profile-preview/${remember?.id}`}
+                to={`/remembered-profile/${remember?.id}`}
                 target="_blank"
                 style={{ fontSize: ".8rem" }}
                 className="btn btn-blue block w-full text-center mt-2"

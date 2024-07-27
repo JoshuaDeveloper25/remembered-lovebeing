@@ -1,4 +1,4 @@
-import FormGalleryImages from "../pages/EditProfileRemembered/components/FormGalleryImages";
+import FormGalleryImages from "../pages/ProfileRemembered/components/FormGalleryImages";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import { useParams } from "react-router-dom";
@@ -8,12 +8,13 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import axios from "axios";
 
-const UploadGalleryImage = () => {
+const UploadGalleryImage = ({ isOwner }) => {
   const [openModalGallery, setOpenModalGallery] = useState(false);
   const [images, setImages] = useState([]);
   const queryClient = useQueryClient();
   const params = useParams();
 
+  // Add an image to the MEDIA tab
   const addGalleryImageMutation = useMutation({
     mutationFn: async (imageInfo) =>
       await axios.post(
@@ -33,7 +34,7 @@ const UploadGalleryImage = () => {
       toast.error(getFastApiErrors(err));
     },
   });
-
+  
   const handleSubmitGalleryImage = (e) => {
     e.preventDefault();
 
@@ -54,7 +55,7 @@ const UploadGalleryImage = () => {
     addGalleryImageMutation?.mutate(formData);
   };
 
-  return (
+  return !isOwner ? null : (
     <>
       <button
         onClick={() => setOpenModalGallery(true)}

@@ -1,6 +1,5 @@
 // --> 🌐 External/Global Imports
 import { Suspense, lazy } from "react";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AppProvider } from "./context/AppProvider";
@@ -18,13 +17,10 @@ const SignUp = lazy(() => import("./pages/SignUp/SignUp"));
 const Verified = lazy(() => import("./pages/Verified/Verified"));
 const SignIn = lazy(() => import("./pages/SignIn/SignIn"));
 const Home = lazy(() => import("./pages/Home/Home"));
-const EditProfileRemembered = lazy(() =>
-  import("./pages/EditProfileRemembered/EditProfileRemembered")
+const ProfileRemembered = lazy(() =>
+  import("./pages/ProfileRemembered/ProfileRemembered")
 );
 const MyProfiles = lazy(() => import("./pages/MyProfiles/MyProfiles"));
-const PreviewProfileRemembered = lazy(() =>
-  import("./pages/PreviewProfileRemembered/PreviewProfileRemembered")
-);
 const Memorials = lazy(() => import("./pages/Memorials/Memorials"));
 const Posts = lazy(() => import("./pages/Posts/Posts"));
 
@@ -32,6 +28,7 @@ const PublicRoutes = lazy(() => import("./auth/PublicRoutes"));
 const PrivateRoutes = lazy(() => import("./auth/PrivateRoutes"));
 
 const router = createBrowserRouter([
+  //🔒 Public Routes - Cannot access if we're logged in...
   {
     element: <PublicRoutes />,
     children: [
@@ -57,6 +54,7 @@ const router = createBrowserRouter([
     ],
   },
 
+  // 🔐 Private Routes - Cannot access if we're NOT logged in...
   {
     element: <PrivateRoutes />,
     children: [
@@ -64,30 +62,21 @@ const router = createBrowserRouter([
         element: <Root />,
         children: [
           {
-            element: <Home />,
-            index: true,
-          },
-
-          {
             element: <MyProfiles />,
             path: "/my-profiles/",
-          },
-
-          {
-            element: <EditProfileRemembered />,
-            path: "/remembered-profile-edit/:id",
           },
         ],
       },
     ],
   },
 
+  // 🌐 EVERYBODY can get in...
   {
     element: <Root />,
     children: [
       {
-        element: <PreviewProfileRemembered />,
-        path: "/remembered-profile-preview/:id",
+        element: <Home />,
+        index: true,
       },
 
       {
@@ -98,6 +87,11 @@ const router = createBrowserRouter([
       {
         element: <Posts />,
         path: "/posts",
+      },
+
+      {
+        element: <ProfileRemembered />,
+        path: "/remembered-profile/:id",
       },
     ],
   },

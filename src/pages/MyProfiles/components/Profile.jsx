@@ -11,7 +11,6 @@ import {
   FaYoutube,
   FaTwitter,
   FaEye,
-  FaTrash,
 } from "react-icons/fa";
 import Swal from "sweetalert2";
 
@@ -68,7 +67,7 @@ const Profile = ({ item, isPending }) => {
   };
 
   return isPending ? (
-    <div className="reveal shadow-2xl rounded-md p-4 max-w-sm w-full mx-auto">
+    <div className="shadow-2xl rounded-md p-4 max-w-sm w-full mx-auto">
       <div className="animate-pulse">
         <div className="bg-primary-color/45 h-32 rounded-t-lg w-full"></div>
 
@@ -100,12 +99,12 @@ const Profile = ({ item, isPending }) => {
       </div>
     </div>
   ) : (
-    <div className="relative reveal shadow-2xl">
+    <div className="relative animation-scale-scroll shadow-2xl">
       <img
         src={
           item?.cover_images?.cloud_front_domain
             ? `${item?.cover_images?.cloud_front_domain}/${item?.cover_images?.aws_file_name}`
-            : "https://images.unsplash.com/photo-1475727946784-2890c8fdb9c8?q=80&w=1484&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            : "https://images.unsplash.com/photo-1506353187171-d49740268889?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         }
         className="w-full h-32 object-cover rounded-t-lg"
         decoding="async"
@@ -124,7 +123,7 @@ const Profile = ({ item, isPending }) => {
             loading="lazy"
           />
           <h2 className="capitalize self-end font-bold text-xl leading-6">
-            {item?.name}
+            {item?.first_name}
           </h2>
         </div>
 
@@ -147,7 +146,7 @@ const Profile = ({ item, isPending }) => {
           {/* Buttons */}
           {deleteProfileMutation?.isPending ? null : (
             <div className="flex gap-3">
-              <Link className="flex-1" to={`/remembered-profile-preview/${item?.id}`}>
+              {/* <Link className="flex-1" to={`/remembered-profile-preview/${item?.id}`}>
                 <button
                   disabled={deleteProfileMutation?.isPending}
                   className={`btn bg-[#00A2B3] text-white hover:bg-[#00A2B3]/80 animation-fade rounded-sm text-sm ${
@@ -158,9 +157,9 @@ const Profile = ({ item, isPending }) => {
                   <FaEye className="inline-block me-1" />
                   View
                 </button>
-              </Link>
+              </Link> */}
 
-              <Link className="flex-1" to={`/remembered-profile-edit/${item?.id}`}>
+              <Link className="flex-1" to={`/remembered-profile/${item?.id}`}>
                 <button
                   disabled={deleteProfileMutation?.isPending}
                   className={`btn text-[#00A2B3] animation-fade  hover:bg-[#00A2B3] hover:text-white border border-[#00A2B3] rounded-sm text-sm ${
@@ -168,7 +167,7 @@ const Profile = ({ item, isPending }) => {
                     "pointer-events-none opacity-75 cursor-wait"
                   }`}
                 >
-                  <FaPencilAlt className="inline-block me-1" /> Edit
+                  <FaPencilAlt className="inline-block me-1" /> Edit Profile
                 </button>
               </Link>
             </div>

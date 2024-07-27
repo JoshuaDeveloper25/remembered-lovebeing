@@ -125,23 +125,44 @@
   }
 }
 
-/* Animations for "paralax" fade in on scrolling */
-.reveal {
-  opacity: 0;
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+/* Scale in to out animation on scroll */
+.animation-scale-scroll {
+  animation: appear 1s linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
 }
 
-.reveal.visible {
-  animation: fadeIn 0.8s forwards;
+@keyframes appear {
+  from {
+    filter: blur(2px);
+    opacity: 0.5;
+    scale: 0.5;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
 }
 
-@keyframes fadeIn {
+/* Animation when tooltip is shown */
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(4rem);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.tooltip {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tooltip-show {
+  animation: fadeInUp 0.3s forwards;
 }

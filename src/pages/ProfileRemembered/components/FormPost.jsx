@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 
 const FormPost = ({
+  galleryImages,
   tempSelectedGalleryImageInfo,
   setTempSelectedGalleryImageInfo,
   createPostMutation,
@@ -59,7 +60,7 @@ const FormPost = ({
         modalForm={false}
       >
         <div className="grid min-[300px]:grid-cols-2 min-[450px]:grid-cols-3 grid-cols-1 place-items-center place-content-centers justify-center items-center gap-4">
-          {galleryImagesProfile?.map((item) => (
+          {galleryImages?.map((item) => (
             <AvailablePhotoGallery
               setSelectedGalleryImageInfo={setTempSelectedGalleryImageInfo}
               selectedGalleryImageInfo={tempSelectedGalleryImageInfo}

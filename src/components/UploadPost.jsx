@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import FormPost from "../pages/EditProfileRemembered/components/FormPost";
+import FormPost from "../pages/ProfileRemembered/components/FormPost";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import { useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
@@ -8,16 +8,16 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import axios from "axios";
 
-const UploadPost = ({ rememberedProfiles }) => {
+const UploadPost = ({ galleryImages, isOwner, rememberedProfiles }) => {
   const [tempSelectedGalleryImageInfo, setTempSelectedGalleryImageInfo] =
     useState([]);
   const [openModalCreatePost, setOpenModalCreatePost] = useState(false);
   const queryClient = useQueryClient();
   const params = useParams();
-  
+
   const profileInfo = rememberedProfiles?.data
-  ?.map((item) => item)
-  ?.filter((item) => item?.id === +params?.id);
+    ?.map((item) => item)
+    ?.filter((item) => item?.id === +params?.id);
 
   const imagesSelectedIds = tempSelectedGalleryImageInfo?.map(
     (item) => item?.id
@@ -45,14 +45,16 @@ const UploadPost = ({ rememberedProfiles }) => {
 
     const postInfo = {
       content: e?.target?.content?.value,
-      profile_image_id: profileInfo[0]?.profile_images ? +profileInfo[0]?.profile_images?.id : 0,
+      profile_image_id: profileInfo[0]?.profile_images
+        ? +profileInfo[0]?.profile_images?.id
+        : 0,
       gallery_image_ids: imagesSelectedIds,
     };
 
     createPostMutation?.mutate(postInfo);
   };
 
-  return (
+  return !isOwner ? null : (
     <>
       <button
         onClick={() => setOpenModalCreatePost(true)}
@@ -71,6 +73,7 @@ const UploadPost = ({ rememberedProfiles }) => {
         modalForm={true}
       >
         <FormPost
+          galleryImages={galleryImages}
           tempSelectedGalleryImageInfo={tempSelectedGalleryImageInfo}
           setTempSelectedGalleryImageInfo={setTempSelectedGalleryImageInfo}
           createPostMutation={createPostMutation}

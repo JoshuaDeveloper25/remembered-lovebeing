@@ -100,7 +100,7 @@ body {
   -webkit-column-width: 33%;
   -moz-column-width: 33%;
   column-width: 33%;
-  padding: 0 12px;
+  /* padding: 0 12px 0 12px; */
 }
 
 .gallery .pics {
@@ -198,5 +198,16 @@ body {
 }
 
 .carouselProfilesSwiper .swiper-slide {
-  width: 174px!important;
+  width: 174px !important;
+}
+
+.coverMemorial {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.60),
+      rgba(0, 0, 0, 0.50)
+    ),
+    url("https://images.unsplash.com/photo-1433477077279-9354d2d72f6b?q=80&w=1488&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
 }

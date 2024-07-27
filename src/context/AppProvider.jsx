@@ -8,9 +8,11 @@ const AppProvider = ({ children }) => {
     JSON?.parse(localStorage?.getItem("userInfo")) || {}
   );
 
-  axios.defaults.headers.common["Authorization"] = `Bearer ${
-    userInfo?.access_token || null
-  }`;
+  console.log(userInfo);
+  
+  axios.defaults.headers.common["Authorization"] = userInfo?.access_token
+    ? `Bearer ${userInfo?.access_token}`
+    : null;
 
   return (
     <AppContext.Provider

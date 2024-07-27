@@ -1,3 +1,5 @@
+import { createPortal } from "react-dom";
+
 const Modal = ({
   handleSubmit,
   children,
@@ -12,14 +14,17 @@ const Modal = ({
   };
 
   return (
-    openModal && (
-      <>
-        {/* Main modal */}
+    openModal &&
+    createPortal(
+      <div
+        // onClick={handleCloseModal}
+        className="h-[100vh] fixed top-0 w-full z-[9999]"
+      >
         <div
           id="crud-modal"
           tabIndex="-1"
           aria-hidden="true"
-          className={`overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[100] flex justify-center items-center w-full min-h-full bg-black/50`}
+          className={`overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[2000] flex justify-center items-center w-full min-h-full bg-black/50`}
         >
           <div
             className={`relative w-full ${
@@ -76,7 +81,8 @@ const Modal = ({
             </div>
           </div>
         </div>
-      </>
+      </div>,
+      document.body
     )
   );
 };

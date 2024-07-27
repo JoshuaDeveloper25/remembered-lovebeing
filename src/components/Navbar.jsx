@@ -67,7 +67,7 @@ const Navbar = () => {
                       document.body
                     )}
 
-                    {userInfo?.access_token && (
+                    {userInfo?.access_token ? (
                       <ul className="absolute right-5 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
                         <NavbarDropdownLink
                           hoverBgLink={"hover:bg-primary-color"}
@@ -87,6 +87,15 @@ const Navbar = () => {
                           hoverBgLink={"hover:bg-red-500"}
                           linkText={"Log Out"}
                           onClick={handleLogOut}
+                        />
+                      </ul>
+                    ) : (
+                      <ul className="absolute right-5 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
+                        <NavbarDropdownLink
+                          hoverBgLink={"text-black hover:text-secondary-color"}
+                          onClick={() => setOpenDropDown(false)}
+                          linkText={"Sign In"}
+                          linkTo={"/sign-in"}
                         />
                       </ul>
                     )}

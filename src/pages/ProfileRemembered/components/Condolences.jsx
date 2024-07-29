@@ -39,7 +39,7 @@ const Condolence = ({ condolence, isOwner }) => {
   const tooltipRef = useRef(null);
 
   useEffect(() => {
-    if (showTooltip && tooltipRef.current) {
+    if (showTooltip && tooltipRef.current || showTooltipReply && tooltipRef?.current) {
       const tooltip = tooltipRef.current;
       const tooltipRect = tooltip.getBoundingClientRect();
       const windowWidth = window.innerWidth;
@@ -63,7 +63,7 @@ const Condolence = ({ condolence, isOwner }) => {
       tooltip.style.left = `${left}px`;
       tooltip.style.top = `${top}px`;
     }
-  }, [showTooltip]);
+  }, [showTooltip, showTooltipReply]);
 
   // Reply and Edit a Condolence Answer/Comment
   const replyCondolenceMutation = useMutation({
@@ -155,7 +155,7 @@ const Condolence = ({ condolence, isOwner }) => {
   };
 
   return (
-    <article className="shadow-[0_30px_40px_-20px_rgba(0,0,0,0.4)] py-10 px-6 border-t-2 border-red-500 rounded-t-[5px]">
+    <article className="animation-scale-scroll shadow-[0_30px_40px_-20px_rgba(0,0,0,0.4)] py-10 px-6 border-t-2 border-red-500 rounded-t-[5px]">
       <h2 className="text-md font-medium capitalize">
         {condolence?.owner?.name}
       </h2>
@@ -228,6 +228,8 @@ const Condolence = ({ condolence, isOwner }) => {
           <>
             {/* Editing Reply Of A Condolence */}
             <div className="border-t border-tertiary-color/40 py-4">
+              <h3 className="font-medium">Owner Reply</h3>
+
               {/* Condolence Desc */}
               <p className="text-tertiary-color text-sm my-1 md:line-clamp-1">
                 {condolence?.owner_reply}
@@ -244,7 +246,7 @@ const Condolence = ({ condolence, isOwner }) => {
                     className="text-secondary-color font-semibold tracking-wide cursor-pointer text-sm text-center w-full z-10 relative"
                     type="button"
                   >
-                    See Owner Reply
+                    Read More
                   </button>
 
                   {showTooltipReply && (

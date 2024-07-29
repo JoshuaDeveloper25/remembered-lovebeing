@@ -129,7 +129,7 @@
 .animation-scale-scroll {
   animation: appear 1s linear;
   animation-timeline: view();
-  animation-range: entry 0% cover 40%;
+  animation-range: entry 0% cover 30%;
 }
 
 @keyframes appear {

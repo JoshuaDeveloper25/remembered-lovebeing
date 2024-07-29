@@ -12,13 +12,15 @@ import { getLivedDays } from "../../utils/getLivedDays";
 import UploadPost from "../../components/UploadPost";
 import Condolences from "./components/Condolences";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Post from "../../components/Post";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import AppContext from "../../context/AppProvider";
 
 const ProfileRemembered = () => {
   const [showMembers, setShowMembers] = useState(false);
+  const { userInfo } = useContext(AppContext);
   const [openTab, setOpenTab] = useState(1);
   const params = useParams();
 
@@ -245,7 +247,7 @@ const ProfileRemembered = () => {
             ) : null}
 
             <ul
-              className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
+              className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row "
               role="tablist"
             >
               <TabLink
@@ -255,6 +257,7 @@ const ProfileRemembered = () => {
                 // iconTab={<FaHeart className="text-red-500" />}
                 openTab={openTab}
                 numberTab={1}
+                countTab={postsQuery?.data?.data?.length}
               />
 
               <TabLink
@@ -264,6 +267,9 @@ const ProfileRemembered = () => {
                 // iconTab={<FaCross className="text-primary-color" />}
                 openTab={openTab}
                 numberTab={2}
+                countTab={
+                  data?.data?.remembered_profile?.gallery_images?.length
+                }
               />
 
               <TabLink
@@ -273,6 +279,7 @@ const ProfileRemembered = () => {
                 // iconTab={<FaHeart className="text-red-500" />}
                 openTab={openTab}
                 numberTab={3}
+                countTab={data?.data?.remembered_profile?.condolences?.length}
               />
             </ul>
 
@@ -287,9 +294,6 @@ const ProfileRemembered = () => {
                     <div className="flex flex-col sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
                       <h2 className="text-primary-color font-bold text-xl sm:my-0 my-3">
                         Posts{" "}
-                        <span className="align-top text-xs">
-                          ({postsQuery?.data?.data?.length})
-                        </span>
                       </h2>
 
                       <UploadPost
@@ -330,14 +334,6 @@ const ProfileRemembered = () => {
                     <div className="flex flex-col sm:flex-row justify-between items-center bg-white p-3 rounded-lg shadow-lg mb-7">
                       <h2 className="text-primary-color font-bold text-xl sm:my-0 my-3">
                         Photos{" "}
-                        <span className="align-top text-xs">
-                          (
-                          {
-                            data?.data?.remembered_profile?.gallery_images
-                              ?.length
-                          }
-                          )
-                        </span>
                       </h2>
 
                       <UploadGalleryImage
@@ -363,11 +359,22 @@ const ProfileRemembered = () => {
                     <div className="flex flex-col sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
                       <h2 className="text-primary-color font-bold text-xl sm:my-0 my-3">
                         Condolences{" "}
-                        <span className="align-top text-xs">
-                          ({data?.data?.remembered_profile?.condolences?.length}
-                          )
-                        </span>
                       </h2>
+
+                      {!userInfo?.access_token && (
+                        <h4 className="font-medium text-tertiary-color">
+                          Please,{" "}
+                          <span>
+                            <Link
+                              className="text-secondary-color underline"
+                              to={"/sign-in"}
+                            >
+                              Log In
+                            </Link>
+                          </span>
+                          , to leave a condolence.
+                        </h4>
+                      )}
 
                       <UploadCondolence isOwner={data?.data?.is_owner} />
                     </div>

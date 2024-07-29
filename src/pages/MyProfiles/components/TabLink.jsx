@@ -5,9 +5,10 @@ const TabLink = ({
   iconTab,
   linkTab,
   textTab,
+  countTab,
 }) => {
   return (
-    <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+    <li className="relative -mb-px mr-2 last:mr-0 flex-auto text-center">
       <a
         className={
           "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +
@@ -25,6 +26,12 @@ const TabLink = ({
       >
         <span className="inline-block">{iconTab}</span> {textTab}
       </a>
+
+      <div className="absolute right-0 -top-2">
+        <p className="text-white bg-primary-color h-6 w-6 rounded-full text-sm flex justify-center items-center">
+          {countTab}
+        </p>
+      </div>
     </li>
   );
 };

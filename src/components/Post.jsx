@@ -82,7 +82,7 @@ const Post = ({ isOwner, post, rememberName }) => {
   };
 
   return (
-    <div className="bg-white mb-5 p-3 shadow-lg rounded-lg border-b [&:not(:last-child)]:border-gray-400/50 py-3">
+    <div className=" bg-white mb-5 p-3 shadow-lg rounded-lg border-b [&:not(:last-child)]:border-gray-400/50 py-3">
       {/* Header of the post */}
       <div className="flex justify-between items-center gap-3">
         <div className="flex items-center gap-3">

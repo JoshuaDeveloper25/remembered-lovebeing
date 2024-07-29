@@ -24,7 +24,7 @@ const ProfileRemembered = () => {
   const [openTab, setOpenTab] = useState(1);
   const params = useParams();
 
-  // 🧓 Get certain profile by remember id
+  // --> 🧓 Get certain profile by remember id
   const { data, isPending, error } = useQuery({
     queryKey: [`profile`, params?.id],
     queryFn: async () =>
@@ -37,7 +37,7 @@ const ProfileRemembered = () => {
     // ),
   });
 
-  // 👪 Get all family members of a profile
+  // --> 👪 Get all family members of a profile
   const ownProfilesQuery = useQuery({
     queryKey: ["ownProfiles"],
     queryFn: async () =>
@@ -46,7 +46,7 @@ const ProfileRemembered = () => {
       ),
   });
 
-  // 📝 Get all posts of a remembered
+  // --> 📝 Get all posts of a remembered
   const postsQuery = useQuery({
     queryKey: ["posts"],
     queryFn: async () =>

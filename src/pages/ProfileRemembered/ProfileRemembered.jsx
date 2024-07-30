@@ -8,17 +8,17 @@ import UploadGalleryImage from "../../components/UploadGalleryImage";
 import UploadCoverImage from "../../components/UploadCoverImage";
 import TabLink from "../../pages/MyProfiles/components/TabLink";
 import UploadCondolence from "./components/UploadCondolence";
+import UploadTribute from "./components/UploadTribute";
 import { getLivedDays } from "../../utils/getLivedDays";
 import UploadPost from "../../components/UploadPost";
+import AppContext from "../../context/AppProvider";
+import { Link, useParams } from "react-router-dom";
 import Condolences from "./components/Condolences";
 import { useQuery } from "@tanstack/react-query";
-import { Link, useParams } from "react-router-dom";
-import Post from "../../components/Post";
-import { useContext, useState } from "react";
-import axios from "axios";
-import AppContext from "../../context/AppProvider";
-import UploadTribute from "./components/UploadTribute";
 import Tributes from "./components/Tributes";
+import { useContext, useState } from "react";
+import Post from "../../components/Post";
+import axios from "axios";
 
 const ProfileRemembered = () => {
   const [showMembers, setShowMembers] = useState(false);

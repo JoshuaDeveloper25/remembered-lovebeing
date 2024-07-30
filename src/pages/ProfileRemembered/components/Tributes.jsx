@@ -319,6 +319,11 @@ const TributeComment = ({ tributeComment, userInfo }) => {
   const [readMoreTributeComment, setReadMoreTributeComment] = useState(false);
   const queryClient = useQueryClient();
 
+  // This if for read more
+  // const text = "123              456";
+  // const textWorking = text.replace(/\s/g, "");
+  // console.log(textWorking?.length);
+
   // Edit Tribute Comment
   const editTributeCommentMutation = useMutation({
     mutationFn: async (commentInfo) =>

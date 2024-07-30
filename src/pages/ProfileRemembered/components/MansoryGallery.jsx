@@ -4,6 +4,7 @@ import { FaTrashCan } from "react-icons/fa6";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const MansoryGallery = ({ galleryImages }) => {
   return (
@@ -26,6 +27,7 @@ export default MansoryGallery;
 
 const RememberedMedia = ({ item }) => {
   const queryClient = useQueryClient();
+  const params = useParams();
 
   const checkInImagePost = useQuery({
     queryKey: [``],
@@ -41,7 +43,7 @@ const RememberedMedia = ({ item }) => {
     mutationFn: async () =>
       await axios.delete(
         `${import.meta.env.VITE_BASE_URL}/remembereds/delete-gallery-image/${
-          item?.remembered_id
+          params?.id
         }/${item?.id}`
       ),
     onSuccess: (res) => {

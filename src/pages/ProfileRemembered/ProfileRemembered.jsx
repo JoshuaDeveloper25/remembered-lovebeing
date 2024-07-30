@@ -17,6 +17,8 @@ import Post from "../../components/Post";
 import { useContext, useState } from "react";
 import axios from "axios";
 import AppContext from "../../context/AppProvider";
+import UploadTribute from "./components/UploadTribute";
+import Tributes from "./components/Tributes";
 
 const ProfileRemembered = () => {
   const [showMembers, setShowMembers] = useState(false);
@@ -281,6 +283,16 @@ const ProfileRemembered = () => {
                 numberTab={3}
                 countTab={data?.data?.remembered_profile?.condolences?.length}
               />
+
+              <TabLink
+                setOpenTab={setOpenTab}
+                linkTab={"#tributes"}
+                textTab={"Tributes"}
+                // iconTab={<FaHeart className="text-red-500" />}
+                openTab={openTab}
+                numberTab={4}
+                countTab={data?.data?.remembered_profile?.tributes?.length}
+              />
             </ul>
 
             <div className="flex flex-col min-w-0 break-words w-full">
@@ -389,6 +401,46 @@ const ProfileRemembered = () => {
                         condolences={
                           data?.data?.remembered_profile?.condolences
                         }
+                      />
+                    )}
+                  </TabLinkContent>
+
+                  <TabLinkContent
+                    openTab={openTab}
+                    numberTab={4}
+                    idTab={"#tributes"}
+                  >
+                    <div className="flex flex-col sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
+                      <h2 className="text-primary-color font-bold text-xl sm:my-0 my-3">
+                        Tributes{" "}
+                      </h2>
+
+                      {!userInfo?.access_token && (
+                        <h4 className="font-medium text-tertiary-color">
+                          Please,{" "}
+                          <span>
+                            <Link
+                              className="text-secondary-color underline"
+                              to={"/sign-in"}
+                            >
+                              Log In
+                            </Link>
+                          </span>
+                          , to leave a tribute.
+                        </h4>
+                      )}
+
+                      <UploadTribute />
+                    </div>
+
+                    {!data?.data?.remembered_profile?.tributes?.length ? (
+                      <h2 className="text-center font-bold text-xl text-primary-color my-5">
+                        There's no tributes in this profile yet...
+                      </h2>
+                    ) : (
+                      <Tributes
+                        isOwner={data?.data?.is_owner}
+                        tributes={data?.data?.remembered_profile?.tributes}
                       />
                     )}
                   </TabLinkContent>

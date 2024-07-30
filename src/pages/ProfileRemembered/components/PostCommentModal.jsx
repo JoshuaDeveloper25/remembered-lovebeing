@@ -41,7 +41,7 @@ const PostCommentModal = ({ children, openModal, setOpenModal }) => {
           </div>
 
           <div
-            className={`relative w-full max-w-[1200px] mx-auto h-[90%] top-0 rounded-lg shadow dark:bg-white overflow-y-hidden`}
+            className={`relative w-full max-w-[1200px] mx-auto h-[90%] top-0 rounded-lg shadow bg-white overflow-y-hidden`}
           >
             {children}
           </div>

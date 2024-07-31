@@ -23,6 +23,7 @@ const ProfileRemembered = lazy(() =>
 const MyProfiles = lazy(() => import("./pages/MyProfiles/MyProfiles"));
 const Memorials = lazy(() => import("./pages/Memorials/Memorials"));
 const Posts = lazy(() => import("./pages/Posts/Posts"));
+const News = lazy(() => import("./pages/News/News"));
 
 const PublicRoutes = lazy(() => import("./auth/PublicRoutes"));
 const PrivateRoutes = lazy(() => import("./auth/PrivateRoutes"));
@@ -87,6 +88,11 @@ const router = createBrowserRouter([
       {
         element: <Posts />,
         path: "/posts",
+      },
+
+      {
+        element: <News />,
+        path: "/news",
       },
 
       {

@@ -122,6 +122,8 @@ const Profile = ({ item, isPending }) => {
             decoding="async"
             loading="lazy"
           />
+
+          
           <h2 className="capitalize self-end font-bold text-xl leading-6">
             {item?.first_name}
           </h2>

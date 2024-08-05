@@ -28,7 +28,7 @@ const TabLink = ({
       </a>
 
       <div className="absolute right-0 -top-2">
-        <p className="text-white bg-primary-color h-6 w-6 rounded-full text-sm flex justify-center items-center">
+        <p className="text-white bg-primary-color h-6 w-6 rounded-full flex justify-center items-center text-xs">
           {countTab}
         </p>
       </div>

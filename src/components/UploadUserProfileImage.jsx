@@ -1,15 +1,17 @@
 import FormUserProfile from "../pages/MyProfiles/components/FormUserProfile";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { FaCameraRetro, FaPencilAlt } from "react-icons/fa";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import setCanvasPreview from "../utils/setCanvasPreview";
 import { convertToPixelCrop } from "react-image-crop";
 import { useContext, useRef, useState } from "react";
 import AppContext from "../context/AppProvider";
-import { FaCameraRetro } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Modal from "./Modal";
 import axios from "axios";
+import { FcEditImage } from "react-icons/fc";
+import { TfiPencilAlt } from "react-icons/tfi";
 
 const UploadUserProfileImage = () => {
   const { userInfo, setUserInfo } = useContext(AppContext);
@@ -73,7 +75,7 @@ const UploadUserProfileImage = () => {
     updateAvatar(dataUrl);
 
     const blob = await fetch(dataUrl).then((res) => res.blob());
-    const file = new File([blob], "profile-image.png", { type: "image/png" });
+    const file = new File([blob], "user-profile-image.png", { type: "image/png" });
 
     const formData = new FormData();
     formData.append("file", file);
@@ -88,10 +90,10 @@ const UploadUserProfileImage = () => {
       {/* Button to Open Cover Modal */}
       <button
         onClick={() => setOpenModalProfile(true)}
-        className="p-1.5 rounded text-white bg-black/50"
+        className="p-2.5 rounded-full text-white bg-yellow-500/85"
         type="button"
       >
-        <FaCameraRetro className="inline-block size-5" />
+        <TfiPencilAlt className="size-6" />
       </button>
 
       {/* Change Cover Image Modal */}

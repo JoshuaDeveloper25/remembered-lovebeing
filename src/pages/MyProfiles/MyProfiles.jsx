@@ -44,14 +44,19 @@ const MyProfiles = () => {
 
     const profileInfo = {
       first_name: e?.target?.first_name?.value?.trim(),
-      birth_date: e?.target?.birth_date?.value?.trim(),
-      death_date: e?.target?.death_date?.value?.trim(),
-      epitaph: e?.target?.epitaph?.value?.trim(),
+      middle_name: e?.target?.middle_name?.value?.trim(),
+      last_name: e?.target?.last_name?.value?.trim(),
+      gender: e?.target?.gender?.value?.trim(),
+      designation: e?.target?.designation?.value?.trim(),
+
+      // birth_date: e?.target?.birth_date?.value?.trim(),
+      // death_date: e?.target?.death_date?.value?.trim(),
+      // epitaph: e?.target?.epitaph?.value?.trim(),
     };
 
-    if (profileInfo?.birth_date > profileInfo?.death_date) {
-      return toast.error(`Birth can't be higher than death date!`);
-    }
+    // if (profileInfo?.birth_date > profileInfo?.death_date) {
+    //   return toast.error(`Birth can't be higher than death date!`);
+    // }
 
     createProfileMutation?.mutate(profileInfo);
   };
@@ -65,7 +70,7 @@ const MyProfiles = () => {
       </video>
 
       {/* Profiles */}
-      <section className="container-page my-3">
+      <section className="container-page px-1 my-3">
         {/* Create Profile Button */}
         <article className="mb-8 md:text-end text-start">
           <div className="inline-block">
@@ -88,12 +93,12 @@ const MyProfiles = () => {
           </Modal>
         </article>
 
-        <div className="grid md:grid-cols-4 grid-cols-1 items-start md:gap-8">
+        <div className="grid md:grid-cols-4 grid-cols-1 items-start min-[1150px]:gap-3 gap-1">
           {/* User Profile */}
           <IndividualUserProfileCard />
 
           {/* Profiles from user and Tab */}
-          <div className="col-span-3">
+          <div className="col-span-3 ">
             <IndividualUserProfileTab
               profiles={data?.data}
               isPending={isPending}

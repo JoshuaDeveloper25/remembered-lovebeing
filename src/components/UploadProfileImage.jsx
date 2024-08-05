@@ -63,7 +63,7 @@ const UploadProfileImage = () => {
     updateAvatar(dataUrl);
 
     const blob = await fetch(dataUrl).then((res) => res.blob());
-    const file = new File([blob], "profile-image.png", { type: "image/png" });
+    const file = new File([blob], "remembered-profile-image.png", { type: "image/png" });
 
     const formData = new FormData();
     formData.append("file", file);

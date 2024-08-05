@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { getLivedDays } from "../../../utils/getLivedDays";
-import { Link, useNavigate } from "react-router-dom";
 import { FaTrashCan } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import {
@@ -10,13 +10,37 @@ import {
   FaInstagram,
   FaYoutube,
   FaTwitter,
-  FaEye,
 } from "react-icons/fa";
 import Swal from "sweetalert2";
+import Modal from "../../../components/Modal";
+import FormLifeTime from "./FormLifeTime";
+import { useState } from "react";
 
 const Profile = ({ item, isPending }) => {
+  const currentYear = new Date().getFullYear();
+  const [openLifeTimeModal, setOpenLifeTimeModal] = useState();
+  const [bornYear, setBornYear] = useState(currentYear);
+  const [bornMonth, setBornMonth] = useState("January");
+  const [bornDay, setBornDay] = useState(1);
+  const [passedYear, setPassedYear] = useState(currentYear);
+  const [passedMonth, setPassedMonth] = useState("January");
+  const [passedDay, setPassedDay] = useState(1);
   const queryClient = useQueryClient();
-  const navigate = useNavigate();
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   const deleteProfileMutation = useMutation({
     mutationFn: async () =>
@@ -66,6 +90,46 @@ const Profile = ({ item, isPending }) => {
     });
   };
 
+  const createLifeTimeMutation = useMutation({
+    mutationFn: async (profileInfo) =>
+      await axios.patch(
+        `${import.meta.env.VITE_BASE_URL}/remembereds/add-lifetime/${item?.id}`,
+        profileInfo
+      ),
+    onSuccess: (res) => {
+      toast.success("Successfully lifetime created!");
+      queryClient.invalidateQueries({ queryKey: ["ownProfiles"] });
+      setOpenLifeTimeModal(false);
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(getFastApiErrors(err));
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const birthDate = `${bornYear}-${String(
+      months.indexOf(bornMonth) + 1
+    ).padStart(2, "0")}-${String(bornDay).padStart(2, "0")}`;
+
+    const deathDate = `${passedYear}-${String(
+      months.indexOf(passedMonth) + 1
+    ).padStart(2, "0")}-${String(passedDay).padStart(2, "0")}`;
+
+    const profileInfo = {
+      birth_date: birthDate,
+      death_date: deathDate,
+    };
+
+    if (profileInfo?.birth_date > profileInfo?.death_date) {
+      return toast.error(`Birth can't be higher than death date!`);
+    }
+
+    createLifeTimeMutation?.mutate(profileInfo);
+  };
+
   return isPending ? (
     <div className="shadow-2xl rounded-md p-4 max-w-sm w-full mx-auto">
       <div className="animate-pulse">
@@ -111,7 +175,7 @@ const Profile = ({ item, isPending }) => {
         loading="lazy"
       />
       <div className="p-6 rounded-b-lg">
-        <div className="flex gap-3">
+        <div>
           <img
             src={
               item?.profile_images?.cloud_front_domain
@@ -123,25 +187,66 @@ const Profile = ({ item, isPending }) => {
             loading="lazy"
           />
 
-          
-          <h2 className="capitalize self-end font-bold text-xl leading-6">
-            {item?.first_name}
+          <h2 className="ms-8 mt-1 capitalize self-end font-bold text-xl leading-6">
+            {`${item?.first_name} ${item?.last_name || ""}`}
           </h2>
         </div>
 
         <div className="mt-4 text-center">
-          <h4 className="text-gray-700 font-medium text-xs">
-            {item?.birth_date} - {item?.death_date}
+          <h4 className="text-gray-700 font-medium text-sm">
+            {!item?.birth_date && !item?.death_date ? (
+              <>
+                Would you like to add lifetime?
+                <button
+                  onClick={() => setOpenLifeTimeModal(!openLifeTimeModal)}
+                  className="inline-block text-center underline text-secondary-color"
+                >
+                  Click here.
+                </button>
+                <Modal
+                  titleModal={"Lifetime of your lovebeing..."}
+                  handleSubmit={handleSubmit}
+                  setOpenModal={setOpenLifeTimeModal}
+                  openModal={openLifeTimeModal}
+                  modalForm={true}
+                  editableWidth={"max-w-xl"}
+                >
+                  <FormLifeTime
+                    currentYear={currentYear}
+                    bornYear={bornYear}
+                    setBornYear={setBornYear}
+                    bornMonth={bornMonth}
+                    setBornMonth={setBornMonth}
+                    bornDay={bornDay}
+                    setBornDay={setBornDay}
+                    passedYear={passedYear}
+                    setPassedYear={setPassedYear}
+                    passedMonth={passedMonth}
+                    setPassedMonth={setPassedMonth}
+                    passedDay={passedDay}
+                    setPassedDay={setPassedDay}
+                    isPending={createLifeTimeMutation?.isPending}
+                    months={months}
+                  />
+                </Modal>
+              </>
+            ) : (
+              `${item?.birth_date} - ${item?.death_date}`
+            )}
+
             <span className="block text-[.7rem] font-bold">
-              {getLivedDays(item?.birth_date, item?.death_date)}
+              {!item?.birth_date && !item?.death_date
+                ? null
+                : getLivedDays(item?.birth_date, item?.death_date)}
             </span>
           </h4>
-          <p className="text-sm mt-3">
+
+          {/* <p className="text-sm mt-3">
             <span className="font-bold">Epitaph:</span>{" "}
             <span className="text-gray-900">
               {item?.epitaph || "In Loving Memory Of"}
             </span>
-          </p>
+          </p> */}
         </div>
 
         <div className="my-4">

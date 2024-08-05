@@ -20,6 +20,7 @@ const IndividualUserProfileTab = ({ profiles, isPending }) => {
           iconTab={<FaCross className="text-primary-color" />}
           openTab={openTab}
           numberTab={1}
+          countTab={profiles?.length}
         />
 
         <TabLink
@@ -29,6 +30,7 @@ const IndividualUserProfileTab = ({ profiles, isPending }) => {
           iconTab={<FaHeart className="text-red-500" />}
           openTab={openTab}
           numberTab={2}
+          countTab={0}
         />
       </ul>
 

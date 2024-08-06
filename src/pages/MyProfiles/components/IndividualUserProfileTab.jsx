@@ -30,7 +30,8 @@ const IndividualUserProfileTab = ({ profiles, isPending }) => {
           iconTab={<FaHeart className="text-red-500" />}
           openTab={openTab}
           numberTab={2}
-          countTab={0}
+          // countTab={false}
+          enableCountTab={false}
         />
       </ul>
 

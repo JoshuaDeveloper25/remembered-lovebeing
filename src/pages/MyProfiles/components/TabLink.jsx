@@ -6,6 +6,7 @@ const TabLink = ({
   linkTab,
   textTab,
   countTab,
+  enableCountTab = true,
 }) => {
   return (
     <li className="relative -mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -27,11 +28,13 @@ const TabLink = ({
         <span className="inline-block">{iconTab}</span> {textTab}
       </a>
 
-      <div className="absolute right-0 -top-2">
-        <p className="text-white bg-primary-color h-6 w-6 rounded-full flex justify-center items-center text-xs">
-          {countTab}
-        </p>
-      </div>
+      {enableCountTab && (
+        <div className="absolute right-0 -top-2">
+          <p className="text-white bg-primary-color h-6 w-6 rounded-full flex justify-center items-center text-xs">
+            {countTab}
+          </p>
+        </div>
+      )}
     </li>
   );
 };

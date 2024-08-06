@@ -48,15 +48,8 @@ const MyProfiles = () => {
       last_name: e?.target?.last_name?.value?.trim(),
       gender: e?.target?.gender?.value?.trim(),
       designation: e?.target?.designation?.value?.trim(),
-
-      // birth_date: e?.target?.birth_date?.value?.trim(),
-      // death_date: e?.target?.death_date?.value?.trim(),
-      // epitaph: e?.target?.epitaph?.value?.trim(),
+      user_relationship: e?.target?.user_relationship?.value?.trim(),
     };
-
-    // if (profileInfo?.birth_date > profileInfo?.death_date) {
-    //   return toast.error(`Birth can't be higher than death date!`);
-    // }
 
     createProfileMutation?.mutate(profileInfo);
   };

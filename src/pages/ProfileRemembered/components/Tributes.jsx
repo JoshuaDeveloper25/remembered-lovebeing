@@ -106,7 +106,7 @@ const Tribute = ({ tribute, isOwner }) => {
         `${import.meta.env.VITE_BASE_URL}/tributes/${tribute?.id}`
       ),
     onSuccess: (res) => {
-      toast.success("Condolence deleted successfully!");
+      toast.success("Tribute deleted successfully!");
       queryClient.invalidateQueries(["profile"]);
     },
     onError: (err) => {

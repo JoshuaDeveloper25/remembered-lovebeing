@@ -19,6 +19,7 @@ import Tributes from "./components/Tributes";
 import { useContext, useState } from "react";
 import Post from "../../components/Post";
 import axios from "axios";
+import AboutRemembered from "./components/AboutRemembered";
 
 const ProfileRemembered = () => {
   const [showMembers, setShowMembers] = useState(false);
@@ -254,11 +255,22 @@ const ProfileRemembered = () => {
             >
               <TabLink
                 setOpenTab={setOpenTab}
+                linkTab={"#about"}
+                textTab={"About"}
+                // iconTab={<FaHeart className="text-red-500" />}
+                openTab={openTab}
+                numberTab={1}
+                countTab={false}
+                enableCountTab={false}
+              />
+
+              <TabLink
+                setOpenTab={setOpenTab}
                 linkTab={"#posts"}
                 textTab={"Posts"}
                 // iconTab={<FaHeart className="text-red-500" />}
                 openTab={openTab}
-                numberTab={1}
+                numberTab={2}
                 countTab={postsQuery?.data?.data?.length}
               />
 
@@ -268,7 +280,7 @@ const ProfileRemembered = () => {
                 linkTab={"#media"}
                 // iconTab={<FaCross className="text-primary-color" />}
                 openTab={openTab}
-                numberTab={2}
+                numberTab={3}
                 countTab={
                   data?.data?.remembered_profile?.gallery_images?.length
                 }
@@ -280,7 +292,7 @@ const ProfileRemembered = () => {
                 textTab={"Condolences"}
                 // iconTab={<FaHeart className="text-red-500" />}
                 openTab={openTab}
-                numberTab={3}
+                numberTab={4}
                 countTab={data?.data?.remembered_profile?.condolences?.length}
               />
 
@@ -290,7 +302,7 @@ const ProfileRemembered = () => {
                 textTab={"Tributes"}
                 // iconTab={<FaHeart className="text-red-500" />}
                 openTab={openTab}
-                numberTab={4}
+                numberTab={5}
                 countTab={data?.data?.remembered_profile?.tributes?.length}
               />
             </ul>
@@ -301,6 +313,14 @@ const ProfileRemembered = () => {
                   <TabLinkContent
                     openTab={openTab}
                     numberTab={1}
+                    idTab={"#about"}
+                  >
+                    <AboutRemembered />
+                  </TabLinkContent>
+
+                  <TabLinkContent
+                    openTab={openTab}
+                    numberTab={2}
                     idTab={"#posts"}
                   >
                     <div className="flex flex-col sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
@@ -340,7 +360,7 @@ const ProfileRemembered = () => {
 
                   <TabLinkContent
                     openTab={openTab}
-                    numberTab={2}
+                    numberTab={3}
                     idTab={"#media"}
                   >
                     <div className="flex flex-col sm:flex-row justify-between items-center bg-white p-3 rounded-lg shadow-lg mb-7">
@@ -365,7 +385,7 @@ const ProfileRemembered = () => {
 
                   <TabLinkContent
                     openTab={openTab}
-                    numberTab={3}
+                    numberTab={4}
                     idTab={"#condolences"}
                   >
                     <div className="flex flex-col sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
@@ -407,7 +427,7 @@ const ProfileRemembered = () => {
 
                   <TabLinkContent
                     openTab={openTab}
-                    numberTab={4}
+                    numberTab={5}
                     idTab={"#tributes"}
                   >
                     <div className="flex flex-col sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">

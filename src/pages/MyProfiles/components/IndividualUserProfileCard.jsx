@@ -1,8 +1,8 @@
 import UploadUserProfileImage from "../../../components/UploadUserProfileImage";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa6";
 import AppContext from "../../../context/AppProvider";
-import { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
 import axios from "axios";
 
 const IndividualUserProfileCard = () => {

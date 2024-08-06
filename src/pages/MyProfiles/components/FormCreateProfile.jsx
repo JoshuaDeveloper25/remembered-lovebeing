@@ -27,14 +27,36 @@ const FormCreateProfile = ({ isPending }) => {
           </div>
         </div>
 
-        <div className="mt-6">
-          <InputForm
-            inputLabel="Last Name"
-            inputClassNameAdd={"mb-1"}
-            inputType="text"
-            inputName="last_name"
-            labelClassNameAdd={"mb-0"}
-          />
+        <div className="flex flex-col sm:flex-row gap-6 mt-6">
+          <div className="flex-1">
+            <InputForm
+              inputLabel="Last Name"
+              inputClassNameAdd={"mb-1"}
+              inputType="text"
+              inputName="last_name"
+              labelClassNameAdd={"mb-0"}
+            />
+          </div>
+
+          <div className="flex-1">
+            <label>
+              <span className="w-full inline-block text-start">Relationship</span>
+              <select
+                className="form-input-focus form-input-normal"
+                placeholder="-- Select --"
+                name="user_relationship"
+              >
+                <option value="">-- Select --</option>
+                <option value="none">Prefer not to say</option>
+                <option value="dad">Dad</option>
+                <option value="mom">Mom</option>
+                <option value="son">Son</option>
+                <option value="sister">Sister</option>
+                <option value="brother">Brother</option>
+                <option value="daughter">Daughter</option>
+              </select>
+            </label>
+          </div>
         </div>
 
         <div className="my-6 block">
@@ -75,36 +97,6 @@ const FormCreateProfile = ({ isPending }) => {
             </select>
           </label>
         </div>
-
-        {/* <div className="col-span-2">
-          <InputForm
-            inputLabel={"Birth Date"}
-            inputClassNameAdd={"mb-1"}
-            inputType="date"
-            inputName="birth_date"
-            labelClassNameAdd={"mb-0"}
-          />
-        </div>
-
-        <div className="col-span-2">
-          <InputForm
-            inputLabel={"Death Date"}
-            inputClassNameAdd={"mb-1"}
-            inputType="date"
-            inputName="death_date"
-            labelClassNameAdd={"mb-0"}
-          />
-        </div> */}
-        {/* 
-        <div className="col-span-2">
-          <InputForm
-            inputLabel="Epitaph (Optional)"
-            inputClassNameAdd={"mb-1"}
-            inputType="text"
-            inputName="epitaph"
-            labelClassNameAdd={"mb-0"}
-          />
-        </div>  */}
       </div>
 
       <ButtonForm

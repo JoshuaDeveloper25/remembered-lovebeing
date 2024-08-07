@@ -1,13 +1,16 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import formatDateJourney from "../../../helpers/formatDateJourney";
+import { BsChatLeftQuote } from "react-icons/bs";
 import FormLifeJourney from "./FormLifeJourney";
 import { TfiPencilAlt } from "react-icons/tfi";
 import Modal from "../../../components/Modal";
+import ModalQualities from "./ModalQualities";
 import { useParams } from "react-router-dom";
 import FormKnownFor from "./FormKnownFor";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import axios from "axios";
+import getFastApiErrors from "../../../utils/getFastApiErrors";
 
 const AboutRemembered = ({ rememberedProfile }) => {
   const rememberedProfileInfo = rememberedProfile?.remembered_profile;
@@ -24,6 +27,7 @@ const AboutRemembered = ({ rememberedProfile }) => {
   const [errorDeathValidation, setErrorDeathValidation] = useState(false);
   const [errorCountryDeath, setErrorCountryDeath] = useState(false);
   const [errorCountryBorn, setErrorCountryBorn] = useState(false);
+  const [errorLength, setErrorLength] = useState(false);
   const queryClient = useQueryClient();
   const params = useParams();
 
@@ -77,7 +81,8 @@ const AboutRemembered = ({ rememberedProfile }) => {
     },
   });
 
-  const handleSubmit = (e) => {
+  // This is for edit life journey of the remembered
+  const handleSubmitEditLifeJourney = (e) => {
     e.preventDefault();
 
     if (
@@ -143,19 +148,26 @@ const AboutRemembered = ({ rememberedProfile }) => {
     editLifeJourneyMutation?.mutate(lifeJourneyInfo);
   };
 
-  const handleSubmitAddKownFor = (e) => {
+  // This is for add a quality or best known for the rembered
+  const handleSubmitAddKnownFor = (e) => {
     e.preventDefault();
 
     const knownForInfo = {
       description: e?.target?.quality?.value,
     };
 
+    if (knownForInfo?.description?.length > 14) {
+      return setErrorLength("The length should be equal or less then 14!");
+    }
+
+    setErrorLength(false);
+
     createKnownForMutation?.mutate(knownForInfo);
     e?.target?.reset();
   };
 
   return (
-    <section className="bg-white rounded-md p-8">
+    <section className="bg-white rounded-md media-spacing px-8 py-8">
       <div className="text-center mt-4 mb-8">
         <h2>
           <span className="font-bold text-5xl">Who Was</span>{" "}
@@ -166,7 +178,7 @@ const AboutRemembered = ({ rememberedProfile }) => {
 
       <div className="flex flex-col md:flex-row gap-6">
         {/* Life Journey */}
-        <article className="flex-1">
+        <article className="flex-[55%]">
           <fieldset className="relative border-2 border-black p-3 rounded-md bg-white">
             <legend className="text-xl font-bold ps-1 pe-2">
               Life Journey:
@@ -229,7 +241,7 @@ const AboutRemembered = ({ rememberedProfile }) => {
 
             <Modal
               titleModal={"Life journey of your lovebeing..."}
-              handleSubmit={handleSubmit}
+              handleSubmit={handleSubmitEditLifeJourney}
               setOpenModal={setOpenLifeJourneyModal}
               openModal={openLifeJourneyModal}
               modalForm={true}
@@ -263,45 +275,107 @@ const AboutRemembered = ({ rememberedProfile }) => {
 
         {/* Best Known for... */}
         <article className="flex-1">
-          <div className="border-2 border-black rounded-full h-72 w-72 mx-auto">
-            <div className="flex flex-col justify-center  h-full mx-12">
-              <h3 className="font-bold text-xl">Best Known for...</h3>
+          <div className="flex justify-center mt-3">
+            <div className="border-2 border-black inline-block mb-3 px-5 rounded-sm">
+              <h3 className="font-bold text-xl text-center inline-block">
+                Best Known for...
+              </h3>
+            </div>
+          </div>
 
-              <button
-                className="border border-secondary-color rounded-md font-semibold py-1 mt-3"
-                onClick={() => setOpenAddKnownModal(!openAddKnownModal)}
-                type="button"
-              >
-                Add
-              </button>
-
-              <Modal
+          <div className="border-2 border-black rounded-full h-[15.2rem] w-[15.2rem] mx-auto">
+            <div className="flex flex-col justify-center relative h-full ms-[3.8rem]">
+              <ModalQualities
                 titleModal={"Add the qualities of your lovebeing..."}
-                handleSubmit={handleSubmitAddKownFor}
                 setOpenModal={setOpenAddKnownModal}
                 openModal={openAddKnownModal}
                 editableWidth={"max-w-2xl"}
-                modalForm={true}
               >
                 <FormKnownFor
+                  errorLength={errorLength}
                   isPending={createKnownForMutation?.isPending}
                   bestKnownFor={
                     rememberedProfile?.remembered_profile?.best_known_for
                   }
+                  handleSubmitAddKnownFor={handleSubmitAddKnownFor}
                 />
-              </Modal>
+              </ModalQualities>
 
-              <ul className="list-disc mt-3">
+              <ul className="list-disc mb-4">
+                <h2 className="font-bold text-xl">Being:</h2>
                 {rememberedProfile?.remembered_profile?.best_known_for?.map(
                   (knownFor) => (
-                    <li key={knownFor?.id}>{knownFor?.description}</li>
+                    <div key={knownFor?.id} className="ms-5">
+                      <li>
+                        <span className="font-[400] font-sans">
+                          {knownFor?.description}
+                        </span>
+                      </li>
+                    </div>
                   )
                 )}
               </ul>
+
+              <button
+                onClick={() => setOpenAddKnownModal(!openAddKnownModal)}
+                type="button"
+                className="absolute bottom-1 right-[6.5rem] cursor-pointer hover:scale-105 animation-fade"
+              >
+                <TfiPencilAlt className="size-6 mx-auto text-secondary-color my-1" />
+              </button>
             </div>
           </div>
         </article>
       </div>
+
+      {/* My lovebeing quotes */}
+      <article className="min-[1050px]:mx-10 mx-0 mt-6">
+        <fieldset className="relative border-2 border-black p-3 rounded-md bg-white">
+          <legend className="text-xl font-bold ps-1 pe-2">
+            My Dad Quotes{" "}
+            <BsChatLeftQuote className="inline-block size-6 rotate-12" />
+          </legend>
+
+          <ul className="relative list-disc marker:text-gray-700/50 px-5">
+            <BsChatLeftQuote className="absolute mt-2 top-1/2 right-0 transform -translate-x-1/2 -translate-y-1/2 size-20 text-gray-600/20 rotate-12" />
+ 
+            <li>
+              <div className="mb-3 pb-3 border-b border-tertiary-color/50">
+                <h3 className="italic font-semibold">
+                  "Two things are infinite: the universe and human stupidity;
+                  and I'm not sure about the universe"
+                </h3>
+                <p className="text-sm text-gray-700/95">
+                  The vastness of human folly seems boundless, often surpassing
+                  even the immense, possibly limitless, universe.
+                </p>
+              </div>
+            </li> 
+
+            <li>
+              <div className="mb-3 pb-3 border-b border-tertiary-color/50">
+                <h3 className="italic font-semibold">
+                  "In the middle of difficulty lies opportunity"
+                </h3>
+                <p></p>
+              </div>
+            </li>
+
+            <li>
+              <div className="mb-3">
+                <h3 className="italic font-semibold">
+                  "Imagination is more important than knowledge"
+                </h3>
+                <p className="text-sm text-gray-700/95">
+                  Imagination allows us to think beyond the current limits of
+                  knowledge and innovate, driving progress and evolution in
+                  society and science.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </fieldset>
+      </article>
     </section>
   );
 };

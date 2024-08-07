@@ -15,6 +15,7 @@ import Swal from "sweetalert2";
 import Modal from "../../../components/Modal";
 import FormLifeTime from "./FormLifeTime";
 import { useState } from "react";
+import getFastApiErrors from "../../../utils/getFastApiErrors";
 
 const Profile = ({ item, isPending }) => {
   const currentYear = new Date().getFullYear();

@@ -1,7 +1,7 @@
 function getFastApiErrors(error) {
   let errorMessage = "";
 
-  const allowedStatusCodes = [400, 401, 404, 409];
+  const allowedStatusCodes = [400, 401, 403, 404, 409];
 
   if (error.response) {
     if (allowedStatusCodes.includes(error.response.status)) {

@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import getDaysInMonth from "../../../helpers/getDaysInMonth";
 import ButtonForm from "../../../components/ButtonForm";
+import { useState, useEffect } from "react";
 
 const FormLifeTime = ({
   bornYear,
@@ -18,39 +19,14 @@ const FormLifeTime = ({
   currentYear,
   months,
 }) => {
-  const years = [];
-  for (let year = 1900; year <= currentYear; year++) {
-    years.push(year);
-  }
-
   const [bornDays, setBornDays] = useState([]);
   const [passedDays, setPassedDays] = useState([]);
+  const years = [];
 
-  const isLeapYear = (year) => {
-    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-  };
-
-  const getDaysInMonth = (month, year) => {
-    switch (month) {
-      case "January":
-      case "March":
-      case "May":
-      case "July":
-      case "August":
-      case "October":
-      case "December":
-        return 31;
-      case "April":
-      case "June":
-      case "September":
-      case "November":
-        return 30;
-      case "February":
-        return isLeapYear(year) ? 29 : 28;
-      default:
-        return 30;
-    }
-  };
+  // Get years from 1800 to now
+  for (let year = 1800; year <= currentYear; year++) {
+    years.push(year);
+  }
 
   useEffect(() => {
     const daysInBornMonth = getDaysInMonth(bornMonth, bornYear);
@@ -64,9 +40,11 @@ const FormLifeTime = ({
   useEffect(() => {
     const daysInPassedMonth = getDaysInMonth(passedMonth, passedYear);
     const newPassedDays = [];
+
     for (let day = 1; day <= daysInPassedMonth; day++) {
       newPassedDays.push(day);
     }
+
     setPassedDays(newPassedDays);
   }, [passedMonth, passedYear]);
 

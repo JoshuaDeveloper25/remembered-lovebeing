@@ -1,11 +1,17 @@
-import { useState, useEffect } from "react";
+import ErrorValidation from "../../../components/ErrorValidation";
+import getDaysInMonth from "../../../helpers/getDaysInMonth";
+import getNameOfMonth from "../../../helpers/getNameOfMonth";
 import ButtonForm from "../../../components/ButtonForm";
+import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const FormLifeJourney = ({
-  selectCountry,
-  setSelectCountry,
+  errorCountryDeath,
+  errorCountryBorn,
+  errorDeathValidation,
+  errorBornValidation,
+  rememberedProfileInfo,
   bornYear,
   setBornYear,
   bornMonth,
@@ -22,44 +28,32 @@ const FormLifeJourney = ({
   currentYear,
   months,
 }) => {
+  const birthDate = rememberedProfileInfo?.birth_date;
+
+  // Get all information about countries from public API
   const countriesApiQuery = useQuery({
     queryKey: ["countries"],
     queryFn: async () => await axios.get(`https://restcountries.com/v3.1/all`),
   });
 
+  useEffect(() => {
+    if (birthDate) {
+      const [year, month, day] = birthDate.split("-");
+      setBornYear(parseInt(year));
+      setBornMonth(getNameOfMonth(parseInt(month)));
+      setBornDay(parseInt(day));
+    }
+  }, [birthDate, setBornYear, setBornMonth, setBornDay]);
+
+  // Get years from 1800 to now
   const years = [];
-  for (let year = 1900; year <= currentYear; year++) {
+
+  for (let year = 1800; year <= currentYear; year++) {
     years.push(year);
   }
 
   const [bornDays, setBornDays] = useState([]);
   const [passedDays, setPassedDays] = useState([]);
-
-  const isLeapYear = (year) => {
-    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-  };
-
-  const getDaysInMonth = (month, year) => {
-    switch (month) {
-      case "January":
-      case "March":
-      case "May":
-      case "July":
-      case "August":
-      case "October":
-      case "December":
-        return 31;
-      case "April":
-      case "June":
-      case "September":
-      case "November":
-        return 30;
-      case "February":
-        return isLeapYear(year) ? 29 : 28;
-      default:
-        return 30;
-    }
-  };
 
   useEffect(() => {
     const daysInBornMonth = getDaysInMonth(bornMonth, bornYear);
@@ -81,119 +75,235 @@ const FormLifeJourney = ({
 
   return (
     <>
-      <div className="flex flex-col md:flex-row gap-4">
-        <h4>Born:</h4>
+      {/* Born */}
+      <article className="border-b border-tertiary-color pb-8 mb-8">
+        <div className="flex flex-col md:flex-row gap-4 items-center">
+          <h4 className="font-semibold">Born:</h4>
 
-        <select
-          className="border border-tertiary-color rounded pe-4"
-          value={bornYear}
-          onChange={(e) => setBornYear(parseInt(e.target.value))}
-        >
-          {years.map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </select>
-
-        <select
-          className="border border-tertiary-color rounded pe-4"
-          value={bornMonth}
-          onChange={(e) => setBornMonth(e.target.value)}
-        >
-          {months.map((month) => (
-            <option key={month} value={month}>
-              {month}
-            </option>
-          ))}
-        </select>
-
-        <select
-          className="border border-tertiary-color rounded pe-4"
-          value={bornDay}
-          onChange={(e) => setBornDay(parseInt(e.target.value))}
-        >
-          {bornDays.map((day) => (
-            <option key={day} value={day}>
-              {day}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="grid grid-cols-3 gap-3 my-3">
-        <label>
-          City or town:
-          <input
-            className="outline-none border border-black rounded px-1 py-1 block w-full"
-            placeholder="City or town"
-          />
-        </label>
-
-        <label>
-          State or area:
-          <input
-            className="outline-none border border-black rounded px-1 py-1 block w-full"
-            placeholder="State or area"
-          />
-        </label>
-
-        <select
-          className="border border-tertiary-color rounded pe-4"
-          value={selectCountry}
-          onChange={(e) => setSelectCountry(e?.target?.value)}
-        >
-          <option defaultValue={""}>-- Select --</option>
-          {countriesApiQuery?.data?.data?.map((countryName, index) => {
-            return (
-              <option key={index} value={countryName?.name?.common}>
-                {countryName?.name?.common}
+          <select
+            className="border border-muted-color/20 rounded pe-4 py-1.5 text-muted-color/50"
+            value={bornYear}
+            onChange={(e) => setBornYear(parseInt(e.target.value))}
+            name="born_year"
+          >
+            <option value="">Year</option>
+            {years.map((year) => (
+              <option key={year} value={year}>
+                {year}
               </option>
-            );
-          })}
-        </select>
-      </div>
+            ))}
+          </select>
 
-      <div className="flex flex-col md:flex-row gap-4">
-        <h4>Passed Away:</h4>
+          <select
+            className="border border-muted-color/20 rounded pe-4 py-1.5 text-muted-color/50"
+            value={bornMonth}
+            name="born_month"
+            onChange={(e) => setBornMonth(e.target.value)}
+          >
+            <option value="">Month</option>
+            {months.map((month) => (
+              <option key={month} value={month}>
+                {month}
+              </option>
+            ))}
+          </select>
 
-        <select
-          className="border border-tertiary-color rounded pe-4"
-          value={passedYear}
-          onChange={(e) => setPassedYear(parseInt(e.target.value))}
-        >
-          {years.map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </select>
+          <select
+            className="border border-muted-color/20 rounded pe-4 py-1.5 text-muted-color/50"
+            value={bornDay}
+            name="born_day"
+            onChange={(e) => setBornDay(parseInt(e.target.value))}
+          >
+            <option value="">Day</option>
+            {bornDays.map((day) => (
+              <option key={day} value={day}>
+                {day}
+              </option>
+            ))}
+          </select>
+        </div>
 
-        <select
-          className="border border-tertiary-color rounded pe-4"
-          value={passedMonth}
-          onChange={(e) => setPassedMonth(e.target.value)}
-        >
-          {months.map((month) => (
-            <option key={month} value={month}>
-              {month}
-            </option>
-          ))}
-        </select>
+        {errorBornValidation && (
+          <ErrorValidation>{errorBornValidation}</ErrorValidation>
+        )}
 
-        <select
-          className="border border-tertiary-color rounded pe-4"
-          value={passedDay}
-          onChange={(e) => setPassedDay(parseInt(e.target.value))}
-        >
-          {passedDays.map((day) => (
-            <option key={day} value={day}>
-              {day}
-            </option>
-          ))}
-        </select>
-      </div>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 my-3">
+          <label>
+            <span className="font-semibold">City or town:</span>
+            <input
+              className="outline-none border border-muted-color/20 rounded px-2 py-1.5 block w-full"
+              placeholder="City or town"
+              name="born_city_or_town"
+              defaultValue={rememberedProfileInfo?.birth_city}
+            />
+          </label>
 
+          <label>
+            <span className="font-semibold">State or area:</span>
+            <input
+              className="outline-none border border-muted-color/20 rounded px-2 py-1.5 block w-full"
+              placeholder="State or area"
+              name="born_state_or_area"
+              defaultValue={rememberedProfileInfo?.birth_state}
+            />
+          </label>
+
+          <label>
+            <span className="font-semibold">Country:</span>
+            <select
+              className="border border-muted-color/20 rounded pe-4 py-1.5 w-full text-muted-color/50 prueba"
+              name="born_country"
+              defaultValue={rememberedProfileInfo?.birth_country}
+            >
+              <option className="text-muted-color/50" value={""}>
+                -- Select Country --
+              </option>
+
+              {countriesApiQuery?.data?.data?.map((countryName, index) => {
+                return (
+                  <option key={index} value={countryName?.name?.common}>
+                    {countryName?.name?.common}
+                  </option>
+                );
+              })}
+            </select>
+          </label>
+        </div>
+
+        {errorCountryBorn ? (
+          <ErrorValidation>{errorCountryBorn}</ErrorValidation>
+        ) : null}
+      </article>
+
+      {/* Passed Away */}
+      <article className="border-b border-tertiary-color pb-8 mb-8">
+        <div className="flex flex-col md:flex-row gap-4 items-center">
+          <h4 className="font-semibold">Passed Away:</h4>
+
+          <select
+            className="border border-muted-color/20 rounded pe-4 py-1.5 text-muted-color/50"
+            value={passedYear}
+            name="death_year"
+            onChange={(e) => setPassedYear(parseInt(e.target.value))}
+          >
+            <option value="">Year</option>
+
+            {years.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
+
+          <select
+            className="border border-muted-color/20 rounded pe-4 py-1.5 text-muted-color/50"
+            value={passedMonth}
+            name="death_month"
+            onChange={(e) => setPassedMonth(e.target.value)}
+          >
+            <option value="">Month</option>
+            {months.map((month) => (
+              <option key={month} value={month}>
+                {month}
+              </option>
+            ))}
+          </select>
+
+          <select
+            className="border border-muted-color/20 rounded pe-4 py-1.5 text-muted-color/50"
+            value={passedDay}
+            name="death_day"
+            onChange={(e) => setPassedDay(parseInt(e.target.value))}
+          >
+            <option value="">Day</option>
+            {passedDays.map((day) => (
+              <option key={day} value={day}>
+                {day}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {errorDeathValidation && (
+          <ErrorValidation>{errorDeathValidation}</ErrorValidation>
+        )}
+
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 my-3">
+          <label>
+            <span className="font-semibold">City or town:</span>
+            <input
+              className="outline-none border border-muted-color/20 rounded px-2 py-1.5 block w-full"
+              defaultValue={rememberedProfileInfo?.death_city}
+              name="passed_away_city_or_town"
+              placeholder="City or town"
+            />
+          </label>
+
+          <label>
+            <span className="font-semibold">State or area:</span>
+            <input
+              className="outline-none border border-muted-color/20 rounded px-2 py-1.5 block w-full"
+              defaultValue={rememberedProfileInfo?.death_state}
+              name="passed_away_state_or_area"
+              placeholder="State or area"
+            />
+          </label>
+
+          <label>
+            <span className="font-semibold">Country:</span>
+            <select
+              className="border border-muted-color/20 rounded pe-4 py-1.5 w-full text-muted-color/50"
+              defaultValue={rememberedProfileInfo?.death_country}
+              name="passed_away_country"
+            >
+              <option className="text-muted-color/50" value={""}>
+                -- Select Country --
+              </option>
+
+              {countriesApiQuery?.data?.data?.map((countryName, index) => {
+                return (
+                  <option key={index} value={countryName?.name?.common}>
+                    {countryName?.name?.common}
+                  </option>
+                );
+              })}
+            </select>
+          </label>
+        </div>
+
+        {errorCountryDeath ? (
+          <ErrorValidation>{errorCountryDeath}</ErrorValidation>
+        ) : null}
+      </article>
+
+      {/* Parent Names */}
+      <article>
+        <h4 className="font-semibold">Parent Names:</h4>
+
+        <div className="flex flex-col md:flex-row gap-4">
+          <label>
+            <span className="font-semibold">Mother:</span>
+            <input
+              className="outline-none border border-muted-color/20 rounded px-2 py-1.5 block w-full"
+              placeholder="Mother"
+              name="mom_name"
+              defaultValue={rememberedProfileInfo?.mom_name}
+            />
+          </label>
+
+          <label>
+            <span className="font-semibold">Father:</span>
+            <input
+              className="outline-none border border-muted-color/20 rounded px-2 py-1.5 block w-full"
+              placeholder="Father"
+              name="dad_name"
+              defaultValue={rememberedProfileInfo?.dad_name}
+            />
+          </label>
+        </div>
+      </article>
+
+      {/* Submit changes */}
       <ButtonForm
         isPending={isPending}
         statusOff={"Save Changes"}

@@ -8,6 +8,7 @@ import UploadGalleryImage from "../../components/UploadGalleryImage";
 import UploadCoverImage from "../../components/UploadCoverImage";
 import TabLink from "../../pages/MyProfiles/components/TabLink";
 import UploadCondolence from "./components/UploadCondolence";
+import AboutRemembered from "./components/AboutRemembered";
 import UploadTribute from "./components/UploadTribute";
 import { getLivedDays } from "../../utils/getLivedDays";
 import UploadPost from "../../components/UploadPost";
@@ -19,7 +20,6 @@ import Tributes from "./components/Tributes";
 import { useContext, useState } from "react";
 import Post from "../../components/Post";
 import axios from "axios";
-import AboutRemembered from "./components/AboutRemembered";
 
 const ProfileRemembered = () => {
   const [showMembers, setShowMembers] = useState(false);
@@ -138,7 +138,8 @@ const ProfileRemembered = () => {
               {data?.data?.remembered_profile?.epitaph || "In loving memory of"}
             </h2>
             <h3 className="text-2xl font-bold mb-1">
-              {data?.data?.remembered_profile?.first_name}
+              {data?.data?.remembered_profile?.first_name}{" "}
+              {data?.data?.remembered_profile?.last_name}
             </h3>
             <h3 className="text-muted-color">
               <span className="font-bold">Lifetime</span>:{" "}
@@ -189,7 +190,8 @@ const ProfileRemembered = () => {
               {data?.data?.remembered_profile?.epitaph || "In loving memory of"}
             </h3>
             <h3 className="font-bold capitalize text-xl">
-              {data?.data?.remembered_profile?.first_name}
+              {data?.data?.remembered_profile?.first_name}{" "}
+              {data?.data?.remembered_profile?.last_name}
             </h3>
             <p className="text-muted-color mt-2 text-xs leading-4">
               <span className="block font-bold mb-1 text-sm"> Lifetime:</span>{" "}
@@ -315,7 +317,7 @@ const ProfileRemembered = () => {
                     numberTab={1}
                     idTab={"#about"}
                   >
-                    <AboutRemembered />
+                    <AboutRemembered rememberedProfile={data?.data} />
                   </TabLinkContent>
 
                   <TabLinkContent

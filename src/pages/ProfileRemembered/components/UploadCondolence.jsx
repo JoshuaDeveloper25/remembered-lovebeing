@@ -11,7 +11,6 @@ import axios from "axios";
 
 const UploadCondolence = ({ isOwner }) => {
   const { userInfo } = useContext(AppContext);
-  console.log(userInfo);
 
   const [openModalCreateCondolence, setOpenModalCreateCondolence] =
     useState(false);

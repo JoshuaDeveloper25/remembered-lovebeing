@@ -34,7 +34,7 @@ const News = () => {
         <h2 className=" text-primary-color/85 text-3xl font-bold mb-1">News</h2>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 place-content-center place-items-center">
+      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 place-content-center place-items-stretch">
         {flapMapeado?.map((item, index) => {
           return <New item={item} key={index} />;
         })}

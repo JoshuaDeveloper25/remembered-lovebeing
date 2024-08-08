@@ -49,6 +49,7 @@ const ProfileRemembered = () => {
       ),
   });
 
+
   // --> 📝 Get all posts of a remembered
   const postsQuery = useQuery({
     queryKey: ["posts"],
@@ -103,7 +104,7 @@ const ProfileRemembered = () => {
                   ? `${data?.data?.remembered_profile?.cover_images?.cloud_front_domain}/${data?.data?.remembered_profile?.cover_images?.aws_file_name}`
                   : `https://images.unsplash.com/photo-1506353187171-d49740268889?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`
               }
-              className="max-h-[24rem] w-full shadow-2xl min-[1200px]:rounded-t-lg rounded-t-none object-cover z-10"
+              className=" max-h-[24rem] w-full shadow-2xl min-[1200px]:rounded-t-lg rounded-t-none object-cover z-10"
             />
 
             <div className="absolute bottom-3 right-3 cursor-pointer">

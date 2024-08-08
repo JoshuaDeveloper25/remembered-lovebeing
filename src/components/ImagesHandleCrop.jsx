@@ -18,7 +18,7 @@ const ImagesHandleCrop = ({
   const [imgSrc, setImgSrc] = useState();
   const [error, setError] = useState("");
 
-  const MIN_DIMENSION = circle ? 200 : 250;
+  const MIN_DIMENSION = circle ? 125 : 250;
   const ASPECT_RATIO = circle ? 1 : 10 / 3.5;
 
   const onSelectFile = async (e) => {

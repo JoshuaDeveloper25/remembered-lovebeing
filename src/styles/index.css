@@ -223,3 +223,20 @@ body {
     padding-inline: 0.5rem;
   }
 }
+
+.react-quill-container .ql-toolbar {
+  display: none;
+}
+
+.react-quill-container.editing .ql-toolbar {
+  display: block;
+}
+
+.react-quill-container .ql-container.ql-snow {
+  border: 0 !important;
+}
+
+.react-quill-container.editing .ql-container.ql-snow {
+  border: 1px solid #ccc !important;
+  border-top: none !important;
+}

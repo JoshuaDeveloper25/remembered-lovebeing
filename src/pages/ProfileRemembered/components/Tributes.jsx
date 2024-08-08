@@ -133,7 +133,9 @@ const Tribute = ({ tribute, isOwner }) => {
           <div>
             <img
               src={
-                "https://plus.unsplash.com/premium_photo-1670282393321-b34c6a4695b0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                tribute?.owner?.user_profile_image.cloud_front_domain
+                  ? `${tribute?.owner?.user_profile_image.cloud_front_domain}/${tribute?.owner?.user_profile_image.aws_file_name}`
+                  : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
               }
               className="w-14 h-14 object-cover rounded-full"
             />
@@ -224,19 +226,21 @@ const Tribute = ({ tribute, isOwner }) => {
           {/* Tribute Desc */}
           {!readMoreTribute ? (
             <>
-              <p className="text-tertiary-color text-sm my-1 md:line-clamp-3">
+              <p className="text-tertiary-color text-sm my-1 md:line-clamp-3 mb-3">
                 {tribute?.content}
               </p>
 
-              <div className="text-center">
-                <button
-                  className="text-secondary-color outline-none font-medium"
-                  onClick={() => setReadMoreTribute(!readMoreTribute)}
-                  type="button"
-                >
-                  Read More
-                </button>
-              </div>
+              {tribute?.content?.replace(/\s/g, "")?.length > 280 && (
+                <div className="text-center">
+                  <button
+                    className="text-secondary-color outline-none font-medium"
+                    onClick={() => setReadMoreTribute(!readMoreTribute)}
+                    type="button"
+                  >
+                    Read More
+                  </button>
+                </div>
+              )}
             </>
           ) : (
             <>
@@ -319,11 +323,6 @@ const TributeComment = ({ tributeComment, userInfo }) => {
   const [readMoreTributeComment, setReadMoreTributeComment] = useState(false);
   const queryClient = useQueryClient();
 
-  // This if for read more
-  // const text = "123              456";
-  // const textWorking = text.replace(/\s/g, "");
-  // console.log(textWorking?.length);
-
   // Edit Tribute Comment
   const editTributeCommentMutation = useMutation({
     mutationFn: async (commentInfo) =>
@@ -390,7 +389,9 @@ const TributeComment = ({ tributeComment, userInfo }) => {
           <div>
             <img
               src={
-                "https://plus.unsplash.com/premium_photo-1670282393321-b34c6a4695b0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                tributeComment?.owner?.user_profile_image?.cloud_front_domain
+                  ? `${tributeComment?.owner?.user_profile_image?.cloud_front_domain}/${tributeComment?.owner?.user_profile_image?.aws_file_name}`
+                  : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
               }
               className="w-12 h-12 object-cover rounded-full"
             />

@@ -33,6 +33,14 @@ const FormLifeJourney = ({
   console.log(rememberedProfileInfo?.birth_country);
   console.log(rememberedProfileInfo?.death_country);
 
+  const [birthCountry, setBirthCountry] = useState(
+    rememberedProfileInfo?.birth_country || ""
+  );
+
+  const [deathCountry, setDeathCountry] = useState(
+    rememberedProfileInfo?.death_country || ""
+  );
+
   // Get all information about countries from public API
   const countriesApiQuery = useQuery({
     queryKey: ["countries"],
@@ -165,8 +173,8 @@ const FormLifeJourney = ({
             <select
               className="border border-muted-color/20 rounded pe-4 py-1.5 w-full text-muted-color/50 prueba"
               name="born_country"
-              defaultValue={rememberedProfileInfo?.birth_country}
-              
+              value={birthCountry}
+              onChange={(e) => setBirthCountry(e?.target?.value)}
             >
               <option className="text-muted-color/50" value={""}>
                 -- Select Country --
@@ -266,8 +274,8 @@ const FormLifeJourney = ({
             <span className="font-semibold">Country:</span>
             <select
               className="border border-muted-color/20 rounded pe-4 py-1.5 w-full text-muted-color/50"
-              defaultValue={rememberedProfileInfo?.death_country}
-              
+              value={deathCountry}
+              onChange={(e) => setDeathCountry(e?.target?.value)}
               name="passed_away_country"
             >
               <option className="text-muted-color/50" value={""}>

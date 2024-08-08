@@ -155,7 +155,7 @@ const Condolence = ({ condolence, isOwner }) => {
   };
 
   return (
-    <article className="animation-scale-scroll shadow-[0_30px_40px_-20px_rgba(0,0,0,0.4)] py-10 px-6 border-t-2 border-red-500 rounded-t-[5px]">
+    <article className=" shadow-[0_30px_40px_-20px_rgba(0,0,0,0.4)] py-10 px-6 border-t-2 border-red-500 rounded-t-[5px]">
       <h2 className="text-md font-medium capitalize">
         {condolence?.owner?.name}
       </h2>

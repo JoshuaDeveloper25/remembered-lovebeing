@@ -168,8 +168,8 @@ const AboutRemembered = ({ owner, rememberedProfile }) => {
   };
 
   return (
-    <section className="bg-white rounded-md media-spacing px-8 py-8">
-      <div className="text-center mt-4 mb-8">
+    <section className="bg-white rounded-md media-spacing px-8 py-1">
+      <div className="text-center mt-2 mb-8">
         <h2>
           <span className="font-bold text-5xl">Who Was</span>{" "}
           <span className="font-medium block">
@@ -244,7 +244,7 @@ const AboutRemembered = ({ owner, rememberedProfile }) => {
               </p>
             </div>
 
-            {!rememberedProfileInfo?.dad_name &&
+            {/* {!rememberedProfileInfo?.dad_name &&
             !rememberedProfileInfo?.mom_name ? null : (
               <div>
                 <h3 className="font-bold">Parent names:</h3>
@@ -265,7 +265,7 @@ const AboutRemembered = ({ owner, rememberedProfile }) => {
                   </p>
                 ) : null}
               </div>
-            )}
+            )} */}
 
             <Modal
               titleModal={"Life journey of your lovebeing..."}
@@ -302,7 +302,7 @@ const AboutRemembered = ({ owner, rememberedProfile }) => {
         </article>
 
         {/* Best Known for... */}
-        {(owner && !rememberedProfileInfo?.best_known_for?.length) ||
+        {/* {(owner && !rememberedProfileInfo?.best_known_for?.length) ||
         rememberedProfileInfo?.best_known_for?.length ? (
           <article className="flex-1">
             <div className="flex justify-center mt-3">
@@ -358,7 +358,7 @@ const AboutRemembered = ({ owner, rememberedProfile }) => {
               </div>
             </div>
           </article>
-        ) : null}
+        ) : null} */}
       </div>
 
       {/* My lovebeing quotes */}
@@ -370,8 +370,6 @@ const AboutRemembered = ({ owner, rememberedProfile }) => {
               ? `${rememberedProfileInfo?.first_name} ${rememberedProfileInfo?.last_name}`
               : `My ${rememberedProfileInfo?.user_relationship}`}{" "}
             Quotes <BsChatLeftQuote className="inline-block size-6 rotate-12" />
-
-            
           </legend>
 
           <ul className="relative list-disc marker:text-gray-700/50 px-5">
@@ -415,7 +413,7 @@ const AboutRemembered = ({ owner, rememberedProfile }) => {
         </fieldset>
       </article>
 
-      <ReactQuillAbout />
+      <ReactQuillAbout rememberedProfile={rememberedProfile} owner={owner} />
     </section>
   );
 };

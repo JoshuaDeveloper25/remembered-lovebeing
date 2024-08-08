@@ -29,6 +29,9 @@ const FormLifeJourney = ({
   months,
 }) => {
   const birthDate = rememberedProfileInfo?.birth_date;
+  const deathDate = rememberedProfileInfo?.death_date;
+  console.log(rememberedProfileInfo?.birth_country);
+  console.log(rememberedProfileInfo?.death_country);
 
   // Get all information about countries from public API
   const countriesApiQuery = useQuery({
@@ -44,6 +47,15 @@ const FormLifeJourney = ({
       setBornDay(parseInt(day));
     }
   }, [birthDate, setBornYear, setBornMonth, setBornDay]);
+
+  useEffect(() => {
+    if (deathDate) {
+      const [year, month, day] = deathDate.split("-");
+      setPassedYear(parseInt(year));
+      setPassedMonth(getNameOfMonth(parseInt(month)));
+      setPassedDay(parseInt(day));
+    }
+  }, [deathDate, setBornYear, setPassedMonth, setPassedDay]);
 
   // Get years from 1800 to now
   const years = [];
@@ -154,6 +166,7 @@ const FormLifeJourney = ({
               className="border border-muted-color/20 rounded pe-4 py-1.5 w-full text-muted-color/50 prueba"
               name="born_country"
               defaultValue={rememberedProfileInfo?.birth_country}
+              
             >
               <option className="text-muted-color/50" value={""}>
                 -- Select Country --
@@ -254,6 +267,7 @@ const FormLifeJourney = ({
             <select
               className="border border-muted-color/20 rounded pe-4 py-1.5 w-full text-muted-color/50"
               defaultValue={rememberedProfileInfo?.death_country}
+              
               name="passed_away_country"
             >
               <option className="text-muted-color/50" value={""}>

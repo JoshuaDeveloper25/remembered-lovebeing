@@ -14,6 +14,10 @@ function formatDateJourney(inputDate) {
     "December",
   ];
 
+  if (!inputDate) {
+    return "Unknown date";
+  }
+
   const [year, month, day] = inputDate.split("-");
 
   // conver the month to name of it and set the index

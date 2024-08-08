@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import formatDateJourney from "../../../helpers/formatDateJourney";
+import getFastApiErrors from "../../../utils/getFastApiErrors";
 import { BsChatLeftQuote } from "react-icons/bs";
+import ReactQuillAbout from "./ReactQuillAbout";
 import FormLifeJourney from "./FormLifeJourney";
 import { TfiPencilAlt } from "react-icons/tfi";
 import Modal from "../../../components/Modal";
@@ -10,9 +12,8 @@ import FormKnownFor from "./FormKnownFor";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import axios from "axios";
-import getFastApiErrors from "../../../utils/getFastApiErrors";
 
-const AboutRemembered = ({ rememberedProfile }) => {
+const AboutRemembered = ({ owner, rememberedProfile }) => {
   const rememberedProfileInfo = rememberedProfile?.remembered_profile;
   const [openAddKnownModal, setOpenAddKnownModal] = useState(false);
   const [openLifeJourneyModal, setOpenLifeJourneyModal] = useState();
@@ -171,7 +172,14 @@ const AboutRemembered = ({ rememberedProfile }) => {
       <div className="text-center mt-4 mb-8">
         <h2>
           <span className="font-bold text-5xl">Who Was</span>{" "}
-          <span className="font-medium  block">my dad Albert Einstein?</span>
+          <span className="font-medium block">
+            {rememberedProfileInfo?.user_relationship === "none" ||
+            rememberedProfileInfo?.user_relationship === null
+              ? null
+              : `my ${rememberedProfileInfo?.user_relationship}`}{" "}
+            {rememberedProfileInfo?.first_name}{" "}
+            {rememberedProfileInfo?.last_name}?
+          </span>
         </h2>
         <h3 className="font-bold">Let me tell you!</h3>
       </div>
@@ -179,40 +187,60 @@ const AboutRemembered = ({ rememberedProfile }) => {
       <div className="flex flex-col md:flex-row gap-6">
         {/* Life Journey */}
         <article className="flex-[55%]">
-          <fieldset className="relative border-2 border-black p-3 rounded-md bg-white">
+          <fieldset className="relative border-2 border-black pt-4 pb-8 px-3 rounded-md bg-white">
             <legend className="text-xl font-bold ps-1 pe-2">
               Life Journey:
             </legend>
 
-            <div className="absolute right-5 bottom-5">
-              <TfiPencilAlt
-                onClick={() => setOpenLifeJourneyModal(!openLifeJourneyModal)}
-                className="text-secondary-color cursor-pointer hover:scale-105 animation-fade"
-                size={28}
-              />
-            </div>
+            {owner && (
+              <div className="absolute right-5 bottom-3">
+                <TfiPencilAlt
+                  onClick={() => setOpenLifeJourneyModal(!openLifeJourneyModal)}
+                  className="text-secondary-color cursor-pointer hover:scale-105 animation-fade"
+                  size={28}
+                />
+              </div>
+            )}
 
             <div className="mb-3">
               <h3 className="font-bold">Where and when born:</h3>
               <p>
-                {rememberedProfileInfo?.first_name}{" "}
-                {rememberedProfileInfo?.last_name} was born in{" "}
-                {rememberedProfileInfo?.birth_city},{" "}
-                {rememberedProfileInfo?.birth_state},{" "}
-                {rememberedProfileInfo?.birth_country} on{" "}
-                {formatDateJourney(rememberedProfileInfo?.birth_date)}.
+                {!rememberedProfileInfo?.birth_date ? (
+                  `${rememberedProfileInfo?.first_name} ${rememberedProfileInfo?.last_name} hasn't input a born date yet...`
+                ) : (
+                  <>
+                    {rememberedProfileInfo?.first_name}{" "}
+                    {rememberedProfileInfo?.last_name} was born{" "}
+                    {rememberedProfileInfo?.birth_country && "in"}{" "}
+                    {rememberedProfileInfo?.birth_city &&
+                      `${rememberedProfileInfo?.birth_city}, `}
+                    {rememberedProfileInfo?.birth_state &&
+                      `${rememberedProfileInfo?.birth_state}, `}
+                    {rememberedProfileInfo?.birth_country} on{" "}
+                    {formatDateJourney(rememberedProfileInfo?.birth_date)}.
+                  </>
+                )}
               </p>
             </div>
 
             <div className="mb-3">
               <h3 className="font-bold">Where and when passed away:</h3>
               <p>
-                {rememberedProfileInfo?.first_name}{" "}
-                {rememberedProfileInfo?.last_name} passed away in{" "}
-                {rememberedProfileInfo?.death_city},{" "}
-                {rememberedProfileInfo?.death_state},{" "}
-                {rememberedProfileInfo?.death_country} on{" "}
-                {formatDateJourney(rememberedProfileInfo?.death_date)}.
+                {!rememberedProfileInfo?.death_date ? (
+                  `${rememberedProfileInfo?.first_name} ${rememberedProfileInfo?.last_name} hasn't input a death date yet...`
+                ) : (
+                  <>
+                    {rememberedProfileInfo?.first_name}{" "}
+                    {rememberedProfileInfo?.last_name} passed away{" "}
+                    {rememberedProfileInfo?.death_country && "in"}{" "}
+                    {rememberedProfileInfo?.death_city &&
+                      `${rememberedProfileInfo?.death_city}, `}
+                    {rememberedProfileInfo?.death_state &&
+                      `${rememberedProfileInfo?.death_state}, `}
+                    {rememberedProfileInfo?.death_country} on{" "}
+                    {formatDateJourney(rememberedProfileInfo?.death_date)}.
+                  </>
+                )}
               </p>
             </div>
 
@@ -274,71 +302,81 @@ const AboutRemembered = ({ rememberedProfile }) => {
         </article>
 
         {/* Best Known for... */}
-        <article className="flex-1">
-          <div className="flex justify-center mt-3">
-            <div className="border-2 border-black inline-block mb-3 px-5 rounded-sm">
-              <h3 className="font-bold text-xl text-center inline-block">
-                Best Known for...
-              </h3>
+        {(owner && !rememberedProfileInfo?.best_known_for?.length) ||
+        rememberedProfileInfo?.best_known_for?.length ? (
+          <article className="flex-1">
+            <div className="flex justify-center mt-3">
+              <div className="border-2 border-black inline-block mb-3 px-5 rounded-sm">
+                <h3 className="font-bold text-xl text-center inline-block">
+                  Best Known for...
+                </h3>
+              </div>
             </div>
-          </div>
 
-          <div className="border-2 border-black rounded-full h-[15.2rem] w-[15.2rem] mx-auto">
-            <div className="flex flex-col justify-center relative h-full ms-[3.8rem]">
-              <ModalQualities
-                titleModal={"Add the qualities of your lovebeing..."}
-                setOpenModal={setOpenAddKnownModal}
-                openModal={openAddKnownModal}
-                editableWidth={"max-w-2xl"}
-              >
-                <FormKnownFor
-                  errorLength={errorLength}
-                  isPending={createKnownForMutation?.isPending}
-                  bestKnownFor={
-                    rememberedProfile?.remembered_profile?.best_known_for
-                  }
-                  handleSubmitAddKnownFor={handleSubmitAddKnownFor}
-                />
-              </ModalQualities>
+            <div className="border-2 border-black rounded-full h-[15.2rem] w-[15.2rem] mx-auto">
+              <div className="flex flex-col justify-center relative h-full ms-[3.8rem]">
+                <ModalQualities
+                  titleModal={"Add the qualities of your lovebeing..."}
+                  setOpenModal={setOpenAddKnownModal}
+                  openModal={openAddKnownModal}
+                  editableWidth={"max-w-2xl"}
+                >
+                  <FormKnownFor
+                    errorLength={errorLength}
+                    isPending={createKnownForMutation?.isPending}
+                    bestKnownFor={
+                      rememberedProfile?.remembered_profile?.best_known_for
+                    }
+                    handleSubmitAddKnownFor={handleSubmitAddKnownFor}
+                  />
+                </ModalQualities>
 
-              <ul className="list-disc mb-4">
-                <h2 className="font-bold text-xl">Being:</h2>
-                {rememberedProfile?.remembered_profile?.best_known_for?.map(
-                  (knownFor) => (
-                    <div key={knownFor?.id} className="ms-5">
-                      <li>
-                        <span className="font-[400] font-sans">
-                          {knownFor?.description}
-                        </span>
-                      </li>
-                    </div>
-                  )
+                <ul className="list-disc mb-4">
+                  <h2 className="font-bold text-xl">Being:</h2>
+                  {rememberedProfile?.remembered_profile?.best_known_for?.map(
+                    (knownFor) => (
+                      <div key={knownFor?.id} className="ms-5">
+                        <li>
+                          <span className="font-[400] font-sans">
+                            {knownFor?.description}
+                          </span>
+                        </li>
+                      </div>
+                    )
+                  )}
+                </ul>
+
+                {owner && (
+                  <button
+                    onClick={() => setOpenAddKnownModal(!openAddKnownModal)}
+                    type="button"
+                    className="absolute bottom-1 right-[6.5rem] cursor-pointer hover:scale-105 animation-fade"
+                  >
+                    <TfiPencilAlt className="size-6 mx-auto text-secondary-color my-1" />
+                  </button>
                 )}
-              </ul>
-
-              <button
-                onClick={() => setOpenAddKnownModal(!openAddKnownModal)}
-                type="button"
-                className="absolute bottom-1 right-[6.5rem] cursor-pointer hover:scale-105 animation-fade"
-              >
-                <TfiPencilAlt className="size-6 mx-auto text-secondary-color my-1" />
-              </button>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
+        ) : null}
       </div>
 
       {/* My lovebeing quotes */}
       <article className="min-[1050px]:mx-10 mx-0 mt-6">
         <fieldset className="relative border-2 border-black p-3 rounded-md bg-white">
           <legend className="text-xl font-bold ps-1 pe-2">
-            My Dad Quotes{" "}
-            <BsChatLeftQuote className="inline-block size-6 rotate-12" />
+            {rememberedProfileInfo?.user_relationship === "none" ||
+            rememberedProfileInfo?.user_relationship === null
+              ? `${rememberedProfileInfo?.first_name} ${rememberedProfileInfo?.last_name}`
+              : `My ${rememberedProfileInfo?.user_relationship}`}{" "}
+            Quotes <BsChatLeftQuote className="inline-block size-6 rotate-12" />
+
+            
           </legend>
 
           <ul className="relative list-disc marker:text-gray-700/50 px-5">
             <BsChatLeftQuote className="absolute mt-2 top-1/2 right-0 transform -translate-x-1/2 -translate-y-1/2 size-20 text-gray-600/20 rotate-12" />
- 
+
             <li>
               <div className="mb-3 pb-3 border-b border-tertiary-color/50">
                 <h3 className="italic font-semibold">
@@ -350,7 +388,7 @@ const AboutRemembered = ({ rememberedProfile }) => {
                   even the immense, possibly limitless, universe.
                 </p>
               </div>
-            </li> 
+            </li>
 
             <li>
               <div className="mb-3 pb-3 border-b border-tertiary-color/50">
@@ -376,6 +414,8 @@ const AboutRemembered = ({ rememberedProfile }) => {
           </ul>
         </fieldset>
       </article>
+
+      <ReactQuillAbout />
     </section>
   );
 };

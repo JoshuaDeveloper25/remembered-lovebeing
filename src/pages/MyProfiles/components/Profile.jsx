@@ -1,8 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import getFastApiErrors from "../../../utils/getFastApiErrors";
 import { getLivedDays } from "../../../utils/getLivedDays";
+import Modal from "../../../components/Modal";
 import { FaTrashCan } from "react-icons/fa6";
+import FormLifeTime from "./FormLifeTime";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useState } from "react";
 import axios from "axios";
 import {
   FaPencilAlt,
@@ -12,10 +16,6 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import Swal from "sweetalert2";
-import Modal from "../../../components/Modal";
-import FormLifeTime from "./FormLifeTime";
-import { useState } from "react";
-import getFastApiErrors from "../../../utils/getFastApiErrors";
 
 const Profile = ({ item, isPending }) => {
   const currentYear = new Date().getFullYear();

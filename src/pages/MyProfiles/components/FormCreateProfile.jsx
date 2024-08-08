@@ -13,6 +13,7 @@ const FormCreateProfile = ({ isPending }) => {
               inputType="text"
               inputName="first_name"
               labelClassNameAdd={"mb-0"}
+              required={true}
             />
           </div>
 
@@ -35,12 +36,15 @@ const FormCreateProfile = ({ isPending }) => {
               inputType="text"
               inputName="last_name"
               labelClassNameAdd={"mb-0"}
+              required={true}
             />
           </div>
 
           <div className="flex-1">
             <label>
-              <span className="w-full inline-block text-start">Relationship</span>
+              <span className="w-full inline-block text-start">
+                Relationship
+              </span>
               <select
                 className="form-input-focus form-input-normal"
                 placeholder="-- Select --"

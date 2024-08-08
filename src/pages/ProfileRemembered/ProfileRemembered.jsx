@@ -317,7 +317,10 @@ const ProfileRemembered = () => {
                     numberTab={1}
                     idTab={"#about"}
                   >
-                    <AboutRemembered rememberedProfile={data?.data} />
+                    <AboutRemembered
+                      owner={data?.data?.is_owner}
+                      rememberedProfile={data?.data}
+                    />
                   </TabLinkContent>
 
                   <TabLinkContent

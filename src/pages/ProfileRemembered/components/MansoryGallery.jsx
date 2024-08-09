@@ -10,7 +10,7 @@ const MansoryGallery = ({ galleryImages }) => {
   return (
     <>
       {galleryImages?.length !== 0 ? (
-        <div className="gallery py-3 px-3 bg-white rounded-lg shadow-lg">
+        <div className="gallery py-3 px-3 bg-white rounded-lg shadow-2xl">
           {galleryImages?.map((item) => (
             <RememberedMedia item={item} key={item?.id} />
           ))}

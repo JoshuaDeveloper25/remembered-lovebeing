@@ -164,7 +164,7 @@ const Profile = ({ item, isPending }) => {
       </div>
     </div>
   ) : (
-    <div className="relative animation-scale-scroll shadow-2xl">
+    <div className="relative  shadow-2xl">
       <img
         src={
           item?.cover_images?.cloud_front_domain

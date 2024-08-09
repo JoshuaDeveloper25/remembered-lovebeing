@@ -23,8 +23,6 @@ const ReactQuillAbout = ({ rememberedProfile, owner }) => {
       : rememberedProfile?.remembered_profile?.remembered_history?.content
   );
 
-  console.log(value);
-
   const [isEditing, setIsEditing] = useState(false);
   const queryClient = useQueryClient();
   const remembered = useParams();
@@ -83,7 +81,7 @@ const ReactQuillAbout = ({ rememberedProfile, owner }) => {
   };
 
   return (
-    <section className="my-8 min-[1050px]:mx-10">
+    <section className="my-8 mt-4 ">
       <div
         className={`react-quill-container ${isEditing ? "editing" : "viewing"}`}
       >
@@ -116,7 +114,7 @@ const ReactQuillAbout = ({ rememberedProfile, owner }) => {
              /> */}
               <button
                 onClick={() => setIsEditing(true)}
-                className="bg-secondary-color text-white px-4 py-1 font-medium rounded-md cursor-pointer hover:scale-105 transition-transform ms-4"
+                className="bg-secondary-color text-white px-4 py-1 font-medium rounded-md cursor-pointer hover:scale-105 transition-transform mt-2"
               >
                 + Do Changes
               </button>

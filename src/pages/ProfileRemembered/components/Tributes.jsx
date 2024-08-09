@@ -240,7 +240,7 @@ const Tribute = ({ tribute, isOwner }) => {
                     Read More
                   </button>
                 </div>
-              )}
+              )}-
             </>
           ) : (
             <>

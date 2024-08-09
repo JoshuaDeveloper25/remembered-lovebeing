@@ -78,7 +78,7 @@ const ProfileRemembered = () => {
   }
 
   return (
-    <section className="container-page my-10">
+    <section className="container-page my-10 prueba">
       <article className="rounded-lg">
         {/* Cover Image */}
         {!data?.data?.is_owner ? (
@@ -159,7 +159,7 @@ const ProfileRemembered = () => {
 
         {/* Desktop - from 768px to up */}
         <div className="grid md:grid-cols-4 grid-cols-1 items-start md:gap-8 px-5 mb-4">
-          <article className="col-span-1 sticky top-0 min-w-44 text-center border md:mb-0 mb-8 bg-white shadow-2xl rounded-xl md:-mt-12 py-5 px-4 md:block hidden">
+          <article className="col-span-1 sticky top-0 min-w-[11rem] text-center border md:mb-0 mb-8 bg-white shadow-2xl rounded-xl md:-mt-12 py-5 px-4 md:block hidden">
             <div className="sticky z-20">
               {!data?.data?.is_owner ? (
                 <img
@@ -230,7 +230,7 @@ const ProfileRemembered = () => {
           </article>
 
           <article className="col-span-3 my-8">
-            <button
+            {/* <button
               type="button"
               onClick={() => setShowMembers(!showMembers)}
               className="btn btn-blue w-auto mb-3"
@@ -250,7 +250,7 @@ const ProfileRemembered = () => {
                   rememberedProfiles={ownProfilesQuery?.data?.data}
                 />
               </div>
-            ) : null}
+            ) : null} */}
 
             <ul
               className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row "

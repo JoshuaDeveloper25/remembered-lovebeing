@@ -10,7 +10,8 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background: rgb(233, 229, 223);
+  background: linear-gradient(#faf9f3, #faf9f3);
+
 }
 
 /* Tailwind components made by myself */
@@ -53,6 +54,10 @@ body {
 
   .btn-blue {
     @apply bg-primary-color text-white;
+  }
+
+  .btn-blue-light {
+    @apply bg-primary-color-light text-white;
   }
 
   .nav-active {
@@ -233,7 +238,6 @@ body {
 }
 
 .react-quill-container .ql-container.ql-snow {
-  border: 0 !important;
 }
 
 .react-quill-container.editing .ql-container.ql-snow {

@@ -168,8 +168,8 @@ const AboutRemembered = ({ owner, rememberedProfile }) => {
   };
 
   return (
-    <section className="bg-white rounded-md media-spacing px-8 py-1">
-      <div className="text-center mt-2 mb-8">
+    <section className="bg-white shadow-2xl rounded-md media-spacing px-8 py-1">
+      <div className="text-center mt-2 mb-5">
         <h2>
           <span className="font-bold text-5xl">Who Was</span>{" "}
           <span className="font-medium block">
@@ -362,7 +362,7 @@ const AboutRemembered = ({ owner, rememberedProfile }) => {
       </div>
 
       {/* My lovebeing quotes */}
-      <article className="min-[1050px]:mx-10 mx-0 mt-6">
+      <article className=" mx-0 mt-6">
         <fieldset className="relative border-2 border-black p-3 rounded-md bg-white">
           <legend className="text-xl font-bold ps-1 pe-2">
             {rememberedProfileInfo?.user_relationship === "none" ||
@@ -381,13 +381,13 @@ const AboutRemembered = ({ owner, rememberedProfile }) => {
                   "Two things are infinite: the universe and human stupidity;
                   and I'm not sure about the universe"
                 </h3>
-                <p className="text-sm text-gray-700/95">
+                {/* <p className="text-sm text-gray-700/95">
                   The vastness of human folly seems boundless, often surpassing
                   even the immense, possibly limitless, universe.
-                </p>
+                </p> */}
               </div>
             </li>
-
+{/* 
             <li>
               <div className="mb-3 pb-3 border-b border-tertiary-color/50">
                 <h3 className="italic font-semibold">
@@ -395,7 +395,7 @@ const AboutRemembered = ({ owner, rememberedProfile }) => {
                 </h3>
                 <p></p>
               </div>
-            </li>
+            </li> */}
 
             <li>
               <div className="mb-3">
@@ -403,7 +403,7 @@ const AboutRemembered = ({ owner, rememberedProfile }) => {
                   "Imagination is more important than knowledge"
                 </h3>
                 <p className="text-sm text-gray-700/95">
-                  Imagination allows us to think beyond the current limits of
+                  <span className="font-bold">Meaning:</span> Imagination allows us to think beyond the current limits of
                   knowledge and innovate, driving progress and evolution in
                   society and science.
                 </p>

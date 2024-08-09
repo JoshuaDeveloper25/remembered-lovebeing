@@ -248,15 +248,17 @@ const Tribute = ({ tribute, isOwner }) => {
                 {tribute?.content}
               </p>
 
-              <div className="text-center">
-                <button
-                  className="text-red-500 border border-red-500 outline-none px-2 rounded-sm font-medium hover:bg-red-500 hover:text-white animation-fade"
-                  onClick={() => setReadMoreTribute(!readMoreTribute)}
-                  type="button"
-                >
-                  Read Less
-                </button>
-              </div>
+              {tribute?.content?.replace(/\s/g, "")?.length > 280 && (
+                <div className="text-center">
+                  <button
+                    className="text-red-500 border border-red-500 outline-none px-2 rounded-sm font-medium hover:bg-red-500 hover:text-white animation-fade"
+                    onClick={() => setReadMoreTribute(!readMoreTribute)}
+                    type="button"
+                  >
+                    Read Less
+                  </button>
+                </div>
+              )}
             </>
           )}
         </>

@@ -11,7 +11,6 @@
 body {
   font-family: "Poppins", sans-serif;
   background: linear-gradient(#faf9f3, #faf9f3);
-
 }
 
 /* Tailwind components made by myself */
@@ -243,4 +242,20 @@ body {
 .react-quill-container.editing .ql-container.ql-snow {
   border: 1px solid #ccc !important;
   border-top: none !important;
+}
+
+/* This is for create a memorial section on home page */
+.swiper-cube .swiper {
+  width: 400px;
+  height: 400px;
+}
+
+.swiper-cube .swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+
+.swiper-cube .swiper-slide img {
+  display: block;
+  width: 100%;
 }

@@ -12,7 +12,7 @@ import axios from "axios";
 // All Tributes
 const Tributes = ({ tributes, isOwner }) => {
   return (
-    <section className="bg-white mb-5 p-3 shadow-lg rounded-lg border-b [&:not(:last-child)]:border-gray-400/50 py-3">
+    <section className="bg-white mb-5 p-3 shadow-2xl rounded-lg border-b [&:not(:last-child)]:border-gray-400/50 py-3">
       <div className="grid grid-cols-1 gap-4">
         {tributes?.map((tribute) => {
           return (
@@ -240,7 +240,7 @@ const Tribute = ({ tribute, isOwner }) => {
                     Read More
                   </button>
                 </div>
-              )}-
+              )}
             </>
           ) : (
             <>
@@ -495,17 +495,19 @@ const TributeComment = ({ tributeComment, userInfo }) => {
                 {tributeComment?.content}
               </p>
 
-              <div className="text-center">
-                <button
-                  className="text-secondary-color outline-none font-medium"
-                  onClick={() =>
-                    setReadMoreTributeComment(!readMoreTributeComment)
-                  }
-                  type="button"
-                >
-                  Read More
-                </button>
-              </div>
+              {tributeComment?.content?.replace(/\s/g, "")?.length > 280 && (
+                <div className="text-center">
+                  <button
+                    className="text-secondary-color outline-none font-medium"
+                    onClick={() =>
+                      setReadMoreTributeComment(!readMoreTributeComment)
+                    }
+                    type="button"
+                  >
+                    Read More
+                  </button>
+                </div>
+              )}
             </>
           ) : (
             <>
@@ -513,17 +515,19 @@ const TributeComment = ({ tributeComment, userInfo }) => {
                 {tributeComment?.content}
               </p>
 
-              <div className="text-center">
-                <button
-                  className="text-red-500 border border-red-500 outline-none px-2 rounded-sm font-medium hover:bg-red-500 hover:text-white animation-fade"
-                  onClick={() =>
-                    setReadMoreTributeComment(!readMoreTributeComment)
-                  }
-                  type="button"
-                >
-                  Read Less
-                </button>
-              </div>
+              {tributeComment?.content?.replace(/\s/g, "")?.length > 280 && (
+                <div className="text-center">
+                  <button
+                    className="text-red-500 border border-red-500 outline-none px-2 rounded-sm font-medium hover:bg-red-500 hover:text-white animation-fade"
+                    onClick={() =>
+                      setReadMoreTributeComment(!readMoreTributeComment)
+                    }
+                    type="button"
+                  >
+                    Read Less
+                  </button>
+                </div>
+              )}
             </>
           )}
         </>

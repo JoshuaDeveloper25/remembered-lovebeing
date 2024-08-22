@@ -11,7 +11,7 @@ const Root = () => {
         <Outlet />
       </main>
 
-      <footer></footer>
+      <footer className="bg-white text-black text-center py-8">FOOTER</footer>
     </section>
   );
 };

@@ -171,7 +171,7 @@ const FormLifeJourney = ({
           <label>
             <span className="font-semibold">Country:</span>
             <select
-              className="border border-muted-color/20 rounded pe-4 py-1.5 w-full text-muted-color/50 prueba"
+              className="border border-muted-color/20 rounded pe-4 py-1.5 w-full text-muted-color/50 "
               name="born_country"
               value={birthCountry}
               onChange={(e) => setBirthCountry(e?.target?.value)}

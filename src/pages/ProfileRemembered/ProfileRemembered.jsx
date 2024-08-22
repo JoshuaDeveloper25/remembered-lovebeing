@@ -78,7 +78,7 @@ const ProfileRemembered = () => {
   }
 
   return (
-    <section className="container-page my-10 prueba">
+    <section className="container-page my-10 ">
       <article className="rounded-lg">
         {/* Cover Image */}
         {!data?.data?.is_owner ? (

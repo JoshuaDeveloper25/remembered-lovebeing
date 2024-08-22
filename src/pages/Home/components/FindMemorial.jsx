@@ -1,6 +1,4 @@
-import CarouselCubeCreateMemorials from "./CarouselCubeCreateMemorials";
-
-const CreateMemorial = () => {
+const FindMemorial = () => {
   return (
     <section className="px-3 py-8 ">
       <div className="container-page">
@@ -27,13 +25,11 @@ const CreateMemorial = () => {
             </button>
           </div>
 
-          <div className="flex-1">
-            <CarouselCubeCreateMemorials />
-          </div>
+          <div className="flex-1"></div>
         </div>
       </div>
     </section>
   );
 };
 
-export default CreateMemorial;
+export default FindMemorial;

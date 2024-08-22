@@ -7,16 +7,19 @@ const FindMemorial = () => {
             <h4 className="font-medium uppercase tracking-widest px-2 text-xl border-b-2 border-yellow-500 inline">
               CREATE
             </h4>
+            
             <h2 className="text-4xl text-fourth-color font-semibold my-4">
               Create an online memorial{" "}
               <span className="text-modern-color block font-medium text-3xl">
                 Share your loved one's story
               </span>
             </h2>
+
             <p className="max-w-sm text-xl">
               Create an online memorial. Add photos, videos, messages, gifs, or
               links. Gift cards can also be attached.
             </p>
+
             <button
               className="btn btn-blue-light w-auto text-xl mt-4"
               type="button"

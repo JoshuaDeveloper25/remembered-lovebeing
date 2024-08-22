@@ -2,6 +2,7 @@ import CreateMemorial from "./components/CreateMemorial";
 import FindMemorial from "./components/FindMemorial";
 import HeaderCarousel from "./components/HeaderCarousel";
 import ModernDesign from "./components/ModernDesign";
+import RecentMemorialsCarousel from "./components/RecentMemorialsCarousel";
 import ShareSite from "./components/ShareSite";
 
 const Home = () => {
@@ -15,6 +16,9 @@ const Home = () => {
 
       {/* Modern, beautiful design */}
       <ModernDesign />
+
+      {/* Recent Online Memorials */}
+      <RecentMemorialsCarousel />
 
       {/* Find a Memorial */}
       <FindMemorial />

@@ -237,6 +237,7 @@ body {
 }
 
 .react-quill-container .ql-container.ql-snow {
+  font-size: 14px;
 }
 
 .react-quill-container.editing .ql-container.ql-snow {
@@ -258,4 +259,15 @@ body {
 .swiper-cube .swiper-slide img {
   display: block;
   width: 100%;
+}
+
+/* Carousel of recent memorials homepage */
+.recent-memorials-carousel {
+  padding-top: 5rem!important;
+}
+
+.recent-memorials-carousel .swiper-pagination-horizontal {
+  z-index: 2000;
+  position: sticky;
+  margin-top: 1rem;
 }

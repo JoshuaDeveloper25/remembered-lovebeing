@@ -15,17 +15,48 @@ import UploadPost from "../../components/UploadPost";
 import AppContext from "../../context/AppProvider";
 import { Link, useParams } from "react-router-dom";
 import Condolences from "./components/Condolences";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { TfiPencilAlt } from "react-icons/tfi";
 import Tributes from "./components/Tributes";
 import { useContext, useState } from "react";
 import Post from "../../components/Post";
 import axios from "axios";
+import Modal from "../../components/Modal";
+import FormEditProfile from "./components/FormEditProfile";
+import getFastApiErrors from "../../utils/getFastApiErrors";
+import { toast } from "react-toastify";
+import { getHowLongDied } from "../../utils/getHowLongDied";
 
 const ProfileRemembered = () => {
+  const currentYear = new Date().getFullYear();
+  const [bornYear, setBornYear] = useState(currentYear);
+  const [bornMonth, setBornMonth] = useState("January");
+  const [bornDay, setBornDay] = useState(1);
+  const [passedYear, setPassedYear] = useState(currentYear);
+  const [passedMonth, setPassedMonth] = useState("January");
+  const [passedDay, setPassedDay] = useState(1);
+
   const [showMembers, setShowMembers] = useState(false);
+  const [editRememberedProfile, setEditRememberedProfile] = useState(false);
   const { userInfo } = useContext(AppContext);
   const [openTab, setOpenTab] = useState(1);
+  const queryClient = useQueryClient();
   const params = useParams();
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   // --> 🧓 Get certain profile by remember id
   const { data, isPending, error } = useQuery({
@@ -49,13 +80,65 @@ const ProfileRemembered = () => {
       ),
   });
 
-
   // --> 📝 Get all posts of a remembered
   const postsQuery = useQuery({
     queryKey: ["posts"],
     queryFn: async () =>
       await axios.get(`${import.meta.env.VITE_BASE_URL}/posts/${params?.id}`),
   });
+
+  console.log(data?.data?.remembered_profile);
+
+  // --> Edit Remembered Profile
+  const editRememberedProfileMutation = useMutation({
+    mutationFn: async (profileInfo) =>
+      await axios.put(
+        `${import.meta.env.VITE_BASE_URL}/remembereds/edit-profile/${
+          params?.id
+        }`,
+        profileInfo
+      ),
+    onSuccess: (res) => {
+      toast.success("Successfully profile edited!");
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
+      setEditRememberedProfile(false);
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(getFastApiErrors(err));
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const birthDate = `${bornYear}-${String(
+      months.indexOf(bornMonth) + 1
+    ).padStart(2, "0")}-${String(bornDay).padStart(2, "0")}`;
+
+    const deathDate = `${passedYear}-${String(
+      months.indexOf(passedMonth) + 1
+    ).padStart(2, "0")}-${String(passedDay).padStart(2, "0")}`;
+
+    const profileInfo = {
+      first_name: e?.target?.first_name?.value,
+      middle_name: e?.target?.middle_name?.value,
+      last_name: e?.target?.last_name?.value,
+      gender: e?.target?.gender?.value,
+      designation: e?.target?.designation?.value,
+      user_relationship: e?.target?.user_relationship?.value,
+      birth_date: birthDate,
+      death_date: deathDate,
+    };
+
+    console.log(profileInfo);
+
+    if (profileInfo?.birth_date > profileInfo?.death_date) {
+      return toast.error(`Birth can't be higher than death date!`);
+    }
+
+    editRememberedProfileMutation?.mutate(profileInfo);
+  };
 
   if (isPending) {
     return (
@@ -154,8 +237,49 @@ const ProfileRemembered = () => {
                 )}{" "}
               </span>
             </h3>
+
+            {data?.data?.is_owner && (
+              <div>
+                <button
+                  className="btn btn-blue text-white text-base rounded-sm"
+                  onClick={() => setEditRememberedProfile(true)}
+                >
+                  <TfiPencilAlt className="inline align-sub size-5" /> Edit
+                  Profile
+                </button>
+              </div>
+            )}
           </div>
         </div>
+
+        {/* Modal to edit rememberedProfile */}
+        <Modal
+          titleModal={"Edit Remembered Profile..."}
+          handleSubmit={handleSubmit}
+          setOpenModal={setEditRememberedProfile}
+          openModal={editRememberedProfile}
+          modalForm={true}
+          editableWidth={"max-w-xl"}
+        >
+          <FormEditProfile
+            currentYear={currentYear}
+            bornYear={bornYear}
+            setBornYear={setBornYear}
+            bornMonth={bornMonth}
+            setBornMonth={setBornMonth}
+            bornDay={bornDay}
+            setBornDay={setBornDay}
+            passedYear={passedYear}
+            setPassedYear={setPassedYear}
+            passedMonth={passedMonth}
+            setPassedMonth={setPassedMonth}
+            passedDay={passedDay}
+            setPassedDay={setPassedDay}
+            rememberedProfileInfo={data?.data}
+            isPending={editRememberedProfileMutation?.isPending}
+            months={months}
+          />
+        </Modal>
 
         {/* Desktop - from 768px to up */}
         <div className="grid md:grid-cols-4 grid-cols-1 items-start md:gap-8 px-5 mb-4">
@@ -194,20 +318,20 @@ const ProfileRemembered = () => {
               {data?.data?.remembered_profile?.first_name}{" "}
               {data?.data?.remembered_profile?.last_name}
             </h3>
-            <p className="text-muted-color mt-2 text-xs leading-4">
+            <p className="text-muted-color my-2 text-xs leading-4">
               <span className="block font-bold mb-1 text-sm"> Lifetime:</span>{" "}
               {data?.data?.remembered_profile?.birth_date}{" "}
               <span className="font-bold mx-1">X</span>{" "}
               {data?.data?.remembered_profile?.death_date}{" "}
               <span className="block font-bold">
+                Lived:{" "}
                 {getLivedDays(
                   data?.data?.remembered_profile?.birth_date,
                   data?.data?.remembered_profile?.death_date
                 )}{" "}
               </span>
             </p>
-
-            <div className="flex justify-center gap-5 my-6">
+            <div className="flex justify-center gap-5 mt-3 mb-3">
               <FaFacebookF
                 size={18}
                 className="hover:text-[#00A2B3] animation-fade cursor-pointer"
@@ -221,12 +345,25 @@ const ProfileRemembered = () => {
                 className="hover:text-[#00A2B3] animation-fade cursor-pointer"
               />
             </div>
+
             <p className="text-muted-color text-xs font-bold mt-2 leading-4">
-              Managed by:{" "}
+              Managed by:{" "}0
               <span className="font-bold">
                 {data?.data?.remembered_profile?.owner?.name}
               </span>
             </p>
+
+            {data?.data?.is_owner && (
+              <div>
+                <button
+                  className="btn btn-blue bg-transparent border border-primary-color text-primary-color text-base rounded-sm mt-3 hover:bg-primary-color hover:text-white animation-fade"
+                  onClick={() => setEditRememberedProfile(true)}
+                >
+                  <TfiPencilAlt className="inline align-sub size-5" /> Edit
+                  Profile
+                </button>
+              </div>
+            )}
           </article>
 
           <article className="col-span-3 my-8">

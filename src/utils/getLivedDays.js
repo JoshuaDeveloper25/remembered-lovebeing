@@ -1,5 +1,5 @@
 export const getLivedDays = (date1, date2) => {
-  const diffTime = Math.abs(new Date(date1) - new Date(date2));
+  const diffTime = Math.abs(new Date(`${date1}T00:00:00Z`) - new Date(`${date2}T00:00:00Z`));
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
   const years = Math.floor(diffDays / 365);

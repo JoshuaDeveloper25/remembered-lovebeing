@@ -5,6 +5,7 @@ export const InputForm = ({
   inputPlaceholder,
   inputLabelClassName,
   required,
+  defaultValue
 }) => {
   return (
     <label className={inputLabelClassName}>
@@ -15,6 +16,7 @@ export const InputForm = ({
         placeholder={inputPlaceholder}
         type={inputType}
         name={inputName}
+        defaultValue={defaultValue}
       />
     </label>
   );

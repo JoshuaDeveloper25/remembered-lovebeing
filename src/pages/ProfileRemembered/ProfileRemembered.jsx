@@ -347,7 +347,7 @@ const ProfileRemembered = () => {
             </div>
 
             <p className="text-muted-color text-xs font-bold mt-2 leading-4">
-              Managed by:{" "}0
+              Managed by:{" "}
               <span className="font-bold">
                 {data?.data?.remembered_profile?.owner?.name}
               </span>

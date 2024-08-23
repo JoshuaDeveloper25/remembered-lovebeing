@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 
 const Memorial = ({ item }) => {
-  console.log(item);
-  
   return (
     <article className="animation-scale-scroll bg-white shadow-xl rounded-sm animation-fade hover:scale-image">
       {/* Cover */}
@@ -27,7 +25,7 @@ const Memorial = ({ item }) => {
         />
 
         <h3 className="text-center capitalize font-bold py-1">
-          {item?.first_name}
+          {item?.first_name} {item?.last_name}
         </h3>
 
         <div className="w-10 h-1 mx-auto bg-primary-color"></div>

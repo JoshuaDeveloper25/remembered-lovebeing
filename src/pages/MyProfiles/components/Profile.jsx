@@ -238,7 +238,7 @@ const Profile = ({ item, isPending }) => {
             <span className="block text-[.7rem] font-bold">
               {!item?.birth_date && !item?.death_date
                 ? null
-                : getLivedDays(item?.birth_date, item?.death_date)}
+                : `Lived: ${getLivedDays(item?.birth_date, item?.death_date)}`}
             </span>
           </h4>
 

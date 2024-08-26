@@ -1,7 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import memorialAdd from "../../../assets/memorial-add.png";
 import { GoSearch } from "react-icons/go";
+import { useQueryClient } from "@tanstack/react-query";
 
 const FindMemorial = () => {
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    navigate(`/memorials?search=${e?.target?.memorialName?.value}`);
+    queryClient.invalidateQueries({ queryKey: ["memorials"] });
+  };
+
   return (
     <section className="px-3 py-8 bg-white">
       <div className="container-page">
@@ -16,11 +28,12 @@ const FindMemorial = () => {
               send flowers.
             </p>
 
-            <form className="flex">
+            <form onSubmit={handleSubmit} className="flex">
               <div className="md:flex-[20%]">
                 <input
                   className="w-full py-2 px-2 border border-tertiary-color/30 border-r-0 rounded-sm rounded-e-none outline-none"
                   type="text"
+                  name="memorialName"
                 />
               </div>
 

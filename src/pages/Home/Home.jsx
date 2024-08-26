@@ -1,15 +1,19 @@
 import CreateMemorial from "./components/CreateMemorial";
 import FindMemorial from "./components/FindMemorial";
-import HeaderCarousel from "./components/HeaderCarousel";
+import Header from "./components/Header";
 import ModernDesign from "./components/ModernDesign";
 import RecentMemorialsCarousel from "./components/RecentMemorialsCarousel";
 import ShareSite from "./components/ShareSite";
+import WhatsHappening from "./components/WhatsHappening";
 
 const Home = () => {
   return (
     <>
       {/* Header */}
-      <HeaderCarousel />
+      <Header />
+
+      {/* What's happening with in our area? */}
+      <WhatsHappening />
 
       {/* Create Memorial */}
       <CreateMemorial />

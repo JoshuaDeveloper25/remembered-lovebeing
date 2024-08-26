@@ -4,14 +4,16 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import Memorial from "./components/Memorial";
-import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useState } from "react";
 import axios from "axios";
-import { GoSearch } from "react-icons/go";
 
 const Memorials = () => {
   const [searchFullName, setSearchFullName] = useState("");
   const [searchBirthCountry, setSearchBirthCountry] = useState("");
   const [searchDesignation, setSearchDesignation] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchGender, setSearchGender] = useState("");
   const [nextPage, setNextPage] = useState(2);
   const queryClient = useQueryClient();
 
@@ -23,9 +25,10 @@ const Memorials = () => {
         {
           params: {
             page: data?.pageParam || 1,
-            full_name: searchFullName,
+            full_name: searchFullName || searchParams.get("search"),
             birth_country: searchBirthCountry,
             designation: searchDesignation,
+            gender: searchGender,
             size: 8,
           },
         }
@@ -55,93 +58,113 @@ const Memorials = () => {
   return (
     <section className="container-page px-2">
       {/* Introduction */}
-      <div className="text-center mt-9 mb-14">
-        <h2 className=" text-primary-color/85 text-3xl font-bold mb-1">
+      <div className="text-center mt-9 mb-6">
+        <h2 className="text-primary-color/85 text-3xl font-bold mb-1">
           In Memory of Our Loved Ones
         </h2>
-        <p className="text-sm max-w-md mx-auto text-tertiary-color">
+        <p className="text-base max-w-md mx-auto text-tertiary-color">
           This page is dedicated to honoring and remembering those who have left
           an indelible mark on our lives.
         </p>
       </div>
 
-      <article className="flex items-center gap-3">
-        <label>
-          <span className="text-primary-color font-semibold">
-            Search by Full Name:
-          </span>
-          <input
-            className="w-full py-2 px-2 border border-tertiary-color/30 rounded-sm rounded-e-none outline-none"
-            type="text"
-            value={searchFullName}
-            onChange={(e) => setSearchFullName(e?.target?.value)}
-            placeholder="Full Name"
-          />
-        </label>
+      <article className="px-2 py-5 bg-gray-300/25 rounded-sm shadow-lg overlay max-w-4xl mx-auto">
+        <div className="flex items-center justify-center w-full mb-3">
+          <label className="w-[30rem]">
+            <input
+              className="block py-2 px-2 h-full border border-tertiary-color/30 border-e-0 rounded-sm rounded-e-none w-full"
+              type="text"
+              value={searchFullName || searchParams.get("search")}
+              onChange={(e) => setSearchFullName(e?.target?.value)}
+              placeholder="Full Name"
+            />
+          </label>
 
-        <label>
-          <span className="text-primary-color font-semibold">Country:</span>
-          <select
-            value={searchBirthCountry}
-            onChange={(e) => setSearchBirthCountry(e?.target?.value)}
-            name="countryMemorial"
-            className="form-input-focus form-input-normal"
-          >
-            <option value="">-- Select Country --</option>
+          <div className="flex self-end">
+            <button
+              className="bg-red-500 px-4 py-[0.55rem] rounded-r-sm text-white hover:bg-red-600"
+              type="button"
+              onClick={() =>
+                queryClient.invalidateQueries({ queryKey: ["memorials"] })
+              }
+            >
+              Search
+            </button>
+          </div>
+        </div>
 
-            {countriesQuery?.data?.data?.map((country, index) => {
-              return (
-                <option key={index} value={country}>
-                  {country}
-                </option>
-              );
-            })}
-          </select>
-        </label>
+        <div className="flex items-center justify-center place-content-center gap-3">
+          <label className="flex items-center gap-3">
+            <span className="text-primary-color font-semibold">Country:</span>
+            <select
+              value={searchBirthCountry}
+              onChange={(e) => setSearchBirthCountry(e?.target?.value)}
+              name="countryMemorial"
+              className="py-2 px-2 block border border-tertiary-color/30 rounded-sm bg-white"
+            >
+              <option value="">All</option>
 
-        <label>
-          <span className="font-semibold text-primary-color">
-            Caused of Death:
-          </span>
-          <select
-            className="form-input-focus form-input-normal"
-            onChange={(e) => setSearchDesignation(e?.target?.value)}
-            placeholder="-- Select --"
-            value={searchDesignation}
-            name="designation"
-          >
-            <option value="">-- Select --</option>
-            <option value="covid19_victim">COVID-19 victim</option>
-            <option value="substance_victim">Substance abuse victim</option>
-            <option value="cancer_victim">Cancer victim</option>
-            <option value="accident_victim">Victim of an accident</option>
-            <option value="crime_victim">Crime victim</option>
-          </select>
-        </label>
+              {countriesQuery?.data?.data?.map((country, index) => {
+                // This is for the people who hasn't input the country of its profile
+                // We dissapear the 'empty string' || null
+                if (country === null) return;
+                return (
+                  <option key={index} value={country}>
+                    {country}
+                  </option>
+                );
+              })}
+            </select>
+          </label>
 
-        <div className="self-end">
-          <button
-            className=" bg-primary-color-light px-3 rounded-r-sm text-white py-2 border border-primary-color-light"
-            type="button"
-            onClick={() =>
-              queryClient.invalidateQueries({ queryKey: ["memorials"] })
-            }
-          >
-            <GoSearch size={24} />
-          </button>
+          <label className="flex items-center gap-3">
+            <span className="font-semibold text-primary-color">
+              Cause of Death:
+            </span>
+            <select
+              className="py-2 px-2 block border border-tertiary-color/30 bg-white rounded-sm w-[10rem]"
+              onChange={(e) => setSearchDesignation(e?.target?.value)}
+              placeholder="All"
+              value={searchDesignation}
+              name="designation"
+            >
+              <option value="">All</option>
+              <option value="covid19_victim">COVID-19 victim</option>
+              <option value="substance_victim">Substance abuse victim</option>
+              <option value="cancer_victim">Cancer victim</option>
+              <option value="accident_victim">Victim of an accident</option>
+              <option value="crime_victim">Crime victim</option>
+            </select>
+          </label>
+
+          <label className="flex items-center gap-3">
+            <span className="font-semibold text-primary-color">Gender:</span>
+
+            <select
+              className="py-2 px-2 block border border-tertiary-color/30 bg-white rounded-sm w-[10rem]"
+              placeholder="Gender"
+              name="gender"
+              value={searchGender}
+              onChange={(e) => setSearchGender(e?.target?.value)}
+            >
+              <option value="">Both</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </label>
         </div>
       </article>
 
       {/* If there's no results this is what we place */}
       {!memorialsQuery?.data?.pages[0]?.data?.items?.length && (
-        <h2 className="text-primary-color text-center text-2xl uppercase my-16">
+        <h2 className="text-primary-color text-center text-2xl uppercase my-16 tracking-wider">
           There's no results about this memorial...
         </h2>
       )}
 
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-1 gap-7 my-9">
-        {flapMapeado?.map((item) => {
-          return <Memorial item={item} key={item?.id} />;
+        {flapMapeado?.map((item, index) => {
+          return <Memorial item={item} key={index} />;
         })}
       </div>
 

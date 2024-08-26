@@ -3,7 +3,7 @@ import { FaEye } from "react-icons/fa";
 
 const Memorial = ({ item }) => {
   return (
-    <article className="animation-scale-scroll bg-white shadow-xl rounded-sm animation-fade hover:scale-image">
+    <article className=" bg-white shadow-xl rounded-sm animation-fade hover:scale-image">
       {/* Cover */}
       <div className="coverMemorial [clip-path:polygon(100%_0%,100%_100%,50%_65%,0%_100%,0%_0%)] h-28">
         <div className="flex justify-center items-center h-[60%]">
@@ -35,10 +35,10 @@ const Memorial = ({ item }) => {
       <div className="px-4">
         <div className="flex justify-between my-6">
           <p className="text-xs">
-            <span className="font-bold">Birth:</span> {item?.birth_date}
+            <span className="font-bold">Birth:</span> {item?.birth_date === null ? 'No Date...' : item?.birth_date}
           </p>
           <p className="text-xs ">
-            <span className="font-bold">Death:</span> {item?.death_date}
+            <span className="font-bold">Death:</span> {item?.death_date === null ? 'No Date...' : item?.death_date}
           </p>
         </div>
 

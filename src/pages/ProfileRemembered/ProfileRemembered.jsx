@@ -330,6 +330,10 @@ const ProfileRemembered = () => {
                   data?.data?.remembered_profile?.death_date
                 )}{" "}
               </span>
+              <span className="block font-bold">
+                How Long Ago:{" "}
+                {getHowLongDied(data?.data?.remembered_profile?.death_date)}{" "}
+              </span>
             </p>
             <div className="flex justify-center gap-5 mt-3 mb-3">
               <FaFacebookF

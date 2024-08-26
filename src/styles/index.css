@@ -271,3 +271,13 @@ body {
   position: sticky;
   margin-top: 1rem;
 }
+
+.align-center-media {
+  place-items: inherit;
+}
+
+@media (max-width: 768px) {
+  .align-center-media {
+    place-items: center;
+  }
+}

@@ -281,3 +281,11 @@ body {
     place-items: center;
   }
 }
+
+.stepsCarousel .swiper-button-next {
+  right: 0;
+}
+
+.stepsCarousel .swiper-button-prev {
+  left: 0;
+}

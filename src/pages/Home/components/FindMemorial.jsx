@@ -15,7 +15,7 @@ const FindMemorial = () => {
   };
 
   return (
-    <section className="px-3 py-8 bg-white">
+    <section className="px-3 py-8">
       <div className="container-page">
         <div className="flex flex-col-reverse md:flex-row-reverse items-center text-modern-color gap-8">
           <div className="flex-1 md:ms-14">

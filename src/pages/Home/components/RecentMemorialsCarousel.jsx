@@ -17,9 +17,9 @@ import { GiTombstone } from "react-icons/gi";
 const RecentMemorialsCarousel = () => {
   return (
     <section className="container-page px-3 py-8">
-      <h1 className="text-4xl text-fourth-color text-center uppercase font-semibold">
+      <h2 className="text-4xl text-fourth-color text-center uppercase font-semibold">
         Recent online memorials
-      </h1>
+      </h2>
 
       <Swiper
         autoplay={{

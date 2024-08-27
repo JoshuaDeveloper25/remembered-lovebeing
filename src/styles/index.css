@@ -263,7 +263,7 @@ body {
 
 /* Carousel of recent memorials homepage */
 .recent-memorials-carousel {
-  padding-top: 5rem!important;
+  padding-top: 5rem !important;
 }
 
 .recent-memorials-carousel .swiper-pagination-horizontal {
@@ -282,10 +282,23 @@ body {
   }
 }
 
-.stepsCarousel .swiper-button-next {
-  right: 0;
+.stepsCarousel-swiper-button-prev.swiper-button-disabled,
+.stepsCarousel-swiper-button-next.swiper-button-disabled {
+  opacity: 0.35;
+  cursor: auto;
+  pointer-events: none;
 }
 
-.stepsCarousel .swiper-button-prev {
-  left: 0;
+.stepsCarousel .swiper-pagination-horizontal {
+  z-index: 2000;
+  position: sticky;
+  margin-top: 2rem;
+}
+
+.stepsCarousel .swiper-pagination-bullet-active {
+  background: #04bffa !important;
+}
+
+.stepsCarousel .swiper-pagination-bullet {
+  border-radius: 0;
 }

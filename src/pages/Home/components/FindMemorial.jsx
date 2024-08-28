@@ -34,6 +34,7 @@ const FindMemorial = () => {
                   className="w-full py-2 px-2 border border-tertiary-color/30 border-r-0 rounded-sm rounded-e-none outline-none"
                   type="text"
                   name="memorialName"
+                  placeholder="Example: Jennifer"
                 />
               </div>
 

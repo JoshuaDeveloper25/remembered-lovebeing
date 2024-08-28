@@ -295,10 +295,18 @@ body {
   margin-top: 2rem;
 }
 
+.swiper-cube .swiper-pagination-bullet-active,
+.recent-memorials-carousel .swiper-pagination-bullet-active,
 .stepsCarousel .swiper-pagination-bullet-active {
   background: #04bffa !important;
+  transition: all .4s ease-in-out;
+  border-radius: 1rem!important;
+  font-size: 4rem!important;
+  width: 2rem!important;
 }
 
+.recent-memorials-carousel .swiper-pagination-bullet,
+.swiper-cube .swiper-pagination-bullet,
 .stepsCarousel .swiper-pagination-bullet {
   border-radius: 0;
 }

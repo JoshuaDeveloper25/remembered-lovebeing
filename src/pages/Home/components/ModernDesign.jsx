@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import modernDesignPrev from "../../../assets/modern-design.png";
 
 const ModernDesign = () => {
   return (
-    <section className="px-3 py-8 bg-white">
+    <section className="px-3 py-8 ">
       <div className="container-page">
         <h1 className="text-4xl text-fourth-color uppercase font-semibold">
           We offer modern designs.
@@ -26,6 +27,15 @@ const ModernDesign = () => {
               Memorial Source memorial pages are built with elegant, modern
               design that looks good on all devices.
             </p>
+
+            <Link to={`/memorials`}>
+              <button
+                type="button"
+                className={`btn text-[#00A2B3] animation-fade text-xl hover:bg-[#00A2B3] hover:text-white border border-[#00A2B3] rounded-sm mt-3 w-auto`}
+              >
+                Preview Memorials
+              </button>
+            </Link>
           </div>
         </div>
       </div>

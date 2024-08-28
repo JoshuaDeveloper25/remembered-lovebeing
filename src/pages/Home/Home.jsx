@@ -19,18 +19,18 @@ const Home = () => {
       {/* Create Memorial */}
       <CreateMemorial />
 
-      {/* Modern, beautiful design */}
-      <ModernDesign />
-
       {/* Recent Online Memorials */}
       <RecentMemorialsCarousel />
-
-      {/* Steps to monetize your QR */}
-      <StepsCarousel />
 
       {/* Find a Memorial */}
       <FindMemorial />
 
+      {/* Steps to monetize your QR */}
+      <StepsCarousel />
+
+      {/* Modern, beautiful design */}
+      <ModernDesign />
+      
       {/* Share the site with friends... */}
       <ShareSite />
     </>

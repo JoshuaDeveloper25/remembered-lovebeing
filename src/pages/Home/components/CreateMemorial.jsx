@@ -2,7 +2,7 @@ import CarouselCubeCreateMemorials from "./CarouselCubeCreateMemorials";
 
 const CreateMemorial = () => {
   return (
-    <section className="px-3 py-8 ">
+    <section className="px-3 py-14 ">
       <div className="container-page">
         <div className="flex flex-col md:flex-row items-center text-modern-color gap-3">
           <div className="flex-1">

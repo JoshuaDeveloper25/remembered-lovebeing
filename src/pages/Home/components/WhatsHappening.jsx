@@ -1,6 +1,6 @@
 const WhatsHappening = () => {
   return (
-    <section className="bg-white py-14">
+    <section className="bg-white py-16">
       <div className="container-page">
         <div className="text-center">
           <h2 className="text-5xl font-semibold text-primary-color tracking-wider">Our Community Today</h2>

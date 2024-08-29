@@ -1,3 +1,4 @@
+import { useNavigate, useSearchParams } from "react-router-dom";
 import getFastApiErrors from "../../utils/getFastApiErrors";
 import FastInformation from "./components/FastInformation";
 import { useMutation } from "@tanstack/react-query";
@@ -8,7 +9,9 @@ import { useContext } from "react";
 import axios from "axios";
 
 const SignIn = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const { setUserInfo } = useContext(AppContext);
+  const navigate = useNavigate();
 
   const { mutate } = useMutation({
     mutationFn: async (userInfo) => {
@@ -21,6 +24,11 @@ const SignIn = () => {
       toast.success("¡Successfully logged in!");
       localStorage.setItem("userInfo", JSON.stringify(res.data));
       setUserInfo(res.data);
+
+      // If there's query we go to All My Profiles, if not, to Home page
+      navigate(
+        searchParams?.get("redirect") ? searchParams?.get("redirect") : "/"
+      );
 
       // Placing globally the token
       axios.defaults.headers.common[

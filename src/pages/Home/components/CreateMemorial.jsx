@@ -15,7 +15,7 @@ const CreateMemorial = () => {
                 Share your loved one's story
               </span>
             </h2>
-            <p className="max-w-sm text-xl">
+            <p className="text-muted-color max-w-sm text-xl">
               Create an online memorial. Add photos, videos, messages, gifs, or
               links. Gift cards can also be attached.
             </p>

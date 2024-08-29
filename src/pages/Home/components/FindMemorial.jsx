@@ -17,25 +17,35 @@ const FindMemorial = () => {
   return (
     <section className="px-3 py-8">
       <div className="container-page">
+        <div className="my-12">
+          <h2 className="font-mono tracking-wider text-4xl text-primary-color text-center uppercase font-semibold ">
+            Looking someone? Search Him!
+          </h2>
+          <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
+        </div>
+
         <div className="flex flex-col-reverse md:flex-row-reverse items-center text-modern-color gap-8">
           <div className="flex-1 md:ms-14">
             <h2 className="text-4xl text-fourth-color font-semibold ">
               Find a Memorial{" "}
             </h2>
 
-            <p className="max-w-sm text-base my-4">
+            <p className="text-muted-color max-w-sm text-base my-4">
               Find the memorial of a family member or friend. Leave memories or
               send flowers.
             </p>
 
-            <form onSubmit={handleSubmit} className="flex">
+            <form onSubmit={handleSubmit} className="flex items-end">
               <div className="md:flex-[20%]">
-                <input
-                  className="w-full py-2 px-2 border border-tertiary-color/30 border-r-0 rounded-sm rounded-e-none outline-none"
-                  type="text"
-                  name="memorialName"
-                  placeholder="Example: Jennifer"
-                />
+                <label>
+                  <span className="font-medium">Memorial Name:</span>
+                  <input
+                    className="w-full py-2 px-2 border border-tertiary-color/30 text-muted-color border-r-0 rounded-sm rounded-e-none outline-none"
+                    type="text"
+                    name="memorialName"
+                    placeholder="Example: Jennifer"
+                  />
+                </label>
               </div>
 
               <div className="flex-1">

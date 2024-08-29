@@ -5,9 +5,10 @@ const ModernDesign = () => {
   return (
     <section className="px-3 py-8 ">
       <div className="container-page">
-        <h1 className="text-4xl text-fourth-color uppercase font-semibold">
+        <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
           We offer modern designs.
-        </h1>
+        </h2>
+        <div className="bg-yellow-500 h-2 w-24 my-3"></div>
 
         <div className="flex flex-col md:flex-row items-center text-modern-color gap-3">
           <div className="flex-1">
@@ -23,7 +24,7 @@ const ModernDesign = () => {
             <h2 className="text-3xl font-semibold my-4">
               Modern, beautiful design
             </h2>
-            <p className="max-w-sm text-xl">
+            <p className="text-muted-color max-w-sm text-xl">
               Memorial Source memorial pages are built with elegant, modern
               design that looks good on all devices.
             </p>

@@ -176,17 +176,12 @@ const Profile = ({ item, isPending }) => {
         decoding="async"
         loading="lazy"
       />
-      <div className="relative p-6 rounded-b-lg">
-        <Link
-          className="absolute top-2 right-2"
-          to={`/remembered-profile/${item?.id}`}
-        >
-          <button
-            className={`p-1 font-semibold text-yellow-500 animation-fade  hover:bg-yellow-500 hover:text-white border border-yellow-500 rounded-sm text-sm `}
-          >
-            <MdWorkspacePremium className="inline-block size-6" /> Go Premium
-          </button>
-        </Link>
+      <div className="relative p-6 pb-0 rounded-b-lg">
+        <div className="absolute top-2 right-2">
+          <p className="text-green-500 bg-green-500/20 p-2">
+            Plan: <span className="font-semibold">Free</span>
+          </p>
+        </div>
 
         <div>
           <img
@@ -262,57 +257,30 @@ const Profile = ({ item, isPending }) => {
           </p> */}
         </div>
 
-        <div className="my-4">
-          {/* Buttons */}
-          {deleteProfileMutation?.isPending ? null : (
-            <div className="">
-              {/* <Link className="flex-1" to={`/remembered-profile-preview/${item?.id}`}>
-                <button
-                  disabled={deleteProfileMutation?.isPending}
-                  className={`btn bg-[#00A2B3] text-white hover:bg-[#00A2B3]/80 animation-fade rounded-sm text-sm ${
-                    deleteProfileMutation?.isPending &&
-                    "pointer-events-none opacity-75 cursor-wait"
-                  }`}
-                >
-                  <FaEye className="inline-block me-1" />
-                  View
-                </button>
-              </Link> */}
+        {/* Buttons */}
+        {deleteProfileMutation?.isPending ? null : (
+          <div className="my-4 flex flex-col">
+            <Link to={`/remembered-profile/${item?.slug}`}>
+              <button
+                disabled={deleteProfileMutation?.isPending}
+                className={`btn text-[#00A2B3] animation-fade  hover:bg-[#00A2B3] hover:text-white border border-[#00A2B3] rounded-sm text-sm ${
+                  deleteProfileMutation?.isPending &&
+                  "pointer-events-none opacity-75 cursor-wait"
+                }`}
+              >
+                <FaPencilAlt className="inline-block me-1" /> Edit Profile
+              </button>
+            </Link>
 
-              <Link to={`/remembered-profile/${item?.slug}`}>
-                <button
-                  disabled={deleteProfileMutation?.isPending}
-                  className={`btn text-[#00A2B3] animation-fade  hover:bg-[#00A2B3] hover:text-white border border-[#00A2B3] rounded-sm text-sm ${
-                    deleteProfileMutation?.isPending &&
-                    "pointer-events-none opacity-75 cursor-wait"
-                  }`}
-                >
-                  <FaPencilAlt className="inline-block me-1" /> Edit Profile
-                </button>
-              </Link>
-            </div>
-          )}
-        </div>
-
-        {/* Social media */}
-        <div className="flex justify-center gap-5">
-          <FaFacebookF
-            size={18}
-            className="hover:text-[#00A2B3] animation-fade cursor-pointer"
-          />
-          <FaInstagram
-            size={18}
-            className="hover:text-[#00A2B3] animation-fade cursor-pointer"
-          />
-          <FaYoutube
-            size={18}
-            className="hover:text-[#00A2B3] animation-fade cursor-pointer"
-          />
-          <FaTwitter
-            size={18}
-            className="hover:text-[#00A2B3] animation-fade cursor-pointer"
-          />
-        </div>
+            <Link className="relative premium-btn rounded-sm py-2  hover:bg-white/80 hover:text-yellow-500 animation-fade text-sm">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>{" "}
+              <MdWorkspacePremium className="inline-block size-6" /> Go Pro / <span className="font-bold">$22</span> Lifetime
+            </Link>
+          </div>
+        )}
       </div>
 
       <div className="absolute top-0 right-0">
@@ -345,14 +313,6 @@ const Profile = ({ item, isPending }) => {
               <FaTrashCan className="size-4 inline-block " />
             </p>
           )}
-        </button>
-      </div>
-
-      <div className="absolute top-0 left-0">
-        <button className="rounded-tl-lg text-green-500 animation-fade rounded-sm text-sm">
-          <p className="rounded-tl-lg bg-green-500/20 p-3">
-            Plan: <span className="font-semibold">Free</span>
-          </p>
         </button>
       </div>
     </div>

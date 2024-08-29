@@ -17,9 +17,12 @@ const StepsCarousel = () => {
   return (
     <section className="px-3 py-8 bg-white">
       <div className="container-page relative">
-        <h2 className="text-4xl text-fourth-color text-center uppercase font-semibold my-12">
-          Ways to use your QR code
-        </h2>
+        <div className="my-12">
+          <h2 className="font-mono tracking-wider text-4xl text-primary-color text-center uppercase font-semibold ">
+            Ways to use your QR code
+          </h2>
+          <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
+        </div>
 
         <Swiper
           autoplay={{

@@ -18,9 +18,11 @@ const RecentMemorialsCarousel = () => {
   return (
     <section className="bg-white">
       <div className="container-page px-3 py-14">
-        <h2 className="text-4xl text-fourth-color text-center uppercase font-semibold">
+        <h2 className="tracking-wider font-mono text-4xl text-primary-color text-center uppercase font-semibold">
           Recent online memorials
         </h2>
+        <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
+
 
         <Swiper
           autoplay={{

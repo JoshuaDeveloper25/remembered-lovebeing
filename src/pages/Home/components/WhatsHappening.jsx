@@ -3,7 +3,7 @@ const WhatsHappening = () => {
     <section className="bg-white py-16">
       <div className="container-page">
         <div className="text-center">
-          <h2 className="text-5xl font-semibold text-primary-color tracking-wider">Our Community Today</h2>
+          <h2 className="font-mono text-5xl font-semibold text-primary-color tracking-wider">Our Community Today</h2>
         <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
           <p className="text-xl max-w-2xl mx-auto mt-2 mb-8 text-muted-color">
             Discover the number of memorials, tributes and active posts, and how

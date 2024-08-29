@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import { getLivedDays } from "../../../utils/getLivedDays";
+import { MdWorkspacePremium } from "react-icons/md";
 import Modal from "../../../components/Modal";
 import { FaTrashCan } from "react-icons/fa6";
 import FormLifeTime from "./FormLifeTime";
@@ -164,7 +165,7 @@ const Profile = ({ item, isPending }) => {
       </div>
     </div>
   ) : (
-    <div className="relative  shadow-2xl">
+    <div className="relative shadow-2xl">
       <img
         src={
           item?.cover_images?.cloud_front_domain
@@ -175,7 +176,18 @@ const Profile = ({ item, isPending }) => {
         decoding="async"
         loading="lazy"
       />
-      <div className="p-6 rounded-b-lg">
+      <div className="relative p-6 rounded-b-lg">
+        <Link
+          className="absolute top-2 right-2"
+          to={`/remembered-profile/${item?.id}`}
+        >
+          <button
+            className={`p-1 font-semibold text-yellow-500 animation-fade  hover:bg-yellow-500 hover:text-white border border-yellow-500 rounded-sm text-sm `}
+          >
+            <MdWorkspacePremium className="inline-block size-6" /> Go Premium
+          </button>
+        </Link>
+
         <div>
           <img
             src={
@@ -188,7 +200,7 @@ const Profile = ({ item, isPending }) => {
             loading="lazy"
           />
 
-          <h2 className="ms-8 mt-1 capitalize self-end font-bold text-xl leading-6">
+          <h2 className="ms-8 mt-3 capitalize self-end font-bold text-xl leading-6">
             {`${item?.first_name} ${item?.last_name || ""}`}
           </h2>
         </div>
@@ -253,7 +265,7 @@ const Profile = ({ item, isPending }) => {
         <div className="my-4">
           {/* Buttons */}
           {deleteProfileMutation?.isPending ? null : (
-            <div className="flex gap-3">
+            <div className="">
               {/* <Link className="flex-1" to={`/remembered-profile-preview/${item?.id}`}>
                 <button
                   disabled={deleteProfileMutation?.isPending}
@@ -267,7 +279,7 @@ const Profile = ({ item, isPending }) => {
                 </button>
               </Link> */}
 
-              <Link className="flex-1" to={`/remembered-profile/${item?.id}`}>
+              <Link to={`/remembered-profile/${item?.slug}`}>
                 <button
                   disabled={deleteProfileMutation?.isPending}
                   className={`btn text-[#00A2B3] animation-fade  hover:bg-[#00A2B3] hover:text-white border border-[#00A2B3] rounded-sm text-sm ${
@@ -280,39 +292,6 @@ const Profile = ({ item, isPending }) => {
               </Link>
             </div>
           )}
-
-          <div className="absolute top-0 right-0">
-            <button
-              disabled={deleteProfileMutation?.isPending}
-              onClick={handleDelete}
-              className="rounded-tr-lg text-red-500 hover:bg-red-500/50 animation-fade rounded-sm text-sm"
-            >
-              {deleteProfileMutation?.isPending ? (
-                <div className="rounded-tr-lg bg-red-500/20 p-3" role="status">
-                  <svg
-                    aria-hidden="true"
-                    className="w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-red-500"
-                    viewBox="0 0 100 101"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                      fill="currentColor"
-                    />
-                    <path
-                      d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                      fill="currentFill"
-                    />
-                  </svg>
-                </div>
-              ) : (
-                <p className="rounded-tr-lg bg-red-500/20 p-3">
-                  <FaTrashCan className="size-4 inline-block " />
-                </p>
-              )}
-            </button>
-          </div>
         </div>
 
         {/* Social media */}
@@ -334,6 +313,47 @@ const Profile = ({ item, isPending }) => {
             className="hover:text-[#00A2B3] animation-fade cursor-pointer"
           />
         </div>
+      </div>
+
+      <div className="absolute top-0 right-0">
+        <button
+          disabled={deleteProfileMutation?.isPending}
+          onClick={handleDelete}
+          className="rounded-tr-lg text-red-500 hover:bg-red-500/50 animation-fade rounded-sm text-sm"
+        >
+          {deleteProfileMutation?.isPending ? (
+            <div className="rounded-tr-lg bg-red-500/20 p-3" role="status">
+              <svg
+                aria-hidden="true"
+                className="w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-red-500"
+                viewBox="0 0 100 101"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                  fill="currentFill"
+                />
+              </svg>
+            </div>
+          ) : (
+            <p className="rounded-tr-lg bg-red-500/20 p-3">
+              <FaTrashCan className="size-4 inline-block " />
+            </p>
+          )}
+        </button>
+      </div>
+
+      <div className="absolute top-0 left-0">
+        <button className="rounded-tl-lg text-green-500 animation-fade rounded-sm text-sm">
+          <p className="rounded-tl-lg bg-green-500/20 p-3">
+            Plan: <span className="font-semibold">Free</span>
+          </p>
+        </button>
       </div>
     </div>
   );

@@ -60,10 +60,12 @@ const ProfileRemembered = () => {
 
   // --> 🧓 Get certain profile by remember id
   const { data, isPending, error } = useQuery({
-    queryKey: [`profile`, params?.id],
+    queryKey: [`profile`, params?.slug],
     queryFn: async () =>
       await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/remembereds/get-profile/${params?.id}`
+        `${import.meta.env.VITE_BASE_URL}/remembereds/get-profile/${
+          params?.slug
+        }`
       ),
     //
     // await axios.get(
@@ -84,17 +86,19 @@ const ProfileRemembered = () => {
   const postsQuery = useQuery({
     queryKey: ["posts"],
     queryFn: async () =>
-      await axios.get(`${import.meta.env.VITE_BASE_URL}/posts/${params?.id}`),
+      await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/posts/${
+          data?.data?.remembered_profile?.id
+        }`
+      ),
   });
-
-  console.log(data?.data?.remembered_profile);
 
   // --> Edit Remembered Profile
   const editRememberedProfileMutation = useMutation({
     mutationFn: async (profileInfo) =>
       await axios.put(
         `${import.meta.env.VITE_BASE_URL}/remembereds/edit-profile/${
-          params?.id
+          data?.data?.remembered_profile?.id
         }`,
         profileInfo
       ),
@@ -191,7 +195,9 @@ const ProfileRemembered = () => {
             />
 
             <div className="absolute bottom-3 right-3 cursor-pointer">
-              <UploadCoverImage />
+              <UploadCoverImage
+                idRemembered={data?.data?.remembered_profile?.id}
+              />
             </div>
           </div>
         )}
@@ -212,7 +218,9 @@ const ProfileRemembered = () => {
             />
             {!data?.data?.is_owner ? null : (
               <div className="absolute bottom-3 right-3 z-[100] cursor-pointer">
-                <UploadProfileImage />
+                <UploadProfileImage
+                  idRemembered={data?.data?.remembered_profile?.id}
+                />
               </div>
             )}
           </div>
@@ -305,7 +313,9 @@ const ProfileRemembered = () => {
                     }
                   />
                   <div className="absolute bottom-3 right-14 z-[100]">
-                    <UploadProfileImage />
+                    <UploadProfileImage
+                      idRemembered={data?.data?.remembered_profile?.id}
+                    />
                   </div>
                 </>
               )}
@@ -460,6 +470,7 @@ const ProfileRemembered = () => {
                     idTab={"#about"}
                   >
                     <AboutRemembered
+                      idRemembered={data?.data?.remembered_profile?.id}
                       owner={data?.data?.is_owner}
                       rememberedProfile={data?.data}
                     />
@@ -476,6 +487,7 @@ const ProfileRemembered = () => {
                       </h2>
 
                       <UploadPost
+                        idRemembered={data?.data?.remembered_profile?.id}
                         isOwner={data?.data?.is_owner}
                         rememberedProfiles={ownProfilesQuery?.data}
                         galleryImages={
@@ -518,6 +530,7 @@ const ProfileRemembered = () => {
                       <UploadGalleryImage
                         params={params}
                         isOwner={data?.data?.is_owner}
+                        idRemembered={data?.data?.remembered_profile?.id}
                       />
                     </div>
 
@@ -527,6 +540,7 @@ const ProfileRemembered = () => {
                         data?.data?.remembered_profile?.gallery_images
                       }
                       params={params}
+                      idRemembered={data?.data?.remembered_profile?.id}
                     />
                   </TabLinkContent>
 
@@ -555,7 +569,10 @@ const ProfileRemembered = () => {
                         </h4>
                       )}
 
-                      <UploadCondolence isOwner={data?.data?.is_owner} />
+                      <UploadCondolence
+                        idRemembered={data?.data?.remembered_profile?.id}
+                        isOwner={data?.data?.is_owner}
+                      />
                     </div>
 
                     {!data?.data?.remembered_profile?.condolences?.length ? (
@@ -597,7 +614,9 @@ const ProfileRemembered = () => {
                         </h4>
                       )}
 
-                      <UploadTribute />
+                      <UploadTribute
+                        idRemembered={data?.data?.remembered_profile?.id}
+                      />
                     </div>
 
                     {!data?.data?.remembered_profile?.tributes?.length ? (

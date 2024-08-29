@@ -4,19 +4,17 @@ import getFastApiErrors from "../utils/getFastApiErrors";
 import setCanvasPreview from "../utils/setCanvasPreview";
 import { convertToPixelCrop } from "react-image-crop";
 import { FaCameraRetro } from "react-icons/fa";
-import { useParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import Modal from "./Modal";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const UploadCoverImage = () => {
+const UploadCoverImage = ({ idRemembered }) => {
   const [openModalCover, setOpenModalCover] = useState(false);
   const previewCanvasRef = useRef(null);
   const queryClient = useQueryClient();
   const [crop, setCrop] = useState();
   const imgRef = useRef(null);
-  const params = useParams();
   const avatarUrl = useRef(
     "https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
   );
@@ -28,9 +26,7 @@ const UploadCoverImage = () => {
   const changeImageCoverMutation = useMutation({
     mutationFn: async (imageInfo) =>
       await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/remembereds/upload_cover_image/${
-          params?.id
-        }`,
+        `${import.meta.env.VITE_BASE_URL}/remembereds/upload_cover_image/${idRemembered}`,
         imageInfo
       ),
     onSuccess: (res) => {

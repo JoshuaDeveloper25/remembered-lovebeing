@@ -9,7 +9,7 @@ import { FaPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const UploadCondolence = ({ isOwner }) => {
+const UploadCondolence = ({ isOwner, idRemembered }) => {
   const { userInfo } = useContext(AppContext);
 
   const [openModalCreateCondolence, setOpenModalCreateCondolence] =
@@ -20,7 +20,7 @@ const UploadCondolence = ({ isOwner }) => {
   const createCondolenceMutation = useMutation({
     mutationFn: async (info) =>
       await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/condolences/${remember?.id}`,
+        `${import.meta.env.VITE_BASE_URL}/condolences/${idRemembered}`,
         info
       ),
     onSuccess: (res) => {

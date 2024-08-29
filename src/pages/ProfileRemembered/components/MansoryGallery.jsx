@@ -6,13 +6,17 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const MansoryGallery = ({ galleryImages }) => {
+const MansoryGallery = ({ idRemembered, galleryImages }) => {
   return (
     <>
       {galleryImages?.length !== 0 ? (
         <div className="gallery py-3 px-3 bg-white rounded-lg shadow-2xl">
           {galleryImages?.map((item) => (
-            <RememberedMedia item={item} key={item?.id} />
+            <RememberedMedia
+              idRemembered={idRemembered}
+              item={item}
+              key={item?.id}
+            />
           ))}
         </div>
       ) : (
@@ -25,7 +29,7 @@ const MansoryGallery = ({ galleryImages }) => {
 };
 export default MansoryGallery;
 
-const RememberedMedia = ({ item }) => {
+const RememberedMedia = ({ idRemembered, item }) => {
   const queryClient = useQueryClient();
   const params = useParams();
 
@@ -42,9 +46,9 @@ const RememberedMedia = ({ item }) => {
   const deleteImageGalleryMutation = useMutation({
     mutationFn: async () =>
       await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/remembereds/delete-gallery-image/${
-          params?.id
-        }/${item?.id}`
+        `${
+          import.meta.env.VITE_BASE_URL
+        }/remembereds/delete-gallery-image/${idRemembered}/${item?.id}`
       ),
     onSuccess: (res) => {
       toast.success("¡Successfully image gallery deleted!");

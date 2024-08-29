@@ -35,10 +35,12 @@ const Memorial = ({ item }) => {
       <div className="px-4">
         <div className="flex justify-between my-6">
           <p className="text-xs">
-            <span className="font-bold">Birth:</span> {item?.birth_date === null ? 'No Date...' : item?.birth_date}
+            <span className="font-bold">Birth:</span>{" "}
+            {item?.birth_date === null ? "No Date..." : item?.birth_date}
           </p>
           <p className="text-xs ">
-            <span className="font-bold">Death:</span> {item?.death_date === null ? 'No Date...' : item?.death_date}
+            <span className="font-bold">Death:</span>{" "}
+            {item?.death_date === null ? "No Date..." : item?.death_date}
           </p>
         </div>
 
@@ -47,7 +49,7 @@ const Memorial = ({ item }) => {
         </p>
 
         <Link
-          to={`/remembered-profile/${item?.id}`}
+          to={`/remembered-profile/${item?.slug}`}
           className={`btn bg-[#00A2B3] text-white hover:bg-[#00A2B3]/80 w-full inline-block text-center animation-fade rounded-sm text-sm my-4`}
         >
           <FaEye className="inline-block me-1" />

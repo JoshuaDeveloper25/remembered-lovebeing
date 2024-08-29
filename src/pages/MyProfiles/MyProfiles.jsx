@@ -12,6 +12,7 @@ import axios from "axios";
 
 const MyProfiles = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [slug, setSlug] = useState("");
   const queryClient = useQueryClient();
 
   const { data, isPending, error } = useQuery({
@@ -32,6 +33,7 @@ const MyProfiles = () => {
       toast.success("Successfully profile created!");
       queryClient.invalidateQueries({ queryKey: ["ownProfiles"] });
       setOpenModal(false);
+      setSlug("");
     },
     onError: (err) => {
       console.log(err);
@@ -49,6 +51,7 @@ const MyProfiles = () => {
       gender: e?.target?.gender?.value?.trim(),
       designation: e?.target?.designation?.value?.trim(),
       user_relationship: e?.target?.user_relationship?.value?.trim(),
+      slug: slug?.replace(/ /g, "-"),
     };
 
     createProfileMutation?.mutate(profileInfo);
@@ -82,16 +85,20 @@ const MyProfiles = () => {
             openModal={openModal}
             modalForm={true}
           >
-            <FormCreateProfile isPending={createProfileMutation?.isPending} />
+            <FormCreateProfile
+              slug={slug}
+              setSlug={setSlug}
+              isPending={createProfileMutation?.isPending}
+            />
           </Modal>
         </article>
 
-        <div className="grid md:grid-cols-4 grid-cols-1 items-start min-[1150px]:gap-3 gap-1">
+        <div className="grid md:grid-cols-4 grid-cols-1 items-start min-[1150px]:gap-3 sm:gap-1 gap-0">
           {/* User Profile */}
           <IndividualUserProfileCard />
 
           {/* Profiles from user and Tab */}
-          <div className="col-span-3 ">
+          <div className="col-span-3">
             <IndividualUserProfileTab
               profiles={data?.data}
               isPending={isPending}

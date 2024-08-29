@@ -9,7 +9,7 @@ import FormTribute from "./FormTribute";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const UploadTribute = () => {
+const UploadTribute = ({ idRemembered }) => {
   const { userInfo } = useContext(AppContext);
   const [openModalCreateTribute, setOpenModalCreateTribute] = useState(false);
   const queryClient = useQueryClient();
@@ -18,9 +18,9 @@ const UploadTribute = () => {
   const createTributeMutation = useMutation({
     mutationFn: async (info) =>
       await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/tributes/${
-          remember?.id
-        }?remembered_id=${remember?.id}`,
+        `${
+          import.meta.env.VITE_BASE_URL
+        }/tributes/${idRemembered}?remembered_id=${idRemembered}`,
         info
       ),
     onSuccess: (res) => {

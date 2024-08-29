@@ -1,6 +1,5 @@
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { TfiPencilAlt } from "react-icons/tfi";
 import { useParams } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import React, { useState } from "react";
@@ -54,13 +53,14 @@ const ReactQuillAbout = ({ rememberedProfile, owner }) => {
     mutationFn: async (historyInfo) =>
       await axios.put(
         `${import.meta.env.VITE_BASE_URL}/about/update-remembered-history/${
-          remembered?.id
+          rememberedProfile?.remembered_profile?.id
         }/${rememberedProfile?.remembered_profile?.remembered_history?.id}`,
         historyInfo
       ),
     onSuccess: (res) => {
       toast.success("History edited successfully!");
       queryClient.invalidateQueries(["profile"]);
+      setIsEditing(false);
     },
     onError: (err) => {
       console.log(err);
@@ -77,7 +77,6 @@ const ReactQuillAbout = ({ rememberedProfile, owner }) => {
     if (!historyInfo?.content) return toast.error(`Fill up the blank!`);
 
     editHistoryMutation.mutate(historyInfo);
-    setIsEditing(false);
   };
 
   return (
@@ -107,11 +106,6 @@ const ReactQuillAbout = ({ rememberedProfile, owner }) => {
             </button>
           ) : (
             <>
-              {/* <TfiPencilAlt */}
-              {/*    onClick={() => setIsEditing(true)}
-               className="text-secondary-color cursor-pointer hover:scale-105 transition-transform ms-4"
-               size={24}
-             /> */}
               <button
                 onClick={() => setIsEditing(true)}
                 className="bg-secondary-color text-white px-4 py-1 font-medium rounded-md cursor-pointer hover:scale-105 transition-transform mt-2"

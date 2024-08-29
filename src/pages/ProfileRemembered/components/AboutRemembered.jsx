@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import axios from "axios";
 
-const AboutRemembered = ({ owner, rememberedProfile }) => {
+const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
   const rememberedProfileInfo = rememberedProfile?.remembered_profile;
   const [openAddKnownModal, setOpenAddKnownModal] = useState(false);
   const [openLifeJourneyModal, setOpenLifeJourneyModal] = useState();
@@ -50,7 +50,7 @@ const AboutRemembered = ({ owner, rememberedProfile }) => {
   const editLifeJourneyMutation = useMutation({
     mutationFn: async (journeyInfo) =>
       await axios.patch(
-        `${import.meta.env.VITE_BASE_URL}/about/add-life-journey/${params?.id}`,
+        `${import.meta.env.VITE_BASE_URL}/about/add-life-journey/${idRemembered}`,
         journeyInfo
       ),
     onSuccess: (res) => {

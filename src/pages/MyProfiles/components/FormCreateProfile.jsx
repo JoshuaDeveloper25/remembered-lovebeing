@@ -1,7 +1,7 @@
 import { InputForm } from "../../../components/InputForm";
 import ButtonForm from "../../../components/ButtonForm";
 
-const FormCreateProfile = ({ isPending }) => {
+const FormCreateProfile = ({ slug, setSlug, isPending }) => {
   return (
     <>
       <div className="mb-4">
@@ -84,22 +84,42 @@ const FormCreateProfile = ({ isPending }) => {
           </div>
         </div>
 
-        <div className="mb-6">
-          <label>
-            <span className="w-full inline-block text-start">Caused</span>
-            <select
-              className="form-input-focus form-input-normal"
-              placeholder="-- Select --"
-              name="designation"
-            >
-              <option value="">-- Select --</option>
-              <option value="covid19_victim">COVID-19 victim</option>
-              <option value="substance_victim">Substance abuse victim</option>
-              <option value="cancer_victim">Cancer victim</option>
-              <option value="accident_victim">Victim of an accident</option>
-              <option value="crime_victim">Crime victim</option>
-            </select>
-          </label>
+        <div className="flex gap-6 mb-3">
+          <div className="flex-1">
+            <label>
+              <span className="w-full inline-block text-start">Caused</span>
+              <select
+                className="form-input-focus form-input-normal"
+                placeholder="-- Select --"
+                name="designation"
+              >
+                <option value="">-- Select --</option>
+                <option value="covid19_victim">COVID-19 victim</option>
+                <option value="substance_victim">Substance abuse victim</option>
+                <option value="cancer_victim">Cancer victim</option>
+                <option value="accident_victim">Victim of an accident</option>
+                <option value="crime_victim">Crime victim</option>
+              </select>
+            </label>
+          </div>
+
+          <div className="flex-1">
+            <label>
+              <span className="w-full inline-block text-start">Slug</span>
+              <input
+                className="form-input-focus form-input-normal"
+                type={"text"}
+                name={"slug"}
+                required
+                value={slug}
+                onChange={(e) => setSlug(e?.target?.value)}
+              />
+            </label>
+            <p className="bg-primary-color text-white mt-2 rounded px-2 py-2">
+              Link:{" "}
+              <span className="font-semibold">{slug?.replace(/ /g, "-")}</span>
+            </p>
+          </div>
         </div>
       </div>
 

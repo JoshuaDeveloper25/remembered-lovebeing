@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import axios from "axios";
 
-const UploadGalleryImage = ({ isOwner }) => {
+const UploadGalleryImage = ({ isOwner, idRemembered }) => {
   const [openModalGallery, setOpenModalGallery] = useState(false);
   const [images, setImages] = useState([]);
   const queryClient = useQueryClient();
@@ -19,7 +19,7 @@ const UploadGalleryImage = ({ isOwner }) => {
     mutationFn: async (imageInfo) =>
       await axios.post(
         `${import.meta.env.VITE_BASE_URL}/remembereds/upload-gallery-image/${
-          params?.id
+          idRemembered
         }`,
         imageInfo
       ),
@@ -34,7 +34,7 @@ const UploadGalleryImage = ({ isOwner }) => {
       toast.error(getFastApiErrors(err));
     },
   });
-  
+
   const handleSubmitGalleryImage = (e) => {
     e.preventDefault();
 

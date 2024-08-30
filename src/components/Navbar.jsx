@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-white/50 sticky top-0 py-2 z-[99999] backdrop-blur-sm">
+      <nav className="bg-white/50 py-2">
         <div className="container-page">
           <div className="flex justify-between items-center">
             <div>

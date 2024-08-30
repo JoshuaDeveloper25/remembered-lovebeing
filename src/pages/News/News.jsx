@@ -7,7 +7,7 @@ const News = () => {
   const [nextPage, setNextPage] = useState(2);
 
   const newsQuery = useInfiniteQuery({
-    queryKey: ["memorials"],
+    queryKey: ["news"],
     queryFn: (data) => {
       return axios.get(`${import.meta.env.VITE_BASE_URL}/news/`, {
         params: {
@@ -31,7 +31,13 @@ const News = () => {
     <section className="container-page px-4">
       {/* --> Introduction */}
       <div className="text-center mt-9 mb-14">
-        <h2 className=" text-primary-color/85 text-3xl font-bold mb-1">News</h2>
+        <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
+          News
+        </h2>
+        <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
+        <p className="text-xl max-w-2xl mx-auto mt-2 mb-8 text-muted-color">
+          Stay updated with the latest news of the users!
+        </p>
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 place-content-center place-items-stretch">

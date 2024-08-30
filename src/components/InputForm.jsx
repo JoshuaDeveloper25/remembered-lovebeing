@@ -9,7 +9,7 @@ export const InputForm = ({
 }) => {
   return (
     <label className={inputLabelClassName}>
-      <span className="w-full inline-block text-start">{inputLabel}</span>
+      <span className="w-full inline-block text-start font-semibold">{inputLabel}</span>
       <input
         required={required}
         className="form-input-focus form-input-normal"

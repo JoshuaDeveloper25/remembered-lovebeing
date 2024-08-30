@@ -10,7 +10,9 @@ const Header = () => {
       <header className="relative h-[75vh]">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"
-          src={"https://videos.pexels.com/video-files/6074179/6074179-uhd_2732_1440_25fps.mp4"}          
+          src={
+            "https://videos.pexels.com/video-files/6074179/6074179-uhd_2732_1440_25fps.mp4"
+          }
           autoPlay
           loop
           muted
@@ -32,7 +34,13 @@ const Header = () => {
 
             <div className="flex flex-col md:flex-row items-center gap-3 mt-3 text-xl">
               <div className="md:w-auto w-full">
-                <Link to={userInfo?.access_token ? "/my-profiles/" : "/sign-in?redirect=/my-profiles/"}>
+                <Link
+                  to={
+                    userInfo?.access_token
+                      ? "/my-profiles/"
+                      : "/sign-in?redirect=/my-profiles/"
+                  }
+                >
                   <button
                     type="button"
                     className="btn btn-blue-light w-full block rounded-sm"
@@ -43,12 +51,19 @@ const Header = () => {
               </div>
 
               <div className="md:w-auto w-full">
-                <button
-                  type="button"
-                  className="font-medium animation-fade px-6 py-2 inline-block border border-white text-white hover:bg-white hover:text-black rounded-sm"
+                <Link
+                  to={
+                    "/remembered-profile/Albert-Einstein-27"
+                  }
+                  target="_blank"
                 >
-                  See An Example Memorial
-                </button>
+                  <button
+                    type="button"
+                    className="font-medium animation-fade px-6 py-2 inline-block border border-white text-white hover:bg-white hover:text-black rounded-sm"
+                  >
+                    See An Example Memorial
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

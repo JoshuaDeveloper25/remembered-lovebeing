@@ -72,8 +72,8 @@ const FormEditProfile = ({
 
   return (
     <>
-      <div className="mb-4">
-        <div className="flex flex-col sm:flex-row gap-6">
+      <div className="mb-2">
+        <div className="flex flex-col sm:flex-row gap-6 mb-3">
           <div className="flex-1">
             <InputForm
               inputLabel="First Name"
@@ -102,7 +102,7 @@ const FormEditProfile = ({
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-6 mt-5">
+        <div className="flex flex-col sm:flex-row gap-6 mb-3">
           <div className="flex-1">
             <InputForm
               inputLabel="Last Name"
@@ -119,7 +119,7 @@ const FormEditProfile = ({
 
           <div className="flex-1">
             <label>
-              <span className="w-full inline-block text-start">
+              <span className="w-full inline-block text-start font-semibold">
                 Relationship
               </span>
               <select
@@ -143,9 +143,67 @@ const FormEditProfile = ({
           </div>
         </div>
 
-        <div className="my-5">
+        <div className="flex flex-col sm:flex-row items-start gap-6 mb-3">
+          <div className="flex-1">
+            <h3 className="w-full inline-block text-start font-semibold">
+              Gender
+            </h3>
+
+            <div className="flex mt-[.36rem] gap-5 border-b-2 pb-1 rounded-md border-primary-color">
+              <label>
+                Male
+                <input
+                  className="ms-2"
+                  type="radio"
+                  value="male"
+                  name="gender"
+                  checked={gender === "male"}
+                  onChange={(e) => setGender(e.target.value)}
+                />
+              </label>
+
+              <label>
+                Female
+                <input
+                  className="ms-2"
+                  type="radio"
+                  value="female"
+                  name="gender"
+                  checked={gender === "female"}
+                  onChange={(e) => setGender(e.target.value)}
+                />
+              </label>
+            </div>
+          </div>
+
+          <div className="flex-1">
+            <label>
+              <span className="w-full inline-block text-start font-semibold">
+                Cause of Death
+              </span>
+              <select
+                className="form-input-focus form-input-normal"
+                placeholder="-- Select --"
+                name="designation"
+                defaultValue={
+                  rememberedProfileInfo?.remembered_profile?.designation
+                }
+              >
+                <option value="">-- Select --</option>
+                <option value="covid19_victim">COVID-19 victim</option>
+                <option value="substance_victim">Substance abuse victim</option>
+                <option value="cancer_victim">Cancer victim</option>
+                <option value="accident_victim">Victim of an accident</option>
+                <option value="crime_victim">Crime victim</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+
+        <div className="mb-3">
           <div className="flex flex-col md:flex-row gap-4">
-            <h4>Born:</h4>
+            <h4 className="font-semibold">Born:</h4>
 
             <select
               className="border border-tertiary-color rounded pe-4"
@@ -185,7 +243,7 @@ const FormEditProfile = ({
           </div>
 
           <div className="flex flex-col md:flex-row gap-4 mt-2">
-            <h4>Passed Away:</h4>
+            <h4 className="font-semibold">Passed Away:</h4>
 
             <select
               className="border border-tertiary-color rounded pe-4"
@@ -224,61 +282,39 @@ const FormEditProfile = ({
             </select>
           </div>
         </div>
-
-        <div className="mb-6 block">
-          <h3 className="w-full inline-block text-start">Gender</h3>
-
-          <div className="flex gap-5">
-            <label>
-              Male
-              <input
-                className="ms-2"
-                type="radio"
-                value="male"
-                name="gender"
-                checked={gender === "male"}
-                onChange={(e) => setGender(e.target.value)}
-              />
-            </label>
-
-            <label>
-              Female
-              <input
-                className="ms-2"
-                type="radio"
-                value="female"
-                name="gender"
-                checked={gender === "female"}
-                onChange={(e) => setGender(e.target.value)}
-              />
-            </label>
-          </div>
-        </div>
-
-        <div className="mb-6">
+        
+        {/* <div>
           <label>
-            <span className="w-full inline-block text-start">Caused</span>
-            <select
+            <span className="w-full inline-block text-start font-semibold">
+              Profile Web Address{" "}
+              <span className="text-xs text-yellow-500 font-semibold align-super">
+                {" "}
+                * (Tip: You can use your names or nickname)
+              </span>
+            </span>
+            <input
               className="form-input-focus form-input-normal"
-              placeholder="-- Select --"
-              name="designation"
-              defaultValue={
-                rememberedProfileInfo?.remembered_profile?.designation
-              }
-            >
-              <option value="">-- Select --</option>
-              <option value="covid19_victim">COVID-19 victim</option>
-              <option value="substance_victim">Substance abuse victim</option>
-              <option value="cancer_victim">Cancer victim</option>
-              <option value="accident_victim">Victim of an accident</option>
-              <option value="crime_victim">Crime victim</option>
-            </select>
+              type={"text"}
+              name={"slug"}
+              required
+              placeholder="Example: John Doe"
+            />
           </label>
-        </div>
+          <p className="text-[13px] text-red-500 font-semibold rounded-sm">
+            * Take your time on the name as you can't change it later!
+          </p>
+          <p className="bg-primary-color text-white mt-2 rounded px-2 py-2">
+            <span className="block font-semibold text-sm">This is how people will find you:</span>
+            <span className="text-center block">
+              Link: <span className="text-primary-color-light underline">{"  https://www.remembered.com/albert-einstein"}</span>
+            </span>
+          </p>
+        </div> */}
       </div>
 
       <ButtonForm
         isPending={isPending}
+        buttonClassName={"mt-0"}
         statusOff={"Save changes"}
         statusOn={"Saving..."}
       />

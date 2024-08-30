@@ -18,7 +18,7 @@ const Modal = ({
     createPortal(
       <div
         // onClick={handleCloseModal}
-        className="h-[100vh] fixed top-0 w-full z-[9999]"
+        className="h-[100vh] fixed top-0 w-full z-[999999]"
       >
         <div
           id="crud-modal"

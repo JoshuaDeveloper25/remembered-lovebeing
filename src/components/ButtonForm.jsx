@@ -1,6 +1,10 @@
-const ButtonForm = ({ isPending, statusOn, statusOff }) => {
+const ButtonForm = ({ isPending, statusOn, statusOff, buttonClassName }) => {
   return (
-    <button className="btn btn-blue mt-4" disabled={isPending} type="submit">
+    <button
+      className={`btn btn-blue mt-4 ${buttonClassName}`}
+      disabled={isPending}
+      type="submit"
+    >
       {isPending ? (
         <>
           <div role="status">

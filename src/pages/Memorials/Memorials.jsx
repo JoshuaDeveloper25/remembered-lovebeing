@@ -59,10 +59,11 @@ const Memorials = () => {
     <section className="container-page px-2">
       {/* Introduction */}
       <div className="text-center mt-9 mb-6">
-        <h2 className="text-primary-color/85 text-3xl font-bold mb-1">
+        <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
           In Memory of Our Loved Ones
         </h2>
-        <p className="text-base max-w-md mx-auto text-tertiary-color">
+        <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
+        <p className="text-xl max-w-2xl mx-auto mt-2 mb-8 text-muted-color">
           This page is dedicated to honoring and remembering those who have left
           an indelible mark on our lives.
         </p>

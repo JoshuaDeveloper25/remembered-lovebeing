@@ -26,6 +26,7 @@ import FormEditProfile from "./components/FormEditProfile";
 import getFastApiErrors from "../../utils/getFastApiErrors";
 import { toast } from "react-toastify";
 import { getHowLongDied } from "../../utils/getHowLongDied";
+import { FaLock } from "react-icons/fa6";
 
 const ProfileRemembered = () => {
   const currentYear = new Date().getFullYear();
@@ -291,19 +292,10 @@ const ProfileRemembered = () => {
 
         {/* Desktop - from 768px to up */}
         <div className="grid md:grid-cols-4 grid-cols-1 items-start md:gap-8 px-5 mb-4">
-          <article className="col-span-1 sticky top-0 min-w-[11rem] text-center border md:mb-0 mb-8 bg-white shadow-2xl rounded-xl md:-mt-12 py-5 px-4 md:block hidden">
-            <div className="sticky z-20">
-              {!data?.data?.is_owner ? (
-                <img
-                  className="w-36 h-36 object-cover mx-auto rounded-full shadow-lg"
-                  src={
-                    data?.data?.remembered_profile?.profile_images
-                      ? `${data?.data?.remembered_profile?.profile_images?.cloud_front_domain}/${data?.data?.remembered_profile?.profile_images?.aws_file_name}`
-                      : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-                  }
-                />
-              ) : (
-                <>
+          <article className="col-span-1 sticky top-11 min-w-[11rem] ">
+            <div className="text-center border bg-white shadow-2xl rounded-xl md:-mt-12 py-5 px-4 md:block hidden">
+              <div className="sticky z-20">
+                {!data?.data?.is_owner ? (
                   <img
                     className="w-36 h-36 object-cover mx-auto rounded-full shadow-lg"
                     src={
@@ -312,72 +304,130 @@ const ProfileRemembered = () => {
                         : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
                     }
                   />
-                  <div className="absolute bottom-3 right-14 z-[100]">
-                    <UploadProfileImage
-                      idRemembered={data?.data?.remembered_profile?.id}
+                ) : (
+                  <>
+                    <img
+                      className="w-36 h-36 object-cover mx-auto rounded-full shadow-lg"
+                      src={
+                        data?.data?.remembered_profile?.profile_images
+                          ? `${data?.data?.remembered_profile?.profile_images?.cloud_front_domain}/${data?.data?.remembered_profile?.profile_images?.aws_file_name}`
+                          : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                      }
                     />
-                  </div>
-                </>
+                    <div className="absolute bottom-3 right-14 z-[100]">
+                      <UploadProfileImage
+                        idRemembered={data?.data?.remembered_profile?.id}
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+
+              <h3 className="font-bold text-sm text-muted-color mt-3 capitalize">
+                {data?.data?.remembered_profile?.epitaph ||
+                  "In loving memory of"}
+              </h3>
+              <h3 className="font-bold capitalize text-xl">
+                {data?.data?.remembered_profile?.first_name}{" "}
+                {data?.data?.remembered_profile?.last_name}
+              </h3>
+              <p className="text-muted-color my-2 text-[13px] leading-4">
+                <span className="block font-bold mb-1 text-sm"> Lifetime:</span>{" "}
+                {data?.data?.remembered_profile?.birth_date}{" "}
+                <span className="font-bold mx-1">X</span>{" "}
+                {data?.data?.remembered_profile?.death_date}{" "}
+                <span className="block font-bold">
+                  Lived:{" "}
+                  {getLivedDays(
+                    data?.data?.remembered_profile?.birth_date,
+                    data?.data?.remembered_profile?.death_date
+                  )}{" "}
+                </span>
+                {/* <span className="block font-bold">
+                  How Long Ago:{" "}
+                  {getHowLongDied(data?.data?.remembered_profile?.death_date)}{" "}
+                </span> */}
+              </p>
+              <div className="flex justify-center gap-5 mt-3 mb-3">
+                <FaFacebookF
+                  size={18}
+                  className="hover:text-[#00A2B3] animation-fade cursor-pointer"
+                />
+                <FaInstagram
+                  size={18}
+                  className="hover:text-[#00A2B3] animation-fade cursor-pointer"
+                />
+                <FaTwitter
+                  size={18}
+                  className="hover:text-[#00A2B3] animation-fade cursor-pointer"
+                />
+              </div>
+
+              <p className="text-muted-color text-xs font-bold mt-2 leading-4">
+                Managed by:{" "}
+                <span className="font-bold">
+                  {data?.data?.remembered_profile?.owner?.name}
+                </span>
+              </p>
+
+              {data?.data?.is_owner && (
+                <div>
+                  <button
+                    className="btn btn-blue bg-transparent border border-primary-color text-primary-color text-base rounded-sm mt-3 hover:bg-primary-color hover:text-white animation-fade"
+                    onClick={() => setEditRememberedProfile(true)}
+                  >
+                    <TfiPencilAlt className="inline align-sub size-5" /> Edit
+                    Profile
+                  </button>
+                </div>
               )}
             </div>
 
-            <h3 className="font-bold text-sm text-muted-color mt-3 capitalize">
-              {data?.data?.remembered_profile?.epitaph || "In loving memory of"}
-            </h3>
-            <h3 className="font-bold capitalize text-xl">
-              {data?.data?.remembered_profile?.first_name}{" "}
-              {data?.data?.remembered_profile?.last_name}
-            </h3>
-            <p className="text-muted-color my-2 text-xs leading-4">
-              <span className="block font-bold mb-1 text-sm"> Lifetime:</span>{" "}
-              {data?.data?.remembered_profile?.birth_date}{" "}
-              <span className="font-bold mx-1">X</span>{" "}
-              {data?.data?.remembered_profile?.death_date}{" "}
-              <span className="block font-bold">
-                Lived:{" "}
-                {getLivedDays(
-                  data?.data?.remembered_profile?.birth_date,
-                  data?.data?.remembered_profile?.death_date
-                )}{" "}
-              </span>
-              <span className="block font-bold">
-                How Long Ago:{" "}
-                {getHowLongDied(data?.data?.remembered_profile?.death_date)}{" "}
-              </span>
-            </p>
-            <div className="flex justify-center gap-5 mt-3 mb-3">
-              <FaFacebookF
-                size={18}
-                className="hover:text-[#00A2B3] animation-fade cursor-pointer"
-              />
-              <FaInstagram
-                size={18}
-                className="hover:text-[#00A2B3] animation-fade cursor-pointer"
-              />
-              <FaTwitter
-                size={18}
-                className="hover:text-[#00A2B3] animation-fade cursor-pointer"
-              />
-            </div>
+            <div className="border-s-8 border-red-500 bg-white shadow-2xl rounded-s-none rounded-xl mt-4 py-5 px-4 md:block hidden">
+              <h3 className="font-bold text-muted-color">Memorial Status:</h3>
 
-            <p className="text-muted-color text-xs font-bold mt-2 leading-4">
-              Managed by:{" "}
-              <span className="font-bold">
-                {data?.data?.remembered_profile?.owner?.name}
-              </span>
-            </p>
-
-            {data?.data?.is_owner && (
-              <div>
-                <button
-                  className="btn btn-blue bg-transparent border border-primary-color text-primary-color text-base rounded-sm mt-3 hover:bg-primary-color hover:text-white animation-fade"
-                  onClick={() => setEditRememberedProfile(true)}
-                >
-                  <TfiPencilAlt className="inline align-sub size-5" /> Edit
-                  Profile
-                </button>
+              <div className="flex items-center justify-between my-2">
+                <h2 className="font-semibold">Status:</h2>
+                <h4 className="text-center rounded-sm inline-block px-2 py-1 text-red-400 bg-red-200">
+                  Private
+                </h4>
               </div>
-            )}
+
+              <button
+                className="border border-green-500 hover:bg-green-500 hover:text-white animation-fade rounded-sm w-full font-semibold text-green-500 py-1 inline-block"
+                type="button"
+              >
+                Change Status
+              </button>
+
+              <Modal
+                titleModal={"Memorial Status..."}
+                // handleSubmit={handleChangeStatus}
+                setOpenModal={setEditRememberedProfile}
+                openModal={editRememberedProfile}
+                modalForm={true}
+                editableWidth={"max-w-xl"}
+              >
+                <FormEditProfile
+                  currentYear={currentYear}
+                  bornYear={bornYear}
+                  setBornYear={setBornYear}
+                  bornMonth={bornMonth}
+                  setBornMonth={setBornMonth}
+                  bornDay={bornDay}
+                  setBornDay={setBornDay}
+                  passedYear={passedYear}
+                  setPassedYear={setPassedYear}
+                  passedMonth={passedMonth}
+                  setPassedMonth={setPassedMonth}
+                  passedDay={passedDay}
+                  setPassedDay={setPassedDay}
+                  rememberedProfileInfo={data?.data}
+                  isPending={editRememberedProfileMutation?.isPending}
+                  months={months}
+                />
+              </Modal>
+            </div>
           </article>
 
           <article className="col-span-3 my-8">

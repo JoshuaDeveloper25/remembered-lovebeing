@@ -271,7 +271,7 @@ const Profile = ({ item, isPending }) => {
                 <FaPencilAlt className="inline-block me-1" /> Edit Profile
               </button>
             </Link>
-
+            
             <Link className="relative premium-btn rounded-sm py-2  hover:bg-white/80 hover:text-yellow-500 animation-fade text-sm">
               <span></span>
               <span></span>

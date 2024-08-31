@@ -27,6 +27,7 @@ import getFastApiErrors from "../../utils/getFastApiErrors";
 import { toast } from "react-toastify";
 import { getHowLongDied } from "../../utils/getHowLongDied";
 import { FaLock } from "react-icons/fa6";
+import FormChangeStatus from "./components/FormChangeStatus";
 
 const ProfileRemembered = () => {
   const currentYear = new Date().getFullYear();
@@ -39,6 +40,8 @@ const ProfileRemembered = () => {
 
   const [showMembers, setShowMembers] = useState(false);
   const [editRememberedProfile, setEditRememberedProfile] = useState(false);
+  const [changeStatusModal, setChangeStatusModal] = useState(false);
+  const [statusOptionSelected, setStatusOptionSelected] = useState("");
   const { userInfo } = useContext(AppContext);
   const [openTab, setOpenTab] = useState(1);
   const queryClient = useQueryClient();
@@ -143,6 +146,36 @@ const ProfileRemembered = () => {
     }
 
     editRememberedProfileMutation?.mutate(profileInfo);
+  };
+
+  // Change Status
+  const changeStatusMutation = useMutation({
+    mutationFn: async (profileInfo) =>
+      await axios.patch(
+        `${import.meta.env.VITE_BASE_URL}/remembereds/switch-status-privacy/${
+          data?.data?.remembered_profile?.id
+        }`,
+        profileInfo
+      ),
+    onSuccess: (res) => {
+      toast.success("Successfully status changed!");
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
+      setChangeStatusModal(false);
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(getFastApiErrors(err));
+    },
+  });
+
+  const handleChangeStatus = (e) => {
+    e.preventDefault();
+
+    const profileInfo = {
+      status_privacy: statusOptionSelected,
+    };
+
+    changeStatusMutation?.mutate(profileInfo);
   };
 
   if (isPending) {
@@ -383,48 +416,49 @@ const ProfileRemembered = () => {
               )}
             </div>
 
-            <div className="border-s-8 border-red-500 bg-white shadow-2xl rounded-s-none rounded-xl mt-4 py-5 px-4 md:block hidden">
+            <div
+              className={`border-s-8 ${
+                data?.data?.remembered_profile?.status_privacy === "public"
+                  ? "border-green-500"
+                  : "border-red-500"
+              } bg-white shadow-2xl rounded-s-none rounded-xl mt-4 py-5 px-4 md:block hidden`}
+            >
               <h3 className="font-bold text-muted-color">Memorial Status:</h3>
 
               <div className="flex items-center justify-between my-2">
                 <h2 className="font-semibold">Status:</h2>
-                <h4 className="text-center rounded-sm inline-block px-2 py-1 text-red-400 bg-red-200">
-                  Private
-                </h4>
+                {data?.data?.remembered_profile?.status_privacy === "public" ? (
+                  <h4 className="text-center rounded-sm inline-block font-semibold px-2 py-1 text-green-500 bg-green-200">
+                    Public
+                  </h4>
+                ) : (
+                  <h4 className="text-center rounded-sm inline-block font-semibold px-2 py-1 text-red-400 bg-red-200">
+                    Private
+                  </h4>
+                )}
               </div>
 
               <button
-                className="border border-green-500 hover:bg-green-500 hover:text-white animation-fade rounded-sm w-full font-semibold text-green-500 py-1 inline-block"
+                className="border border-yellow-500 hover:bg-yellow-500 hover:text-white animation-fade rounded-sm w-full font-semibold text-yellow-500 py-1 inline-block"
+                onClick={() => setChangeStatusModal(true)}
                 type="button"
               >
                 Change Status
               </button>
 
               <Modal
-                titleModal={"Memorial Status..."}
-                // handleSubmit={handleChangeStatus}
-                setOpenModal={setEditRememberedProfile}
-                openModal={editRememberedProfile}
+                titleModal={"Memorial Status Options..."}
+                handleSubmit={handleChangeStatus}
+                setOpenModal={setChangeStatusModal}
+                openModal={changeStatusModal}
                 modalForm={true}
                 editableWidth={"max-w-xl"}
               >
-                <FormEditProfile
-                  currentYear={currentYear}
-                  bornYear={bornYear}
-                  setBornYear={setBornYear}
-                  bornMonth={bornMonth}
-                  setBornMonth={setBornMonth}
-                  bornDay={bornDay}
-                  setBornDay={setBornDay}
-                  passedYear={passedYear}
-                  setPassedYear={setPassedYear}
-                  passedMonth={passedMonth}
-                  setPassedMonth={setPassedMonth}
-                  passedDay={passedDay}
-                  setPassedDay={setPassedDay}
-                  rememberedProfileInfo={data?.data}
-                  isPending={editRememberedProfileMutation?.isPending}
-                  months={months}
+                <FormChangeStatus
+                  setStatusOptionSelected={setStatusOptionSelected}
+                  statusOptionSelected={statusOptionSelected}
+                  isPending={changeStatusMutation?.isPending}
+                  status={data?.data?.remembered_profile?.status_privacy}
                 />
               </Modal>
             </div>
@@ -549,6 +583,12 @@ const ProfileRemembered = () => {
                     {!postsQuery?.data?.data?.length ? (
                       <h2 className="text-center font-bold text-xl text-primary-color my-5">
                         There's no posts in this profile yet...
+                        <span className="block">
+                          {data?.data?.remembered_profile?.status_plan ===
+                          "free"
+                            ? "Go to buy the Premium plan to publish posts and more!"
+                            : null}
+                        </span>
                       </h2>
                     ) : (
                       postsQuery?.data?.data?.map((post) => {

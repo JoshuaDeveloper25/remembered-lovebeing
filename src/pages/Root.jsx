@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import '../styles/animations.css'
 
@@ -12,6 +12,7 @@ const Root = () => {
       </main>
 
       <footer className="bg-white text-black text-center py-8">FOOTER</footer>
+      <ScrollRestoration />
     </section>
   );
 };

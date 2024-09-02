@@ -67,7 +67,7 @@ const router = createBrowserRouter([
 
           {
             element: <Checkout />,
-            path: "/checkout",
+            path: "/checkout/",
           },
         ],
       },

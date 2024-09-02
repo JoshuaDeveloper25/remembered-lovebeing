@@ -12,6 +12,7 @@ import { MdWorkspacePremium } from "react-icons/md";
 const UploadGalleryImage = ({
   imagesGallery,
   status,
+  statusPlan,
   isOwner,
   idRemembered,
 }) => {
@@ -63,10 +64,10 @@ const UploadGalleryImage = ({
 
   return !isOwner ? null : (
     <>
-      {status === "public" && imagesGallery?.length >= 5 ? (
+      {statusPlan === "free" && imagesGallery?.length >= 5 ? (
         <>
           <Link
-            to={"/checkout"}
+            to={`/checkout/?slug=${params?.slug}`}
             style={{ marginTop: "0" }}
             className="relative premium-btn rounded-sm py-2 px-3 hover:bg-white/80 hover:text-yellow-500 animation-fade text-sm"
           >

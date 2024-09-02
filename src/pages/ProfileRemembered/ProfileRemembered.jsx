@@ -416,52 +416,55 @@ const ProfileRemembered = () => {
               )}
             </div>
 
-            <div
-              className={`border-s-8 ${
-                data?.data?.remembered_profile?.status_privacy === "public"
-                  ? "border-green-500"
-                  : "border-red-500"
-              } bg-white shadow-2xl rounded-s-none rounded-xl mt-4 py-5 px-4 md:block hidden`}
-            >
-              <h3 className="font-bold text-muted-color">Memorial Status:</h3>
+            {data?.data?.is_owner ? (
+              <div
+                className={`border-s-8 ${
+                  data?.data?.remembered_profile?.status_privacy === "public"
+                    ? "border-green-500"
+                    : "border-red-500"
+                } bg-white shadow-2xl rounded-s-none rounded-xl mt-4 py-5 px-4 md:block hidden`}
+              >
+                <h3 className="font-bold text-muted-color">Memorial Status:</h3>
 
-              <div className="flex items-center justify-between my-2">
-                <h2 className="font-semibold">Status:</h2>
-                {data?.data?.remembered_profile?.status_privacy === "public" ? (
-                  <h4 className="text-center rounded-sm inline-block font-semibold px-2 py-1 text-green-500 bg-green-200">
-                    Public
-                  </h4>
-                ) : (
-                  <h4 className="text-center rounded-sm inline-block font-semibold px-2 py-1 text-red-400 bg-red-200">
-                    Private
-                  </h4>
-                )}
+                <div className="flex items-center justify-between my-2">
+                  <h2 className="font-semibold">Status:</h2>
+                  {data?.data?.remembered_profile?.status_privacy ===
+                  "public" ? (
+                    <h4 className="text-center rounded-sm inline-block font-semibold px-2 py-1 text-green-500 bg-green-200">
+                      Public
+                    </h4>
+                  ) : (
+                    <h4 className="text-center rounded-sm inline-block font-semibold px-2 py-1 text-red-400 bg-red-200">
+                      Private
+                    </h4>
+                  )}
+                </div>
+
+                <button
+                  className="border border-yellow-500 hover:bg-yellow-500 hover:text-white animation-fade rounded-sm w-full font-semibold text-yellow-500 py-1 inline-block"
+                  onClick={() => setChangeStatusModal(true)}
+                  type="button"
+                >
+                  Change Status
+                </button>
+
+                <Modal
+                  titleModal={"Memorial Status Options..."}
+                  handleSubmit={handleChangeStatus}
+                  setOpenModal={setChangeStatusModal}
+                  openModal={changeStatusModal}
+                  modalForm={true}
+                  editableWidth={"max-w-xl"}
+                >
+                  <FormChangeStatus
+                    setStatusOptionSelected={setStatusOptionSelected}
+                    statusOptionSelected={statusOptionSelected}
+                    isPending={changeStatusMutation?.isPending}
+                    status={data?.data?.remembered_profile?.status_privacy}
+                  />
+                </Modal>
               </div>
-
-              <button
-                className="border border-yellow-500 hover:bg-yellow-500 hover:text-white animation-fade rounded-sm w-full font-semibold text-yellow-500 py-1 inline-block"
-                onClick={() => setChangeStatusModal(true)}
-                type="button"
-              >
-                Change Status
-              </button>
-
-              <Modal
-                titleModal={"Memorial Status Options..."}
-                handleSubmit={handleChangeStatus}
-                setOpenModal={setChangeStatusModal}
-                openModal={changeStatusModal}
-                modalForm={true}
-                editableWidth={"max-w-xl"}
-              >
-                <FormChangeStatus
-                  setStatusOptionSelected={setStatusOptionSelected}
-                  statusOptionSelected={statusOptionSelected}
-                  isPending={changeStatusMutation?.isPending}
-                  status={data?.data?.remembered_profile?.status_privacy}
-                />
-              </Modal>
-            </div>
+            ) : null}
           </article>
 
           <article className="col-span-3 my-8">
@@ -625,6 +628,7 @@ const ProfileRemembered = () => {
                           data?.data?.remembered_profile?.gallery_images
                         }
                         status={data?.data?.remembered_profile?.status_privacy}
+                        statusPlan={data?.data?.remembered_profile?.status_plan}
                       />
                     </div>
 
@@ -637,6 +641,7 @@ const ProfileRemembered = () => {
                       params={params}
                       idRemembered={data?.data?.remembered_profile?.id}
                       status={data?.data?.remembered_profile?.status_privacy}
+                      statusPlan={data?.data?.remembered_profile?.status_plan}
                     />
                   </TabLinkContent>
 

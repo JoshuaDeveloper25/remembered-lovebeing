@@ -273,7 +273,7 @@ const Profile = ({ item, isPending }) => {
             </Link>
 
             <Link
-              to="/checkout"
+              to={`/checkout/?slug=${item?.slug}`}
               className="relative premium-btn rounded-sm py-2  hover:bg-white/80 hover:text-yellow-500 animation-fade text-sm"
             >
               <span></span>

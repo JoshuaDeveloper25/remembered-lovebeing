@@ -621,16 +621,22 @@ const ProfileRemembered = () => {
                         params={params}
                         isOwner={data?.data?.is_owner}
                         idRemembered={data?.data?.remembered_profile?.id}
+                        imagesGallery={
+                          data?.data?.remembered_profile?.gallery_images
+                        }
+                        status={data?.data?.remembered_profile?.status_privacy}
                       />
                     </div>
 
                     {/* Mansory Design */}
                     <MansoryGallery
+                      isOwner={data?.data?.is_owner}
                       galleryImages={
                         data?.data?.remembered_profile?.gallery_images
                       }
                       params={params}
                       idRemembered={data?.data?.remembered_profile?.id}
+                      status={data?.data?.remembered_profile?.status_privacy}
                     />
                   </TabLinkContent>
 

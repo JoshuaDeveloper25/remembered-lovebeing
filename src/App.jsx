@@ -24,6 +24,7 @@ import Prices from "./pages/Prices/Prices";
 
 import PublicRoutes from "./auth/PublicRoutes";
 import PrivateRoutes from "./auth/PrivateRoutes";
+import Checkout from "./pages/Checkout/Checkout";
 
 const router = createBrowserRouter([
   //🔒 Public Routes - Cannot access if we're logged in...
@@ -62,6 +63,11 @@ const router = createBrowserRouter([
           {
             element: <MyProfiles />,
             path: "/my-profiles/",
+          },
+
+          {
+            element: <Checkout />,
+            path: "/checkout",
           },
         ],
       },

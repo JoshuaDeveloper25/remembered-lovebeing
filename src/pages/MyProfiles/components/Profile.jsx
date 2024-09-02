@@ -271,13 +271,17 @@ const Profile = ({ item, isPending }) => {
                 <FaPencilAlt className="inline-block me-1" /> Edit Profile
               </button>
             </Link>
-            
-            <Link className="relative premium-btn rounded-sm py-2  hover:bg-white/80 hover:text-yellow-500 animation-fade text-sm">
+
+            <Link
+              to="/checkout"
+              className="relative premium-btn rounded-sm py-2  hover:bg-white/80 hover:text-yellow-500 animation-fade text-sm"
+            >
               <span></span>
               <span></span>
               <span></span>
               <span></span>{" "}
-              <MdWorkspacePremium className="inline-block size-6" /> Go Pro / <span className="font-bold">$22</span> Lifetime
+              <MdWorkspacePremium className="inline-block size-6" /> Go Pro /{" "}
+              <span className="font-bold">$22</span> Lifetime
             </Link>
           </div>
         )}

@@ -19,7 +19,7 @@ const FindMemorial = () => {
       <div className="container-page">
         <div className="my-12">
           <h2 className="font-mono tracking-wider text-4xl text-primary-color text-center uppercase font-semibold ">
-            Looking someone? Search Him!
+            Looking someone? Search Them!
           </h2>
           <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
         </div>

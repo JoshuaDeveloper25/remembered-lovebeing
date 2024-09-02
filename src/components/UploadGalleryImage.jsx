@@ -1,14 +1,20 @@
 import FormGalleryImages from "../pages/ProfileRemembered/components/FormGalleryImages";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../utils/getFastApiErrors";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import Modal from "./Modal";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import axios from "axios";
+import { MdWorkspacePremium } from "react-icons/md";
 
-const UploadGalleryImage = ({ isOwner, idRemembered }) => {
+const UploadGalleryImage = ({
+  imagesGallery,
+  status,
+  isOwner,
+  idRemembered,
+}) => {
   const [openModalGallery, setOpenModalGallery] = useState(false);
   const [images, setImages] = useState([]);
   const queryClient = useQueryClient();
@@ -18,9 +24,9 @@ const UploadGalleryImage = ({ isOwner, idRemembered }) => {
   const addGalleryImageMutation = useMutation({
     mutationFn: async (imageInfo) =>
       await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/remembereds/upload-gallery-image/${
-          idRemembered
-        }`,
+        `${
+          import.meta.env.VITE_BASE_URL
+        }/remembereds/upload-gallery-image/${idRemembered}`,
         imageInfo
       ),
     onSuccess: (res) => {
@@ -57,13 +63,29 @@ const UploadGalleryImage = ({ isOwner, idRemembered }) => {
 
   return !isOwner ? null : (
     <>
-      <button
-        onClick={() => setOpenModalGallery(true)}
-        className="btn btn-blue w-auto"
-        type="button"
-      >
-        <FaPlus className="inline-block" /> Add New Photo
-      </button>
+      {status === "public" && imagesGallery?.length >= 5 ? (
+        <>
+          <Link
+            to={"/checkout"}
+            style={{ marginTop: "0" }}
+            className="relative premium-btn rounded-sm py-2 px-3 hover:bg-white/80 hover:text-yellow-500 animation-fade text-sm"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span> <MdWorkspacePremium className="inline-block size-6" />{" "}
+            Go Pro / <span className="font-bold">$22</span> Lifetime
+          </Link>
+        </>
+      ) : (
+        <button
+          onClick={() => setOpenModalGallery(true)}
+          className="btn btn-blue w-auto"
+          type="button"
+        >
+          <FaPlus className="inline-block" /> Add New Photo
+        </button>
+      )}
 
       {/* Add Gallery Image Modal */}
       <Modal

@@ -1,23 +1,40 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
+import { IoIosWarning } from "react-icons/io";
 import { FaTrashCan } from "react-icons/fa6";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import AppContext from "../../../context/AppProvider";
+import { useContext } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
-const MansoryGallery = ({ idRemembered, galleryImages }) => {
+const MansoryGallery = ({ isOwner, status, idRemembered, galleryImages }) => {
+  const { userInfo } = useContext(AppContext);
+  console.log(userInfo);
+
   return (
     <>
       {galleryImages?.length !== 0 ? (
-        <div className="gallery py-3 px-3 bg-white rounded-lg shadow-2xl">
-          {galleryImages?.map((item) => (
-            <RememberedMedia
-              idRemembered={idRemembered}
-              item={item}
-              key={item?.id}
-            />
-          ))}
+        <div className="py-3 px-3 bg-white rounded-lg shadow-2xl">
+          {isOwner && status === "public" && galleryImages?.length >= 5 ? (
+            <div className="mt-2 mb-3">
+              <h3 className=" font-semibold text-center py-2.5 shadow-lg rounded-sm text-gray-900 text-lg  bg-yellow-400 animate-pulse ">
+                <IoIosWarning className="inline-block size-8 me-1.5 align-middle" />
+                You have reached the limit of 5 images
+              </h3>
+            </div>
+          ) : null}
+
+          <div className="gallery">
+            {galleryImages?.map((item) => (
+              <RememberedMedia
+                idRemembered={idRemembered}
+                item={item}
+                key={item?.id}
+              />
+            ))}
+          </div>
         </div>
       ) : (
         <h2 className="text-center text-xl my-8 text-primary-color font-bold">

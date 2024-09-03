@@ -31,7 +31,6 @@ const StepsCarousel = () => {
           }}
           loop={true}
           style={{
-            "-swiper-pagination-bullet-width": "8px",
             "--swiper-pagination-bullet-size": "18px",
             "--swiper-pagination-bullet-height": "8px",
           }}

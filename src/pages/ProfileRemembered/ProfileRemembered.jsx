@@ -18,6 +18,7 @@ import Condolences from "./components/Condolences";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { TfiPencilAlt } from "react-icons/tfi";
 import Tributes from "./components/Tributes";
+import QRCodeGenerate from "./components/QRCodeGenerate";
 import { useContext, useState } from "react";
 import Post from "../../components/Post";
 import axios from "axios";
@@ -26,7 +27,6 @@ import FormEditProfile from "./components/FormEditProfile";
 import getFastApiErrors from "../../utils/getFastApiErrors";
 import { toast } from "react-toastify";
 import { getHowLongDied } from "../../utils/getHowLongDied";
-import { FaLock } from "react-icons/fa6";
 import FormChangeStatus from "./components/FormChangeStatus";
 
 const ProfileRemembered = () => {
@@ -546,6 +546,17 @@ const ProfileRemembered = () => {
                 numberTab={5}
                 countTab={data?.data?.remembered_profile?.tributes?.length}
               />
+
+              <TabLink
+                setOpenTab={setOpenTab}
+                linkTab={"#qrCode"}
+                textTab={"Qr Code"}
+                // iconTab={<FaHeart className="text-red-500" />}
+                openTab={openTab}
+                numberTab={6}
+                countTab={false}
+                enableCountTab={false}
+              />
             </ul>
 
             <div className="flex flex-col min-w-0 break-words w-full">
@@ -730,6 +741,16 @@ const ProfileRemembered = () => {
                         tributes={data?.data?.remembered_profile?.tributes}
                       />
                     )}
+                  </TabLinkContent>
+
+                  <TabLinkContent
+                    openTab={openTab}
+                    numberTab={6}
+                    idTab={"#qrCode"}
+                  >
+                    <QRCodeGenerate
+                      idRemembered={data?.data?.remembered_profile?.id}
+                    />
                   </TabLinkContent>
                 </div>
               </div>

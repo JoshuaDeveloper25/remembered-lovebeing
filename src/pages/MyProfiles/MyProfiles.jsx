@@ -12,8 +12,10 @@ import axios from "axios";
 
 const MyProfiles = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [statusPlan, setStatusPlan] = useState("");
   const [slug, setSlug] = useState("");
   const queryClient = useQueryClient();
+  console.log(statusPlan)
 
   const { data, isPending, error } = useQuery({
     queryKey: ["ownProfiles"],
@@ -26,7 +28,9 @@ const MyProfiles = () => {
   const createProfileMutation = useMutation({
     mutationFn: async (profileInfo) =>
       await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/remembereds/create-profile`,
+        `${
+          import.meta.env.VITE_BASE_URL
+        }/remembereds/create-profile/${statusPlan}`,
         profileInfo
       ),
     onSuccess: (res) => {
@@ -57,6 +61,11 @@ const MyProfiles = () => {
     createProfileMutation?.mutate(profileInfo);
   };
 
+  const handleCreateFreeProfile = () => {
+    setOpenModal(!openModal);
+    setStatusPlan(false);
+  };
+
   return (
     <>
       {/* Sky Video */}
@@ -70,11 +79,8 @@ const MyProfiles = () => {
         {/* Create Profile Button */}
         <article className="mb-8 md:text-end text-start">
           <div className="inline-block">
-            <button
-              onClick={() => setOpenModal(!openModal)}
-              className="btn btn-blue"
-            >
-              <GoPlus className="size-5 inline" /> Create Profile
+            <button onClick={handleCreateFreeProfile} className="btn btn-blue">
+              <GoPlus className="size-5 inline" /> Create Free Profile
             </button>
           </div>
 
@@ -84,7 +90,7 @@ const MyProfiles = () => {
             setOpenModal={setOpenModal}
             openModal={openModal}
             modalForm={true}
-            editableWidth={'max-w-xl'}
+            editableWidth={"max-w-xl"}
           >
             <FormCreateProfile
               slug={slug}
@@ -103,6 +109,14 @@ const MyProfiles = () => {
             <IndividualUserProfileTab
               profiles={data?.data}
               isPending={isPending}
+              handleSubmit={handleSubmit}
+              setOpenModal={setOpenModal}
+              openModal={openModal}
+              slug={slug}
+              setSlug={setSlug}
+              isPendingCreateProfile={createProfileMutation?.isPending}
+              setStatusPlan={setStatusPlan}
+              statusPlan={statusPlan}
             />
           </div>
         </div>

@@ -139,8 +139,6 @@ const ProfileRemembered = () => {
       death_date: deathDate,
     };
 
-    console.log(profileInfo);
-
     if (profileInfo?.birth_date > profileInfo?.death_date) {
       return toast.error(`Birth can't be higher than death date!`);
     }
@@ -749,7 +747,10 @@ const ProfileRemembered = () => {
                     idTab={"#qrCode"}
                   >
                     <QRCodeGenerate
+                      isOwner={data?.data?.is_owner}
                       idRemembered={data?.data?.remembered_profile?.id}
+                      qrImages={data?.data?.remembered_profile?.qr_images}
+                      statusPlan={data?.data?.remembered_profile?.status_plan}
                     />
                   </TabLinkContent>
                 </div>

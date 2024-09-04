@@ -75,7 +75,7 @@ const Memorials = () => {
             <input
               className="block py-2 px-2 h-full border border-tertiary-color/30 border-e-0 rounded-sm rounded-e-none w-full"
               type="text"
-              value={searchFullName || searchParams.get("search")}
+              value={searchFullName ?? searchParams.get("search")}
               onChange={(e) => setSearchFullName(e?.target?.value)}
               placeholder="Full Name"
             />

@@ -16,7 +16,7 @@ import axios from "axios";
 const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
   const rememberedProfileInfo = rememberedProfile?.remembered_profile;
   const [openAddKnownModal, setOpenAddKnownModal] = useState(false);
-  const [openLifeJourneyModal, setOpenLifeJourneyModal] = useState();
+  const [openLifeJourneyModal, setOpenLifeJourneyModal] = useState(false);
   const currentYear = new Date().getFullYear();
   const [bornYear, setBornYear] = useState(currentYear);
   const [bornMonth, setBornMonth] = useState("January");
@@ -50,7 +50,9 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
   const editLifeJourneyMutation = useMutation({
     mutationFn: async (journeyInfo) =>
       await axios.patch(
-        `${import.meta.env.VITE_BASE_URL}/about/add-life-journey/${idRemembered}`,
+        `${
+          import.meta.env.VITE_BASE_URL
+        }/about/add-life-journey/${idRemembered}`,
         journeyInfo
       ),
     onSuccess: (res) => {
@@ -387,7 +389,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
                 </p> */}
               </div>
             </li>
-{/* 
+            {/* 
             <li>
               <div className="mb-3 pb-3 border-b border-tertiary-color/50">
                 <h3 className="italic font-semibold">
@@ -403,9 +405,10 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
                   "Imagination is more important than knowledge"
                 </h3>
                 <p className="text-sm text-gray-700/95">
-                  <span className="font-bold">Meaning:</span> Imagination allows us to think beyond the current limits of
-                  knowledge and innovate, driving progress and evolution in
-                  society and science.
+                  <span className="font-bold">Meaning:</span> Imagination allows
+                  us to think beyond the current limits of knowledge and
+                  innovate, driving progress and evolution in society and
+                  science.
                 </p>
               </div>
             </li>

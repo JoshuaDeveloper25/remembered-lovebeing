@@ -299,10 +299,10 @@ body {
 .recent-memorials-carousel .swiper-pagination-bullet-active,
 .stepsCarousel .swiper-pagination-bullet-active {
   background: #04bffa !important;
-  transition: all .4s ease-in-out;
-  border-radius: 1rem!important;
-  font-size: 4rem!important;
-  width: 2rem!important;
+  transition: all 0.4s ease-in-out;
+  border-radius: 1rem !important;
+  font-size: 4rem !important;
+  width: 2rem !important;
 }
 
 .recent-memorials-carousel .swiper-pagination-bullet,
@@ -314,3 +314,7 @@ body {
 /* .recent-memorials-carousel .swiper-wrapper {
   height: 12rem;
 } */
+
+.swal2-container {
+  z-index: 20000 !important;
+}

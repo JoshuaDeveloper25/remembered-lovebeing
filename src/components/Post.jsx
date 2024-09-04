@@ -1,6 +1,5 @@
 import PublishedPostsImages from "../pages/ProfileRemembered/components/PublishedPostsImages";
 import PostCommentModal from "../pages/ProfileRemembered/components/PostCommentModal";
-import publishCommentPost from "../helpers/publishCommentPost";
 
 import EditPostForm from "../pages/ProfileRemembered/components/EditPostForm";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";

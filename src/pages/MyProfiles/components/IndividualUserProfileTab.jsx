@@ -4,7 +4,18 @@ import Profiles from "./Profiles";
 import { useState } from "react";
 import TabLink from "./TabLink";
 
-const IndividualUserProfileTab = ({ profiles, isPending }) => {
+const IndividualUserProfileTab = ({
+  handleSubmit,
+  setOpenModal,
+  openModal,
+  slug,
+  setSlug,
+  isPendingCreateProfile,
+  profiles,
+  isPending,
+  setStatusPlan,
+  statusPlan
+}) => {
   const [openTab, setOpenTab] = useState(1);
 
   return (
@@ -39,7 +50,18 @@ const IndividualUserProfileTab = ({ profiles, isPending }) => {
         <div className="px-4 py-5 flex-auto">
           <div className="tab-content tab-space">
             <TabLinkContent openTab={openTab} numberTab={1} idTab={"#profiles"}>
-              <Profiles profiles={profiles} isPending={isPending} />
+              <Profiles
+                handleSubmit={handleSubmit}
+                setOpenModal={setOpenModal}
+                openModal={openModal}
+                profiles={profiles}
+                isPending={isPending}
+                slug={slug}
+                setSlug={setSlug}
+                isPendingCreateProfile={isPendingCreateProfile}
+                setStatusPlan={setStatusPlan}
+                statusPlan={statusPlan}
+              />
             </TabLinkContent>
 
             <TabLinkContent

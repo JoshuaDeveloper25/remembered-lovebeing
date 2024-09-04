@@ -30,8 +30,6 @@ const FormLifeJourney = ({
 }) => {
   const birthDate = rememberedProfileInfo?.birth_date;
   const deathDate = rememberedProfileInfo?.death_date;
-  console.log(rememberedProfileInfo?.birth_country);
-  console.log(rememberedProfileInfo?.death_country);
 
   const [birthCountry, setBirthCountry] = useState(
     rememberedProfileInfo?.birth_country || ""

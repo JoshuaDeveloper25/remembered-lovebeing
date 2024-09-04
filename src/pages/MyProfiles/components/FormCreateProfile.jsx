@@ -126,7 +126,6 @@ const FormCreateProfile = ({ slug, setSlug, isPending }) => {
               className="form-input-focus form-input-normal"
               type={"text"}
               name={"slug"}
-              required
               value={slug}
               onChange={(e) => setSlug(e?.target?.value)}
               placeholder="Example: John Doe"

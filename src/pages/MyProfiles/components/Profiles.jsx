@@ -1,6 +1,8 @@
-import Profile from "./Profile";
-import Modal from "../../../components/Modal";
 import FormCreateProfile from "./FormCreateProfile";
+import { useQuery } from "@tanstack/react-query";
+import Modal from "../../../components/Modal";
+import Profile from "./Profile";
+import axios from "axios";
 
 const Profiles = ({
   handleSubmit,
@@ -12,8 +14,15 @@ const Profiles = ({
   setSlug,
   setStatusPlan,
   isPendingCreateProfile,
-  statusPlan,
 }) => {
+  const getPremiumProfilesRemaining = useQuery({
+    queryKey: ["premiumProfilesRemaining"],
+    queryFn: async () =>
+      await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/users/get-premium-remaining`
+      ),
+  });
+
   const premiumProfiles = profiles?.filter(
     (item) => item?.status_plan !== "free"
   );
@@ -28,38 +37,45 @@ const Profiles = ({
 
   return profiles?.length !== 0 ? (
     <div>
-      <div className="flex flex-col gap-6 sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
-        <h2 className="font-sans font-medium text-muted-color italic">
-          “Thank you for your purchase! You now have 3 new profiles available,
-          click “Start” to begin{" "}
-          <span className="block">
-            customizing them and sharing the memories that matter most.”
-          </span>
-        </h2>
+      {getPremiumProfilesRemaining?.data?.data !== null &&
+        getPremiumProfilesRemaining?.data?.data !== 0 &&
+        getPremiumProfilesRemaining?.data?.data?.remaining_profiles !== 0 && (
+          <>
+            <div className="flex flex-col gap-6 sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
+              <h2 className="font-sans font-medium text-muted-color italic">
+                “Thank you for your purchase! You now have{" "}
+                {getPremiumProfilesRemaining?.data?.data?.remaining_profiles}{" "}
+                new profiles available, click “Start” to begin{" "}
+                <span className="block">
+                  customizing them and sharing the memories that matter most.”
+                </span>
+              </h2>
 
-        <button
-          onClick={handleCreatePremiumProfile}
-          type="button"
-          className="btn btn-blue w-auto"
-        >
-          Start
-        </button>
+              <button
+                onClick={handleCreatePremiumProfile}
+                type="button"
+                className="btn btn-blue w-auto"
+              >
+                Start
+              </button>
 
-        <Modal
-          titleModal={"New Profile"}
-          handleSubmit={handleSubmit}
-          setOpenModal={setOpenModal}
-          openModal={openModal}
-          modalForm={true}
-          editableWidth={"max-w-xl"}
-        >
-          <FormCreateProfile
-            slug={slug}
-            setSlug={setSlug}
-            isPending={isPendingCreateProfile}
-          />
-        </Modal>
-      </div>
+              <Modal
+                titleModal={"New Profile"}
+                handleSubmit={handleSubmit}
+                setOpenModal={setOpenModal}
+                openModal={openModal}
+                modalForm={true}
+                editableWidth={"max-w-xl"}
+              >
+                <FormCreateProfile
+                  slug={slug}
+                  setSlug={setSlug}
+                  isPending={isPendingCreateProfile}
+                />
+              </Modal>
+            </div>
+          </>
+        )}
 
       <div className="border-b-2 pb-8">
         <div className="mb-3">

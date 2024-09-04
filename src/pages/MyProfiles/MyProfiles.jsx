@@ -36,6 +36,7 @@ const MyProfiles = () => {
     onSuccess: (res) => {
       toast.success("Successfully profile created!");
       queryClient.invalidateQueries({ queryKey: ["ownProfiles"] });
+      queryClient.invalidateQueries({ queryKey: ["premiumProfilesRemaining"] });
       setOpenModal(false);
       setSlug("");
     },

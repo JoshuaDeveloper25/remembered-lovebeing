@@ -1,10 +1,12 @@
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getLivedDays } from "../../../utils/getLivedDays";
 import { Link, useSearchParams } from "react-router-dom";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 const ProfilePlanStatus = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const queryClient = useQueryClient();
 
   // --> 🧓 Get certain profile by remember id
   const rememberProfileQuery = useQuery({
@@ -82,7 +84,9 @@ const ProfilePlanStatus = () => {
               loading="lazy"
             />
 
-            <h2 className="mt-8 capitalize self-end font-bold text-2xl leading-6 text-center">
+            <h3 className="text-center font-semibold text-muted-color mt-6 mb-2">In Loving Memory Of</h3>
+
+            <h2 className="capitalize self-end font-bold text-2xl leading-6 text-center my-6">
               {`${
                 rememberProfileQuery?.data?.data?.remembered_profile?.first_name
               } ${
@@ -95,7 +99,7 @@ const ProfilePlanStatus = () => {
               ?.birth_date &&
             !rememberProfileQuery?.data?.data?.remembered_profile
               ?.birth_date ? (
-              <h2 className="font-semibold mt-4 text-muted-color">
+              <h2 className="text-center font-semibold mt-4 text-muted-color">
                 User hasn't input a date...
               </h2>
             ) : (

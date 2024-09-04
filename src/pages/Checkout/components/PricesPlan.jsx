@@ -1,10 +1,40 @@
-import { Link } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import getFastApiErrors from "../../../utils/getFastApiErrors";
 import { FaCheck } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const PricesPlan = ({ packageName }) => {
+  const queryClient = useQueryClient();
+
+  const makeProfilePackagePaymentMutation = useMutation({
+    mutationFn: async (paymentInfo) =>
+      await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/payments/get-premium-profiles/pay/${
+          packageName === "singlePackage" ? 1 : 3
+        }`,
+        paymentInfo
+      ),
+    onSuccess: (res) => {
+      toast.success("Successfully payment realized!");
+      queryClient.invalidateQueries({ queryKey: ["premiumProfilesRemaining"] });
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(getFastApiErrors(err));
+    },
+  });
+
   const handleSubmit = (e) => {
-    console.log("e");
+    e?.preventDefault();
+
+    if (!e?.target?.payment_status?.value.trim())
+      return toast.error("Fill up the blanks available!");
+
+    makeProfilePackagePaymentMutation.mutate({});
   };
+
   return (
     <div className="flex flex-col sm:flex-row md:gap-12 gap-4 bg-white rounded-sm shadow-lg p-4">
       {packageName === "singlePackage" ? (

@@ -2,7 +2,12 @@ import PublishedPostsImages from "../ProfileRemembered/components/PublishedPosts
 import CarouselProfiles from "../../pages/ProfileRemembered/components/CarouselProfiles";
 import MansoryGallery from "../../pages/ProfileRemembered/components/MansoryGallery";
 import TabLinkContent from "../../pages/MyProfiles/components/TabLinkContent";
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import {
+  FaChevronDown,
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+} from "react-icons/fa";
 import UploadProfileImage from "../../components/UploadProfileImage";
 import UploadGalleryImage from "../../components/UploadGalleryImage";
 import UploadCoverImage from "../../components/UploadCoverImage";
@@ -19,7 +24,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { TfiPencilAlt } from "react-icons/tfi";
 import Tributes from "./components/Tributes";
 import QRCodeGenerate from "./components/QRCodeGenerate";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Post from "../../components/Post";
 import axios from "axios";
 import Modal from "../../components/Modal";
@@ -28,6 +33,8 @@ import getFastApiErrors from "../../utils/getFastApiErrors";
 import { toast } from "react-toastify";
 import { getHowLongDied } from "../../utils/getHowLongDied";
 import FormChangeStatus from "./components/FormChangeStatus";
+import TributeHeader from "./components/TributeHeader";
+import CondolenceHeader from "./components/CondolenceHeader";
 
 const ProfileRemembered = () => {
   const currentYear = new Date().getFullYear();
@@ -89,12 +96,15 @@ const ProfileRemembered = () => {
   // --> 📝 Get all posts of a remembered
   const postsQuery = useQuery({
     queryKey: ["posts"],
-    queryFn: async () =>
-      await axios.get(
+    queryFn: async () => {
+      const response = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/posts/${
-          data?.data?.remembered_profile?.id
+          data.data.remembered_profile.id
         }`
-      ),
+      );
+      return response;
+    },
+    enabled: !!data?.data?.remembered_profile?.id, // it's going to run just when the ID is available.
   });
 
   // --> Edit Remembered Profile
@@ -492,6 +502,7 @@ const ProfileRemembered = () => {
               className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row "
               role="tablist"
             >
+              {/* About */}
               <TabLink
                 setOpenTab={setOpenTab}
                 linkTab={"#about"}
@@ -503,16 +514,29 @@ const ProfileRemembered = () => {
                 enableCountTab={false}
               />
 
+              {/* Tributes */}
               <TabLink
                 setOpenTab={setOpenTab}
-                linkTab={"#posts"}
-                textTab={"Posts"}
+                linkTab={"#tributes"}
+                textTab={"Tributes"}
                 // iconTab={<FaHeart className="text-red-500" />}
                 openTab={openTab}
-                numberTab={2}
-                countTab={postsQuery?.data?.data?.length}
+                numberTab={5}
+                countTab={data?.data?.remembered_profile?.tributes?.length}
               />
 
+              {/* Condolences */}
+              <TabLink
+                setOpenTab={setOpenTab}
+                linkTab={"#condolences"}
+                textTab={"Condolences"}
+                // iconTab={<FaHeart className="text-red-500" />}
+                openTab={openTab}
+                numberTab={4}
+                countTab={data?.data?.remembered_profile?.condolences?.length}
+              />
+
+              {/* Media */}
               <TabLink
                 setOpenTab={setOpenTab}
                 textTab={"Media"}
@@ -525,26 +549,18 @@ const ProfileRemembered = () => {
                 }
               />
 
+              {/* Posts */}
               <TabLink
                 setOpenTab={setOpenTab}
-                linkTab={"#condolences"}
-                textTab={"Condolences"}
+                linkTab={"#posts"}
+                textTab={"Posts"}
                 // iconTab={<FaHeart className="text-red-500" />}
                 openTab={openTab}
-                numberTab={4}
-                countTab={data?.data?.remembered_profile?.condolences?.length}
+                numberTab={2}
+                countTab={postsQuery?.data?.data?.length}
               />
 
-              <TabLink
-                setOpenTab={setOpenTab}
-                linkTab={"#tributes"}
-                textTab={"Tributes"}
-                // iconTab={<FaHeart className="text-red-500" />}
-                openTab={openTab}
-                numberTab={5}
-                countTab={data?.data?.remembered_profile?.tributes?.length}
-              />
-
+              {/* QR Code */}
               <TabLink
                 setOpenTab={setOpenTab}
                 linkTab={"#qrCode"}
@@ -560,6 +576,7 @@ const ProfileRemembered = () => {
             <div className="flex flex-col min-w-0 break-words w-full">
               <div className="flex-auto">
                 <div className="tab-content tab-space">
+                  {/* About */}
                   <TabLinkContent
                     openTab={openTab}
                     numberTab={1}
@@ -572,6 +589,7 @@ const ProfileRemembered = () => {
                     />
                   </TabLinkContent>
 
+                  {/* Posts */}
                   <TabLinkContent
                     openTab={openTab}
                     numberTab={2}
@@ -619,6 +637,7 @@ const ProfileRemembered = () => {
                     )}
                   </TabLinkContent>
 
+                  {/* Media */}
                   <TabLinkContent
                     openTab={openTab}
                     numberTab={3}
@@ -654,36 +673,17 @@ const ProfileRemembered = () => {
                     />
                   </TabLinkContent>
 
+                  {/* Condolences */}
                   <TabLinkContent
                     openTab={openTab}
                     numberTab={4}
                     idTab={"#condolences"}
                   >
-                    <div className="flex flex-col sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
-                      <h2 className="text-primary-color font-bold text-xl sm:my-0 my-3">
-                        Condolences{" "}
-                      </h2>
-
-                      {!userInfo?.access_token && (
-                        <h4 className="font-medium text-tertiary-color">
-                          Please,{" "}
-                          <span>
-                            <Link
-                              className="text-secondary-color underline"
-                              to={"/sign-in"}
-                            >
-                              Log In
-                            </Link>
-                          </span>
-                          , to leave a condolence.
-                        </h4>
-                      )}
-
-                      <UploadCondolence
-                        idRemembered={data?.data?.remembered_profile?.id}
-                        isOwner={data?.data?.is_owner}
-                      />
-                    </div>
+                    <CondolenceHeader
+                      userInfo={userInfo}
+                      isOwner={data?.data?.is_owner}
+                      idRemembered={data?.data?.remembered_profile?.id}
+                    />
 
                     {!data?.data?.remembered_profile?.condolences?.length ? (
                       <h2 className="text-center font-bold text-xl text-primary-color my-5">
@@ -699,35 +699,16 @@ const ProfileRemembered = () => {
                     )}
                   </TabLinkContent>
 
+                  {/* Tributes */}
                   <TabLinkContent
                     openTab={openTab}
                     numberTab={5}
                     idTab={"#tributes"}
                   >
-                    <div className="flex flex-col sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
-                      <h2 className="text-primary-color font-bold text-xl sm:my-0 my-3">
-                        Tributes{" "}
-                      </h2>
-
-                      {!userInfo?.access_token && (
-                        <h4 className="font-medium text-tertiary-color">
-                          Please,{" "}
-                          <span>
-                            <Link
-                              className="text-secondary-color underline"
-                              to={"/sign-in"}
-                            >
-                              Log In
-                            </Link>
-                          </span>
-                          , to leave a tribute.
-                        </h4>
-                      )}
-
-                      <UploadTribute
-                        idRemembered={data?.data?.remembered_profile?.id}
-                      />
-                    </div>
+                    <TributeHeader
+                      userInfo={userInfo}
+                      idRemembered={data?.data?.remembered_profile?.id}
+                    />
 
                     {!data?.data?.remembered_profile?.tributes?.length ? (
                       <h2 className="text-center font-bold text-xl text-primary-color my-5">
@@ -741,6 +722,7 @@ const ProfileRemembered = () => {
                     )}
                   </TabLinkContent>
 
+                  {/* QR Code */}
                   <TabLinkContent
                     openTab={openTab}
                     numberTab={6}

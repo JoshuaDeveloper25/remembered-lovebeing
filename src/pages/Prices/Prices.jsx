@@ -1,8 +1,12 @@
+import AppContext from "../../context/AppProvider";
 import { IoCloseSharp } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 
 const Prices = () => {
+  const { userInfo } = useContext(AppContext);
+
   return (
     <section className="bg-white">
       <div className="container-page px-3 py-5">
@@ -52,13 +56,20 @@ const Prices = () => {
                 Number of Profiles (0)
               </li>
             </ul>
-
-            <button
-              className="btn hover:bg-primary-color-light hover:text-white animation-fade border w-auto rounded-full"
-              type="button"
+            <Link
+              to={
+                userInfo?.access_token
+                  ? "/my-profiles/"
+                  : "/sign-in?redirect=/my-profiles/"
+              }
             >
-              Select Plan
-            </button>
+              <button
+                className="btn hover:bg-primary-color-light hover:text-white animation-fade border w-auto rounded-full"
+                type="button"
+              >
+                Select Plan
+              </button>
+            </Link>
           </div>
 
           <div className="min-w-[20rem] hover:scale-105 hover:shadow-2xl animation-fade border shadow-xl rounded-sm text-center py-8 px-7">

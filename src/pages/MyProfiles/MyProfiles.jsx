@@ -15,7 +15,6 @@ const MyProfiles = () => {
   const [statusPlan, setStatusPlan] = useState("");
   const [slug, setSlug] = useState("");
   const queryClient = useQueryClient();
-  console.log(statusPlan)
 
   const { data, isPending, error } = useQuery({
     queryKey: ["ownProfiles"],

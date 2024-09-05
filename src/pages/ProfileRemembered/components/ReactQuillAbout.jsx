@@ -1,10 +1,10 @@
-import getFastApiErrors from "../../../utils/getFastApiErrors";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import getFastApiErrors from "../../../utils/getFastApiErrors";
 import { useParams } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
-import React, { useState } from "react";
 import { toast } from "react-toastify";
 import ReactQuill from "react-quill";
+import { useState } from "react";
 import axios from "axios";
 
 const ReactQuillAbout = ({ rememberedProfile, owner }) => {

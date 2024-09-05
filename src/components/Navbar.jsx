@@ -41,6 +41,15 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   isActive ? `nav-active` : `nav-inactive`
                 }
+                to={"/posts"}
+              >
+                Posts
+              </NavLink>
+
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? `nav-active` : `nav-inactive`
+                }
                 to={"/news"}
               >
                 News
@@ -53,15 +62,6 @@ const Navbar = () => {
                 to={"/prices"}
               >
                 Prices
-              </NavLink>
-
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? `nav-active` : `nav-inactive`
-                }
-                to={"/posts"}
-              >
-                Posts
               </NavLink>
 
               <div className="relative">

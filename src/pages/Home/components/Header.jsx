@@ -72,7 +72,7 @@ const Header = () => {
 
       <section className="container-page px-3 sticky">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-1 justify-center gap-8 md:-mt-16 -mt-4 mb-14 align-center-media">
-          <article className="w-52 bg-primary-color text-white shadow-lg rounded-sm px-6 py-4">
+          <article className="w-52 bg-primary-color text-white shadow-lg rounded-sm px-6 py-4 translate-from-top-to-down">
             <div className="flex items-center gap-3 text-yellow-500 font-medium">
               <h3 className="text-4xl font-black">1</h3>
               <div className="bg-yellow-500 h-1 w-full"></div>

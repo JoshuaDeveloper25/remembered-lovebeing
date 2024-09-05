@@ -15,7 +15,7 @@ const Posts = () => {
   return (
     <section className="container-page my-8 mx-auto" style={{maxWidth: '800px'}}>
       {!allRememberedPostsQuery?.data?.data?.length ? (
-        <h2 className="text-center font-bold text-xl text-primary-color my-5">
+        <h2 className="text-primary-color text-2xl uppercase tracking-wider text-center my-5">
           No remembered has made a post....
         </h2>
       ) : (

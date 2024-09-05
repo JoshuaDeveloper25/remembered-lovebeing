@@ -11,7 +11,7 @@ const Root = () => {
         <Outlet />
       </main>
 
-      <footer className="bg-white text-black text-center py-8">FOOTER</footer>
+      <footer className="bg-white text-black text-center py-8">FOOTER - TODOS LOS DERECHOS RESERVADOS</footer>
       <ScrollRestoration />
     </section>
   );

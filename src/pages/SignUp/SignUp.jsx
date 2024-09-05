@@ -6,9 +6,6 @@ import Form from "./components/Form";
 import axios from "axios";
 
 const SignUp = () => {
-  const options = { year: "numeric", month: "short", day: "2-digit" };
-  const formattedDate = new Date(Date.now()).toLocaleDateString("en-GB", options);
-
   const { mutate } = useMutation({
     mutationFn: async (userInfo) => {
       return await axios.post(
@@ -31,7 +28,7 @@ const SignUp = () => {
       email: e?.target?.email?.value.trim(),
       password: e?.target?.password?.value.trim(),
       name: e?.target?.name?.value.trim(),
-      created_at: formattedDate,
+      created_at: new Date(),
     };
 
     // Form validation

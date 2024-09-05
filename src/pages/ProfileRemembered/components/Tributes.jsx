@@ -2,7 +2,7 @@ import NavbarDropdownLink from "../../../components/NavbarDropdownLink";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import AppContext from "../../../context/AppProvider";
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import formatDate from "../../../utils/formatDate";
 import { createPortal } from "react-dom";
 import { FaEdit } from "react-icons/fa";
@@ -133,8 +133,8 @@ const Tribute = ({ tribute, isOwner }) => {
           <div>
             <img
               src={
-                tribute?.owner?.user_profile_image.cloud_front_domain
-                  ? `${tribute?.owner?.user_profile_image.cloud_front_domain}/${tribute?.owner?.user_profile_image.aws_file_name}`
+                tribute?.user_profile_image?.cloud_front_domain
+                  ? `${tribute?.user_profile_image?.cloud_front_domain}/${tribute?.user_profile_image?.aws_file_name}`
                   : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
               }
               className="w-14 h-14 object-cover rounded-full"

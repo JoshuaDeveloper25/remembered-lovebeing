@@ -1,11 +1,11 @@
-import CreateMemorial from "./components/CreateMemorial";
-import FindMemorial from "./components/FindMemorial";
-import Header from "./components/Header";
-import ModernDesign from "./components/ModernDesign";
 import RecentMemorialsCarousel from "./components/RecentMemorialsCarousel";
-import ShareSite from "./components/ShareSite";
-import StepsCarousel from "./components/StepsCarousel";
+import CreateMemorial from "./components/CreateMemorial";
 import WhatsHappening from "./components/WhatsHappening";
+import StepsCarousel from "./components/StepsCarousel";
+import ModernDesign from "./components/ModernDesign";
+import FindMemorial from "./components/FindMemorial";
+import ShareSite from "./components/ShareSite";
+import Header from "./components/Header";
 
 const Home = () => {
   return (

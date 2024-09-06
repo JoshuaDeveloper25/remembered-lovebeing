@@ -39,7 +39,10 @@ const Condolence = ({ condolence, isOwner }) => {
   const tooltipRef = useRef(null);
 
   useEffect(() => {
-    if (showTooltip && tooltipRef.current || showTooltipReply && tooltipRef?.current) {
+    if (
+      (showTooltip && tooltipRef.current) ||
+      (showTooltipReply && tooltipRef?.current)
+    ) {
       const tooltip = tooltipRef.current;
       const tooltipRect = tooltip.getBoundingClientRect();
       const windowWidth = window.innerWidth;
@@ -124,7 +127,6 @@ const Condolence = ({ condolence, isOwner }) => {
     // Form validation
     if (!commentInfo?.content) return toast.error(`Fill up the blank!`);
 
-    console.log(commentInfo, "entro");
     editCondolenceMutation.mutate(commentInfo);
   };
 
@@ -221,7 +223,6 @@ const Condolence = ({ condolence, isOwner }) => {
           </>
         )}
       </div>
-
       {/* Condolence Footer */}
       <div className="relative mt-4 mb-2">
         {condolence?.owner_reply ? (

@@ -259,3 +259,23 @@
     transform: translateY(-100%);
   }
 }
+
+/* Animation on scroll - IntersectionObserver */
+.animated-box-comingDown {
+  opacity: 0;
+  transform: translateY(5rem);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.animated-box-comingTop {
+  opacity: 0;
+  transform: translateY(-5rem);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.animated-box-comingDown.animate,
+.animated-box-comingTop.animate {
+  opacity: 1;
+  transform: translate(0);
+  animation-delay: 0.1s;
+}

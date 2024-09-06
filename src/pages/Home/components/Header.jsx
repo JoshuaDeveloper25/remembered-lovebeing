@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 import AppContext from "../../../context/AppProvider";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 
 const Header = () => {
+  const [ref, isIntersecting] = useIntersectionObserver({ threshold: 0.4 });
   const { userInfo } = useContext(AppContext);
 
   return (
@@ -20,8 +22,13 @@ const Header = () => {
 
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
 
-        <div className="container-page relative z-10 px-3 py-4 h-full">
-          <div className="flex flex-col items-center justify-center text-center h-full">
+        <div
+          className={`container-page relative z-10 px-3 py-4 h-full animated-box-comingDown ${
+            isIntersecting ? "animate" : ""
+          } `}
+          ref={ref}
+        >
+          <div className="flex flex-col items-center justify-center text-center h-full ">
             <h1 className="font-serif text-6xl text-white max-w-2xl">
               Preserve the memories of those you love
             </h1>
@@ -52,9 +59,7 @@ const Header = () => {
 
               <div className="md:w-auto w-full">
                 <Link
-                  to={
-                    "/remembered-profile/Albert-Einstein-27"
-                  }
+                  to={"/remembered-profile/Albert-Einstein-27"}
                   target="_blank"
                 >
                   <button
@@ -72,7 +77,11 @@ const Header = () => {
 
       <section className="container-page px-3 sticky">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-1 justify-center gap-8 md:-mt-16 -mt-4 mb-14 align-center-media">
-          <article className="w-52 bg-primary-color text-white shadow-lg rounded-sm px-6 py-4 translate-from-top-to-down">
+          <article
+            className={`w-52 bg-primary-color text-white shadow-lg rounded-sm px-6 py-4 animated-box-comingDown ${
+              isIntersecting ? "animate" : ""
+            }`}
+          >
             <div className="flex items-center gap-3 text-yellow-500 font-medium">
               <h3 className="text-4xl font-black">1</h3>
               <div className="bg-yellow-500 h-1 w-full"></div>

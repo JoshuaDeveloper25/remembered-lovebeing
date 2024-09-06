@@ -35,8 +35,8 @@ const Profiles = ({
     setStatusPlan(true);
   };
 
-  return profiles?.length !== 0 ? (
-    <div>
+  return (
+    <>
       {getPremiumProfilesRemaining?.data?.data !== null &&
         getPremiumProfilesRemaining?.data?.data !== 0 &&
         getPremiumProfilesRemaining?.data?.data?.remaining_profiles !== 0 && (
@@ -45,9 +45,18 @@ const Profiles = ({
               <h2 className="font-sans font-medium text-muted-color italic">
                 “Thank you for your purchase! You now have{" "}
                 {getPremiumProfilesRemaining?.data?.data?.remaining_profiles}{" "}
-                new profiles available, click “Start” to begin{" "}
+                new{" "}
+                {getPremiumProfilesRemaining?.data?.data?.remaining_profiles ===
+                1
+                  ? "profile"
+                  : "profiles"}{" "}
+                available, click “Start” to begin{" "}
                 <span className="block">
-                  customizing them and sharing the memories that matter most.”
+                  {getPremiumProfilesRemaining?.data?.data
+                    ?.remaining_profiles === 1
+                    ? "customizing it"
+                    : "customizing them"}{" "}
+                  and sharing the memories that matter most.”
                 </span>
               </h2>
 
@@ -77,48 +86,74 @@ const Profiles = ({
           </>
         )}
 
-      <div className="border-b-2 pb-8">
-        <div className="mb-3">
-          <h2 className="font-light text-base text-yellow-500 tracking-wider font-mono">
-            <span className="text-2xl">Premium</span>{" "}
-            <span className="text-primary-color-light tracking-tighter">
-              Profiles
-            </span>
-          </h2>
+      {profiles?.length !== 0 ? (
+        <div>
+          <div className="border-b-2 pb-8">
+            <div className="mb-3">
+              <h2 className="font-light text-base text-yellow-500 tracking-wider font-mono">
+                <span className="text-2xl">Premium</span>{" "}
+                <span className="text-primary-color-light tracking-tighter">
+                  Profiles
+                </span>
+              </h2>
 
-          <div className="h-1 w-28 bg-yellow-500 rounded-sm"></div>
+              <div className="h-1 w-28 bg-yellow-500 rounded-sm"></div>
+            </div>
+
+            {premiumProfiles?.length !== 0 ? (
+              <>
+                <article className="grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-7 col-span-3">
+                  {premiumProfiles?.map((item) => {
+                    return (
+                      <Profile
+                        isPending={isPending}
+                        item={item}
+                        key={item?.id}
+                      />
+                    );
+                  })}
+                </article>
+              </>
+            ) : (
+              <h2 className="text-primary-color text-center text-2xl uppercase tracking-wider my-8">
+                There's no premium profiles yet...
+              </h2>
+            )}
+          </div>
+
+          <div className="mt-6">
+            <div className=" mb-3">
+              <h2 className="font-light text-base text-yellow-500 tracking-wider font-mono">
+                <span className="text-2xl">Free</span>{" "}
+                <span className="text-primary-color-light tracking-tighter">
+                  Profiles
+                </span>
+              </h2>
+
+              <div className="h-1 w-28 bg-yellow-500 rounded-sm"></div>
+            </div>
+
+            {freeProfiles?.length !== 0 ? (
+              <article className="grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-7 col-span-3">
+                {freeProfiles?.map((item) => {
+                  return (
+                    <Profile isPending={isPending} item={item} key={item?.id} />
+                  );
+                })}
+              </article>
+            ) : (
+              <h2 className="text-primary-color text-center text-2xl uppercase tracking-wider my-8">
+                There's no free profiles yet...
+              </h2>
+            )}
+          </div>
         </div>
-
-        <article className="grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-7 col-span-3">
-          {premiumProfiles?.map((item) => {
-            return <Profile isPending={isPending} item={item} key={item?.id} />;
-          })}
+      ) : (
+        <article className="text-center font-bold text-2xl py-8">
+          <h2 className="text-primary-color/85">There's no profiles yet...</h2>
         </article>
-      </div>
-
-      <div className="mt-6">
-        <div className=" mb-3">
-          <h2 className="font-light text-base text-yellow-500 tracking-wider font-mono">
-            <span className="text-2xl">Free</span>{" "}
-            <span className="text-primary-color-light tracking-tighter">
-              Profiles
-            </span>
-          </h2>
-
-          <div className="h-1 w-28 bg-yellow-500 rounded-sm"></div>
-        </div>
-
-        <article className="grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-7 col-span-3">
-          {freeProfiles?.map((item) => {
-            return <Profile isPending={isPending} item={item} key={item?.id} />;
-          })}
-        </article>
-      </div>
-    </div>
-  ) : (
-    <article className="text-center font-bold text-2xl py-8">
-      <h2 className="text-primary-color/85">There's no profiles yet...</h2>
-    </article>
+      )}
+    </>
   );
 };
 

@@ -6,9 +6,17 @@ import { useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
 
+import spainFlag from "../assets/spain-flag.webp";
+import usaFlag from "../assets/usa-flag.webp";
+
 const Navbar = () => {
   const { setUserInfo, userInfo } = useContext(AppContext);
   const [openDropDown, setOpenDropDown] = useState(false);
+  const [language, setLanguage] = useState("en");
+
+  const handleChange = (lang) => {
+    setLanguage(lang);
+  };
 
   const handleLogOut = () => {
     toast.success("¡Successfully logged out!");
@@ -18,7 +26,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-white/50 py-2 ">
+      <nav className="bg-white/50 py-2">
         <div className="container-page">
           <div className="flex justify-between items-center">
             <div>
@@ -64,11 +72,32 @@ const Navbar = () => {
                 Prices
               </NavLink>
 
+              {/* Language Switcher */}
+              <div className="relative inline-block">
+                <div className="flex items-center border border-gray-300 rounded-full px-4 py-2 bg-white cursor-pointer">
+                  <img
+                    src={language === "en" ? usaFlag : spainFlag}
+                    alt={language}
+                    className="w-6 h-6 mr-2 object-contain"
+                  />
+                  <span>{language === "en" ? "English" : "Español"}</span>
+                  <select
+                    value={language}
+                    onChange={(e) => handleChange(e.target.value)}
+                    className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+                  >
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* User Dropdown */}
               <div className="relative">
                 <button
                   id="dropdownDividerButton"
                   data-dropdown-toggle="dropdownDivider"
-                  className="animation-fade text-xl hover:rounded-full  hover:bg-white/20 p-2"
+                  className="animation-fade text-xl hover:rounded-full hover:bg-white/20 p-2"
                   onClick={() => setOpenDropDown(!openDropDown)}
                   type="button"
                 >

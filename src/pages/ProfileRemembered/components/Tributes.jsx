@@ -285,31 +285,39 @@ const Tribute = ({ tribute, isOwner }) => {
       <form onSubmit={handleSubmitReplyTribute} className="mt-4 mx-4">
         {!commentingTribute ? (
           <>
-            <textarea
-              name="content"
-              placeholder="Comment on this memory..."
-              className="w-full animation-fade rounded-sm border border-tertiary-color/30 px-2 py-2 resize-none text-tertiary-color text-sm my-1 outline-none"
-              onClick={() => setCommentingTribute(true)}
-              rows={0}
-            ></textarea>
+            {!userInfo?.access_token ? null : (
+              <textarea
+                name="content"
+                placeholder="Comment on this memory..."
+                className="w-full animation-fade rounded-sm border border-tertiary-color/30 px-2 py-2 resize-none text-tertiary-color text-sm my-1 outline-none"
+                onClick={() => setCommentingTribute(true)}
+                rows={0}
+              ></textarea>
+            )}
           </>
         ) : (
           <>
-            <textarea
-              name="content"
-              placeholder="Comment on this memory..."
-              className="w-full animation-fade rounded-sm border border-tertiary-color/30 px-2 py-2 resize-none text-tertiary-color text-sm my-1 outline-none"
-              onClick={() => setCommentingTribute(true)}
-              rows={5}
-            ></textarea>
+            {!userInfo?.access_token ? null : (
+              <>
+                <textarea
+                  name="content"
+                  placeholder="Comment on this memory..."
+                  className="w-full animation-fade rounded-sm border border-tertiary-color/30 px-2 py-2 resize-none text-tertiary-color text-sm my-1 outline-none"
+                  onClick={() => setCommentingTribute(true)}
+                  rows={5}
+                ></textarea>
 
-            <button
-              className="flex-1 animation-fade py-1 text-sm font-medium px-2 rounded text-white bg-secondary-color"
-              disabled={replyTributeMutation?.isPending}
-              type="submit"
-            >
-              {replyTributeMutation?.isPending ? "Sending comment..." : "Send"}
-            </button>
+                <button
+                  className="flex-1 animation-fade py-1 text-sm font-medium px-2 rounded text-white bg-secondary-color"
+                  disabled={replyTributeMutation?.isPending}
+                  type="submit"
+                >
+                  {replyTributeMutation?.isPending
+                    ? "Sending comment..."
+                    : "Send"}
+                </button>
+              </>
+            )}
           </>
         )}
       </form>

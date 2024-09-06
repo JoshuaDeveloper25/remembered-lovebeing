@@ -45,6 +45,14 @@ const MyProfiles = () => {
     },
   });
 
+  // Get favourites of remembereds profiles
+  const favouritesRememberedsQuery = useQuery({
+    queryKey: ["favouritesProfiles"],
+    queryFn: () => {
+      return axios.get(`${import.meta.env.VITE_BASE_URL}/favorites`);
+    },
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -107,6 +115,7 @@ const MyProfiles = () => {
           {/* Profiles from user and Tab */}
           <div className="col-span-3">
             <IndividualUserProfileTab
+              favouritesProfiles={favouritesRememberedsQuery?.data?.data}
               profiles={data?.data}
               isPending={isPending}
               handleSubmit={handleSubmit}
@@ -117,6 +126,9 @@ const MyProfiles = () => {
               isPendingCreateProfile={createProfileMutation?.isPending}
               setStatusPlan={setStatusPlan}
               statusPlan={statusPlan}
+              isPendingFavouritesProfiles={
+                favouritesRememberedsQuery?.isPending
+              }
             />
           </div>
         </div>

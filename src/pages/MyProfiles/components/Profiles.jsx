@@ -1,5 +1,5 @@
 import FormCreateProfile from "./FormCreateProfile";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import Modal from "../../../components/Modal";
 import Profile from "./Profile";
 import axios from "axios";
@@ -15,7 +15,7 @@ const Profiles = ({
   setStatusPlan,
   isPendingCreateProfile,
 }) => {
-  const getPremiumProfilesRemaining = useQuery({
+  const getPremiumProfilesRemaining = useMutation({
     queryKey: ["premiumProfilesRemaining"],
     queryFn: async () =>
       await axios.get(
@@ -39,6 +39,7 @@ const Profiles = ({
     <>
       {getPremiumProfilesRemaining?.data?.data !== null &&
         getPremiumProfilesRemaining?.data?.data !== 0 &&
+        getPremiumProfilesRemaining?.data?.data !== undefined &&
         getPremiumProfilesRemaining?.data?.data?.remaining_profiles !== 0 && (
           <>
             <div className="flex flex-col gap-6 sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">

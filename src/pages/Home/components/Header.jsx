@@ -1,10 +1,12 @@
 import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 import AppContext from "../../../context/AppProvider";
+import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 
 const Header = () => {
   const [ref, isIntersecting] = useIntersectionObserver({ threshold: 0.4 });
+  const { t } = useTranslation(); // Hook para traducciones
   const { userInfo } = useContext(AppContext);
 
   return (
@@ -30,13 +32,13 @@ const Header = () => {
         >
           <div className="flex flex-col items-center justify-center text-center h-full ">
             <h1 className="font-serif text-6xl text-white max-w-2xl">
-              Preserve the memories of those you love
+              {t("Preserve the memories of those you love")}
             </h1>
 
             <p className="text-xl max-w-2xl text-white my-5">
-              Create a profile for your loved one, upload photos, share memories
-              through posts and allow others to leave tributes and condolences.
-              Generate a QR code.
+              {t(
+                `Create a profile for your loved one, upload photos, share memories through posts and allow others to leave tributes and condolences. Generate a QR code.`
+              )}
             </p>
 
             <div className="flex flex-col md:flex-row items-center gap-3 mt-3 text-xl">
@@ -52,7 +54,7 @@ const Header = () => {
                     type="button"
                     className="btn btn-blue-light w-full block rounded-sm"
                   >
-                    Get Started
+                    {t("Get Started")}
                   </button>
                 </Link>
               </div>
@@ -66,7 +68,7 @@ const Header = () => {
                     type="button"
                     className="font-medium animation-fade px-6 py-2 inline-block border border-white text-white hover:bg-white hover:text-black rounded-sm"
                   >
-                    See An Example Memorial
+                    {t("See An Example Memorial")}
                   </button>
                 </Link>
               </div>
@@ -88,7 +90,9 @@ const Header = () => {
             </div>
 
             <h3 className="text-xl mt-2">
-              Register <span className="block">and Log In</span>
+              <Trans i18nKey="RegisterAndLogIn">
+                Register <span className="block">and Log In</span>
+              </Trans>
             </h3>
           </article>
 

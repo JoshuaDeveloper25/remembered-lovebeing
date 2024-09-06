@@ -1,3 +1,4 @@
+import FavouritesRememberedsProfile from "./FavouritesRememberedsProfile";
 import { FaCross, FaHeart } from "react-icons/fa";
 import TabLinkContent from "./TabLinkContent";
 import Profiles from "./Profiles";
@@ -14,7 +15,9 @@ const IndividualUserProfileTab = ({
   profiles,
   isPending,
   setStatusPlan,
-  statusPlan
+  statusPlan,
+  favouritesProfiles,
+  isPendingFavouritesProfiles,
 }) => {
   const [openTab, setOpenTab] = useState(1);
 
@@ -41,8 +44,7 @@ const IndividualUserProfileTab = ({
           iconTab={<FaHeart className="text-red-500" />}
           openTab={openTab}
           numberTab={2}
-          // countTab={false}
-          enableCountTab={false}
+          countTab={favouritesProfiles?.length}
         />
       </ul>
 
@@ -68,7 +70,12 @@ const IndividualUserProfileTab = ({
               openTab={openTab}
               numberTab={2}
               idTab={"#favourites"}
-            ></TabLinkContent>
+            >
+              <FavouritesRememberedsProfile
+                favouritesProfiles={favouritesProfiles}
+                isPendingFavouritesProfiles={isPendingFavouritesProfiles}
+              />
+            </TabLinkContent>
           </div>
         </div>
       </div>

@@ -8,14 +8,17 @@ import { toast } from "react-toastify";
 
 import spainFlag from "../assets/spain-flag.webp";
 import usaFlag from "../assets/usa-flag.webp";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
+  const { t, i18n } = useTranslation(); // Hook para traducciones
   const { setUserInfo, userInfo } = useContext(AppContext);
   const [openDropDown, setOpenDropDown] = useState(false);
   const [language, setLanguage] = useState("en");
 
   const handleChange = (lang) => {
     setLanguage(lang);
+    i18n.changeLanguage(lang); // Cambiar el idioma
   };
 
   const handleLogOut = () => {
@@ -42,7 +45,7 @@ const Navbar = () => {
                 }
                 to={"/memorials"}
               >
-                Memorials
+                {t("Memorials")}
               </NavLink>
 
               <NavLink
@@ -51,7 +54,7 @@ const Navbar = () => {
                 }
                 to={"/posts"}
               >
-                Posts
+                {t("Posts")}
               </NavLink>
 
               <NavLink
@@ -60,7 +63,7 @@ const Navbar = () => {
                 }
                 to={"/news"}
               >
-                News
+                {t("News")}
               </NavLink>
 
               <NavLink
@@ -69,7 +72,7 @@ const Navbar = () => {
                 }
                 to={"/prices"}
               >
-                Prices
+                {t("Prices")}
               </NavLink>
 
               {/* Language Switcher */}
@@ -78,16 +81,16 @@ const Navbar = () => {
                   <img
                     src={language === "en" ? usaFlag : spainFlag}
                     alt={language}
-                    className="w-6 h-6 mr-2 object-contain"
+                    className="w-6 h-6 object-contain mr-2"
                   />
                   <span>{language === "en" ? "English" : "Español"}</span>
                   <select
                     value={language}
                     onChange={(e) => handleChange(e.target.value)}
-                    className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+                    className="absolute inset-0 opacity-0 cursor-pointer w-full h-full bg-gray-100 font-sans p-3"
                   >
-                    <option value="en">English</option>
-                    <option value="es">Español</option>
+                    <option value="en" className="font-medium tracking-widest">English</option>
+                    <option value="es" className="font-medium tracking-widest">Español</option>
                   </select>
                 </div>
               </div>
@@ -118,21 +121,21 @@ const Navbar = () => {
                       <ul className="absolute right-5 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
                         <NavbarDropdownLink
                           hoverBgLink={"hover:bg-primary-color"}
-                          linkText={"My Profiles"}
+                          linkText={t("My Profiles")}
                           onClick={() => setOpenDropDown(false)}
                           linkTo={"/my-profiles/"}
                         />
 
                         <NavbarDropdownLink
                           hoverBgLink={"hover:bg-primary-color"}
-                          linkText={"Settings"}
+                          linkText={t("Settings")}
                           onClick={() => setOpenDropDown(false)}
                           linkTo={"#"}
                         />
 
                         <NavbarDropdownLink
                           hoverBgLink={"hover:bg-red-500"}
-                          linkText={"Log Out"}
+                          linkText={t("Log Out")}
                           onClick={handleLogOut}
                         />
                       </ul>
@@ -141,7 +144,7 @@ const Navbar = () => {
                         <NavbarDropdownLink
                           hoverBgLink={"text-black hover:text-secondary-color"}
                           onClick={() => setOpenDropDown(false)}
-                          linkText={"Sign In"}
+                          linkText={t("Sign In")}
                           linkTo={"/sign-in"}
                         />
                       </ul>

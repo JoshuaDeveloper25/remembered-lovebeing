@@ -35,6 +35,7 @@ import { getHowLongDied } from "../../utils/getHowLongDied";
 import FormChangeStatus from "./components/FormChangeStatus";
 import TributeHeader from "./components/TributeHeader";
 import CondolenceHeader from "./components/CondolenceHeader";
+import FollowRemember from "./components/FollowRemember";
 
 const ProfileRemembered = () => {
   const currentYear = new Date().getFullYear();
@@ -460,6 +461,12 @@ const ProfileRemembered = () => {
                   {data?.data?.remembered_profile?.owner?.name}
                 </span>
               </p>
+
+              {!data?.data?.is_owner && (
+                <FollowRemember
+                  idRemembered={data?.data?.remembered_profile?.id}
+                />
+              )}
 
               {data?.data?.is_owner && (
                 <div>

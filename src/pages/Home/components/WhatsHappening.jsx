@@ -1,13 +1,20 @@
+import { useTranslation } from "react-i18next";
+
 const WhatsHappening = () => {
+  const { t } = useTranslation(); // Hook para traducciones
+
   return (
     <section className="bg-white py-16">
       <div className="container-page">
         <div className="text-center">
-          <h2 className="font-mono text-5xl font-semibold text-primary-color tracking-wider">Our Community Today</h2>
-        <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
+          <h2 className="font-mono text-5xl font-semibold text-primary-color tracking-wider">
+            {t("Our Community Today")}
+          </h2>
+          <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
           <p className="text-xl max-w-2xl mx-auto mt-2 mb-8 text-muted-color">
-            Discover the number of memorials, tributes and active posts, and how
-            our community keep growing up and remembering.
+            {t(
+              "Discover the number of memorials, tributes and active posts, and how our community keep growing up and remembering."
+            )}
           </p>
         </div>
 
@@ -17,28 +24,34 @@ const WhatsHappening = () => {
               <h3 className="font-bold text-4xl mb-2 text-primary-color">
                 1,384
               </h3>
-              <h5 className="border-b border-black/50 text-xl">Memorials</h5>
+              <h5 className="border-b border-black/50 text-xl">
+                {t("Memorials")}
+              </h5>
             </div>
 
             <div className="text-center">
               <h3 className="font-bold text-4xl mb-2 text-primary-color">
                 1,542
               </h3>
-              <h5 className="border-b border-black/50 text-xl">Tributes</h5>
+              <h5 className="border-b border-black/50 text-xl">
+                {t("Tributes")}
+              </h5>
             </div>
 
             <div className="text-center">
               <h3 className="font-bold text-4xl mb-2 text-primary-color">
                 845
               </h3>
-              <h5 className="border-b border-black/50 text-xl">Posts</h5>
+              <h5 className="border-b border-black/50 text-xl">{t("Posts")}</h5>
             </div>
 
             <div className="text-center">
               <h3 className="font-bold text-4xl mb-2 text-primary-color">
                 35,879
               </h3>
-              <h5 className="border-b border-black/50 text-xl">Visitors</h5>
+              <h5 className="border-b border-black/50 text-xl">
+                {t("Visitors")}
+              </h5>
             </div>
           </div>
         </div>

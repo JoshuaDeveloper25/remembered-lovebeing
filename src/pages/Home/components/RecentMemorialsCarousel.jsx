@@ -14,8 +14,11 @@ import { PiCakeFill } from "react-icons/pi";
 import { GiTombstone } from "react-icons/gi";
 
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const RecentMemorialsCarousel = () => {
+  const { t } = useTranslation(); // Hook para traducciones
+
   const memorialsQuery = useInfiniteQuery({
     queryKey: ["memorials"],
     queryFn: (data) => {
@@ -41,7 +44,7 @@ const RecentMemorialsCarousel = () => {
     <section className="bg-white">
       <div className="container-page px-3 py-14">
         <h2 className="tracking-wider font-mono text-4xl text-primary-color text-center uppercase font-semibold">
-          Recent online memorials
+          {t("Recent online memorials")}
         </h2>
         <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
 
@@ -132,7 +135,7 @@ const RecentMemorialsCarousel = () => {
                             <PiCakeFill className="inline-block size-6 align-bottom" />
                             :
                           </span>{" "}
-                          {recentMemorial?.birth_date || "No Date..."}
+                          {recentMemorial?.birth_date || t("No Date...")}
                         </h2>
                       </div>
 
@@ -143,7 +146,7 @@ const RecentMemorialsCarousel = () => {
                             :
                           </span>{" "}
                           <span>
-                            {recentMemorial?.death_date || "No Date..."}
+                            {recentMemorial?.death_date || t("No Date...")}
                           </span>
                         </h2>
                       </div>
@@ -153,7 +156,9 @@ const RecentMemorialsCarousel = () => {
               }
             )
           ) : (
-            <h2 className="text-primary-color text-center text-2xl uppercase tracking-wider">There's no recent memorials for the moment...</h2>
+            <h2 className="text-primary-color text-center text-2xl uppercase tracking-wider">
+              {t(`There's no recent memorials for the moment...`)}
+            </h2>
           )}
         </Swiper>
       </div>

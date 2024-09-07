@@ -26,7 +26,9 @@ const UploadCoverImage = ({ idRemembered }) => {
   const changeImageCoverMutation = useMutation({
     mutationFn: async (imageInfo) =>
       await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/remembereds/upload_cover_image/${idRemembered}`,
+        `${
+          import.meta.env.VITE_BASE_URL
+        }/remembereds/upload_cover_image/${idRemembered}`,
         imageInfo
       ),
     onSuccess: (res) => {
@@ -85,6 +87,7 @@ const UploadCoverImage = ({ idRemembered }) => {
         setOpenModal={setOpenModalCover}
         openModal={openModalCover}
         modalForm={true}
+        iconTitle={true}
       >
         <FormCover
           isPending={changeImageCoverMutation?.isPending}
@@ -92,6 +95,7 @@ const UploadCoverImage = ({ idRemembered }) => {
           setCrop={setCrop}
           imgRef={imgRef}
           crop={crop}
+          setOpenModalCover={setOpenModalCover}
         />
       </Modal>
     </>

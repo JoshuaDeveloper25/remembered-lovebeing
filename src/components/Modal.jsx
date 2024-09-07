@@ -1,4 +1,5 @@
 import { createPortal } from "react-dom";
+import { FaFolderOpen } from "react-icons/fa";
 
 const Modal = ({
   handleSubmit,
@@ -8,6 +9,7 @@ const Modal = ({
   setOpenModal,
   editableWidth,
   modalForm,
+  iconTitle = false,
 }) => {
   const handleCloseModal = () => {
     setOpenModal(false);
@@ -37,7 +39,12 @@ const Modal = ({
             >
               {/* Modal header */}
               <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                <h3 className="text-lg font-semibold text-fourth-color">
+                <h3 className="flex  items-center gap-2 text-lg font-semibold text-fourth-color">
+                  {iconTitle ? (
+                    <FaFolderOpen className="text-primary-color-light size-7 " />
+                  ) : (
+                    ""
+                  )}
                   {titleModal}
                 </h3>
 

@@ -64,7 +64,7 @@ const MyProfiles = () => {
       designation: e?.target?.designation?.value?.trim(),
       user_relationship: e?.target?.user_relationship?.value?.trim(),
       slug: slug?.replace(/ /g, "-"),
-    };
+    }; 
 
     createProfileMutation?.mutate(profileInfo);
   };

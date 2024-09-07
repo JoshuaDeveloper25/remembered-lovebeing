@@ -1,9 +1,17 @@
 import ImagesHandleCrop from "../../../components/ImagesHandleCrop";
 
-const FormCover = ({ previewCanvasRef, setCrop, crop, imgRef, isPending }) => {
+const FormCover = ({
+  previewCanvasRef,
+  setOpenModalCover,
+  setCrop,
+  crop,
+  imgRef,
+  isPending,
+}) => {
   return (
     <ImagesHandleCrop
       imgRef={imgRef}
+      onCancel={() => setOpenModalCover(false)}
       isPending={isPending}
       previewCanvasRef={previewCanvasRef}
       setCrop={setCrop}

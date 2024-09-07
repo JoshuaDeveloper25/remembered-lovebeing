@@ -95,6 +95,7 @@ const UploadGalleryImage = ({
         setOpenModal={setOpenModalGallery}
         openModal={openModalGallery}
         modalForm={true}
+        iconTitle={true}
       >
         <FormGalleryImages
           isPending={addGalleryImageMutation?.isPending}

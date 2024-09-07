@@ -12,14 +12,17 @@ import bookmark from "../../../assets/bookmark.png";
 // import required modules
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { FaCircleChevronLeft, FaCircleChevronRight } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
 
 const StepsCarousel = () => {
+  const { t } = useTranslation();
+
   return (
     <section className="px-3 py-8 bg-white">
       <div className="container-page relative">
         <div className="my-12">
           <h2 className="font-mono tracking-wider text-4xl text-primary-color text-center uppercase font-semibold ">
-            Ways to use your QR code
+            {t("Ways to use your QR code")}
           </h2>
           <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
         </div>

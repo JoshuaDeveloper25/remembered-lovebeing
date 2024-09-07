@@ -87,7 +87,7 @@ const UploadUserProfileImage = () => {
 
   return (
     <>
-      {/* Button to Open Cover Modal */}
+      {/* Button to Open User Profile Modal */}
       <button
         onClick={() => setOpenModalProfile(true)}
         className="p-2.5 rounded-full text-white bg-yellow-500/85"
@@ -96,13 +96,14 @@ const UploadUserProfileImage = () => {
         <TfiPencilAlt className="size-6" />
       </button>
 
-      {/* Change Cover Image Modal */}
+      {/* Change User Profile Image Modal */}
       <Modal
         titleModal={"Change Profile Image"}
         handleSubmit={handleSubmitProfileImage}
         setOpenModal={setOpenModalProfile}
         openModal={openModalProfile}
         modalForm={true}
+        iconTitle={true}
       >
         <FormUserProfile
           isPending={changeImageProfileMutation?.isPending}

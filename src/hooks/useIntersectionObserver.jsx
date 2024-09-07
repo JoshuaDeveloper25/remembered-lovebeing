@@ -5,13 +5,16 @@ function useIntersectionObserver({
   root = null,
   rootMargin = "0%",
 }) {
-  const [isIntersecting, setIntersecting] = useState(false);
+  const [hasIntersected, setHasIntersected] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIntersecting(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setHasIntersected(true);
+          observer.disconnect(); // Stop observing once the element has intersected
+        }
       },
       { threshold, root, rootMargin }
     );
@@ -27,7 +30,7 @@ function useIntersectionObserver({
     };
   }, [threshold, root, rootMargin]);
 
-  return [ref, isIntersecting];
+  return [ref, hasIntersected];
 }
 
 export default useIntersectionObserver;

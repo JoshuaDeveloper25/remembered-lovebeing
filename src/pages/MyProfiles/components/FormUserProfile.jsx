@@ -6,10 +6,13 @@ const FormUserProfile = ({
   previewCanvasRef,
   setCrop,
   crop,
+  setOpenModalProfile,
 }) => {
   return (
     <ImagesHandleCrop
+      setOpenModalProfile={setOpenModalProfile}
       imgRef={imgRef}
+      onCancel={() => setOpenModalProfile(false)}
       isPending={isPending}
       previewCanvasRef={previewCanvasRef}
       setCrop={setCrop}

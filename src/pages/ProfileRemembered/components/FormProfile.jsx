@@ -6,6 +6,7 @@ const FormProfile = ({
   previewCanvasRef,
   setCrop,
   crop,
+  setOpenModalProfile,
 }) => {
   return (
     <ImagesHandleCrop
@@ -15,6 +16,7 @@ const FormProfile = ({
       setCrop={setCrop}
       crop={crop}
       circle={true}
+      onCancel={() => setOpenModalProfile(false)}
     />
   );
 };

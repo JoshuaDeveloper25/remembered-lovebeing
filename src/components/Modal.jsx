@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createPortal } from "react-dom";
 import { FaFolderOpen } from "react-icons/fa";
 
@@ -11,8 +12,14 @@ const Modal = ({
   modalForm,
   iconTitle = false,
 }) => {
+  const [closing, setClosing] = useState(false);
+
   const handleCloseModal = () => {
-    setOpenModal(false);
+    setClosing(true);
+    setTimeout(() => {
+      setClosing(false);
+      setOpenModal(false);
+    }, 300);
   };
 
   return (
@@ -26,19 +33,19 @@ const Modal = ({
           id="crud-modal"
           tabIndex="-1"
           aria-hidden="true"
-          className={`overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[2000] flex justify-center items-center w-full min-h-full bg-black/50`}
+          className={`overflow-x-hidden fixed top-0 right-0 left-0 z-[2000] flex justify-center items-center w-full min-h-full bg-black/50 overflow-y-hidden`}
         >
           <div
             className={`relative w-full ${
               editableWidth ? editableWidth : "max-w-md"
-            } mx-auto h-full`}
+            } mx-auto h-full animate-slide-up`}
           >
             {/* Modal content */}
             <div
-              className={`relative top-4 bottom-10 rounded-lg shadow bg-white min-h-full overflow-y-auto`}
+              className={`relative top-4 bottom-10 rounded-lg shadow bg-white min-h-full `}
             >
               {/* Modal header */}
-              <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+              <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-300">
                 <h3 className="flex  items-center gap-2 text-lg font-semibold text-fourth-color">
                   {iconTitle ? (
                     <FaFolderOpen className="text-primary-color-light size-7 " />

@@ -279,3 +279,19 @@
   transform: translate(0);
   animation-delay: 0.1s;
 }
+
+/* Open modal animation */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 1s ease-out forwards;
+}

@@ -119,11 +119,11 @@ const FormEditProfile = ({
 
           <div className="flex-1">
             <label>
-              <span className="w-full inline-block text-start font-semibold">
+              <span className="w-full inline-block text-start font-medium">
                 Relationship
               </span>
               <select
-                className="form-input-focus form-input-normal"
+                className=" form-input"
                 placeholder="-- Select --"
                 name="user_relationship"
                 defaultValue={
@@ -178,11 +178,11 @@ const FormEditProfile = ({
 
           <div className="flex-1">
             <label>
-              <span className="w-full inline-block text-start font-semibold">
+              <span className="w-full inline-block text-start font-medium">
                 Cause of Death
               </span>
               <select
-                className="form-input-focus form-input-normal"
+                className=" form-input"
                 placeholder="-- Select --"
                 name="designation"
                 defaultValue={
@@ -293,7 +293,7 @@ const FormEditProfile = ({
               </span>
             </span>
             <input
-              className="form-input-focus form-input-normal"
+              className=" form-input"
               type={"text"}
               name={"slug"}
               required

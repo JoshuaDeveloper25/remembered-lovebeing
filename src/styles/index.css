@@ -27,16 +27,8 @@ body {
     @apply font-[600] text-3xl text-[#31353A];
   }
 
-  .form-input-focus {
-    @apply border-b-2 border-[#eae9e9] rounded outline-0 shadow-[0_0_0_.0rem_rgba(0,0,0,0.4)] px-2 py-1;
-  }
-
-  .form-input-focus:focus {
-    @apply shadow-[0_0_0_.15rem_rgba(10,2,59,.8)];
-  }
-
-  .form-input-normal {
-    @apply animation-fade w-full outline-none block border-b-2 border-primary-color;
+  .form-input {
+    @apply rounded animation-fade px-2 py-2 w-full outline-none block bg-white border-[#b5b6b6] border focus:border-[#949DA6] text-[#2a2d31];
   }
 
   .dashboard-active {
@@ -48,7 +40,7 @@ body {
   }
 
   .btn {
-    @apply w-full py-2 px-4 rounded-lg font-medium cursor-pointer;
+    @apply w-full border py-2 px-8 rounded-lg font-medium cursor-pointer;
   }
 
   .btn-blue {

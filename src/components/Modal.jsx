@@ -46,14 +46,17 @@ const Modal = ({
             >
               {/* Modal header */}
               <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-300">
-                <h3 className="flex  items-center gap-2 text-lg font-semibold text-fourth-color">
-                  {iconTitle ? (
-                    <FaFolderOpen className="text-primary-color-light size-7 " />
-                  ) : (
-                    ""
-                  )}
-                  {titleModal}
-                </h3>
+                <div>
+                  <h3 className="flex  items-center gap-2 text-xl font-semibold text-fourth-color">
+                    {iconTitle ? (
+                      <FaFolderOpen className="text-primary-color-light size-7 " />
+                    ) : (
+                      ""
+                    )}
+                    {titleModal}
+                  </h3>
+                  <div className="block bg-primary-color h-1 w-8"></div>
+                </div>
 
                 <button
                   type="button"

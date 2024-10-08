@@ -119,7 +119,7 @@ const Memorials = () => {
           </label>
 
           <label className="flex items-center gap-3">
-            <span className="font-semibold text-primary-color">
+            <span className="font-medium text-primary-color">
               Cause of Death:
             </span>
             <select

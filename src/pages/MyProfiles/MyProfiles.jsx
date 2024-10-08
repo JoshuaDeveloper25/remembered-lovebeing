@@ -98,7 +98,7 @@ const MyProfiles = () => {
             setOpenModal={setOpenModal}
             openModal={openModal}
             modalForm={true}
-            editableWidth={"max-w-xl"}
+            editableWidth={"max-w-[700px] px-8"}
           >
             <FormCreateProfile
               slug={slug}

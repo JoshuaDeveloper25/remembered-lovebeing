@@ -6,7 +6,7 @@ const FormTribute = ({ createTributeMutation }) => {
       <label htmlFor="content">
         <span className="w-full inline-block text-start">Content</span>
         <textarea
-          className="form-input-focus form-input-normal h-24"
+          className=" form-input h-24"
           placeholder={"Description of the tribute."}
           id="content"
           name="content"

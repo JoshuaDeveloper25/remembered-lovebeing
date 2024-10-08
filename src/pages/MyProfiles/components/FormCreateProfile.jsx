@@ -13,6 +13,7 @@ const FormCreateProfile = ({ slug, setSlug, isPending }) => {
               inputType="text"
               inputName="first_name"
               labelClassNameAdd={"mb-0"}
+              inputPlaceholder={"Input First Name"}
               required={true}
             />
           </div>
@@ -23,6 +24,7 @@ const FormCreateProfile = ({ slug, setSlug, isPending }) => {
               inputClassNameAdd={"mb-1"}
               inputType="text"
               inputName="middle_name"
+              inputPlaceholder={"Input Middle Name"}
               labelClassNameAdd={"mb-0"}
             />
           </div>
@@ -34,6 +36,7 @@ const FormCreateProfile = ({ slug, setSlug, isPending }) => {
               inputLabel="Last Name"
               inputClassNameAdd={"mb-1"}
               inputType="text"
+              inputPlaceholder={"Input Last Name"}
               inputName="last_name"
               labelClassNameAdd={"mb-0"}
               required={true}
@@ -42,11 +45,11 @@ const FormCreateProfile = ({ slug, setSlug, isPending }) => {
 
           <div className="flex-1">
             <label>
-              <span className="w-full inline-block text-start font-semibold">
+              <span className="w-full inline-block text-start font-medium">
                 Relationship
               </span>
               <select
-                className="form-input-focus form-input-normal"
+                className="form-input"
                 placeholder="-- Select --"
                 name="user_relationship"
               >
@@ -65,11 +68,11 @@ const FormCreateProfile = ({ slug, setSlug, isPending }) => {
 
         <div className="flex flex-col sm:flex-row items-start gap-6 mb-3">
           <div className="flex-1">
-            <h3 className="w-full inline-block text-start font-semibold">
+            <h3 className="w-full inline-block text-start font-medium">
               Gender
             </h3>
 
-            <div className="flex mt-[.36rem] gap-5 border-b-2 pb-1 rounded-md border-primary-color">
+            <div className="flex mt-[.36rem] gap-5 pb-1 rounded-md ">
               <label>
                 Male
                 <input
@@ -94,11 +97,11 @@ const FormCreateProfile = ({ slug, setSlug, isPending }) => {
 
           <div className="flex-1">
             <label>
-              <span className="w-full inline-block text-start font-semibold">
+              <span className="w-full inline-block text-start font-medium">
                 Cause of Death
               </span>
               <select
-                className="form-input-focus form-input-normal"
+                className="form-input"
                 placeholder="-- Select --"
                 name="designation"
               >
@@ -113,7 +116,31 @@ const FormCreateProfile = ({ slug, setSlug, isPending }) => {
           </div>
         </div>
 
-        <div>
+        <h3 className="w-full inline-block text-xl text-start font-semibold mb-2.5">
+          Memorial web address:
+        </h3>
+        <label className="flex gap-6 items-center">
+          <span className="w-full inline-block">
+            https://www.remembered.com/
+          </span>
+          <input
+            className="form-input"
+            type={"text"}
+            name={"slug"}
+            value={slug}
+            onChange={(e) => setSlug(e?.target?.value)}
+            placeholder="Example: John Doe"
+          />
+        </label>
+        <p className="font-semibold pt-2">
+          Preview:{" "}
+          <span className="text-primary-color-light font-normal underline">{`  https://www.remembered.com/${slug?.replace(
+            / /g,
+            "-"
+          )}`}</span>
+        </p>
+
+        {/* <div>
           <label>
             <span className="w-full inline-block text-start font-semibold">
               Profile Web Address{" "}
@@ -123,7 +150,7 @@ const FormCreateProfile = ({ slug, setSlug, isPending }) => {
               </span>
             </span>
             <input
-              className="form-input-focus form-input-normal"
+              className=" form-input"
               type={"text"}
               name={"slug"}
               value={slug}
@@ -145,7 +172,7 @@ const FormCreateProfile = ({ slug, setSlug, isPending }) => {
               </span>
             </span>
           </p>
-        </div>
+        </div> */}
       </div>
 
       <ButtonForm

@@ -342,6 +342,7 @@ const ProfileRemembered = () => {
                   editableWidth={"max-w-xl"}
                 >
                   <FormChangeStatus
+                    setChangeStatusModal={setChangeStatusModal}
                     setStatusOptionSelected={setStatusOptionSelected}
                     statusOptionSelected={statusOptionSelected}
                     isPending={changeStatusMutation?.isPending}
@@ -363,6 +364,7 @@ const ProfileRemembered = () => {
           editableWidth={"max-w-xl"}
         >
           <FormEditProfile
+            setEditRememberedProfile={setEditRememberedProfile}
             currentYear={currentYear}
             bornYear={bornYear}
             setBornYear={setBornYear}

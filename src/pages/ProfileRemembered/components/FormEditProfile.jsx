@@ -4,6 +4,7 @@ import ButtonForm from "../../../components/ButtonForm";
 import { useEffect, useState } from "react";
 
 const FormEditProfile = ({
+  setEditRememberedProfile,
   rememberedProfileInfo,
   isPending,
   bornYear,
@@ -72,7 +73,7 @@ const FormEditProfile = ({
 
   return (
     <>
-      <div className="mb-2">
+      <div className="p-4">
         <div className="flex flex-col sm:flex-row gap-6 mb-3">
           <div className="flex-1">
             <InputForm
@@ -200,7 +201,6 @@ const FormEditProfile = ({
           </div>
         </div>
 
-
         <div className="mb-3">
           <div className="flex flex-col md:flex-row gap-4">
             <h4 className="font-semibold">Born:</h4>
@@ -282,7 +282,7 @@ const FormEditProfile = ({
             </select>
           </div>
         </div>
-        
+
         {/* <div>
           <label>
             <span className="w-full inline-block text-start font-semibold">
@@ -313,6 +313,7 @@ const FormEditProfile = ({
       </div>
 
       <ButtonForm
+        setOpenModal={setEditRememberedProfile}
         isPending={isPending}
         buttonClassName={"mt-0"}
         statusOff={"Save changes"}

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { createPortal } from "react-dom";
 import { FaFolderOpen } from "react-icons/fa";
+import { createPortal } from "react-dom";
 
 const Modal = ({
   handleSubmit,
@@ -45,7 +45,7 @@ const Modal = ({
               className={`relative top-4 bottom-10 rounded-lg shadow bg-white min-h-full `}
             >
               {/* Modal header */}
-              <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-300">
+              <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t bg-tertiary-color/15 dark:border-gray-300">
                 <div>
                   <h3 className="flex  items-center gap-2 text-xl font-semibold text-fourth-color">
                     {iconTitle ? (
@@ -89,7 +89,7 @@ const Modal = ({
                 <>
                   <form
                     onSubmit={handleSubmit}
-                    className="p-4 md:p-5 min-h-full"
+                    className="min-h-full"
                   >
                     {children}
                   </form>

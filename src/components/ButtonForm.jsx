@@ -1,6 +1,12 @@
-const ButtonForm = ({ isPending, statusOn, statusOff, buttonClassName }) => {
+const ButtonForm = ({
+  isPending,
+  statusOn,
+  statusOff,
+  buttonClassName,
+  setOpenModal,
+}) => {
   return (
-    <div className="flex justify-between items-center gap-3 mt-4">
+    <div className="flex justify-between items-center gap-3 p-3.5 bg-tertiary-color/15">
       <button
         className={`btn btn-blue ${buttonClassName}`}
         disabled={isPending}
@@ -34,7 +40,13 @@ const ButtonForm = ({ isPending, statusOn, statusOff, buttonClassName }) => {
         )}
       </button>
 
-      <button className="btn border border-red-500 text-red-500">Cancel</button>
+      <button
+        onClick={() => setOpenModal(false)}
+        type="button"
+        className="btn border hover:bg-red-500 hover:text-white animation-fade border-red-500 text-red-500"
+      >
+        Cancel
+      </button>
     </div>
   );
 };

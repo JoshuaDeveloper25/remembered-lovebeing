@@ -90,7 +90,7 @@ const ImagesHandleCrop = ({
   };
 
   return (
-    <div>
+    <div className="p-4 md:p-5">
       {imgRef?.current ? null : (
         <>
           <div className="mb-6">

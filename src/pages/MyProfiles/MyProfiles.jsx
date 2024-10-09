@@ -64,7 +64,7 @@ const MyProfiles = () => {
       designation: e?.target?.designation?.value?.trim(),
       user_relationship: e?.target?.user_relationship?.value?.trim(),
       slug: slug?.replace(/ /g, "-"),
-    }; 
+    };
 
     createProfileMutation?.mutate(profileInfo);
   };
@@ -104,6 +104,7 @@ const MyProfiles = () => {
               slug={slug}
               setSlug={setSlug}
               isPending={createProfileMutation?.isPending}
+              setOpenModal={setOpenModal}
             />
           </Modal>
         </article>

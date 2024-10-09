@@ -2,6 +2,7 @@ import ButtonForm from "../../../components/ButtonForm";
 import { useEffect } from "react";
 
 const FormChangeStatus = ({
+  setChangeStatusModal,
   statusOptionSelected,
   setStatusOptionSelected,
   isPending,
@@ -13,7 +14,7 @@ const FormChangeStatus = ({
 
   return (
     <>
-      <div>
+      <div className="p-4">
         <div
           className={`${
             statusOptionSelected === "public"
@@ -72,6 +73,7 @@ const FormChangeStatus = ({
       </div>
 
       <ButtonForm
+        setOpenModal={setChangeStatusModal}
         isPending={isPending}
         buttonClassName={"mt-0"}
         statusOff={"Save changes"}

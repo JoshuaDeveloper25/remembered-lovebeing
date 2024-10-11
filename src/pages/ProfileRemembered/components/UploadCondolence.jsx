@@ -62,7 +62,10 @@ const UploadCondolence = ({ isOwner, idRemembered }) => {
         openModal={openModalCreateCondolence}
         modalForm={true}
       >
-        <FormCondolence createCondolenceMutation={createCondolenceMutation} />
+        <FormCondolence
+          setOpenModalCreateCondolence={setOpenModalCreateCondolence}
+          createCondolenceMutation={createCondolenceMutation}
+        />
       </Modal>
     </>
   );

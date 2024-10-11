@@ -76,6 +76,7 @@ const UploadPost = ({
         modalForm={true}
       >
         <FormPost
+          setOpenModalCreatePost={setOpenModalCreatePost}
           galleryImages={galleryImages}
           tempSelectedGalleryImageInfo={tempSelectedGalleryImageInfo}
           setTempSelectedGalleryImageInfo={setTempSelectedGalleryImageInfo}

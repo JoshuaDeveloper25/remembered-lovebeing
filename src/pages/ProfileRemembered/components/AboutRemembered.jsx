@@ -278,6 +278,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
               editableWidth={"max-w-2xl"}
             >
               <FormLifeJourney
+                setOpenLifeJourneyModal={setOpenLifeJourneyModal}
                 rememberedProfileInfo={rememberedProfileInfo}
                 errorBornValidation={errorBornValidation}
                 errorDeathValidation={errorDeathValidation}

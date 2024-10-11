@@ -98,6 +98,7 @@ const UploadGalleryImage = ({
         iconTitle={true}
       >
         <FormGalleryImages
+          setOpenModalGallery={setOpenModalGallery}
           isPending={addGalleryImageMutation?.isPending}
           setImages={setImages}
           images={images}

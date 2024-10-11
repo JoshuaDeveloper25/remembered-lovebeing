@@ -62,7 +62,10 @@ const UploadTribute = ({ idRemembered }) => {
         openModal={openModalCreateTribute}
         modalForm={true}
       >
-        <FormTribute createTributeMutation={createTributeMutation} />
+        <FormTribute
+          setOpenModalCreateTribute={setOpenModalCreateTribute}
+          createTributeMutation={createTributeMutation}
+        />
       </Modal>
     </>
   );

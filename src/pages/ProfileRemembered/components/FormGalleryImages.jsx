@@ -1,12 +1,20 @@
 import ImagesHandle from "../../../components/ImagesHandle";
 import ButtonForm from "../../../components/ButtonForm";
 
-const FormGalleryImages = ({ isPending, setImages, images }) => {
+const FormGalleryImages = ({
+  setOpenModalGallery,
+  isPending,
+  setImages,
+  images,
+}) => {
   return (
     <>
-      <ImagesHandle setImages={setImages} images={images} />
+      <div className="p-4">
+        <ImagesHandle setImages={setImages} images={images} />
+      </div>
 
       <ButtonForm
+        setOpenModal={setOpenModalGallery}
         isPending={isPending}
         statusOn={"Uploading..."}
         statusOff={"Upload"}

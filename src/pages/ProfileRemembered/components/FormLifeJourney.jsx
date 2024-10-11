@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const FormLifeJourney = ({
+  setOpenLifeJourneyModal,
   errorCountryDeath,
   errorCountryBorn,
   errorDeathValidation,
@@ -327,6 +328,7 @@ const FormLifeJourney = ({
 
       {/* Submit changes */}
       <ButtonForm
+        setOpenModal={setOpenLifeJourneyModal}
         isPending={isPending}
         statusOff={"Save Changes"}
         statusOn={"Saving..."}

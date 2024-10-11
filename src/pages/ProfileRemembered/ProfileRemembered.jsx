@@ -524,6 +524,7 @@ const ProfileRemembered = () => {
                   editableWidth={"max-w-xl"}
                 >
                   <FormChangeStatus
+                    setChangeStatusModal={setChangeStatusModal}
                     setStatusOptionSelected={setStatusOptionSelected}
                     statusOptionSelected={statusOptionSelected}
                     isPending={changeStatusMutation?.isPending}

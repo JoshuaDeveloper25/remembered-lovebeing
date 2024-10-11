@@ -95,7 +95,9 @@ const Post = ({ isOwner, post, rememberName }) => {
           />
 
           <div>
-            <h3 className="font-medium text-base capitalize">{post?.owner?.name}</h3>
+            <h3 className="font-medium text-base capitalize">
+              {post?.owner?.name}
+            </h3>
             <h4 className="text-xs text-tertiary-color">
               Created: {formatDate(post?.created_at)}
             </h4>
@@ -301,7 +303,11 @@ const EditPostLogic = ({ setOpenModalEditPost, openModalEditPost, post }) => {
         openModal={openModalEditPost}
         modalForm={true}
       >
-        <EditPostForm post={post} editPostMutation={editPostMutation} />
+        <EditPostForm
+          setOpenModalEditPost={setOpenModalEditPost}
+          post={post}
+          editPostMutation={editPostMutation}
+        />
       </Modal>
     </>
   );

@@ -15,11 +15,8 @@ const Modal = ({
   const [closing, setClosing] = useState(false);
 
   const handleCloseModal = () => {
-    setClosing(true);
-    setTimeout(() => {
-      setClosing(false);
-      setOpenModal(false);
-    }, 300);
+    setClosing(false);
+    setOpenModal(false);
   };
 
   return (
@@ -87,10 +84,7 @@ const Modal = ({
                 <div className="p-4 md:p-5">{children}</div>
               ) : (
                 <>
-                  <form
-                    onSubmit={handleSubmit}
-                    className="min-h-full"
-                  >
+                  <form onSubmit={handleSubmit} className="min-h-full">
                     {children}
                   </form>
                 </>

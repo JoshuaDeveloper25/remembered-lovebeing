@@ -1,13 +1,12 @@
 import FormCreateProfile from "./FormCreateProfile";
-import { useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Modal from "../../../components/Modal";
 import Profile from "./Profile";
 import axios from "axios";
+import { useState } from "react";
 
 const Profiles = ({
   handleSubmit,
-  setOpenModal,
-  openModal,
   profiles,
   isPending,
   slug,
@@ -15,7 +14,9 @@ const Profiles = ({
   setStatusPlan,
   isPendingCreateProfile,
 }) => {
-  const getPremiumProfilesRemaining = useMutation({
+  const [openPremiumModal, setOpenPremiumModal] = useState(false);
+
+  const getPremiumProfilesRemaining = useQuery({
     queryKey: ["premiumProfilesRemaining"],
     queryFn: async () =>
       await axios.get(
@@ -31,7 +32,7 @@ const Profiles = ({
   );
 
   const handleCreatePremiumProfile = () => {
-    setOpenModal(true);
+    setOpenPremiumModal(true);
     setStatusPlan(true);
   };
 
@@ -72,8 +73,8 @@ const Profiles = ({
               <Modal
                 titleModal={"New Profile"}
                 handleSubmit={handleSubmit}
-                setOpenModal={setOpenModal}
-                openModal={openModal}
+                setOpenModal={setOpenPremiumModal}
+                openModal={openPremiumModal}
                 modalForm={true}
                 editableWidth={"max-w-xl"}
               >
@@ -81,6 +82,7 @@ const Profiles = ({
                   slug={slug}
                   setSlug={setSlug}
                   isPending={isPendingCreateProfile}
+                  setOpenPremiumModal={setOpenPremiumModal}
                 />
               </Modal>
             </div>

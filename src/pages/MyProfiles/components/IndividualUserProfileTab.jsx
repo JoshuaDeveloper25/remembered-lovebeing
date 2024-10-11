@@ -7,8 +7,6 @@ import TabLink from "./TabLink";
 
 const IndividualUserProfileTab = ({
   handleSubmit,
-  setOpenModal,
-  openModal,
   slug,
   setSlug,
   isPendingCreateProfile,
@@ -54,8 +52,6 @@ const IndividualUserProfileTab = ({
             <TabLinkContent openTab={openTab} numberTab={1} idTab={"#profiles"}>
               <Profiles
                 handleSubmit={handleSubmit}
-                setOpenModal={setOpenModal}
-                openModal={openModal}
                 profiles={profiles}
                 isPending={isPending}
                 slug={slug}

@@ -11,7 +11,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const MyProfiles = () => {
-  const [openModal, setOpenModal] = useState(false);
+  const [openFreeModal, setOpenFreeModal] = useState(false);
   const [statusPlan, setStatusPlan] = useState("");
   const [slug, setSlug] = useState("");
   const queryClient = useQueryClient();
@@ -36,7 +36,7 @@ const MyProfiles = () => {
       toast.success("Successfully profile created!");
       queryClient.invalidateQueries({ queryKey: ["ownProfiles"] });
       queryClient.invalidateQueries({ queryKey: ["premiumProfilesRemaining"] });
-      setOpenModal(false);
+      setOpenFreeModal(false);
       setSlug("");
     },
     onError: (err) => {
@@ -70,7 +70,7 @@ const MyProfiles = () => {
   };
 
   const handleCreateFreeProfile = () => {
-    setOpenModal(!openModal);
+    setOpenFreeModal(true);
     setStatusPlan(false);
   };
 
@@ -95,8 +95,8 @@ const MyProfiles = () => {
           <Modal
             titleModal={"New Profile"}
             handleSubmit={handleSubmit}
-            setOpenModal={setOpenModal}
-            openModal={openModal}
+            setOpenModal={setOpenFreeModal}
+            openModal={openFreeModal}
             modalForm={true}
             editableWidth={"max-w-[700px] px-8"}
           >
@@ -104,7 +104,7 @@ const MyProfiles = () => {
               slug={slug}
               setSlug={setSlug}
               isPending={createProfileMutation?.isPending}
-              setOpenModal={setOpenModal}
+              setOpenFreeModal={setOpenFreeModal}
             />
           </Modal>
         </article>
@@ -120,8 +120,6 @@ const MyProfiles = () => {
               profiles={data?.data}
               isPending={isPending}
               handleSubmit={handleSubmit}
-              setOpenModal={setOpenModal}
-              openModal={openModal}
               slug={slug}
               setSlug={setSlug}
               isPendingCreateProfile={createProfileMutation?.isPending}

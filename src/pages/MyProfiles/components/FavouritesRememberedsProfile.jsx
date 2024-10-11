@@ -1,4 +1,4 @@
-import Profile from "./Profile";
+import FavouriteProfile from "./FavouriteProfile";
 
 const FavouritesRememberedsProfile = ({
   isPendingFavouritesProfiles,
@@ -11,7 +11,7 @@ const FavouritesRememberedsProfile = ({
         <article className="grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-7 col-span-3">
           {favouritesProfiles?.map((item) => {
             return (
-              <Profile
+              <FavouriteProfile
                 isPending={isPendingFavouritesProfiles}
                 item={item}
                 key={item?.id}

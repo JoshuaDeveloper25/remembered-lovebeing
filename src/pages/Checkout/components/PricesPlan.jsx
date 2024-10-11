@@ -19,6 +19,7 @@ const PricesPlan = ({ packageName }) => {
     onSuccess: (res) => {
       toast.success("Successfully payment realized!");
       queryClient.invalidateQueries({ queryKey: ["premiumProfilesRemaining"] });
+      console.log(res);
     },
     onError: (err) => {
       console.log(err);

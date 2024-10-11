@@ -3,6 +3,7 @@ import ButtonForm from "../../../components/ButtonForm";
 import { useState, useEffect } from "react";
 
 const FormLifeTime = ({
+  setOpenLifeTimeModal,
   bornYear,
   setBornYear,
   bornMonth,
@@ -50,87 +51,90 @@ const FormLifeTime = ({
 
   return (
     <>
-      <div className="flex flex-col md:flex-row gap-4">
-        <h4>Born:</h4>
+      <div className="p-4">
+        <div className="flex flex-col md:flex-row gap-4">
+          <h4>Born:</h4>
 
-        <select
-          className="border border-tertiary-color rounded pe-4"
-          value={bornYear}
-          onChange={(e) => setBornYear(parseInt(e.target.value))}
-        >
-          {years.map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </select>
+          <select
+            className="border border-tertiary-color rounded pe-4"
+            value={bornYear}
+            onChange={(e) => setBornYear(parseInt(e.target.value))}
+          >
+            {years.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
 
-        <select
-          className="border border-tertiary-color rounded pe-4"
-          value={bornMonth}
-          onChange={(e) => setBornMonth(e.target.value)}
-        >
-          {months.map((month) => (
-            <option key={month} value={month}>
-              {month}
-            </option>
-          ))}
-        </select>
+          <select
+            className="border border-tertiary-color rounded pe-4"
+            value={bornMonth}
+            onChange={(e) => setBornMonth(e.target.value)}
+          >
+            {months.map((month) => (
+              <option key={month} value={month}>
+                {month}
+              </option>
+            ))}
+          </select>
 
-        <select
-          className="border border-tertiary-color rounded pe-4"
-          value={bornDay}
-          onChange={(e) => setBornDay(parseInt(e.target.value))}
-        >
-          {bornDays.map((day) => (
-            <option key={day} value={day}>
-              {day}
-            </option>
-          ))}
-        </select>
-      </div>
+          <select
+            className="border border-tertiary-color rounded pe-4"
+            value={bornDay}
+            onChange={(e) => setBornDay(parseInt(e.target.value))}
+          >
+            {bornDays.map((day) => (
+              <option key={day} value={day}>
+                {day}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div className="flex flex-col md:flex-row gap-4 mt-4">
-        <h4>Passed Away:</h4>
+        <div className="flex flex-col md:flex-row gap-4 mt-4">
+          <h4>Passed Away:</h4>
 
-        <select
-          className="border border-tertiary-color rounded pe-4"
-          value={passedYear}
-          onChange={(e) => setPassedYear(parseInt(e.target.value))}
-        >
-          {years.map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </select>
+          <select
+            className="border border-tertiary-color rounded pe-4"
+            value={passedYear}
+            onChange={(e) => setPassedYear(parseInt(e.target.value))}
+          >
+            {years.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
 
-        <select
-          className="border border-tertiary-color rounded pe-4"
-          value={passedMonth}
-          onChange={(e) => setPassedMonth(e.target.value)}
-        >
-          {months.map((month) => (
-            <option key={month} value={month}>
-              {month}
-            </option>
-          ))}
-        </select>
+          <select
+            className="border border-tertiary-color rounded pe-4"
+            value={passedMonth}
+            onChange={(e) => setPassedMonth(e.target.value)}
+          >
+            {months.map((month) => (
+              <option key={month} value={month}>
+                {month}
+              </option>
+            ))}
+          </select>
 
-        <select
-          className="border border-tertiary-color rounded pe-4"
-          value={passedDay}
-          onChange={(e) => setPassedDay(parseInt(e.target.value))}
-        >
-          {passedDays.map((day) => (
-            <option key={day} value={day}>
-              {day}
-            </option>
-          ))}
-        </select>
+          <select
+            className="border border-tertiary-color rounded pe-4"
+            value={passedDay}
+            onChange={(e) => setPassedDay(parseInt(e.target.value))}
+          >
+            {passedDays.map((day) => (
+              <option key={day} value={day}>
+                {day}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <ButtonForm
+        setOpenModal={setOpenLifeTimeModal}
         isPending={isPending}
         statusOff={"Add"}
         statusOn={"Adding..."}

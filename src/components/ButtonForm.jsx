@@ -3,12 +3,26 @@ const ButtonForm = ({
   statusOn,
   statusOff,
   buttonClassName,
-  setOpenModal,
+  setOpenModal = () => {},
+  setOpenModalAlt = () => {},
 }) => {
+  const closeModal = () => {
+    setOpenModalAlt(false);
+    setOpenModal(false);
+  };
+
   return (
-    <div className="flex justify-between items-center gap-3 p-3.5 bg-tertiary-color/15">
+    <div className="flex justify-end items-center gap-3 p-3.5 bg-tertiary-color/15">
       <button
-        className={`btn btn-blue ${buttonClassName}`}
+        onClick={closeModal}
+        type="button"
+        className="btn w-fit border hover:bg-red-500 hover:text-white animation-fade border-red-500 text-red-500"
+      >
+        Cancel
+      </button>
+
+      <button
+        className={`btn border border-primary-color hover:bg-primary-color hover:text-white text-primary-color animation-fade w-fit ${buttonClassName}`}
         disabled={isPending}
         type="submit"
       >
@@ -38,14 +52,6 @@ const ButtonForm = ({
         ) : (
           statusOff
         )}
-      </button>
-
-      <button
-        onClick={() => setOpenModal(false)}
-        type="button"
-        className="btn border hover:bg-red-500 hover:text-white animation-fade border-red-500 text-red-500"
-      >
-        Cancel
       </button>
     </div>
   );

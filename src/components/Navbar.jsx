@@ -11,14 +11,14 @@ import usaFlag from "../assets/usa-flag.webp";
 import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
-  const { t, i18n } = useTranslation(); // Hook para traducciones
+  const { t, i18n } = useTranslation(); // Hook for translations
   const { setUserInfo, userInfo } = useContext(AppContext);
   const [openDropDown, setOpenDropDown] = useState(false);
   const [language, setLanguage] = useState("en");
 
   const handleChange = (lang) => {
     setLanguage(lang);
-    i18n.changeLanguage(lang); // Cambiar el idioma
+    i18n.changeLanguage(lang); // change the language
   };
 
   const handleLogOut = () => {
@@ -89,8 +89,12 @@ const Navbar = () => {
                     onChange={(e) => handleChange(e.target.value)}
                     className="absolute inset-0 opacity-0 cursor-pointer w-full h-full bg-gray-100 font-sans p-3"
                   >
-                    <option value="en" className="font-medium tracking-widest">English</option>
-                    <option value="es" className="font-medium tracking-widest">Español</option>
+                    <option value="en" className="font-medium tracking-widest">
+                      English
+                    </option>
+                    <option value="es" className="font-medium tracking-widest">
+                      Español
+                    </option>
                   </select>
                 </div>
               </div>
@@ -104,7 +108,14 @@ const Navbar = () => {
                   onClick={() => setOpenDropDown(!openDropDown)}
                   type="button"
                 >
-                  <LiaCrossSolid size={28} className="text-white-500" />
+                  <img
+                    className="w-12 object-cover mx-auto rounded-full shadow-lg"
+                    src={
+                      userInfo?.profile_image
+                        ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
+                        : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                    }
+                  />
                 </button>
 
                 {openDropDown && (

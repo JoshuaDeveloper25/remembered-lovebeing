@@ -2,7 +2,13 @@ import { InputForm } from "../../../components/InputForm";
 import ButtonForm from "../../../components/ButtonForm";
 import { useEffect, useState } from "react";
 
-const FormCreateProfile = ({ slug, setSlug, isPending, setOpenModal }) => {
+const FormCreateProfile = ({
+  slug,
+  setSlug,
+  isPending,
+  setOpenFreeModal,
+  setOpenPremiumModal,
+}) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const splittedLastName = lastName.split(" ");
@@ -126,6 +132,7 @@ const FormCreateProfile = ({ slug, setSlug, isPending, setOpenModal }) => {
                   name="designation"
                 >
                   <option value="">-- Select --</option>
+                  <option value="not_to_say">Prefer not to say</option>
                   <option value="covid19_victim">COVID-19 victim</option>
                   <option value="substance_victim">
                     Substance abuse victim
@@ -139,7 +146,7 @@ const FormCreateProfile = ({ slug, setSlug, isPending, setOpenModal }) => {
           </div>
         </div>
 
-        <div className="bg-green-700 text-white p-4 md:p-5">
+        <div className="bg-green-700 text-white p-4 md:p-5 mb-7">
           <h3 className="w-full inline-block text-xl text-start font-semibold mb-2.5">
             Memorial web address:
           </h3>
@@ -156,7 +163,7 @@ const FormCreateProfile = ({ slug, setSlug, isPending, setOpenModal }) => {
           </label>
           <p className="font-semibold pt-2">
             Preview:{" "}
-            <span className="text-primary-color-light font-normal underline">{`  https://www.remembered.com/${slug?.replace(
+            <span className="text-primary-color-light/75 font-medium underline">{`  https://www.remembered.com/${slug?.replace(
               / /g,
               "-"
             )}`}</span>
@@ -203,7 +210,8 @@ const FormCreateProfile = ({ slug, setSlug, isPending, setOpenModal }) => {
         statusOff={"Add"}
         statusOn={"Adding..."}
         buttonClassName={"mt-0"}
-        setOpenModal={setOpenModal}
+        setOpenModal={setOpenFreeModal}
+        setOpenModalAlt={setOpenPremiumModal}
       />
     </>
   );

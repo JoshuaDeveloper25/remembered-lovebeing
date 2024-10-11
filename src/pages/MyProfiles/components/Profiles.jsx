@@ -8,14 +8,14 @@ import { useState } from "react";
 const Profiles = ({
   handleSubmit,
   profiles,
+  setOpenPremiumModal,
+  openPremiumModal,
   isPending,
   slug,
   setSlug,
   setStatusPlan,
   isPendingCreateProfile,
 }) => {
-  const [openPremiumModal, setOpenPremiumModal] = useState(false);
-
   const getPremiumProfilesRemaining = useQuery({
     queryKey: ["premiumProfilesRemaining"],
     queryFn: async () =>

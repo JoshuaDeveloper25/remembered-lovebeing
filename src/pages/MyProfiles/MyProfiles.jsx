@@ -11,6 +11,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const MyProfiles = () => {
+  const [openPremiumModal, setOpenPremiumModal] = useState(false);
   const [openFreeModal, setOpenFreeModal] = useState(false);
   const [statusPlan, setStatusPlan] = useState("");
   const [slug, setSlug] = useState("");
@@ -37,6 +38,7 @@ const MyProfiles = () => {
       queryClient.invalidateQueries({ queryKey: ["ownProfiles"] });
       queryClient.invalidateQueries({ queryKey: ["premiumProfilesRemaining"] });
       setOpenFreeModal(false);
+      setOpenPremiumModal(false);
       setSlug("");
     },
     onError: (err) => {
@@ -125,6 +127,8 @@ const MyProfiles = () => {
               isPendingCreateProfile={createProfileMutation?.isPending}
               setStatusPlan={setStatusPlan}
               statusPlan={statusPlan}
+              setOpenPremiumModal={setOpenPremiumModal}
+              openPremiumModal={openPremiumModal}
               isPendingFavouritesProfiles={
                 favouritesRememberedsQuery?.isPending
               }

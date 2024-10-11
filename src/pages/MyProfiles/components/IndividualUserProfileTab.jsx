@@ -16,6 +16,8 @@ const IndividualUserProfileTab = ({
   statusPlan,
   favouritesProfiles,
   isPendingFavouritesProfiles,
+  setOpenPremiumModal,
+  openPremiumModal,
 }) => {
   const [openTab, setOpenTab] = useState(1);
 
@@ -59,6 +61,8 @@ const IndividualUserProfileTab = ({
                 isPendingCreateProfile={isPendingCreateProfile}
                 setStatusPlan={setStatusPlan}
                 statusPlan={statusPlan}
+                setOpenPremiumModal={setOpenPremiumModal}
+                openPremiumModal={openPremiumModal}
               />
             </TabLinkContent>
 

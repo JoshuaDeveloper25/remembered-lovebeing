@@ -14,7 +14,11 @@ const FormCreateProfile = ({
   const splittedLastName = lastName.split(" ");
 
   useEffect(() => {
-    setSlug(firstName + (lastName !== "" ? "-" : "") + splittedLastName[0]);
+    setSlug(
+      firstName?.toLowerCase() +
+        (lastName !== "" ? "-" : "") +
+        splittedLastName[0]?.toLowerCase()
+    );
   }, [firstName, lastName]);
 
   const handleFirstName = (e) => {

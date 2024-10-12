@@ -71,7 +71,7 @@ const Profiles = ({
               </button>
 
               <Modal
-                titleModal={"New Profile"}
+                titleModal={"New Profile (Premium)"}
                 handleSubmit={handleSubmit}
                 setOpenModal={setOpenPremiumModal}
                 openModal={openPremiumModal}

@@ -464,7 +464,7 @@ const ProfileRemembered = () => {
                 </span>
               </p>
 
-              {!data?.data?.is_owner || userInfo?.access_token && (
+              {!data?.data?.is_owner && userInfo?.access_token && (
                 <FollowRemember
                   idRemembered={data?.data?.remembered_profile?.id}
                 />

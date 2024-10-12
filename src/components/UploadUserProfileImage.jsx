@@ -90,10 +90,10 @@ const UploadUserProfileImage = () => {
       {/* Button to Open User Profile Modal */}
       <button
         onClick={() => setOpenModalProfile(true)}
-        className="p-2.5 rounded-full text-white bg-yellow-500/85"
+        className="p-2.5 rounded-full text-white bg-blue-500/85"
         type="button"
       >
-        <TfiPencilAlt className="size-6" />
+        <FaCameraRetro className="size-5" />
       </button>
 
       {/* Change User Profile Image Modal */}

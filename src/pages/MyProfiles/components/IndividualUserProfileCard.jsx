@@ -30,7 +30,7 @@ const IndividualUserProfileCard = () => {
           }
         />
         {/* {!data?.data?.is_owner ? null : ( */}
-        <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[100] cursor-pointer">
+        <div className="absolute -bottom-3 left-[55%] z-[100] cursor-pointer">
           <UploadUserProfileImage />
         </div>
         {/* )} */}

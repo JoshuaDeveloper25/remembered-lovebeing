@@ -8,7 +8,7 @@ const FavouritesRememberedsProfile = ({
   return (
     <section>
       {favouritesProfiles?.length !== 0 ? (
-        <article className="grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-7 col-span-3">
+        <article className="grid sm:grid-cols-2 grid-cols-1 gap-3 col-span-3">
           {favouritesProfiles?.map((item) => {
             return (
               <FavouriteProfile

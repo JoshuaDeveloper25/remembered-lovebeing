@@ -20,7 +20,7 @@ function formatDateJourney(inputDate) {
 
   const [year, month, day] = inputDate.split("-");
 
-  // conver the month to name of it and set the index
+  // --> conver the month to name of it and set the index
   const monthName = months[parseInt(month) - 1];
 
   // obtain the correct sufix of the day

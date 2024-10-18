@@ -574,6 +574,19 @@ const ProfileRemembered = () => {
                 enableCountTab={false}
               />
 
+              {/* Media */}
+              <TabLink
+                setOpenTab={setOpenTab}
+                textTab={"Media"}
+                linkTab={"#media"}
+                // iconTab={<FaCross className="text-primary-color" />}
+                openTab={openTab}
+                numberTab={3}
+                countTab={
+                  data?.data?.remembered_profile?.gallery_images?.length
+                }
+              />
+              
               {/* Tributes */}
               <TabLink
                 setOpenTab={setOpenTab}
@@ -594,19 +607,6 @@ const ProfileRemembered = () => {
                 openTab={openTab}
                 numberTab={4}
                 countTab={data?.data?.remembered_profile?.condolences?.length}
-              />
-
-              {/* Media */}
-              <TabLink
-                setOpenTab={setOpenTab}
-                textTab={"Media"}
-                linkTab={"#media"}
-                // iconTab={<FaCross className="text-primary-color" />}
-                openTab={openTab}
-                numberTab={3}
-                countTab={
-                  data?.data?.remembered_profile?.gallery_images?.length
-                }
               />
 
               {/* Posts */}

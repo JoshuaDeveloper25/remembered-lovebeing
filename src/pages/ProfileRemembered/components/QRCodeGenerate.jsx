@@ -1,14 +1,15 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Link, useLocation, useParams } from "react-router-dom";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import base64ToFile from "../../../utils/base64ToFile";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { MdWorkspacePremium } from "react-icons/md";
+import { IoIosWarning } from "react-icons/io";
 import { QRCodeCanvas } from "qrcode.react";
 import { FaPlus } from "react-icons/fa6";
 import { useState, useRef } from "react";
 import { toast } from "react-toastify";
+import { saveAs } from "file-saver";
 import axios from "axios";
-import { MdWorkspacePremium } from "react-icons/md";
-import { IoIosWarning } from "react-icons/io";
 
 const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
   const [generatedCode, setGeneratedCode] = useState("");
@@ -35,6 +36,13 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
       toast.error(getFastApiErrors(err));
     },
   });
+
+  const handleDownloadQrCodeImage = () => {
+    saveAs(
+      `${qrImages?.cloud_front_domain}/${qrImages?.aws_file_name}`,
+      "qr-code.png"
+    );
+  };
 
   const handleGenerateQRCode = () => {
     setGeneratedCode(`${location?.pathname}`);
@@ -134,7 +142,11 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
             className="border-2 border-gray-100 shadow-lg mx-auto"
           />
           <div className="text-center mt-3">
-            <button type="button" className="btn btn-blue w-auto text-center">
+            <button
+              onClick={handleDownloadQrCodeImage}
+              type="button"
+              className="btn btn-blue w-auto text-center"
+            >
               Download
             </button>
           </div>

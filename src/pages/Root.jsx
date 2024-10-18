@@ -12,7 +12,7 @@ const Root = () => {
       </main>
 
       <footer className="bg-white text-black text-center py-8">FOOTER - TODOS LOS DERECHOS RESERVADOS</footer>
-      <ScrollRestoration />
+      {/* <ScrollRestoration /> */}
     </section>
   );
 };

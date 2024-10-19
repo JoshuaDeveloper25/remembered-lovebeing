@@ -6,6 +6,7 @@ const ButtonForm = ({
   setOpenModal = () => {},
   setOpenModalAlt = () => {},
 }) => {
+  // Close modal func
   const closeModal = () => {
     setOpenModalAlt(false);
     setOpenModal(false);

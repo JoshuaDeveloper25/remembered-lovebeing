@@ -10,7 +10,7 @@ import React from "react";
 
 const ImagesHandle = ({ setImages, images }) => {
   const onChange = async (imageList, addUpdateIndex) => {
-    // Redimention images before the state
+    // Redimention images before the state function
     const resizedImageList = await Promise.all(
       imageList.map(async (image) => {
         const resizedFile = await uploadResizedImage(image.file, 700, 700, 85);

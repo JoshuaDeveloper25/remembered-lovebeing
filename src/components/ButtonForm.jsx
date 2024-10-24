@@ -3,6 +3,7 @@ const ButtonForm = ({
   statusOn,
   statusOff,
   buttonClassName,
+  setClearCache = () => {},
   setOpenModal = () => {},
   setOpenModalAlt = () => {},
 }) => {
@@ -10,6 +11,7 @@ const ButtonForm = ({
   const closeModal = () => {
     setOpenModalAlt(false);
     setOpenModal(false);
+    setClearCache([]);
   };
 
   return (

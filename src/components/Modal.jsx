@@ -11,12 +11,14 @@ const Modal = ({
   editableWidth,
   modalForm,
   iconTitle = false,
+  setClearCache = () => {},
 }) => {
   const [closing, setClosing] = useState(false);
 
   const handleCloseModal = () => {
     setClosing(false);
     setOpenModal(false);
+    setClearCache([]);
   };
 
   return (

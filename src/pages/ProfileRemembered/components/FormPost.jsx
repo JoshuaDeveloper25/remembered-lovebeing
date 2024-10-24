@@ -6,6 +6,7 @@ import { useState } from "react";
 import { BiImageAdd } from "react-icons/bi";
 
 const FormPost = ({
+  error,
   setOpenModalCreatePost,
   galleryImages,
   tempSelectedGalleryImageInfo,
@@ -76,7 +77,9 @@ const FormPost = ({
             <>
               <h2 className="text-center text-base mb-3 bg-primary-color-light text-white font-medium rounded py-1.5 px-1 w-fit">
                 Selected Media{" "}
-                <span className="font-bold">({tempSelectedGalleryImageInfo?.length})</span>
+                <span className="font-bold">
+                  ({tempSelectedGalleryImageInfo?.length})
+                </span>
               </h2>
 
               <div className="grid border rounded py-3 min-[300px]:grid-cols-2 min-[450px]:grid-cols-3 grid-cols-1 place-items-center place-content-centers justify-center items-center gap-4">
@@ -152,9 +155,16 @@ const FormPost = ({
             </li>
           ))}
         </ul>
+
+        {error.length > 0 ? (
+          <h2 className="mt-3 text-center border border-red-500 text-red-500 rounded px-3 py-2 font-medium animate-pulse">
+            {error}
+          </h2>
+        ) : null}
       </div>
 
       <ButtonForm
+        setClearCache={setTempSelectedGalleryImageInfo}
         setOpenModal={setOpenModalCreatePost}
         isPending={createPostMutation?.isPending}
         statusOn={"Creating..."}

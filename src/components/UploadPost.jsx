@@ -16,6 +16,7 @@ const UploadPost = ({
   const [tempSelectedGalleryImageInfo, setTempSelectedGalleryImageInfo] =
     useState([]);
   const [openModalCreatePost, setOpenModalCreatePost] = useState(false);
+  const [error, setError] = useState("");
   const queryClient = useQueryClient();
 
   const profileInfo = rememberedProfiles?.data
@@ -36,10 +37,11 @@ const UploadPost = ({
       toast.success("Upload successfull!");
       queryClient.invalidateQueries(["posts"]);
       setOpenModalCreatePost(false);
+      setError("");
     },
     onError: (err) => {
       console.log(getFastApiErrors(err));
-      toast.error(getFastApiErrors(err));
+      // toast.error(getFastApiErrors(err));
     },
   });
 
@@ -53,6 +55,14 @@ const UploadPost = ({
         : 0,
       gallery_image_ids: imagesSelectedIds,
     };
+
+    if (!tempSelectedGalleryImageInfo?.length) {
+      return setError(
+        "Please, upload/add images if you want to create a post."
+      );
+    }
+
+    setError("");
 
     createPostMutation?.mutate(postInfo);
   };
@@ -69,6 +79,7 @@ const UploadPost = ({
 
       {/* Add Post Modal */}
       <Modal
+        setClearCache={setTempSelectedGalleryImageInfo}
         titleModal={"Add Post"}
         handleSubmit={handleSubmitCreatePost}
         setOpenModal={setOpenModalCreatePost}
@@ -76,6 +87,7 @@ const UploadPost = ({
         modalForm={true}
       >
         <FormPost
+          error={error}
           setOpenModalCreatePost={setOpenModalCreatePost}
           galleryImages={galleryImages}
           tempSelectedGalleryImageInfo={tempSelectedGalleryImageInfo}

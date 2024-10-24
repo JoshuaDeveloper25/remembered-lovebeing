@@ -1,6 +1,5 @@
 import AvailablePhotoGallery from "./AvailablePhotoGallery";
 import ButtonForm from "../../../components/ButtonForm";
-import { FcStackOfPhotos } from "react-icons/fc";
 import Modal from "../../../components/Modal";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
@@ -70,18 +69,31 @@ const FormPost = ({
           modalForm={false}
         >
           {!galleryImages?.length ? (
-            <h2 className="text-center text-lg bg-red-400 text-white font-medium rounded py-1.5 px-1 animate-pulse">Please, upload/add a photo from Media tab!</h2>
+            <h2 className="text-center text-lg bg-red-400 text-white font-medium rounded py-1.5 px-1 animate-pulse">
+              Please, upload/add a photo from Media tab!
+            </h2>
           ) : (
-            <div className="grid min-[300px]:grid-cols-2 min-[450px]:grid-cols-3 grid-cols-1 place-items-center place-content-centers justify-center items-center gap-4">
-              {galleryImages?.map((item) => (
-                <AvailablePhotoGallery
-                  setSelectedGalleryImageInfo={setTempSelectedGalleryImageInfo}
-                  selectedGalleryImageInfo={tempSelectedGalleryImageInfo}
-                  item={item}
-                  key={item?.id}
-                />
-              ))}
-            </div>
+            <>
+              <h2 className="text-center text-base mb-3 bg-primary-color-light text-white font-medium rounded py-1.5 px-1 w-fit">
+                Selected Media{" "}
+                <span className="font-bold">({tempSelectedGalleryImageInfo?.length})</span>
+              </h2>
+
+              <div className="grid border rounded py-3 min-[300px]:grid-cols-2 min-[450px]:grid-cols-3 grid-cols-1 place-items-center place-content-centers justify-center items-center gap-4">
+                {galleryImages?.map((item) => {
+                  return (
+                    <AvailablePhotoGallery
+                      setSelectedGalleryImageInfo={
+                        setTempSelectedGalleryImageInfo
+                      }
+                      selectedGalleryImageInfo={tempSelectedGalleryImageInfo}
+                      item={item}
+                      key={item?.id}
+                    />
+                  );
+                })}
+              </div>
+            </>
           )}
 
           <button
@@ -128,13 +140,13 @@ const FormPost = ({
         >
           {selectedGalleryImageInfo?.map((item) => (
             <li key={item?.id} className="h-32 min-w-32 relative">
-              <div className="h-32 min-w-32 relative">
+              <div className="h-32 min-w-32 relative shadow-2xl">
                 <img
                   loading="lazy"
                   decoding="async"
                   src={`${item?.domain}/${item?.awsFile}`}
                   alt="Image"
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover rounded "
                 />
               </div>
             </li>

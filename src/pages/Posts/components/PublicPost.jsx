@@ -111,64 +111,92 @@ const PublicPost = ({ post, rememberName }) => {
             <CarouselCommentPosts commentImages={post?.gallery_images} />
           </article>
 
-          <article
-            className={`relative flex-1 flex flex-col justify-between ${
-              !post?.comments?.length ? "overflow-y-hidden" : "overflow-y-auto"
-            } max-h-[100%]`}
-          >
-            {/* If there's no comments we show a title */}
-            {!post?.comments?.length ? (
-              <div className="flex justify-center items-center h-full">
-                <p className="py-3 px-4 text-center text-xl font-bold">
-                  No comments added yet...{" "}
-                </p>
-              </div>
-            ) : (
-              <div className="px-4">
-                {post?.comments?.map((comment) => {
-                  return (
-                    <SingleComment
-                      userInfo={userInfo}
-                      key={comment?.id}
-                      post={post}
-                      comment={comment}
-                    />
-                  );
-                })}
-              </div>
-            )}
+          <article className={`flex-1 flex flex-col justify-between`}>
+            <div className="px-4 py-4 border-b border-b-tertiary-color/20">
+              <div className="flex items-center gap-3">
+                <img
+                  className="w-16 rounded-full"
+                  src={
+                    post?.remembered?.profile_images
+                      ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
+                      : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                  }
+                />
 
-            {userInfo?.access_token ? (
-              <form
-                className={`self-end w-full sticky bottom-0 bg-transparent z-[9999]`}
-                onSubmit={handleSubmitPublishComment}
-              >
-                <div className="relative">
-                  <textarea
-                    rows="1"
-                    cols="1"
-                    wrap="soft"
-                    name="content"
-                    value={comment}
-                    onChange={(e) => setComment(e?.target?.value)}
-                    placeholder="Comment something..."
-                    className="block ps-4 pe-16 py-2.5 w-full text-sm text-fourth-color bg-gray-50 resize-none outline-none"
-                  ></textarea>
-
-                  {comment === "" ? null : (
-                    <button
-                      disabled={publishCommentPostMutation?.isPending}
-                      type="submit"
-                      className="absolute top-2 right-6 text-sm text-secondary-color hover:text-secondary-color/70 animation-fade font-semibold"
-                    >
-                      {publishCommentPostMutation?.isPending
-                        ? "Sending..."
-                        : "Send"}
-                    </button>
-                  )}
+                <div>
+                  <h3 className="font-medium text-base capitalize">
+                    {post?.owner?.name}
+                  </h3>
+                  <h4 className="text-xs text-tertiary-color">
+                    Created: {formatDate(post?.created_at)}
+                  </h4>
                 </div>
-              </form>
-            ) : null}
+              </div>
+
+              <h3 className="mt-1 text-tertiary-color">{post?.content}</h3>
+            </div>
+            
+            <article
+              className={`relative flex-1 flex flex-col justify-between ${
+                !post?.comments?.length
+                  ? "overflow-y-hidden"
+                  : "overflow-y-auto"
+              } max-h-[100%]`}
+            >
+              {/* If there's no comments we show a title */}
+              {!post?.comments?.length ? (
+                <div className="flex justify-center items-center h-full">
+                  <p className="py-3 px-4 text-center text-xl font-bold">
+                    No comments added yet...{" "}
+                  </p>
+                </div>
+              ) : (
+                <div className="px-4">
+                  {post?.comments?.map((comment) => {
+                    return (
+                      <SingleComment
+                        userInfo={userInfo}
+                        key={comment?.id}
+                        post={post}
+                        comment={comment}
+                      />
+                    );
+                  })}
+                </div>
+              )}
+
+              {userInfo?.access_token ? (
+                <form
+                  className={`self-end w-full sticky bottom-0 bg-transparent z-[9999]`}
+                  onSubmit={handleSubmitPublishComment}
+                >
+                  <div className="relative">
+                    <textarea
+                      rows="1"
+                      cols="1"
+                      wrap="soft"
+                      name="content"
+                      value={comment}
+                      onChange={(e) => setComment(e?.target?.value)}
+                      placeholder="Comment something..."
+                      className="block ps-4 pe-16 py-2.5 w-full text-sm text-fourth-color bg-gray-50 resize-none outline-none"
+                    ></textarea>
+
+                    {comment === "" ? null : (
+                      <button
+                        disabled={publishCommentPostMutation?.isPending}
+                        type="submit"
+                        className="absolute top-2 right-6 text-sm text-secondary-color hover:text-secondary-color/70 animation-fade font-semibold"
+                      >
+                        {publishCommentPostMutation?.isPending
+                          ? "Sending..."
+                          : "Send"}
+                      </button>
+                    )}
+                  </div>
+                </form>
+              ) : null}
+            </article>
           </article>
         </div>
       </PostCommentModal>

@@ -442,7 +442,7 @@ const ProfileRemembered = () => {
                   {getHowLongDied(data?.data?.remembered_profile?.death_date)}{" "}
                 </span> */}
               </p>
-              <div className="flex justify-center gap-5 mt-3 mb-3">
+              {/* <div className="flex justify-center gap-5 mt-3 mb-3">
                 <FaFacebookF
                   size={18}
                   className="hover:text-[#00A2B3] animation-fade cursor-pointer"
@@ -455,7 +455,7 @@ const ProfileRemembered = () => {
                   size={18}
                   className="hover:text-[#00A2B3] animation-fade cursor-pointer"
                 />
-              </div>
+              </div> */}
 
               <p className="text-muted-color text-xs font-bold mt-2 leading-4">
                 Managed by:{" "}

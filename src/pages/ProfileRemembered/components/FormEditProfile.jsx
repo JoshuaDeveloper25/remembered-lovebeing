@@ -151,7 +151,7 @@ const FormEditProfile = ({
               Gender
             </h3>
 
-            <div className="flex mt-[.36rem] gap-5 border-b-2 pb-1 rounded-md border-primary-color">
+            <div className="flex mt-[.36rem] gap-5 pb-1">
               <label>
                 Male
                 <input

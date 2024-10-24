@@ -4,6 +4,7 @@ import { FcStackOfPhotos } from "react-icons/fc";
 import Modal from "../../../components/Modal";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { BiImageAdd } from "react-icons/bi";
 
 const FormPost = ({
   setOpenModalCreatePost,
@@ -48,9 +49,18 @@ const FormPost = ({
         <button
           type="button"
           onClick={handleOpenModal}
-          className="flex items-center mt-5 text-primary-color"
+          className="flex items-center mt-5 text-primary-color group"
         >
-          <FcStackOfPhotos className="inline-block me-1" size={34} /> Photos
+          <span className="flex justify-center items-center bg-gray-200 rounded-full  h-12 w-12">
+            {" "}
+            <BiImageAdd
+              className="rounded-full inline-block"
+              size={26}
+            />{" "}
+          </span>
+          <span className="group-hover:bg-gray-200 group-hover:text-tertiary-color group-hover:font-medium animation-fade rounded py-2 -ms-3.5 px-4">
+            Add photos from your gallery
+          </span>
         </button>
 
         {/* Photos available from gallery modal */}
@@ -110,7 +120,7 @@ const FormPost = ({
         <ul
           className={`${
             selectedGalleryImageInfo.length > 0
-              ? "flex gap-5 overflow-x-auto w-full max-w-lg my-5 py-5"
+              ? "flex gap-5 overflow-x-auto w-full max-w-lg my-5 py-5 border rounded px-5"
               : ""
           } `}
         >

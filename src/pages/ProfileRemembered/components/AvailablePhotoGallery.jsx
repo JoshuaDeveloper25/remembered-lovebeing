@@ -27,7 +27,7 @@ const AvailablePhotoGallery = ({
         infoImageGallery,
       ]);
     }
-    
+
     setSelected(!selected);
   };
 
@@ -41,7 +41,7 @@ const AvailablePhotoGallery = ({
     >
       <img
         src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
-        className="h-36 w-36 object-cover rounded-md"
+        className="h-36 w-36 object-cover rounded-md hover:opacity-80 animation-fade cursor-pointer"
         decoding="async"
         loading="lazy"
       />

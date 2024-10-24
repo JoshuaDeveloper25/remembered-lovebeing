@@ -43,6 +43,7 @@ const FormPost = ({
             placeholder={"Description of the post."}
             id="content"
             name="content"
+            required={true}
           ></textarea>
         </label>
 
@@ -53,10 +54,7 @@ const FormPost = ({
         >
           <span className="flex justify-center items-center bg-gray-200 rounded-full  h-12 w-12">
             {" "}
-            <BiImageAdd
-              className="rounded-full inline-block"
-              size={26}
-            />{" "}
+            <BiImageAdd className="rounded-full inline-block" size={26} />{" "}
           </span>
           <span className="group-hover:bg-gray-200 group-hover:text-tertiary-color group-hover:font-medium animation-fade rounded py-2 -ms-3.5 px-4">
             Add photos from your gallery
@@ -71,20 +69,24 @@ const FormPost = ({
           openModal={openAvailableGalleryImages}
           modalForm={false}
         >
-          <div className="grid min-[300px]:grid-cols-2 min-[450px]:grid-cols-3 grid-cols-1 place-items-center place-content-centers justify-center items-center gap-4">
-            {galleryImages?.map((item) => (
-              <AvailablePhotoGallery
-                setSelectedGalleryImageInfo={setTempSelectedGalleryImageInfo}
-                selectedGalleryImageInfo={tempSelectedGalleryImageInfo}
-                item={item}
-                key={item?.id}
-              />
-            ))}
-          </div>
+          {!galleryImages?.length ? (
+            <h2 className="text-center text-lg bg-red-400 text-white font-medium rounded py-1.5 px-1 animate-pulse">Please, upload/add a photo from Media tab!</h2>
+          ) : (
+            <div className="grid min-[300px]:grid-cols-2 min-[450px]:grid-cols-3 grid-cols-1 place-items-center place-content-centers justify-center items-center gap-4">
+              {galleryImages?.map((item) => (
+                <AvailablePhotoGallery
+                  setSelectedGalleryImageInfo={setTempSelectedGalleryImageInfo}
+                  selectedGalleryImageInfo={tempSelectedGalleryImageInfo}
+                  item={item}
+                  key={item?.id}
+                />
+              ))}
+            </div>
+          )}
 
           <button
-            className="btn btn-blue mt-4"
-            disabled={rememberedProfiles?.isPending}
+            className={`disabled:bg-primary-color/40 disabled:pointer-events-none btn btn-blue mt-4`}
+            disabled={rememberedProfiles?.isPending || !galleryImages?.length}
             onClick={handleSelectedImagesGallery}
             type="button"
           >

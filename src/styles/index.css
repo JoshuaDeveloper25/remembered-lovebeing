@@ -40,11 +40,15 @@ body {
   }
 
   .btn {
-    @apply w-full border py-2 px-8 rounded-lg font-medium cursor-pointer;
+    @apply w-full border py-2 px-8 rounded-lg font-medium cursor-pointer animation-fade;
   }
 
   .btn-blue {
     @apply bg-primary-color text-white;
+  }
+
+  .btn-blue:hover {
+    @apply bg-primary-color/70 ;
   }
 
   .btn-blue-light {

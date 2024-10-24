@@ -75,7 +75,7 @@ const UploadProfileImage = ({ idRemembered }) => {
       {/* Button to Open Cover Modal */}
       <button
         onClick={() => setOpenModalProfile(true)}
-        className="p-1.5 rounded text-white bg-black/50"
+        className="p-1.5 rounded text-white bg-black/50 hover:bg-black animation-fade"
         type="button"
       >
         <FaCameraRetro className="inline-block size-5" />

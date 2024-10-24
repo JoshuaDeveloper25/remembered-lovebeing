@@ -49,7 +49,7 @@ const FormCreateProfile = ({
 
             <div className="flex-1">
               <InputForm
-                inputLabel="Middle Name"
+                inputLabel="Middle Name (Optional)"
                 inputClassNameAdd={"mb-1"}
                 inputType="text"
                 inputName="middle_name"
@@ -82,6 +82,7 @@ const FormCreateProfile = ({
                   className="form-input"
                   placeholder="-- Select --"
                   name="user_relationship"
+                  required={true}
                 >
                   <option value="">-- Select --</option>
                   <option value="none">Prefer not to say</option>
@@ -110,6 +111,7 @@ const FormCreateProfile = ({
                     type="radio"
                     value="male"
                     name="gender"
+                    required={true}
                   />
                 </label>
 
@@ -120,6 +122,7 @@ const FormCreateProfile = ({
                     type="radio"
                     value="female"
                     name="gender"
+                    required={true}
                   />
                 </label>
               </div>
@@ -134,6 +137,7 @@ const FormCreateProfile = ({
                   className="form-input"
                   placeholder="-- Select --"
                   name="designation"
+                  required={true}
                 >
                   <option value="">-- Select --</option>
                   <option value="not_to_say">Prefer not to say</option>

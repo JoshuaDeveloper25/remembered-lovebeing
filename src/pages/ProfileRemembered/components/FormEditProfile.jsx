@@ -91,7 +91,7 @@ const FormEditProfile = ({
 
           <div className="flex-1">
             <InputForm
-              inputLabel="Middle Name"
+              inputLabel="Middle Name (Optional)"
               inputClassNameAdd={"mb-1"}
               inputType="text"
               inputName="middle_name"
@@ -127,6 +127,7 @@ const FormEditProfile = ({
                 className=" form-input"
                 placeholder="-- Select --"
                 name="user_relationship"
+                required={true}
                 defaultValue={
                   rememberedProfileInfo?.remembered_profile?.user_relationship
                 }
@@ -157,6 +158,7 @@ const FormEditProfile = ({
                   className="ms-2"
                   type="radio"
                   value="male"
+                  required={true}
                   name="gender"
                   checked={gender === "male"}
                   onChange={(e) => setGender(e.target.value)}
@@ -170,6 +172,7 @@ const FormEditProfile = ({
                   type="radio"
                   value="female"
                   name="gender"
+                  required={true}
                   checked={gender === "female"}
                   onChange={(e) => setGender(e.target.value)}
                 />
@@ -186,6 +189,7 @@ const FormEditProfile = ({
                 className=" form-input"
                 placeholder="-- Select --"
                 name="designation"
+                required={true}
                 defaultValue={
                   rememberedProfileInfo?.remembered_profile?.designation
                 }

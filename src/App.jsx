@@ -123,10 +123,11 @@ const App = () => {
           pauseOnFocusLoss={false}
           hideProgressBar={true}
           position="top-center"
-          autoClose={1500}
+          autoClose={3000}
           theme="colored"
           draggable
           stacked
+          style={{ zIndex: 999999999999999 }}
         />
         <RouterProvider router={router} />
       </QueryClientProvider>

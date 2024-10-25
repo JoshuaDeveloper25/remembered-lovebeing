@@ -47,14 +47,14 @@ const UploadCoverImage = ({ idRemembered }) => {
 
     const user_request = confirm(`Are you sure you want to change the image?`);
 
-    if (!user_request) {
-      return;
+    if (!imgRef.current && user_request) {
+      return toast.error('Upload an image before uploading!');
     }
 
     setCanvasPreview(
       imgRef.current, // HTMLImageElement
       previewCanvasRef.current, // HTMLCanvasElement
-      convertToPixelCrop(crop, imgRef.current.width, imgRef.current.height)
+      convertToPixelCrop(crop, imgRef?.current?.width, imgRef?.current?.height)
     );
 
     const dataUrl = previewCanvasRef.current.toDataURL();

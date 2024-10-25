@@ -22,6 +22,8 @@ const ReactQuillAbout = ({ rememberedProfile, owner }) => {
       : rememberedProfile?.remembered_profile?.remembered_history?.content
   );
 
+  console.log(value);
+
   const [isEditing, setIsEditing] = useState(false);
   const queryClient = useQueryClient();
   const remembered = useParams();
@@ -69,12 +71,16 @@ const ReactQuillAbout = ({ rememberedProfile, owner }) => {
   });
 
   const handleSubmitHistory = () => {
+    // Eliminar etiquetas HTML vacías
+    const cleanedValue = value.replace(/<[^>]+>/g, "").trim();
+
     const historyInfo = {
-      content: value,
+      content: cleanedValue,
     };
 
     // Form validation
-    if (!historyInfo?.content) return toast.error(`Fill up the blank!`);
+    if (!historyInfo?.content)
+      return toast.error(`Fill up the blank available!`);
 
     editHistoryMutation.mutate(historyInfo);
   };

@@ -3,6 +3,7 @@ import memorialAdd from "../../../assets/memorial-add.png";
 import { GoSearch } from "react-icons/go";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 const FindMemorial = () => {
   const { t } = useTranslation();
@@ -12,7 +13,15 @@ const FindMemorial = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    navigate(`/memorials?search=${e?.target?.memorialName?.value}`);
+    const memorialInfo = {
+      memorialName: e?.target?.memorialName?.value,
+    };
+
+    if (!memorialInfo?.memorialName.trim("")) {
+      return toast.error("Input a name of a memorial please!");
+    }
+
+    navigate(`/memorials?search=${memorialInfo?.memorialName}`);
     queryClient.invalidateQueries({ queryKey: ["memorials"] });
   };
 

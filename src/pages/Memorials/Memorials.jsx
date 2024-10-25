@@ -10,41 +10,43 @@ import axios from "axios";
 
 const Memorials = () => {
   const [searchFullName, setSearchFullName] = useState("");
+  const [tempSearchFullName, setTempSearchFullName] = useState("");
   const [searchBirthCountry, setSearchBirthCountry] = useState("");
+  const [tempSearchBirthCountry, setTempSearchBirthCountry] = useState("");
   const [searchDesignation, setSearchDesignation] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [tempSearchDesignation, setTempSearchDesignation] = useState("");
   const [searchGender, setSearchGender] = useState("");
+  const [tempSearchGender, setTempSearchGender] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
   const [nextPage, setNextPage] = useState(2);
   const queryClient = useQueryClient();
 
   const searchValue = searchParams.get("search");
 
   useEffect(() => {
-    if (searchValue) {
-      setSearchFullName(searchValue);
-    } else {
-      setSearchFullName(""); // Limpiar el estado si no hay búsqueda
-    }
-
-    queryClient.invalidateQueries({ queryKey: ["memorials"] });
+    setSearchFullName(searchValue || "");
+    setTempSearchFullName(searchValue || "");
   }, [searchValue]);
 
-  useEffect(() => {
-    // Si hay un valor en searchFullName, ejecutamos la consulta
-    if (searchFullName) {
-      queryClient.invalidateQueries({ queryKey: ["memorials"] });
-    }
-  }, [searchFullName, queryClient]);
+  const handleSearch = () => {
+    setSearchFullName(tempSearchFullName);
+    setSearchBirthCountry(tempSearchBirthCountry);
+    setSearchDesignation(tempSearchDesignation);
+    setSearchGender(tempSearchGender);
+
+    // Refresca los resultados solo cuando se hace clic en el botón de búsqueda
+    queryClient.invalidateQueries({ queryKey: ["memorials"] });
+  };
 
   const memorialsQuery = useInfiniteQuery({
-    queryKey: ["memorials"],
-    queryFn: (data) => {
+    queryKey: ["memorials", searchFullName, searchBirthCountry, searchDesignation, searchGender],
+    queryFn: ({ pageParam = 1 }) => {
       return axios.get(
         `${import.meta.env.VITE_BASE_URL}/remembereds/get-remembereds`,
         {
           params: {
-            page: data?.pageParam || 1,
-            full_name: searchFullName || searchParams.get("search"),
+            page: pageParam,
+            full_name: searchFullName,
             birth_country: searchBirthCountry,
             designation: searchDesignation,
             gender: searchGender,
@@ -53,12 +55,9 @@ const Memorials = () => {
         }
       );
     },
-    getNextPageParam: () => {
-      return nextPage;
-    },
+    getNextPageParam: () => nextPage,
   });
 
-  // Get the countries of the people who just entered to the app.
   const countriesQuery = useQuery({
     queryKey: ["countriesMemorials"],
     queryFn: () => {
@@ -94,8 +93,8 @@ const Memorials = () => {
             <input
               className="block py-2 px-2 h-full border border-tertiary-color/30 border-e-0 rounded-sm rounded-e-none w-full"
               type="text"
-              value={searchFullName}
-              onChange={(e) => setSearchFullName(e?.target?.value)}
+              value={tempSearchFullName}
+              onChange={(e) => setTempSearchFullName(e?.target?.value)}
               placeholder="Full Name"
             />
           </label>
@@ -103,31 +102,27 @@ const Memorials = () => {
           <div className="flex self-end">
             <button
               className="bg-red-500 px-4 py-[0.55rem] rounded-r-sm text-white hover:bg-red-600"
+              onClick={handleSearch}
               type="button"
-              onClick={() =>
-                queryClient.invalidateQueries({ queryKey: ["memorials"] })
-              }
             >
               Search
             </button>
           </div>
         </div>
 
+        {/* Filters */}
         <div className="flex items-center justify-center place-content-center gap-3">
           <label className="flex items-center gap-3">
             <span className="text-primary-color font-semibold">Country:</span>
             <select
-              value={searchBirthCountry}
-              onChange={(e) => setSearchBirthCountry(e?.target?.value)}
+              value={tempSearchBirthCountry}
+              onChange={(e) => setTempSearchBirthCountry(e?.target?.value)}
               name="countryMemorial"
               className="py-2 px-2 block border border-tertiary-color/30 rounded-sm bg-white"
             >
               <option value="">All</option>
-
               {countriesQuery?.data?.data?.map((country, index) => {
-                // This is for the people who hasn't input the country of its profile
-                // We dissapear the 'empty string' || null
-                if (country === null) return;
+                if (country === null) return null;
                 return (
                   <option key={index} value={country}>
                     {country}
@@ -138,14 +133,11 @@ const Memorials = () => {
           </label>
 
           <label className="flex items-center gap-3">
-            <span className="font-medium text-primary-color">
-              Cause of Death:
-            </span>
+            <span className="font-medium text-primary-color">Cause of Death:</span>
             <select
               className="py-2 px-2 block border border-tertiary-color/30 bg-white rounded-sm w-[10rem]"
-              onChange={(e) => setSearchDesignation(e?.target?.value)}
-              placeholder="All"
-              value={searchDesignation}
+              onChange={(e) => setTempSearchDesignation(e?.target?.value)}
+              value={tempSearchDesignation}
               name="designation"
             >
               <option value="">All</option>
@@ -160,13 +152,11 @@ const Memorials = () => {
 
           <label className="flex items-center gap-3">
             <span className="font-semibold text-primary-color">Gender:</span>
-
             <select
               className="py-2 px-2 block border border-tertiary-color/30 bg-white rounded-sm w-[10rem]"
-              placeholder="Gender"
+              value={tempSearchGender}
+              onChange={(e) => setTempSearchGender(e?.target?.value)}
               name="gender"
-              value={searchGender}
-              onChange={(e) => setSearchGender(e?.target?.value)}
             >
               <option value="">Both</option>
               <option value="male">Male</option>
@@ -176,21 +166,22 @@ const Memorials = () => {
         </div>
       </article>
 
-      {/* If there's no results this is what we place */}
+      {/* No results message */}
       {!memorialsQuery?.data?.pages[0]?.data?.items?.length && (
         <h2 className="text-primary-color text-center text-2xl uppercase my-16 tracking-wider">
           There's no results about this memorial...
         </h2>
       )}
 
+      {/* Results */}
       <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-1 gap-7 my-9">
-        {flapMapeado?.map((item, index) => {
-          return <Memorial item={item} key={index} />;
-        })}
+        {flapMapeado?.map((item, index) => (
+          <Memorial item={item} key={index} />
+        ))}
       </div>
 
-      {flapMapeado?.length ===
-      memorialsQuery?.data?.pages[0]?.data?.total ? null : (
+      {/* Load More */}
+      {flapMapeado?.length === memorialsQuery?.data?.pages[0]?.data?.total ? null : (
         <div className="my-5 text-center">
           <button
             className="btn btn-blue w-auto"

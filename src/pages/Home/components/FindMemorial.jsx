@@ -53,7 +53,7 @@ const FindMemorial = () => {
 
               <div className="flex-1">
                 <button
-                  className=" bg-primary-color-light px-3 rounded-r-sm text-white py-2 border border-primary-color-light"
+                  className=" bg-primary-color-light hover:bg-primary-color-light/70 animation-fade px-3 rounded-r-sm text-white py-2 border border-primary-color-light"
                   type="submit"
                 >
                   <GoSearch size={24} />

@@ -55,6 +55,10 @@ body {
     @apply bg-primary-color-light text-white;
   }
 
+  .btn-blue-light:hover {
+    @apply bg-primary-color-light/50 text-white;
+  }
+
   .nav-active {
     border-bottom: 1px solid #ffffff;
     font-weight: bold;

@@ -90,7 +90,7 @@ const UploadUserProfileImage = () => {
       {/* Button to Open User Profile Modal */}
       <button
         onClick={() => setOpenModalProfile(true)}
-        className="p-2.5 rounded-full text-white bg-blue-500/85"
+        className="p-2.5 rounded-full text-white bg-blue-500 hover:bg-blue-800 animation-fade"
         type="button"
       >
         <FaCameraRetro className="size-5" />

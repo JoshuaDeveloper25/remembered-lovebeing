@@ -2,7 +2,7 @@ import PublishedPostsImages from "../pages/ProfileRemembered/components/Publishe
 import PostCommentModal from "../pages/ProfileRemembered/components/PostCommentModal";
 
 import EditPostForm from "../pages/ProfileRemembered/components/EditPostForm";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import CarouselCommentPosts from "./CarouselCommentPosts";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import NavbarDropdownLink from "./NavbarDropdownLink";
@@ -167,6 +167,7 @@ const Post = ({ isOwner, post, rememberName }) => {
       <PublishedPostsImages
         rememberName={rememberName}
         galleryImages={post?.gallery_images}
+        setToggleModal={setModalPostComments}
       />
 
       {/* Footer of the post */}
@@ -190,7 +191,10 @@ const Post = ({ isOwner, post, rememberName }) => {
       >
         <div className="flex min-h-full h-full">
           <article className="flex-[30%]">
-            <CarouselCommentPosts commentImages={post?.gallery_images} />
+            <CarouselCommentPosts
+              ownerName={post?.owner?.name}
+              commentImages={post?.gallery_images}
+            />
           </article>
 
           <article className={`flex-1 flex flex-col justify-between`}>
@@ -217,7 +221,7 @@ const Post = ({ isOwner, post, rememberName }) => {
 
               <h3 className="mt-1 text-tertiary-color">{post?.content}</h3>
             </div>
-            
+
             <article
               className={`relative flex-1 flex flex-col justify-between ${
                 !post?.comments?.length

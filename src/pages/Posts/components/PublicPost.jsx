@@ -13,7 +13,7 @@ import axios from "axios";
 import { BsThreeDots } from "react-icons/bs";
 import { createPortal } from "react-dom";
 
-const PublicPost = ({ post, rememberName }) => {
+const PublicPost = ({ post, ownerName }) => {
   const { userInfo } = useContext(AppContext);
   const [modalPostComments, setModalPostComments] = useState(false);
   const [comment, setComment] = useState("");
@@ -83,7 +83,7 @@ const PublicPost = ({ post, rememberName }) => {
 
       {/* Images Gallery Mansory */}
       <PublishedPostsImages
-        rememberName={rememberName}
+        setToggleModal={setModalPostComments}
         galleryImages={post?.gallery_images}
       />
 
@@ -108,7 +108,10 @@ const PublicPost = ({ post, rememberName }) => {
       >
         <div className="flex min-h-full h-full">
           <article className="flex-[30%]">
-            <CarouselCommentPosts commentImages={post?.gallery_images} />
+            <CarouselCommentPosts
+              ownerName={ownerName}
+              commentImages={post?.gallery_images}
+            />
           </article>
 
           <article className={`flex-1 flex flex-col justify-between`}>
@@ -135,7 +138,7 @@ const PublicPost = ({ post, rememberName }) => {
 
               <h3 className="mt-1 text-tertiary-color">{post?.content}</h3>
             </div>
-            
+
             <article
               className={`relative flex-1 flex flex-col justify-between ${
                 !post?.comments?.length

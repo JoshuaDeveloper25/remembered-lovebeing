@@ -1,13 +1,6 @@
 import { MdImageNotSupported } from "react-icons/md";
-import lgShare from "lightgallery/plugins/share";
-import lgHash from "lightgallery/plugins/hash";
-import lgZoom from "lightgallery/plugins/zoom";
-import LightGallery from "lightgallery/react";
-import { useParams } from "react-router-dom";
 
-const PublishedPostsImages = ({ rememberName, galleryImages }) => {
-  const params = useParams();
-
+const PublishedPostsImages = ({ setToggleModal, galleryImages }) => {
   return !galleryImages?.length ? (
     <div className="bg-gray-300 text-center rounded py-16">
       <MdImageNotSupported className="inline-block object-cover size-20 text-primary-color" />
@@ -17,18 +10,15 @@ const PublishedPostsImages = ({ rememberName, galleryImages }) => {
     </div>
   ) : (
     <div className="galleryPost h-screen max-h-72 overflow-y-auto">
-      <LightGallery
-        elementClassNames={"gallery"}
-        plugins={[lgZoom, lgShare, lgHash]}
-        speed={500}
+      <div
+        className={"gallery"}
+        onClick={() => setToggleModal(true)}
       >
         {galleryImages?.map((remember, index) => {
           return (
             <div
               key={index}
               className="pics"
-              data-src={`${remember?.cloud_front_domain}/${remember?.aws_file_name}`}
-              data-sub-html={`<h4>Uploaded by - ${rememberName}</h4><p> This is a souvenir from this lovebeing...</p>`}
             >
               <img
                 loading="lazy"
@@ -43,7 +33,7 @@ const PublishedPostsImages = ({ rememberName, galleryImages }) => {
             </div>
           );
         })}
-      </LightGallery>
+      </div>
     </div>
   );
 };

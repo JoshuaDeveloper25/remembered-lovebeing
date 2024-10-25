@@ -22,7 +22,7 @@ const Posts = () => {
         allRememberedPostsQuery?.data?.data?.map((post) => {
           return (
             <PublicPost
-              rememberName={post?.owner?.name}
+              ownerName={post?.owner?.name}
               totalComments={post?.comments}
               post={post}
               key={post?.id}

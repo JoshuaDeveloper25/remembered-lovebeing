@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-query";
 import Memorial from "./components/Memorial";
 import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Memorials = () => {
@@ -16,6 +16,25 @@ const Memorials = () => {
   const [searchGender, setSearchGender] = useState("");
   const [nextPage, setNextPage] = useState(2);
   const queryClient = useQueryClient();
+
+  const searchValue = searchParams.get("search");
+
+  useEffect(() => {
+    if (searchValue) {
+      setSearchFullName(searchValue);
+    } else {
+      setSearchFullName(""); // Limpiar el estado si no hay búsqueda
+    }
+
+    queryClient.invalidateQueries({ queryKey: ["memorials"] });
+  }, [searchValue]);
+
+  useEffect(() => {
+    // Si hay un valor en searchFullName, ejecutamos la consulta
+    if (searchFullName) {
+      queryClient.invalidateQueries({ queryKey: ["memorials"] });
+    }
+  }, [searchFullName, queryClient]);
 
   const memorialsQuery = useInfiniteQuery({
     queryKey: ["memorials"],
@@ -75,7 +94,7 @@ const Memorials = () => {
             <input
               className="block py-2 px-2 h-full border border-tertiary-color/30 border-e-0 rounded-sm rounded-e-none w-full"
               type="text"
-              value={searchFullName ?? searchParams.get("search")}
+              value={searchFullName}
               onChange={(e) => setSearchFullName(e?.target?.value)}
               placeholder="Full Name"
             />

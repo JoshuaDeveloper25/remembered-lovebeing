@@ -44,9 +44,9 @@ const FindMemorial = () => {
                   <span className="font-medium">{t("Memorial Name")}:</span>
                   <input
                     className="w-full py-2 px-2 border border-tertiary-color/30 text-muted-color border-r-0 rounded-sm rounded-e-none outline-none"
-                    type="text"
+                    placeholder={`${t("Example")}: Jennifer Mejia`}
                     name="memorialName"
-                    placeholder={`${t("Example")}: Jennifer`}
+                    type="text"
                   />
                 </label>
               </div>

@@ -22,9 +22,9 @@ const CarouselCommentPosts = ({ ownerName, commentImages }) => {
   return (
     <div className="relative h-full w-full">
       {/* Carousel wrapper */}
-      <LightGallery elementClassNames="relative h-full w-full overflow-hidden">
-        {commentImages?.map((item, index) => {
-          return (
+      {commentImages?.map((item, index) => {
+        return (
+          <LightGallery elementClassNames="relative h-full w-full overflow-hidden">
             <div
               data-sub-html={`<h4>Uploaded by - ${ownerName}</h4><p> This is a souvenir from this lovebeing...</p>`}
               data-src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
@@ -47,9 +47,9 @@ const CarouselCommentPosts = ({ ownerName, commentImages }) => {
                 }
               />
             </div>
-          );
-        })}
-      </LightGallery>
+          </LightGallery>
+        );
+      })}
 
       {/* Slider controls */}
       <button

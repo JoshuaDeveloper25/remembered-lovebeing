@@ -7,7 +7,13 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import axios from "axios";
 
+import lgShare from "lightgallery/plugins/share";
+import lgHash from "lightgallery/plugins/hash";
+import lgZoom from "lightgallery/plugins/zoom";
+import LightGallery from "lightgallery/react";
+
 const MansoryGallery = ({
+  ownerName,
   isOwner,
   statusPlan,
   idRemembered,
@@ -26,16 +32,17 @@ const MansoryGallery = ({
             </div>
           ) : null}
 
-          <div className="gallery">
+          <LightGallery elementClassNames="gallery">
             {galleryImages?.map((item) => (
               <RememberedMedia
+                ownerName={ownerName}
                 idRemembered={idRemembered}
                 item={item}
                 key={item?.id}
                 isOwner={isOwner}
               />
             ))}
-          </div>
+          </LightGallery>
         </div>
       ) : (
         <h2 className="text-center text-xl my-8 text-primary-color font-bold">
@@ -47,7 +54,7 @@ const MansoryGallery = ({
 };
 export default MansoryGallery;
 
-const RememberedMedia = ({ idRemembered, item, isOwner }) => {
+const RememberedMedia = ({ ownerName, idRemembered, item, isOwner }) => {
   const queryClient = useQueryClient();
   const params = useParams();
 
@@ -113,7 +120,13 @@ const RememberedMedia = ({ idRemembered, item, isOwner }) => {
   };
 
   return (
-    <div className="relative pics">
+    <div
+      className="relative pics"
+      data-sub-html={`<h4>Uploaded by - ${ownerName}</h4><p> This is a souvenir from this lovebeing...</p>`}
+      data-src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
+      plugins={[lgZoom, lgShare, lgHash]}
+      speed={500}
+    >
       <img
         src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
         className="w-full rounded-md"

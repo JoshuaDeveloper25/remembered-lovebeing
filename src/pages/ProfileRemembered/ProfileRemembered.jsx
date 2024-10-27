@@ -586,7 +586,7 @@ const ProfileRemembered = () => {
                   data?.data?.remembered_profile?.gallery_images?.length
                 }
               />
-              
+
               {/* Tributes */}
               <TabLink
                 setOpenTab={setOpenTab}
@@ -724,6 +724,7 @@ const ProfileRemembered = () => {
 
                     {/* Mansory Design */}
                     <MansoryGallery
+                      ownerName={data?.data?.remembered_profile?.owner?.name}
                       isOwner={data?.data?.is_owner}
                       galleryImages={
                         data?.data?.remembered_profile?.gallery_images

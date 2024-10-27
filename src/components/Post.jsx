@@ -159,7 +159,7 @@ const Post = ({ isOwner, post, rememberName }) => {
         </div>
       </div>
 
-      <div className="flex justify-between my-5">
+      <div className="flex justify-between my-5 pb-2.5 border-b border-b-tertiary-color/20">
         <h2 className="text-primary-color font-light">{post?.content}</h2>
       </div>
 

@@ -1,7 +1,7 @@
-import lgShare from "lightgallery/plugins/share";
-import lgHash from "lightgallery/plugins/hash";
-import lgZoom from "lightgallery/plugins/zoom";
-import LightGallery from "lightgallery/react";
+// import lgShare from "lightgallery/plugins/share";
+// import lgHash from "lightgallery/plugins/hash";
+// import lgZoom from "lightgallery/plugins/zoom";
+// import LightGallery from "lightgallery/react";
 import { useState } from "react";
 
 const CarouselCommentPosts = ({ ownerName, commentImages }) => {
@@ -20,24 +20,24 @@ const CarouselCommentPosts = ({ ownerName, commentImages }) => {
   };
 
   return (
-    <div className="relative h-full w-full">
-      {/* Carousel wrapper */}
-      {commentImages?.map((item, index) => {
-        return (
-          <LightGallery elementClassNames="relative h-full w-full overflow-hidden">
+    <div className="relative h-full w-full bg-black">
+      <div elementClassNames="relative h-full w-full overflow-hidden">
+        {/* Carousel wrapper */}
+        {commentImages?.map((item, index) => {
+          return (
             <div
-              data-sub-html={`<h4>Uploaded by - ${ownerName}</h4><p> This is a souvenir from this lovebeing...</p>`}
-              data-src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
-              plugins={[lgZoom, lgShare, lgHash]}
+              // data-sub-html={`<h4>Uploaded by - ${ownerName}</h4><p> This is a souvenir from this lovebeing...</p>`}
+              // data-src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
+              // plugins={[lgZoom, lgShare, lgHash]}
               key={item?.id}
-              speed={500}
+              // speed={500}
               className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
                 index === currentIndex ? "opacity-100" : "opacity-0"
               }`}
             >
               <img
                 src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
-                className="block w-full h-full object-cover"
+                className="block w-full h-full object-contain"
                 alt={`Image ${item?.id}`}
                 onError={() =>
                   console.log(
@@ -47,9 +47,9 @@ const CarouselCommentPosts = ({ ownerName, commentImages }) => {
                 }
               />
             </div>
-          </LightGallery>
-        );
-      })}
+          );
+        })}
+      </div>
 
       {/* Slider controls */}
       <button

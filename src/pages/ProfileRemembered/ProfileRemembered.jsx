@@ -384,7 +384,7 @@ const ProfileRemembered = () => {
           />
         </Modal>
 
-        {/* Desktop - from 768px to up */}
+        {/* Desktop - from 768px to up! */}
         <div className="grid md:grid-cols-4 grid-cols-1 items-start md:gap-8 px-5 mb-4">
           <article className="col-span-1 sticky top-11 min-w-[11rem] ">
             <div className="text-center border bg-white shadow-2xl rounded-xl md:-mt-12 py-5 px-4 md:block hidden">

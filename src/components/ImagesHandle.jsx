@@ -1,6 +1,6 @@
 import { uploadResizedImage } from "../utils/resizeImageFile";
 import { IoCloudUploadSharp } from "react-icons/io5";
-import { LuPencilLine } from "react-icons/lu";
+import { LuFileInput, LuPencilLine } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
 import ReactImageUploading, {
   ImageListType,
@@ -47,17 +47,42 @@ const ImagesHandle = ({ setImages, images }) => {
       }) => (
         <div className="upload__image-wrapper">
           <div className="mb-5">
+            <div className="mb-6">
+              <h3 className="font-semibold">Upload a file</h3>
+              <p className="text-muted-color">Attach the file below</p>
+            </div>
             <button
               {...dragProps}
               type="button"
               onClick={onImageUpload}
-              className="w-full bg-white text-tertiary-color font-semibold text-base rounded max-w-md h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed mx-auto font-[sans-serif]"
+              className={`${
+                isDragging
+                  ? "border-primary-color-light animation-fade"
+                  : "hover:border-primary-color-light animation-fade"
+              } w-full bg-white text-base rounded max-w-md h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed mx-auto`}
             >
-              <IoCloudUploadSharp size={35} />
-              {isDragging ? "Drop it here" : "Upload file"}
+              <LuFileInput className="text-primary-color-light size-9 mx-auto" />
+              {isDragging ? (
+                <span className="font-semibold mt-4 uppercase">
+                  Drop it here!
+                </span>
+              ) : (
+                <>
+                  <span className="font-semibold mt-2">
+                    Drag file(s) here to upload
+                  </span>
+                  <span className="text-muted-color my-1">
+                    Alternatively, you can select a file by
+                  </span>
+                  <span className="font-bold text-primary-color-light">
+                    clicking here
+                  </span>
+                </>
+              )}
             </button>
           </div>
 
+          {/* Images uploaded by user */}
           {images?.length !== 0 && (
             <ul className="flex gap-5 overflow-x-auto w-full max-w-lg my-5 py-5">
               {images?.map((item, idx) => (

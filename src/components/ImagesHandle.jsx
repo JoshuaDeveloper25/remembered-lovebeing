@@ -1,34 +1,48 @@
 import { uploadResizedImage } from "../utils/resizeImageFile";
-import { IoCloudUploadSharp } from "react-icons/io5";
 import { LuFileInput, LuPencilLine } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
+import { useState } from "react";
 import ReactImageUploading, {
   ImageListType,
   ImageType,
 } from "react-images-uploading";
-import React from "react";
 
 const ImagesHandle = ({ setImages, images }) => {
+  const [isPending, setIsPending] = useState(false);
+
   const onChange = async (imageList, addUpdateIndex) => {
-    // Redimention images before the state function
-    const resizedImageList = await Promise.all(
-      imageList.map(async (image) => {
-        const resizedFile = await uploadResizedImage(image.file, 700, 700, 85);
-        const reader = new FileReader();
+    try {
+      setIsPending(true);
 
-        return new Promise((resolve) => {
-          reader.onloadend = () => {
-            resolve({
-              dataURL: reader.result,
-              file: resizedFile,
-            });
-          };
-          reader.readAsDataURL(resizedFile);
-        });
-      })
-    );
+      // Redimention images before the state function
+      const resizedImageList = await Promise.all(
+        imageList.map(async (image) => {
+          const resizedFile = await uploadResizedImage(
+            image.file,
+            700,
+            700,
+            85
+          );
+          const reader = new FileReader();
 
-    setImages(resizedImageList);
+          return new Promise((resolve) => {
+            reader.onloadend = () => {
+              resolve({
+                dataURL: reader.result,
+                file: resizedFile,
+              });
+            };
+            reader.readAsDataURL(resizedFile);
+          });
+        })
+      );
+
+      setImages(resizedImageList);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsPending(false);
+    }
   };
 
   return (
@@ -48,7 +62,7 @@ const ImagesHandle = ({ setImages, images }) => {
         <div className="upload__image-wrapper">
           <div className="mb-5">
             <div className="mb-6">
-              <h3 className="font-semibold">Upload a file</h3>
+              <h3 className="font-semibold">Upload a file <span className="text-red-400 text-sm">(jpg, jpeg, png)*</span></h3>
               <p className="text-muted-color">Attach the file below</p>
             </div>
             <button
@@ -83,40 +97,50 @@ const ImagesHandle = ({ setImages, images }) => {
           </div>
 
           {/* Images uploaded by user */}
-          {images?.length !== 0 && (
+          {isPending ? (
             <ul className="flex gap-5 overflow-x-auto w-full max-w-lg my-5 py-5">
-              {images?.map((item, idx) => (
+              {[1, 2, 3, 4]?.map((item, idx) => (
                 <li key={idx} className="h-32 min-w-32 relative">
-                  <div className="h-32 min-w-32 relative">
-                    <img
-                      loading="lazy"
-                      decoding="async"
-                      src={`${item?.dataURL}`}
-                      alt="Image"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-
-                  <div className="image-item__btn-wrapper absolute flex gap-2 -right-3 -top-3">
-                    <button
-                      className="bg-blue-500/85 hover:bg-blue-500/90 hover:text-secondary rounded-full text-white p-1"
-                      type="button"
-                      onClick={() => onImageUpdate(idx)}
-                    >
-                      <LuPencilLine size={20} />
-                    </button>
-
-                    <button
-                      className="hover:bg-red-500/90 hover:text-secondary bg-red-500/85 rounded-full text-white p-1"
-                      type="button"
-                      onClick={() => onImageRemove(idx)}
-                    >
-                      <IoClose size={20} />
-                    </button>
-                  </div>
+                  <div className="h-32 min-w-32 relative bg-tertiary-color/50 animate-pulse"></div>
                 </li>
               ))}
             </ul>
+          ) : (
+            images?.length !== 0 && (
+              <ul className="flex gap-5 overflow-x-auto w-full max-w-lg my-5 py-5">
+                {images?.map((item, idx) => (
+                  <li key={idx} className="h-32 min-w-32 relative">
+                    <div className="h-32 min-w-32 relative">
+                      <img
+                        loading="lazy"
+                        decoding="async"
+                        src={`${item?.dataURL}`}
+                        alt="Image"
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+
+                    <div className="image-item__btn-wrapper absolute flex gap-2 -right-3 -top-3">
+                      <button
+                        className="bg-blue-500/85 hover:bg-blue-500/90 hover:text-secondary rounded-full text-white p-1"
+                        type="button"
+                        onClick={() => onImageUpdate(idx)}
+                      >
+                        <LuPencilLine size={20} />
+                      </button>
+
+                      <button
+                        className="hover:bg-red-500/90 hover:text-secondary bg-red-500/85 rounded-full text-white p-1"
+                        type="button"
+                        onClick={() => onImageRemove(idx)}
+                      >
+                        <IoClose size={20} />
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )
           )}
         </div>
       )}

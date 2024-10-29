@@ -94,7 +94,7 @@ const ImagesHandleCrop = ({
       {imgRef?.current ? null : (
         <>
           <div className="mb-6">
-            <h3 className="font-semibold">Upload a file</h3>
+            <h3 className="font-semibold">Upload a file <span className="text-red-400 text-sm">(jpg, jpeg, png)*</span></h3>
             <p className="text-muted-color">Attach the file below</p>
           </div>
 
@@ -119,7 +119,7 @@ const ImagesHandleCrop = ({
             <input
               type="file"
               name="uploadImages"
-              accept="image/png, image/jpeg"
+              accept="image/png, image/jpeg, image/jpg"
               onChange={onSelectFile}
               className="sr-only block w-full text-sm text-tertiary-color file:py-1 file:px-2 file:rounded-full file:border-0 file:text-xs file:bg-black file:text-white hover:file:text-tertiary-color hover:file:bg-black/90"
             />

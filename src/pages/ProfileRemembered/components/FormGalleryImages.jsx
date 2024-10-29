@@ -14,6 +14,7 @@ const FormGalleryImages = ({
       </div>
 
       <ButtonForm
+        setClearCache={setImages}
         setOpenModal={setOpenModalGallery}
         isPending={isPending}
         statusOn={"Uploading..."}

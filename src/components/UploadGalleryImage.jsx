@@ -45,7 +45,9 @@ const UploadGalleryImage = ({
   const handleSubmitGalleryImage = (e) => {
     e.preventDefault();
 
-    const user_request = confirm(`Are you sure you want to change the image?`);
+    const user_request = confirm(
+      `Are you sure you want to add image(s) to gallery?`
+    );
 
     if (!user_request) {
       return;
@@ -96,6 +98,7 @@ const UploadGalleryImage = ({
         openModal={openModalGallery}
         modalForm={true}
         iconTitle={true}
+        setClearCache={setImages}
       >
         <FormGalleryImages
           setOpenModalGallery={setOpenModalGallery}

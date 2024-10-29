@@ -45,7 +45,7 @@ const UploadProfileImage = ({ idRemembered }) => {
   const handleSubmitProfileImage = async (e) => {
     e.preventDefault();
 
-    const user_request = confirm(`Are you sure you want to change the image?`);
+    const user_request = confirm(`Are you sure you want to upload the image?`);
 
     if (!imgRef.current && user_request) {
       return toast.error("Upload an image before uploading!");

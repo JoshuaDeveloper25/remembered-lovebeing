@@ -59,7 +59,7 @@ const UploadUserProfileImage = () => {
   const handleSubmitProfileImage = async (e) => {
     e.preventDefault();
 
-    const user_request = confirm(`Are you sure you want to change the image?`);
+    const user_request = confirm(`Are you sure you want to upload the image?`);
 
     if (!user_request) {
       return;

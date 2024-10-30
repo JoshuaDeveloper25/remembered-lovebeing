@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import { useParams } from "react-router-dom";
-import { BiMinus } from "react-icons/bi";
+import { FaMinus } from "react-icons/fa";
 import { BsPlus } from "react-icons/bs";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -13,19 +13,17 @@ const FollowRemember = ({ idRemembered }) => {
   // Get favourites of remembereds profiles
   const favouritesRememberedsQuery = useQuery({
     queryKey: ["favouritesProfiles"],
-    queryFn: () => {
-      return axios.get(`${import.meta.env.VITE_BASE_URL}/favorites`);
-    },
+    queryFn: async () =>
+      await axios.get(`${import.meta.env.VITE_BASE_URL}/favorites`),
   });
 
-  const isFollowing = favouritesRememberedsQuery?.data?.data.find(
-    (item) => item?.slug === params?.slug
-  );
-
+  const isFollowing =
+    favouritesRememberedsQuery?.data?.data[0]?.slug !== params?.slug;
+    
   // --> Follow Remembered Profile
   const followRememberProfile = useMutation({
-    mutationFn: async (favoriteInfo) =>
-      await axios.post(
+    mutationFn: (favoriteInfo) =>
+      axios.post(
         `${import.meta.env.VITE_BASE_URL}/favorites/${idRemembered}`,
         favoriteInfo
       ),
@@ -40,30 +38,56 @@ const FollowRemember = ({ idRemembered }) => {
     },
   });
 
+  // Unfollow remembered
+  const unfollowRememberedsMutation = useMutation({
+    mutationFn: async (favouriteInfo) =>
+      await axios.delete(
+        `${import.meta.env.VITE_BASE_URL}/favorites/${idRemembered}`,
+        favouriteInfo
+      ),
+    onSuccess: (res) => {
+      console.log(res);
+      toast.success("You aren't following this user anymore...");
+      queryClient.invalidateQueries({ queryKey: ["favouritesProfiles"] });
+    },
+    onError: (err) => {
+      console.log(getFastApiErrors(err));
+      toast.error(getFastApiErrors(err));
+      console.log(err);
+    },
+  });
+
+  const handleUnfollowRemember = (e) => {
+    e.preventDefault();
+
+    unfollowRememberedsMutation?.mutate({});
+  };
+
   const handleFollowRemember = (e) => {
     e.preventDefault();
 
     followRememberProfile?.mutate({});
   };
 
-  return (
+  return isFollowing ? (
     <button
-      onClick={handleFollowRemember}
-      disabled={isFollowing}
+      className={
+        "flex items-center justify-center border border-red-500 text-red-500 hover:bg-red-500 hover:text-white animation-fade w-full py-1 rounded-sm font-medium my-3"
+      }
+      onClick={handleUnfollowRemember}
       type="button"
-      className={`${
-        isFollowing
-          ? "flex items-center justify-center border border-red-300 text-red-300 w-full py-1 rounded-sm font-medium my-3"
-          : "flex items-center justify-center border border-red-500 text-red-500 hover:bg-red-500 hover:text-white animation-fade w-full py-1 rounded-sm font-medium my-3"
-      }`}
     >
-      {isFollowing ? (
-        <>Following</>
-      ) : (
-        <>
-          <BsPlus size={26} /> Follow
-        </>
-      )}
+      <FaMinus size={20} className="me-1.5" /> Unfollow
+    </button>
+  ) : (
+    <button
+      className={
+        "flex items-center justify-center border border-red-500 text-red-500 hover:bg-red-500 hover:text-white animation-fade w-full py-1 rounded-sm font-medium my-3"
+      }
+      onClick={handleFollowRemember}
+      type="button"
+    >
+      <BsPlus size={26} /> Follow
     </button>
   );
 };

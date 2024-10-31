@@ -17,9 +17,10 @@ const FollowRemember = ({ idRemembered }) => {
       await axios.get(`${import.meta.env.VITE_BASE_URL}/favorites`),
   });
 
-  const isFollowing =
-    favouritesRememberedsQuery?.data?.data[0]?.slug !== params?.slug;
-    
+  const isFollowing = favouritesRememberedsQuery?.data?.data?.some(
+    (favorite) => favorite.slug === params.slug
+  );
+
   // --> Follow Remembered Profile
   const followRememberProfile = useMutation({
     mutationFn: (favoriteInfo) =>
@@ -38,10 +39,10 @@ const FollowRemember = ({ idRemembered }) => {
     },
   });
 
-  // Unfollow remembered
+  // --> Unfollow remembered
   const unfollowRememberedsMutation = useMutation({
-    mutationFn: async (favouriteInfo) =>
-      await axios.delete(
+    mutationFn: (favouriteInfo) =>
+      axios.delete(
         `${import.meta.env.VITE_BASE_URL}/favorites/${idRemembered}`,
         favouriteInfo
       ),

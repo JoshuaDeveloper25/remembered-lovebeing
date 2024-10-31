@@ -1,37 +1,26 @@
-import PublishedPostsImages from "../ProfileRemembered/components/PublishedPostsImages";
-import CarouselProfiles from "../../pages/ProfileRemembered/components/CarouselProfiles";
 import MansoryGallery from "../../pages/ProfileRemembered/components/MansoryGallery";
 import TabLinkContent from "../../pages/MyProfiles/components/TabLinkContent";
-import {
-  FaChevronDown,
-  FaFacebookF,
-  FaInstagram,
-  FaTwitter,
-} from "react-icons/fa";
 import UploadProfileImage from "../../components/UploadProfileImage";
 import UploadGalleryImage from "../../components/UploadGalleryImage";
 import UploadCoverImage from "../../components/UploadCoverImage";
 import TabLink from "../../pages/MyProfiles/components/TabLink";
-import UploadCondolence from "./components/UploadCondolence";
 import AboutRemembered from "./components/AboutRemembered";
-import UploadTribute from "./components/UploadTribute";
 import { getLivedDays } from "../../utils/getLivedDays";
 import UploadPost from "../../components/UploadPost";
 import AppContext from "../../context/AppProvider";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Condolences from "./components/Condolences";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { TfiPencilAlt } from "react-icons/tfi";
 import Tributes from "./components/Tributes";
 import QRCodeGenerate from "./components/QRCodeGenerate";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import Post from "../../components/Post";
 import axios from "axios";
 import Modal from "../../components/Modal";
 import FormEditProfile from "./components/FormEditProfile";
 import getFastApiErrors from "../../utils/getFastApiErrors";
 import { toast } from "react-toastify";
-import { getHowLongDied } from "../../utils/getHowLongDied";
 import FormChangeStatus from "./components/FormChangeStatus";
 import TributeHeader from "./components/TributeHeader";
 import CondolenceHeader from "./components/CondolenceHeader";
@@ -79,10 +68,6 @@ const ProfileRemembered = () => {
           params?.slug
         }`
       ),
-    //
-    // await axios.get(
-    //   `${import.meta.env.VITE_BASE_URL}/remembereds/get-profile-test/${5}`
-    // ),
   });
 
   // --> 👪 Get all family members of a profile

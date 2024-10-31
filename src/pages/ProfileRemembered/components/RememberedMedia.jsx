@@ -20,7 +20,6 @@ const RememberedMedia = ({
 }) => {
   const [selectedImageGallery, setSelectedImageGallery] = useState(null);
   const queryClient = useQueryClient();
-  console.log(selectedImageGallery);
 
   // Check if image is in a post
   const checkInImagePost = useQuery({

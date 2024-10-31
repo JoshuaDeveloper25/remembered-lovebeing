@@ -8,33 +8,78 @@ import axios from "axios";
 import lgShare from "lightgallery/plugins/share";
 import lgHash from "lightgallery/plugins/hash";
 import lgZoom from "lightgallery/plugins/zoom";
+import { useEffect, useState } from "react";
 
 const RememberedMedia = ({
   onClickImage,
   refGallery,
   ownerName,
   idRemembered,
-  item,
+  item: galleryItem,
   isOwner,
 }) => {
+  const [selectedImageGallery, setSelectedImageGallery] = useState(null);
   const queryClient = useQueryClient();
+  console.log(selectedImageGallery);
 
+  // Check if image is in a post
   const checkInImagePost = useQuery({
-    queryKey: [``],
-    queryFn: async () =>
-      await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/remembereds/checking-image-in-post/${
-          item?.id
-        }`
+    queryKey: ["profile", selectedImageGallery],
+    queryFn: () =>
+      axios.get(
+        `${
+          import.meta.env.VITE_BASE_URL
+        }/remembereds/checking-image-in-post/${selectedImageGallery}`
       ),
+    enabled: !!selectedImageGallery,
   });
 
+  // If theres an image in post we send a different message
+  useEffect(() => {
+    if (checkInImagePost.isSuccess && selectedImageGallery) {
+      const isInPost = checkInImagePost.data?.data;
+
+      if (!isInPost) {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            deleteImageGalleryMutation.mutate();
+          }
+        });
+      } else {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "This image is in a post, you won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            deleteImageGalleryMutation.mutate();
+          }
+        });
+      }
+
+      setSelectedImageGallery(null);
+    }
+  }, [selectedImageGallery, checkInImagePost.isSuccess]);
+
+  // Delete image from media
   const deleteImageGalleryMutation = useMutation({
     mutationFn: async () =>
       await axios.delete(
         `${
           import.meta.env.VITE_BASE_URL
-        }/remembereds/delete-gallery-image/${idRemembered}/${item?.id}`
+        }/remembereds/delete-gallery-image/${idRemembered}/${galleryItem?.id}`
       ),
     onSuccess: (res) => {
       toast.success("¡Successfully image gallery deleted!");
@@ -47,50 +92,17 @@ const RememberedMedia = ({
     },
   });
 
-  const handleDelete = () => {
-    // deleteImageGalleryMutation.mutate({ idGallery: item?.id });
-
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        deleteImageGalleryMutation.mutate(null, {
-          onSuccess: () => {
-            // Swal.fire({
-            //   title: "Deleted!",
-            //   text: "Your profile has been deleted.",
-            //   icon: "success",
-            // });
-          },
-          onError: () => {
-            Swal.fire({
-              title: "Error!",
-              text: "There was an issue deleting your profile.",
-              icon: "error",
-            });
-          },
-        });
-      }
-    });
-  };
-
   return (
     <section
       className="relative pics"
       data-sub-html={`<h4>Uploaded by - ${ownerName}</h4><p> This is a souvenir from this lovebeing...</p>`}
-      data-src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
+      data-src={`${galleryItem?.cloud_front_domain}/${galleryItem?.aws_file_name}`}
       plugins={[lgZoom, lgShare, lgHash]}
-      speed={500}
       ref={refGallery}
+      speed={500}
     >
       <img
-        src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
+        src={`${galleryItem?.cloud_front_domain}/${galleryItem?.aws_file_name}`}
         className="w-full rounded-md z-[2000]"
         onClick={onClickImage}
         decoding="async"
@@ -101,8 +113,8 @@ const RememberedMedia = ({
         <div className="absolute right-0 top-0">
           <button
             className="rounded-tr-lg text-red-500 hover:bg-red-500/50 animation-fade rounded-sm text-sm"
+            onClick={() => setSelectedImageGallery(galleryItem?.id)}
             disabled={deleteImageGalleryMutation?.isPending}
-            onClick={handleDelete}
           >
             {deleteImageGalleryMutation?.isPending ? (
               <div className="rounded-tr-lg bg-red-500/20 p-3" role="status">

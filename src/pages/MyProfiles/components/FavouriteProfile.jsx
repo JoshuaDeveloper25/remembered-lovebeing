@@ -1,7 +1,40 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import axios from "axios";
 
 const FavouriteProfile = ({ item, isPending }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const queryClient = useQueryClient();
+
+  // --> Unfollow remembered
+  const unfollowRememberedsMutation = useMutation({
+    mutationFn: (favouriteInfo) =>
+      axios.delete(
+        `${import.meta.env.VITE_BASE_URL}/favorites/${item?.id}`,
+        favouriteInfo
+      ),
+    onSuccess: (res) => {
+      console.log(res);
+      toast.success("You aren't following this user anymore...");
+      queryClient.invalidateQueries({ queryKey: ["favouritesProfiles"] });
+    },
+    onError: (err) => {
+      console.log(getFastApiErrors(err));
+      toast.error(getFastApiErrors(err));
+      console.log(err);
+    },
+  });
+
+  const handleUnfollowRemember = (e) => {
+    e.preventDefault();
+
+    unfollowRememberedsMutation.mutate();
+  };
+
   return isPending ? (
     <div className="shadow-2xl rounded-md p-4 max-w-sm w-full mx-auto">
       <div className="animate-pulse">
@@ -35,7 +68,10 @@ const FavouriteProfile = ({ item, isPending }) => {
       </div>
     </div>
   ) : (
-    <div className="relative shadow-2xl border rounded-sm p-4">
+    <form
+      onSubmit={handleUnfollowRemember}
+      className="relative shadow-2xl border rounded-sm p-4"
+    >
       <div className="flex items-center gap-2">
         <img
           src={
@@ -64,12 +100,29 @@ const FavouriteProfile = ({ item, isPending }) => {
       </div>
 
       <button
-        className="flex items-center mt-3 justify-center gap-2 w-full py-1 rounded-sm font-medium  bg-blue-100 text-blue-500  hover:bg-blue-500 hover:text-white transition-colors"
-        type="button"
+        className={`${
+          isHovered
+            ? "bg-red-100 text-red-500 hover:bg-red-500 hover:text-white"
+            : "bg-blue-100 text-blue-500 hover:bg-blue-500 hover:text-white"
+        } flex items-center mt-3 justify-center gap-2 w-full py-1 rounded-sm font-medium transition-colors`}
+        onClick={() => unfollowRememberedsMutation.mutate()}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        type="submit"
       >
-        <FaCheckCircle className="inline " /> Following
+        {isHovered ? (
+          <>
+            {" "}
+            <IoIosCloseCircleOutline size={20} className="inline" /> Stop
+            Following
+          </>
+        ) : (
+          <>
+            <FaCheckCircle className="inline" /> Following
+          </>
+        )}
       </button>
-    </div>
+    </form>
   );
 };
 

@@ -9,7 +9,7 @@ const TabLink = ({
   enableCountTab = true,
 }) => {
   return (
-    <li className="relative -mb-px mr-2 last:mr-0 flex-auto text-center">
+    <li className="relative flex-auto text-center">
       <a
         className={
           "text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal " +

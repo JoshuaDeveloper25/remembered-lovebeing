@@ -25,6 +25,7 @@ import FormChangeStatus from "./components/FormChangeStatus";
 import TributeHeader from "./components/TributeHeader";
 import CondolenceHeader from "./components/CondolenceHeader";
 import FollowRemember from "./components/FollowRemember";
+import ResponsiveMoreInfoRemembered from "./components/ResponsiveMoreInfoRemembered";
 
 const ProfileRemembered = () => {
   const currentYear = new Date().getFullYear();
@@ -193,7 +194,7 @@ const ProfileRemembered = () => {
   }
 
   return (
-    <section className="container-page my-10 ">
+    <section className="container-page my-10">
       <article className="rounded-lg">
         {/* Cover Image */}
         {!data?.data?.is_owner ? (
@@ -230,30 +231,75 @@ const ProfileRemembered = () => {
           </div>
         )}
 
-        {/* User Image */}
-        {/* Responsive - from 768px to bottom */}
-        <div className="md:hidden flex sm:flex-col lg:flex-row items-start lg:items-start sm:items-center text-start lg:text-start sm:text-center gap-5 lg:px-10 px-5">
-          <div className="sm:max-w-none max-w-[5rem] sm:-mt-20 -mt-10 sticky z-20">
-            <img
-              className="sm:h-[168px] w-full sm:w-[168px] h-full rounded-full"
-              loading="lazy"
-              decoding="async"
-              src={
-                data?.data?.remembered_profile?.profile_images
-                  ? `${data?.data?.remembered_profile?.profile_images?.cloud_front_domain}/${data?.data?.remembered_profile?.profile_images?.aws_file_name}`
-                  : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-              }
-            />
-            {!data?.data?.is_owner ? null : (
-              <div className="absolute bottom-3 right-3 z-[100] cursor-pointer">
-                <UploadProfileImage
-                  idRemembered={data?.data?.remembered_profile?.id}
-                />
-              </div>
-            )}
-          </div>
+        <div className="px-1">
+          {/* User Image */}
+          {/* Responsive - from 768px to bottom */}
+          <div className="min-[870px]:hidden sticky top-0 z-[9999] bg-white shadow-lg">
+            <div className="flex justify-between gap-4 items-center px-5 py-2 sticky z-20">
+              <div className="flex gap-4 items-center">
+                <div>
+                  <img
+                    className="w-16 rounded-full"
+                    loading="lazy"
+                    decoding="async"
+                    src={
+                      data?.data?.remembered_profile?.profile_images
+                        ? `${data?.data?.remembered_profile?.profile_images?.cloud_front_domain}/${data?.data?.remembered_profile?.profile_images?.aws_file_name}`
+                        : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                    }
+                  />
+                  {!data?.data?.is_owner ? null : (
+                    <div className="absolute bottom-0 left-16 z-[100] cursor-pointer">
+                      <UploadProfileImage
+                        idRemembered={data?.data?.remembered_profile?.id}
+                      />
+                    </div>
+                  )}
+                </div>
 
-          <div className="lg:self-end">
+                <div>
+                  <h2 className="font-semibold text-sm text-muted-color">
+                    {data?.data?.remembered_profile?.epitaph ||
+                      "In loving memory of"}
+                  </h2>
+                  <h3 className="text-lg font-bold">
+                    {data?.data?.remembered_profile?.first_name}{" "}
+                    {data?.data?.remembered_profile?.last_name}
+                  </h3>
+                </div>
+              </div>
+
+              <div className="text-sm">
+                <p className="inline">Status:</p>
+                <p
+                  className={`capitalize inline font-semibold ms-1.5 ${
+                    data?.data?.remembered_profile?.status_privacy === "public"
+                      ? "text-green-500"
+                      : "text-red-500"
+                  } `}
+                >
+                  {data?.data?.remembered_profile?.status_privacy}
+                </p>
+              </div>
+
+              <div>
+                {!data?.data?.is_owner ? null : (
+                  <ResponsiveMoreInfoRemembered
+                    status={data?.data?.remembered_profile?.status_privacy}
+                    setEditRememberedProfile={setEditRememberedProfile}
+                    setStatusOptionSelected={setStatusOptionSelected}
+                    setChangeStatusModal={setChangeStatusModal}
+                    statusOptionSelected={statusOptionSelected}
+                    changeStatusMutation={changeStatusMutation}
+                    handleChangeStatus={handleChangeStatus}
+                    changeStatusModal={changeStatusModal}
+                    isOwner={data?.data?.is_owner}
+                  />
+                )}
+              </div>
+            </div>
+
+            {/* <div className="lg:self-end">
             <h2 className="font-semibold text-muted-color">
               {data?.data?.remembered_profile?.epitaph || "In loving memory of"}
             </h2>
@@ -336,55 +382,45 @@ const ProfileRemembered = () => {
                 </Modal>
               </div>
             ) : null}
+          </div> */}
           </div>
-        </div>
 
-        {/* Modal to edit rememberedProfile */}
-        <Modal
-          titleModal={"Edit Remembered Profile..."}
-          handleSubmit={handleSubmit}
-          setOpenModal={setEditRememberedProfile}
-          openModal={editRememberedProfile}
-          modalForm={true}
-          editableWidth={"max-w-xl"}
-        >
-          <FormEditProfile
-            setEditRememberedProfile={setEditRememberedProfile}
-            currentYear={currentYear}
-            bornYear={bornYear}
-            setBornYear={setBornYear}
-            bornMonth={bornMonth}
-            setBornMonth={setBornMonth}
-            bornDay={bornDay}
-            setBornDay={setBornDay}
-            passedYear={passedYear}
-            setPassedYear={setPassedYear}
-            passedMonth={passedMonth}
-            setPassedMonth={setPassedMonth}
-            passedDay={passedDay}
-            setPassedDay={setPassedDay}
-            rememberedProfileInfo={data?.data}
-            isPending={editRememberedProfileMutation?.isPending}
-            months={months}
-          />
-        </Modal>
+          {/* Modal to edit rememberedProfile */}
+          <Modal
+            titleModal={"Edit Remembered Profile..."}
+            handleSubmit={handleSubmit}
+            setOpenModal={setEditRememberedProfile}
+            openModal={editRememberedProfile}
+            modalForm={true}
+            editableWidth={"max-w-xl"}
+          >
+            <FormEditProfile
+              setEditRememberedProfile={setEditRememberedProfile}
+              currentYear={currentYear}
+              bornYear={bornYear}
+              setBornYear={setBornYear}
+              bornMonth={bornMonth}
+              setBornMonth={setBornMonth}
+              bornDay={bornDay}
+              setBornDay={setBornDay}
+              passedYear={passedYear}
+              setPassedYear={setPassedYear}
+              passedMonth={passedMonth}
+              setPassedMonth={setPassedMonth}
+              passedDay={passedDay}
+              setPassedDay={setPassedDay}
+              rememberedProfileInfo={data?.data}
+              isPending={editRememberedProfileMutation?.isPending}
+              months={months}
+            />
+          </Modal>
 
-        {/* Desktop - from 768px to up! */}
-        <div className="grid md:grid-cols-4 grid-cols-1 items-start md:gap-8 px-5 mb-4">
-          <article className="col-span-1 sticky top-11 min-w-[11rem] ">
-            <div className="text-center border bg-white shadow-2xl rounded-xl md:-mt-12 py-5 px-4 md:block hidden">
-              <div className="sticky z-20">
-                {!data?.data?.is_owner ? (
-                  <img
-                    className="w-36 h-36 object-cover mx-auto rounded-full shadow-lg"
-                    src={
-                      data?.data?.remembered_profile?.profile_images
-                        ? `${data?.data?.remembered_profile?.profile_images?.cloud_front_domain}/${data?.data?.remembered_profile?.profile_images?.aws_file_name}`
-                        : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-                    }
-                  />
-                ) : (
-                  <>
+          {/* Desktop - from 768px to up! */}
+          <div className="grid min-[870px]:grid-cols-4 grid-cols-1 items-start min-[1150px]:gap-3 sm:gap-1 gap-0 px-2.5">
+            <article className="col-span-1 sticky top-11 min-w-52 ">
+              <div className="text-center border bg-white shadow-2xl rounded-xl md:-mt-12 py-5 px-4 min-[870px]:block hidden">
+                <div className="sticky z-20">
+                  {!data?.data?.is_owner ? (
                     <img
                       className="w-36 h-36 object-cover mx-auto rounded-full shadow-lg"
                       src={
@@ -393,41 +429,54 @@ const ProfileRemembered = () => {
                           : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
                       }
                     />
-                    <div className="absolute bottom-3 right-14 z-[100]">
-                      <UploadProfileImage
-                        idRemembered={data?.data?.remembered_profile?.id}
+                  ) : (
+                    <>
+                      <img
+                        className="w-36 h-36 object-cover mx-auto rounded-full shadow-lg"
+                        src={
+                          data?.data?.remembered_profile?.profile_images
+                            ? `${data?.data?.remembered_profile?.profile_images?.cloud_front_domain}/${data?.data?.remembered_profile?.profile_images?.aws_file_name}`
+                            : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                        }
                       />
-                    </div>
-                  </>
-                )}
-              </div>
+                      <div className="absolute bottom-3 right-14 z-[100]">
+                        <UploadProfileImage
+                          idRemembered={data?.data?.remembered_profile?.id}
+                        />
+                      </div>
+                    </>
+                  )}
+                </div>
 
-              <h3 className="font-bold text-sm text-muted-color mt-3 capitalize">
-                {data?.data?.remembered_profile?.epitaph ||
-                  "In loving memory of"}
-              </h3>
-              <h3 className="font-bold capitalize text-xl">
-                {data?.data?.remembered_profile?.first_name}{" "}
-                {data?.data?.remembered_profile?.last_name}
-              </h3>
-              <p className="text-muted-color my-2 text-[13px] leading-4">
-                <span className="block font-bold mb-1 text-sm"> Lifetime:</span>{" "}
-                {data?.data?.remembered_profile?.birth_date}{" "}
-                <span className="font-bold mx-1">X</span>{" "}
-                {data?.data?.remembered_profile?.death_date}{" "}
-                <span className="block font-bold">
-                  Lived:{" "}
-                  {getLivedDays(
-                    data?.data?.remembered_profile?.birth_date,
-                    data?.data?.remembered_profile?.death_date
-                  )}{" "}
-                </span>
-                {/* <span className="block font-bold">
+                <h3 className="font-bold text-sm text-muted-color mt-3 capitalize">
+                  {data?.data?.remembered_profile?.epitaph ||
+                    "In loving memory of"}
+                </h3>
+                <h3 className="font-bold capitalize text-xl">
+                  {data?.data?.remembered_profile?.first_name}{" "}
+                  {data?.data?.remembered_profile?.last_name}
+                </h3>
+                <p className="text-muted-color my-2 text-[13px] leading-4">
+                  <span className="block font-bold mb-1 text-sm">
+                    {" "}
+                    Lifetime:
+                  </span>{" "}
+                  {data?.data?.remembered_profile?.birth_date}{" "}
+                  <span className="font-bold mx-1">X</span>{" "}
+                  {data?.data?.remembered_profile?.death_date}{" "}
+                  <span className="block font-bold">
+                    Lived:{" "}
+                    {getLivedDays(
+                      data?.data?.remembered_profile?.birth_date,
+                      data?.data?.remembered_profile?.death_date
+                    )}{" "}
+                  </span>
+                  {/* <span className="block font-bold">
                   How Long Ago:{" "}
                   {getHowLongDied(data?.data?.remembered_profile?.death_date)}{" "}
                 </span> */}
-              </p>
-              {/* <div className="flex justify-center gap-5 mt-3 mb-3">
+                </p>
+                {/* <div className="flex justify-center gap-5 mt-3 mb-3">
                 <FaFacebookF
                   size={18}
                   className="hover:text-[#00A2B3] animation-fade cursor-pointer"
@@ -442,86 +491,89 @@ const ProfileRemembered = () => {
                 />
               </div> */}
 
-              <p className="text-muted-color text-xs font-bold mt-2 leading-4">
-                Managed by:{" "}
-                <span className="font-bold">
-                  {data?.data?.remembered_profile?.owner?.name}
-                </span>
-              </p>
+                <p className="text-muted-color text-xs font-bold mt-2 leading-4">
+                  Managed by:{" "}
+                  <span className="font-bold">
+                    {data?.data?.remembered_profile?.owner?.name}
+                  </span>
+                </p>
 
-              {!data?.data?.is_owner && userInfo?.access_token && (
-                <FollowRemember
-                  idRemembered={data?.data?.remembered_profile?.id}
-                />
-              )}
-
-              {data?.data?.is_owner && (
-                <div>
-                  <button
-                    className="btn btn-blue bg-transparent border border-primary-color text-primary-color text-base rounded-sm mt-3 hover:bg-primary-color hover:text-white animation-fade"
-                    onClick={() => setEditRememberedProfile(true)}
-                  >
-                    <TfiPencilAlt className="inline align-sub size-5" /> Edit
-                    Profile
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {data?.data?.is_owner ? (
-              <div
-                className={`border-s-8 ${
-                  data?.data?.remembered_profile?.status_privacy === "public"
-                    ? "border-green-500"
-                    : "border-red-500"
-                } bg-white shadow-2xl rounded-s-none rounded-xl mt-4 py-5 px-4 md:block hidden`}
-              >
-                <h3 className="font-bold text-muted-color">Memorial Status:</h3>
-
-                <div className="flex items-center justify-between my-2">
-                  <h2 className="font-semibold">Status:</h2>
-                  {data?.data?.remembered_profile?.status_privacy ===
-                  "public" ? (
-                    <h4 className="text-center rounded-sm inline-block font-semibold px-2 py-1 text-green-500 bg-green-200">
-                      Public
-                    </h4>
-                  ) : (
-                    <h4 className="text-center rounded-sm inline-block font-semibold px-2 py-1 text-red-400 bg-red-200">
-                      Private
-                    </h4>
-                  )}
-                </div>
-
-                <button
-                  className="border border-yellow-500 hover:bg-yellow-500 hover:text-white animation-fade rounded-sm w-full font-semibold text-yellow-500 py-1 inline-block"
-                  onClick={() => setChangeStatusModal(true)}
-                  type="button"
-                >
-                  Change Status
-                </button>
-
-                <Modal
-                  titleModal={"Memorial Status Options..."}
-                  handleSubmit={handleChangeStatus}
-                  setOpenModal={setChangeStatusModal}
-                  openModal={changeStatusModal}
-                  modalForm={true}
-                  editableWidth={"max-w-xl"}
-                >
-                  <FormChangeStatus
-                    setChangeStatusModal={setChangeStatusModal}
-                    setStatusOptionSelected={setStatusOptionSelected}
-                    statusOptionSelected={statusOptionSelected}
-                    isPending={changeStatusMutation?.isPending}
-                    status={data?.data?.remembered_profile?.status_privacy}
+                {!data?.data?.is_owner && userInfo?.access_token && (
+                  <FollowRemember
+                    idRemembered={data?.data?.remembered_profile?.id}
                   />
-                </Modal>
-              </div>
-            ) : null}
-          </article>
+                )}
 
-          <article className="col-span-3 my-8">
-            {/* <button
+                {data?.data?.is_owner && (
+                  <div>
+                    <button
+                      className="btn btn-blue bg-transparent border border-primary-color text-primary-color text-base rounded-sm mt-3 hover:bg-primary-color hover:text-white animation-fade"
+                      onClick={() => setEditRememberedProfile(true)}
+                    >
+                      <TfiPencilAlt className="inline align-sub size-5" /> Edit
+                      Profile
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Going to dissapear on 870 px from up */}
+              {data?.data?.is_owner ? (
+                <div
+                  className={`border-s-8 ${
+                    data?.data?.remembered_profile?.status_privacy === "public"
+                      ? "border-green-500"
+                      : "border-red-500"
+                  } bg-white shadow-2xl rounded-s-none rounded-xl mt-4 py-5 px-4 min-[870px]:block hidden`}
+                >
+                  <h3 className="font-bold text-muted-color">
+                    Memorial Status:
+                  </h3>
+
+                  <div className="flex items-center justify-between my-2">
+                    <h2 className="font-semibold">Status:</h2>
+                    {data?.data?.remembered_profile?.status_privacy ===
+                    "public" ? (
+                      <h4 className="text-center rounded-sm inline-block font-semibold px-2 py-1 text-green-500 bg-green-200">
+                        Public
+                      </h4>
+                    ) : (
+                      <h4 className="text-center rounded-sm inline-block font-semibold px-2 py-1 text-red-400 bg-red-200">
+                        Private
+                      </h4>
+                    )}
+                  </div>
+
+                  <button
+                    className="border border-yellow-500 hover:bg-yellow-500 hover:text-white animation-fade rounded-sm w-full font-semibold text-yellow-500 py-1 inline-block"
+                    onClick={() => setChangeStatusModal(true)}
+                    type="button"
+                  >
+                    Change Status
+                  </button>
+
+                  <Modal
+                    titleModal={"Memorial Status Options..."}
+                    handleSubmit={handleChangeStatus}
+                    setOpenModal={setChangeStatusModal}
+                    openModal={changeStatusModal}
+                    modalForm={true}
+                    editableWidth={"max-w-xl"}
+                  >
+                    <FormChangeStatus
+                      setChangeStatusModal={setChangeStatusModal}
+                      setStatusOptionSelected={setStatusOptionSelected}
+                      statusOptionSelected={statusOptionSelected}
+                      isPending={changeStatusMutation?.isPending}
+                      status={data?.data?.remembered_profile?.status_privacy}
+                    />
+                  </Modal>
+                </div>
+              ) : null}
+            </article>
+
+            <article className="col-span-3 min-[870px]:mt-8 mt-0 mb-8">
+              {/* <button
               type="button"
               onClick={() => setShowMembers(!showMembers)}
               className="btn btn-blue w-auto mb-3"
@@ -543,252 +595,259 @@ const ProfileRemembered = () => {
               </div>
             ) : null} */}
 
-            <ul
-              className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row "
-              role="tablist"
-            >
-              {/* About */}
-              <TabLink
-                setOpenTab={setOpenTab}
-                linkTab={"#about"}
-                textTab={"About"}
-                // iconTab={<FaHeart className="text-red-500" />}
-                openTab={openTab}
-                numberTab={1}
-                countTab={false}
-                enableCountTab={false}
-              />
-
-              {/* Media */}
-              <TabLink
-                setOpenTab={setOpenTab}
-                textTab={"Media"}
-                linkTab={"#media"}
-                // iconTab={<FaCross className="text-primary-color" />}
-                openTab={openTab}
-                numberTab={3}
-                countTab={
-                  data?.data?.remembered_profile?.gallery_images?.length
-                }
-              />
-
-              {/* Tributes */}
-              <TabLink
-                setOpenTab={setOpenTab}
-                linkTab={"#tributes"}
-                textTab={"Tributes"}
-                // iconTab={<FaHeart className="text-red-500" />}
-                openTab={openTab}
-                numberTab={5}
-                countTab={data?.data?.remembered_profile?.tributes?.length}
-              />
-
-              {/* Condolences */}
-              <TabLink
-                setOpenTab={setOpenTab}
-                linkTab={"#condolences"}
-                textTab={"Condolences"}
-                // iconTab={<FaHeart className="text-red-500" />}
-                openTab={openTab}
-                numberTab={4}
-                countTab={data?.data?.remembered_profile?.condolences?.length}
-              />
-
-              {/* Posts */}
-              <TabLink
-                setOpenTab={setOpenTab}
-                linkTab={"#posts"}
-                textTab={"Posts"}
-                // iconTab={<FaHeart className="text-red-500" />}
-                openTab={openTab}
-                numberTab={2}
-                countTab={postsQuery?.data?.data?.length}
-              />
-
-              {/* QR Code */}
-              {data?.data?.is_owner && (
+              <ul
+                className="flex gap-3 list-none flex-wrap my-3 py-2.5 px-1 bg-white/80 flex-row border-2 border-tertiary-color/10 rounded shadow-lg"
+                role="tablist"
+              >
+                {/* About */}
                 <TabLink
                   setOpenTab={setOpenTab}
-                  linkTab={"#qrCode"}
-                  textTab={"Qr Code"}
+                  linkTab={"#about"}
+                  textTab={"About"}
                   // iconTab={<FaHeart className="text-red-500" />}
                   openTab={openTab}
-                  numberTab={6}
+                  numberTab={1}
                   countTab={false}
                   enableCountTab={false}
                 />
-              )}
-            </ul>
 
-            <div className="flex flex-col min-w-0 break-words w-full">
-              <div className="flex-auto">
-                <div className="tab-content tab-space">
-                  {/* About */}
-                  <TabLinkContent
+                {/* Media */}
+                <TabLink
+                  setOpenTab={setOpenTab}
+                  textTab={"Media"}
+                  linkTab={"#media"}
+                  // iconTab={<FaCross className="text-primary-color" />}
+                  openTab={openTab}
+                  numberTab={3}
+                  countTab={
+                    data?.data?.remembered_profile?.gallery_images?.length
+                  }
+                />
+
+                {/* Tributes */}
+                <TabLink
+                  setOpenTab={setOpenTab}
+                  linkTab={"#tributes"}
+                  textTab={"Tributes"}
+                  // iconTab={<FaHeart className="text-red-500" />}
+                  openTab={openTab}
+                  numberTab={5}
+                  countTab={data?.data?.remembered_profile?.tributes?.length}
+                />
+
+                {/* Condolences */}
+                <TabLink
+                  setOpenTab={setOpenTab}
+                  linkTab={"#condolences"}
+                  textTab={"Condolences"}
+                  // iconTab={<FaHeart className="text-red-500" />}
+                  openTab={openTab}
+                  numberTab={4}
+                  countTab={data?.data?.remembered_profile?.condolences?.length}
+                />
+
+                {/* Posts */}
+                <TabLink
+                  setOpenTab={setOpenTab}
+                  linkTab={"#posts"}
+                  textTab={"Posts"}
+                  // iconTab={<FaHeart className="text-red-500" />}
+                  openTab={openTab}
+                  numberTab={2}
+                  countTab={postsQuery?.data?.data?.length}
+                />
+
+                {/* QR Code */}
+                {data?.data?.is_owner && (
+                  <TabLink
+                    setOpenTab={setOpenTab}
+                    linkTab={"#qrCode"}
+                    textTab={"Qr Code"}
+                    // iconTab={<FaHeart className="text-red-500" />}
                     openTab={openTab}
-                    numberTab={1}
-                    idTab={"#about"}
-                  >
-                    <AboutRemembered
-                      idRemembered={data?.data?.remembered_profile?.id}
-                      owner={data?.data?.is_owner}
-                      rememberedProfile={data?.data}
-                    />
-                  </TabLinkContent>
+                    numberTab={6}
+                    countTab={false}
+                    enableCountTab={false}
+                  />
+                )}
+              </ul>
 
-                  {/* Posts */}
-                  <TabLinkContent
-                    openTab={openTab}
-                    numberTab={2}
-                    idTab={"#posts"}
-                  >
-                    <div className="flex flex-col sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
-                      <h2 className="text-primary-color font-bold text-xl sm:my-0 my-3">
-                        Posts{" "}
-                      </h2>
-
-                      <UploadPost
+              <div className="flex flex-col min-w-0 break-words w-full">
+                <div className="flex-auto">
+                  <div className="tab-content tab-space">
+                    {/* About */}
+                    <TabLinkContent
+                      openTab={openTab}
+                      numberTab={1}
+                      idTab={"#about"}
+                    >
+                      <AboutRemembered
                         idRemembered={data?.data?.remembered_profile?.id}
+                        owner={data?.data?.is_owner}
+                        rememberedProfile={data?.data}
+                      />
+                    </TabLinkContent>
+
+                    {/* Posts */}
+                    <TabLinkContent
+                      openTab={openTab}
+                      numberTab={2}
+                      idTab={"#posts"}
+                    >
+                      <div className="flex flex-col sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
+                        <h2 className="text-primary-color font-bold text-xl sm:my-0 my-3">
+                          Posts{" "}
+                        </h2>
+
+                        <UploadPost
+                          idRemembered={data?.data?.remembered_profile?.id}
+                          isOwner={data?.data?.is_owner}
+                          rememberedProfiles={ownProfilesQuery?.data}
+                          galleryImages={
+                            data?.data?.remembered_profile?.gallery_images
+                          }
+                        />
+                      </div>
+
+                      {!postsQuery?.data?.data?.length ? (
+                        <h2 className="text-center font-bold text-xl text-primary-color my-5">
+                          There's no posts in this profile yet...
+                          <span className="block">
+                            {data?.data?.remembered_profile?.status_plan ===
+                            "free"
+                              ? "Go to buy the Premium plan to publish posts and more!"
+                              : null}
+                          </span>
+                        </h2>
+                      ) : (
+                        postsQuery?.data?.data?.map((post) => {
+                          return (
+                            <Post
+                              isOwner={data?.data?.is_owner}
+                              rememberName={
+                                data?.data?.remembered_profile?.first_name
+                              }
+                              totalComments={postsQuery?.data?.data?.comments}
+                              post={post}
+                              key={post?.id}
+                            />
+                          );
+                        })
+                      )}
+                    </TabLinkContent>
+
+                    {/* Media */}
+                    <TabLinkContent
+                      openTab={openTab}
+                      numberTab={3}
+                      idTab={"#media"}
+                    >
+                      <div className="flex flex-col sm:flex-row justify-between items-center bg-white p-3 rounded-lg shadow-lg mb-7">
+                        <h2 className="text-primary-color font-bold text-xl sm:my-0 my-3">
+                          Photos{" "}
+                        </h2>
+
+                        <UploadGalleryImage
+                          params={params}
+                          isOwner={data?.data?.is_owner}
+                          idRemembered={data?.data?.remembered_profile?.id}
+                          imagesGallery={
+                            data?.data?.remembered_profile?.gallery_images
+                          }
+                          status={
+                            data?.data?.remembered_profile?.status_privacy
+                          }
+                          statusPlan={
+                            data?.data?.remembered_profile?.status_plan
+                          }
+                        />
+                      </div>
+
+                      {/* Mansory Design */}
+                      <MansoryGallery
+                        ownerName={data?.data?.remembered_profile?.owner?.name}
                         isOwner={data?.data?.is_owner}
-                        rememberedProfiles={ownProfilesQuery?.data}
                         galleryImages={
                           data?.data?.remembered_profile?.gallery_images
                         }
-                      />
-                    </div>
-
-                    {!postsQuery?.data?.data?.length ? (
-                      <h2 className="text-center font-bold text-xl text-primary-color my-5">
-                        There's no posts in this profile yet...
-                        <span className="block">
-                          {data?.data?.remembered_profile?.status_plan ===
-                          "free"
-                            ? "Go to buy the Premium plan to publish posts and more!"
-                            : null}
-                        </span>
-                      </h2>
-                    ) : (
-                      postsQuery?.data?.data?.map((post) => {
-                        return (
-                          <Post
-                            isOwner={data?.data?.is_owner}
-                            rememberName={
-                              data?.data?.remembered_profile?.first_name
-                            }
-                            totalComments={postsQuery?.data?.data?.comments}
-                            post={post}
-                            key={post?.id}
-                          />
-                        );
-                      })
-                    )}
-                  </TabLinkContent>
-
-                  {/* Media */}
-                  <TabLinkContent
-                    openTab={openTab}
-                    numberTab={3}
-                    idTab={"#media"}
-                  >
-                    <div className="flex flex-col sm:flex-row justify-between items-center bg-white p-3 rounded-lg shadow-lg mb-7">
-                      <h2 className="text-primary-color font-bold text-xl sm:my-0 my-3">
-                        Photos{" "}
-                      </h2>
-
-                      <UploadGalleryImage
                         params={params}
-                        isOwner={data?.data?.is_owner}
                         idRemembered={data?.data?.remembered_profile?.id}
-                        imagesGallery={
-                          data?.data?.remembered_profile?.gallery_images
-                        }
                         status={data?.data?.remembered_profile?.status_privacy}
                         statusPlan={data?.data?.remembered_profile?.status_plan}
                       />
-                    </div>
+                    </TabLinkContent>
 
-                    {/* Mansory Design */}
-                    <MansoryGallery
-                      ownerName={data?.data?.remembered_profile?.owner?.name}
-                      isOwner={data?.data?.is_owner}
-                      galleryImages={
-                        data?.data?.remembered_profile?.gallery_images
-                      }
-                      params={params}
-                      idRemembered={data?.data?.remembered_profile?.id}
-                      status={data?.data?.remembered_profile?.status_privacy}
-                      statusPlan={data?.data?.remembered_profile?.status_plan}
-                    />
-                  </TabLinkContent>
-
-                  {/* Condolences */}
-                  <TabLinkContent
-                    openTab={openTab}
-                    numberTab={4}
-                    idTab={"#condolences"}
-                  >
-                    <CondolenceHeader
-                      userInfo={userInfo}
-                      isOwner={data?.data?.is_owner}
-                      idRemembered={data?.data?.remembered_profile?.id}
-                    />
-
-                    {!data?.data?.remembered_profile?.condolences?.length ? (
-                      <h2 className="text-center font-bold text-xl text-primary-color my-5">
-                        There's no condolences in this profile yet...
-                      </h2>
-                    ) : (
-                      <Condolences
-                        isOwner={data?.data?.is_owner}
-                        condolences={
-                          data?.data?.remembered_profile?.condolences
-                        }
-                      />
-                    )}
-                  </TabLinkContent>
-
-                  {/* Tributes */}
-                  <TabLinkContent
-                    openTab={openTab}
-                    numberTab={5}
-                    idTab={"#tributes"}
-                  >
-                    <TributeHeader
-                      userInfo={userInfo}
-                      idRemembered={data?.data?.remembered_profile?.id}
-                    />
-
-                    {!data?.data?.remembered_profile?.tributes?.length ? (
-                      <h2 className="text-center font-bold text-xl text-primary-color my-5">
-                        There's no tributes in this profile yet...
-                      </h2>
-                    ) : (
-                      <Tributes
-                        isOwner={data?.data?.is_owner}
-                        tributes={data?.data?.remembered_profile?.tributes}
-                      />
-                    )}
-                  </TabLinkContent>
-
-                  {/* QR Code */}
-                  {data?.data?.is_owner && (
+                    {/* Condolences */}
                     <TabLinkContent
                       openTab={openTab}
-                      numberTab={6}
-                      idTab={"#qrCode"}
+                      numberTab={4}
+                      idTab={"#condolences"}
                     >
-                      <QRCodeGenerate
+                      <CondolenceHeader
+                        userInfo={userInfo}
                         isOwner={data?.data?.is_owner}
                         idRemembered={data?.data?.remembered_profile?.id}
-                        qrImages={data?.data?.remembered_profile?.qr_images}
-                        statusPlan={data?.data?.remembered_profile?.status_plan}
                       />
+
+                      {!data?.data?.remembered_profile?.condolences?.length ? (
+                        <h2 className="text-center font-bold text-xl text-primary-color my-5">
+                          There's no condolences in this profile yet...
+                        </h2>
+                      ) : (
+                        <Condolences
+                          isOwner={data?.data?.is_owner}
+                          condolences={
+                            data?.data?.remembered_profile?.condolences
+                          }
+                        />
+                      )}
                     </TabLinkContent>
-                  )}
+
+                    {/* Tributes */}
+                    <TabLinkContent
+                      openTab={openTab}
+                      numberTab={5}
+                      idTab={"#tributes"}
+                    >
+                      <TributeHeader
+                        userInfo={userInfo}
+                        idRemembered={data?.data?.remembered_profile?.id}
+                      />
+
+                      {!data?.data?.remembered_profile?.tributes?.length ? (
+                        <h2 className="text-center font-bold text-xl text-primary-color my-5">
+                          There's no tributes in this profile yet...
+                        </h2>
+                      ) : (
+                        <Tributes
+                          isOwner={data?.data?.is_owner}
+                          tributes={data?.data?.remembered_profile?.tributes}
+                        />
+                      )}
+                    </TabLinkContent>
+
+                    {/* QR Code */}
+                    {data?.data?.is_owner && (
+                      <TabLinkContent
+                        openTab={openTab}
+                        numberTab={6}
+                        idTab={"#qrCode"}
+                      >
+                        <QRCodeGenerate
+                          isOwner={data?.data?.is_owner}
+                          idRemembered={data?.data?.remembered_profile?.id}
+                          qrImages={data?.data?.remembered_profile?.qr_images}
+                          statusPlan={
+                            data?.data?.remembered_profile?.status_plan
+                          }
+                        />
+                      </TabLinkContent>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          </article>
+            </article>
+          </div>
         </div>
       </article>
     </section>

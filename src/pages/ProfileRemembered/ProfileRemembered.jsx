@@ -231,7 +231,7 @@ const ProfileRemembered = () => {
           </div>
         )}
 
-        <div className="px-1">
+        <div className="min-[870px]:px-1">
           {/* User Image */}
           {/* Responsive - from 768px to bottom */}
           <div className="min-[870px]:hidden sticky top-0 z-[9999] bg-white shadow-lg">

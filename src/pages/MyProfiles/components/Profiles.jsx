@@ -46,7 +46,7 @@ const Profiles = ({
             <div className="flex flex-col gap-6 sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
               <h2 className="font-sans font-medium text-muted-color italic">
                 “Thank you for your purchase! You now have{" "}
-                {getPremiumProfilesRemaining?.data?.data?.remaining_profiles}{" "}
+                <span className="font-bold">({getPremiumProfilesRemaining?.data?.data?.remaining_profiles})</span>{" "}
                 new{" "}
                 {getPremiumProfilesRemaining?.data?.data?.remaining_profiles ===
                 1

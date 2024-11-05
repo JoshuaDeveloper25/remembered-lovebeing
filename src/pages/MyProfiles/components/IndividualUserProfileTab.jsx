@@ -24,7 +24,7 @@ const IndividualUserProfileTab = ({
   return (
     <>
       <ul
-        className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
+        className="flex gap-3 list-none flex-wrap my-3 py-2.5 px-1 bg-white/80 flex-row border-2 border-tertiary-color/10 rounded shadow-lg"
         role="tablist"
       >
         <TabLink

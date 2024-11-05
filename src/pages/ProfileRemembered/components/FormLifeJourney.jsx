@@ -33,11 +33,11 @@ const FormLifeJourney = ({
   const deathDate = rememberedProfileInfo?.death_date;
 
   const [birthCountry, setBirthCountry] = useState(
-    rememberedProfileInfo?.birth_country || ""
+     rememberedProfileInfo?.birth_country
   );
 
   const [deathCountry, setDeathCountry] = useState(
-    rememberedProfileInfo?.death_country || ""
+     rememberedProfileInfo?.death_country
   );
 
   // Get all information about countries from public API

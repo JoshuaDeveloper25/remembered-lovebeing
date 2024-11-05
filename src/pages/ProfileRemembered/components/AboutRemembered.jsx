@@ -18,10 +18,10 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
   const [openAddKnownModal, setOpenAddKnownModal] = useState(false);
   const [openLifeJourneyModal, setOpenLifeJourneyModal] = useState(false);
   const currentYear = new Date().getFullYear();
-  const [bornYear, setBornYear] = useState(currentYear);
+  const [bornYear, setBornYear] = useState(1900 || currentYear);
   const [bornMonth, setBornMonth] = useState("January");
   const [bornDay, setBornDay] = useState(1);
-  const [passedYear, setPassedYear] = useState(currentYear);
+  const [passedYear, setPassedYear] = useState(1900 || currentYear);
   const [passedMonth, setPassedMonth] = useState("January");
   const [passedDay, setPassedDay] = useState(1);
   const [errorBornValidation, setErrorBornValidation] = useState(false);

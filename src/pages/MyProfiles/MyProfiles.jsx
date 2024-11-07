@@ -1,27 +1,39 @@
+import ResponsiveMoreInfoRememberedAdmin from "./components/ResponsiveMoreInfoRememberedAdmin";
 import IndividualUserProfileCard from "./components/IndividualUserProfileCard";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import IndividualUserProfileTab from "./components/IndividualUserProfileTab";
+import UploadUserProfileImage from "../../components/UploadUserProfileImage";
 import FormCreateProfile from "./components/FormCreateProfile";
 import getFastApiErrors from "../../utils/getFastApiErrors";
+import AppContext from "../../context/AppProvider";
 import cloudsVideo from "../../assets/clouds.mp4";
+import { useContext, useState } from "react";
 import Modal from "../../components/Modal";
 import { GoPlus } from "react-icons/go";
 import { toast } from "react-toastify";
-import { useState } from "react";
 import axios from "axios";
 
 const MyProfiles = () => {
+  const { userInfo } = useContext(AppContext);
   const [openPremiumModal, setOpenPremiumModal] = useState(false);
   const [openFreeModal, setOpenFreeModal] = useState(false);
   const [statusPlan, setStatusPlan] = useState("");
   const [slug, setSlug] = useState("");
   const queryClient = useQueryClient();
 
-  const { data, isPending, error } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ["ownProfiles"],
     queryFn: async () =>
       await axios.get(
         `${import.meta.env.VITE_BASE_URL}/remembereds/get-own-profiles`
+      ),
+  });
+
+  const userStatsQuery = useQuery({
+    queryKey: ["userStats"],
+    queryFn: async () =>
+      await axios.get(
+        `${import.meta.env.VITE_BASE_URL}/remembereds/user-stats`
       ),
   });
 
@@ -79,15 +91,56 @@ const MyProfiles = () => {
   return (
     <>
       {/* Sky Video */}
-      <video className="w-full h-60 object-cover" loop autoPlay muted>
+      <video
+        className="md:block hidden w-full h-60 object-cover"
+        loop
+        autoPlay
+        muted
+      >
         <source src={cloudsVideo} type="video/mp4" />
         Your browser does not support HTML video.
       </video>
 
       {/* Profiles */}
       <section className="container-page px-1 my-3">
-        {/* Create Profile Button */}
-        <article className="mb-8 md:text-end text-start">
+        <div className="md:hidden sticky top-0 z-[9999] bg-white shadow-lg">
+          <div className="flex justify-between gap-4 items-center px-5 py-2 sticky z-20">
+            <div className="flex items-center gap-6">
+              <div className="relative">
+                <img
+                  className="w-16 h-16 object-cover mx-auto rounded-full shadow-lg"
+                  src={
+                    userInfo?.profile_image
+                      ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
+                      : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                  }
+                />
+
+                <div className="absolute -bottom-3 left-[55%] z-[100] cursor-pointer">
+                  <UploadUserProfileImage iconClassname={"size-4"} />
+                </div>
+              </div>
+
+              <div>
+                <h2 className="font-bold capitalize text-xl">
+                  {userInfo?.name}
+                </h2>
+                <h4 className="text-gray-600 font-semibold text-base leading-4">
+                  {userInfo?.email}
+                </h4>
+              </div>
+            </div>
+
+            <div>
+              <ResponsiveMoreInfoRememberedAdmin
+                userStats={userStatsQuery?.data?.data}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* 768px to up */}
+        <article className="md:block hidden mb-8 md:text-end text-start">
           <div className="inline-block">
             <button onClick={handleCreateFreeProfile} className="btn btn-blue">
               <GoPlus className="size-5 inline" /> Create Free Profile
@@ -112,8 +165,36 @@ const MyProfiles = () => {
         </article>
 
         <div className="grid md:grid-cols-4 grid-cols-1 items-start min-[1150px]:gap-3 sm:gap-1 gap-0">
-          {/* User Profile */}
-          <IndividualUserProfileCard />
+          {/* User Profile - 768 to up */}
+          <IndividualUserProfileCard userStats={userStatsQuery?.data?.data} />
+
+          {/* 768px to bottom */}
+          <article className="md:hidden block mt-4 md:text-end text-start">
+            <div className="inline-block">
+              <button
+                onClick={handleCreateFreeProfile}
+                className="btn btn-blue"
+              >
+                <GoPlus className="size-5 inline" /> Create Free Profile
+              </button>
+            </div>
+
+            <Modal
+              titleModal={"New Profile"}
+              handleSubmit={handleSubmit}
+              setOpenModal={setOpenFreeModal}
+              openModal={openFreeModal}
+              modalForm={true}
+              editableWidth={"max-w-[700px] px-8"}
+            >
+              <FormCreateProfile
+                slug={slug}
+                setSlug={setSlug}
+                isPending={createProfileMutation?.isPending}
+                setOpenFreeModal={setOpenFreeModal}
+              />
+            </Modal>
+          </article>
 
           {/* Profiles from user and Tab */}
           <div className="col-span-3">

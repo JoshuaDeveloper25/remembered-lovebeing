@@ -10,18 +10,14 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Modal from "./Modal";
 import axios from "axios";
-import { FcEditImage } from "react-icons/fc";
-import { TfiPencilAlt } from "react-icons/tfi";
 
-const UploadUserProfileImage = () => {
+const UploadUserProfileImage = ({ iconClassname }) => {
   const { userInfo, setUserInfo } = useContext(AppContext);
-
   const [openModalProfile, setOpenModalProfile] = useState(false);
   const previewCanvasRef = useRef(null);
   const queryClient = useQueryClient();
   const [crop, setCrop] = useState();
   const imgRef = useRef(null);
-  const params = useParams();
   const avatarUrl = useRef(
     "https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
   );
@@ -75,7 +71,9 @@ const UploadUserProfileImage = () => {
     updateAvatar(dataUrl);
 
     const blob = await fetch(dataUrl).then((res) => res.blob());
-    const file = new File([blob], "user-profile-image.png", { type: "image/png" });
+    const file = new File([blob], "user-profile-image.png", {
+      type: "image/png",
+    });
 
     const formData = new FormData();
     formData.append("file", file);
@@ -93,7 +91,9 @@ const UploadUserProfileImage = () => {
         className="p-2.5 rounded-full text-white bg-blue-500 hover:bg-blue-800 animation-fade"
         type="button"
       >
-        <FaCameraRetro className="size-5" />
+        <FaCameraRetro
+          className={`${iconClassname ? iconClassname : "size-5"}`}
+        />
       </button>
 
       {/* Change User Profile Image Modal */}

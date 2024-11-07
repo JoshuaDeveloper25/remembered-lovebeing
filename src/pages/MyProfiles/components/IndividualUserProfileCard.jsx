@@ -1,25 +1,12 @@
 import UploadUserProfileImage from "../../../components/UploadUserProfileImage";
-import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa6";
 import AppContext from "../../../context/AppProvider";
-import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
-import axios from "axios";
 
-const IndividualUserProfileCard = () => {
+const IndividualUserProfileCard = ({ userStats }) => {
   const { userInfo } = useContext(AppContext);
 
-  const userStatsQuery = useQuery({
-    queryKey: ["userStats"],
-    queryFn: async () =>
-      await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/remembereds/user-stats`
-      ),
-  });
-
-  const userStats = userStatsQuery?.data?.data;
-
   return (
-    <article className="md:sticky static top-0 col-span-1 min-w-52 text-center border md:mb-0 mb-8 bg-white shadow-2xl rounded-xl md:-mt-36 py-5 px-4">
+    <article className="md:block hidden md:sticky static top-0 col-span-1 min-w-52 text-center border md:mb-0 mb-8 bg-white shadow-2xl rounded-xl md:-mt-36 py-5 px-4">
       <div className="relative">
         <img
           className="w-36 h-36 object-cover mx-auto rounded-full shadow-lg"
@@ -29,11 +16,9 @@ const IndividualUserProfileCard = () => {
               : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
           }
         />
-        {/* {!data?.data?.is_owner ? null : ( */}
         <div className="absolute -bottom-3 left-[55%] z-[100] cursor-pointer">
           <UploadUserProfileImage />
         </div>
-        {/* )} */}
       </div>
 
       <h3 className="font-bold capitalize mt-6 text-xl">{userInfo?.name}</h3>
@@ -82,21 +67,6 @@ const IndividualUserProfileCard = () => {
         </div>
       </div>
 
-      {/* Social Media */}
-      {/* <div className="flex justify-center gap-5 my-6">
-        <FaFacebookF
-          size={18}
-          className="hover:text-[#00A2B3] animation-fade cursor-pointer"
-        />
-        <FaInstagram
-          size={18}
-          className="hover:text-[#00A2B3] animation-fade cursor-pointer"
-        />
-        <FaTwitter
-          size={18}
-          className="hover:text-[#00A2B3] animation-fade cursor-pointer"
-        />
-      </div> */}
       <p className="text-gray-600 text-xs font-bold mt-2 leading-4">
         Member since Nov 15, 2021
       </p>

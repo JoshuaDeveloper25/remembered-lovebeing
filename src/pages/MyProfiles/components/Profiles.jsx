@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import Modal from "../../../components/Modal";
 import Profile from "./Profile";
 import axios from "axios";
-import { useState } from "react";
 
 const Profiles = ({
   handleSubmit,

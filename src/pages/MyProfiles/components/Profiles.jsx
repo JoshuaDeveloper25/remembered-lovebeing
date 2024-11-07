@@ -26,6 +26,7 @@ const Profiles = ({
   const premiumProfiles = profiles?.filter(
     (item) => item?.status_plan !== "free"
   );
+
   const freeProfiles = profiles?.filter(
     (item) => item?.status_plan !== "premium"
   );
@@ -93,7 +94,7 @@ const Profiles = ({
           <div className="border-b-2 pb-8">
             <div className="mb-3">
               <h2 className="font-light text-base text-yellow-500 tracking-wider font-mono">
-                <span className="text-2xl">Premium</span>{" "}
+                <span className="text-2xl">My</span>{" "}
                 <span className="text-primary-color-light tracking-tighter">
                   Profiles
                 </span>
@@ -104,8 +105,8 @@ const Profiles = ({
 
             {premiumProfiles?.length !== 0 ? (
               <>
-                <article className="grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-7 col-span-3">
-                  {premiumProfiles?.map((item) => {
+                <article className="grid min-[1043px]:grid-cols-2 grid-cols-1 gap-4 col-span-3">
+                  {profiles?.map((item) => {
                     return (
                       <Profile
                         isPending={isPending}
@@ -122,7 +123,7 @@ const Profiles = ({
               </h2>
             )}
           </div>
-
+{/* 
           <div className="mt-6">
             <div className=" mb-3">
               <h2 className="font-light text-base text-yellow-500 tracking-wider font-mono">
@@ -136,7 +137,7 @@ const Profiles = ({
             </div>
 
             {freeProfiles?.length !== 0 ? (
-              <article className="grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-7 col-span-3">
+              <article className="grid sm:grid-cols-2 grid-cols-1 gap-7 col-span-3">
                 {freeProfiles?.map((item) => {
                   return (
                     <Profile isPending={isPending} item={item} key={item?.id} />
@@ -148,7 +149,7 @@ const Profiles = ({
                 There's no free profiles yet...
               </h2>
             )}
-          </div>
+          </div> */}
         </div>
       ) : (
         <article className="text-center font-bold text-2xl py-8">

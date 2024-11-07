@@ -2,18 +2,26 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import { getLivedDays } from "../../../utils/getLivedDays";
 import { MdWorkspacePremium } from "react-icons/md";
+import { useEffect, useRef, useState } from "react";
 import Modal from "../../../components/Modal";
+import { LuHelpCircle } from "react-icons/lu";
 import { FaTrashCan } from "react-icons/fa6";
+import { FaEye, FaPencilAlt } from "react-icons/fa";
+import { GiTombstone } from "react-icons/gi";
+import { PiCakeFill } from "react-icons/pi";
 import FormLifeTime from "./FormLifeTime";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useEffect, useRef, useState } from "react";
-import axios from "axios";
-import { FaPencilAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { LuHelpCircle } from "react-icons/lu";
+import axios from "axios";
+import { createPortal } from "react-dom";
+import NavbarDropdownLink from "../../../components/NavbarDropdownLink";
+import { HiDotsVertical } from "react-icons/hi";
+import FormChangeStatus from "../../ProfileRemembered/components/FormChangeStatus";
 
 const Profile = ({ item, isPending }) => {
+  const [openOptions, setOpenOptions] = useState(false);
+  const [changeStatusModal, setChangeStatusModal] = useState(false);
   const currentYear = new Date().getFullYear();
   const [openLifeTimeModal, setOpenLifeTimeModal] = useState();
   const [bornYear, setBornYear] = useState(1900 || currentYear);
@@ -23,6 +31,7 @@ const Profile = ({ item, isPending }) => {
   const [passedYear, setPassedYear] = useState(1900 || currentYear);
   const [passedMonth, setPassedMonth] = useState("January");
   const [passedDay, setPassedDay] = useState(1);
+  const [statusOptionSelected, setStatusOptionSelected] = useState("");
   const queryClient = useQueryClient();
   const tooltipRef = useRef(null);
 
@@ -40,6 +49,37 @@ const Profile = ({ item, isPending }) => {
     "November",
     "December",
   ];
+
+  // Change Status
+  const changeStatusMutation = useMutation({
+    mutationFn: async (profileInfo) =>
+      await axios.patch(
+        `${import.meta.env.VITE_BASE_URL}/remembereds/switch-status-privacy/${
+          item?.id
+        }`,
+        profileInfo
+      ),
+    onSuccess: (res) => {
+      toast.success("Successfully status changed!");
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
+      queryClient.invalidateQueries({ queryKey: ["ownProfiles"] });
+      setChangeStatusModal(false);
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(getFastApiErrors(err));
+    },
+  });
+
+  const handleChangeStatus = (e) => {
+    e.preventDefault();
+
+    const profileInfo = {
+      status_privacy: statusOptionSelected,
+    };
+
+    changeStatusMutation?.mutate(profileInfo);
+  };
 
   const deleteProfileMutation = useMutation({
     mutationFn: async () =>
@@ -190,20 +230,39 @@ const Profile = ({ item, isPending }) => {
     </div>
   ) : (
     <>
-      <div className="flex relative shadow-2xl rounded-lg">
+      <div className="flex relative border shadow-2xl rounded-lg">
         <div className="flex-1 bg-gray-200 rounded-s-lg py-3 px-3">
-          <p
-            className={`text-sm ${
-              item?.status_privacy === "private"
-                ? "text-red-500 bg-red-500/20"
-                : "text-green-500 bg-green-500/20"
-            } p-2`}
-          >
-            Status:{" "}
-            <span className="font-semibold capitalize">
-              {item?.status_privacy}
-            </span>
-          </p>
+          {item?.status_plan === "premium" ? (
+            <div className="flex items-center text-sm justify-center bg-black/90 text-[#fab818] w-fit px-1.5 mx-auto">
+              <svg
+                class="premium-filled-icon--nW2Vi header-svg-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                className="fill-[#fab818] h-5"
+                viewBox="0 0 16 16"
+                data-t="premium-filled-svg"
+                aria-labelledby="premium-filled-svg"
+                aria-hidden="true"
+                role="img"
+              >
+                <title id="premium-filled-svg">Premium</title>
+                <path d="M2.419 13L0 4.797 4.837 6.94 8 2l3.163 4.94L16 4.798 13.581 13z"></path>
+              </svg>
+
+              <h2
+                className={`ms-1.5 rounded text-center font-semibold uppercase`}
+              >
+                {item?.status_plan}
+              </h2>
+            </div>
+          ) : (
+            <>
+              <h2
+                className={`text-sm uppercase bg-[#94a4a8] text-white rounded w-fit px-3 mx-auto`}
+              >
+                {item?.status_plan}
+              </h2>
+            </>
+          )}
 
           <img
             src={
@@ -216,12 +275,55 @@ const Profile = ({ item, isPending }) => {
             loading="lazy"
           />
 
+          {/* Buttons */}
+          <p
+            className={`text-sm ${
+              item?.status_privacy === "private"
+                ? "text-red-500 bg-red-500/20"
+                : "text-green-500 bg-green-500/20"
+            } px-1 py-2 mt-3 text-center`}
+          >
+            Status:{" "}
+            <span className="font-semibold capitalize">
+              {item?.status_privacy}
+            </span>
+          </p>
+
+          {/* {deleteProfileMutation?.isPending ? null : (
+            <div className="flex flex-col mb-3 my-2">
+              <Link to={`/remembered-profile/${item?.slug}`}>
+                <button
+                  disabled={deleteProfileMutation?.isPending}
+                  className={`btn px-1 text-[#00A2B3] animation-fade  hover:bg-[#00A2B3] hover:text-white border border-[#00A2B3] rounded-sm text-sm ${
+                    deleteProfileMutation?.isPending &&
+                    "pointer-events-none opacity-75 cursor-wait"
+                  }`}
+                >
+                  <FaPencilAlt className="inline-block me-1" /> Edit Profile
+                </button>
+              </Link> */}
+          {/* {item?.status_plan === "premium" ? null : (
+                <Link
+                  to={`/checkout/?slug=${item?.slug}`}
+                  className="relative premium-btn rounded-sm py-2  hover:bg-white/80 hover:text-[#fab818] animation-fade text-sm"
+                >
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>{" "}
+                  <MdWorkspacePremium className="inline-block size-6" /> Go Pro
+                  / $22
+                </Link>
+              )} */}
+          {/* </div>
+          )} */}
+
           {/* Trash bin */}
-          <div className="text-center">
+          {/* <div className="absolute right-0 bottom-0 text-center z-50">
             <button
               disabled={deleteProfileMutation?.isPending}
               onClick={handleDelete}
-              className="text-red-500 hover:bg-red-500/50 animation-fade rounded-full text-sm"
+              className="text-red-500 hover:bg-red-500/50 rounded-s-sm rounded-e-lg rounded-tr-none animation-fade  text-sm w-full"
             >
               {deleteProfileMutation?.isPending ? (
                 <div className="rounded-full bg-red-500/20 p-3" role="status">
@@ -243,42 +345,86 @@ const Profile = ({ item, isPending }) => {
                   </svg>
                 </div>
               ) : (
-                <p className="rounded-full flex items-center gap-1.5  bg-red-500/20 px-3 py-1.5">
-                  <FaTrashCan className="size-4 inline-block " /> Delete
+                <p className="w-full flex justify-center rounded-s-sm rounded-e-lg rounded-tr-none items-center gap-1.5 bg-red-500/20 px-3 py-2">
+                  <FaTrashCan className="size-4 inline-block " />
                 </p>
               )}
             </button>
-          </div>
+          </div> */}
         </div>
 
-        <div className="flex-[40%] relative py-3 px-3">
-          <div className="flex flex-col items-center justify-center text-center w-full h-full">
-            {/* ? icon to know more info */}
-            {showTooltip && (
-              <div
-                ref={tooltipRef}
-                className="absolute right-0 top-0 border w-max max-w-[16rem] mx-auto bg-primary-color-light/95 p-2 shadow-2xl rounded rounded-t-none z-50 tooltip tooltip-show"
-              >
-                <p className="text-white text-sm font-semibold text-center cursor-pointer">
-                  {item?.status_privacy === "private"
-                    ? `If your profile is private, only you can view it. To change the "Status" click on "Edit Profile" and then on "Change Status"`
-                    : `If your profile is public, everybody can see it. To change the "Status" click on "Edit Profile" and then on "Change Status"`}
-                </p>
-              </div>
-            )}
+        <div className="flex-[25%] relative py-3 px-3">
+          {/* Three Vertical Dots */}
+          <div className="absolute right-0 text-primary-color cursor-pointer transition-opacity">
+            <HiDotsVertical
+              onClick={() => setOpenOptions(!openOptions)}
+              size={18}
+            />
+          </div>
 
-            <div>
-              <div
-                ref={tooltipRef}
-                onMouseEnter={() => setShowTooltip(true)}
-                onMouseLeave={() => setShowTooltip(false)}
-              >
-                <LuHelpCircle className="bg-white rounded-full cursor-pointer absolute text-yellow-500 size-5 -top-1.5 -right-2 z-[9999]" />
-              </div>
-            </div>
+          {/* Dropdown on click to see more profile options */}
+          {openOptions && (
+            <>
+              {createPortal(
+                <div
+                  onClick={() => setOpenOptions(!openOptions)}
+                  className="h-[100vh] fixed top-0 w-full"
+                ></div>,
+                document.body
+              )}
 
+              <ul className="absolute top-8 right-3 z-50 shadow-lg border-2 bg-white w-max rounded  ">
+                {item?.status_plan === "premium" ? null : (
+                  <NavbarDropdownLink
+                    hoverBgLink={
+                      "hover:bg-[#fab818] text-xs border-b-2 border-[#fab818]"
+                    }
+                    linkTo={`/checkout/?slug=${item?.slug}`}
+                    linkText={"Go Pro / $22"}
+                  />
+                )}
+
+                <NavbarDropdownLink
+                  hoverBgLink={"hover:bg-secondary-color text-xs"}
+                  linkTo={`/remembered-profile/${item?.slug}`}
+                  linkText={"Edit Profile"}
+                />
+
+                <NavbarDropdownLink
+                  hoverBgLink={"hover:bg-secondary-color text-xs"}
+                  onClick={() => setChangeStatusModal(true)}
+                  linkText={"Change Status"}
+                />
+
+                <Modal
+                  titleModal={"Memorial Status Options..."}
+                  handleSubmit={handleChangeStatus}
+                  setOpenModal={setChangeStatusModal}
+                  openModal={changeStatusModal}
+                  modalForm={true}
+                  editableWidth={"max-w-xl"}
+                >
+                  <FormChangeStatus
+                    setChangeStatusModal={setChangeStatusModal}
+                    setStatusOptionSelected={setStatusOptionSelected}
+                    statusOptionSelected={statusOptionSelected}
+                    isPending={changeStatusMutation?.isPending}
+                    status={item.status_privacy}
+                  />
+                </Modal>
+
+                <NavbarDropdownLink
+                  hoverBgLink={"hover:bg-red-500 text-xs"}
+                  onClick={handleDelete}
+                  linkText={"Delete"}
+                />
+              </ul>
+            </>
+          )}
+
+          <div className="flex flex-col items-center justify-end text-center w-full h-full  ">
             <div>
-              <h2 className="capitalize self-end font-bold text-xl leading-6">
+              <h2 className="capitalize text-lg block overflow-hidden text-ellipsis whitespace-nowrap max-w-[200px] self-end font-bold leading-6">
                 {`${item?.first_name} ${item?.last_name || ""}`}
               </h2>
             </div>
@@ -323,7 +469,17 @@ const Profile = ({ item, isPending }) => {
                     </Modal>
                   </>
                 ) : (
-                  `${item?.birth_date} - ${item?.death_date}`
+                  <>
+                    <PiCakeFill className="inline-block size-5 align-bottom" />{" "}
+                    <span className="text-[14px]">{item?.birth_date}</span>{" "}
+                    <span className="min-[1201px]:hidden block"></span>
+                    <span className="hidden"></span>
+                    <span className="min-[1201px]:block inline">
+                      {" "}
+                      <GiTombstone className="inline-block size-5 align-bottom" />{" "}
+                      <span className="text-[14px]">{item?.death_date}</span>
+                    </span>
+                  </>
                 )}
 
                 <span className="block text-[.7rem] font-bold">
@@ -335,44 +491,21 @@ const Profile = ({ item, isPending }) => {
                       )}`}
                 </span>
               </h4>
-
-              {/* <p className="text-sm mt-3">
-            <span className="font-bold">Epitaph:</span>{" "}
-            <span className="text-gray-900">
-              {item?.epitaph || "In Loving Memory Of"}
-            </span>
-          </p> */}
             </div>
 
-            {/* Buttons */}
-            {deleteProfileMutation?.isPending ? null : (
-              <div className="mt-4 flex flex-col">
-                <Link to={`/remembered-profile/${item?.slug}`}>
-                  <button
-                    disabled={deleteProfileMutation?.isPending}
-                    className={`btn text-[#00A2B3] animation-fade  hover:bg-[#00A2B3] hover:text-white border border-[#00A2B3] rounded-sm text-sm ${
-                      deleteProfileMutation?.isPending &&
-                      "pointer-events-none opacity-75 cursor-wait"
-                    }`}
-                  >
-                    <FaPencilAlt className="inline-block me-1" /> Edit Profile
-                  </button>
-                </Link>
-                {item?.status_plan === "premium" ? null : (
-                  <Link
-                    to={`/checkout/?slug=${item?.slug}`}
-                    className="relative premium-btn rounded-sm py-2  hover:bg-white/80 hover:text-yellow-500 animation-fade text-sm"
-                  >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>{" "}
-                    <MdWorkspacePremium className="inline-block size-6" /> Go
-                    Pro / <span className="font-bold">$22</span> Lifetime
-                  </Link>
-                )}
-              </div>
-            )}
+            <div className="w-full text-center mx-auto flex justify-end">
+              <Link to={`/remembered-profile/${item?.slug}`}>
+                <button
+                  disabled={deleteProfileMutation?.isPending}
+                  className={`btn flex text-sm items-center justify-center w-[90px] gap-2 px-1 py-1 mt-3 text-[#00A2B3] animation-fade  hover:bg-[#00A2B3] hover:text-white border border-[#00A2B3] rounded-sm ${
+                    deleteProfileMutation?.isPending &&
+                    "pointer-events-none opacity-75 cursor-wait"
+                  }`}
+                >
+                  <FaEye size={18} /> View
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

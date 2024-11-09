@@ -135,9 +135,10 @@ const MyProfiles = () => {
 
             <div>
               <ResponsiveMoreInfoRememberedAdmin
+                openPremiumModal={openPremiumModal}
+                setOpenPremiumModal={setOpenPremiumModal}
                 setStatusPlan={setStatusPlan}
                 setOpenTab={setOpenTab}
-                handleCreateFreeProfile={handleCreateFreeProfile}
                 isPending={createProfileMutation?.isPending}
                 userStats={userStatsQuery?.data?.data}
                 setOpenFreeModal={setOpenFreeModal}

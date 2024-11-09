@@ -1,17 +1,14 @@
 import UploadUserProfileImage from "../../../components/UploadUserProfileImage";
-import NavbarDropdownLink from "../../../components/NavbarDropdownLink";
+import { Dropdown, DropdownItem } from "flowbite-react";
 import { FaCameraRetro, FaPlus } from "react-icons/fa";
 import FormCreateProfile from "./FormCreateProfile";
+import { useQuery } from "@tanstack/react-query";
 import { HiDotsVertical } from "react-icons/hi";
 import Modal from "../../../components/Modal";
 import { CgProfile } from "react-icons/cg";
 import { IoMdHeart } from "react-icons/io";
-import { createPortal } from "react-dom";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Dropdown, DropdownItem } from "flowbite-react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
 
 const ResponsiveMoreInfoRememberedAdmin = ({
   openPremiumModal,
@@ -26,6 +23,8 @@ const ResponsiveMoreInfoRememberedAdmin = ({
   setSlug,
   slug,
 }) => {
+  const navigate = useNavigate();
+
   const getPremiumProfilesRemaining = useQuery({
     queryKey: ["premiumProfilesRemaining"],
     queryFn: async () =>
@@ -38,24 +37,29 @@ const ResponsiveMoreInfoRememberedAdmin = ({
     getPremiumProfilesRemaining?.data?.data?.remaining_profiles;
 
   return (
-    // {/* Vertical Dots Dropdown */}
-    <div className="dropdownResponsiveProfile flex">
+    <div className="flex dropdownResponsiveProfile">
       {/* Dropdown Content */}
       <Dropdown
-        label={<HiDotsVertical size={23} />}
+        label={""}
+        renderTrigger={() => (
+          <span className="cursor-pointer">
+            <HiDotsVertical size={23} />
+          </span>
+        )}
         className="max-w-sm"
         dismissOnClick={true}
+        inline
       >
         <h2 className="font-medium py-2.5 px-5 border-b border-gray-400 text-gray-700">
           Settings
         </h2>
 
         {/* Create Pro Profile OR Go tu buy it */}
-        <DropdownItem className="p-0">
-          {/* If there's premium profiles */}
-          {totalPremiumProfilesRemaining ? (
+        {/* If there's premium profiles */}
+        {totalPremiumProfilesRemaining >= 1 ? (
+          <DropdownItem className="p-0">
             <li
-              className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white last:rounded-b font-bold animation-fade text-black text-sm cursor-pointer`}
+              className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
               onClick={() => {
                 setOpenPremiumModal(true);
                 setStatusPlan(true);
@@ -104,67 +108,68 @@ const ResponsiveMoreInfoRememberedAdmin = ({
                 </p>
               </div>
             </li>
-          ) : (
-            // If there's no premium profiles
-            <Link to="/checkout/">
-              <li
-                className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white last:rounded-b font-bold animation-fade text-black text-sm cursor-pointer`}
-                onClick={() => {
-                  setOpenPremiumModal(true);
-                  setStatusPlan(true);
-                }}
+          </DropdownItem>
+        ) : (
+          // If there's no premium profiles
+          <DropdownItem className="p-0">
+            <li
+              className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+              onClick={() => {
+                setOpenPremiumModal(true);
+                setStatusPlan(true);
+                navigate(`/prices/`);
+              }}
+            >
+              <Modal
+                titleModal={"New Profile (Premium)"}
+                handleSubmit={handleSubmit}
+                setOpenModal={setOpenPremiumModal}
+                openModal={openPremiumModal}
+                modalForm={true}
+                editableWidth={"max-w-xl"}
               >
-                <Modal
-                  titleModal={"New Profile (Premium)"}
-                  handleSubmit={handleSubmit}
-                  setOpenModal={setOpenPremiumModal}
-                  openModal={openPremiumModal}
-                  modalForm={true}
-                  editableWidth={"max-w-xl"}
-                >
-                  <FormCreateProfile
-                    slug={slug}
-                    setSlug={setSlug}
-                    isPending={isPending}
-                    setOpenPremiumModal={setOpenPremiumModal}
-                  />
-                </Modal>
+                <FormCreateProfile
+                  slug={slug}
+                  setSlug={setSlug}
+                  isPending={isPending}
+                  setOpenPremiumModal={setOpenPremiumModal}
+                />
+              </Modal>
 
-                <svg
-                  className="fill-[#fab818] h-6 premium-filled-icon--nW2Vi header-svg-icon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  data-t="premium-filled-svg"
-                  aria-labelledby="premium-filled-svg"
-                  aria-hidden="true"
-                  role="img"
-                >
-                  <title id="premium-filled-svg">Premium</title>
-                  <path d="M2.419 13L0 4.797 4.837 6.94 8 2l3.163 4.94L16 4.798 13.581 13z"></path>
-                </svg>
+              <svg
+                className="fill-[#fab818] h-6 premium-filled-icon--nW2Vi header-svg-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                data-t="premium-filled-svg"
+                aria-labelledby="premium-filled-svg"
+                aria-hidden="true"
+                role="img"
+              >
+                <title id="premium-filled-svg">Premium</title>
+                <path d="M2.419 13L0 4.797 4.837 6.94 8 2l3.163 4.94L16 4.798 13.581 13z"></path>
+              </svg>
 
-                <div>
-                  <Link className="block" to={"#"}>
-                    Create Pro Profile
-                  </Link>
+              <div>
+                <Link className="block" to={"#"}>
+                  Create Pro Profile
+                </Link>
 
-                  <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                    Create a full-featured memorial profile with no limits. Pro
-                    profiles remaining:{" "}
-                    <span className="font-bold">
-                      ({totalPremiumProfilesRemaining})
-                    </span>
-                  </p>
-                </div>
-              </li>
-            </Link>
-          )}
-        </DropdownItem>
+                <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
+                  Create a full-featured memorial profile with no limits. Pro
+                  profiles remaining:{" "}
+                  <span className="font-bold">
+                    ({totalPremiumProfilesRemaining})
+                  </span>
+                </p>
+              </div>
+            </li>
+          </DropdownItem>
+        )}
 
         {/* Create Free Profile */}
         <DropdownItem className="p-0">
           <li
-            className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white last:rounded-b font-bold animation-fade text-black text-sm cursor-pointer`}
+            className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
             onClick={() => {
               setOpenFreeModal(true);
               setStatusPlan(false);
@@ -233,7 +238,7 @@ const ResponsiveMoreInfoRememberedAdmin = ({
         {/* Favourites */}
         <DropdownItem className="p-0">
           <li
-            className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white last:rounded-b font-bold animation-fade text-black text-sm cursor-pointer`}
+            className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
             onClick={() => setOpenTab(2)}
           >
             <IoMdHeart className="text-red-500 h-[28px] w-[28px]" />

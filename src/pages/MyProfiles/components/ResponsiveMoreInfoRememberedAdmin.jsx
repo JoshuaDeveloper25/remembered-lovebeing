@@ -12,14 +12,16 @@ import axios from "axios";
 import { useState } from "react";
 
 const ResponsiveMoreInfoRememberedAdmin = ({
-  openPremiumModal,
+  totalFavoritesProfiles,
+  totalOwnProfiles,
   setOpenPremiumModal,
-  handleSubmit,
+  openPremiumModal,
   setOpenFreeModal,
   openFreeModal,
   setStatusPlan,
-  userStats,
+  handleSubmit,
   setOpenTab,
+  userStats,
   isPending,
   setSlug,
   slug,
@@ -226,7 +228,7 @@ const ResponsiveMoreInfoRememberedAdmin = ({
             <CgProfile className="h-[28px] w-[28px]" />
 
             <div>
-              <Link className="block">Profiles</Link>
+              <Link className="block">Profiles ({totalOwnProfiles})</Link>
 
               <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
                 Create a memorial profile at no cost, with some feature limits.
@@ -244,7 +246,9 @@ const ResponsiveMoreInfoRememberedAdmin = ({
             <IoMdHeart className="text-red-500 h-[28px] w-[28px]" />
 
             <div>
-              <Link className="block">Favourites</Link>
+              <Link className="block">
+                Favourites ({totalFavoritesProfiles})
+              </Link>
 
               <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
                 Create a memorial profile at no cost, with some feature limits.

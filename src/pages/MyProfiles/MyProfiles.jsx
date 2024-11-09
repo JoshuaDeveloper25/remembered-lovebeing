@@ -146,6 +146,10 @@ const MyProfiles = () => {
                 handleSubmit={handleSubmit}
                 setSlug={setSlug}
                 slug={slug}
+                totalFavoritesProfiles={
+                  favouritesRememberedsQuery?.data?.data?.length
+                }
+                totalOwnProfiles={data?.data?.length}
               />
             </div>
           </div>

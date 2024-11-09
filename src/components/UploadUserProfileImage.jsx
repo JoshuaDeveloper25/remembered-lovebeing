@@ -1,6 +1,6 @@
 import FormUserProfile from "../pages/MyProfiles/components/FormUserProfile";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { FaCameraRetro, FaPencilAlt } from "react-icons/fa";
+import { FaCameraRetro } from "react-icons/fa";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import setCanvasPreview from "../utils/setCanvasPreview";
 import { convertToPixelCrop } from "react-image-crop";
@@ -101,7 +101,7 @@ const UploadUserProfileImage = ({ iconChoosen = 1, iconClassname }) => {
 
       {iconChoosen === 2 && (
         <li
-          className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white last:rounded-b font-bold animation-fade text-black text-sm cursor-pointer`}
+          className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
           onClick={() => setOpenModalProfile(true)}
         >
           <FaCameraRetro
@@ -109,7 +109,9 @@ const UploadUserProfileImage = ({ iconChoosen = 1, iconClassname }) => {
           />
 
           <div>
-            <Link to={'#'} className="block">Change Your Profile Photo</Link>
+            <Link to={"#"} className="block">
+              Change Your Profile Photo
+            </Link>
 
             <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
               Update your profile image with a new photo.

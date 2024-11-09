@@ -1,14 +1,15 @@
 import UploadUserProfileImage from "../../../components/UploadUserProfileImage";
 import { Dropdown, DropdownItem } from "flowbite-react";
-import { FaCameraRetro, FaPlus } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 import FormCreateProfile from "./FormCreateProfile";
 import { useQuery } from "@tanstack/react-query";
 import { HiDotsVertical } from "react-icons/hi";
 import Modal from "../../../components/Modal";
 import { CgProfile } from "react-icons/cg";
 import { IoMdHeart } from "react-icons/io";
-import { Link, useNavigate } from "react-router-dom";
+import { FaPlus } from "react-icons/fa";
 import axios from "axios";
+import { useState } from "react";
 
 const ResponsiveMoreInfoRememberedAdmin = ({
   openPremiumModal,
@@ -47,7 +48,6 @@ const ResponsiveMoreInfoRememberedAdmin = ({
           </span>
         )}
         className="max-w-sm"
-        dismissOnClick={true}
         inline
       >
         <h2 className="font-medium py-2.5 px-5 border-b border-gray-400 text-gray-700">
@@ -205,7 +205,7 @@ const ResponsiveMoreInfoRememberedAdmin = ({
         </DropdownItem>
 
         {/* Change Profile Photo */}
-        <DropdownItem className="p-0 aqii">
+        <DropdownItem className="p-0">
           <UploadUserProfileImage
             iconClassname={"h-[19px] w-[19px]"}
             iconChoosen={2}

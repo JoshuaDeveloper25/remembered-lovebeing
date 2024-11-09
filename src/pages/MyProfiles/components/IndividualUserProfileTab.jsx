@@ -2,7 +2,6 @@ import FavouritesRememberedsProfile from "./FavouritesRememberedsProfile";
 import { FaCross, FaHeart } from "react-icons/fa";
 import TabLinkContent from "./TabLinkContent";
 import Profiles from "./Profiles";
-import { useState } from "react";
 import TabLink from "./TabLink";
 
 const IndividualUserProfileTab = ({
@@ -18,9 +17,9 @@ const IndividualUserProfileTab = ({
   isPendingFavouritesProfiles,
   setOpenPremiumModal,
   openPremiumModal,
+  openTab,
+  setOpenTab,
 }) => {
-  const [openTab, setOpenTab] = useState(1);
-
   return (
     <>
       <ul

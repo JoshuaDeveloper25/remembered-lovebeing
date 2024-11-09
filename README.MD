@@ -771,3 +771,166 @@ const Profile = ({ item, isPending }) => {
 };
 
 export default Profile;
+
+
+
+
+
+
+
+
+<!-- Codigo de admin responsive -->
+ {openVerticalDots && (
+        <>
+          {createPortal(
+            <div
+              onClick={() => setOpenVerticalDots(!openVerticalDots)}
+              className="h-[100vh] fixed top-0 w-full"
+            ></div>,
+            document.body
+          )}
+
+          <ul className="absolute right-7 top-11 shadow-lg bg-white border rounded  z-50">
+            {/* Settings section */}
+            <h2 className="font-medium py-2.5 px-5 border-b border-gray-400 text-gray-700">
+              Settings
+            </h2>
+
+            {/* Create Pro Profile OR Go tu buy it */}
+            <NavbarDropdownLink
+              hoverBgLink={"hover:bg-secondary-color"}
+              onClick={handleCreateFreeProfile}
+              linkText={"Create Pro Profile"}
+              dropDownVersion={2}
+              dropdownDesc={
+                "Create a full-featured memorial profile with no limits. Pro profiles remaining: 1"
+              }
+              dropdownIcon={
+                <svg
+                  className="fill-[#fab818] h-6 premium-filled-icon--nW2Vi header-svg-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  data-t="premium-filled-svg"
+                  aria-labelledby="premium-filled-svg"
+                  aria-hidden="true"
+                  role="img"
+                >
+                  <title id="premium-filled-svg">Premium</title>
+                  <path d="M2.419 13L0 4.797 4.837 6.94 8 2l3.163 4.94L16 4.798 13.581 13z"></path>
+                </svg>
+              }
+            />
+
+            {/* Create Free Profile */}
+            <NavbarDropdownLink
+              hoverBgLink={"hover:bg-secondary-color"}
+              onClick={() => {
+                setOpenFreeModal(true);
+                setStatusPlan(false);
+                setOpenVerticalDots(!openVerticalDots);
+              }}
+              linkText={"Create Free Profile"}
+              dropDownVersion={2}
+              dropdownDesc={
+                "Create a memorial profile at no cost, with some feature limits."
+              }
+              dropdownIcon={<FaPlus className="h-[19px] w-[19px]" />}
+            />
+
+            {/* MODAL of Create Free Profile */}
+            <Modal
+              titleModal={"New Profile"}
+              handleSubmit={handleSubmit}
+              setOpenModal={setOpenFreeModal}
+              openModal={openFreeModal}
+              modalForm={true}
+              editableWidth={"max-w-[700px] px-8"}
+            >
+              <FormCreateProfile
+                slug={slug}
+                setSlug={setSlug}
+                isPending={isPending}
+                setOpenFreeModal={setOpenFreeModal}
+              />
+            </Modal>
+
+            <UploadUserProfileImage
+              setOpenVerticalDots={setOpenVerticalDots}
+              iconClassname={"h-[19px] w-[19px]"}
+              iconChoosen={2}
+            />
+
+            {/* Navigation section */}
+            <h2 className="font-medium py-2.5 px-5 border-b border-gray-400 text-gray-700">
+              Navigation
+            </h2>
+
+            <NavbarDropdownLink
+              hoverBgLink={"hover:bg-secondary-color"}
+              linkText={"Profiles"}
+              dropDownVersion={2}
+              dropdownDesc={
+                "Create a memorial profile at no cost, with some feature limits."
+              }
+              dropdownIcon={<CgProfile className="h-[19px] w-[19px]" />}
+              setOpenTab={1}
+              onClick={() => {
+                setOpenTab(1);
+                setOpenVerticalDots(false);
+              }}
+            />
+
+            <NavbarDropdownLink
+              hoverBgLink={"hover:bg-secondary-color"}
+              linkText={"Favourites"}
+              dropDownVersion={2}
+              dropdownDesc={"Update your profile image with a new photo."}
+              dropdownIcon={
+                <IoMdHeart className="text-red-500 h-[19px] w-[19px]" />
+              }
+              onClick={() => {
+                setOpenTab(2);
+                setOpenVerticalDots(false);
+              }}
+            />
+
+            {/* <div className="flex justify-center  items-center my-6">
+              <div className="border-r border-tertiary-color/50 px-2">
+                <h3 className="text-sm text-tertiary-color font-bold">
+                  {userStats?.posts_count}
+                </h3>
+                <h2 className="text-xs text-tertiary-color">Posts</h2>
+              </div>
+
+              <div className="border-r border-tertiary-color/50 px-2">
+                <h3 className="text-sm text-tertiary-color font-bold">
+                  {userStats?.gallery_images_count}
+                </h3>
+                <h2 className="text-xs text-tertiary-color">Media</h2>
+              </div>
+
+              <div className="border-r border-tertiary-color/50 px-2">
+                <h3 className="text-sm text-tertiary-color font-bold">
+                  {userStats?.tributes_count}
+                </h3>
+                <h2 className="text-xs text-tertiary-color">Tributes</h2>
+              </div>
+
+              <div className="px-2">
+                <h3 className="text-sm text-tertiary-color font-bold">
+                  {userStats?.condolences_count}
+                </h3>
+
+                <div className="relative group cursor-pointer">
+                  <span className="text-sm text-tertiary-color block overflow-hidden text-ellipsis whitespace-nowrap max-w-[80px]">
+                    Con...
+                  </span>
+                  <span className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 hidden w-max px-2 py-1 text-white bg-black rounded-md text-sm group-hover:block">
+                    Condolences
+                  </span>
+                </div>
+              </div>
+            </div> */}
+          </ul>
+        </>
+      )}

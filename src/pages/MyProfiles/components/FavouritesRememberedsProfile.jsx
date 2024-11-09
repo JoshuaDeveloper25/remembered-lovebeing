@@ -4,7 +4,6 @@ const FavouritesRememberedsProfile = ({
   isPendingFavouritesProfiles,
   favouritesProfiles,
 }) => {
-  console.log(favouritesProfiles);
   return (
     <section>
       {favouritesProfiles?.length !== 0 ? (

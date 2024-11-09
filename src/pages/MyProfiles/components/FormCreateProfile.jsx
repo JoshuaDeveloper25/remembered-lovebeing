@@ -161,7 +161,7 @@ const FormCreateProfile = ({
           <label className="flex gap-1 items-center">
             <span className="">https://www.remembered.com/</span>
             <input
-              className="form-input py-1 w-52"
+              className="form-input py-1 sm:w-52"
               type={"text"}
               name={"slug"}
               value={slug}

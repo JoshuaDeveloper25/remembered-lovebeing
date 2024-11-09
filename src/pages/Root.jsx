@@ -4,7 +4,7 @@ import '../styles/animations.css'
 
 const Root = () => {
   return (
-    <section>
+    <main>
       <Navbar />
 
       <main>
@@ -13,7 +13,7 @@ const Root = () => {
 
       <footer className="bg-white text-black text-center py-8">FOOTER - TODOS LOS DERECHOS RESERVADOS</footer>
       {/* <ScrollRestoration /> */}
-    </section>
+    </main>
   );
 };
 

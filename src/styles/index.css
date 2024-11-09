@@ -48,7 +48,7 @@ body {
   }
 
   .btn-blue:hover {
-    @apply bg-primary-color/70 ;
+    @apply bg-primary-color/70;
   }
 
   .btn-blue-light {
@@ -317,4 +317,8 @@ body {
 
 .swal2-container {
   z-index: 20000 !important;
+}
+
+.dropdownResponsiveProfile > div > ul {
+  padding: 0 !important;
 }

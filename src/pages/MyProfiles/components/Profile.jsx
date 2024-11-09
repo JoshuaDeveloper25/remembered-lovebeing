@@ -235,9 +235,8 @@ const Profile = ({ item, isPending }) => {
           {item?.status_plan === "premium" ? (
             <div className="flex items-center text-sm justify-center bg-black/90 text-[#fab818] w-fit px-1.5 mx-auto">
               <svg
-                class="premium-filled-icon--nW2Vi header-svg-icon"
+                className="fill-[#fab818] h-5 premium-filled-icon--nW2Vi header-svg-icon"
                 xmlns="http://www.w3.org/2000/svg"
-                className="fill-[#fab818] h-5"
                 viewBox="0 0 16 16"
                 data-t="premium-filled-svg"
                 aria-labelledby="premium-filled-svg"
@@ -474,7 +473,7 @@ const Profile = ({ item, isPending }) => {
                     <span className="text-[14px]">{item?.birth_date}</span>{" "}
                     <span className="min-[1201px]:hidden block"></span>
                     <span className="hidden"></span>
-                    <span className="min-[1201px]:block inline">
+                    <span className="min-[1201px]:inline block">
                       {" "}
                       <GiTombstone className="inline-block size-5 align-bottom" />{" "}
                       <span className="text-[14px]">{item?.death_date}</span>

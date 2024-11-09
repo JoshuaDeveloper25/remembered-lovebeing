@@ -6,14 +6,15 @@ import setCanvasPreview from "../utils/setCanvasPreview";
 import { convertToPixelCrop } from "react-image-crop";
 import { useContext, useRef, useState } from "react";
 import AppContext from "../context/AppProvider";
-import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Modal from "./Modal";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { DropdownItem } from "flowbite-react";
 
-const UploadUserProfileImage = ({ iconClassname }) => {
-  const { userInfo, setUserInfo } = useContext(AppContext);
+const UploadUserProfileImage = ({ iconChoosen = 1, iconClassname }) => {
   const [openModalProfile, setOpenModalProfile] = useState(false);
+  const { userInfo, setUserInfo } = useContext(AppContext);
   const previewCanvasRef = useRef(null);
   const queryClient = useQueryClient();
   const [crop, setCrop] = useState();
@@ -86,15 +87,38 @@ const UploadUserProfileImage = ({ iconClassname }) => {
   return (
     <>
       {/* Button to Open User Profile Modal */}
-      <button
-        onClick={() => setOpenModalProfile(true)}
-        className="p-2.5 rounded-full text-white bg-blue-500 hover:bg-blue-800 animation-fade"
-        type="button"
-      >
-        <FaCameraRetro
-          className={`${iconClassname ? iconClassname : "size-5"}`}
-        />
-      </button>
+      {iconChoosen === 1 && (
+        <button
+          onClick={() => setOpenModalProfile(true)}
+          className="p-2.5 rounded-full text-white bg-blue-500 hover:bg-blue-800 animation-fade"
+          type="button"
+        >
+          <FaCameraRetro
+            className={`${iconClassname ? iconClassname : "size-5"}`}
+          />
+        </button>
+      )}
+
+      {iconChoosen === 2 && (
+        <DropdownItem className="p-0">
+          <li
+            className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white last:rounded-b font-bold animation-fade text-black text-sm cursor-pointer`}
+            onClick={() => setOpenModalProfile(true)}
+          >
+            <FaCameraRetro
+              className={`${iconClassname ? iconClassname : "size-5"}`}
+            />
+
+            <div>
+              <Link className="block">Change Your Profile Photo</Link>
+
+              <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
+                Update your profile image with a new photo.
+              </p>
+            </div>
+          </li>
+        </DropdownItem>
+      )}
 
       {/* Change User Profile Image Modal */}
       <Modal

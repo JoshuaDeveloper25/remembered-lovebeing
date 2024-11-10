@@ -147,6 +147,7 @@ const Memorials = () => {
               <option value="cancer_victim">Cancer victim</option>
               <option value="accident_victim">Victim of an accident</option>
               <option value="crime_victim">Crime victim</option>
+              <option value="heart_attack">Heart attack</option>
             </select>
           </label>
 

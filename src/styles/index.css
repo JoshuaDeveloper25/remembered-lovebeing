@@ -12,7 +12,7 @@ body {
   font-family: "Poppins", sans-serif;
   background: linear-gradient(#faf9f3, #faf9f3);
   overflow-x: hidden;
-  overscroll-behavior: contain;
+  /* overscroll-behavior: contain; */
 }
 
 /* Tailwind components made by myself */

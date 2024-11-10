@@ -90,8 +90,12 @@ const FormCreateProfile = ({
                   <option value="mom">Mom</option>
                   <option value="son">Son</option>
                   <option value="sister">Sister</option>
+                  <option value="stepsister">Stepsister</option>
                   <option value="brother">Brother</option>
+                  <option value="stepbrother">Sterbrother</option>
                   <option value="daughter">Daughter</option>
+                  <option value="grandmother">Grandmother</option>
+                  <option value="grandfather">Grandfather</option>
                 </select>
               </label>
             </div>
@@ -148,6 +152,7 @@ const FormCreateProfile = ({
                   <option value="cancer_victim">Cancer victim</option>
                   <option value="accident_victim">Victim of an accident</option>
                   <option value="crime_victim">Crime victim</option>
+                  <option value="heart_attack">Heart attack</option>
                 </select>
               </label>
             </div>

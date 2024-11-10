@@ -234,7 +234,7 @@ const ProfileRemembered = () => {
         <div className="min-[870px]:px-1">
           {/* User Image */}
           {/* Responsive - from 768px to bottom */}
-          <div className="min-[870px]:hidden sticky h-[56px] top-0 z-[9999] bg-white border shadow-lg">
+          <div className="min-[870px]:hidden mb-5 sticky h-[56px] top-0 z-[9999] bg-white border shadow-lg">
             <div className="flex justify-between gap-4 items-center px-5 py-2 sticky z-20">
               <div className="flex gap-2 items-center">
                 <div>
@@ -480,7 +480,7 @@ const ProfileRemembered = () => {
 
             <article className="col-span-3 min-[870px]:mt-8 mt-0 mb-8">
               <ul
-                className="flex gap-3 list-none flex-wrap my-3 py-2.5 px-1 bg-white/80 flex-row border-2 border-tertiary-color/10 rounded shadow-lg"
+                className="min-[870px]:flex hidden gap-3 list-none flex-wrap my-3 py-2.5 px-1 bg-white/80 flex-row border-2 border-tertiary-color/10 rounded shadow-lg"
                 role="tablist"
               >
                 {/* About */}
@@ -621,7 +621,7 @@ const ProfileRemembered = () => {
                       idTab={"#media"}
                     >
                       <div className="flex flex-col sm:flex-row justify-between items-center bg-white p-3 rounded-lg shadow-lg mb-7">
-                        <h2 className="text-primary-color font-bold text-xl sm:my-0 my-3">
+                        <h2 className="text-primary-color font-bold text-xl">
                           Photos{" "}
                         </h2>
 

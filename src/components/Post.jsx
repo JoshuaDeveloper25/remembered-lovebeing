@@ -1,6 +1,5 @@
 import PublishedPostsImages from "../pages/ProfileRemembered/components/PublishedPostsImages";
 import PostCommentModal from "../pages/ProfileRemembered/components/PostCommentModal";
-
 import EditPostForm from "../pages/ProfileRemembered/components/EditPostForm";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import CarouselCommentPosts from "./CarouselCommentPosts";
@@ -105,30 +104,30 @@ const Post = ({ isOwner, post, rememberName }) => {
         </div>
 
         {/* Vertical Dots Dropdown */}
-        <div className="relative">
-          <button
-            id="dropdownDividerButton"
-            data-dropdown-toggle="dropdownDivider"
-            className="animation-fade text-xl hover:rounded-full  hover:bg-white/20"
-            onClick={() => setOpenPostDropDown(!openPostDropDown)}
-            type="button"
-          >
-            <HiDotsVertical size={23} />
-          </button>
+        {isOwner && (
+          <div className="relative">
+            <button
+              id="dropdownDividerButton"
+              data-dropdown-toggle="dropdownDivider"
+              className="animation-fade text-xl hover:rounded-full  hover:bg-white/20"
+              onClick={() => setOpenPostDropDown(!openPostDropDown)}
+              type="button"
+            >
+              <HiDotsVertical size={23} />
+            </button>
 
-          {openPostDropDown && (
-            <>
-              {createPortal(
-                <div
-                  onClick={() => setOpenPostDropDown(!openPostDropDown)}
-                  className="h-[100vh] fixed top-0 w-full"
-                ></div>,
-                document.body
-              )}
+            {openPostDropDown && (
+              <>
+                {createPortal(
+                  <div
+                    onClick={() => setOpenPostDropDown(!openPostDropDown)}
+                    className="h-[100vh] fixed top-0 w-full"
+                  ></div>,
+                  document.body
+                )}
 
-              <ul className="absolute right-5 shadow-lg bg-gray-200 py-2 w-max rounded max-h-96 z-50">
-                {/* Edit Post */}
-                {!isOwner ? null : (
+                <ul className="absolute right-5 shadow-lg bg-gray-200 py-2 w-max rounded max-h-96 z-50">
+                  {/* Edit Post */}
                   <>
                     <NavbarDropdownLink
                       hoverBgLink={"hover:bg-secondary-color"}
@@ -152,11 +151,11 @@ const Post = ({ isOwner, post, rememberName }) => {
                       onClick={handleDeletePost}
                     />
                   </>
-                )}
-              </ul>
-            </>
-          )}
-        </div>
+                </ul>
+              </>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="flex justify-between my-5 pb-2.5 border-b border-b-tertiary-color/20">

@@ -7,7 +7,7 @@ import { MdChangeCircle } from "react-icons/md";
 import { HiDotsVertical } from "react-icons/hi";
 import Modal from "../../../components/Modal";
 import { GiFlowerPot } from "react-icons/gi";
-import { BsQrCode } from "react-icons/bs";
+import { BsInfoCircleFill, BsQrCode } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const ResponsiveMoreInfoRemembered = ({
@@ -117,7 +117,7 @@ const ResponsiveMoreInfoRemembered = ({
             className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
             onClick={() => setOpenTab(1)}
           >
-            <CgProfile className="h-[28px] w-[28px]" />
+            <BsInfoCircleFill className="h-[20px] w-[20px]" />
 
             <div>
               <Link className="block">About</Link>
@@ -135,7 +135,7 @@ const ResponsiveMoreInfoRemembered = ({
             className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
             onClick={() => setOpenTab(3)}
           >
-            <FaRegImage className="h-[28px] w-[28px]" />
+            <FaRegImage className="h-[20px] w-[20px]" />
 
             <div>
               <Link className="block">
@@ -155,7 +155,7 @@ const ResponsiveMoreInfoRemembered = ({
             className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
             onClick={() => setOpenTab(5)}
           >
-            <GiFlowerPot className="h-[28px] w-[28px]" />
+            <GiFlowerPot className="h-[20px] w-[20px]" />
 
             <div>
               <Link className="block">
@@ -175,7 +175,7 @@ const ResponsiveMoreInfoRemembered = ({
             className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
             onClick={() => setOpenTab(4)}
           >
-            <FaRibbon className="h-[28px] w-[28px]" />
+            <FaRibbon className="h-[20px] w-[20px]" />
 
             <div>
               <Link className="block">
@@ -192,10 +192,12 @@ const ResponsiveMoreInfoRemembered = ({
         {/* Posts */}
         <DropdownItem className="p-0">
           <li
-            className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+            className={`${
+              !isOwner ? "rounded-b" : ""
+            } text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
             onClick={() => setOpenTab(2)}
           >
-            <CgFileDocument className="h-[35px] w-[35px]" />
+            <CgFileDocument className="h-[23px] w-[23px]" />
 
             <div>
               <Link className="block">Posts ({totalLengthPosts})</Link>
@@ -211,10 +213,10 @@ const ResponsiveMoreInfoRemembered = ({
         {isOwner && (
           <DropdownItem className="p-0">
             <li
-              className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+              className={`text-start hover:bg-secondary-color group rounded-b py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
               onClick={() => setOpenTab(6)}
             >
-              <BsQrCode className="h-[35px] w-[35px]" />
+              <BsQrCode className="h-[20px] w-[20px]" />
 
               <div>
                 <Link className="block">QR Code</Link>

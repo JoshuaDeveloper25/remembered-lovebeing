@@ -234,12 +234,12 @@ const ProfileRemembered = () => {
         <div className="min-[870px]:px-1">
           {/* User Image */}
           {/* Responsive - from 768px to bottom */}
-          <div className="min-[870px]:hidden sticky top-0 z-[9999] bg-white shadow-lg">
+          <div className="min-[870px]:hidden sticky h-[56px] top-0 z-[9999] bg-white border shadow-lg">
             <div className="flex justify-between gap-4 items-center px-5 py-2 sticky z-20">
-              <div className="flex gap-4 items-center">
+              <div className="flex gap-2 items-center">
                 <div>
                   <img
-                    className="w-16 rounded-full"
+                    className="w-[40px] h-[40px] object-cover mx-auto rounded-full shadow-lg"
                     loading="lazy"
                     decoding="async"
                     src={
@@ -249,7 +249,7 @@ const ProfileRemembered = () => {
                     }
                   />
                   {!data?.data?.is_owner ? null : (
-                    <div className="absolute bottom-0 left-16 z-[100] cursor-pointer">
+                    <div className="min-[870px]:block hidden absolute bottom-0 left-16 z-[100] cursor-pointer">
                       <UploadProfileImage
                         idRemembered={data?.data?.remembered_profile?.id}
                       />
@@ -262,127 +262,47 @@ const ProfileRemembered = () => {
                     {data?.data?.remembered_profile?.epitaph ||
                       "In loving memory of"}
                   </h2>
-                  <h3 className="text-lg font-bold">
+                  <h3 className="font-bold capitalize text-lg leading-3">
                     {data?.data?.remembered_profile?.first_name}{" "}
                     {data?.data?.remembered_profile?.last_name}
                   </h3>
                 </div>
               </div>
 
-              <div className="text-sm">
-                <p className="inline">Status:</p>
-                <p
-                  className={`capitalize inline font-semibold ms-1.5 ${
-                    data?.data?.remembered_profile?.status_privacy === "public"
-                      ? "text-green-500"
-                      : "text-red-500"
-                  } `}
-                >
-                  {data?.data?.remembered_profile?.status_privacy}
-                </p>
-              </div>
+              {/* Status */}
+              {data?.data?.is_owner && (
+                <div className="text-sm">
+                  <p className="inline">Status:</p>
+                  <p
+                    className={`capitalize inline font-semibold ms-1.5 ${
+                      data?.data?.remembered_profile?.status_privacy ===
+                      "public"
+                        ? "text-green-500"
+                        : "text-red-500"
+                    } `}
+                  >
+                    {data?.data?.remembered_profile?.status_privacy}
+                  </p>
+                </div>
+              )}
 
               <div>
-                {!data?.data?.is_owner ? null : (
-                  <ResponsiveMoreInfoRemembered
-                    status={data?.data?.remembered_profile?.status_privacy}
-                    setEditRememberedProfile={setEditRememberedProfile}
-                    setStatusOptionSelected={setStatusOptionSelected}
-                    setChangeStatusModal={setChangeStatusModal}
-                    statusOptionSelected={statusOptionSelected}
-                    changeStatusMutation={changeStatusMutation}
-                    handleChangeStatus={handleChangeStatus}
-                    changeStatusModal={changeStatusModal}
-                    isOwner={data?.data?.is_owner}
-                  />
-                )}
+                <ResponsiveMoreInfoRemembered
+                  status={data?.data?.remembered_profile?.status_privacy}
+                  totalProfileCountTabs={data?.data?.remembered_profile}
+                  setEditRememberedProfile={setEditRememberedProfile}
+                  setStatusOptionSelected={setStatusOptionSelected}
+                  totalLengthPosts={postsQuery?.data?.data?.length}
+                  setChangeStatusModal={setChangeStatusModal}
+                  statusOptionSelected={statusOptionSelected}
+                  changeStatusMutation={changeStatusMutation}
+                  handleChangeStatus={handleChangeStatus}
+                  changeStatusModal={changeStatusModal}
+                  isOwner={data?.data?.is_owner}
+                  setOpenTab={setOpenTab}
+                />
               </div>
             </div>
-
-            {/* <div className="lg:self-end">
-            <h2 className="font-semibold text-muted-color">
-              {data?.data?.remembered_profile?.epitaph || "In loving memory of"}
-            </h2>
-            <h3 className="text-2xl font-bold mb-1">
-              {data?.data?.remembered_profile?.first_name}{" "}
-              {data?.data?.remembered_profile?.last_name}
-            </h3>
-            <h3 className="text-muted-color">
-              <span className="font-bold">Lifetime</span>:{" "}
-              {data?.data?.remembered_profile?.birth_date}{" "}
-              <span className="font-bold">X</span>{" "}
-              {data?.data?.remembered_profile?.death_date}
-              <span className="block">
-                {getLivedDays(
-                  data?.data?.remembered_profile?.birth_date,
-                  data?.data?.remembered_profile?.death_date
-                )}{" "}
-              </span>
-            </h3>
-
-            {data?.data?.is_owner && (
-              <div>
-                <button
-                  className="btn btn-blue text-white text-base rounded-sm"
-                  onClick={() => setEditRememberedProfile(true)}
-                >
-                  <TfiPencilAlt className="inline align-sub size-5" /> Edit
-                  Profile
-                </button>
-              </div>
-            )}
-
-            {data?.data?.is_owner ? (
-              <div
-                className={`border-s-8 ${
-                  data?.data?.remembered_profile?.status_privacy === "public"
-                    ? "border-green-500"
-                    : "border-red-500"
-                } bg-white shadow-2xl rounded-s-none rounded-xl mt-4 py-5 px-4 md:hidden block`}
-              >
-                <h3 className="font-bold text-muted-color">Memorial Status:</h3>
-
-                <div className="flex items-center justify-between my-2">
-                  <h2 className="font-semibold">Status:</h2>
-                  {data?.data?.remembered_profile?.status_privacy ===
-                  "public" ? (
-                    <h4 className="text-center rounded-sm inline-block font-semibold px-2 py-1 text-green-500 bg-green-200">
-                      Public
-                    </h4>
-                  ) : (
-                    <h4 className="text-center rounded-sm inline-block font-semibold px-2 py-1 text-red-400 bg-red-200">
-                      Private
-                    </h4>
-                  )}
-                </div>
-
-                <button
-                  className="border border-yellow-500 hover:bg-yellow-500 hover:text-white animation-fade rounded-sm w-full font-semibold text-yellow-500 py-1 inline-block"
-                  onClick={() => setChangeStatusModal(true)}
-                  type="button"
-                >
-                  Change Status
-                </button>
-
-                <Modal
-                  titleModal={"Memorial Status Options..."}
-                  handleSubmit={handleChangeStatus}
-                  setOpenModal={setChangeStatusModal}
-                  openModal={changeStatusModal}
-                  modalForm={true}
-                  editableWidth={"max-w-xl"}
-                >
-                  <FormChangeStatus
-                    setChangeStatusModal={setChangeStatusModal}
-                    setStatusOptionSelected={setStatusOptionSelected}
-                    statusOptionSelected={statusOptionSelected}
-                    isPending={changeStatusMutation?.isPending}
-                    status={data?.data?.remembered_profile?.status_privacy}
-                  />
-                </Modal>
-              </div>
-            ) : null}
-          </div> */}
           </div>
 
           {/* Modal to edit rememberedProfile */}
@@ -476,20 +396,6 @@ const ProfileRemembered = () => {
                   {getHowLongDied(data?.data?.remembered_profile?.death_date)}{" "}
                 </span> */}
                 </p>
-                {/* <div className="flex justify-center gap-5 mt-3 mb-3">
-                <FaFacebookF
-                  size={18}
-                  className="hover:text-[#00A2B3] animation-fade cursor-pointer"
-                />
-                <FaInstagram
-                  size={18}
-                  className="hover:text-[#00A2B3] animation-fade cursor-pointer"
-                />
-                <FaTwitter
-                  size={18}
-                  className="hover:text-[#00A2B3] animation-fade cursor-pointer"
-                />
-              </div> */}
 
                 <p className="text-muted-color text-xs font-bold mt-2 leading-4">
                   Managed by:{" "}
@@ -573,28 +479,6 @@ const ProfileRemembered = () => {
             </article>
 
             <article className="col-span-3 min-[870px]:mt-8 mt-0 mb-8">
-              {/* <button
-              type="button"
-              onClick={() => setShowMembers(!showMembers)}
-              className="btn btn-blue w-auto mb-3"
-            >
-              {showMembers
-                ? "Hide My Family Members"
-                : "Show My Family Members"}
-            </button>
-
-            {showMembers ? (
-              <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
-                <h2 className="font-bold text-primary-color text-xl mb-2">
-                  My family members...
-                </h2>
-
-                <CarouselProfiles
-                  rememberedProfiles={ownProfilesQuery?.data?.data}
-                />
-              </div>
-            ) : null} */}
-
               <ul
                 className="flex gap-3 list-none flex-wrap my-3 py-2.5 px-1 bg-white/80 flex-row border-2 border-tertiary-color/10 rounded shadow-lg"
                 role="tablist"
@@ -604,7 +488,6 @@ const ProfileRemembered = () => {
                   setOpenTab={setOpenTab}
                   linkTab={"#about"}
                   textTab={"About"}
-                  // iconTab={<FaHeart className="text-red-500" />}
                   openTab={openTab}
                   numberTab={1}
                   countTab={false}
@@ -616,7 +499,6 @@ const ProfileRemembered = () => {
                   setOpenTab={setOpenTab}
                   textTab={"Media"}
                   linkTab={"#media"}
-                  // iconTab={<FaCross className="text-primary-color" />}
                   openTab={openTab}
                   numberTab={3}
                   countTab={
@@ -629,7 +511,6 @@ const ProfileRemembered = () => {
                   setOpenTab={setOpenTab}
                   linkTab={"#tributes"}
                   textTab={"Tributes"}
-                  // iconTab={<FaHeart className="text-red-500" />}
                   openTab={openTab}
                   numberTab={5}
                   countTab={data?.data?.remembered_profile?.tributes?.length}
@@ -640,7 +521,6 @@ const ProfileRemembered = () => {
                   setOpenTab={setOpenTab}
                   linkTab={"#condolences"}
                   textTab={"Condolences"}
-                  // iconTab={<FaHeart className="text-red-500" />}
                   openTab={openTab}
                   numberTab={4}
                   countTab={data?.data?.remembered_profile?.condolences?.length}
@@ -651,7 +531,6 @@ const ProfileRemembered = () => {
                   setOpenTab={setOpenTab}
                   linkTab={"#posts"}
                   textTab={"Posts"}
-                  // iconTab={<FaHeart className="text-red-500" />}
                   openTab={openTab}
                   numberTab={2}
                   countTab={postsQuery?.data?.data?.length}
@@ -663,7 +542,6 @@ const ProfileRemembered = () => {
                     setOpenTab={setOpenTab}
                     linkTab={"#qrCode"}
                     textTab={"Qr Code"}
-                    // iconTab={<FaHeart className="text-red-500" />}
                     openTab={openTab}
                     numberTab={6}
                     countTab={false}

@@ -58,21 +58,21 @@ body {
   .btn-blue-light:hover {
     @apply bg-primary-color-light/50 text-white;
   }
-
-  .nav-active {
-    border-bottom: 1px solid #ffffff;
-    font-weight: bold;
-  }
-
-  .nav-inactive {
-    color: inherit;
-  }
 }
 
 @layer utilities {
   .image-polygon {
     clip-path: polygon(100% 0%, 100% 100%, 50% 65%, 0% 100%, 0% 0%);
   }
+}
+
+.nav-active {
+  border-bottom: 1px solid #ffffff;
+  font-weight: bold;
+}
+
+.nav-inactive {
+  color: inherit;
 }
 
 /* Sidebar Settings Profile Editing Styles */

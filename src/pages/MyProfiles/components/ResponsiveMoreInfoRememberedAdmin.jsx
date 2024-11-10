@@ -1,4 +1,4 @@
-import UploadUserProfileImage from "../../../components/UploadUserProfileImage";
+import UploadUserProfileImageResponsive from "../../../components/UploadUserProfileImageResponsive";
 import { Dropdown, DropdownItem } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 import FormCreateProfile from "./FormCreateProfile";
@@ -9,8 +9,6 @@ import { CgProfile } from "react-icons/cg";
 import { IoMdHeart } from "react-icons/io";
 import { FaPlus } from "react-icons/fa";
 import axios from "axios";
-import { useState } from "react";
-import UploadUserProfileImageResponsive from "../../../components/UploadUserProfileImageResponsive";
 
 const ResponsiveMoreInfoRememberedAdmin = ({
   totalFavoritesProfiles,
@@ -27,8 +25,6 @@ const ResponsiveMoreInfoRememberedAdmin = ({
   setSlug,
   slug,
 }) => {
-  const [openModalProfile, setOpenModalProfile] = useState(false);
-  console.log(openModalProfile);
   const navigate = useNavigate();
 
   const getPremiumProfilesRemaining = useQuery({
@@ -171,7 +167,7 @@ const ResponsiveMoreInfoRememberedAdmin = ({
           </DropdownItem>
         )}
 
-        {/* Create Free Profile */}
+        {/* Edit Profile */}
         <DropdownItem className="p-0">
           <li
             className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
@@ -212,8 +208,6 @@ const ResponsiveMoreInfoRememberedAdmin = ({
         {/* Change Profile Photo */}
         <UploadUserProfileImageResponsive
           iconClassname={"h-[19px] w-[19px]"}
-          setOpenModalProfile={setOpenModalProfile}
-          openModalProfile={openModalProfile}
         />
 
         {/* Navigation */}

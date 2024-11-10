@@ -7,11 +7,11 @@ import getFastApiErrors from "../../../utils/getFastApiErrors";
 import AppContext from "../../../context/AppProvider";
 import formatDate from "../../../utils/formatDate";
 import { FaQuoteLeft } from "react-icons/fa";
+import { BsThreeDots } from "react-icons/bs";
 import { useContext, useState } from "react";
+import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { BsThreeDots } from "react-icons/bs";
-import { createPortal } from "react-dom";
 
 const PublicPost = ({ post, ownerName }) => {
   const { userInfo } = useContext(AppContext);
@@ -88,7 +88,7 @@ const PublicPost = ({ post, ownerName }) => {
       />
 
       {/* Footer of the post */}
-      <div className="flex justify-between items-center my-5">
+      <div className="flex flex-col sm:flex-row gap-2 justify-between sm:items-center items-start my-5">
         <button
           onClick={() => setModalPostComments(!modalPostComments)}
           className="btn btn-blue w-auto"

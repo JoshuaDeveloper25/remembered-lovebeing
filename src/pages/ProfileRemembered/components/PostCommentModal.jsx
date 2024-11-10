@@ -11,7 +11,7 @@ const PostCommentModal = ({ children, openModal, setOpenModal }) => {
           id="crud-modal"
           tabIndex="-1"
           aria-hidden="true"
-          className={`overflow-hidden fixed top-0 right-0 left-0 z-[100] flex justify-center items-center w-full h-[100vh] bg-black/50`}
+          className={`overflow-hidden fixed top-0 right-0 left-0 z-[99999] flex justify-center items-center w-full h-[100vh] bg-black/50`}
         >
           {/* Close button */}
           <div className="absolute right-7 top-5 z-[999]">

@@ -170,7 +170,7 @@ const Post = ({ isOwner, post, rememberName }) => {
       />
 
       {/* Footer of the post */}
-      <div className="flex justify-between items-center my-5">
+      <div className="flex flex-col sm:flex-row gap-2 justify-between sm:items-center items-start my-5">
         <button
           onClick={() => setModalPostComments(!modalPostComments)}
           className="btn btn-blue w-auto"

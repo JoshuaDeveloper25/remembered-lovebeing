@@ -1,4 +1,5 @@
 import UploadUserProfileImageResponsive from "../../../components/UploadUserProfileImageResponsive";
+import { BsInfoCircleFill, BsQrCode } from "react-icons/bs";
 import { CgFileDocument, CgProfile } from "react-icons/cg";
 import { Dropdown, DropdownItem } from "flowbite-react";
 import { FaRegImage, FaRibbon } from "react-icons/fa";
@@ -7,7 +8,8 @@ import { MdChangeCircle } from "react-icons/md";
 import { HiDotsVertical } from "react-icons/hi";
 import Modal from "../../../components/Modal";
 import { GiFlowerPot } from "react-icons/gi";
-import { BsInfoCircleFill, BsQrCode } from "react-icons/bs";
+import { GrNavigate } from "react-icons/gr";
+import { DiAptana } from "react-icons/di";
 import { Link } from "react-router-dom";
 
 const ResponsiveMoreInfoRemembered = ({
@@ -34,14 +36,14 @@ const ResponsiveMoreInfoRemembered = ({
             <HiDotsVertical size={23} />
           </span>
         )}
-        className="max-w-sm"
+        className="max-w-sm max-h-[28rem] overflow-y-auto border-2 border-[#fab818]"
         inline
       >
         {/* Actions that only the owner can do */}
         {isOwner && (
           <>
-            <h2 className="font-medium py-2.5 px-5 border-b border-gray-400 text-gray-700">
-              Settings
+            <h2 className="flex items-center gap-1.5 bg-gray-200 font-bold py-2.5 px-5 text-gray-700">
+              <DiAptana size={20} /> My Settings
             </h2>
 
             {/* Edit Profile */}
@@ -107,8 +109,8 @@ const ResponsiveMoreInfoRemembered = ({
         )}
 
         {/* Navigation */}
-        <h2 className="font-medium py-2.5 px-5 border-b border-gray-400 text-gray-700">
-          Navigation
+        <h2 className="flex items-center gap-3 bg-gray-200 font-bold py-2.5 px-5 text-gray-700">
+          <GrNavigate size={20} /> Navigation
         </h2>
 
         {/* About */}

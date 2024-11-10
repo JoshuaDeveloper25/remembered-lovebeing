@@ -26,13 +26,13 @@ const Modal = ({
     createPortal(
       <div
         // onClick={handleCloseModal}
-        className="h-[100vh] fixed top-0 w-full z-[999999]"
+        className="h-[100vh] fixed top-0 w-full z-[9999999999]"
       >
         <div
           id="crud-modal"
           tabIndex="-1"
           aria-hidden="true"
-          className={`overflow-x-hidden fixed top-0 right-0 left-0 z-[2000] flex justify-center items-center w-full min-h-full bg-black/50 overflow-y-hidden`}
+          className={`overflow-x-hidden fixed px-4 top-0  right-0 left-0 z-[2000] flex justify-center items-center w-full min-h-full bg-black/50 overflow-y-hidden`}
         >
           <div
             className={`relative w-full ${
@@ -86,7 +86,7 @@ const Modal = ({
                 <div className="p-4 md:p-5">{children}</div>
               ) : (
                 <>
-                  <form onSubmit={handleSubmit} className="min-h-full">
+                  <form onSubmit={handleSubmit} className="max-h-[35rem] overflow-y-auto">
                     {children}
                   </form>
                 </>

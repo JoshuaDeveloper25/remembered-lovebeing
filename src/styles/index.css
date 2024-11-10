@@ -11,7 +11,8 @@
 body {
   font-family: "Poppins", sans-serif;
   background: linear-gradient(#faf9f3, #faf9f3);
-  overflow-x: hidden
+  overflow-x: hidden;
+  overscroll-behavior: contain;
 }
 
 /* Tailwind components made by myself */
@@ -320,6 +321,11 @@ body {
   z-index: 20000 !important;
 }
 
+.dropdownResponsiveProfile > div {
+  min-width: 0 !important;
+}
+
 .dropdownResponsiveProfile > div > ul {
   padding: 0 !important;
+  width: 100% !important;
 }

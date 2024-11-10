@@ -287,34 +287,6 @@ const FormEditProfile = ({
             </select>
           </div>
         </div>
-
-        {/* <div>
-          <label>
-            <span className="w-full inline-block text-start font-semibold">
-              Profile Web Address{" "}
-              <span className="text-xs text-yellow-500 font-semibold align-super">
-                {" "}
-                * (Tip: You can use your names or nickname)
-              </span>
-            </span>
-            <input
-              className=" form-input"
-              type={"text"}
-              name={"slug"}
-              required
-              placeholder="Example: John Doe"
-            />
-          </label>
-          <p className="text-[13px] text-red-500 font-semibold rounded-sm">
-            * Take your time on the name as you can't change it later!
-          </p>
-          <p className="bg-primary-color text-white mt-2 rounded px-2 py-2">
-            <span className="block font-semibold text-sm">This is how people will find you:</span>
-            <span className="text-center block">
-              Link: <span className="text-primary-color-light underline">{"  https://www.remembered.com/albert-einstein"}</span>
-            </span>
-          </p>
-        </div> */}
       </div>
 
       <ButtonForm

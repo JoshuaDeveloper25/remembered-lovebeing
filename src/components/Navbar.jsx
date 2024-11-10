@@ -355,7 +355,7 @@ const Navbar = () => {
         </div>
 
         {/* User Dropdown */}
-        {/* <div className="relative mt-2">
+        <div className="relative mt-2">
           <button
             id="dropdownDividerButton"
             data-dropdown-toggle="dropdownDivider"
@@ -422,7 +422,7 @@ const Navbar = () => {
               )}
             </>
           )}
-        </div> */}
+        </div>
       </div>
     </>
   );

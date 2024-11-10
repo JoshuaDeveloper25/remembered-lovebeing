@@ -97,7 +97,7 @@ const FormLifeJourney = ({
       <main className="p-5">
         {/* Born */}
         <article className="border-b border-tertiary-color pb-8 mb-8">
-          <div className="flex flex-col md:flex-row gap-4 items-center">
+          <div className="flex flex-col md:flex-row gap-4 sm:items-center">
             <h4 className="font-semibold">Born:</h4>
 
             <select
@@ -198,7 +198,7 @@ const FormLifeJourney = ({
 
         {/* Passed Away */}
         <article className="border-b border-tertiary-color pb-8 mb-8">
-          <div className="flex flex-col md:flex-row gap-4 items-center">
+          <div className="flex flex-col md:flex-row gap-4 sm:items-center">
             <h4 className="font-semibold">Passed Away:</h4>
 
             <select

@@ -158,7 +158,7 @@ const FormCreateProfile = ({
           <h3 className="w-full inline-block text-xl text-start font-semibold mb-2.5">
             Memorial web address:
           </h3>
-          <label className="flex gap-1 items-center">
+          <label className="flex flex-col sm:flex-row gap-1 sm:items-center">
             <span className="">https://www.remembered.com/</span>
             <input
               className="form-input py-1 sm:w-52"
@@ -177,40 +177,6 @@ const FormCreateProfile = ({
             )}`}</span>
           </p>
         </div>
-
-        {/* <div>
-          <label>
-            <span className="w-full inline-block text-start font-semibold">
-              Profile Web Address{" "}
-              <span className="text-xs text-yellow-500 font-semibold align-super">
-                {" "}
-                * (Tip: You can use your names or nickname)
-              </span>
-            </span>
-            <input
-              className=" form-input"
-              type={"text"}
-              name={"slug"}
-              value={slug}
-              onChange={(e) => setSlug(e?.target?.value)}
-              placeholder="Example: John Doe"
-            />
-          </label>
-          <p className="text-[13px] text-red-500 font-semibold rounded-sm">
-            * Take your time on the name as you can't change it later!
-          </p>
-          <p className="bg-primary-color text-white mt-2 rounded px-2 py-2">
-            <span className="block font-semibold text-sm">
-              This is how people will find you:
-            </span>
-            <span className="text-center block">
-              Link:{" "}
-              <span className="text-primary-color-light underline">
-                {`  https://www.remembered.com/${slug?.replace(/ /g, "-")}`}
-              </span>
-            </span>
-          </p>
-        </div> */}
       </div>
 
       <ButtonForm

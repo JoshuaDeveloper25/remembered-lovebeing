@@ -10,6 +10,7 @@ import { IoMdHeart } from "react-icons/io";
 import { FaPlus } from "react-icons/fa";
 import axios from "axios";
 import { useState } from "react";
+import UploadUserProfileImageResponsive from "../../../components/UploadUserProfileImageResponsive";
 
 const ResponsiveMoreInfoRememberedAdmin = ({
   totalFavoritesProfiles,
@@ -26,6 +27,8 @@ const ResponsiveMoreInfoRememberedAdmin = ({
   setSlug,
   slug,
 }) => {
+  const [openModalProfile, setOpenModalProfile] = useState(false);
+  console.log(openModalProfile);
   const navigate = useNavigate();
 
   const getPremiumProfilesRemaining = useQuery({
@@ -207,12 +210,11 @@ const ResponsiveMoreInfoRememberedAdmin = ({
         </DropdownItem>
 
         {/* Change Profile Photo */}
-        <DropdownItem className="p-0">
-          <UploadUserProfileImage
-            iconClassname={"h-[19px] w-[19px]"}
-            iconChoosen={2}
-          />
-        </DropdownItem>
+        <UploadUserProfileImageResponsive
+          iconClassname={"h-[19px] w-[19px]"}
+          setOpenModalProfile={setOpenModalProfile}
+          openModalProfile={openModalProfile}
+        />
 
         {/* Navigation */}
         <h2 className="font-medium py-2.5 px-5 border-b border-gray-400 text-gray-700">

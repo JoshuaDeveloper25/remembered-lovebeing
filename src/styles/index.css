@@ -329,3 +329,7 @@ body {
   padding: 0 !important;
   width: 100% !important;
 }
+
+.dropdownResponsiveProfile > div > ul > li > button:focus {
+  background-color: transparent !important;
+}

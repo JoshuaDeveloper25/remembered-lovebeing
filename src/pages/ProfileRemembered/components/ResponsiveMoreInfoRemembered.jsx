@@ -11,6 +11,7 @@ import { GiFlowerPot } from "react-icons/gi";
 import { GrNavigate } from "react-icons/gr";
 import { DiAptana } from "react-icons/di";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const ResponsiveMoreInfoRemembered = ({
   setEditRememberedProfile,
@@ -26,6 +27,8 @@ const ResponsiveMoreInfoRemembered = ({
   status,
   isOwner,
 }) => {
+  const [openModalProfile, setOpenModalProfile] = useState(false);
+
   return (
     <div className="flex dropdownResponsiveProfile">
       {/* Dropdown Content */}
@@ -39,7 +42,7 @@ const ResponsiveMoreInfoRemembered = ({
         className="max-w-sm max-h-[28rem] overflow-y-auto border-2 border-[#fab818]"
         inline
       >
-        {/* Actions that only the owner can do */}
+        {/* Actions that only the owner can do and see */}
         {isOwner && (
           <>
             <h2 className="flex items-center gap-1.5 bg-gray-200 font-bold py-2.5 px-5 text-gray-700">
@@ -67,6 +70,8 @@ const ResponsiveMoreInfoRemembered = ({
 
             {/* Change Profile Photo */}
             <UploadUserProfileImageResponsive
+              setOpenModalProfile={setOpenModalProfile}
+              openModalProfile={openModalProfile}
               iconClassname={"h-[19px] w-[19px]"}
             />
 

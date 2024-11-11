@@ -30,7 +30,7 @@ const ImagesHandleCrop = ({
     if (!file) return;
 
     try {
-      const resizedFile = await uploadResizedImage(file, 700, 700, 85);
+      const resizedFile = await uploadResizedImage(file, 850, 850, 90);
 
       const reader = new FileReader();
       reader.addEventListener("load", () => {

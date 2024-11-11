@@ -93,10 +93,11 @@ const MyProfiles = () => {
     <>
       {/* Sky Video */}
       <video
-        className="md:block hidden w-full h-60 object-cover"
-        loop
+        className="md:flex hidden w-full h-60 object-cover"
+        playsInline
         autoPlay
         muted
+        loop
       >
         <source src={cloudsVideo} type="video/mp4" />
         Your browser does not support HTML video.

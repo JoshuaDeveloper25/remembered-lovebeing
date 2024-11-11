@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { FaFolderOpen } from "react-icons/fa";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 const Modal = ({
@@ -14,6 +14,17 @@ const Modal = ({
   setClearCache = () => {},
 }) => {
   const [closing, setClosing] = useState(false);
+
+  useEffect(() => {
+    if (openModal) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    // Clean up to ensure overflow is removed if modal is closed
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [openModal]);
 
   const handleCloseModal = () => {
     setClosing(false);
@@ -86,7 +97,10 @@ const Modal = ({
                 <div className="p-4 md:p-5">{children}</div>
               ) : (
                 <>
-                  <form onSubmit={handleSubmit} className="max-h-[35rem] overflow-y-auto">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="max-h-[35rem] overflow-y-auto"
+                  >
                     {children}
                   </form>
                 </>

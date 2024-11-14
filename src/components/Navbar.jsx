@@ -355,7 +355,7 @@ const Navbar = () => {
         </div>
 
         {/* User Dropdown */}
-        <div className="relative mt-2">
+        <div className="flex gap-1.5 items-center relative mt-2">
           <button
             id="dropdownDividerButton"
             data-dropdown-toggle="dropdownDivider"
@@ -373,54 +373,66 @@ const Navbar = () => {
             />
           </button>
 
-          {openDropDown && (
+          {userInfo?.access_token ? (
             <>
-              {createPortal(
-                <div
-                  onClick={() => setOpenDropDown(!openDropDown)}
-                  className="h-[100vh] fixed top-0 w-full"
-                ></div>,
-                document.body
+              {/* This is the dropdown info */}
+              {openDropDown && (
+                <>
+                  {createPortal(
+                    <div
+                      onClick={() => setOpenDropDown(!openDropDown)}
+                      className="h-[100vh] fixed top-0 w-full"
+                    ></div>,
+                    document.body
+                  )}
+
+                  <ul className="absolute left-0 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
+                    <NavbarDropdownLink
+                      hoverBgLink={"hover:bg-primary-color"}
+                      linkText={t("My Profiles")}
+                      onClick={() => setOpenDropDown(false)}
+                      linkTo={"/my-profiles/"}
+                    />
+
+                    <NavbarDropdownLink
+                      hoverBgLink={"hover:bg-red-500"}
+                      linkText={t("Log Out")}
+                      onClick={handleLogOut}
+                    />
+                  </ul>
+                </>
               )}
 
-              {userInfo?.access_token ? (
-                <ul className="absolute left-0 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
-                  <div className="border-b pb-1.5 px-5">
-                    <h2 className="block font-medium">{userInfo?.name}</h2>
-                    <h2 className="block font-medium">{userInfo?.email}</h2>
-                  </div>
-
-                  <NavbarDropdownLink
-                    hoverBgLink={"hover:bg-primary-color"}
-                    linkText={t("My Profiles")}
-                    onClick={() => setOpenDropDown(false)}
-                    linkTo={"/my-profiles/"}
-                  />
-
-                  <NavbarDropdownLink
-                    hoverBgLink={"hover:bg-primary-color"}
-                    linkText={t("Settings")}
-                    onClick={() => setOpenDropDown(false)}
-                    linkTo={"#"}
-                  />
-
-                  <NavbarDropdownLink
-                    hoverBgLink={"hover:bg-red-500"}
-                    linkText={t("Log Out")}
-                    onClick={handleLogOut}
-                  />
-                </ul>
-              ) : (
-                <ul className="absolute right-5 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
-                  <NavbarDropdownLink
-                    hoverBgLink={"text-black hover:text-secondary-color"}
-                    onClick={() => setOpenDropDown(false)}
-                    linkText={t("Sign In")}
-                    linkTo={"/sign-in"}
-                  />
-                </ul>
-              )}
+              <div>
+                <h2 className="block font-bold leading-3">{userInfo?.name}</h2>
+                <h2 className="text-sm block font-medium text-gray-500">
+                  {userInfo?.email}
+                </h2>
+              </div>
             </>
+          ) : (
+            <ul className="absolute right-5 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
+              {openDropDown && (
+                <>
+                  {createPortal(
+                    <div
+                      onClick={() => setOpenDropDown(!openDropDown)}
+                      className="h-[100vh] fixed top-0 w-full"
+                    ></div>,
+                    document.body
+                  )}
+
+                  <ul className="absolute left-0 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
+                    <NavbarDropdownLink
+                      hoverBgLink={"text-black hover:text-secondary-color"}
+                      onClick={() => setOpenDropDown(false)}
+                      linkText={t("Sign In")}
+                      linkTo={"/sign-in"}
+                    />
+                  </ul>
+                </>
+              )}
+            </ul>
           )}
         </div>
       </div>

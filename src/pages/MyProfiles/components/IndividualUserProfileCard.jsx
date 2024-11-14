@@ -25,11 +25,8 @@ const IndividualUserProfileCard = ({ userStats }) => {
       <p className="text-gray-600 font-semibold text-xs mt-2 leading-4">
         {userInfo?.email}
       </p>
-      <p className="text-gray-600 text-sm mt-2 leading-4">
-        A passionate developer with the need of learning new things...
-      </p>
 
-      <div className="flex justify-center  items-center my-6">
+      <div className="flex justify-center  items-center mt-3">
         <div className="border-r border-tertiary-color/50 px-2">
           <h3 className="text-sm text-tertiary-color font-bold">
             {userStats?.posts_count}
@@ -67,9 +64,7 @@ const IndividualUserProfileCard = ({ userStats }) => {
         </div>
       </div>
 
-      <p className="text-gray-600 text-xs font-bold mt-2 leading-4">
-        Member since Nov 15, 2021
-      </p>
+    
     </article>
   );
 };

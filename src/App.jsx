@@ -120,6 +120,7 @@ const App = () => {
     <AppProvider>
       <QueryClientProvider client={queryClient}>
         <ToastContainer
+          style={{ zIndex: 999999999999999 }}
           pauseOnFocusLoss={false}
           hideProgressBar={true}
           position="top-center"
@@ -127,7 +128,6 @@ const App = () => {
           theme="colored"
           draggable
           stacked
-          style={{ zIndex: 999999999999999 }}
         />
         <RouterProvider router={router} />
       </QueryClientProvider>

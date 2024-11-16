@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AppProvider } from "./context/AppProvider";
 import { ToastContainer } from "react-toastify";
 
-// --> 🔗	Styles
+// --> 🔗	Styles of css
 import "react-image-crop/dist/ReactCrop.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./styles/index.css";

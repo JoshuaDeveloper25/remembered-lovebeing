@@ -28,7 +28,7 @@ export const stepsApp = [
     descStep: (
       <>
         <Trans i18nKey="RegisterAndLogIn">
-           Register <span className="sm:block">and Log In</span>
+          Register <span className="sm:block">and Log In</span>
         </Trans>
       </>
     ),
@@ -60,4 +60,9 @@ export const stepsApp = [
       </>
     ),
   },
+];
+
+export const availableLanguages = [
+  { value: "es", language: "Español" },
+  { value: "en", language: "English" },
 ];

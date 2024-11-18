@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import getFastApiErrors from "../../utils/getFastApiErrors";
-import FastInformation from "./components/FastInformation";
+import CarouselSignIn from "./components/CarouselSignIn";
 import { useMutation } from "@tanstack/react-query";
 import AppContext from "../../context/AppProvider";
 import { toast } from "react-toastify";
@@ -59,8 +59,8 @@ const SignIn = () => {
 
   return (
     <section className="container-page my-8">
-      <div className="flex flex-col sm:flex-row shadow-md rounded-2xl p-1.5 bg-gradient-to-r from-[#FBFBFE]">
-        <FastInformation />
+      <div className="grid grid-cols-2 shadow-md rounded-2xl p-1.5 bg-gradient-to-r from-[#FBFBFE]">
+        <CarouselSignIn />
 
         {/* Sign Up Form */}
         <Form isPending={isPending} handleSubmit={handleSubmit} />

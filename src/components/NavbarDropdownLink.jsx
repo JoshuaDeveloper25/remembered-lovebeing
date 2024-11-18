@@ -13,7 +13,7 @@ const NavbarDropdownLink = ({
     <>
       {dropDownVersion === 1 && (
         <li
-          className={`${hoverBgLink} hover:text-white last:rounded-b font-semibold animation-fade text-black text-sm cursor-pointer`}
+          className={`${hoverBgLink} last:rounded-b font-semibold animation-fade text-black text-sm cursor-pointer`}
           onClick={onClick}
         >
           <Link className="py-2.5 px-5 block" to={linkTo || "#"}>

@@ -1,36 +1,7 @@
-import logo from "../../../assets/funeral-logo.png";
-
 const FastInformation = () => {
   return (
-    <div className="flex-1 p-6 text-center rounded-s-2xl bg-gradient-to-b from-secondary-color to-secondary-color/85 text-white">
-      <h2 className="text-lg font-semibold">Welcome to</h2>
-      <img
-        loading="lazy"
-        decoding="async"
-        className="w-20 mx-auto my-10"
-        src={logo}
-      />
-      <p className="text-xs text-slate-200 leading-[1.4]">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic totam, eum
-        nobis iure officiis doloremque dignissimos inventore officia maiores
-        pariatur iusto.
-      </p>
-
-      <div className="flex justify-center mt-24 gap-4">
-        <div>
-          <h3 className="font-[100]">
-            Creator <span className="font-bold">Here</span>
-          </h3>
-        </div>
-
-        <div className="h-6 w-[.1rem] bg-slate-200"></div>
-
-        <div>
-          <h3 className="font-[100]">
-            Designer <span className="font-bold">Here</span>
-          </h3>
-        </div>
-      </div>
+    <div className="flex-1">  
+      <img className="rounded-2xl" src={'https://images.unsplash.com/photo-1728847031685-102957148475?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} />
     </div>
   );
 };

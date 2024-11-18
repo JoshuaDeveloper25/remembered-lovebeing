@@ -13,7 +13,7 @@ const SignIn = () => {
   const { setUserInfo } = useContext(AppContext);
   const navigate = useNavigate();
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: async (userInfo) => {
       return await axios.post(
         `${import.meta.env.VITE_BASE_URL}/users/login`,
@@ -58,12 +58,12 @@ const SignIn = () => {
   };
 
   return (
-    <section className="max-w-4xl mx-auto shadow-lg">
-      <div className="flex justify-center items-center min-h-[100vh]">
+    <section className="container-page my-8">
+      <div className="flex flex-col sm:flex-row shadow-md rounded-2xl p-1.5 bg-gradient-to-r from-[#FBFBFE]">
         <FastInformation />
 
         {/* Sign Up Form */}
-        <Form handleSubmit={handleSubmit} />
+        <Form isPending={isPending} handleSubmit={handleSubmit} />
       </div>
     </section>
   );

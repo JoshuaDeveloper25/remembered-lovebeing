@@ -1,27 +1,51 @@
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { useState } from "react";
+
 export const InputForm = ({
-  inputType,
-  inputLabel,
-  inputName,
-  inputPlaceholder,
+  additionalInputClassnames,
+  inputPassword = false,
   inputLabelClassName,
-  required,
+  inputPlaceholder,
   defaultValue,
+  inputLabel,
   inputProps,
+  inputName,
+  inputType,
+  required,
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
-    <label className={inputLabelClassName}>
-      <span className="w-full inline-block text-start font-medium">
-        {inputLabel}
-      </span>
+    <label className={`${inputLabelClassName} relative`}>
+      {inputLabel && (
+        <span className="w-full inline-block text-start font-medium">
+          {inputLabel}
+        </span>
+      )}
+
       <input
-        required={required}
-        className="form-input"
+        className={`form-input focus:shadow-xl ${additionalInputClassnames}`}
+        type={inputType === "password" && showPassword ? "text" : inputType}
         placeholder={inputPlaceholder}
-        type={inputType}
-        name={inputName}
         defaultValue={defaultValue}
+        required={required}
+        name={inputName}
         {...inputProps}
       />
+
+      {inputPassword && (
+        <div className="absolute top-4 right-4">
+          {showPassword ? (
+            <button type="button" onClick={() => setShowPassword(false)}>
+              <FaRegEyeSlash className="text-fourth-color/50" />
+            </button>
+          ) : (
+            <button type="button" onClick={() => setShowPassword(true)}>
+              <FaRegEye className="text-fourth-color/50" />
+            </button>
+          )}
+        </div>
+      )}
     </label>
   );
 };

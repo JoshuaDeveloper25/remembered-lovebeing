@@ -30,7 +30,7 @@ body {
   }
 
   .form-input {
-    @apply rounded animation-fade px-2 py-2 w-full outline-none block bg-white border-[#b5b6b6] border focus:border-[#949DA6] text-[#2a2d31];
+    @apply rounded animation-fade w-full border-transparent outline-none block bg-white  focus:border-[#949DA6] text-[#2a2d31];
   }
 
   .dashboard-active {
@@ -42,7 +42,7 @@ body {
   }
 
   .btn {
-    @apply w-full border py-2 px-8 rounded-lg font-medium cursor-pointer animation-fade;
+    @apply w-full border py-2 outline-transparent px-8 rounded-lg font-medium cursor-pointer animation-fade;
   }
 
   .btn-blue {
@@ -69,8 +69,9 @@ body {
 }
 
 .nav-active {
-  border-bottom: 1px solid #ffffff;
-  font-weight: bold;
+  border-bottom: 2px solid #1369c3;
+  color: #1369c3;
+  font-weight: medium;
 }
 
 .nav-inactive {
@@ -344,7 +345,7 @@ body {
 }
 
 .carousel-steps .swiper-pagination {
-  top: 8.8rem !important;
+  top: 9.5rem !important;
 }
 
 .carousel-steps .swiper-button-next {

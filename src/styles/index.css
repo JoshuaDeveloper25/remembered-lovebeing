@@ -339,7 +339,7 @@ body {
   z-index: 99;
 }
 
- .carousel-steps {
+.carousel-steps {
   position: static !important;
 }
 
@@ -358,5 +358,16 @@ body {
 .carousel-steps .swiper-button-next:after,
 .carousel-steps .swiper-button-prev:after {
   font-size: 19px !important;
-  font-weight: bold!important;
+  font-weight: bold !important;
+}
+
+.overflow-hidden-media {
+  overflow: hidden;
+}
+
+/* 640px */
+@media (min-width: 40em) {
+  .overflow-hidden-media {
+    overflow: auto;
+  }
 }

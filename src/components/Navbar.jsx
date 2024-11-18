@@ -22,13 +22,13 @@ const Navbar = () => {
 
   useEffect(() => {
     if (navbarOpen) {
-      document.body.classList.add("overflow-hidden");
+      document.body.classList.add("overflow-hidden-media");
     } else {
-      document.body.classList.remove("overflow-hidden");
+      document.body.classList.remove("overflow-hidden-media");
     }
 
     // Clean up to ensure overflow is removed if modal is closed
-    return () => document.body.classList.remove("overflow-hidden");
+    return () => document.body.classList.remove("overflow-hidden-media");
   }, [navbarOpen]);
 
   const handleChange = (lang) => {

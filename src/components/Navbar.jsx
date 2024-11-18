@@ -2,7 +2,7 @@ import NavbarDropdownLink from "./NavbarDropdownLink";
 import { Link, NavLink } from "react-router-dom";
 import AppContext from "../context/AppProvider";
 import { LiaCrossSolid } from "react-icons/lia";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
 
@@ -18,6 +18,17 @@ const Navbar = () => {
   const { setUserInfo, userInfo } = useContext(AppContext);
   const [openDropDown, setOpenDropDown] = useState(false);
   const [language, setLanguage] = useState("en");
+
+  useEffect(() => {
+    if (navbarOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    // Clean up to ensure overflow is removed if modal is closed
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [navbarOpen]);
 
   const handleChange = (lang) => {
     setLanguage(lang);

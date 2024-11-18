@@ -6,13 +6,18 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 // import required modules
-import { Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { stepsApp } from "../../../db/data";
 
 const CarouselStepsApp = () => {
   return (
     <>
       <Swiper
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+        }}
+        loop={true}
         slidesPerView={3}
         spaceBetween={30}
         pagination={{
@@ -35,7 +40,7 @@ const CarouselStepsApp = () => {
             spaceBetween: 10,
           },
         }}
-        modules={[Navigation, Pagination]}
+        modules={[Navigation, Pagination, Autoplay]}
         className="carousel-steps"
       >
         {stepsApp?.map((stepApp, index) => (

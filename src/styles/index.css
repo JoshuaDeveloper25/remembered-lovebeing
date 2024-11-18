@@ -299,7 +299,8 @@ body {
 
 .swiper-cube .swiper-pagination-bullet-active,
 .recent-memorials-carousel .swiper-pagination-bullet-active,
-.stepsCarousel .swiper-pagination-bullet-active {
+.stepsCarousel .swiper-pagination-bullet-active,
+.carousel-steps .swiper-pagination-bullet-active {
   background: #04bffa !important;
   transition: all 0.4s ease-in-out;
   border-radius: 1rem !important;
@@ -338,7 +339,7 @@ body {
   z-index: 99;
 }
 
-.carousel-steps {
+ .carousel-steps {
   position: static !important;
 }
 

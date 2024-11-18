@@ -1,4 +1,17 @@
+import { useEffect } from "react";
+
 const PostCommentModal = ({ children, openModal, setOpenModal }) => {
+  useEffect(() => {
+    if (openModal) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    // Clean up to ensure overflow is removed if modal is closed
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [openModal]);
+
   const handleCloseModal = () => {
     setOpenModal(false);
   };

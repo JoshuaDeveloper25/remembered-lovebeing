@@ -333,3 +333,29 @@ body {
 .dropdownResponsiveProfile > div > ul > li > button:focus {
   background-color: transparent !important;
 }
+
+.swiper-pagination {
+  z-index: 99;
+}
+
+.carousel-steps {
+  position: static !important;
+}
+
+.carousel-steps .swiper-pagination {
+  top: 8.8rem !important;
+}
+
+.carousel-steps .swiper-button-next {
+  right: 0 !important;
+}
+
+.carousel-steps .swiper-button-prev {
+  left: 0 !important;
+}
+
+.carousel-steps .swiper-button-next:after,
+.carousel-steps .swiper-button-prev:after {
+  font-size: 19px !important;
+  font-weight: bold!important;
+}

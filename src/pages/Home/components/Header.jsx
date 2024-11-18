@@ -1,8 +1,10 @@
 import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 import AppContext from "../../../context/AppProvider";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { stepsApp } from "../../../db/data";
+import CarouselStepsApp from "./CarouselStepsApp";
 
 const Header = () => {
   const [ref, isIntersecting] = useIntersectionObserver({ threshold: 0.4 });
@@ -78,56 +80,30 @@ const Header = () => {
       </header>
 
       <section className="container-page px-3 sticky">
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-1 justify-center gap-8 md:-mt-16 -mt-4 mb-14 align-center-media">
-          <article
-            className={`w-52 bg-primary-color text-white shadow-lg rounded-sm px-6 py-4 animated-box-comingDown ${
-              isIntersecting ? "animate" : ""
-            }`}
-          >
-            <div className="flex items-center gap-3 text-yellow-500 font-medium">
-              <h3 className="text-4xl font-black">1</h3>
-              <div className="bg-yellow-500 h-1 w-full"></div>
-            </div>
+        {/* From 850px to up we're going to show it */}
+        <div className="min-[850px]:block hidden">
+          <div className="grid grid-cols-4 justify-center gap-8 md:-mt-16 -mt-4 mb-14 items-stretch place-items-center">
+            {stepsApp?.map((stepApp, index) => (
+              <article
+                key={index}
+                className="w-52 bg-primary-color text-white shadow-lg rounded-sm px-6 py-4"
+              >
+                <div className="flex items-center gap-3 text-yellow-500 font-medium">
+                  <h3 className="text-4xl font-black">{stepApp?.numberStep}</h3>
+                  <div className="bg-yellow-500 h-1 w-full"></div>
+                </div>
 
-            <h3 className="text-xl mt-2">
-              <Trans i18nKey="RegisterAndLogIn">
-                Register <span className="block">and Log In</span>
-              </Trans>
-            </h3>
-          </article>
+                <h3 className="text-xl mt-2">{stepApp?.descStep}</h3>
+              </article>
+            ))}
+          </div>
+        </div>
 
-          <article className="w-52 bg-primary-color text-white shadow-lg rounded-sm px-6 py-4">
-            <div className="flex items-center gap-3 text-yellow-500 font-medium">
-              <h3 className="text-4xl font-black">2</h3>
-              <div className="bg-yellow-500 h-1 w-full"></div>
-            </div>
-
-            <h3 className="text-xl mt-2">
-              Create a <span className="block">Profile</span>
-            </h3>
-          </article>
-
-          <article className="w-52 bg-primary-color text-white shadow-lg rounded-sm px-6 py-4">
-            <div className="flex items-center gap-3 text-yellow-500 font-medium">
-              <h3 className="text-4xl font-black">3</h3>
-              <div className="bg-yellow-500 h-1 w-full"></div>
-            </div>
-
-            <h3 className="text-xl mt-2">
-              Generate <span className="block">QR Code</span>
-            </h3>
-          </article>
-
-          <article className="w-52 bg-primary-color text-white shadow-lg rounded-sm px-6 py-4">
-            <div className="flex items-center gap-3 text-yellow-500 font-medium">
-              <h3 className="text-4xl font-black">4</h3>
-              <div className="bg-yellow-500 h-1 w-full"></div>
-            </div>
-
-            <h3 className="text-xl mt-2">
-              Share with <span className="block">friends and</span> family
-            </h3>
-          </article>
+        {/* From 850px to bottom we're going to show it */}
+        <div className="min-[850px]:hidden block">
+          <div className="-mt-4 sticky z-50">
+            <CarouselStepsApp />
+          </div>
         </div>
       </section>
     </>

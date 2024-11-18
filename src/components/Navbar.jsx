@@ -5,13 +5,12 @@ import NavbarDesktop from "./NavbarDesktop";
 import NavbarMobile from "./NavbarMobile";
 import { toast } from "react-toastify";
 
-
 const Navbar = () => {
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const { t, i18n } = useTranslation();
   const { setUserInfo, userInfo } = useContext(AppContext);
   const [openDropDown, setOpenDropDown] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
   const [language, setLanguage] = useState("en");
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     if (navbarOpen) {

@@ -3,7 +3,7 @@ import { Trans } from "react-i18next";
 export const navbarLinks = [
   {
     to: "/memorials",
-    text: "Memorials",
+    text: `Memorials`,
   },
 
   {
@@ -63,6 +63,6 @@ export const stepsApp = [
 ];
 
 export const availableLanguages = [
-  { value: "es", language: "Español" },
   { value: "en", language: "English" },
+  { value: "es", language: "Español" },
 ];

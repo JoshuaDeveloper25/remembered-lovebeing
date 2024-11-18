@@ -100,7 +100,7 @@ const NavbarMobile = ({
                   key={index}
                   to={to}
                 >
-                  {text}
+                  {t(text)}
                 </NavLink>
               );
             })}

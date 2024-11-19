@@ -1,8 +1,6 @@
 import { InputForm } from "../../../components/InputForm";
 import { Link } from "react-router-dom";
 
-import clouds from "../../../assets/clouds.png";
-
 const Form = ({ handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className={`flex-1 rounded-e-2xl px-10`}>

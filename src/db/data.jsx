@@ -1,3 +1,7 @@
+import rememberedAboutPrev from "../assets/rememberedAboutPrev.png";
+import rememberedMediaPrev from "../assets/rememberedMediaPrev.png";
+import rememberedTributePrev from "../assets/rememberedTributePrev.png";
+
 import { Trans } from "react-i18next";
 
 export const navbarLinks = [
@@ -67,7 +71,8 @@ export const availableLanguages = [
   { value: "es", language: "Español" },
 ];
 
-export const signInCarouselPreviews = [
-  "https://images.unsplash.com/photo-1728847031685-102957148475?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1731410612759-d93cede4edbc?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+export const authCarouselPreviews = [
+  rememberedAboutPrev,
+  rememberedMediaPrev,
+  rememberedTributePrev,
 ];

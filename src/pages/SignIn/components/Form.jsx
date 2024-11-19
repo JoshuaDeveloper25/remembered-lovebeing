@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Form = ({ isPending, handleSubmit }) => {
   return (
     <form className={`flex-1`} onSubmit={handleSubmit}>
-      <div className="text-end px-4">
+      <div className="text-end px-4 sm:pt-0 pt-3">
         <h3 className="text-fourth-color/70">
           Not a member?{" "}
           <Link className="text-primary-color-light" to={"/sign-up"}>
@@ -14,7 +14,7 @@ const Form = ({ isPending, handleSubmit }) => {
         </h3>
       </div>
 
-      <div className="flex flex-col justify-center h-full max-w-xs mx-auto">
+      <div className="flex flex-col justify-center h-full max-w-xs mx-auto sm:pb-0 pb-8">
         <h2 className="text-center text-black heading-title text-[1.6rem]">
           Hello Again!
         </h2>

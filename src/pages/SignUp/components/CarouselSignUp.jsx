@@ -6,9 +6,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import 'swiper/css/effect-fade';
+import "swiper/css/effect-fade";
 
-const CarouselSignIn = () => {
+const CarouselSignUp = () => {
   return (
     <div className="flex-1">
       <Swiper
@@ -36,4 +36,4 @@ const CarouselSignIn = () => {
   );
 };
 
-export default CarouselSignIn;
+export default CarouselSignUp;

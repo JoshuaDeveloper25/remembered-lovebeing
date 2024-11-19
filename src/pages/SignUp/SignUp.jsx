@@ -1,12 +1,12 @@
 import getFastApiErrors from "../../utils/getFastApiErrors";
-import FastInformation from "./components/FastInformation";
+import CarouselSignUp from "./components/CarouselSignUp";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import Form from "./components/Form";
 import axios from "axios";
 
 const SignUp = () => {
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: async (userInfo) => {
       return await axios.post(
         `${import.meta.env.VITE_BASE_URL}/users/register`,
@@ -52,12 +52,12 @@ const SignUp = () => {
   };
 
   return (
-    <section className="max-w-4xl mx-auto">
-      <div className="relative flex justify-center items-center min-h-[100vh]">
-        <FastInformation />
+    <section className="container-page px-2 my-8">
+      <div className="grid sm:grid-cols-2 grid-cols-1 gap-2.5 shadow-md rounded-2xl p-1.5 bg-gradient-to-r from-[#FBFBFE]">
+        <CarouselSignUp />
 
         {/* Sign Up Form */}
-        <Form handleSubmit={handleSubmit} />
+        <Form isPending={isPending} handleSubmit={handleSubmit} />
       </div>
     </section>
   );

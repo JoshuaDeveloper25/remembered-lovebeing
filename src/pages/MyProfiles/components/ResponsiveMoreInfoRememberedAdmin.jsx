@@ -13,6 +13,8 @@ import { FaPlus } from "react-icons/fa";
 import axios from "axios";
 
 const ResponsiveMoreInfoRememberedAdmin = ({
+  setProbando,
+  probando,
   totalFavoritesProfiles,
   totalOwnProfiles,
   setOpenPremiumModal,
@@ -208,7 +210,11 @@ const ResponsiveMoreInfoRememberedAdmin = ({
         </DropdownItem>
 
         {/* Change Profile Photo */}
-        <UploadUserProfileImageResponsive iconClassname={"h-[19px] w-[19px]"} />
+        <UploadUserProfileImageResponsive
+          setProbando={setProbando}
+          probando={probando}
+          iconClassname={"h-[19px] w-[19px]"}
+        />
 
         {/* Navigation */}
         <h2 className="flex items-center gap-3 bg-gray-200 font-bold py-2.5 px-5 text-gray-700">

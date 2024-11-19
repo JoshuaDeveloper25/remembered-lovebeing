@@ -13,8 +13,8 @@ import Modal from "./Modal";
 import axios from "axios";
 
 const UploadUserProfileImageResponsive = ({
-  setOpenModalProfile = () => {},
-  openModalProfile,
+  setProbando = () => {},
+  probando,
   iconClassname,
 }) => {
   const { userInfo, setUserInfo } = useContext(AppContext);
@@ -39,7 +39,7 @@ const UploadUserProfileImageResponsive = ({
     onSuccess: (res) => {
       toast.success("¡Image uploaded successfully!");
       queryClient.invalidateQueries(["profile"]);
-      setOpenModalProfile(false);
+      setProbando(false);
 
       const newObject = {
         ...userInfo,
@@ -88,46 +88,45 @@ const UploadUserProfileImageResponsive = ({
   };
 
   return (
-    <DropdownItem className="p-0">
-      {/* Button to Open User Profile Modal */}
-      <li
-        className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
-        onClick={() => setOpenModalProfile(!openModalProfile)}
-      >
-        <FaCameraRetro
-          className={`${iconClassname ? iconClassname : "size-5"}`}
-        />
+    // <DropdownItem className="p-0">
+    <li
+      onClick={() => setProbando(!probando)}
+      className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+    >
+      <FaCameraRetro
+        className={`${iconClassname ? iconClassname : "size-5"}`}
+      />
 
-        <div>
-          <Link to={"#"} className="block">
-            Change Your Profile Photo
-          </Link>
+      <div>
+        <Link to={"#"} className="block">
+          Change Your Profile Photo
+        </Link>
 
-          <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-            Update your profile image with a new photo.
-          </p>
-        </div>
-      </li>
+        <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
+          Update your profile image with a new photo.
+        </p>
+      </div>
 
-      {/* Change User Profile Image Modal */}
       <Modal
         titleModal={"Change Profile Image"}
         handleSubmit={handleSubmitProfileImage}
-        setOpenModal={setOpenModalProfile}
-        openModal={openModalProfile}
+        setOpenModal={setProbando}
+        openModal={probando}
         modalForm={true}
         iconTitle={true}
       >
         <FormUserProfile
           isPending={changeImageProfileMutation?.isPending}
-          setOpenModalProfile={setOpenModalProfile}
+          setOpenModalProfile={setProbando}
           previewCanvasRef={previewCanvasRef}
           setCrop={setCrop}
           imgRef={imgRef}
           crop={crop}
         />
       </Modal>
-    </DropdownItem>
+    </li>
+
+    // </DropdownItem>
   );
 };
 

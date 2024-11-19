@@ -176,14 +176,14 @@ const NavbarMobile = ({
 
                   <ul className="absolute -top-16 left-16 shadow-lg border bg-white w-40 rounded max-h-96 overflow-auto">
                     <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-primary-color"}
+                      hoverBgLink={"hover:bg-primary-color hover:text-white"}
                       onClick={() => setNavbarOpen(false)}
                       linkText={t("My Profiles")}
                       linkTo={"/my-profiles/"}
                     />
 
                     <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-red-500"}
+                      hoverBgLink={"hover:bg-red-500 hover:text-white"}
                       linkText={t("Log Out")}
                       onClick={handleLogOut}
                     />

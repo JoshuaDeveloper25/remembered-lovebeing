@@ -14,7 +14,7 @@ const CarouselSignIn = () => {
       <Swiper
         loop={true}
         autoplay={{
-          delay: 5000,
+          delay: 2500,
           disableOnInteraction: false,
         }}
         modules={[Autoplay, EffectFade]}

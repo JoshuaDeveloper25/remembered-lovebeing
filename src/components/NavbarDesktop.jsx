@@ -107,21 +107,21 @@ const NavbarDesktop = ({
                       </div>
 
                       <NavbarDropdownLink
-                        hoverBgLink={"hover:bg-primary-color"}
+                        hoverBgLink={"hover:bg-primary-color hover:text-white"}
                         linkText={t("My Profiles")}
                         onClick={() => setOpenDropDown(false)}
                         linkTo={"/my-profiles/"}
                       />
 
                       <NavbarDropdownLink
-                        hoverBgLink={"hover:bg-primary-color"}
+                        hoverBgLink={"hover:bg-primary-color hover:text-white"}
                         linkText={t("Settings")}
                         onClick={() => setOpenDropDown(false)}
                         linkTo={"#"}
                       />
 
                       <NavbarDropdownLink
-                        hoverBgLink={"hover:bg-red-500"}
+                        hoverBgLink={"hover:bg-red-500 hover:text-white"}
                         linkText={t("Log Out")}
                         onClick={handleLogOut}
                       />

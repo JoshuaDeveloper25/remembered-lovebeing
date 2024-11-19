@@ -9,10 +9,9 @@
 @tailwind utilities;
 
 body {
-  font-family: "Poppins", sans-serif;
   background: linear-gradient(#faf9f3, #faf9f3);
+  font-family: "Poppins", sans-serif;
   overflow-x: hidden;
-  /* overscroll-behavior: contain; */
 }
 
 /* Tailwind components made by myself */
@@ -60,43 +59,20 @@ body {
   .btn-blue-light:hover {
     @apply bg-primary-color-light/50 text-white;
   }
+
+  .nav-active {
+    @apply border-b-2 border-[#1369c3] text-[#1369c3] font-medium;
+  }
+
+  .nav-inactive {
+    @apply text-inherit;
+  }
 }
 
 @layer utilities {
   .image-polygon {
     clip-path: polygon(100% 0%, 100% 100%, 50% 65%, 0% 100%, 0% 0%);
   }
-}
-
-.nav-active {
-  border-bottom: 2px solid #1369c3;
-  color: #1369c3;
-  font-weight: medium;
-}
-
-.nav-inactive {
-  color: inherit;
-}
-
-/* Sidebar Settings Profile Editing Styles */
-.css-dip3t8 {
-  background: #0a023b !important;
-}
-
-.css-16jesut > .ps-menu-button:hover {
-  background: rgba(10, 2, 59, 0.79) !important;
-}
-
-.css-18unl23 {
-  background: transparent !important;
-}
-
-.css-1tqrhto > .ps-menu-button:hover {
-  background: rgba(26, 1, 186, 0.293) !important;
-}
-
-.css-1wvake5 {
-  border: 0 !important;
 }
 
 /* Mansory Code of A Grid Gallery or Image Gallery */
@@ -107,7 +83,6 @@ body {
   -webkit-column-width: 33%;
   -moz-column-width: 33%;
   column-width: 33%;
-  /* padding: 0 12px 0 12px; */
 }
 
 .gallery .pics {
@@ -121,7 +96,8 @@ body {
   filter: opacity(0.8);
 }
 
-@media (max-width: 991px) {
+/* 991px */
+@media (max-width: 61.9375em) {
   .gallery {
     -webkit-column-count: 2;
     -moz-column-count: 2;
@@ -129,7 +105,8 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+/* 480px */
+@media (max-width: 30em) {
   .gallery {
     -webkit-column-count: 1;
     -moz-column-count: 1;
@@ -154,54 +131,13 @@ body {
   background: #0a023b;
 }
 
-.autoplay-progress {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 10;
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: white;
-}
-
-.autoplay-progress svg {
-  --progress: 0;
-  position: absolute;
-  left: 0;
-  top: 0px;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  stroke-width: 4px;
-  stroke: white;
-  fill: none;
-  stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
-  stroke-dasharray: 125.6;
-  transform: rotate(-90deg);
-}
-
-.objectViewBoxImages {
-  object-view-box: inset(-30% 0% 0% 0%);
-}
-
-/* 1012px */
-@media (max-width: 63.25em) {
-  .objectViewBoxImages {
-    object-view-box: inset(0);
-  }
-}
-
 .profile-image {
-  transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+  transition: transform 0.3s ease-in-out;
 }
 
 .hover\:scale-image:hover .profile-image {
-  transform: scale(1.2); /* Ajusta el valor de escala según lo necesites */
-  transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+  transform: scale(1.2);
+  transition: transform 0.3s ease-in-out;
 }
 
 .carouselProfilesSwiper .swiper-slide {
@@ -219,18 +155,21 @@ body {
   background-position: center;
 }
 
-@media (max-width: 1200px) {
+/* 1200px */
+@media (max-width: 75em) {
   .media-spacing {
     padding-inline: 1rem;
   }
 }
 
-@media (max-width: 1050px) {
+/* 1050px */
+@media (max-width: 65.625em) {
   .media-spacing {
     padding-inline: 0.5rem;
   }
 }
 
+/* React Quill (About remembered) */
 .react-quill-container .ql-toolbar {
   display: none;
 }
@@ -275,16 +214,6 @@ body {
   margin-top: 1rem;
 }
 
-.align-center-media {
-  place-items: inherit;
-}
-
-@media (max-width: 768px) {
-  .align-center-media {
-    place-items: center;
-  }
-}
-
 .stepsCarousel-swiper-button-prev.swiper-button-disabled,
 .stepsCarousel-swiper-button-next.swiper-button-disabled {
   opacity: 0.35;
@@ -314,10 +243,6 @@ body {
 .stepsCarousel .swiper-pagination-bullet {
   border-radius: 0;
 }
-
-/* .recent-memorials-carousel .swiper-wrapper {
-  height: 12rem;
-} */
 
 .swal2-container {
   z-index: 20000 !important;

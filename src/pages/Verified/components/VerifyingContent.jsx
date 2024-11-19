@@ -1,23 +1,20 @@
-import logo from "../../../assets/funeral-logo.png";
+import { GiFlowerPot } from "react-icons/gi";
 import { Link } from "react-router-dom";
 
 const VerifyingContent = ({ isPending, error }) => {
   return (
     <section className="flex justify-center items-center min-h-[100vh]">
       <div className="max-w-2xl shadow-2xl border p-5 rounded-lg">
-        <img
-          loading="lazy"
-          decoding="async"
-          className="w-52 mx-auto"
-          src={logo}
-        />
+      
+        <GiFlowerPot className="size-24 text-green-500 mx-auto" />
+        
         {isPending ? (
           <>
             <h2 className="text-4xl font-medium text-center text-primary-color my-4">
               Your account is being verified...
             </h2>
 
-            <p className="text-center text-2xl text-primary-color font-bold">
+            <p className="text-center text-2xl text-primary-color">
               We care about your security!
             </p>
           </>
@@ -51,10 +48,7 @@ const VerifyingContent = ({ isPending, error }) => {
             </p>
 
             <div className="text-center">
-              <Link
-                className="text-center text-primary-color text-lg"
-                to={`/`}
-              >
+              <Link className="text-center text-primary-color text-lg" to={`/`}>
                 Log In
               </Link>
             </div>

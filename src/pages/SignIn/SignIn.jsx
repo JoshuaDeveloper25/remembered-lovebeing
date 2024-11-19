@@ -59,7 +59,7 @@ const SignIn = () => {
 
   return (
     <section className="container-page px-2 my-8">
-      <div className="grid sm:grid-cols-2 grid-cols-1 gap-2.5 shadow-md rounded-2xl p-1.5 bg-gradient-to-r from-[#FBFBFE]">
+      <div className="grid sm:grid-cols-2 grid-cols-1 gap-2.5 shadow-md rounded-2xl p-6 bg-gradient-to-r from-[#FBFBFE]">
         <CarouselSignIn />
 
         {/* Sign Up Form */}

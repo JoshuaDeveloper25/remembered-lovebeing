@@ -1,11 +1,14 @@
 import getFastApiErrors from "../../utils/getFastApiErrors";
 import CarouselSignUp from "./components/CarouselSignUp";
 import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Form from "./components/Form";
 import axios from "axios";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const { mutate, isPending } = useMutation({
     mutationFn: async (userInfo) => {
       return await axios.post(
@@ -15,6 +18,7 @@ const SignUp = () => {
     },
     onSuccess: (res) => {
       toast.success("¡Successfully registered!");
+      navigate("/sign-in");
     },
     onError: (err) => {
       toast.error(getFastApiErrors(err));
@@ -53,7 +57,7 @@ const SignUp = () => {
 
   return (
     <section className="container-page px-2 my-8">
-      <div className="grid sm:grid-cols-2 grid-cols-1 gap-2.5 shadow-md rounded-2xl p-1.5 bg-gradient-to-r from-[#FBFBFE]">
+      <div className="grid sm:grid-cols-2 grid-cols-1 gap-2.5 shadow-md rounded-2xl p-6 bg-gradient-to-r from-[#FBFBFE]">
         <CarouselSignUp />
 
         {/* Sign Up Form */}

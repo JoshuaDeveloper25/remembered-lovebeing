@@ -152,8 +152,8 @@ const Profiles = ({
           </div> */}
         </div>
       ) : (
-        <article className="text-center font-bold text-2xl py-8">
-          <h2 className="text-primary-color/85">There's no profiles yet...</h2>
+        <article className="text-center  py-8">
+          <h2 className="text-primary-color/85 text-2xl uppercase">There's no profiles yet...</h2>
         </article>
       )}
     </>

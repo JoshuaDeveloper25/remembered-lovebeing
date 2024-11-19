@@ -100,7 +100,7 @@ const NavbarDesktop = ({
                   )}
 
                   {userInfo?.access_token ? (
-                    <ul className="absolute right-5 shadow-lg border bg-white pt-2 z-[1000] w-max rounded max-h-96 overflow-auto">
+                    <ul className="absolute right-5 shadow-lg border bg-white pt-2 z-[9999999] w-max rounded max-h-96 overflow-auto">
                       <div className="border-b pb-1.5 px-5">
                         <h2 className="block font-medium">{userInfo?.name}</h2>
                         <h2 className="block font-medium">{userInfo?.email}</h2>

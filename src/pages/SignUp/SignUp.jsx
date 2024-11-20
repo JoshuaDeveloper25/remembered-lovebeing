@@ -56,12 +56,14 @@ const SignUp = () => {
   };
 
   return (
-    <section className="container-page px-2 my-8">
-      <div className="grid sm:grid-cols-2 grid-cols-1 gap-2.5 shadow-md rounded-2xl p-6 bg-gradient-to-r from-[#FBFBFE]">
-        <CarouselSignUp />
+    <section className="flex flex-col justify-center items-center h-screen">
+      <div className="container-page px-2">
+        <div className="grid sm:grid-cols-2 grid-cols-1 gap-2.5 shadow-md rounded-2xl p-6 bg-gradient-to-r from-[#FBFBFE]">
+          <CarouselSignUp />
 
-        {/* Sign Up Form */}
-        <Form isPending={isPending} handleSubmit={handleSubmit} />
+          {/* Sign Up Form */}
+          <Form isPending={isPending} handleSubmit={handleSubmit} />
+        </div>
       </div>
     </section>
   );

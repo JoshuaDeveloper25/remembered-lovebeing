@@ -4,12 +4,12 @@ import "../styles/animations.css";
 
 const Root = () => {
   return (
-    <main>
-      <Navbar />
+    <main className="flex flex-col min-h-screen">
+      <div className="flex-1 h-full">
+        <Navbar />
 
-      <main>
         <Outlet />
-      </main>
+      </div>
 
       <footer className="bg-white font-semibold text-center py-8">
         <h2>Todos los derechos reservados.</h2>

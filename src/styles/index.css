@@ -297,3 +297,9 @@ body {
     overflow: auto;
   }
 }
+
+/* If modal in responsive is open, we hide the dropdown and we make the position to be 100% */
+.dropdownResponsiveProfile.has-modal-open > div {
+  transform: none !important;
+  display: none;
+}

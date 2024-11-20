@@ -1,30 +1,38 @@
 import FormUserProfile from "../pages/MyProfiles/components/FormUserProfile";
+import ModalProfilePhotoResponsive from "./ModalProfilePhotoResponsive";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import setCanvasPreview from "../utils/setCanvasPreview";
 import { convertToPixelCrop } from "react-image-crop";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import AppContext from "../context/AppProvider";
 import { FaCameraRetro } from "react-icons/fa";
-import { DropdownItem } from "flowbite-react";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import Modal from "./Modal";
 import axios from "axios";
 
 const UploadUserProfileImageResponsive = ({
-  setProbando = () => {},
-  probando,
   iconClassname,
 }) => {
+  const [openChangeProfileModal, setOpenChangeProfileModal] = useState(false);
   const { userInfo, setUserInfo } = useContext(AppContext);
   const previewCanvasRef = useRef(null);
   const queryClient = useQueryClient();
-  const [crop, setCrop] = useState(0);
+  const [crop, setCrop] = useState("");
   const imgRef = useRef(null);
   const avatarUrl = useRef(
     "https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
   );
+
+  useEffect(() => {
+    const dropdown = document.querySelector(".dropdownResponsiveProfile");
+    if (openChangeProfileModal) {
+      dropdown?.classList.add("has-modal-open");
+    } else {
+      dropdown?.classList.remove("has-modal-open");
+    }
+
+    return () => dropdown?.classList.remove("has-modal-open");
+  }, [openChangeProfileModal]);
 
   const updateAvatar = (imgSrc) => {
     avatarUrl.current = imgSrc;
@@ -39,7 +47,7 @@ const UploadUserProfileImageResponsive = ({
     onSuccess: (res) => {
       toast.success("¡Image uploaded successfully!");
       queryClient.invalidateQueries(["profile"]);
-      setProbando(false);
+      setOpenChangeProfileModal(false);
 
       const newObject = {
         ...userInfo,
@@ -88,45 +96,42 @@ const UploadUserProfileImageResponsive = ({
   };
 
   return (
-    // <DropdownItem className="p-0">
     <li
-      onClick={() => setProbando(!probando)}
-      className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+      className={`changeResponsivePhoto text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+      onClick={() => setOpenChangeProfileModal(!openChangeProfileModal)}
     >
       <FaCameraRetro
         className={`${iconClassname ? iconClassname : "size-5"}`}
       />
 
       <div>
-        <Link to={"#"} className="block">
+        <button to={"#"} className="block">
           Change Your Profile Photo
-        </Link>
+        </button>
 
         <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
           Update your profile image with a new photo.
         </p>
       </div>
 
-      <Modal
+      <ModalProfilePhotoResponsive
         titleModal={"Change Profile Image"}
         handleSubmit={handleSubmitProfileImage}
-        setOpenModal={setProbando}
-        openModal={probando}
+        setOpenModal={setOpenChangeProfileModal}
+        openModal={openChangeProfileModal}
         modalForm={true}
         iconTitle={true}
       >
         <FormUserProfile
           isPending={changeImageProfileMutation?.isPending}
-          setOpenModalProfile={setProbando}
+          setOpenModalProfile={setOpenChangeProfileModal}
           previewCanvasRef={previewCanvasRef}
           setCrop={setCrop}
           imgRef={imgRef}
           crop={crop}
         />
-      </Modal>
+      </ModalProfilePhotoResponsive>
     </li>
-
-    // </DropdownItem>
   );
 };
 

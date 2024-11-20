@@ -1,8 +1,7 @@
 import { FaFolderOpen } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
 
-const Modal = ({
+const ModalProfilePhotoResponsive = ({
   handleSubmit,
   children,
   titleModal,
@@ -33,13 +32,8 @@ const Modal = ({
   };
 
   return (
-    openModal &&
-    createPortal(
-      <div
-        // onClick={handleCloseModal}
-        id="responsive-modal"
-        className="h-[100vh] fixed top-0 w-full z-[9999999999]"
-      >
+    openModal && (
+      <div className="flex absolute inset-0 z-[2000] items-center justify-center">
         <div
           id="crud-modal"
           tabIndex="-1"
@@ -50,6 +44,7 @@ const Modal = ({
             className={`relative w-full ${
               editableWidth ? editableWidth : "max-w-md"
             } mx-auto h-full animate-slide-up`}
+            onClick={(e) => e.stopPropagation()}
           >
             {/* Modal content */}
             <div
@@ -109,10 +104,9 @@ const Modal = ({
             </div>
           </div>
         </div>
-      </div>,
-      document.body
+      </div>
     )
   );
 };
 
-export default Modal;
+export default ModalProfilePhotoResponsive;

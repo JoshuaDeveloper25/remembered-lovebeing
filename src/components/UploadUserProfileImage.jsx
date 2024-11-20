@@ -4,9 +4,8 @@ import { FaCameraRetro } from "react-icons/fa";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import setCanvasPreview from "../utils/setCanvasPreview";
 import { convertToPixelCrop } from "react-image-crop";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import AppContext from "../context/AppProvider";
-import { DropdownItem } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Modal from "./Modal";
@@ -22,6 +21,22 @@ const UploadUserProfileImage = ({ iconChoosen = 1, iconClassname }) => {
   const avatarUrl = useRef(
     "https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
   );
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setOpenModalProfile(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    
+    handleResize();
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const updateAvatar = (imgSrc) => {
     avatarUrl.current = imgSrc;

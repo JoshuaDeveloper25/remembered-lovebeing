@@ -23,14 +23,6 @@ const Profiles = ({
       ),
   });
 
-  const premiumProfiles = profiles?.filter(
-    (item) => item?.status_plan !== "free"
-  );
-
-  const freeProfiles = profiles?.filter(
-    (item) => item?.status_plan !== "premium"
-  );
-
   const handleCreatePremiumProfile = () => {
     setOpenPremiumModal(true);
     setStatusPlan(true);
@@ -46,7 +38,10 @@ const Profiles = ({
             <div className="md:flex hidden flex-col gap-6 sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
               <h2 className="font-sans font-medium text-muted-color italic">
                 “Thank you for your purchase! You now have{" "}
-                <span className="font-bold">({getPremiumProfilesRemaining?.data?.data?.remaining_profiles})</span>{" "}
+                <span className="font-bold">
+                  ({getPremiumProfilesRemaining?.data?.data?.remaining_profiles}
+                  )
+                </span>{" "}
                 new{" "}
                 {getPremiumProfilesRemaining?.data?.data?.remaining_profiles ===
                 1
@@ -103,57 +98,20 @@ const Profiles = ({
               <div className="h-1 w-28 bg-yellow-500 rounded-sm"></div>
             </div>
 
-            {premiumProfiles?.length !== 0 ? (
-              <>
-                <article className="grid min-[1043px]:grid-cols-2 grid-cols-1 gap-4 col-span-3">
-                  {profiles?.map((item) => {
-                    return (
-                      <Profile
-                        isPending={isPending}
-                        item={item}
-                        key={item?.id}
-                      />
-                    );
-                  })}
-                </article>
-              </>
-            ) : (
-              <h2 className="text-primary-color text-center text-2xl uppercase tracking-wider my-8">
-                There's no premium profiles yet...
-              </h2>
-            )}
+            <article className="grid min-[1043px]:grid-cols-2 grid-cols-1 gap-4 col-span-3">
+              {profiles?.map((item) => {
+                return (
+                  <Profile isPending={isPending} item={item} key={item?.id} />
+                );
+              })}
+            </article>
           </div>
-{/* 
-          <div className="mt-6">
-            <div className=" mb-3">
-              <h2 className="font-light text-base text-yellow-500 tracking-wider font-mono">
-                <span className="text-2xl">Free</span>{" "}
-                <span className="text-primary-color-light tracking-tighter">
-                  Profiles
-                </span>
-              </h2>
-
-              <div className="h-1 w-28 bg-yellow-500 rounded-sm"></div>
-            </div>
-
-            {freeProfiles?.length !== 0 ? (
-              <article className="grid sm:grid-cols-2 grid-cols-1 gap-7 col-span-3">
-                {freeProfiles?.map((item) => {
-                  return (
-                    <Profile isPending={isPending} item={item} key={item?.id} />
-                  );
-                })}
-              </article>
-            ) : (
-              <h2 className="text-primary-color text-center text-2xl uppercase tracking-wider my-8">
-                There's no free profiles yet...
-              </h2>
-            )}
-          </div> */}
         </div>
       ) : (
         <article className="text-center  py-8">
-          <h2 className="text-primary-color/85 text-2xl uppercase">There's no profiles yet...</h2>
+          <h2 className="text-primary-color/85 text-2xl uppercase">
+            There's no profiles yet...
+          </h2>
         </article>
       )}
     </>

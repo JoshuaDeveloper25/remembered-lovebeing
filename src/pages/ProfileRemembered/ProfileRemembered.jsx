@@ -288,6 +288,7 @@ const ProfileRemembered = () => {
 
               <div>
                 <ResponsiveMoreInfoRemembered
+                  rememberedId={data?.data?.remembered_profile?.id}
                   status={data?.data?.remembered_profile?.status_privacy}
                   totalProfileCountTabs={data?.data?.remembered_profile}
                   setEditRememberedProfile={setEditRememberedProfile}

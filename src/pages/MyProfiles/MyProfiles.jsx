@@ -119,7 +119,7 @@ const MyProfiles = () => {
                 />
 
                 {/* From lg to up it's going to be visible */}
-                <div className="lg:block hidden absolute -bottom-3 left-[55%] z-[100] cursor-pointer">
+                <div className="md:block hidden absolute -bottom-3 left-[55%] z-[100] cursor-pointer">
                   <UploadUserProfileImage iconClassname={"size-4"} />
                 </div>
               </div>

@@ -1,12 +1,12 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import FormProfile from "../pages/ProfileRemembered/components/FormProfile";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import setCanvasPreview from "../utils/setCanvasPreview";
 import { convertToPixelCrop } from "react-image-crop";
+import { useEffect, useRef, useState } from "react";
 import { FaCameraRetro } from "react-icons/fa";
-import { useRef, useState } from "react";
-import Modal from "./Modal";
 import { toast } from "react-toastify";
+import Modal from "./Modal";
 import axios from "axios";
 
 const UploadProfileImage = ({ idRemembered }) => {
@@ -18,6 +18,22 @@ const UploadProfileImage = ({ idRemembered }) => {
   const avatarUrl = useRef(
     "https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
   );
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setOpenModalProfile(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const updateAvatar = (imgSrc) => {
     avatarUrl.current = imgSrc;

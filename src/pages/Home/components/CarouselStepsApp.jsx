@@ -11,7 +11,7 @@ import { stepsApp } from "../../../db/data";
 
 const CarouselStepsApp = () => {
   return (
-    <>
+    <div className="min-[500px]:max-w-2xl max-w-[18rem] mx-auto">
       <Swiper
         autoplay={{
           delay: 4000,
@@ -57,7 +57,7 @@ const CarouselStepsApp = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };
 

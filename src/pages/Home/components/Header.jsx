@@ -33,11 +33,11 @@ const Header = () => {
           ref={ref}
         >
           <div className="flex flex-col items-center justify-center text-center h-full ">
-            <h1 className="font-serif text-6xl text-white max-w-2xl">
+            <h1 className="font-serif md:text-6xl text-5xl text-white max-w-2xl">
               {t("Preserve the memories of those you love")}
             </h1>
 
-            <p className="text-xl max-w-2xl text-white my-5">
+            <p className="md:text-xl text-lg max-w-2xl text-white my-5">
               {t(
                 `Create a profile for your loved one, upload photos, share memories through posts and allow others to leave tributes and condolences. Generate a QR code.`
               )}
@@ -101,7 +101,7 @@ const Header = () => {
 
         {/* From 850px to bottom we're going to show it */}
         <div className="min-[850px]:hidden block">
-          <div className="-mt-4 sticky z-50">
+          <div className="-mt-8 sticky z-50">
             <CarouselStepsApp />
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { MdOutlineMail } from "react-icons/md";
 import { FaFacebookF } from "react-icons/fa6";
 import { BsTwitterX } from "react-icons/bs";
@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 
 const ShareSite = () => {
   const location = useLocation();
+  const fullUrl = `${window.location.origin}${location.pathname}`;
 
   const unsecuredCopyToClipboard = (text) => {
     const textArea = document.createElement("textarea");
@@ -43,26 +44,48 @@ const ShareSite = () => {
           </div>
 
           <ul className="flex items-center gap-3">
+            {/* Facebook Share */}
             <li className="size-10">
-              <Link to={"#"}>
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                  fullUrl
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FaFacebookF className="animation-fade p-3 rounded-full w-full h-full hover:bg-black hover:text-white bg-white text-primary-color-light" />
-              </Link>
+              </a>
             </li>
 
+            {/* Twitter Share */}
             <li className="size-10">
-              <Link to={"#"}>
+              <a
+                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                  fullUrl
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <BsTwitterX className="animation-fade p-3 rounded-full w-full h-full hover:bg-black hover:text-white bg-white text-primary-color-light" />
-              </Link>
+              </a>
             </li>
 
+            {/* Email Share */}
             <li className="size-10">
-              <Link to={"#"}>
+              <a
+                href={`mailto:?subject=Check this out&body=${encodeURIComponent(
+                  fullUrl
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <MdOutlineMail className="animation-fade p-3 rounded-full w-full h-full hover:bg-black hover:text-white bg-white text-primary-color-light" />
-              </Link>
+              </a>
             </li>
 
+            {/* Copy Link */}
             <button
-              onClick={() => copyToClipboard(location?.pathname)}
+              onClick={() => copyToClipboard(fullUrl)}
               className="size-10 cursor-pointer"
             >
               <IoIosLink className="animation-fade p-3 rounded-full w-full h-full hover:bg-black hover:text-white bg-white text-primary-color-light" />

@@ -1,11 +1,13 @@
+import { Link, useLocation } from "react-router-dom";
 import { MdOutlineMail } from "react-icons/md";
 import { FaFacebookF } from "react-icons/fa6";
 import { BsTwitterX } from "react-icons/bs";
 import { IoIosLink } from "react-icons/io";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const ShareSite = () => {
+  const location = useLocation();
+
   const unsecuredCopyToClipboard = (text) => {
     const textArea = document.createElement("textarea");
     textArea.value = text;
@@ -60,7 +62,7 @@ const ShareSite = () => {
             </li>
 
             <button
-              onClick={() => copyToClipboard("http://192.168.100.26:5173/memorials")}
+              onClick={() => copyToClipboard(location?.pathname)}
               className="size-10 cursor-pointer"
             >
               <IoIosLink className="animation-fade p-3 rounded-full w-full h-full hover:bg-black hover:text-white bg-white text-primary-color-light" />

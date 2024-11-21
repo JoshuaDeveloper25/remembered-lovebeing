@@ -1,36 +1,21 @@
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
 import { useLocation } from "react-router-dom";
 import { MdOutlineMail } from "react-icons/md";
 import { FaFacebookF } from "react-icons/fa6";
 import { BsTwitterX } from "react-icons/bs";
 import { IoIosLink } from "react-icons/io";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 const ShareSite = () => {
   const location = useLocation();
   const fullUrl = `${window.location.origin}${location.pathname}`;
+  const [value, setValue] = useState("");
 
-  const unsecuredCopyToClipboard = (text) => {
-    const textArea = document.createElement("textarea");
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-    try {
-      document.execCommand("copy");
-      toast.success("Copied to clipboard!");
-    } catch (err) {
-      toast.error("Unable to copy to clipboard");
-      console.log("Unable to copy to clipboard", err);
-    }
-    document.body.removeChild(textArea);
-  };
-
-  const copyToClipboard = (content) => {
-    if (window.isSecureContext && navigator.clipboard) {
-      navigator.clipboard.writeText(content);
-    } else {
-      unsecuredCopyToClipboard(content);
-    }
+  const onCopy = () => {
+    setValue(fullUrl);
+    toast.success("Copied to clipboard!");
   };
 
   return (
@@ -84,12 +69,12 @@ const ShareSite = () => {
             </li>
 
             {/* Copy Link */}
-            <button
-              onClick={() => copyToClipboard(fullUrl)}
-              className="size-10 cursor-pointer"
-            >
-              <IoIosLink className="animation-fade p-3 rounded-full w-full h-full hover:bg-black hover:text-white bg-white text-primary-color-light" />
-            </button>
+
+            <CopyToClipboard onCopy={onCopy} text={value}>
+              <button className="size-10 cursor-pointer">
+                <IoIosLink className="animation-fade p-3 rounded-full w-full h-full hover:bg-black hover:text-white bg-white text-primary-color-light" />
+              </button>
+            </CopyToClipboard>
           </ul>
         </div>
       </div>

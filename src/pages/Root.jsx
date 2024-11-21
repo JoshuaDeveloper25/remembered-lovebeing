@@ -15,6 +15,7 @@ const Root = () => {
         <Outlet />
       </div>
 
+      {/* Footer */}
       <footer className="bg-white font-semibold text-center py-8">
         <h2>Todos los derechos reservados.</h2>
         <h2>Copyright 2024 &copy;</h2>

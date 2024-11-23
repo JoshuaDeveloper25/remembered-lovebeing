@@ -1,11 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
+import { Link, useNavigate } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 
 const PricesPlan = ({ packageName }) => {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const makeProfilePackagePaymentMutation = useMutation({
@@ -19,7 +20,7 @@ const PricesPlan = ({ packageName }) => {
     onSuccess: (res) => {
       toast.success("Successfully payment realized!");
       queryClient.invalidateQueries({ queryKey: ["premiumProfilesRemaining"] });
-      console.log(res);
+      navigate("/my-profiles");
     },
     onError: (err) => {
       console.log(err);
@@ -37,7 +38,7 @@ const PricesPlan = ({ packageName }) => {
   };
 
   return (
-    <div className="flex flex-col sm:flex-row md:gap-12 gap-4 bg-white rounded-sm shadow-lg p-4">
+    <div className="flex flex-col sm:flex-row md:gap-12 gap-4 bg-white rounded-md hover:shadow-2xl animation-fade shadow-lg p-4">
       {packageName === "singlePackage" ? (
         <div className="min-w-[20rem] hover:scale-105 hover:shadow-2xl animation-fade border shadow-xl rounded-sm text-center py-8 px-7">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
@@ -53,6 +54,16 @@ const PricesPlan = ({ packageName }) => {
           </div>
 
           <ul className="text-muted-color leading-9 my-5">
+            <li className="flex items-center gap-3 border-b py-1">
+              <FaCheck className="text-green-500 size-5 font-bold inline-block" />
+              Tributes
+            </li>
+
+            <li className="flex items-center gap-3 border-b py-1">
+              <FaCheck className="text-green-500 size-5 font-bold inline-block" />
+              Condolences
+            </li>
+
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
               Unlimited images
@@ -87,6 +98,16 @@ const PricesPlan = ({ packageName }) => {
             <h3 className="text-primary-color-light">for life</h3>
           </div>
           <ul className="text-muted-color leading-9 my-5">
+            <li className="flex items-center gap-3 border-b py-1">
+              <FaCheck className="text-green-500 size-5 font-bold inline-block" />
+              Tributes
+            </li>
+
+            <li className="flex items-center gap-3 border-b py-1">
+              <FaCheck className="text-green-500 size-5 font-bold inline-block" />
+              Condolences
+            </li>
+
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
               Unlimited images
@@ -124,19 +145,22 @@ const PricesPlan = ({ packageName }) => {
               type="text"
               placeholder="Address Line"
               name="payment_status"
-              className="animation-fade px-4 py-3 bg-gray-100 focus:bg-transparent text-gray-800 w-full text-sm rounded-md focus:outline-primary-color-light"
+              className="animation-fade px-4 py-3 bg-gray-100 focus:bg-transparent text-gray-800 w-full text-sm rounded-md "
             />
           </div>
 
           <div className="flex gap-4 flex-col sm:flex-row mt-8">
             <button
               type="submit"
-              className="rounded-md px-6 py-3 w-full text-sm tracking-wide bg-primary-color-light hover:bg-primary-color-light/50 animation-fade font-semibold text-white"
+              disabled={makeProfilePackagePaymentMutation?.isPending}
+              className="rounded-md px-6 py-3 w-full text-sm tracking-wide disabled:bg-primary-color-light/20 bg-primary-color-light hover:bg-primary-color-light/50 animation-fade font-semibold text-white"
             >
-              Complete Purchase
+              {makeProfilePackagePaymentMutation?.isPending
+                ? "Completing Purchase..."
+                : "Complete Purchase"}
             </button>
 
-            <Link to="/">
+            <Link to="/prices">
               <button
                 type="button"
                 className="rounded-md px-6 py-3 w-full text-sm tracking-wide bg-transparent hover:bg-red-200 border border-red-400 text-red-500 max-md:order-1 animation-fade font-semibold"

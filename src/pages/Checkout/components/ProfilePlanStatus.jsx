@@ -51,7 +51,7 @@ const ProfilePlanStatus = () => {
   if (rememberProfileQuery?.isLoading) return "loading...";
 
   return (
-    <div className="flex flex-col sm:flex-row md:gap-12 gap-4 bg-white rounded-sm shadow-lg p-4">
+    <div className="flex flex-col sm:flex-row md:gap-12 gap-4 bg-white hover:shadow-2xl animation-fade rounded-md shadow-lg p-4">
       <div className="flex-1 relative shadow-2xl">
         <img
           src={
@@ -148,7 +148,7 @@ const ProfilePlanStatus = () => {
               type="text"
               placeholder="Address Line"
               name="payment_status"
-              className="animation-fade px-4 py-3 bg-gray-100 focus:bg-transparent text-gray-800 w-full text-sm rounded-md focus:outline-primary-color-light"
+              className="animation-fade px-4 py-3 bg-gray-100 focus:bg-transparent text-gray-800 w-full text-sm rounded-md"
             />
           </div>
 

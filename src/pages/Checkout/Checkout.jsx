@@ -6,12 +6,17 @@ const Checkout = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   return (
-    <section className="container-page py-2 my-6">
-      {searchParams?.get("packageName") ? (
-        <PricesPlan packageName={searchParams?.get("packageName")} />
-      ) : (
-        <ProfilePlanStatus />
-      )}
+    <section className="container-page">
+      <div className="flex items-center justify-center h-svh">
+        <div className="w-full">
+          {" "}
+          {searchParams?.get("packageName") ? (
+            <PricesPlan packageName={searchParams?.get("packageName")} />
+          ) : (
+            <ProfilePlanStatus />
+          )}
+        </div>
+      </div>
     </section>
   );
 };

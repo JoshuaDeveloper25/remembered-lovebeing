@@ -11,7 +11,6 @@ import bookmark from "../../../assets/bookmark.png";
 
 // import required modules
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { FaCircleChevronLeft, FaCircleChevronRight } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
 
 const StepsCarousel = () => {

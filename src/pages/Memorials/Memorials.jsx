@@ -74,9 +74,9 @@ const Memorials = () => {
   );
 
   return (
-    <section className="container-page px-2">
+    <section className="container-page px-2 py-16">
       {/* Introduction */}
-      <div className="text-center mt-9 mb-6">
+      <div className="text-center mb-6">
         <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
           In Memory of Our Loved Ones
         </h2>

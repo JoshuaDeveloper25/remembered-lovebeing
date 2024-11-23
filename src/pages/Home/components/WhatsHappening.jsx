@@ -1,3 +1,6 @@
+import { GiCandleHolder, GiFlowerPot } from "react-icons/gi";
+import { MdEditDocument } from "react-icons/md";
+import { LiaUsersSolid } from "react-icons/lia";
 import { useTranslation } from "react-i18next";
 
 const WhatsHappening = () => {
@@ -21,6 +24,10 @@ const WhatsHappening = () => {
         <div className=" bg-[#F1EFEC] shadow-lg rounded p-6">
           <div className="flex flex-wrap justify-center items-center md:gap-24 gap-14">
             <div className="text-center">
+              <GiCandleHolder
+                className="text-yellow-400 mx-auto mb-3"
+                size={40}
+              />
               <h3 className="font-bold text-4xl mb-2 text-primary-color">
                 1,384
               </h3>
@@ -30,6 +37,8 @@ const WhatsHappening = () => {
             </div>
 
             <div className="text-center">
+              <GiFlowerPot className="text-red-400 mx-auto mb-3" size={40} />
+
               <h3 className="font-bold text-4xl mb-2 text-primary-color">
                 1,542
               </h3>
@@ -39,6 +48,8 @@ const WhatsHappening = () => {
             </div>
 
             <div className="text-center">
+              <MdEditDocument className="text-primary-color-light mx-auto mb-3" size={40} />
+
               <h3 className="font-bold text-4xl mb-2 text-primary-color">
                 845
               </h3>
@@ -46,6 +57,8 @@ const WhatsHappening = () => {
             </div>
 
             <div className="text-center">
+            <LiaUsersSolid className="text-primary-color mx-auto mb-3" size={40} />
+
               <h3 className="font-bold text-4xl mb-2 text-primary-color">
                 35,879
               </h3>

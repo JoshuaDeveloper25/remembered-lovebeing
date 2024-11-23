@@ -13,7 +13,21 @@ const Posts = () => {
   if (allRememberedPostsQuery?.isLoading) return <h2>Loading...</h2>;
 
   return (
-    <section className="container-page my-8 mx-auto" style={{maxWidth: '800px'}}>
+    <section
+      className="container-page py-16 mx-auto"
+      style={{ maxWidth: "800px" }}
+    >
+      {/* --> Introduction */}
+      <div className="text-center mb-14">
+        <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
+          Posts
+        </h2>
+        <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
+        <p className="text-xl max-w-2xl mx-auto mt-2 mb-8 text-muted-color">
+          Discover the latest updates and stories shared by our users!
+        </p>
+      </div>
+
       {!allRememberedPostsQuery?.data?.data?.length ? (
         <h2 className="text-primary-color text-2xl uppercase tracking-wider text-center my-5">
           No remembered has made a post....

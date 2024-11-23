@@ -28,9 +28,9 @@ const News = () => {
   );
 
   return (
-    <section className="container-page px-4">
+    <section className="container-page py-16 px-4">
       {/* --> Introduction */}
-      <div className="text-center mt-9 mb-14">
+      <div className="text-center mb-14">
         <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
           News
         </h2>

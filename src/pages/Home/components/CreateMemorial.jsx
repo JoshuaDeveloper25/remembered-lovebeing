@@ -31,7 +31,7 @@ const CreateMemorial = () => {
             </button>
           </div>
 
-          <div className="flex-1">
+          <div className="md:block hidden flex-1">
             <CarouselCubeCreateMemorials />
           </div>
         </div>

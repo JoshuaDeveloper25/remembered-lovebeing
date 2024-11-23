@@ -71,7 +71,7 @@ const FindMemorial = () => {
             </form>
           </div>
 
-          <div className="flex-1 max-w-lg">
+          <div className="sm:block hidden flex-1 max-w-lg">
             <img
               className="w-full h-full"
               src={memorialAdd}

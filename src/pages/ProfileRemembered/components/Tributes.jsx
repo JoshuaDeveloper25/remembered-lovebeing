@@ -183,13 +183,13 @@ const Tribute = ({ tribute, isOwner }) => {
 
                 <ul className="absolute right-5 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
                   <NavbarDropdownLink
-                    hoverBgLink={"hover:bg-secondary-color"}
+                    hoverBgLink={"hover:bg-secondary-color hover:text-white"}
                     linkText={"Edit"}
                     onClick={() => setEditingTribute(!edititingTribute)}
                   />
 
                   <NavbarDropdownLink
-                    hoverBgLink={"hover:bg-red-500"}
+                    hoverBgLink={"hover:bg-red-500 hover:text-white"}
                     linkText={"Delete"}
                     onClick={handleDeleteTribute}
                     linkTo={"#"}
@@ -454,7 +454,7 @@ const TributeComment = ({ tributeComment, userInfo }) => {
 
                 <ul className="absolute right-5 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
                   <NavbarDropdownLink
-                    hoverBgLink={"hover:bg-secondary-color"}
+                    hoverBgLink={"hover:bg-secondary-color hover:text-white"}
                     linkText={"Edit"}
                     onClick={() =>
                       setEditingTributeComment(!edititingTributeComment)
@@ -462,7 +462,7 @@ const TributeComment = ({ tributeComment, userInfo }) => {
                   />
 
                   <NavbarDropdownLink
-                    hoverBgLink={"hover:bg-red-500"}
+                    hoverBgLink={"hover:bg-red-500 hover:text-white"}
                     linkText={"Delete"}
                     onClick={handleDeleteCommentTribute}
                     linkTo={"#"}

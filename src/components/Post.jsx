@@ -130,7 +130,7 @@ const Post = ({ isOwner, post, rememberName }) => {
                   {/* Edit Post */}
                   <>
                     <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-secondary-color"}
+                      hoverBgLink={"hover:bg-secondary-color hover:text-white"}
                       linkText={"Edit Post"}
                       onClick={() => {
                         // setOpenPostDropDown(false);
@@ -146,7 +146,7 @@ const Post = ({ isOwner, post, rememberName }) => {
 
                     {/* Delete Post */}
                     <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-red-500"}
+                      hoverBgLink={"hover:bg-red-500 hover:text-white"}
                       linkText={"Delete Post"}
                       onClick={handleDeletePost}
                     />
@@ -481,7 +481,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
 
                   <ul className="absolute top-34 right-5 shadow-lg bg-white py-2 w-max rounded max-h-96 ">
                     <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-secondary-color text-xs"}
+                      hoverBgLink={"hover:bg-secondary-color hover:text-white text-xs"}
                       onClick={() => {
                         setIsEditing(!isEditing);
                       }}
@@ -489,7 +489,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
                     />
 
                     <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-red-500 text-xs"}
+                      hoverBgLink={"hover:bg-red-500 text-xs hover:text-white"}
                       onClick={handleDeleteComment}
                       linkText={"Delete"}
                     />

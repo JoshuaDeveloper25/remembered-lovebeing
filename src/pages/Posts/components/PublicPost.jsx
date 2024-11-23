@@ -346,7 +346,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
 
                   <ul className="absolute top-34 right-5 shadow-lg bg-white py-2 w-max rounded max-h-96 z-50">
                     <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-secondary-color text-xs"}
+                      hoverBgLink={"hover:bg-secondary-color hover:text-white text-xs"}
                       onClick={() => {
                         setIsEditing(!isEditing);
                       }}
@@ -354,7 +354,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
                     />
 
                     <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-red-500 text-xs"}
+                      hoverBgLink={"hover:bg-red-500 hover:text-white text-xs"}
                       onClick={handleDeleteComment}
                       linkText={"Delete"}
                     />

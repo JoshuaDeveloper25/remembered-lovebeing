@@ -9,7 +9,6 @@ const resources = {
       News: "News",
       Prices: "Prices",
       "My Profiles": "My Profiles",
-      Settings: "Settings",
       "Log Out": "Log Out",
       "Preserve the memories of those you love":
         "Preserve the memories of those you love",
@@ -55,7 +54,6 @@ const resources = {
       News: "Noticias",
       Prices: "Precios",
       "My Profiles": "Mis Perfiles",
-      Settings: "Ajustes",
       "Log Out": "Cerrar Sesión",
       "Preserve the memories of those you love":
         "Preserva los recuerdos de quienes amas",

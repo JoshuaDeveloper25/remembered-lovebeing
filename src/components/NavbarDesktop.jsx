@@ -114,13 +114,6 @@ const NavbarDesktop = ({
                       />
 
                       <NavbarDropdownLink
-                        hoverBgLink={"hover:bg-primary-color hover:text-white"}
-                        linkText={t("Settings")}
-                        onClick={() => setOpenDropDown(false)}
-                        linkTo={"#"}
-                      />
-
-                      <NavbarDropdownLink
                         hoverBgLink={"hover:bg-red-500 hover:text-white"}
                         linkText={t("Log Out")}
                         onClick={handleLogOut}

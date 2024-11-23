@@ -1,6 +1,7 @@
 import { Outlet, ScrollRestoration } from "react-router-dom";
 import BackToTop from "../components/BackToTop";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import "../styles/animations.css";
 
 const Root = () => {
@@ -16,10 +17,7 @@ const Root = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-white font-semibold text-center py-8">
-        <h2>Todos los derechos reservados.</h2>
-        <h2>Copyright 2024 &copy;</h2>
-      </footer>
+      <Footer />
       {/* <ScrollRestoration /> */}
     </main>
   );

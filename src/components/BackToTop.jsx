@@ -27,7 +27,7 @@ const BackToTop = () => {
          scale-95 animation-fade fixed right-3 bottom-3 z-[9999]`}
       >
         <a
-          className="bg-primary-color-light text-white shadow-primary-color-light rounded-full hover:opacity-55 hover:scale-105 animation-fade font-bold block px-3 py-3 shadow-md"
+          className="bg-primary-color text-white shadow-primary-color rounded-full hover:opacity-55 hover:scale-105 animation-fade font-bold block px-3 py-3 shadow-md"
           type="button"
           href="#top"
         >

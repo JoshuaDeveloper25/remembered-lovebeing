@@ -20,7 +20,7 @@ const ShareSite = () => {
 
   return (
     <section className="bg-primary-color-light">
-      <div className="container-page px-3 py-8">
+      <div className="container-page py-8">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
           <div>
             <h2 className="sm:text-start text-center text-white text-3xl">
@@ -69,7 +69,6 @@ const ShareSite = () => {
             </li>
 
             {/* Copy Link */}
-
             <CopyToClipboard onCopy={onCopy} text={value}>
               <button className="size-10 cursor-pointer">
                 <IoIosLink className="animation-fade p-3 rounded-full w-full h-full hover:bg-black hover:text-white bg-white text-primary-color-light" />

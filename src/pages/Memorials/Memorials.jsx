@@ -88,7 +88,7 @@ const Memorials = () => {
       </div>
 
       <article className="px-2 py-5 bg-gray-300/25 rounded-sm shadow-lg overlay max-w-4xl mx-auto">
-        <div className="flex items-center justify-center w-full mb-3">
+        <div className="flex items-center md:justify-center w-full mb-3">
           <label className="w-[30rem]">
             <input
               className="block py-2 px-2 h-full border border-tertiary-color/30 border-e-0 rounded-sm rounded-e-none w-full"
@@ -111,8 +111,8 @@ const Memorials = () => {
         </div>
 
         {/* Filters */}
-        <div className="flex items-center justify-center place-content-center gap-3">
-          <label className="flex items-center gap-3">
+        <div className="flex flex-col md:flex-row md:items-center justify-center gap-3">
+          <label className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
             <span className="text-primary-color font-semibold">Country:</span>
             <select
               value={tempSearchBirthCountry}
@@ -132,7 +132,7 @@ const Memorials = () => {
             </select>
           </label>
 
-          <label className="flex items-center gap-3">
+          <label className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
             <span className="font-medium text-primary-color">Cause of Death:</span>
             <select
               className="py-2 px-2 block border border-tertiary-color/30 bg-white rounded-sm w-[10rem]"
@@ -151,7 +151,7 @@ const Memorials = () => {
             </select>
           </label>
 
-          <label className="flex items-center gap-3">
+          <label className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
             <span className="font-semibold text-primary-color">Gender:</span>
             <select
               className="py-2 px-2 block border border-tertiary-color/30 bg-white rounded-sm w-[10rem]"

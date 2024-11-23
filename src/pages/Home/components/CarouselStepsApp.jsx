@@ -17,6 +17,10 @@ const CarouselStepsApp = () => {
           delay: 4000,
           disableOnInteraction: false,
         }}
+        style={{
+          "--swiper-pagination-bullet-size": "8px",
+          "--swiper-pagination-bullet-height": "7px",
+        }}
         loop={true}
         slidesPerView={3}
         spaceBetween={30}

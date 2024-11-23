@@ -59,8 +59,8 @@ const StepsCarousel = () => {
               }}
               loop={true}
               style={{
-                "--swiper-pagination-bullet-size": "18px",
-                "--swiper-pagination-bullet-height": "8px",
+                "--swiper-pagination-bullet-size": "8px",
+                "--swiper-pagination-bullet-height": "7px",
               }}
               slidesPerView={1}
               spaceBetween={10}
@@ -76,7 +76,7 @@ const StepsCarousel = () => {
             >
               <SwiperSlide>
                 <img
-                  className="w-full rounded-md md:object-cover object-contain"
+                  className="w-full h-[23rem] rounded-md md:object-contain object-cover"
                   loading="lazy"
                   src={grave}
                   decoding="async"
@@ -85,7 +85,7 @@ const StepsCarousel = () => {
 
               <SwiperSlide>
                 <img
-                  className="w-full rounded-md md:object-cover object-contain"
+                  className="w-full h-[23rem] rounded-md md:object-contain object-cover"
                   src={caballete}
                   loading="lazy"
                   decoding="async"
@@ -94,7 +94,7 @@ const StepsCarousel = () => {
 
               <SwiperSlide>
                 <img
-                  className="w-full rounded-md md:object-cover object-contain"
+                  className="w-full h-[23rem] rounded-md md:object-contain object-cover"
                   src={urna}
                   loading="lazy"
                   decoding="async"
@@ -103,7 +103,7 @@ const StepsCarousel = () => {
 
               <SwiperSlide>
                 <img
-                  className="w-full rounded-md md:object-cover object-contain"
+                  className="w-full h-[23rem] rounded-md md:object-contain object-cover"
                   src={bookmark}
                   loading="lazy"
                   decoding="async"

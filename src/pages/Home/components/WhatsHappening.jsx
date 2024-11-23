@@ -1,7 +1,6 @@
-import { GiCandleHolder, GiFlowerPot } from "react-icons/gi";
-import { MdEditDocument } from "react-icons/md";
-import { LiaUsersSolid } from "react-icons/lia";
+import CarouselCommunity from "./CarouselCommunity";
 import { useTranslation } from "react-i18next";
+import { websiteAnalytics } from "../../../db/data";
 
 const WhatsHappening = () => {
   const { t } = useTranslation(); // Hook para traducciones
@@ -21,50 +20,27 @@ const WhatsHappening = () => {
           </p>
         </div>
 
-        <div className=" bg-[#F1EFEC] shadow-lg rounded p-6">
-          <div className="flex flex-wrap justify-center items-center md:gap-24 gap-14">
-            <div className="text-center">
-              <GiCandleHolder
-                className="text-yellow-400 mx-auto mb-3"
-                size={40}
-              />
-              <h3 className="font-bold text-4xl mb-2 text-primary-color">
-                1,384
-              </h3>
-              <h5 className="border-b border-black/50 text-xl">
-                {t("Memorials")}
-              </h5>
-            </div>
+        <div className="bg-[#F1EFEC] shadow-lg rounded min-[850px]:py-6 py-8 px-6">
+          {/* From 850px to up we're going to show it */}
+          <div className="min-[850px]:flex hidden flex-wrap justify-center items-center md:gap-24 gap-14">
+            {websiteAnalytics?.map((track, index) => (
+              <div key={index} className="text-center">
+                {track?.analyticIcon}
 
-            <div className="text-center">
-              <GiFlowerPot className="text-red-400 mx-auto mb-3" size={40} />
+                <h3 className="font-bold text-4xl mb-2 text-primary-color">
+                  {track?.analyticNumber}
+                </h3>
+                <h5 className="border-b border-black/50 text-xl">
+                  {t(track?.analyticName)}
+                </h5>
+              </div>
+            ))}
+          </div>
 
-              <h3 className="font-bold text-4xl mb-2 text-primary-color">
-                1,542
-              </h3>
-              <h5 className="border-b border-black/50 text-xl">
-                {t("Tributes")}
-              </h5>
-            </div>
-
-            <div className="text-center">
-              <MdEditDocument className="text-primary-color-light mx-auto mb-3" size={40} />
-
-              <h3 className="font-bold text-4xl mb-2 text-primary-color">
-                845
-              </h3>
-              <h5 className="border-b border-black/50 text-xl">{t("Posts")}</h5>
-            </div>
-
-            <div className="text-center">
-            <LiaUsersSolid className="text-primary-color mx-auto mb-3" size={40} />
-
-              <h3 className="font-bold text-4xl mb-2 text-primary-color">
-                35,879
-              </h3>
-              <h5 className="border-b border-black/50 text-xl">
-                {t("Visitors")}
-              </h5>
+          {/* From 850px to bottom we're going to show it */}
+          <div className="min-[850px]:hidden block">
+            <div className="sticky z-50">
+              <CarouselCommunity />
             </div>
           </div>
         </div>

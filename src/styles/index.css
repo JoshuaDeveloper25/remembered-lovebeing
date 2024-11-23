@@ -234,9 +234,10 @@ body {
 .swiper-cube .swiper-pagination-bullet-active,
 .recent-memorials-carousel .swiper-pagination-bullet-active,
 .stepsCarousel .swiper-pagination-bullet-active,
-.carousel-steps .swiper-pagination-bullet-active {
+.carousel-steps .swiper-pagination-bullet-active,
+.website-analytics .swiper-pagination-bullet-active {
   background: #04bffa !important;
-  transition: all 0.4s ease-in-out;
+  transition: all .2s;
   border-radius: 1rem !important;
   font-size: 4rem !important;
   width: 2rem !important;
@@ -244,7 +245,8 @@ body {
 
 .recent-memorials-carousel .swiper-pagination-bullet,
 .swiper-cube .swiper-pagination-bullet,
-.stepsCarousel .swiper-pagination-bullet {
+.stepsCarousel .swiper-pagination-bullet,
+.website-analytics .swiper-pagination-bullet {
   border-radius: 0;
 }
 
@@ -269,8 +271,13 @@ body {
   z-index: 99;
 }
 
-.carousel-steps {
+.carousel-steps,
+.website-analytics {
   position: static !important;
+}
+
+.website-analytics .swiper-pagination {
+  top: 11rem !important;
 }
 
 .carousel-steps .swiper-pagination {

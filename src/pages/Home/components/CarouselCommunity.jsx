@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css";
 
 // import required modules
+import { FaCircleChevronLeft, FaCircleChevronRight } from "react-icons/fa6";
 import { Autoplay, Pagination } from "swiper/modules";
 import { websiteAnalytics } from "../../../db/data";
 import { t } from "i18next";
@@ -39,7 +40,10 @@ const CarouselCommunity = () => {
         className="website-analytics"
       >
         {websiteAnalytics?.map((track, index) => (
-          <SwiperSlide key={index} className="text-center">
+          <SwiperSlide
+            key={index}
+            className="bg-gray-100/55 border px-1 py-2 text-center"
+          >
             {track?.analyticIcon}
 
             <h3 className="font-bold text-4xl mb-2 text-primary-color">
@@ -52,6 +56,9 @@ const CarouselCommunity = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      
+      <FaCircleChevronLeft className="stepsCarousel-swiper-button-prev md:hidden block absolute top-[50%] left-0 transform translate-y-1/2 -translate-x-0 z-50 cursor-pointer text-primary-color-light size-10" />{" "}
+      <FaCircleChevronRight className="stepsCarousel-swiper-button-next md:hidden block absolute top-[50%] right-0 transform translate-y-1/2 translate-x-0 z-50 cursor-pointer text-primary-color-light size-10" />
     </div>
   );
 };

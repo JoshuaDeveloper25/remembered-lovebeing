@@ -1,4 +1,5 @@
 import RecentMemorialsCarousel from "./components/RecentMemorialsCarousel";
+import WhatWeOfferResponsive from "./components/WhatWeOfferResponsive";
 import CreateMemorial from "./components/CreateMemorial";
 import WhatsHappening from "./components/WhatsHappening";
 import StepsCarousel from "./components/StepsCarousel";
@@ -12,6 +13,9 @@ const Home = () => {
     <>
       {/* Header */}
       <Header />
+
+      {/* Responsive - What we offer */}
+      <WhatWeOfferResponsive />
 
       {/* What's happening with in our area? */}
       <WhatsHappening />
@@ -30,7 +34,7 @@ const Home = () => {
 
       {/* Modern, beautiful design */}
       <ModernDesign />
-      
+
       {/* Share the site with friends... */}
       <ShareSite />
     </>

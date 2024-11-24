@@ -6,9 +6,9 @@ const ModernDesign = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="px-3 py-8 ">
+    <section className="sm:block hidden px-3 sm:py-8 py-3 border border-gray-400">
       <div className="container-page">
-        <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
+        <h2 className="font-mono tracking-wider sm:text-4xl text-3xl text-primary-color uppercase font-semibold">
           {t("We offer modern designs.")}
         </h2>
         <div className="bg-yellow-500 h-2 w-24 my-3"></div>
@@ -24,7 +24,7 @@ const ModernDesign = () => {
           </div>
 
           <div className="flex-1">
-            <h2 className="text-3xl font-semibold my-4">
+            <h2 className="sm:text-3xl text-2xl font-semibold my-4">
               {t("Modern, beautiful design")}
             </h2>
             <p className="text-muted-color max-w-sm text-xl">

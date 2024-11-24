@@ -26,10 +26,10 @@ const FindMemorial = () => {
   };
 
   return (
-    <section className="px-3 py-8">
+    <section className="px-3 sm:py-8 py-3 border border-gray-400">
       <div className="container-page">
-        <div className="my-12">
-          <h2 className="font-mono tracking-wider text-4xl text-primary-color text-center uppercase font-semibold ">
+        <div className="sm:my-12">
+          <h2 className="font-mono sm:tracking-wider sm:text-4xl text-3xl text-primary-color text-center uppercase font-semibold ">
             {t("Looking for a loved one? Search now!")}
           </h2>
           <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
@@ -37,7 +37,7 @@ const FindMemorial = () => {
 
         <div className="flex flex-col-reverse md:flex-row-reverse items-center text-modern-color gap-8">
           <div className="flex-1 md:ms-14">
-            <h2 className="text-4xl text-fourth-color font-semibold ">
+            <h2 className="sm:text-4xl text-3xl text-fourth-color font-semibold ">
               {t("Find a Memorial")}{" "}
             </h2>
 

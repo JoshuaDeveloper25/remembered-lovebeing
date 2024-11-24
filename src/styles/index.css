@@ -209,7 +209,14 @@ body {
 
 /* Carousel of recent memorials homepage */
 .recent-memorials-carousel {
-  padding-top: 5rem !important;
+  padding-top: 2rem !important;
+}
+
+/* 640px */
+@media (min-width: 40em) {
+  .recent-memorials-carousel {
+    padding-top: 5rem !important;
+  }
 }
 
 .recent-memorials-carousel .swiper-pagination-horizontal {
@@ -219,7 +226,11 @@ body {
 }
 
 .stepsCarousel-swiper-button-prev.swiper-button-disabled,
-.stepsCarousel-swiper-button-next.swiper-button-disabled {
+.stepsCarousel-swiper-button-next.swiper-button-disabled,
+.carousel-steps-swiper-button-prev.swiper-button-disabled,
+.carousel-steps-swiper-button-next.swiper-button-disabled,
+.modernDesigns-swiper-button-prev.swiper-button-disabled,
+.modernDesigns-swiper-button-next.swiper-button-disabled {
   opacity: 0.35;
   cursor: auto;
   pointer-events: none;
@@ -235,9 +246,10 @@ body {
 .recent-memorials-carousel .swiper-pagination-bullet-active,
 .stepsCarousel .swiper-pagination-bullet-active,
 .carousel-steps .swiper-pagination-bullet-active,
-.website-analytics .swiper-pagination-bullet-active {
+.website-analytics .swiper-pagination-bullet-active,
+.modernDesigns .swiper-pagination-bullet-active {
   background: #04bffa !important;
-  transition: all .2s;
+  transition: all 0.2s;
   border-radius: 1rem !important;
   font-size: 4rem !important;
   width: 2rem !important;
@@ -272,7 +284,8 @@ body {
 }
 
 .carousel-steps,
-.website-analytics {
+.website-analytics,
+.modernDesigns {
   position: static !important;
 }
 
@@ -281,7 +294,11 @@ body {
 }
 
 .carousel-steps .swiper-pagination {
-  top: 9.5rem !important;
+  top: 8rem !important;
+}
+
+.modernDesigns .swiper-pagination {
+  top: 8rem !important;
 }
 
 .carousel-steps .swiper-button-next {

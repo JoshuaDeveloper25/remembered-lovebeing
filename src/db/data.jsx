@@ -1,3 +1,4 @@
+// Imports
 import rememberedTributePrev from "../assets/rememberedTributePrev.png";
 import rememberedAboutPrev from "../assets/rememberedAboutPrev.png";
 import rememberedMediaPrev from "../assets/rememberedMediaPrev.png";
@@ -29,6 +30,7 @@ export const navbarLinks = [
   },
 ];
 
+// Steps app
 export const stepsApp = [
   {
     numberStep: 1,

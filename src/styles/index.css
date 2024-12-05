@@ -304,7 +304,7 @@ body {
 }
 
 .modernDesignsResponsive .swiper-pagination {
-  top: 16.7rem !important;
+  bottom: 0rem !important;
 }
 
 .carousel-steps .swiper-button-next:after,

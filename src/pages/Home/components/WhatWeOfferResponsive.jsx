@@ -79,7 +79,6 @@ const WhatWeOfferResponsive = () => {
               </SwiperSlide>
             </Swiper>
           </div>
-          
           <FaCircleChevronLeft className="modernDesignsResponsive-swiper-button-prev md:hidden block absolute top-[50%] left-0 transform translate-y-1/2 -translate-x-0 z-50 cursor-pointer text-primary-color-light size-10" />{" "}
           <FaCircleChevronRight className="modernDesignsResponsive-swiper-button-next md:hidden block absolute top-[50%] right-0 transform translate-y-1/2 -translate-x-0 z-50 cursor-pointer text-primary-color-light size-10" />
         </article>

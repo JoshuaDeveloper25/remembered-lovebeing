@@ -29,17 +29,18 @@ const StepsCarousel = () => {
         <article className="grid md:grid-cols-2 grid-cols-1">
           <div className="md:block hidden flex-1">
             <h4 className="font-medium uppercase tracking-widest px-2 text-xl border-b-2 border-yellow-500 inline">
-              CREATE
+              SHARE
             </h4>
             <h2 className="text-4xl text-fourth-color font-semibold my-4">
-              Create an online memorial{" "}
-              <span className="text-modern-color block font-medium text-3xl">
-                Share your loved one's story
+              Ways to use your QR Code{" "}
+              <span className="text-modern-color block font-medium text-2xl">
+              Keep their memory close in unique and meaningful ways
               </span>
             </h2>
-            <p className="max-w-sm text-xl">
-              Create an online memorial. Add photos, videos, messages, gifs, or
-              links. Gift cards can also be attached.
+            <p className="text-muted-color max-w-sm text-xl">
+              Generate a QR code to link to your memorial. Place it on
+              headstones, urns, keepsakes, or remembrance cards to share their
+              story with friends and family.
             </p>
             <button
               className="btn btn-blue-light w-auto text-xl mt-4"
@@ -111,9 +112,7 @@ const StepsCarousel = () => {
             </Swiper>
           </div>
         </article>
-
         <FaCircleChevronLeft className="stepsCarousel-swiper-button-prev md:hidden block absolute top-[50%] left-0 transform -translate-x-0 z-50 cursor-pointer text-primary-color-light size-10" />{" "}
-
         <FaCircleChevronRight className="stepsCarousel-swiper-button-next md:hidden block absolute top-[50%] right-0 transform translate-x-0 z-50 cursor-pointer text-primary-color-light size-10" />
       </div>
     </section>

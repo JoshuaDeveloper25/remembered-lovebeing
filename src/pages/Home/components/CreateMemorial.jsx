@@ -20,7 +20,7 @@ const CreateMemorial = () => {
             </h2>
             <p className="text-muted-color max-w-sm text-xl">
               {t(
-                "Create an online memorial. Add photos, videos, messages, gifs, or links. Gift cards can also be attached."
+                "Create a meaningful online memorial to celebrate your loved one’s life. Share stories, upload photos, receive condolences, post tributes, and keep their memory alive."
               )}
             </p>
             <button

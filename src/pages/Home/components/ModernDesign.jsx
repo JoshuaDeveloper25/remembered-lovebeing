@@ -6,7 +6,7 @@ const ModernDesign = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="sm:block hidden px-3 sm:py-8 py-3 border border-gray-400">
+    <section className="sm:block hidden px-3 sm:py-8 py-3 sm:border-none border-gray-400 border">
       <div className="container-page">
         <h2 className="font-mono tracking-wider sm:text-4xl text-3xl text-primary-color uppercase font-semibold">
           {t("We offer modern designs.")}

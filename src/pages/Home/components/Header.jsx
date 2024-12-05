@@ -79,7 +79,7 @@ const Header = () => {
         </div>
       </header>
 
-      <section className="container-page border border-gray-400 px-3 sticky">
+      <section className="container-page border-none min-[850px]:border-gray-400 min-[850px]:border px-3 sticky">
         {/* From 850px to up we're going to show it */}
         <div className="min-[850px]:block hidden">
           <div className="grid grid-cols-4 justify-center gap-8 md:-mt-16 -mt-4 mb-14 items-stretch place-items-center">

@@ -5,7 +5,7 @@ const CreateMemorial = () => {
   const { t } = useTranslation(); // Hook para traducciones
 
   return (
-    <section className="px-3 sm:py-14 py-3 border border-gray-400">
+    <section className="px-3 sm:py-14 py-3 sm:border-none border-gray-400 border">
       <div className="container-page">
         <div className="flex flex-col md:flex-row items-center text-modern-color gap-3">
           <div className="flex-1">

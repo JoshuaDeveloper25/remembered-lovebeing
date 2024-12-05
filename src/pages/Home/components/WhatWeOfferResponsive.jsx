@@ -26,28 +26,7 @@ const WhatWeOfferResponsive = () => {
           <div className="bg-yellow-500 h-2 w-24 mt-0 mb-3 mx-auto"></div>
         </div>
 
-        <article className="grid md:grid-cols-2 grid-cols-1">
-          <div className="md:block hidden flex-1">
-            <h4 className="font-medium uppercase tracking-widest px-2 text-xl border-b-2 border-yellow-500 inline">
-              CREATE
-            </h4>
-            <h2 className="text-4xl text-fourth-color font-semibold my-4">
-              Create an online memorial{" "}
-              <span className="text-modern-color block font-medium text-3xl">
-                Share your loved one's story
-              </span>
-            </h2>
-            <p className="max-w-sm text-xl">
-              Create an online memorial. Add photos, videos, messages, gifs, or
-              links. Gift cards can also be attached.
-            </p>
-            <button
-              className="btn btn-blue-light w-auto text-xl mt-4"
-              type="button"
-            >
-              Create a Memorial
-            </button>
-          </div>
+        <article>
           <div className="sticky">
             {" "}
             <Swiper
@@ -57,7 +36,7 @@ const WhatWeOfferResponsive = () => {
               }}
               loop={true}
               style={{
-                "--swiper-pagination-bullet-size": "8px",
+                "--swiper-pagination-bullet-size": "7px",
                 "--swiper-pagination-bullet-height": "7px",
               }}
               slidesPerView={1}
@@ -66,11 +45,11 @@ const WhatWeOfferResponsive = () => {
                 clickable: true,
               }}
               navigation={{
-                nextEl: ".modernDesigns-swiper-button-next",
-                prevEl: ".modernDesigns-swiper-button-prev",
+                nextEl: ".modernDesignsResponsive-swiper-button-next",
+                prevEl: ".modernDesignsResponsive-swiper-button-prev",
               }}
               modules={[Autoplay, Navigation, Pagination]}
-              className="modernDesigns"
+              className="modernDesignsResponsive"
             >
               <SwiperSlide>
                 <img
@@ -100,8 +79,9 @@ const WhatWeOfferResponsive = () => {
               </SwiperSlide>
             </Swiper>
           </div>
-          <FaCircleChevronLeft className="stepsCarousel-swiper-button-prev md:hidden block absolute top-[50%] left-0 transform translate-y-1/2 -translate-x-0 z-50 cursor-pointer text-primary-color-light size-10" />{" "}
-          <FaCircleChevronRight className="stepsCarousel-swiper-button-next md:hidden block absolute top-[50%] right-0 transform translate-y-1/2 translate-x-0 z-50 cursor-pointer text-primary-color-light size-10" />
+          
+          <FaCircleChevronLeft className="modernDesignsResponsive-swiper-button-prev md:hidden block absolute top-[50%] left-0 transform translate-y-1/2 -translate-x-0 z-50 cursor-pointer text-primary-color-light size-10" />{" "}
+          <FaCircleChevronRight className="modernDesignsResponsive-swiper-button-next md:hidden block absolute top-[50%] right-0 transform translate-y-1/2 -translate-x-0 z-50 cursor-pointer text-primary-color-light size-10" />
         </article>
       </div>
     </section>

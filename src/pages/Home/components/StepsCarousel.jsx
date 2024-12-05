@@ -112,9 +112,9 @@ const StepsCarousel = () => {
           </div>
         </article>
 
-        <FaCircleChevronLeft className="stepsCarousel-swiper-button-prev md:hidden block absolute top-[50%] left-0 transform -translate-y-1/2 -translate-x-0 z-50 cursor-pointer text-primary-color-light size-10" />{" "}
+        <FaCircleChevronLeft className="stepsCarousel-swiper-button-prev md:hidden block absolute top-[50%] left-0 transform -translate-x-0 z-50 cursor-pointer text-primary-color-light size-10" />{" "}
 
-        <FaCircleChevronRight className="stepsCarousel-swiper-button-next md:hidden block absolute top-[50%] right-0 transform -translate-y-1/2 translate-x-0 z-50 cursor-pointer text-primary-color-light size-10" />
+        <FaCircleChevronRight className="stepsCarousel-swiper-button-next md:hidden block absolute top-[50%] right-0 transform translate-x-0 z-50 cursor-pointer text-primary-color-light size-10" />
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import getFastApiErrors from "../../utils/getFastApiErrors";
 import CarouselSignIn from "./components/CarouselSignIn";
+import { useGoogleLogin } from "@react-oauth/google";
 import { useMutation } from "@tanstack/react-query";
 import AppContext from "../../context/AppProvider";
 import { toast } from "react-toastify";
@@ -14,12 +15,11 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: async (userInfo) => {
-      return await axios.post(
+    mutationFn: async (userInfo) =>
+      await axios.post(
         `${import.meta.env.VITE_BASE_URL}/users/login`,
         userInfo
-      );
-    },
+      ),
     onSuccess: (res) => {
       toast.success("¡Successfully logged in!");
       localStorage.setItem("userInfo", JSON.stringify(res.data));
@@ -57,14 +57,45 @@ const SignIn = () => {
     mutate(formData);
   };
 
+  // Functionallity to login with google, here we send the access_token to server
+  const login = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      console.log(tokenResponse);
+
+      try {
+        const { data } = await axios.post(
+          `${import.meta.env.VITE_BASE_URL}/users/googlelogin`,
+          {
+            access_token: tokenResponse?.access_token,
+          }
+        );
+
+        toast.success("User Authenticated!");
+        localStorage.setItem("userInfo", JSON.stringify(data));
+      } catch (error) {
+        console.log(error);
+        toast.error(getFastApiErrors(error));
+      } finally {
+        console.log("finally");
+      }
+    },
+    onNonOAuthError: (err) => {
+      console.log(err);
+    },
+  });
+
   return (
     <section className="flex flex-col justify-center items-center h-screen">
       <div className="container-page px-2">
         <div className="grid sm:grid-cols-2 grid-cols-1 gap-2.5 shadow-md rounded-2xl p-6 bg-gradient-to-r from-[#FBFBFE]">
           <CarouselSignIn />
 
-          {/* Sign Up Form */}
-          <Form isPending={isPending} handleSubmit={handleSubmit} />
+          {/* Sign In Form */}
+          <Form
+            login={login}
+            isPending={isPending}
+            handleSubmit={handleSubmit}
+          />
         </div>
       </div>
     </section>

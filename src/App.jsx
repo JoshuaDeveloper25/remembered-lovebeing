@@ -1,6 +1,7 @@
 // --> 🌐 External/Global Imports
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { AppProvider } from "./context/AppProvider";
 import { ToastContainer } from "react-toastify";
 
@@ -69,8 +70,6 @@ const router = createBrowserRouter([
             element: <Checkout />,
             path: "/checkout/",
           },
-
-          
         ],
       },
     ],
@@ -118,19 +117,23 @@ const App = () => {
 
   return (
     <AppProvider>
-      <QueryClientProvider client={queryClient}>
-        <ToastContainer
-          style={{ zIndex: 999999999999999 }}
-          pauseOnFocusLoss={false}
-          hideProgressBar={true}
-          position="top-center"
-          autoClose={3000}
-          theme="colored"
-          draggable
-          stacked
-        />
-        <RouterProvider router={router} />
-      </QueryClientProvider>
+      <GoogleOAuthProvider
+        clientId={`${import.meta.env.VITE_GOOGLE_CLIENT_ID}`}
+      >
+        <QueryClientProvider client={queryClient}>
+          <ToastContainer
+            style={{ zIndex: 999999999999999 }}
+            pauseOnFocusLoss={false}
+            hideProgressBar={true}
+            position="top-center"
+            autoClose={3000}
+            theme="colored"
+            draggable
+            stacked
+          />
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+      </GoogleOAuthProvider>
     </AppProvider>
   );
 };

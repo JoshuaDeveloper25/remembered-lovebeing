@@ -1,5 +1,5 @@
 import { authCarouselPreviews } from "../../../db/data";
-import { Autoplay, EffectFade } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,9 +17,9 @@ const CarouselSignIn = () => {
           delay: 2500,
           disableOnInteraction: false,
         }}
-        modules={[Autoplay, EffectFade]}
+        speed={800}
+        modules={[Autoplay]}
         className="mySwiper"
-        effect="fade"
       >
         {authCarouselPreviews?.map((prevImage, index) => (
           <SwiperSlide key={index}>

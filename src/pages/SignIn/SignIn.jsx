@@ -27,7 +27,9 @@ const SignIn = () => {
 
       // If there's query we go to All My Profiles, if not, to Home page
       navigate(
-        searchParams?.get("redirect") ? searchParams?.get("redirect") : "/"
+        searchParams?.get("redirect")
+          ? searchParams?.get("redirect")
+          : "/my-profiles/"
       );
 
       // Placing globally the token
@@ -68,7 +70,7 @@ const SignIn = () => {
           }
         );
 
-        navigate("/");
+        navigate("/my-profiles/");
         toast.success("User Authenticated!");
         localStorage.setItem("userInfo", JSON.stringify(data));
         setUserInfo(data);

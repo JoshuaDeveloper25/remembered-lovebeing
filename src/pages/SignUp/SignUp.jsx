@@ -70,7 +70,7 @@ const SignUp = () => {
           }
         );
 
-        navigate("/");
+        navigate("/my-profiles/");
         toast.success("User Authenticated!");
         localStorage.setItem("userInfo", JSON.stringify(data));
 

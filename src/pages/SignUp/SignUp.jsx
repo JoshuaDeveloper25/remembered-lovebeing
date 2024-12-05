@@ -1,12 +1,16 @@
 import getFastApiErrors from "../../utils/getFastApiErrors";
 import CarouselSignUp from "./components/CarouselSignUp";
+import { useGoogleLogin } from "@react-oauth/google";
 import { useMutation } from "@tanstack/react-query";
+import AppContext from "../../context/AppProvider";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Form from "./components/Form";
+import { useContext } from "react";
 import axios from "axios";
 
 const SignUp = () => {
+  const { setUserInfo } = useContext(AppContext);
   const navigate = useNavigate();
 
   const { mutate, isPending } = useMutation({
@@ -55,6 +59,34 @@ const SignUp = () => {
     mutate(userInfo);
   };
 
+  // Functionallity to register with google, here we send the access_token to server
+  const register = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        const { data } = await axios.post(
+          `${import.meta.env.VITE_BASE_URL}/users/googlelogin`,
+          {
+            access_token: tokenResponse?.access_token,
+          }
+        );
+
+        navigate("/");
+        toast.success("User Authenticated!");
+        localStorage.setItem("userInfo", JSON.stringify(data));
+
+        setUserInfo(data);
+      } catch (error) {
+        console.log(error);
+        toast.error(getFastApiErrors(error));
+      } finally {
+        console.log("finally");
+      }
+    },
+    onNonOAuthError: (err) => {
+      console.log(err);
+    },
+  });
+
   return (
     <section className="flex flex-col justify-center items-center h-screen">
       <div className="container-page px-2">
@@ -62,7 +94,11 @@ const SignUp = () => {
           <CarouselSignUp />
 
           {/* Sign Up Form */}
-          <Form isPending={isPending} handleSubmit={handleSubmit} />
+          <Form
+            register={register}
+            isPending={isPending}
+            handleSubmit={handleSubmit}
+          />
         </div>
       </div>
     </section>

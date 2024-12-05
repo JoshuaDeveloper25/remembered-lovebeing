@@ -2,7 +2,7 @@ import { InputForm } from "../../../components/InputForm";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
-const Form = ({ isPending, handleSubmit }) => {
+const Form = ({ register, isPending, handleSubmit }) => {
   return (
     <form className={`flex-1`} onSubmit={handleSubmit}>
       <div className="text-end px-4 sm:pt-0 pt-3">
@@ -96,8 +96,9 @@ const Form = ({ isPending, handleSubmit }) => {
 
         <div>
           <button
-            type="button"
             className="border-2 flex items-center gap-4 hover:bg-black hover:text-white justify-center border-fourth-color/70 text-fourth-color/70 rounded-full p-1 w-full hover:shadow-lg animation-fade"
+            onClick={() => register()}
+            type="button"
           >
             <FcGoogle size={36} /> Sign up with Google
           </button>

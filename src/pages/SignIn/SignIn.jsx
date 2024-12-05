@@ -60,8 +60,6 @@ const SignIn = () => {
   // Functionallity to login with google, here we send the access_token to server
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
-      console.log(tokenResponse);
-
       try {
         const { data } = await axios.post(
           `${import.meta.env.VITE_BASE_URL}/users/googlelogin`,
@@ -70,8 +68,10 @@ const SignIn = () => {
           }
         );
 
+        navigate("/");
         toast.success("User Authenticated!");
         localStorage.setItem("userInfo", JSON.stringify(data));
+        setUserInfo(data);
       } catch (error) {
         console.log(error);
         toast.error(getFastApiErrors(error));

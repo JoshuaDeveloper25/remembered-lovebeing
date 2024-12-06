@@ -28,9 +28,9 @@ const ModernDesign = () => {
               {t("Modern, beautiful design")}
             </h2>
             <p className="text-muted-color max-w-sm text-xl">
-              {t(
-                "Memorial Source memorial pages are built with elegant, modern design that looks good on all devices."
-              )}
+              Memorial pages are thoughtfully designed with a modern and elegant
+              style, ensuring they look beautiful and function perfectly on any
+              device.
             </p>
 
             <Link to={`/memorials`}>

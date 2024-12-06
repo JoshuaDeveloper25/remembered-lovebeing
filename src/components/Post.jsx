@@ -7,6 +7,7 @@ import getFastApiErrors from "../utils/getFastApiErrors";
 import NavbarDropdownLink from "./NavbarDropdownLink";
 import { HiDotsVertical } from "react-icons/hi";
 import AppContext from "../context/AppProvider";
+import { FaRegMessage } from "react-icons/fa6";
 import formatDate from "../utils/formatDate";
 import { FaQuoteLeft } from "react-icons/fa";
 import { useContext, useState } from "react";
@@ -173,9 +174,9 @@ const Post = ({ isOwner, post, rememberName }) => {
       <div className="flex flex-col sm:flex-row gap-2 justify-between sm:items-center items-start my-5">
         <button
           onClick={() => setModalPostComments(!modalPostComments)}
-          className="btn btn-blue w-auto"
+          className="btn btn-blue w-auto flex items-center gap-2.5 font-semibold"
         >
-          Publish a Comment
+          <FaRegMessage size={20} /> Comment
         </button>
 
         <h3>
@@ -481,7 +482,9 @@ const SingleComment = ({ post, comment, userInfo }) => {
 
                   <ul className="absolute top-34 right-5 shadow-lg bg-white py-2 w-max rounded max-h-96 ">
                     <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-secondary-color hover:text-white text-xs"}
+                      hoverBgLink={
+                        "hover:bg-secondary-color hover:text-white text-xs"
+                      }
                       onClick={() => {
                         setIsEditing(!isEditing);
                       }}

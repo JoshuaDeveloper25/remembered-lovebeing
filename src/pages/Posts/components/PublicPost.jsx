@@ -6,10 +6,12 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import AppContext from "../../../context/AppProvider";
 import formatDate from "../../../utils/formatDate";
-import { FaQuoteLeft } from "react-icons/fa";
+import { FaRegMessage } from "react-icons/fa6";
 import { BsThreeDots } from "react-icons/bs";
+import { FaQuoteLeft } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { createPortal } from "react-dom";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -91,9 +93,9 @@ const PublicPost = ({ post, ownerName }) => {
       <div className="flex flex-col sm:flex-row gap-2 justify-between sm:items-center items-start my-5">
         <button
           onClick={() => setModalPostComments(!modalPostComments)}
-          className="btn btn-blue w-auto"
+          className="btn btn-blue w-auto flex items-center gap-2.5 font-semibold"
         >
-          Publish a Comment
+          <FaRegMessage size={20} /> Comment
         </button>
 
         <h3>
@@ -198,7 +200,23 @@ const PublicPost = ({ post, ownerName }) => {
                     )}
                   </div>
                 </form>
-              ) : null}
+              ) : (
+                <div className="text-center bg-muted-color/20 py-4">
+                  <h2 className="text-lg font-semibold">
+                    Want to comment something?
+                  </h2>
+                  <p>
+                    Please,{" "}
+                    <Link
+                      className="text-primary-color-light underline font-bold"
+                      to={"/sign-in?redirect=/posts"}
+                    >
+                      log in
+                    </Link>{" "}
+                    to leave one!
+                  </p>
+                </div>
+              )}
             </article>
           </article>
         </div>
@@ -346,7 +364,9 @@ const SingleComment = ({ post, comment, userInfo }) => {
 
                   <ul className="absolute top-34 right-5 shadow-lg bg-white py-2 w-max rounded max-h-96 z-50">
                     <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-secondary-color hover:text-white text-xs"}
+                      hoverBgLink={
+                        "hover:bg-secondary-color hover:text-white text-xs"
+                      }
                       onClick={() => {
                         setIsEditing(!isEditing);
                       }}

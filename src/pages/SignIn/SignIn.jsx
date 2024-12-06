@@ -26,11 +26,17 @@ const SignIn = () => {
       setUserInfo(res.data);
 
       // If there's query we go to All My Profiles, if not, to Home page
-      navigate(
-        searchParams?.get("redirect")
-          ? searchParams?.get("redirect")
-          : "/my-profiles/"
-      );
+      const redirect = searchParams?.get("redirect");
+
+      if (redirect) {
+        if (redirect === "/posts") {
+          navigate("/posts");
+        } else {
+          navigate(redirect);
+        }
+      } else {
+        navigate("/my-profiles/");
+      }
 
       // Placing globally the token
       axios.defaults.headers.common[
@@ -69,8 +75,18 @@ const SignIn = () => {
             access_token: tokenResponse?.access_token,
           }
         );
+        
+        const redirect = searchParams?.get("redirect");
 
-        navigate("/my-profiles/");
+        if (redirect) {
+          if (redirect === "/posts") {
+            navigate("/posts");
+          } else {
+            navigate(redirect);
+          }
+        } else {
+          navigate("/my-profiles/");
+        }
         toast.success("User Authenticated!");
         localStorage.setItem("userInfo", JSON.stringify(data));
         setUserInfo(data);

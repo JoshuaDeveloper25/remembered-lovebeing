@@ -3,6 +3,15 @@ import NavbarDropdownLink from "./NavbarDropdownLink";
 import spainFlag from "../assets/spain-flag.webp";
 import { Link, NavLink } from "react-router-dom";
 import usaFlag from "../assets/usa-flag.webp";
+// import logo from "../assets/logo.png";
+// import logo from "../assets/logo-alt.png";
+// import logo from "../assets/logo-done.png";
+// import logo from "../assets/logo-better.png";
+// import logo from "../assets/logo-alt-done.png";
+// import logo from "../assets/logodd.png";
+// import logo from "../assets/logoo.png";
+import logo from "../assets/lgo.png";
+// import logo from "../assets/logo-white.png";
 import { createPortal } from "react-dom";
 
 const NavbarDesktop = ({
@@ -15,12 +24,16 @@ const NavbarDesktop = ({
   t,
 }) => {
   return (
-    <nav className="sm:block hidden bg-white/50 py-2 px-2">
+    <nav className="sm:block hidden bg-primary-color text-white py-2 px-2">
       <div className="container-page">
         <div className="flex justify-between items-center">
           <div>
             <Link to={"/"}>
-              <h1 className="italic tracking-widest text-xl">Logo</h1>
+              <img
+                className="w-72 rounded"
+                src={logo}
+                alt={"Logo"}
+              />
             </Link>
           </div>
 

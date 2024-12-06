@@ -81,107 +81,112 @@ const Post = ({ isOwner, post, rememberName }) => {
   };
 
   return (
-    <div className=" bg-white mb-5 p-3 shadow-lg rounded-lg border-b [&:not(:last-child)]:border-gray-400/50 py-3">
-      {/* Header of the post */}
-      <div className="flex justify-between items-center gap-3">
-        <div className="flex items-center gap-3">
-          <img
-            className="w-16 rounded-full"
-            src={
-              post?.remembered?.profile_images
-                ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
-                : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-            }
-          />
+    <>
+      <div className="hover:shadow-2xl animation-fade bg-white mb-5 p-3 shadow-lg rounded-lg border-b [&:not(:last-child)]:border-gray-400/50 py-3">
+        {/* Header of the post */}
+        <div className="flex justify-between items-center gap-3">
+          <div className="flex items-center gap-3">
+            <img
+              className="w-16 rounded-full"
+              src={
+                post?.remembered?.profile_images
+                  ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
+                  : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+              }
+            />
 
-          <div>
-            <h3 className="font-medium text-base capitalize">
-              {post?.owner?.name}
-            </h3>
-            <h4 className="text-xs text-tertiary-color">
-              Created: {formatDate(post?.created_at)}
-            </h4>
+            <div>
+              <h3 className="font-medium text-base capitalize">
+                {post?.owner?.name}
+              </h3>
+              <h4 className="text-xs text-tertiary-color">
+                Created: {formatDate(post?.created_at)}
+              </h4>
+            </div>
           </div>
+
+          {/* Vertical Dots Dropdown */}
+          {isOwner && (
+            <div className="relative">
+              <button
+                id="dropdownDividerButton"
+                data-dropdown-toggle="dropdownDivider"
+                className="animation-fade text-xl hover:rounded-full  hover:bg-white/20"
+                onClick={() => setOpenPostDropDown(!openPostDropDown)}
+                type="button"
+              >
+                <HiDotsVertical size={23} />
+              </button>
+
+              {openPostDropDown && (
+                <>
+                  {createPortal(
+                    <div
+                      onClick={() => setOpenPostDropDown(!openPostDropDown)}
+                      className="h-[100vh] fixed top-0 w-full"
+                    ></div>,
+                    document.body
+                  )}
+
+                  <ul className="absolute right-5 shadow-lg bg-gray-200 py-2 w-max rounded max-h-96 z-50">
+                    {/* Edit Post */}
+                    <>
+                      <NavbarDropdownLink
+                        hoverBgLink={
+                          "hover:bg-secondary-color hover:text-white"
+                        }
+                        linkText={"Edit Post"}
+                        onClick={() => {
+                          // setOpenPostDropDown(false);
+                          setOpenModalEditPost(true);
+                        }}
+                      />
+
+                      <EditPostLogic
+                        setOpenModalEditPost={setOpenModalEditPost}
+                        openModalEditPost={openModalEditPost}
+                        post={post}
+                      />
+
+                      {/* Delete Post */}
+                      <NavbarDropdownLink
+                        hoverBgLink={"hover:bg-red-500 hover:text-white"}
+                        linkText={"Delete Post"}
+                        onClick={handleDeletePost}
+                      />
+                    </>
+                  </ul>
+                </>
+              )}
+            </div>
+          )}
         </div>
 
-        {/* Vertical Dots Dropdown */}
-        {isOwner && (
-          <div className="relative">
-            <button
-              id="dropdownDividerButton"
-              data-dropdown-toggle="dropdownDivider"
-              className="animation-fade text-xl hover:rounded-full  hover:bg-white/20"
-              onClick={() => setOpenPostDropDown(!openPostDropDown)}
-              type="button"
-            >
-              <HiDotsVertical size={23} />
-            </button>
+        <div className="flex justify-between my-5 pb-2.5 border-b border-b-tertiary-color/20">
+          <h2 className="text-primary-color font-light">{post?.content}</h2>
+        </div>
 
-            {openPostDropDown && (
-              <>
-                {createPortal(
-                  <div
-                    onClick={() => setOpenPostDropDown(!openPostDropDown)}
-                    className="h-[100vh] fixed top-0 w-full"
-                  ></div>,
-                  document.body
-                )}
+        {/* Images Gallery Mansory */}
+        <PublishedPostsImages
+          rememberName={rememberName}
+          galleryImages={post?.gallery_images}
+          setToggleModal={setModalPostComments}
+        />
 
-                <ul className="absolute right-5 shadow-lg bg-gray-200 py-2 w-max rounded max-h-96 z-50">
-                  {/* Edit Post */}
-                  <>
-                    <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-secondary-color hover:text-white"}
-                      linkText={"Edit Post"}
-                      onClick={() => {
-                        // setOpenPostDropDown(false);
-                        setOpenModalEditPost(true);
-                      }}
-                    />
+        {/* Footer of the post */}
+        <div className="flex flex-col sm:flex-row gap-2 justify-between sm:items-center items-start my-5">
+          <button
+            onClick={() => setModalPostComments(!modalPostComments)}
+            className="btn btn-blue w-auto flex items-center gap-2.5 font-semibold"
+          >
+            <FaRegMessage size={20} /> Comment
+          </button>
 
-                    <EditPostLogic
-                      setOpenModalEditPost={setOpenModalEditPost}
-                      openModalEditPost={openModalEditPost}
-                      post={post}
-                    />
-
-                    {/* Delete Post */}
-                    <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-red-500 hover:text-white"}
-                      linkText={"Delete Post"}
-                      onClick={handleDeletePost}
-                    />
-                  </>
-                </ul>
-              </>
-            )}
-          </div>
-        )}
-      </div>
-
-      <div className="flex justify-between my-5 pb-2.5 border-b border-b-tertiary-color/20">
-        <h2 className="text-primary-color font-light">{post?.content}</h2>
-      </div>
-
-      {/* Images Gallery Mansory */}
-      <PublishedPostsImages
-        rememberName={rememberName}
-        galleryImages={post?.gallery_images}
-        setToggleModal={setModalPostComments}
-      />
-
-      {/* Footer of the post */}
-      <div className="flex flex-col sm:flex-row gap-2 justify-between sm:items-center items-start my-5">
-        <button
-          onClick={() => setModalPostComments(!modalPostComments)}
-          className="btn btn-blue w-auto flex items-center gap-2.5 font-semibold"
-        >
-          <FaRegMessage size={20} /> Comment
-        </button>
-
-        <h3>
-          Comments: <span className="font-bold">{post?.comments?.length}</span>
-        </h3>
+          <h3>
+            Comments:{" "}
+            <span className="font-bold">{post?.comments?.length}</span>
+          </h3>
+        </div>
       </div>
 
       {/* Modal to preview post with its comments and images */}
@@ -295,7 +300,7 @@ const Post = ({ isOwner, post, rememberName }) => {
           </article>
         </div>
       </PostCommentModal>
-    </div>
+    </>
   );
 };
 

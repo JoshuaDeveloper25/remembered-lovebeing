@@ -55,52 +55,55 @@ const PublicPost = ({ post, ownerName }) => {
   };
 
   return (
-    <div className=" bg-white mb-5 p-3 shadow-lg rounded-lg border-b [&:not(:last-child)]:border-gray-400/50 py-3">
-      {/* Header of the post */}
-      <div className="flex justify-between items-center gap-3">
-        <div className="flex items-center gap-3">
-          <img
-            className="w-16 rounded-full"
-            src={
-              post?.remembered?.profile_images
-                ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
-                : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-            }
-          />
+    <>
+      <div className="hover:shadow-2xl animation-fade hover:scale-[1.01] bg-white mb-5 p-3 shadow-lg rounded-lg border-b [&:not(:last-child)]:border-gray-400/50 py-3">
+        {/* Header of the post */}
+        <div className="flex justify-between items-center gap-3">
+          <div className="flex items-center gap-3">
+            <img
+              className="w-16 rounded-full"
+              src={
+                post?.remembered?.profile_images
+                  ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
+                  : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+              }
+            />
 
-          <div>
-            <h3 className="font-medium text-base capitalize">
-              {post?.owner?.name}
-            </h3>
-            <h4 className="text-xs text-tertiary-color">
-              Created: {formatDate(post?.created_at)}
-            </h4>
+            <div>
+              <h3 className="font-medium text-base capitalize">
+                {post?.owner?.name}
+              </h3>
+              <h4 className="text-xs text-tertiary-color">
+                Created: {formatDate(post?.created_at)}
+              </h4>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="flex justify-between my-5 pb-2.5 border-b border-b-tertiary-color/20">
-        <h2 className="text-primary-color font-light">{post?.content}</h2>
-      </div>
+        <div className="flex justify-between my-5 pb-2.5 border-b border-b-tertiary-color/20">
+          <h2 className="text-primary-color font-light">{post?.content}</h2>
+        </div>
 
-      {/* Images Gallery Mansory */}
-      <PublishedPostsImages
-        setToggleModal={setModalPostComments}
-        galleryImages={post?.gallery_images}
-      />
+        {/* Images Gallery Mansory */}
+        <PublishedPostsImages
+          setToggleModal={setModalPostComments}
+          galleryImages={post?.gallery_images}
+        />
 
-      {/* Footer of the post */}
-      <div className="flex flex-col sm:flex-row gap-2 justify-between sm:items-center items-start my-5">
-        <button
-          onClick={() => setModalPostComments(!modalPostComments)}
-          className="btn btn-blue w-auto flex items-center gap-2.5 font-semibold"
-        >
-          <FaRegMessage size={20} /> Comment
-        </button>
+        {/* Footer of the post */}
+        <div className="flex flex-col sm:flex-row gap-2 justify-between sm:items-center items-start my-5">
+          <button
+            onClick={() => setModalPostComments(!modalPostComments)}
+            className="btn btn-blue w-auto flex items-center gap-2.5 font-semibold"
+          >
+            <FaRegMessage size={20} /> Comment
+          </button>
 
-        <h3>
-          Comments: <span className="font-bold">{post?.comments?.length}</span>
-        </h3>
+          <h3>
+            Comments:{" "}
+            <span className="font-bold">{post?.comments?.length}</span>
+          </h3>
+        </div>
       </div>
 
       {/* Modal to preview post with its comments and images */}
@@ -230,7 +233,7 @@ const PublicPost = ({ post, ownerName }) => {
           </article>
         </div>
       </PostCommentModal>
-    </div>
+    </>
   );
 };
 

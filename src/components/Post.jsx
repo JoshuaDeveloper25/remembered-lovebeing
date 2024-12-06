@@ -257,6 +257,15 @@ const Post = ({ isOwner, post, rememberName }) => {
                   onSubmit={handleSubmitPublishComment}
                 >
                   <div className="relative">
+                    <img
+                      className="absolute left-1 top-1.5 w-8 rounded-full"
+                      src={
+                        userInfo?.profile_image
+                          ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
+                          : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                      }
+                    />
+
                     <textarea
                       rows="1"
                       cols="1"
@@ -265,7 +274,7 @@ const Post = ({ isOwner, post, rememberName }) => {
                       value={comment}
                       onChange={(e) => setComment(e?.target?.value)}
                       placeholder="Comment something..."
-                      className="block ps-4 pe-16 py-2.5 w-full text-sm text-fourth-color bg-gray-50 resize-none outline-none"
+                      className="block ps-11 pe-16 py-2.5 w-full text-sm text-fourth-color bg-gray-50 resize-none outline-none"
                     ></textarea>
 
                     {comment === "" ? null : (

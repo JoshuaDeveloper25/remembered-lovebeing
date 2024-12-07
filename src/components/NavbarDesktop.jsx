@@ -68,27 +68,27 @@ const NavbarDesktop = ({
                   {createPortal(
                     <div
                       onClick={() => setOpenDropDown(!openDropDown)}
-                      className="h-[100vh] fixed top-0 w-full"
+                      className="h-[100vh] fixed top-0 w-full z-[9999]"
                     ></div>,
                     document.body
                   )}
 
                   {userInfo?.access_token ? (
-                    <ul className="absolute right-5 shadow-lg border bg-white pt-2 z-[9999999] w-max rounded max-h-96 overflow-auto">
+                    <ul className="absolute right-5 shadow-lg shadow-primary-color bg-primary-color text-white pt-2 z-[9999999] w-max rounded max-h-96 overflow-auto">
                       <div className="border-b pb-1.5 px-5">
-                        <h2 className="block font-medium">{userInfo?.name}</h2>
-                        <h2 className="block font-medium">{userInfo?.email}</h2>
+                        <h2 className="block font-medium">👋 {userInfo?.name}</h2>
+                        <h2 className="block text-sm font-medium">{userInfo?.email}</h2>
                       </div>
 
                       <NavbarDropdownLink
-                        hoverBgLink={"hover:bg-primary-color hover:text-white"}
+                        hoverBgLink={"text-white hover:bg-primary-color-light"}
                         linkText={t("My Profiles")}
                         onClick={() => setOpenDropDown(false)}
                         linkTo={"/my-profiles/"}
                       />
 
                       <NavbarDropdownLink
-                        hoverBgLink={"hover:bg-red-500 hover:text-white"}
+                        hoverBgLink={"text-white hover:bg-red-500"}
                         linkText={t("Log Out")}
                         onClick={handleLogOut}
                       />
@@ -96,7 +96,7 @@ const NavbarDesktop = ({
                   ) : (
                     <ul className="absolute right-5 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
                       <NavbarDropdownLink
-                        hoverBgLink={"text-black hover:text-secondary-color"}
+                        hoverBgLink={"text-white hover:text-secondary-color"}
                         onClick={() => setOpenDropDown(false)}
                         linkText={t("Sign In")}
                         linkTo={"/sign-in"}

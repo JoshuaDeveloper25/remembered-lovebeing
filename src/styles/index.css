@@ -25,7 +25,7 @@ body {
   }
 
   .animation-fade {
-    @apply duration-300 transition-all ease-in-out;
+    @apply duration-200 transition-all ease-out;
   }
 
   .heading-title {
@@ -61,15 +61,23 @@ body {
   }
 
   .btn-blue-light:hover {
-    @apply bg-primary-color-light/50 text-white;
+    @apply animation-fade bg-primary-color-light/50 text-white;
   }
 
   .nav-active {
-    @apply border-b-2 border-[#1369c3] text-[#1369c3] font-medium;
+    @apply  animation-fade border-b-2 border-primary-color-light text-primary-color-light font-semibold;
+
+    &:hover {
+      @apply opacity-65;
+    }
   }
 
   .nav-inactive {
     @apply text-inherit;
+
+    &:hover {
+      @apply text-primary-color-light animation-fade;
+    }
   }
 }
 

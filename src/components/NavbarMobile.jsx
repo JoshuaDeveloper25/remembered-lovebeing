@@ -1,12 +1,15 @@
 import { availableLanguages, navbarLinks } from "../db/data";
 import NavbarDropdownLink from "./NavbarDropdownLink";
-import spainFlag from "../assets/spain-flag.webp";
 import { Link, NavLink } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import usaFlag from "../assets/usa-flag.webp";
 import { FaAngleUp } from "react-icons/fa6";
 import { CiLogin } from "react-icons/ci";
 import { createPortal } from "react-dom";
+
+// Images && icons
+import logo from "../assets/logo.png";
+import spainFlag from "../assets/spain-flag.webp";
+import usaFlag from "../assets/usa-flag.webp";
 
 const NavbarMobile = ({
   setOpenDropDown,
@@ -22,9 +25,9 @@ const NavbarMobile = ({
   return (
     <>
       {/* <!-- drawer init and toggle --> */}
-      <div className="sm:hidden flex items-center justify-between text-center py-2 px-5">
+      <div className="sm:hidden bg-primary-color text-white flex items-center justify-between text-center py-2 px-5">
         <Link to={"/"}>
-          <h1 className="italic tracking-widest text-xl">Logo</h1>
+          <img className="w-72 rounded" src={logo} alt={"Logo"} />
         </Link>
 
         <button

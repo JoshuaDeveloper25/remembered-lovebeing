@@ -1,18 +1,11 @@
-import { availableLanguages, navbarLinks } from "../db/data";
+import { navbarLinks } from "../db/data";
 import NavbarDropdownLink from "./NavbarDropdownLink";
-import spainFlag from "../assets/spain-flag.webp";
 import { Link, NavLink } from "react-router-dom";
-import usaFlag from "../assets/usa-flag.webp";
-// import logo from "../assets/logo.png";
-// import logo from "../assets/logo-alt.png";
-// import logo from "../assets/logo-done.png";
-// import logo from "../assets/logo-better.png";
-// import logo from "../assets/logo-alt-done.png";
-// import logo from "../assets/logodd.png";
-// import logo from "../assets/logoo.png";
-import logo from "../assets/lgo.png";
-// import logo from "../assets/logo-white.png";
+import ToggleLanguage from "./ToggleLanguage";
 import { createPortal } from "react-dom";
+
+// Images && icons
+import logo from "../assets/logo.png";
 
 const NavbarDesktop = ({
   setOpenDropDown,
@@ -29,11 +22,7 @@ const NavbarDesktop = ({
         <div className="flex justify-between items-center">
           <div>
             <Link to={"/"}>
-              <img
-                className="w-72 rounded"
-                src={logo}
-                alt={"Logo"}
-              />
+              <img className="w-72 rounded" src={logo} alt={"Logo"} />
             </Link>
           </div>
 
@@ -55,35 +44,7 @@ const NavbarDesktop = ({
             })}
 
             {/* Language Switcher */}
-            <div className="relative inline-block">
-              <div className="flex items-center border border-gray-300 rounded-full px-4 py-2 bg-white cursor-pointer">
-                <img
-                  src={language === "en" ? usaFlag : spainFlag}
-                  className="w-6 h-6 object-contain mr-2"
-                  alt={language}
-                />
-
-                <span>{language === "en" ? "English" : "Español"}</span>
-
-                <select
-                  value={language}
-                  onChange={(e) => handleChange(e.target.value)}
-                  className="absolute inset-0 opacity-0 cursor-pointer w-full h-full bg-gray-100 font-sans p-3"
-                >
-                  {availableLanguages?.map((availableLanguage, index) => {
-                    return (
-                      <option
-                        className="font-medium tracking-widest"
-                        value={availableLanguage?.value}
-                        key={index}
-                      >
-                        {availableLanguage?.language}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-            </div>
+            <ToggleLanguage handleChange={handleChange} language={language} />
 
             {/* User Dropdown */}
             <div className="relative">

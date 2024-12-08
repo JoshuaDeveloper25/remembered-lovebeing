@@ -123,7 +123,7 @@ const NavbarMobile = ({
           {userInfo?.access_token ? (
             <div className="flex gap-1.5 items-center relative">
               <button
-                className="cursor-default flex items-center animation-fade text-xl hover:rounded-full hover:bg-white/20 p-2"
+                className="cursor-default flex items-center animation-fade text-xl hover:rounded-full hover:bg-primary-color-light/40 p-2"
                 type="button"
               >
                 <img

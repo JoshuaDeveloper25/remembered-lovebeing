@@ -49,7 +49,7 @@ const NavbarDesktop = ({
             {/* User Dropdown */}
             <div className="relative">
               <button
-                className="animation-fade text-xl hover:rounded-full hover:bg-white/20 p-2"
+                className="animation-fade text-xl hover:rounded-full hover:bg-primary-color-light/40 p-2"
                 onClick={() => setOpenDropDown(!openDropDown)}
                 type="button"
               >

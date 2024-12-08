@@ -58,12 +58,12 @@ const ToggleLanguage = ({ language, handleChange }) => {
             document.body
           )}
 
-          <div className="absolute left-0 right-0 mt-2 bg-white shadow-lg rounded-lg z-10">
+          <div className="absolute left-0 right-0 mt-2 bg-primary-color text-white shadow-primary-color-light shadow-md rounded-lg z-10">
             {availableLanguages.map((availableLanguage, index) => (
               <div
                 key={index}
                 onClick={() => selectLanguage(availableLanguage.value)}
-                className="flex items-center px-4 py-2 cursor-pointer hover:first:rounded-t-lg hover:last:rounded-b-lg hover:bg-gray-200 text-black"
+                className={`${availableLanguage.value === language && 'first:rounded-t-lg last:rounded-b-lg bg-primary-color-light/25 pointer-events-none'} animation-fade flex items-center px-4 py-2 cursor-pointer hover:first:rounded-t-lg  last:rounded-b-lg hover:last:rounded-b-lg hover:bg-primary-color-light`}
               >
                 <img
                   src={availableLanguage.value === "en" ? usaFlag : spainFlag}

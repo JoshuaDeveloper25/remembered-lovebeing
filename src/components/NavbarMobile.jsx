@@ -54,7 +54,7 @@ const NavbarMobile = ({
 
       {/* This is the offcanvas when it's opened */}
       <div
-        className={`flex flex-col justify-between sm:hidden right-0 w-72 fixed top-0 left-0 z-[9999999999999999999] h-screen p-4 overflow-y-auto transition-transform duration-500 bg-white ${
+        className={`flex flex-col justify-between sm:hidden right-0 w-72 fixed top-0 left-0 z-[9999999999999999999] h-screen p-4 overflow-y-auto transition-transform duration-500 bg-primary-color text-white ${
           !navbarOpen ? "-translate-x-full" : null
         }`}
       >

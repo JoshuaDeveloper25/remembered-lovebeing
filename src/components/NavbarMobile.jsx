@@ -1,15 +1,14 @@
-import { availableLanguages, navbarLinks } from "../db/data";
 import NavbarDropdownLink from "./NavbarDropdownLink";
 import { Link, NavLink } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
+import ToggleLanguage from "./ToggleLanguage";
 import { FaAngleUp } from "react-icons/fa6";
+import { navbarLinks } from "../db/data";
 import { CiLogin } from "react-icons/ci";
 import { createPortal } from "react-dom";
 
 // Images && icons
 import logo from "../assets/logo.png";
-import spainFlag from "../assets/spain-flag.webp";
-import usaFlag from "../assets/usa-flag.webp";
 
 const NavbarMobile = ({
   setOpenDropDown,
@@ -25,7 +24,7 @@ const NavbarMobile = ({
   return (
     <>
       {/* <!-- drawer init and toggle --> */}
-      <div className="sm:hidden bg-primary-color text-white flex items-center justify-between text-center py-2 px-5">
+      <div className="lg:hidden bg-primary-color text-white flex items-center justify-between text-center py-2 px-5">
         <Link to={"/"}>
           <img className="w-72 rounded" src={logo} alt={"Logo"} />
         </Link>
@@ -45,7 +44,7 @@ const NavbarMobile = ({
           {createPortal(
             <div
               onClick={() => setNavbarOpen(!navbarOpen)}
-              className={`sm:hidden bg-black/50 h-[100vh] z-[999999999] fixed top-0 w-full`}
+              className={`lg:hidden bg-black/50 h-[100vh] z-[999999999] fixed top-0 w-full`}
             ></div>,
             document.body
           )}
@@ -54,20 +53,20 @@ const NavbarMobile = ({
 
       {/* This is the offcanvas when it's opened */}
       <div
-        className={`flex flex-col justify-between sm:hidden right-0 w-72 fixed top-0 left-0 z-[9999999999999999999] h-screen p-4 overflow-y-auto transition-transform duration-500 bg-primary-color text-white ${
+        className={`flex flex-col justify-between lg:hidden right-0 w-80 fixed top-0 left-0 z-[9999999999999999999] h-screen p-4 overflow-y-auto transition-transform duration-500 bg-primary-color text-white ${
           !navbarOpen ? "-translate-x-full" : null
         }`}
       >
         <article>
           <div>
             <Link className="inline" to={`/`}>
-              Logo
+              <img className="w-56 rounded" src={logo} alt={"Logo"} />
             </Link>
           </div>
 
           <button
             type="button"
-            className="text-black bg-transparent hover:bg-primary-color hover:text-white rounded-lg text-sm w-8 h-8 absolute top-5 end-2.5 flex items-center justify-center"
+            className="text-white bg-transparent hover:bg-primary-color-light animation-fade hover:text-white rounded-lg text-sm w-8 h-8 absolute top-5 end-2.5 flex items-center justify-center"
             onClick={() => setNavbarOpen(false)}
           >
             <svg
@@ -97,8 +96,8 @@ const NavbarMobile = ({
                   onClick={() => setNavbarOpen(false)}
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary-color font-extrabold border-b-primary-color border-b pb-1 family-nunito-black"
-                      : "text-secondary-color border-b-secondary-color/15 hover:text-primary-color pb-1 hover:border-b-primary-color transition-all duration-200 border-b font-extrabold family-nunito-black"
+                      ? "text-primary-color-light font-extrabold border-b-primary-color-light border-b pb-1 family-nunito-black"
+                      : "text-white border-b-white hover:text-primary-color-light pb-1 hover:border-b-primary-color-light transition-all duration-200 border-b font-extrabold family-nunito-black"
                   }
                   key={index}
                   to={to}
@@ -111,43 +110,14 @@ const NavbarMobile = ({
         </article>
 
         <article>
-          <h2 className="font-semibold mb-4 mt-8 border-b pb-1">
+          <h2 className="text-primary-color-light border-b border-b-primary-color-light font-semibold mb-4 mt-8 pb-1">
             Adittional Settings
           </h2>
 
           {/* Language Switcher */}
-          <label>
-            <span className="font-semibold mb-1 block text-sm">Languagues</span>
-            <div className="relative inline-block mb-2.5">
-              <div className="flex items-center border border-gray-300 rounded-full px-4 py-2 bg-white cursor-pointer">
-                <img
-                  src={language === "en" ? usaFlag : spainFlag}
-                  className="w-6 h-6 object-contain mr-2"
-                  alt={language}
-                />
-
-                <span>{language === "en" ? "English" : "Español"}</span>
-
-                <select
-                  value={language}
-                  onChange={(e) => handleChange(e.target.value)}
-                  className="absolute inset-0 opacity-0 cursor-pointer w-full h-full bg-gray-100 font-sans p-3"
-                >
-                  {availableLanguages?.map((availableLanguage, index) => {
-                    return (
-                      <option
-                        className="font-medium tracking-widest"
-                        value={availableLanguage?.value}
-                        key={index}
-                      >
-                        {availableLanguage?.language}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-            </div>
-          </label>
+          <div className="my-4">
+            <ToggleLanguage handleChange={handleChange} language={language} />
+          </div>
 
           {/* User Dropdown */}
           {userInfo?.access_token ? (
@@ -172,21 +142,21 @@ const NavbarMobile = ({
                   {createPortal(
                     <div
                       onClick={() => setOpenDropDown(!openDropDown)}
-                      className="h-[100vh] z-[] fixed top-0 w-full"
+                      className="h-[100vh]  fixed top-0 w-full"
                     ></div>,
                     document.body
                   )}
 
-                  <ul className="absolute -top-16 left-16 shadow-lg border bg-white w-40 rounded max-h-96 overflow-auto">
+                  <ul className="absolute -top-16 left-16 shadow-md shadow-primary-color-light  bg-primary-color w-40 rounded max-h-96 overflow-auto z-[9999]">
                     <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-primary-color hover:text-white"}
+                      hoverBgLink={"text-white hover:bg-primary-color-light"}
                       onClick={() => setNavbarOpen(false)}
                       linkText={t("My Profiles")}
                       linkTo={"/my-profiles/"}
                     />
 
                     <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-red-500 hover:text-white"}
+                      hoverBgLink={"text-white hover:bg-red-500"}
                       linkText={t("Log Out")}
                       onClick={handleLogOut}
                     />

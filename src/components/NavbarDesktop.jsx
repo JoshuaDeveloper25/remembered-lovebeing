@@ -17,7 +17,7 @@ const NavbarDesktop = ({
   t,
 }) => {
   return (
-    <nav className="sm:block hidden bg-primary-color text-white py-2 px-2">
+    <nav className="lg:block hidden bg-primary-color text-white py-2 px-2">
       <div className="container-page">
         <div className="flex justify-between items-center">
           <div>

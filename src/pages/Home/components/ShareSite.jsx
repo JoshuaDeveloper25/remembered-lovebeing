@@ -25,7 +25,7 @@ const ShareSite = () => {
       <div className="container-page py-8">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
           <div>
-            <h2 className="sm:text-start text-center text-white text-3xl">
+            <h2 className="sm:text-start text-center text-white text-3xl font-serif uppercase tracking-widest font-medium">
               {t("Share the site with friends")}:
             </h2>
           </div>
@@ -40,7 +40,7 @@ const ShareSite = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaFacebookF className="animation-fade p-3 rounded-full w-full h-full hover:bg-black hover:text-white bg-white text-primary-color-light" />
+                <FaFacebookF className="animation-fade p-3 rounded-full w-full h-full hover:bg-primary-color hover:text-white bg-white text-primary-color-light" />
               </a>
             </li>
 
@@ -53,7 +53,7 @@ const ShareSite = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <BsTwitterX className="animation-fade p-3 rounded-full w-full h-full hover:bg-black hover:text-white bg-white text-primary-color-light" />
+                <BsTwitterX className="animation-fade p-3 rounded-full w-full h-full hover:bg-primary-color hover:text-white bg-white text-primary-color-light" />
               </a>
             </li>
 
@@ -66,14 +66,14 @@ const ShareSite = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <MdOutlineMail className="animation-fade p-3 rounded-full w-full h-full hover:bg-black hover:text-white bg-white text-primary-color-light" />
+                <MdOutlineMail className="animation-fade p-3 rounded-full w-full h-full hover:bg-primary-color hover:text-white bg-white text-primary-color-light" />
               </a>
             </li>
 
             {/* Copy Link */}
             <CopyToClipboard onCopy={onCopy} text={value}>
               <button className="size-10 cursor-pointer">
-                <IoIosLink className="animation-fade p-3 rounded-full w-full h-full hover:bg-black hover:text-white bg-white text-primary-color-light" />
+                <IoIosLink className="animation-fade p-3 rounded-full w-full h-full hover:bg-primary-color hover:text-white bg-white text-primary-color-light" />
               </button>
             </CopyToClipboard>
           </ul>

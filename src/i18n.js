@@ -56,6 +56,11 @@ const resources = {
       "Memorial pages are thoughtfully designed with a modern and elegant style, ensuring they look beautiful and function perfectly on any device.":
         "Memorial pages are thoughtfully designed with a modern and elegant style, ensuring they look beautiful and function perfectly on any device.",
       "Share the site with friends": "Share the site with friends",
+      "All Rights Reserved": "All Rights Reserved",
+      Pages: "Pages",
+      "Terms & Conditions": "Terms & Conditions",
+      "Privacy Policy": "Privacy Policy",
+      "Cookies Policy": "Cookies Policy",
     },
   },
   es: {
@@ -85,7 +90,7 @@ const resources = {
       "Create an online memorial": "Crea un memorial en línea",
       "Share your loved one's story": "Comparte la historia de tu ser querido",
       "Create a meaningful online memorial to celebrate your loved one’s life. Share stories, upload photos, receive condolences, post tributes, and keep their memory alive.":
-        "Crea un homenaje en línea significativo para celebrar la vida de tu ser querido. Comparte historias, sube fotos, recibe condolencias, publica tributos y mantén viva su memoria.",
+        "Crea un honor en línea significativo para celebrar la vida de tu ser querido. Comparte historias, sube fotos, recibe condolencias, publica tributos y mantén viva su memoria.",
       "Create a Memorial": "Crear un Memorial",
       "Recent online memorials": "Memoriales en línea recientes",
       "There's no recent memorials for the moment...":
@@ -112,6 +117,11 @@ const resources = {
       "Memorial pages are thoughtfully designed with a modern and elegant style, ensuring they look beautiful and function perfectly on any device.":
         "Las páginas conmemorativas están diseñadas cuidadosamente con un estilo moderno y elegante, asegurando que se vean hermosas y funcionen perfectamente en cualquier dispositivo.",
       "Share the site with friends": "Comparte el sitio con amigos",
+      "All Rights Reserved": "Todos los Derechos Reservados",
+      Pages: "Páginas",
+      "Terms & Conditions": "Términos y Condiciones",
+      "Privacy Policy": "Política de Privacidad",
+      "Cookies Policy": "Política de Cookies",
     },
   },
 };

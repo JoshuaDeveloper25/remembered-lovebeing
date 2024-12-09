@@ -62,6 +62,67 @@ const resources = {
       "Privacy Policy": "Privacy Policy",
       "Cookies Policy": "Cookies Policy",
       Contact: "Contact",
+      "Terms & Conditions": "Terms & Conditions",
+      Introduction: "Introduction",
+      "Welcome to our memorial platform. By using our application, you agree to comply with the terms and conditions outlined in this document. If you do not agree with any of these conditions, you will not be able to use our services.":
+        "Welcome to our memorial platform. By using our application, you agree to comply with the terms and conditions outlined in this document. If you do not agree with any of these conditions, you will not be able to use our services.",
+      "Service Description": "Service Description",
+      "Our platform allows users to:": "Our platform allows users to:",
+      "Create memorial profiles to honor deceased people.":
+        "Create memorial profiles to honor deceased people.",
+      "Upload images, write tributes, and offer condolences.":
+        "Upload images, write tributes, and offer condolences.",
+      "Access different functionalities based on the selected plan.":
+        "Access different functionalities based on the selected plan.",
+      "Plans and Features": "Plans and Features",
+      "Free Plan": "Free Plan",
+      "Allows the creation of memorial profiles.":
+        "Allows the creation of memorial profiles.",
+      "Ability to upload up to 5 images in the gallery.":
+        "Ability to upload up to 5 images in the gallery.",
+      "Does not include the option to create posts.":
+        "Does not include the option to create posts.",
+      "Pro Plan": "Pro Plan",
+      "Ability to upload an unlimited number of images.":
+        "Ability to upload an unlimited number of images.",
+      "Access to the posts functionality.":
+        "Access to the posts functionality.",
+      "Other exclusive features specified in the plan description.":
+        "Other exclusive features specified in the plan description.",
+      "Responsible Use": "Responsible Use",
+      "Users agree to:": "Users agree to:",
+      "Use the platform respectfully and ethically.":
+        "Use the platform respectfully and ethically.",
+      "Not upload offensive, illegal content, or content that violates the rights of third parties.":
+        "Not upload offensive, illegal content, or content that violates the rights of third parties.",
+      "Ensure all information provided is truthful.":
+        "Ensure all information provided is truthful.",
+      "We reserve the right to remove content or profiles that violate these rules without prior notice.":
+        "We reserve the right to remove content or profiles that violate these rules without prior notice.",
+      "Intellectual Property": "Intellectual Property",
+      "All rights to the design, content, and functionality of the platform are owned by EternalMemoriesX.":
+        "All rights to the design, content, and functionality of the platform are owned by EternalMemoriesX.",
+      "Users retain the rights to the content they upload, but grant the platform a limited license to display it within the services.":
+        "Users retain the rights to the content they upload, but grant the platform a limited license to display it within the services.",
+      "Liability Limitations": "Liability Limitations",
+      "The platform is not responsible for:":
+        "The platform is not responsible for:",
+      "The accuracy or veracity of content uploaded by users.":
+        "The accuracy or veracity of content uploaded by users.",
+      "Technical failures, data loss, or service interruptions.":
+        "Technical failures, data loss, or service interruptions.",
+      "Account Cancellation": "Account Cancellation",
+      "We reserve the right to suspend or delete accounts that violate the terms of use or remain inactive for an extended period.":
+        "We reserve the right to suspend or delete accounts that violate the terms of use or remain inactive for an extended period.",
+      "Changes to Terms": "Changes to Terms",
+      "These terms may be modified at any time. Changes will be notified to users via the application and will take effect immediately.":
+        "These terms may be modified at any time. Changes will be notified to users via the application and will take effect immediately.",
+      "Applicable Law and Jurisdiction": "Applicable Law and Jurisdiction",
+      "These terms will be governed by the laws of [Country/Region], and any disputes will be resolved in the courts of [City/Region].":
+        "These terms will be governed by the laws of [Country/Region], and any disputes will be resolved in the courts of [City/Region].",
+      Contact: "Contact",
+      "If you have any questions or concerns about these terms, you can contact us at [email address].":
+        "If you have any questions or concerns about these terms, you can contact us at [email address].",
     },
   },
   es: {
@@ -124,6 +185,66 @@ const resources = {
       "Privacy Policy": "Política de Privacidad",
       "Cookies Policy": "Política de Cookies",
       Contact: "Contacto",
+      "Terms & Conditions": "Términos y Condiciones",
+      Introduction: "Introducción",
+      "Welcome to our memorial platform. By using our application, you agree to comply with the terms and conditions outlined in this document. If you do not agree with any of these conditions, you will not be able to use our services.":
+        "Bienvenido(a) a nuestra plataforma de memoriales. Al usar nuestra aplicación, aceptas cumplir con los términos y condiciones descritos en este documento. Si no estás de acuerdo con alguna de estas condiciones, no podrás usar nuestros servicios.",
+      "Service Description": "Descripción del Servicio",
+      "Our platform allows users to:":
+        "Nuestra plataforma permite a los usuarios:",
+      "Create memorial profiles to honor deceased people.":
+        "Crear perfiles memoriales para honrar a personas fallecidas.",
+      "Upload images, write tributes, and offer condolences.":
+        "Subir imágenes, escribir tributos, y ofrecer condolencias.",
+      "Access different functionalities based on the selected plan.":
+        "Acceder a diferentes funcionalidades según el plan seleccionado.",
+      "Plans and Features": "Planes y Funcionalidades",
+      "Free Plan": "Plan Gratuito",
+      "Allows the creation of memorial profiles.":
+        "Permite la creación de perfiles memoriales.",
+      "Ability to upload up to 5 images in the gallery.":
+        "Capacidad para subir hasta 5 imágenes en la galería.",
+      "Does not include the option to create posts.":
+        "No incluye la opción de crear publicaciones.",
+      "Pro Plan": "Plan Pro",
+      "Ability to upload an unlimited number of images.":
+        "Capacidad para subir un número ilimitado de imágenes.",
+      "Access to the posts functionality.":
+        "Acceso a la funcionalidad de publicaciones.",
+      "Other exclusive features specified in the plan description.":
+        "Otras características exclusivas especificadas en la descripción del plan.",
+      "Responsible Use": "Uso Responsable",
+      "Users agree to:": "Los usuarios se comprometen a:",
+      "Use the platform respectfully and ethically.":
+        "Usar la plataforma de manera respetuosa y ética.",
+      "Not upload offensive, illegal content, or content that violates the rights of third parties.":
+        "No subir contenido ofensivo, ilegal, o que viole derechos de terceros.",
+      "Ensure all information provided is truthful.":
+        "Garantizar que toda la información proporcionada sea verídica.",
+      "We reserve the right to remove content or profiles that violate these rules without prior notice.":
+        "Nos reservamos el derecho de eliminar contenido o perfiles que infrinjan estas normas sin previo aviso.",
+      "Intellectual Property": "Propiedad Intelectual",
+      "All rights to the design, content, and functionality of the platform are owned by EternalMemoriesX. Users retain rights to the content they upload, but grant the platform a limited license to display it within the services.":
+        " Todos los derechos sobre el diseño, contenido, y funcionalidad de la plataforma son propiedad de EternalMemoriesX. Los usuarios conservan los derechos sobre el contenido que suban, pero otorgan a la plataforma una licencia limitada para mostrarlo dentro de los servicios.",
+      "Liability Limitations": "Limitaciones de Responsabilidad",
+      "The platform is not responsible for:":
+        "La plataforma no se hace responsable por:",
+      "The accuracy or veracity of content uploaded by users.":
+        "La veracidad o exactitud del contenido subido por los usuarios.",
+      "Technical failures, data loss, or service interruptions.":
+        "Fallos técnicos, pérdida de datos o interrupciones en el servicio.",
+      "Account Cancellation": "Cancelación de Cuentas",
+      "We reserve the right to suspend or delete accounts that violate the terms of use or remain inactive for an extended period.":
+        "Nos reservamos el derecho de suspender o eliminar cuentas que violen los términos de uso o que permanezcan inactivas durante un periodo prolongado.",
+      "Changes to Terms": "Modificaciones a los Términos",
+      "These terms may be modified at any time. Changes will be notified to users via the application and will take effect immediately.":
+        "Estos términos pueden ser modificados en cualquier momento. Los cambios serán notificados a los usuarios a través de la aplicación y entrarán en vigencia inmediatamente.",
+      "Applicable Law and Jurisdiction": "Ley Aplicable y Jurisdicción",
+      "These terms will be governed by the laws of [Country/Region], and any disputes will be resolved in the courts of [City/Region].":
+        "Estos términos se regirán por las leyes de [País/Región] y cualquier disputa será resuelta en los tribunales de [Ciudad/Región].",
+      Contact: "Contacto",
+      "If you have any questions or concerns about these terms, you can contact us at [email address].":
+        "Si tienes alguna pregunta o inquietud sobre estos términos, puedes contactarnos en [correo electrónico].",
     },
   },
 };

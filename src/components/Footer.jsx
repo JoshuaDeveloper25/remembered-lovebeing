@@ -95,7 +95,7 @@ const Footer = () => {
               <ul className="space-y-3 font-medium">
                 <li>
                   <Link
-                    to="#"
+                    to="/terms-and-conditions"
                     className="hover:text-primary-color-light animation-fade"
                   >
                     {t("Terms & Conditions")}

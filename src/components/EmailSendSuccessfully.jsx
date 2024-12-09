@@ -12,7 +12,7 @@ const EmailSendSuccessfully = () => {
             </h2>
             <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
             <p className="text-primary-color-light text-xl font-medium mt-7">
-              {t("If you would like you can close this page or go")}{" "}
+              {t("If you'd like you can close this page or go back")}{" "}
               <Link to={"/"} className="underline">
                 {t("Home")}
               </Link>

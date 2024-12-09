@@ -28,6 +28,7 @@ import Contact from "./pages/Contact";
 import PublicRoutes from "./auth/PublicRoutes";
 import PrivateRoutes from "./auth/PrivateRoutes";
 import EmailSendSuccessfully from "./components/EmailSendSuccessfully";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 const router = createBrowserRouter([
   //🔒 Public Routes - Cannot access if we're logged in...
@@ -114,6 +115,11 @@ const router = createBrowserRouter([
       {
         element: <EmailSendSuccessfully />,
         path: "/email-sent-successfully",
+      },
+
+      {
+        element: <TermsAndConditions />,
+        path: "/terms-and-conditions",
       },
 
       {

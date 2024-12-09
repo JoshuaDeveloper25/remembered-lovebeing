@@ -1,12 +1,13 @@
 import { InputForm } from "../../components/InputForm";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Form from "../../components/Form";
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [userCountry, setUserCountry] = useState("");
   const { t } = useTranslation();
 
   // Get all information about countries from public API
@@ -14,6 +15,22 @@ const Contact = () => {
     queryKey: ["countries"],
     queryFn: async () => await axios.get(`https://restcountries.com/v3.1/all`),
   });
+
+  // Get user's country based on their IP
+  const userCountryQuery = useQuery({
+    queryKey: ["userCountry"],
+    queryFn: async () => {
+      const response = await axios.get(`https://ipapi.co/json/`);
+      return response.data.country_name;
+    },
+  });
+
+  // Set the user's country once the query is successful
+  useEffect(() => {
+    if (userCountryQuery.isSuccess) {
+      setUserCountry(userCountryQuery.data);
+    }
+  }, [userCountryQuery.isSuccess, userCountryQuery.data]);
 
   return (
     <section className="max-w-2xl mx-auto px-4 py-10">
@@ -56,15 +73,15 @@ const Contact = () => {
               className={`form-input focus:shadow-xl border border-gray-200 resize-none`}
               name={"user_country"}
               required={true}
+              value={userCountry}
+              onChange={(e) => setUserCountry(e.target.value)}
             >
               <option value="">-- {t("Country")} --</option>
-              {countriesApiQuery?.data?.data?.map((countryName, index) => {
-                return (
-                  <option key={index} value={countryName?.name?.common}>
-                    {countryName?.name?.common}
-                  </option>
-                );
-              })}
+              {countriesApiQuery?.data?.data?.map((country, index) => (
+                <option key={index} value={country?.name?.common}>
+                  {country?.name?.common}
+                </option>
+              ))}
             </select>
           </label>
 
@@ -92,7 +109,11 @@ const Contact = () => {
         </label>
 
         <div className="text-center">
-          <button type="submit" className="btn btn-blue w-fit">
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="btn btn-blue w-fit disabled:bg-primary-color/50 disabled:pointer-events-none"
+          >
             {isLoading ? t("Sending...") : t("Send")}
           </button>
         </div>

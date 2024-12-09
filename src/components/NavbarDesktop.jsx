@@ -17,7 +17,10 @@ const NavbarDesktop = ({
   t,
 }) => {
   return (
-    <nav className="lg:block hidden bg-primary-color text-white py-2 px-2">
+    <nav
+      id="navbar"
+      className="lg:block hidden bg-primary-color text-white py-2 px-2"
+    >
       <div className="container-page">
         <div className="flex justify-between items-center">
           <div>
@@ -76,8 +79,12 @@ const NavbarDesktop = ({
                   {userInfo?.access_token ? (
                     <ul className="absolute right-5 shadow-lg shadow-primary-color-light bg-primary-color text-white pt-2 z-[9999999] w-max rounded max-h-96 overflow-auto">
                       <div className="border-b pb-1.5 px-5">
-                        <h2 className="block font-medium">👋 {userInfo?.name}</h2>
-                        <h2 className="block text-sm font-medium">{userInfo?.email}</h2>
+                        <h2 className="block font-medium">
+                          👋 {userInfo?.name}
+                        </h2>
+                        <h2 className="block text-sm font-medium">
+                          {userInfo?.email}
+                        </h2>
                       </div>
 
                       <NavbarDropdownLink

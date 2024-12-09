@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const Footer = () => {
@@ -21,39 +21,68 @@ const Footer = () => {
 
               <ul className="space-y-3 font-medium">
                 <li>
-                  <Link
-                    to="#"
-                    className="hover:text-primary-color-light animation-fade"
+                  <NavLink
+                    to="/memorials#top"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-primary-color-light/60 font-bold"
+                        : "hover:text-primary-color-light animation-fade"
+                    }
                   >
                     {t("Memorials")}
-                  </Link>
+                  </NavLink>
                 </li>
 
                 <li>
-                  <Link
-                    to="#"
-                    className="hover:text-primary-color-light animation-fade"
+                  <NavLink
+                    to="/posts#top"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-primary-color-light/60 font-bold"
+                        : "hover:text-primary-color-light animation-fade"
+                    }
                   >
                     {t("Posts")}
-                  </Link>
+                  </NavLink>
                 </li>
 
                 <li>
-                  <Link
-                    to="#"
-                    className="hover:text-primary-color-light animation-fade"
+                  <NavLink
+                    to="/news#top"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-primary-color-light/60 font-bold"
+                        : "hover:text-primary-color-light animation-fade"
+                    }
                   >
                     {t("News")}
-                  </Link>
+                  </NavLink>
                 </li>
 
                 <li>
-                  <Link
-                    to="#"
-                    className="hover:text-primary-color-light animation-fade"
+                  <NavLink
+                    to="/prices#top"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-primary-color-light/60 font-bold"
+                        : "hover:text-primary-color-light animation-fade"
+                    }
                   >
                     {t("Prices")}
-                  </Link>
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/contact#top"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-primary-color-light/60 font-bold"
+                        : "hover:text-primary-color-light animation-fade"
+                    }
+                  >
+                    {t("Contact")}
+                  </NavLink>
                 </li>
               </ul>
             </div>

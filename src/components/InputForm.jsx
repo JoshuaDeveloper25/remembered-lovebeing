@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export const InputForm = ({
   additionalInputClassnames,
+  inputDownWarning = false,
   inputPassword = false,
   inputLabelClassName,
   inputPlaceholder,
@@ -32,6 +33,8 @@ export const InputForm = ({
         name={inputName}
         {...inputProps}
       />
+
+      {inputDownWarning && <p>{inputDownWarning}</p>}
 
       {inputPassword && (
         <div className="absolute top-4 right-4">

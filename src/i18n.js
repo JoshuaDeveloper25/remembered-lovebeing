@@ -61,6 +61,7 @@ const resources = {
       "Terms & Conditions": "Terms & Conditions",
       "Privacy Policy": "Privacy Policy",
       "Cookies Policy": "Cookies Policy",
+      Contact: "Contact",
     },
   },
   es: {
@@ -122,6 +123,7 @@ const resources = {
       "Terms & Conditions": "Términos y Condiciones",
       "Privacy Policy": "Política de Privacidad",
       "Cookies Policy": "Política de Cookies",
+      Contact: "Contacto",
     },
   },
 };

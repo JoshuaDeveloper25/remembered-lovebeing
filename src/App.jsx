@@ -22,10 +22,12 @@ import Memorials from "./pages/Memorials/Memorials";
 import Posts from "./pages/Posts/Posts";
 import News from "./pages/News/News";
 import Prices from "./pages/Prices/Prices";
+import Checkout from "./pages/Checkout/Checkout";
+import Contact from "./pages/Contact";
 
 import PublicRoutes from "./auth/PublicRoutes";
 import PrivateRoutes from "./auth/PrivateRoutes";
-import Checkout from "./pages/Checkout/Checkout";
+import EmailSendSuccessfully from "./components/EmailSendSuccessfully";
 
 const router = createBrowserRouter([
   //🔒 Public Routes - Cannot access if we're logged in...
@@ -102,6 +104,16 @@ const router = createBrowserRouter([
       {
         element: <Prices />,
         path: "/prices",
+      },
+
+      {
+        element: <Contact />,
+        path: "/contact",
+      },
+
+      {
+        element: <EmailSendSuccessfully />,
+        path: "/email-sent-successfully",
       },
 
       {

@@ -39,9 +39,9 @@ const ToggleLanguage = ({ language, handleChange }) => {
           stroke="currentColor"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="M19 9l-7 7-7-7"
           />
         </svg>
@@ -63,7 +63,10 @@ const ToggleLanguage = ({ language, handleChange }) => {
               <div
                 key={index}
                 onClick={() => selectLanguage(availableLanguage.value)}
-                className={`${availableLanguage.value === language && 'first:rounded-t-lg last:rounded-b-lg bg-primary-color-light/25 pointer-events-none'} animation-fade flex items-center px-4 py-2 cursor-pointer hover:first:rounded-t-lg  last:rounded-b-lg hover:last:rounded-b-lg hover:bg-primary-color-light`}
+                className={`${
+                  availableLanguage.value === language &&
+                  "first:rounded-t-lg last:rounded-b-lg bg-primary-color-light/25 pointer-events-none"
+                } animation-fade flex items-center px-4 py-2 cursor-pointer hover:first:rounded-t-lg  last:rounded-b-lg hover:last:rounded-b-lg hover:bg-primary-color-light`}
               >
                 <img
                   src={availableLanguage.value === "en" ? usaFlag : spainFlag}

@@ -24,7 +24,10 @@ const NavbarMobile = ({
   return (
     <>
       {/* <!-- drawer init and toggle --> */}
-      <div className="lg:hidden bg-primary-color text-white flex items-center justify-between text-center py-2 px-5">
+      <div
+        id="navbar"
+        className="lg:hidden bg-primary-color text-white flex items-center justify-between text-center py-2 px-5"
+      >
         <Link to={"/"}>
           <img className="w-72 rounded" src={logo} alt={"Logo"} />
         </Link>

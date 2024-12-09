@@ -100,10 +100,8 @@ const resources = {
       "We reserve the right to remove content or profiles that violate these rules without prior notice.":
         "We reserve the right to remove content or profiles that violate these rules without prior notice.",
       "Intellectual Property": "Intellectual Property",
-      "All rights to the design, content, and functionality of the platform are owned by EternalMemoriesX.":
-        "All rights to the design, content, and functionality of the platform are owned by EternalMemoriesX.",
-      "Users retain the rights to the content they upload, but grant the platform a limited license to display it within the services.":
-        "Users retain the rights to the content they upload, but grant the platform a limited license to display it within the services.",
+      "All rights to the design, content, and functionality of the platform are owned by Eternal MemoriesX. Users retain rights to the content they upload, but grant the platform a limited license to display it within the services.":
+        "All rights to the design, content, and functionality of the platform are owned by Eternal MemoriesX. Users retain rights to the content they upload, but grant the platform a limited license to display it within the services.",
       "Liability Limitations": "Liability Limitations",
       "The platform is not responsible for:":
         "The platform is not responsible for:",
@@ -224,8 +222,8 @@ const resources = {
       "We reserve the right to remove content or profiles that violate these rules without prior notice.":
         "Nos reservamos el derecho de eliminar contenido o perfiles que infrinjan estas normas sin previo aviso.",
       "Intellectual Property": "Propiedad Intelectual",
-      "All rights to the design, content, and functionality of the platform are owned by EternalMemoriesX. Users retain rights to the content they upload, but grant the platform a limited license to display it within the services.":
-        " Todos los derechos sobre el diseño, contenido, y funcionalidad de la plataforma son propiedad de EternalMemoriesX. Los usuarios conservan los derechos sobre el contenido que suban, pero otorgan a la plataforma una licencia limitada para mostrarlo dentro de los servicios.",
+      "All rights to the design, content, and functionality of the platform are owned by Eternal MemoriesX. Users retain rights to the content they upload, but grant the platform a limited license to display it within the services.":
+        " Todos los derechos sobre el diseño, contenido, y funcionalidad de la plataforma son propiedad de Eternal MemoriesX. Los usuarios conservan los derechos sobre el contenido que suban, pero otorgan a la plataforma una licencia limitada para mostrarlo dentro de los servicios.",
       "Liability Limitations": "Limitaciones de Responsabilidad",
       "The platform is not responsible for:":
         "La plataforma no se hace responsable por:",

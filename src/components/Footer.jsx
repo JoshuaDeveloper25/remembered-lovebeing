@@ -94,18 +94,26 @@ const Footer = () => {
 
               <ul className="space-y-3 font-medium">
                 <li>
-                  <Link
-                    to="/terms-and-conditions"
-                    className="hover:text-primary-color-light animation-fade"
+                  <NavLink
+                    to="/terms-and-conditions#top"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-primary-color-light/60 font-bold"
+                        : "hover:text-primary-color-light animation-fade"
+                    }
                   >
                     {t("Terms & Conditions")}
-                  </Link>
+                  </NavLink>
                 </li>
 
                 <li>
                   <Link
                     to="#"
-                    className="hover:text-primary-color-light animation-fade"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-primary-color-light/60 font-bold"
+                        : "hover:text-primary-color-light animation-fade"
+                    }
                   >
                     {t("Privacy Policy")}
                   </Link>
@@ -114,7 +122,11 @@ const Footer = () => {
                 <li>
                   <Link
                     to="#"
-                    className="hover:text-primary-color-light animation-fade"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-primary-color-light/60 font-bold"
+                        : "hover:text-primary-color-light animation-fade"
+                    }
                   >
                     {t("Cookies Policy")}
                   </Link>

@@ -16,7 +16,10 @@ const resources = {
         "Create a profile for your loved one, upload photos, share memories through posts and allow others to leave tributes and condolences. Generate a QR code.",
       "Get Started": "Get Started",
       "See An Example Memorial": "See An Example Memorial",
-      RegisterAndLogIn: "Register <1>and Log In</1>",
+      RegisterAndLogin: "Register and login",
+      CreateAProfile: "Create a profile",
+      GenerateQrCode: "Generate QR Code",
+      ShareWithLovedOnes: "Share with loved ones",
       "Our Community Today": "Our Community Today",
       "Discover the number of memorials, tributes and active posts, and how our community keep growing up and remembering.":
         "Discover the number of memorials, tributes and active posts, and how our community keep growing up and remembering.",
@@ -25,8 +28,8 @@ const resources = {
       CREATE: "CREATE",
       "Create an online memorial": "Create an online memorial",
       "Share your loved one's story": "Share your loved one's story",
-      "Create an online memorial. Add photos, videos, messages, gifs, or links. Gift cards can also be attached.":
-        "Create an online memorial. Add photos, videos, messages, gifs, or links. Gift cards can also be attached.",
+      "Create a meaningful online memorial to celebrate your loved one’s life. Share stories, upload photos, receive condolences, post tributes, and keep their memory alive.":
+        "Create a meaningful online memorial to celebrate your loved one’s life. Share stories, upload photos, receive condolences, post tributes, and keep their memory alive.",
       "Create a Memorial": "Create a Memorial",
       "Recent online memorials": "Recent online memorials",
       "There's no recent memorials for the moment...":
@@ -45,6 +48,14 @@ const resources = {
       "Memorial Source memorial pages are built with elegant, modern design that looks good on all devices.":
         "Memorial Source memorial pages are built with elegant, modern design that looks good on all devices.",
       "Preview Memorials": "Preview Memorials",
+      SHARE: "SHARE",
+      "Keep their memory close in unique and meaningful ways":
+        "Keep their memory close in unique and meaningful ways",
+      "Generate a QR code to link to your memorial. Place it on headstones, urns, keepsakes, or remembrance cards to share their story with friends and family.":
+        "Generate a QR code to link to your memorial. Place it on headstones, urns, keepsakes, or remembrance cards to share their story with friends and family.",
+      "Memorial pages are thoughtfully designed with a modern and elegant style, ensuring they look beautiful and function perfectly on any device.":
+        "Memorial pages are thoughtfully designed with a modern and elegant style, ensuring they look beautiful and function perfectly on any device.",
+      "Share the site with friends": "Share the site with friends",
     },
   },
   es: {
@@ -61,7 +72,10 @@ const resources = {
         "Crea un perfil para tu ser querido, sube fotos, comparte recuerdos a través de publicaciones y permite que otros dejen tributos y condolencias. Genera un código QR.",
       "Get Started": "Empezar",
       "See An Example Memorial": "Ver Ejemplo de Memorial",
-      RegisterAndLogIn: "Registrarse <1>e Iniciar Sesión</1>",
+      RegisterAndLogin: "Registrarse e Iniciar Sesión",
+      CreateAProfile: "Crear un perfil",
+      GenerateQRCode: "Generar Código QR",
+      ShareWithLovedOnes: "Compartir con seres queridos",
       "Our Community Today": "Nuestra Comunidad Hoy",
       "Discover the number of memorials, tributes and active posts, and how our community keep growing up and remembering.":
         "Descubre la cantidad de memoriales, tributos y publicaciones activas, y cómo nuestra comunidad sigue creciendo y recordando.",
@@ -70,8 +84,8 @@ const resources = {
       CREATE: "CREAR",
       "Create an online memorial": "Crea un memorial en línea",
       "Share your loved one's story": "Comparte la historia de tu ser querido",
-      "Create an online memorial. Add photos, videos, messages, gifs, or links. Gift cards can also be attached.":
-        "Crea un memorial en línea. Agrega fotos, videos, mensajes, gifs o enlaces. También se pueden adjuntar tarjetas de regalo.",
+      "Create a meaningful online memorial to celebrate your loved one’s life. Share stories, upload photos, receive condolences, post tributes, and keep their memory alive.":
+        "Crea un homenaje en línea significativo para celebrar la vida de tu ser querido. Comparte historias, sube fotos, recibe condolencias, publica tributos y mantén viva su memoria.",
       "Create a Memorial": "Crear un Memorial",
       "Recent online memorials": "Memoriales en línea recientes",
       "There's no recent memorials for the moment...":
@@ -90,14 +104,22 @@ const resources = {
       "Memorial Source memorial pages are built with elegant, modern design that looks good on all devices.":
         "Las páginas de memoriales de Memorial Source están diseñadas con elegancia y modernidad, adaptándose a todos los dispositivos.",
       "Preview Memorials": "Previsualizar Memoriales",
+      SHARE: "COMPARTIR",
+      "Keep their memory close in unique and meaningful ways":
+        "Mantén su memoria cerca de formas únicas y significativas.",
+      "Generate a QR code to link to your memorial. Place it on headstones, urns, keepsakes, or remembrance cards to share their story with friends and family.":
+        "Genera un código QR para vincular a tu memorial. Colócalo en lápidas, urnas, recuerdos o tarjetas conmemorativas para compartir su historia con amigos y familiares.",
+      "Memorial pages are thoughtfully designed with a modern and elegant style, ensuring they look beautiful and function perfectly on any device.":
+        "Las páginas conmemorativas están diseñadas cuidadosamente con un estilo moderno y elegante, asegurando que se vean hermosas y funcionen perfectamente en cualquier dispositivo.",
+      "Share the site with friends": "Comparte el sitio con amigos",
     },
   },
 };
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: "en", // language by default
-  fallbackLng: "en",
+  lng: "es",
+  fallbackLng: "es",
   interpolation: {
     escapeValue: false,
   },

@@ -7,8 +7,10 @@ import { BsTwitterX } from "react-icons/bs";
 import { IoIosLink } from "react-icons/io";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ShareSite = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const fullUrl = `${window.location.origin}${location.pathname}`;
   const [value, setValue] = useState("");
@@ -24,7 +26,7 @@ const ShareSite = () => {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
           <div>
             <h2 className="sm:text-start text-center text-white text-3xl">
-              Share the site with friends:
+              {t("Share the site with friends")}:
             </h2>
           </div>
 

@@ -81,7 +81,7 @@ const PricesPlan = ({ packageName }) => {
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Number of Profiles (1)
+              Number of Premium Profiles (1)
             </li>
           </ul>
         </div>
@@ -125,7 +125,7 @@ const PricesPlan = ({ packageName }) => {
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Number of Profiles (3)
+              Number of Premium Profiles (3)
             </li>
           </ul>
         </div>

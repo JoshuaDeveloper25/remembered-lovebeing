@@ -63,7 +63,7 @@ const Prices = () => {
 
             <li className="flex items-center gap-3 border-b py-1">
               <IoCloseSharp className="text-red-500 size-[1.3rem] font-bold inline-block" />
-              Number of Profiles (0)
+              Number of Premium Profiles (0)
             </li>
           </ul>
           <Link
@@ -129,7 +129,7 @@ const Prices = () => {
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Number of Profiles (1)
+              Number of Premium Profiles (1)
             </li>
           </ul>
 
@@ -182,7 +182,7 @@ const Prices = () => {
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Number of Profiles (3)
+              Number of Premium Profiles (3)
             </li>
           </ul>
           <Link to={`/checkout/?packageName=tertiaryPackage`}>

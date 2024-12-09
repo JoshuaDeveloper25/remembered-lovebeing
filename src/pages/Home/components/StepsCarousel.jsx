@@ -29,24 +29,24 @@ const StepsCarousel = () => {
         <article className="grid md:grid-cols-2 grid-cols-1">
           <div className="md:block hidden flex-1">
             <h4 className="font-medium uppercase tracking-widest px-2 text-xl border-b-2 border-yellow-500 inline">
-              SHARE
+              {t("SHARE")}
             </h4>
             <h2 className="text-4xl text-fourth-color font-semibold my-4">
-              Ways to use your QR Code{" "}
+              {t("Ways to use your QR code")}{" "}
               <span className="text-modern-color block font-medium text-2xl">
-              Keep their memory close in unique and meaningful ways
+                {t("Keep their memory close in unique and meaningful ways")}
               </span>
             </h2>
             <p className="text-muted-color max-w-sm text-xl">
-              Generate a QR code to link to your memorial. Place it on
-              headstones, urns, keepsakes, or remembrance cards to share their
-              story with friends and family.
+              {t(
+                "Generate a QR code to link to your memorial. Place it on headstones, urns, keepsakes, or remembrance cards to share their story with friends and family."
+              )}
             </p>
             <button
               className="btn btn-blue-light w-auto text-xl mt-4"
               type="button"
             >
-              Create a Memorial
+              {t("Create a Memorial")}
             </button>
           </div>
 

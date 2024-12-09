@@ -21,7 +21,7 @@ const WhatWeOfferResponsive = () => {
       <div className="container-page relative">
         <div className="sm:my-12">
           <h2 className="font-mono sm:tracking-wider sm:text-4xl text-3xl text-primary-color text-center uppercase font-semibold ">
-            We offer modern designs
+            {t("We offer modern designs.")}
           </h2>
           <div className="bg-yellow-500 h-2 w-24 mt-0 mb-3 mx-auto"></div>
         </div>

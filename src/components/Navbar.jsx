@@ -9,7 +9,7 @@ const Navbar = () => {
   const { setUserInfo, userInfo } = useContext(AppContext);
   const [openDropDown, setOpenDropDown] = useState(false);
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState("es");
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -25,7 +25,6 @@ const Navbar = () => {
 
   const handleChange = (lang) => {
     setLanguage(lang);
-
     i18n.changeLanguage(lang);
   };
 

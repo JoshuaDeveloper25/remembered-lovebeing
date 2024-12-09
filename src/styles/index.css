@@ -65,7 +65,8 @@ body {
   }
 
   .nav-active {
-    @apply  animation-fade border-b-2 border-primary-color-light text-primary-color-light font-semibold;
+    @apply  
+    animation-fade border-b-2 border-primary-color-light text-primary-color-light font-semibold;
 
     &:hover {
       @apply opacity-65;

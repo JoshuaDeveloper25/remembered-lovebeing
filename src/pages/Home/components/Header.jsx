@@ -1,6 +1,6 @@
 import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 import AppContext from "../../../context/AppProvider";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { stepsApp } from "../../../db/data";
@@ -8,7 +8,7 @@ import CarouselStepsApp from "./CarouselStepsApp";
 
 const Header = () => {
   const [ref, isIntersecting] = useIntersectionObserver({ threshold: 0.4 });
-  const { t } = useTranslation(); // Hook para traducciones
+  const { t } = useTranslation();
   const { userInfo } = useContext(AppContext);
 
   return (
@@ -33,7 +33,7 @@ const Header = () => {
           ref={ref}
         >
           <div className="flex flex-col items-center justify-center text-center h-full ">
-            <h1 className="font-serif md:text-6xl text-5xl text-white max-w-2xl">
+            <h1 className="font-serif text-5xl text-white uppercase max-w-2xl">
               {t("Preserve the memories of those you love")}
             </h1>
 
@@ -62,10 +62,7 @@ const Header = () => {
               </div>
 
               <div className="md:w-auto w-full">
-                <Link
-                  to={"/remembered-profile/Albert-Einstein-27"}
-                  target="_blank"
-                >
+                <Link to={"#"} target="_blank">
                   <button
                     type="button"
                     className="font-medium animation-fade px-6 py-2 inline-block border border-white text-white hover:bg-white hover:text-black rounded-sm"
@@ -93,7 +90,7 @@ const Header = () => {
                   <div className="bg-yellow-500 h-1 w-full"></div>
                 </div>
 
-                <h3 className="text-xl mt-2">{stepApp?.descStep}</h3>
+                <h3 className="text-xl mt-2">{t(stepApp?.descStep)}</h3>
               </article>
             ))}
           </div>

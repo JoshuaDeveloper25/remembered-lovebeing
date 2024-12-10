@@ -22,7 +22,7 @@ const Prices = () => {
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-8 mt-16">
-        <div className="min-w-[20rem] hover:scale-105 hover:shadow-2xl animation-fade border shadow-xl rounded-sm text-center py-11 px-7">
+        <div className="min-w-[20rem] hover:scale-105 hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
             Free
           </span>
@@ -82,7 +82,7 @@ const Prices = () => {
           </Link>
         </div>
 
-        <div className="min-w-[20rem] hover:scale-105 hover:shadow-2xl animation-fade border shadow-xl rounded-sm text-center py-11 px-7 relative">
+        <div className="min-w-[20rem] hover:scale-105 hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white relative">
           <div className="absolute top-5 -left-8">
             <h3 className="bg-red-500 shadow-lg rounded-sm text-white font-semibold tracking-wider font-mono uppercase -rotate-45 px-2">
               MOST POPULAR!
@@ -143,7 +143,7 @@ const Prices = () => {
           </Link>
         </div>
 
-        <div className="min-w-[20rem] hover:scale-105 hover:shadow-2xl animation-fade border shadow-xl rounded-sm text-center py-11 px-7">
+        <div className="min-w-[20rem] hover:scale-105 hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
             Tertiary Package
           </span>

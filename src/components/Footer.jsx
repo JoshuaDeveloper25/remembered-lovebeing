@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Link, NavLink } from "react-router-dom";
+import {Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const Footer = () => {
@@ -7,13 +7,49 @@ const Footer = () => {
 
   return (
     <footer className="bg-primary-color text-white">
-      <div className="mx-auto w-full container-page sm:pb-4 pb-12 py-4 px-6 lg:py-8">
-        <div className="md:flex md:justify-between">
+      <div className="w-full max-w-[1200px] mx-auto sm:px-2 px-6 sm:pb-4 pb-12 py-4 lg:py-8">
+        <div className="flex flex-col md:flex-row justify-between gap-2 sm:gap-6">
           <div className="mb-6 md:mb-0">
             <img className="w-72 rounded" src={logo} alt={"Logo"} />
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-6 sm:grid-cols-2">
+            {/* Discover Us */}
+            <div>
+              <h2 className="mb-6 text-base font-semibold uppercase text-primary-color-light border-b inline-block border-b-primary-color-light">
+                {t("Discover Us")}
+              </h2>
+
+              <ul className="space-y-3 font-medium">
+                <li>
+                  <NavLink
+                    to="/about-us#top"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-primary-color-light/60 font-bold"
+                        : "hover:text-primary-color-light animation-fade"
+                    }
+                  >
+                    {t("About Us")}
+                  </NavLink>
+                </li>
+
+                <li>
+                  <NavLink
+                    to="/contact#top"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-primary-color-light/60 font-bold"
+                        : "hover:text-primary-color-light animation-fade"
+                    }
+                  >
+                    {t("Contact")}
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+
+            {/* Pages */}
             <div>
               <h2 className="mb-6 text-base font-semibold uppercase text-primary-color-light border-b inline-block border-b-primary-color-light">
                 {t("Pages")}
@@ -71,22 +107,10 @@ const Footer = () => {
                     {t("Prices")}
                   </NavLink>
                 </li>
-
-                <li>
-                  <NavLink
-                    to="/contact#top"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-primary-color-light/60 font-bold"
-                        : "hover:text-primary-color-light animation-fade"
-                    }
-                  >
-                    {t("Contact")}
-                  </NavLink>
-                </li>
               </ul>
             </div>
 
+            {/* Legal */}
             <div>
               <h2 className="mb-6 text-base font-semibold  uppercase text-primary-color-light border-b inline-block border-b-primary-color-light">
                 {t("Legal")}
@@ -107,8 +131,8 @@ const Footer = () => {
                 </li>
 
                 <li>
-                  <Link
-                    to="#"
+                  <NavLink
+                    to="/privacy-policy#top"
                     className={({ isActive }) =>
                       isActive
                         ? "text-primary-color-light/60 font-bold"
@@ -116,20 +140,7 @@ const Footer = () => {
                     }
                   >
                     {t("Privacy Policy")}
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    to="#"
-                    className={({ isActive }) =>
-                      isActive
-                        ? "text-primary-color-light/60 font-bold"
-                        : "hover:text-primary-color-light animation-fade"
-                    }
-                  >
-                    {t("Cookies Policy")}
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>
             </div>

@@ -87,11 +87,11 @@ const Memorials = () => {
         </p>
       </div>
 
-      <article className="px-2 py-5 bg-gray-300/25 rounded-sm shadow-lg overlay max-w-4xl mx-auto">
+      <article className="px-2 py-5 bg-white rounded-md shadow-lg overlay max-w-4xl mx-auto">
         <div className="flex items-center md:justify-center w-full mb-3">
           <label className="w-[30rem]">
             <input
-              className="block py-2 px-2 h-full border border-tertiary-color/30 border-e-0 rounded-sm rounded-e-none w-full"
+              className="block py-2 px-2 h-full border border-tertiary-color/15 border-e-0 rounded-sm rounded-e-none w-full"
               type="text"
               value={tempSearchFullName}
               onChange={(e) => setTempSearchFullName(e?.target?.value)}
@@ -118,7 +118,7 @@ const Memorials = () => {
               value={tempSearchBirthCountry}
               onChange={(e) => setTempSearchBirthCountry(e?.target?.value)}
               name="countryMemorial"
-              className="py-2 px-2 block border border-tertiary-color/30 rounded-sm bg-white"
+              className="py-2 px-2 block border border-tertiary-color/15 rounded-sm bg-white"
             >
               <option value="">All</option>
               {countriesQuery?.data?.data?.map((country, index) => {
@@ -135,7 +135,7 @@ const Memorials = () => {
           <label className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
             <span className="font-medium text-primary-color">Cause of Death:</span>
             <select
-              className="py-2 px-2 block border border-tertiary-color/30 bg-white rounded-sm w-[10rem]"
+              className="py-2 px-2 block border border-tertiary-color/15 bg-white rounded-sm w-[10rem]"
               onChange={(e) => setTempSearchDesignation(e?.target?.value)}
               value={tempSearchDesignation}
               name="designation"
@@ -154,7 +154,7 @@ const Memorials = () => {
           <label className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
             <span className="font-semibold text-primary-color">Gender:</span>
             <select
-              className="py-2 px-2 block border border-tertiary-color/30 bg-white rounded-sm w-[10rem]"
+              className="py-2 px-2 block border border-tertiary-color/15 bg-white rounded-sm w-[10rem]"
               value={tempSearchGender}
               onChange={(e) => setTempSearchGender(e?.target?.value)}
               name="gender"

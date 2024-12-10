@@ -33,7 +33,7 @@ const Contact = () => {
   }, [userCountryQuery.isSuccess, userCountryQuery.data]);
 
   return (
-    <section className="max-w-2xl mx-auto px-4 py-10">
+    <section className="max-w-2xl mx-auto px-6 py-6 text-primary-color bg-white shadow-xl rounded-lg my-12">
       {/* Title */}
       <div className="text-center">
         <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">

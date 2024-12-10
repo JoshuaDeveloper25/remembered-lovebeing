@@ -4,7 +4,7 @@ const TermsAndConditions = () => {
   const { t } = useTranslation();
 
   return (
-    <main className="max-w-3xl mx-auto px-6 py-12 text-primary-color">
+    <main className="max-w-3xl mx-auto px-6 py-6 text-primary-color bg-white shadow-xl rounded-lg my-12">
       <div className="mb-8">
         <h2 className="font-mono tracking-wider text-4xl uppercase font-semibold text-center">
           {t("Terms & Conditions")}
@@ -139,7 +139,7 @@ const TermsAndConditions = () => {
         </h2>
         <p className="mt-2 text-lg">
           {t(
-            "These terms will be governed by the laws of [Country/Region], and any disputes will be resolved in the courts of [City/Region]."
+            "These terms will be governed by the laws of Honduras, and any disputes will be resolved in the courts of El Progreso, Yoro."
           )}
         </p>
       </section>

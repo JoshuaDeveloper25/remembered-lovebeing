@@ -116,15 +116,164 @@ const resources = {
       "These terms may be modified at any time. Changes will be notified to users via the application and will take effect immediately.":
         "These terms may be modified at any time. Changes will be notified to users via the application and will take effect immediately.",
       "Applicable Law and Jurisdiction": "Applicable Law and Jurisdiction",
-      "These terms will be governed by the laws of [Country/Region], and any disputes will be resolved in the courts of [City/Region].":
-        "These terms will be governed by the laws of [Country/Region], and any disputes will be resolved in the courts of [City/Region].",
-      Contact: "Contact",
+      "These terms will be governed by the laws of Honduras, and any disputes will be resolved in the courts of El Progreso, Yoro.":
+        "These terms will be governed by the laws of Honduras, and any disputes will be resolved in the courts of El Progreso, Yoro.",
       "If you have any questions or concerns about these terms, you can contact us at [email address].":
         "If you have any questions or concerns about these terms, you can contact us at [email address].",
+      "Discover Us": "Discover Us",
+      "About Us": "Abous Us",
+      "Privacy Policy": "Privacy Policy",
+      Introduction: "Introduction",
+      "Intro Text":
+        "At Eternal MemoriesX, we are committed to protecting your privacy and ensuring that your personal data is handled securely and responsibly. By using our platform, you agree to this Privacy Policy, which explains how we collect, use, protect, and share your information.",
+      "Information We Collect": "Information We Collect",
+      "Data Categories":
+        "When you use our application, we may collect the following categories of data:",
+      "Personal Information":
+        "Personal information: Name, email address, contact details, and payment details (for subscriptions).",
+      "Memorial Profile Information":
+        "Memorial profile information: Names, dates of birth and death, images, and tributes.",
+      "Navigation Data":
+        "Navigation data: IP address, browser type, device used, and application usage statistics.",
+      "How We Use Your Information": "How We Use Your Information",
+      "Usage Explanation": "The information we collect is used to:",
+      "Provide Services":
+        "Provide and improve the services offered on our application.",
+      "Manage Account":
+        "Manage your account, subscriptions, and features, such as uploading images or tributes.",
+      "Ensure Security": "Ensure platform security and prevent misuse.",
+      "Send Notifications":
+        "Send important notifications, such as service updates or reminders.",
+      "Data Sharing": "Data Sharing",
+      "Sharing Conditions":
+        "We do not share your personal data with third parties, except in the following situations:",
+      "External Providers":
+        "External service providers: We use services like PayPal or Stripe to securely process payments.",
+      "Legal Requirements":
+        "Legal requirements: If requested by authorities in accordance with the law.",
+      "User Consent":
+        "User consent: When you explicitly authorize us to share your information.",
+      "Data Security": "Data Security",
+      "Security Measures":
+        "We have implemented technical and organizational measures to protect your personal information from unauthorized access, loss, alteration, or disclosure. However, no security system is completely infallible. We recommend using strong passwords and keeping your information confidential.",
+      "Data Retention": "Data Retention",
+      "Retention Policy":
+        "We will retain your data while your account is active or as necessary to provide our services. If you want to delete your information, you can request it by emailing us at [email address].",
+      "User Rights": "User Rights",
+      "Rights List":
+        "As a user of Eternal MemoriesX, you have the following rights:",
+      Access: "Access: You can request a copy of your personal data.",
+      Correction:
+        "Correction: You have the right to correct inaccurate or incomplete information.",
+      Deletion: "Deletion: You can ask us to delete your personal information.",
+      Restriction:
+        "Restriction: You can request that we limit the use of your data in certain situations.",
+      "Exercise Rights":
+        "To exercise these rights, contact us at [email address].",
+      "Memorial Privacy": "Memorial Profile Privacy",
+      "Memorial Privacy Text":
+        "The memorial profiles you create can be set as public or private:",
+      "Public Profiles":
+        "Public profiles will be visible to anyone who accesses the application.",
+      "Private Profiles":
+        "Private profiles will be restricted and accessible only to people you authorize.",
+      "Sensitive Info Warning":
+        "We recommend not including sensitive information in public profiles.",
+      Cookies: "Cookies",
+      "Cookies Text":
+        "Our application uses cookies to enhance your user experience. Cookies are small files stored on your device that help us analyze application usage. You can disable cookies in your browser settings, though some features may be affected.",
+      "Policy Changes": "Changes to this Policy",
+      "Policy Changes Text":
+        "We may update this Privacy Policy occasionally. We will notify you of any changes by posting them in our application and, if necessary, sending you an email notification. The date of the last update will appear at the end of this document.",
+      Contact: "Contact",
+      "Contact Info":
+        "If you have questions, concerns, or want to exercise your privacy rights, you can contact us at:",
+      Email: "Email: [email address]",
+      Phone: "Phone: [contact number, optional]",
+      "Last Update": "Last updated:",
+      "Privacy Policy": "Privacy Policy",
+      "At Eternal MemoriesX, we are committed to protecting your privacy and ensuring that your personal data is handled securely and responsibly. By using our platform, you agree to this Privacy Policy, which explains how we collect, use, protect, and share your information.":
+        "At Eternal MemoriesX, we are committed to protecting your privacy and ensuring that your personal data is handled securely and responsibly. By using our platform, you agree to this Privacy Policy, which explains how we collect, use, protect, and share your information.",
+      "Information We Collect": "Information We Collect",
+      "When you use our application, we may collect the following categories of data":
+        "When you use our application, we may collect the following categories of data",
+      "Personal Information: Name, email, contact details, and payment information (in case of subscriptions).":
+        "Personal Information: Name, email, contact details, and payment information (in case of subscriptions).",
+      "Memorial Profile Information: Names, birth and death dates, images, and tributes.":
+        "Memorial Profile Information: Names, birth and death dates, images, and tributes.",
+      "Browsing Data: IP address, browser type, device used, and app usage statistics.":
+        "Browsing Data: IP address, browser type, device used, and app usage statistics.",
+      "How We Use Your Information": "How We Use Your Information",
+      "The information we collect is used to:":
+        "The information we collect is used to:",
+      "Provide and improve the services offered in our app.":
+        "Provide and improve the services offered in our app.",
+      "Manage your account, subscriptions, and features such as uploading images or tributes.":
+        "Manage your account, subscriptions, and features such as uploading images or tributes.",
+      "Ensure the security of the platform and prevent misuse.":
+        "Ensure the security of the platform and prevent misuse.",
+      "Send important notifications, such as service updates or reminders.":
+        "Send important notifications, such as service updates or reminders.",
+      "Data Sharing": "Data Sharing",
+      "We do not share your personal data with third parties, except in the following situations:":
+        "We do not share your personal data with third parties, except in the following situations:",
+      "External Service Providers: We use services such as PayPal or Stripe to securely process payments.":
+        "External Service Providers: We use services such as PayPal or Stripe to securely process payments.",
+      "Legal Requirements: If requested by any authority in accordance with the law.":
+        "Legal Requirements: If requested by any authority in accordance with the law.",
+      "User Consent: When you explicitly authorize us to share your information.":
+        "User Consent: When you explicitly authorize us to share your information.",
+      "Data Security": "Data Security",
+      "We have implemented technical and organizational measures to protect your personal information against unauthorized access, loss, alteration, or disclosure. However, no security system is completely infallible. We recommend using strong passwords and keeping your information confidential.":
+        "We have implemented technical and organizational measures to protect your personal information against unauthorized access, loss, alteration, or disclosure. However, no security system is completely infallible. We recommend using strong passwords and keeping your information confidential.",
+      "Data Retention": "Data Retention",
+      "We will retain your data while your account is active or as necessary to provide you with our services. If you wish to delete your information, you can request it by emailing us at [email].":
+        "We will retain your data while your account is active or as necessary to provide you with our services. If you wish to delete your information, you can request it by emailing us at [email].",
+      "User Rights": "User Rights",
+      "As a user of Eternal MemoriesX, you have the following rights:":
+        "As a user of Eternal MemoriesX, you have the following rights:",
+      "Access: You can request a copy of your personal data.":
+        "Access: You can request a copy of your personal data.",
+      "Correction: You have the right to correct inaccurate or incomplete information.":
+        "Correction: You have the right to correct inaccurate or incomplete information.",
+      "Deletion: You can ask us to delete your personal information.":
+        "Deletion: You can ask us to delete your personal information.",
+      "Restriction: You can request that we limit the use of your data in certain situations.":
+        "Restriction: You can request that we limit the use of your data in certain situations.",
+      "To exercise these rights, contact us at [email].":
+        "To exercise these rights, contact us at [email].",
+      "Memorial Profile Privacy": "Memorial Profile Privacy",
+      "The memorial profiles you create can be set as public or private:":
+        "The memorial profiles you create can be set as public or private:",
+      "Public profiles will be visible to anyone who accesses the app.":
+        "Public profiles will be visible to anyone who accesses the app.",
+      "Private profiles will be restricted and accessible only to those you authorize.":
+        "Private profiles will be restricted and accessible only to those you authorize.",
+      "We recommend not including sensitive information in public profiles.":
+        "We recommend not including sensitive information in public profiles.",
+      "Use of Cookies": "Use of Cookies",
+      "Our application uses cookies to enhance your user experience. Cookies are small files stored on your device that help us analyze app usage. You can disable cookies in your browser settings, although some features may be affected.":
+        "Our application uses cookies to enhance your user experience. Cookies are small files stored on your device that help us analyze app usage. You can disable cookies in your browser settings, although some features may be affected.",
+      "Changes to this Policy": "Changes to this Policy",
+      "We may update this Privacy Policy occasionally. We will notify you of any changes by posting them in our app and, if necessary, sending you a notice by email. The last update date will appear at the end of this document.":
+        "We may update this Privacy Policy occasionally. We will notify you of any changes by posting them in our app and, if necessary, sending you a notice by email. The last update date will appear at the end of this document.",
+      Contact: "Contact",
+      "If you have any questions, concerns, or wish to exercise your privacy rights, you can contact us at:":
+        "If you have any questions, concerns, or wish to exercise your privacy rights, you can contact us at:",
+      "Email: [email]": "Email: [email]",
+      "Phone: [contact number, optional]": "Phone: [contact number, optional]",
+      "Last updated:": "Last updated:",
+      "Additional Notes": "Additional Notes",
+      "If you plan to expand internationally or include users outside of Honduras, you may add a specific section on international data transfers.":
+        "If you plan to expand internationally or include users outside of Honduras, you may add a specific section on international data transfers.",
+      "If you use a hosting provider (such as AWS or Azure), mention that data is stored on secure servers, possibly located outside of Honduras.":
+        "If you use a hosting provider (such as AWS or Azure), mention that data is stored on secure servers, possibly located outside of Honduras.",
+      Name: "Name",
     },
   },
   es: {
     translation: {
+      Name: "Nombre",
       Memorials: "Memoriales",
       Posts: "Publicaciones",
       News: "Noticias",
@@ -238,11 +387,89 @@ const resources = {
       "These terms may be modified at any time. Changes will be notified to users via the application and will take effect immediately.":
         "Estos términos pueden ser modificados en cualquier momento. Los cambios serán notificados a los usuarios a través de la aplicación y entrarán en vigencia inmediatamente.",
       "Applicable Law and Jurisdiction": "Ley Aplicable y Jurisdicción",
-      "These terms will be governed by the laws of [Country/Region], and any disputes will be resolved in the courts of [City/Region].":
-        "Estos términos se regirán por las leyes de [País/Región] y cualquier disputa será resuelta en los tribunales de [Ciudad/Región].",
-      Contact: "Contacto",
+      "These terms will be governed by the laws of Honduras, and any disputes will be resolved in the courts of El Progreso, Yoro.":
+        "Estos términos se regirán por las leyes de Honduras y cualquier disputa será resuelta en los tribunales de El Progreso, Yoro.",
       "If you have any questions or concerns about these terms, you can contact us at [email address].":
         "Si tienes alguna pregunta o inquietud sobre estos términos, puedes contactarnos en [correo electrónico].",
+      "Discover Us": "Descubrénos",
+      "About Us": "Sobre Nosotros",
+      "Privacy Policy": "Política de Privacidad",
+      "At Eternal MemoriesX, we are committed to protecting your privacy and ensuring that your personal data is handled securely and responsibly. By using our platform, you agree to this Privacy Policy, which explains how we collect, use, protect, and share your information.":
+        "En Eternal MemoriesX, nos comprometemos a proteger tu privacidad y garantizar que tus datos personales sean tratados de manera segura y responsable. Al usar nuestra plataforma, aceptas esta Política de Privacidad, la cual explica cómo recopilamos, usamos, protegemos y compartimos tu información.",
+      "Information We Collect": "Información que Recopilamos",
+      "When you use our application, we may collect the following categories of data":
+        "Cuando usas nuestra aplicación, podemos recopilar las siguientes categorías de datos",
+      "Personal Information: Name, email, contact details, and payment information (in case of subscriptions).":
+        "Información Personal: Nombre, correo electrónico, datos de contacto y detalles de pago (en caso de suscripciones).",
+      "Memorial Profile Information: Names, birth and death dates, images, and tributes.":
+        "Información de los Perfiles Memoriales: Nombres, fechas de nacimiento y fallecimiento, imágenes, y tributos.",
+      "Browsing Data: IP address, browser type, device used, and app usage statistics.":
+        "Datos de navegación: Dirección IP, tipo de navegador, dispositivo utilizado y estadísticas de uso de la aplicación.",
+      "How We Use Your Information": "Cómo Usamos Tu Información",
+      "The information we collect is used to:":
+        "La información que recopilamos se utiliza para:",
+      "Provide and improve the services offered in our app.":
+        "Proporcionar y mejorar los servicios ofrecidos en nuestra aplicación.",
+      "Manage your account, subscriptions, and features such as uploading images or tributes.":
+        "Gestionar tu cuenta, suscripciones y funcionalidades, como subir imágenes o tributos.",
+      "Ensure the security of the platform and prevent misuse.":
+        "Garantizar la seguridad de la plataforma y prevenir usos indebidos.",
+      "Send important notifications, such as service updates or reminders.":
+        "Enviar notificaciones importantes, como actualizaciones del servicio o recordatorios.",
+      "Data Sharing": "Compartición de Datos",
+      "We do not share your personal data with third parties, except in the following situations:":
+        "No compartimos tus datos personales con terceros, excepto en las siguientes situaciones:",
+      "External Service Providers: We use services such as PayPal or Stripe to securely process payments.":
+        "Proveedores de servicios externos: Utilizamos servicios como PayPal o Stripe para procesar pagos de manera segura.",
+      "Legal Requirements: If requested by any authority in accordance with the law.":
+        "Requerimientos legales: Si alguna autoridad lo solicita conforme a la ley.",
+      "User Consent: When you explicitly authorize us to share your information.":
+        "Consentimiento del usuario: Cuando nos autorizas explícitamente a compartir tu información.",
+      "Data Security": "Seguridad de los Datos",
+      "We have implemented technical and organizational measures to protect your personal information against unauthorized access, loss, alteration, or disclosure. However, no security system is completely infallible. We recommend using strong passwords and keeping your information confidential.":
+        "Hemos implementado medidas técnicas y organizativas para proteger tu información personal contra accesos no autorizados, pérdida, alteración o divulgación. Sin embargo, ningún sistema de seguridad es completamente infalible. Te recomendamos usar contraseñas seguras y mantener tu información confidencial.",
+      "Data Retention": "Retención de Datos",
+      "We will retain your data while your account is active or as necessary to provide you with our services. If you wish to delete your information, you can request it by emailing us at [email].":
+        "Mantendremos tus datos mientras tu cuenta esté activa o mientras sea necesario para proporcionarte nuestros servicios. Si deseas eliminar tu información, puedes solicitarlo enviándonos un correo a [correo electrónico].",
+      "User Rights": "Derechos del Usuario",
+      "As a user of Eternal MemoriesX, you have the following rights:":
+        "Como usuario de Eternal MemoriesX, tienes los siguientes derechos:",
+      "Access: You can request a copy of your personal data.":
+        "Acceso: Puedes solicitar una copia de tus datos personales.",
+      "Correction: You have the right to correct inaccurate or incomplete information.":
+        "Corrección: Tienes derecho a corregir información inexacta o incompleta.",
+      "Deletion: You can ask us to delete your personal information.":
+        "Eliminación: Puedes pedirnos que eliminemos tu información personal.",
+      "Restriction: You can request that we limit the use of your data in certain situations.":
+        "Restricción: Puedes solicitar que limitemos el uso de tus datos en ciertas situaciones.",
+      "To exercise these rights, contact us at [email].":
+        "Para ejercer estos derechos, contáctanos en [correo electrónico].",
+      "Memorial Profile Privacy": "Privacidad en Perfiles Memoriales",
+      "The memorial profiles you create can be set as public or private:":
+        "Los perfiles memoriales que creas pueden configurarse como públicos o privados:",
+      "Public profiles will be visible to anyone who accesses the app.":
+        "Los perfiles públicos estarán visibles para cualquier persona que acceda a la aplicación.",
+      "Private profiles will be restricted and accessible only to those you authorize.":
+        "Los perfiles privados estarán restringidos y solo accesibles a las personas que tú autorices.",
+      "We recommend not including sensitive information in public profiles.":
+        "Te recomendamos no incluir información sensible en perfiles públicos.",
+      "Use of Cookies": "Uso de Cookies",
+      "Our application uses cookies to enhance your user experience. Cookies are small files stored on your device that help us analyze app usage. You can disable cookies in your browser settings, although some features may be affected.":
+        "Nuestra aplicación utiliza cookies para mejorar tu experiencia de usuario. Las cookies son pequeños archivos que se almacenan en tu dispositivo y nos ayudan a analizar el uso de la aplicación. Puedes desactivar las cookies desde la configuración de tu navegador, aunque algunas funciones podrían verse afectadas.",
+      "Changes to this Policy": "Cambios en esta Política",
+      "We may update this Privacy Policy occasionally. We will notify you of any changes by posting them in our app and, if necessary, sending you a notice by email. The last update date will appear at the end of this document.":
+        "Podemos actualizar esta Política de Privacidad ocasionalmente. Te notificaremos cualquier cambio publicándolo en nuestra aplicación y, si es necesario, enviándote un aviso por correo electrónico. La fecha de la última actualización aparecerá al final de este documento.",
+      "If you have any questions, concerns, or wish to exercise your privacy rights, you can contact us at:":
+        "Si tienes preguntas, inquietudes o deseas ejercer tus derechos relacionados con la privacidad, puedes contactarnos en:",
+      "Email: [email]": "Correo Electrónico: [correo electrónico]",
+      "Phone: [contact number, optional]":
+        "Teléfono: [número de contacto, opcional]",
+      "Last updated:": "Última actualización:",
+      "Additional Notes": "Notas Adicionales",
+      "If you plan to expand internationally or include users outside of Honduras, you may add a specific section on international data transfers.":
+        "Si planeas expandirte internacionalmente o incluir usuarios de fuera de Honduras, puedes agregar una sección específica sobre transferencias internacionales de datos.",
+      "If you use a hosting provider (such as AWS or Azure), mention that data is stored on secure servers, possibly located outside of Honduras.":
+        "Si usas un proveedor de alojamiento (como AWS o Azure), menciona que los datos se almacenan en servidores seguros, posiblemente ubicados fuera de Honduras.",
     },
   },
 };

@@ -23,12 +23,14 @@ import Posts from "./pages/Posts/Posts";
 import News from "./pages/News/News";
 import Prices from "./pages/Prices/Prices";
 import Checkout from "./pages/Checkout/Checkout";
+import EmailSendSuccessfully from "./components/EmailSendSuccessfully";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 
 import PublicRoutes from "./auth/PublicRoutes";
 import PrivateRoutes from "./auth/PrivateRoutes";
-import EmailSendSuccessfully from "./components/EmailSendSuccessfully";
-import TermsAndConditions from "./pages/TermsAndConditions";
 
 const router = createBrowserRouter([
   //🔒 Public Routes - Cannot access if we're logged in...
@@ -93,6 +95,11 @@ const router = createBrowserRouter([
       },
 
       {
+        element: <ProfileRemembered />,
+        path: "/remembered-profile/:slug",
+      },
+
+      {
         element: <Posts />,
         path: "/posts",
       },
@@ -108,6 +115,21 @@ const router = createBrowserRouter([
       },
 
       {
+        element: <AboutUs />,
+        path: "/about-us",
+      },
+
+      {
+        element: <TermsAndConditions />,
+        path: "/terms-and-conditions",
+      },
+      
+      {
+        element: <PrivacyPolicy />,
+        path: "/privacy-policy",
+      },
+
+      {
         element: <Contact />,
         path: "/contact",
       },
@@ -115,16 +137,6 @@ const router = createBrowserRouter([
       {
         element: <EmailSendSuccessfully />,
         path: "/email-sent-successfully",
-      },
-
-      {
-        element: <TermsAndConditions />,
-        path: "/terms-and-conditions",
-      },
-
-      {
-        element: <ProfileRemembered />,
-        path: "/remembered-profile/:slug",
       },
     ],
   },

@@ -1,22 +1,12 @@
 import CarouselCommunity from "./CarouselCommunity";
 import { useTranslation } from "react-i18next";
 import { websiteAnalytics } from "../../../db/data";
-// import treeOne from "../../../assets/tree-1.png";
-// import treeTwo from "../../../assets/tree-2.png";
 
 const WhatsHappening = () => {
   const { t } = useTranslation(); // Hook para traducciones
 
   return (
     <section className="bg-white sm:pt-8 pt-2 py-8 relative">
-      {/* <div className="absolute left-0">
-        <img className="w-60 rotate-[20deg] sm:opacity-80 opacity-20" src={treeOne} />
-      </div>
-
-      <div className="absolute right-0">
-        <img className="w-60 rotate-[-20deg] sm:opacity-80 opacity-20" src={treeTwo} />
-      </div> */}
-
       <div className="container-page sticky z-10">
         <div className="text-center sm:pb-8 pb-5">
           <h2 className="font-mono text-4xl sm:text-5xl font-semibold text-primary-color tracking-wider">

@@ -89,7 +89,10 @@ const Contact = () => {
             inputLabel={t("Phone (Optional)")}
             inputLabelClassName={"flex-1 block"}
             additionalInputClassnames={"border border-gray-200"}
-            inputProps={{ type: "tel", placeholder: "Enter your phone number" }}
+            inputProps={{
+              type: "tel",
+              placeholder: t("Enter your phone number"),
+            }}
             inputName={"user_phone"}
             required={false}
           />

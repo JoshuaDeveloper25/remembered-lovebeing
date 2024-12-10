@@ -101,9 +101,9 @@ const NavbarDesktop = ({
                       />
                     </ul>
                   ) : (
-                    <ul className="absolute right-5 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
+                    <ul className="absolute right-5 shadow-lg shadow-primary-color-light bg-primary-color text-white z-[9999999] w-max rounded max-h-96 overflow-auto">
                       <NavbarDropdownLink
-                        hoverBgLink={"text-white hover:text-secondary-color"}
+                        hoverBgLink={"text-white hover:bg-primary-color-light"}
                         onClick={() => setOpenDropDown(false)}
                         linkText={t("Sign In")}
                         linkTo={"/sign-in"}

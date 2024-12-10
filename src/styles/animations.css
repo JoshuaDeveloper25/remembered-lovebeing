@@ -295,3 +295,11 @@
 .animate-slide-up {
   animation: slide-up .6s ease-out forwards;
 }
+@keyframes spin {
+  to {
+      transform: rotate(360deg);
+  }
+}
+.animate-spin {
+  animation: spin 5s linear infinite;
+}

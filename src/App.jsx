@@ -31,6 +31,7 @@ import Contact from "./pages/Contact";
 
 import PublicRoutes from "./auth/PublicRoutes";
 import PrivateRoutes from "./auth/PrivateRoutes";
+import CheckingStatusPagadito from "./pages/CheckingStatusPagadito";
 
 const router = createBrowserRouter([
   //🔒 Public Routes - Cannot access if we're logged in...
@@ -74,6 +75,11 @@ const router = createBrowserRouter([
           {
             element: <Checkout />,
             path: "/checkout/",
+          },
+
+          {
+            element: <CheckingStatusPagadito />,
+            path: "/checking-status-pagadito/",
           },
         ],
       },
@@ -123,7 +129,7 @@ const router = createBrowserRouter([
         element: <TermsAndConditions />,
         path: "/terms-and-conditions",
       },
-      
+
       {
         element: <PrivacyPolicy />,
         path: "/privacy-policy",

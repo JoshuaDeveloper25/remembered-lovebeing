@@ -3,7 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import cloud from "../../assets/cloud.png";
-import sun from "../../assets/sun.png";
+import peaceDove from "../../assets/peace-dove.png";
+import landscape from "../../assets/landscape.jpg";
 
 const Posts = () => {
   // --> 📝 Get all posts of remembereds
@@ -17,16 +18,20 @@ const Posts = () => {
 
   return (
     <main className="relative">
-      <div className="absolute top-8 left-8">
-        <img className="w-36 sm:opacity-85 opacity-20 animate-spin" src={sun} />
+      <div className="fixed top-18 right-8">
+        <img className="w-32 rotate-[90]" src={peaceDove} />
       </div>
 
-      <div className="absolute top-16 left-16 -z-[1]">
-        <img
-          className="w-4/5 rotate-[-30deg] opacity-30"
-          src={cloud}
-          alt="cloud"
-        />
+      <div className="fixed top-18 left-8">
+        <img className="w-32 [transform:rotateY(180deg)]" src={peaceDove} />
+      </div>
+
+      <div className="fixed top-[20rem] left-1/2 transform translate-x-1/2 -translate-y-1/2 -z-[1]">
+        <img className="w-[100rem] rotate-[20deg]" src={cloud} alt="cloud" />
+      </div>
+
+      <div className="fixed top-[20rem] right-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-[1]">
+        <img className="w-[100rem] rotate-[-20deg]" src={cloud} alt="cloud" />
       </div>
 
       <section
@@ -50,24 +55,12 @@ const Posts = () => {
           </h2>
         ) : (
           allRememberedPostsQuery?.data?.data?.map((post, index) => (
-            <div key={index}>
-              {index % 2 === 0 && (
-                <div className="absolute top-16 left-16 -z-[1]">
-                  <img
-                    className="w-4/5 rotate-[-30deg] opacity-30"
-                    src={cloud}
-                    alt="cloud"
-                  />
-                </div>
-              )}
-
-              <PublicPost
-                ownerName={post?.owner?.name}
-                totalComments={post?.comments}
-                post={post}
-                key={index}
-              />
-            </div>
+            <PublicPost
+              ownerName={post?.owner?.name}
+              totalComments={post?.comments}
+              post={post}
+              key={index}
+            />
           ))
         )}
       </section>

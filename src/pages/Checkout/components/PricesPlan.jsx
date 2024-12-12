@@ -1,13 +1,30 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
-import { Link, useNavigate } from "react-router-dom";
+import AppContext from "../../../context/AppProvider";
+import { useNavigate } from "react-router-dom";
+import { TbPigMoney } from "react-icons/tb";
 import { FaCheck } from "react-icons/fa";
 import { toast } from "react-toastify";
 import axios from "axios";
 
+import payments from "../../../assets/payments.png";
+import paypal from "../../../assets/paypal.png";
+import { useContext, useState } from "react";
+import formatDate from "../../../utils/formatDate";
+
 const PricesPlan = ({ packageName }) => {
+  console.log();
+
+  const { userInfo } = useContext(AppContext);
+  const ern = `${userInfo?.email} - ` + `${packageName === "singlePackage" ? "singlePackage - 1 - " : "tertiaryPackage - 3 - "}` + `${formatDate(Date.now())}`;
+
+  const [selectedPayments, setSelectedPayments] = useState(false);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
+  const handlePaymentChange = (value) => {
+    setSelectedPayments(value);
+  };
 
   const makeProfilePackagePaymentMutation = useMutation({
     mutationFn: async (paymentInfo) =>
@@ -27,6 +44,52 @@ const PricesPlan = ({ packageName }) => {
       toast.error(getFastApiErrors(err));
     },
   });
+
+  const generatePaymentURLMutation = useMutation({
+    mutationFn: async (paymentInfo) =>
+      await axios.post(
+        `${
+          import.meta.env.VITE_BASE_URL
+        }/payments/generate-pagadito-payment-url`,
+        paymentInfo
+      ),
+    onSuccess: (res) => {
+      const paymentUrl = res?.data?.data?.url;
+      console.log(res);
+
+      if (paymentUrl) {
+        window.location.href = `${paymentUrl}`;
+        console.log(res?.data?.data?.token);
+      } else {
+        toast.error("Didn't receive a valid url.");
+      }
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(getFastApiErrors(err));
+    },
+  });
+
+  const generatePaymentURL = () => {
+    generatePaymentURLMutation?.mutate({
+      ern: ern,
+      amount: packageName === "singlePackage" ? 19.99 : 59.99,
+      currency: "USD",
+      details: [
+        {
+          quantity: packageName === "singlePackage" ? 1 : 3,
+          description:
+            packageName === "singlePackage"
+              ? "Compra De SinglePackage Premium"
+              : "Compra De TertiaryPackage Premium",
+          price: 19.99,
+        },
+      ],
+      custom_params: {
+        param1: packageName === "singlePackage" ? "Single" : "Tertiary",
+      },
+    });
+  };
 
   const handleSubmit = (e) => {
     e?.preventDefault();
@@ -133,43 +196,88 @@ const PricesPlan = ({ packageName }) => {
 
       <div className="flex-[30%] px-4 py-8">
         <div>
-          <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
-            Complete your order
+          <h2 className="font-mono tracking-wider text-3xl text-primary-color uppercase font-semibold">
+            Select a payment method
           </h2>
           <div className="bg-yellow-500 h-2 w-24 my-3"></div>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-8">
-          <div>
-            <input
-              type="text"
-              placeholder="Address Line"
-              name="payment_status"
-              className="animation-fade px-4 py-3 bg-gray-100 focus:bg-transparent text-gray-800 w-full text-sm rounded-md "
-            />
-          </div>
+        <div className="space-y-4 mt-8">
+          <label
+            className={`flex items-center justify-between border rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
+              selectedPayments === "plural"
+                ? "bg-primary-color-light/50"
+                : "bg-white"
+            }`}
+          >
+            <div className="flex items-center gap-2.5">
+              <input
+                type="radio"
+                checked={selectedPayments === "plural"} // Compara con el valor de "plural"
+                name="paymentMethod"
+                value="plural"
+                onChange={() => handlePaymentChange("plural")}
+                className="w-4 h-4 text-primary-color-light bg-gray-100 border-gray-300 focus:ring-primary-color-light dark:focus:ring-primary-color-light dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <p className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                Pay with a card
+              </p>
+            </div>
+            <div>
+              <img src={payments} className="w-36" />
+            </div>
+          </label>
 
-          <div className="flex gap-4 flex-col sm:flex-row mt-8">
-            <button
-              type="submit"
-              disabled={makeProfilePackagePaymentMutation?.isPending}
-              className="rounded-md px-6 py-3 w-full text-sm tracking-wide disabled:bg-primary-color-light/20 bg-primary-color-light hover:bg-primary-color-light/50 animation-fade font-semibold text-white"
-            >
-              {makeProfilePackagePaymentMutation?.isPending
-                ? "Completing Purchase..."
-                : "Complete Purchase"}
-            </button>
-
-            <Link to="/prices">
+          {selectedPayments === "plural" && (
+            <div className="shadow-md rounded-md bg-white p-4">
               <button
                 type="button"
-                className="rounded-md px-6 py-3 w-full text-sm tracking-wide bg-transparent hover:bg-red-200 border border-red-400 text-red-500 max-md:order-1 animation-fade font-semibold"
+                className="btn bg-green-400 text-white flex mx-auto items-center gap-2 w-fit font-semibold hover:animate-pulse animation-fade"
+                onClick={generatePaymentURL}
               >
-                Cancel
+                <TbPigMoney size={26} />
+                Continue With A Card
               </button>
-            </Link>
-          </div>
-        </form>
+            </div>
+          )}
+
+          <label
+            className={`flex items-center justify-between border rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
+              selectedPayments === "singular"
+                ? "bg-primary-color-light/50"
+                : "bg-white"
+            }`}
+          >
+            <div className="flex items-center gap-2.5">
+              <input
+                type="radio"
+                checked={selectedPayments === "singular"} // Compara con el valor de "singular"
+                name="paymentMethod"
+                value="singular"
+                onChange={() => handlePaymentChange("singular")}
+                className="w-4 h-4 text-primary-color-light bg-gray-100 border-gray-300 focus:ring-primary-color-light dark:focus:ring-primary-color-light dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <p className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                Pay with Paypal
+              </p>
+            </div>
+            <div>
+              <img src={paypal} className="w-36" />
+            </div>
+          </label>
+
+          {selectedPayments === "singular" && (
+            <div className="shadow-md rounded-md bg-white p-4">
+              <button
+                type="button"
+                className="btn bg-green-400 text-white flex mx-auto items-center gap-2 w-fit font-semibold hover:animate-pulse animation-fade"
+              >
+                <TbPigMoney size={26} />
+                Continue With PayPal
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

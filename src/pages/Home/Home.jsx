@@ -24,7 +24,7 @@ const Home = () => {
       <CreateMemorial />
 
       {/* Recent Online Memorials */}
-      <RecentMemorialsCarousel />
+      {/* <RecentMemorialsCarousel /> */}
 
       {/* Find a Memorial */}
       <FindMemorial />

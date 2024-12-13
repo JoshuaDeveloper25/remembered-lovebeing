@@ -122,7 +122,10 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
 
       {generatedCode && (
         <div ref={canvasRef} className="hidden">
-          <QRCodeCanvas value={`http://192.168.100.26:5173${generatedCode}`} />
+          <QRCodeCanvas
+            // value={`http://192.168.100.26:5173${generatedCode}`}
+            value={`/${generatedCode}`}
+          />
         </div>
       )}
 

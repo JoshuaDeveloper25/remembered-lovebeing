@@ -10,6 +10,7 @@ const resources = {
       Prices: "Prices",
       "My Profiles": "My Profiles",
       "Log Out": "Log Out",
+      "Sign in": "Sign in",
       "Preserve the memories of those you love":
         "Preserve the memories of those you love",
       "Create a profile for your loved one, upload photos, share memories through posts and allow others to leave tributes and condolences. Generate a QR code.":
@@ -278,10 +279,13 @@ const resources = {
       "Contact Us": "Contact Us",
       Send: "Send",
       "Sending...": "Sending...",
+      "Adittional Settings": "Adittional Settings",
     },
   },
   es: {
     translation: {
+      "Adittional Settings": "Ajustes Adicionales",
+      "Sign in": "Iniciar sesión",
       "Enter your message here...": "Ingresa tu mensaje aquí...",
       Message: "Mensaje",
       "Contact Us": "Contáctanos",

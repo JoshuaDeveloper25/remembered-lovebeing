@@ -3,6 +3,7 @@ import NavbarDropdownLink from "./NavbarDropdownLink";
 import { Link, NavLink } from "react-router-dom";
 import ToggleLanguage from "./ToggleLanguage";
 import { createPortal } from "react-dom";
+import { CiLogin } from "react-icons/ci";
 
 // Images && icons
 import logo from "../assets/logo.png";
@@ -50,24 +51,24 @@ const NavbarDesktop = ({
             <ToggleLanguage handleChange={handleChange} language={language} />
 
             {/* User Dropdown */}
-            <div className="relative">
-              <button
-                className="animation-fade text-xl hover:rounded-full hover:bg-primary-color-light/40 p-2"
-                onClick={() => setOpenDropDown(!openDropDown)}
-                type="button"
-              >
-                <img
-                  className="w-12 object-cover mx-auto rounded-full shadow-lg"
-                  src={
-                    userInfo?.profile_image
-                      ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
-                      : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-                  }
-                />
-              </button>
+            {openDropDown && (
+              <>
+                <div className="relative">
+                  <button
+                    className="animation-fade text-xl hover:rounded-full hover:bg-primary-color-light/40 p-2"
+                    onClick={() => setOpenDropDown(!openDropDown)}
+                    type="button"
+                  >
+                    <img
+                      className="w-12 object-cover mx-auto rounded-full shadow-lg"
+                      src={
+                        userInfo?.profile_image
+                          ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
+                          : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                      }
+                    />
+                  </button>
 
-              {openDropDown && (
-                <>
                   {createPortal(
                     <div
                       onClick={() => setOpenDropDown(!openDropDown)}
@@ -76,7 +77,7 @@ const NavbarDesktop = ({
                     document.body
                   )}
 
-                  {userInfo?.access_token ? (
+                  {userInfo?.access_token && (
                     <ul className="absolute right-5 shadow-lg shadow-primary-color-light bg-primary-color text-white pt-2 z-[9999999] w-max rounded max-h-96 overflow-auto">
                       <div className="border-b pb-1.5 px-5">
                         <h2 className="block font-medium">
@@ -100,19 +101,22 @@ const NavbarDesktop = ({
                         onClick={handleLogOut}
                       />
                     </ul>
-                  ) : (
-                    <ul className="absolute right-5 shadow-lg shadow-primary-color-light bg-primary-color text-white z-[9999999] w-max rounded max-h-96 overflow-auto">
-                      <NavbarDropdownLink
-                        hoverBgLink={"text-white hover:bg-primary-color-light"}
-                        onClick={() => setOpenDropDown(false)}
-                        linkText={t("Sign In")}
-                        linkTo={"/sign-in"}
-                      />
-                    </ul>
                   )}
-                </>
-              )}
-            </div>
+                </div>
+              </>
+            )}
+
+            {/* // Where the user is not logged in */}
+            <NavLink
+              className="border-b-2 hover:border-secondary-color hover:text-secondary-color group animation-fade flex items-center gap-1.5 w-fit mt-2"
+              to={"/sign-in"}
+            >
+              {t("Sign in")}{" "}
+              <CiLogin
+                size={18}
+                className="group-hover:translate-x-2 animation-fade"
+              />
+            </NavLink>
           </div>
         </div>
       </div>

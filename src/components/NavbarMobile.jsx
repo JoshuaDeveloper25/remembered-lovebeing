@@ -62,7 +62,11 @@ const NavbarMobile = ({
       >
         <article>
           <div>
-            <Link className="inline" to={`/`}>
+            <Link
+              className="inline"
+              to={`/`}
+              onClick={() => setNavbarOpen(false)}
+            >
               <img className="w-56 rounded" src={logo} alt={"Logo"} />
             </Link>
           </div>
@@ -112,9 +116,9 @@ const NavbarMobile = ({
           </div>
         </article>
 
-        <article>
-          <h2 className="text-primary-color-light border-b border-b-primary-color-light font-semibold mb-4 mt-8 pb-1">
-            Adittional Settings
+        <article className={"py-8"}>
+          <h2 className="text-primary-color-light border-b border-b-primary-color-light font-semibold mb-4 pb-1">
+            {t("Adittional Settings")}
           </h2>
 
           {/* Language Switcher */}
@@ -183,7 +187,7 @@ const NavbarMobile = ({
               onClick={() => setNavbarOpen(false)}
               to={"/sign-in"}
             >
-              Sign In{" "}
+              {t("Sign in")}{" "}
               <CiLogin
                 size={18}
                 className="group-hover:translate-x-2 animation-fade"

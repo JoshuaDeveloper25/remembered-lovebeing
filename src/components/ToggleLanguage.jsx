@@ -28,7 +28,7 @@ const ToggleLanguage = ({ language, handleChange }) => {
           className="w-6 h-6 object-contain mr-2"
           alt={language}
         />
-        <span>{language === "en" ? "English" : "Español"}</span>
+        <span>{language === "en" ? "Eng" : "Esp"}</span>
         <svg
           className={`w-4 h-4 ml-2 transform transition-transform duration-300 ${
             isDropdownOpen ? "rotate-180" : ""

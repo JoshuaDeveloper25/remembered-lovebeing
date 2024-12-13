@@ -5,9 +5,8 @@ const VerifyingContent = ({ isPending, error }) => {
   return (
     <section className="flex justify-center items-center min-h-[100vh]">
       <div className="max-w-2xl shadow-2xl border p-5 rounded-lg">
-      
         <GiFlowerPot className="size-24 text-green-500 mx-auto" />
-        
+
         {isPending ? (
           <>
             <h2 className="text-4xl font-medium text-center text-primary-color my-4">
@@ -48,7 +47,10 @@ const VerifyingContent = ({ isPending, error }) => {
             </p>
 
             <div className="text-center">
-              <Link className="text-center text-primary-color text-lg" to={`/`}>
+              <Link
+                className="text-center text-primary-color text-lg"
+                to={`/sign-in`}
+              >
                 Log In
               </Link>
             </div>

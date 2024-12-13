@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Form from "../../components/Form";
 
+import contactImage from "../../assets/contact.png";
+
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [userCountry, setUserCountry] = useState("");
@@ -33,7 +35,7 @@ const Contact = () => {
   }, [userCountryQuery.isSuccess, userCountryQuery.data]);
 
   return (
-    <main className="my-8">
+    <main className="container-page my-8">
       {" "}
       {/* Title */}
       <div className="text-center">
@@ -42,12 +44,12 @@ const Contact = () => {
         </h2>
         <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
       </div>
-      <div className="flex items-center">
-        <setion>
-          <img src={"https://images.pexels.com/photos/12663162/pexels-photo-12663162.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} alt="Contact Form Image" />
+      <div className="flex">
+        <setion className="max-w-lg">
+          <img src={contactImage} className="h-full w-full object-cover" alt="Contact Form Image" />
         </setion>
 
-        <section className="max-w-2xl mx-auto px-6 py-6 text-primary-color bg-white shadow-xl rounded-lg my-12">
+        <section className="px-6 py-6 text-primary-color bg-white shadow-xl rounded-lg">
           <h2 className="font-sans text-2xl text-primary-color capitalize font-semibold mb-4">
             {t("Contact Form")}
           </h2>

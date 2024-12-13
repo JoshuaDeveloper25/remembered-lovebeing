@@ -1,22 +1,23 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import AppContext from "../../../context/AppProvider";
+import payments from "../../../assets/payments.png";
+import paypal from "../../../assets/paypal.png";
 import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import { TbPigMoney } from "react-icons/tb";
 import { FaCheck } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
-import payments from "../../../assets/payments.png";
-import paypal from "../../../assets/paypal.png";
-import { useContext, useState } from "react";
-import formatDate from "../../../utils/formatDate";
-
 const PricesPlan = ({ packageName }) => {
-  console.log();
-
   const { userInfo } = useContext(AppContext);
-  const ern = `${userInfo?.email} - ` + `${packageName === "singlePackage" ? "singlePackage - 1 - " : "tertiaryPackage - 3 - "}` + `${formatDate(Date.now())}`;
+  const shortId = uuidv4().slice(0, 8);
+
+  const ern = `${`${shortId}-`}${
+    packageName === "singlePackage" ? "singlePackage-1" : "tertiaryPackage-3"
+  }`;
 
   const [selectedPayments, setSelectedPayments] = useState(false);
   const navigate = useNavigate();
@@ -86,7 +87,7 @@ const PricesPlan = ({ packageName }) => {
         },
       ],
       custom_params: {
-        param1: packageName === "singlePackage" ? "Single" : "Tertiary",
+        param1: userInfo?.email,
       },
     });
   };

@@ -1,11 +1,9 @@
 import ProfilePlanStatus from "./components/ProfilePlanStatus";
 import { useSearchParams } from "react-router-dom";
 import PricesPlan from "./components/PricesPlan";
-import axios from "axios";
 
 const Checkout = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
+  const [searchParams] = useSearchParams();
 
   return (
     <section className="container-page">

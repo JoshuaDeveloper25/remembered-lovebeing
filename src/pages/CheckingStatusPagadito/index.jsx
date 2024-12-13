@@ -27,7 +27,7 @@ const CheckingStatusPagadito = () => {
     mutationFn: async (paymentInfo) =>
       await axios.post(
         `${import.meta.env.VITE_BASE_URL}/payments/get-premium-profiles/pay/${
-          comprobante[1] === " singlePackage " ? 1 : 3
+          comprobante[1] === "singlePackage" ? 1 : 3
         }`,
         paymentInfo
       ),

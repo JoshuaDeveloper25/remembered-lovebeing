@@ -5,10 +5,12 @@ import {
 } from "@tanstack/react-query";
 import Memorial from "./components/Memorial";
 import { useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Memorials = () => {
+  const { t } = useTranslation();
   const [searchFullName, setSearchFullName] = useState("");
   const [tempSearchFullName, setTempSearchFullName] = useState("");
   const [searchBirthCountry, setSearchBirthCountry] = useState("");
@@ -39,7 +41,13 @@ const Memorials = () => {
   };
 
   const memorialsQuery = useInfiniteQuery({
-    queryKey: ["memorials", searchFullName, searchBirthCountry, searchDesignation, searchGender],
+    queryKey: [
+      "memorials",
+      searchFullName,
+      searchBirthCountry,
+      searchDesignation,
+      searchGender,
+    ],
     queryFn: ({ pageParam = 1 }) => {
       return axios.get(
         `${import.meta.env.VITE_BASE_URL}/remembereds/get-remembereds`,
@@ -133,7 +141,9 @@ const Memorials = () => {
           </label>
 
           <label className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
-            <span className="font-medium text-primary-color">Cause of Death:</span>
+            <span className="font-medium text-primary-color">
+              Cause of Death:
+            </span>
             <select
               className="py-2 px-2 block border border-tertiary-color/15 bg-white rounded-sm w-[10rem]"
               onChange={(e) => setTempSearchDesignation(e?.target?.value)}
@@ -182,7 +192,8 @@ const Memorials = () => {
       </div>
 
       {/* Load More */}
-      {flapMapeado?.length === memorialsQuery?.data?.pages[0]?.data?.total ? null : (
+      {flapMapeado?.length ===
+      memorialsQuery?.data?.pages[0]?.data?.total ? null : (
         <div className="my-5 text-center">
           <button
             className="btn btn-blue w-auto"

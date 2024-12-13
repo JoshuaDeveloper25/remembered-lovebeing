@@ -25,7 +25,7 @@ const BackToTop = () => {
     showButton && (
       <div
         className={`
-         scale-95 animation-fade fixed right-3 bottom-3 z-[9999] border rounded-full border-white shadow shadow-white`}
+         scale-95 animation-fade fixed left-3 bottom-3 z-[9999] border rounded-full border-white shadow shadow-white`}
       >
         <a
           className="bg-primary-color text-white shadow-primary-color rounded-full hover:opacity-55 hover:scale-105 animation-fade font-bold block px-3 py-3 shadow-md"

@@ -108,7 +108,7 @@ const NavbarDesktop = ({
 
             {/* // Where the user is not logged in */}
             <NavLink
-              className="border-b-2 hover:border-secondary-color hover:text-secondary-color group animation-fade flex items-center gap-1.5 w-fit mt-2"
+              className="border-b-2 hover:border-secondary-color hover:text-secondary-color group animation-fade flex items-center gap-1.5 w-fit"
               to={"/sign-in"}
             >
               {t("Sign in")}{" "}

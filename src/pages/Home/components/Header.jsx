@@ -1,24 +1,22 @@
 import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
+import homeVideo from "../../../assets/videos/home-hero.mp4";
 import AppContext from "../../../context/AppProvider";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import { stepsApp } from "../../../db/data";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { stepsApp } from "../../../db/data";
-import CarouselStepsApp from "./CarouselStepsApp";
 
 const Header = () => {
   const [ref, isIntersecting] = useIntersectionObserver({ threshold: 0.4 });
-  const { t } = useTranslation();
   const { userInfo } = useContext(AppContext);
+  const { t } = useTranslation();
 
   return (
     <>
       <header className="relative h-[75vh]">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"
-          src={
-            "https://videos.pexels.com/video-files/6074179/6074179-uhd_2732_1440_25fps.mp4"
-          }
+          src={homeVideo}
           autoPlay
           loop
           muted

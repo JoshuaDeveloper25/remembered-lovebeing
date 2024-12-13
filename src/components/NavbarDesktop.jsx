@@ -50,8 +50,7 @@ const NavbarDesktop = ({
             {/* Language Switcher */}
             <ToggleLanguage handleChange={handleChange} language={language} />
 
-            {/* User Dropdown */}
-            {openDropDown && (
+            {userInfo?.access_token && (
               <>
                 <div className="relative">
                   <button
@@ -69,54 +68,63 @@ const NavbarDesktop = ({
                     />
                   </button>
 
-                  {createPortal(
-                    <div
-                      onClick={() => setOpenDropDown(!openDropDown)}
-                      className="h-[100vh] fixed top-0 w-full z-[9999]"
-                    ></div>,
-                    document.body
-                  )}
+                  {/* User Dropdown */}
+                  {openDropDown && (
+                    <>
+                      {createPortal(
+                        <div
+                          onClick={() => setOpenDropDown(!openDropDown)}
+                          className="h-[100vh] fixed top-0 w-full z-[9999]"
+                        ></div>,
+                        document.body
+                      )}
 
-                  {userInfo?.access_token && (
-                    <ul className="absolute right-5 shadow-lg shadow-primary-color-light bg-primary-color text-white pt-2 z-[9999999] w-max rounded max-h-96 overflow-auto">
-                      <div className="border-b pb-1.5 px-5">
-                        <h2 className="block font-medium">
-                          👋 {userInfo?.name}
-                        </h2>
-                        <h2 className="block text-sm font-medium">
-                          {userInfo?.email}
-                        </h2>
-                      </div>
+                      {userInfo?.access_token && (
+                        <ul className="absolute right-5 shadow-lg shadow-primary-color-light bg-primary-color text-white pt-2 z-[9999999] w-max rounded max-h-96 overflow-auto">
+                          <div className="border-b pb-1.5 px-5">
+                            <h2 className="block font-medium">
+                              👋 {userInfo?.name}
+                            </h2>
+                            <h2 className="block text-sm font-medium">
+                              {userInfo?.email}
+                            </h2>
+                          </div>
 
-                      <NavbarDropdownLink
-                        hoverBgLink={"text-white hover:bg-primary-color-light"}
-                        linkText={t("My Profiles")}
-                        onClick={() => setOpenDropDown(false)}
-                        linkTo={"/my-profiles/"}
-                      />
+                          <NavbarDropdownLink
+                            hoverBgLink={
+                              "text-white hover:bg-primary-color-light"
+                            }
+                            linkText={t("My Profiles")}
+                            onClick={() => setOpenDropDown(false)}
+                            linkTo={"/my-profiles/"}
+                          />
 
-                      <NavbarDropdownLink
-                        hoverBgLink={"text-white hover:bg-red-500"}
-                        linkText={t("Log Out")}
-                        onClick={handleLogOut}
-                      />
-                    </ul>
+                          <NavbarDropdownLink
+                            hoverBgLink={"text-white hover:bg-red-500"}
+                            linkText={t("Log Out")}
+                            onClick={handleLogOut}
+                          />
+                        </ul>
+                      )}
+                    </>
                   )}
                 </div>
               </>
             )}
 
             {/* // Where the user is not logged in */}
-            <NavLink
-              className="border-b-2 hover:border-secondary-color hover:text-secondary-color group animation-fade flex items-center gap-1.5 w-fit"
-              to={"/sign-in"}
-            >
-              {t("Sign in")}{" "}
-              <CiLogin
-                size={18}
-                className="group-hover:translate-x-2 animation-fade"
-              />
-            </NavLink>
+            {!userInfo?.access_token && (
+              <NavLink
+                className="border-b-2 hover:border-secondary-color hover:text-secondary-color group animation-fade flex items-center gap-1.5 w-fit"
+                to={"/sign-in"}
+              >
+                {t("Sign in")}{" "}
+                <CiLogin
+                  size={18}
+                  className="group-hover:translate-x-2 animation-fade"
+                />
+              </NavLink>
+            )}
           </div>
         </div>
       </div>

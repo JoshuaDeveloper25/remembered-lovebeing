@@ -281,10 +281,12 @@ const resources = {
       Send: "Send",
       "Sending...": "Sending...",
       "Adittional Settings": "Adittional Settings",
+      "Contact Form": "Contact Form",
     },
   },
   es: {
     translation: {
+      "Contact Form": "Formulario de Contacto",
       "Adittional Settings": "Ajustes Adicionales",
       "Sign in": "Iniciar sesión",
       "Enter your message here...": "Ingresa tu mensaje aquí...",

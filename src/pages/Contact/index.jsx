@@ -33,7 +33,8 @@ const Contact = () => {
   }, [userCountryQuery.isSuccess, userCountryQuery.data]);
 
   return (
-    <section className="max-w-2xl mx-auto px-6 py-6 text-primary-color bg-white shadow-xl rounded-lg my-12">
+    <main className="my-8">
+      {" "}
       {/* Title */}
       <div className="text-center">
         <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
@@ -41,87 +42,98 @@ const Contact = () => {
         </h2>
         <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
       </div>
+      <div className="flex items-center">
+        <setion>
+          <img src={"https://images.pexels.com/photos/12663162/pexels-photo-12663162.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} alt="Contact Form Image" />
+        </setion>
 
-      {/* Form of contact us */}
-      <Form setIsLoading={setIsLoading}>
-        <InputForm
-          inputLabel={`${t("Name")} *`}
-          inputLabelClassName={"block"}
-          additionalInputClassnames={"border border-gray-200"}
-          inputProps={{ type: "text", placeholder: "John Doe" }}
-          inputName={"user_name"}
-          required={true}
-        />
+        <section className="max-w-2xl mx-auto px-6 py-6 text-primary-color bg-white shadow-xl rounded-lg my-12">
+          <h2 className="font-sans text-2xl text-primary-color capitalize font-semibold mb-4">
+            {t("Contact Form")}
+          </h2>
 
-        <InputForm
-          inputLabel={`${t("Email")} *`}
-          inputLabelClassName={"block"}
-          additionalInputClassnames={"border border-gray-200"}
-          inputProps={{ type: "email", placeholder: "johndoe@gmail.com" }}
-          inputName={"email_id"}
-          required={true}
-        />
-
-        {/* Country and Phone */}
-        <div className="flex items-center gap-3">
-          <label className={`flex-1 block relative`}>
-            <span className="w-full inline-block text-start font-medium">
-              {`${t("Country")} *`}
-            </span>
-
-            <select
-              className={`form-input focus:shadow-xl border border-gray-200 resize-none`}
-              name={"user_country"}
+          {/* Form of contact us */}
+          <Form setIsLoading={setIsLoading}>
+            <InputForm
+              inputLabel={`${t("Name")} *`}
+              inputLabelClassName={"block"}
+              additionalInputClassnames={"border border-gray-200"}
+              inputProps={{ type: "text", placeholder: "John Doe" }}
+              inputName={"user_name"}
               required={true}
-              value={userCountry}
-              onChange={(e) => setUserCountry(e.target.value)}
-            >
-              <option value="">-- {t("Country")} --</option>
-              {countriesApiQuery?.data?.data?.map((country, index) => (
-                <option key={index} value={country?.name?.common}>
-                  {country?.name?.common}
-                </option>
-              ))}
-            </select>
-          </label>
+            />
 
-          <InputForm
-            inputLabel={t("Phone (Optional)")}
-            inputLabelClassName={"flex-1 block"}
-            additionalInputClassnames={"border border-gray-200"}
-            inputProps={{
-              type: "tel",
-              placeholder: t("Enter your phone number"),
-            }}
-            inputName={"user_phone"}
-            required={false}
-          />
-        </div>
+            <InputForm
+              inputLabel={`${t("Email")} *`}
+              inputLabelClassName={"block"}
+              additionalInputClassnames={"border border-gray-200"}
+              inputProps={{ type: "email", placeholder: "johndoe@gmail.com" }}
+              inputName={"email_id"}
+              required={true}
+            />
 
-        <label className={`block relative`}>
-          <span className="w-full inline-block text-start font-medium">
-            {`${t("Message")} *`}
-          </span>
+            {/* Country and Phone */}
+            <div className="flex items-center gap-3">
+              <label className={`flex-1 block relative`}>
+                <span className="w-full inline-block text-start font-medium">
+                  {`${t("Country")} *`}
+                </span>
 
-          <textarea
-            className={`form-input focus:shadow-xl border border-gray-200 resize-none h-32`}
-            placeholder={t("Enter your message here...")}
-            name={"user_message"}
-            required={true}
-          />
-        </label>
+                <select
+                  className={`form-input focus:shadow-xl border border-gray-200 resize-none`}
+                  name={"user_country"}
+                  required={true}
+                  value={userCountry}
+                  onChange={(e) => setUserCountry(e.target.value)}
+                >
+                  <option value="">-- {t("Country")} --</option>
+                  {countriesApiQuery?.data?.data?.map((country, index) => (
+                    <option key={index} value={country?.name?.common}>
+                      {country?.name?.common}
+                    </option>
+                  ))}
+                </select>
+              </label>
 
-        <div className="text-center">
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="btn btn-blue w-fit disabled:bg-primary-color/50 disabled:pointer-events-none"
-          >
-            {isLoading ? t("Sending...") : t("Send")}
-          </button>
-        </div>
-      </Form>
-    </section>
+              <InputForm
+                inputLabel={t("Phone (Optional)")}
+                inputLabelClassName={"flex-1 block"}
+                additionalInputClassnames={"border border-gray-200"}
+                inputProps={{
+                  type: "tel",
+                  placeholder: t("Enter your phone number"),
+                }}
+                inputName={"user_phone"}
+                required={false}
+              />
+            </div>
+
+            <label className={`block relative`}>
+              <span className="w-full inline-block text-start font-medium">
+                {`${t("Message")} *`}
+              </span>
+
+              <textarea
+                className={`form-input focus:shadow-xl border border-gray-200 resize-none h-32`}
+                placeholder={t("Enter your message here...")}
+                name={"user_message"}
+                required={true}
+              />
+            </label>
+
+            <div className="text-center">
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="btn btn-blue w-fit disabled:bg-primary-color/50 disabled:pointer-events-none"
+              >
+                {isLoading ? t("Sending...") : t("Send")}
+              </button>
+            </div>
+          </Form>
+        </section>
+      </div>
+    </main>
   );
 };
 

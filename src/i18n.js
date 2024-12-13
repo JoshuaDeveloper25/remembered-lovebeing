@@ -228,8 +228,8 @@ const resources = {
       "We have implemented technical and organizational measures to protect your personal information against unauthorized access, loss, alteration, or disclosure. However, no security system is completely infallible. We recommend using strong passwords and keeping your information confidential.":
         "We have implemented technical and organizational measures to protect your personal information against unauthorized access, loss, alteration, or disclosure. However, no security system is completely infallible. We recommend using strong passwords and keeping your information confidential.",
       "Data Retention": "Data Retention",
-      "We will retain your data while your account is active or as necessary to provide you with our services. If you wish to delete your information, you can request it by emailing us at [email].":
-        "We will retain your data while your account is active or as necessary to provide you with our services. If you wish to delete your information, you can request it by emailing us at [email].",
+      "We will retain your data while your account is active or as necessary to provide you with our services. If you wish to delete your information, you can request it by emailing us at support@eternalmemoriesx.com.":
+        "We will retain your data while your account is active or as necessary to provide you with our services. If you wish to delete your information, you can request it by emailing us at support@eternalmemoriesx.com.",
       "User Rights": "User Rights",
       "As a user of Eternal MemoriesX, you have the following rights:":
         "As a user of Eternal MemoriesX, you have the following rights:",
@@ -241,8 +241,8 @@ const resources = {
         "Deletion: You can ask us to delete your personal information.",
       "Restriction: You can request that we limit the use of your data in certain situations.":
         "Restriction: You can request that we limit the use of your data in certain situations.",
-      "To exercise these rights, contact us at [email].":
-        "To exercise these rights, contact us at [email].",
+      "To exercise these rights, contact us at support@eternalmemoriesx.com.":
+        "To exercise these rights, contact us at support@eternalmemoriesx.com.",
       "Memorial Profile Privacy": "Memorial Profile Privacy",
       "The memorial profiles you create can be set as public or private:":
         "The memorial profiles you create can be set as public or private:",
@@ -261,7 +261,8 @@ const resources = {
       Contact: "Contact",
       "If you have any questions, concerns, or wish to exercise your privacy rights, you can contact us at:":
         "If you have any questions, concerns, or wish to exercise your privacy rights, you can contact us at:",
-      "Email: [email]": "Email: [email]",
+      "Email: support@eternalmemoriesx.com":
+        "Email: support@eternalmemoriesx.com",
       "Phone: [contact number, optional]": "Phone: [contact number, optional]",
       "Last updated:": "Last updated:",
       "Additional Notes": "Additional Notes",
@@ -412,7 +413,7 @@ const resources = {
       "These terms will be governed by the laws of Honduras, and any disputes will be resolved in the courts of El Progreso, Yoro.":
         "Estos términos se regirán por las leyes de Honduras y cualquier disputa será resuelta en los tribunales de El Progreso, Yoro.",
       "If you have any questions or concerns about these terms, you can contact us at [email address].":
-        "Si tienes alguna pregunta o inquietud sobre estos términos, puedes contactarnos en [correo electrónico].",
+        "Si tienes alguna pregunta o inquietud sobre estos términos, puedes contactarnos en support@eternalmemoriesx.com.",
       "Discover Us": "Descubrénos",
       "About Us": "Sobre Nosotros",
       "Privacy Policy": "Política de Privacidad",
@@ -451,8 +452,8 @@ const resources = {
       "We have implemented technical and organizational measures to protect your personal information against unauthorized access, loss, alteration, or disclosure. However, no security system is completely infallible. We recommend using strong passwords and keeping your information confidential.":
         "Hemos implementado medidas técnicas y organizativas para proteger tu información personal contra accesos no autorizados, pérdida, alteración o divulgación. Sin embargo, ningún sistema de seguridad es completamente infalible. Te recomendamos usar contraseñas seguras y mantener tu información confidencial.",
       "Data Retention": "Retención de Datos",
-      "We will retain your data while your account is active or as necessary to provide you with our services. If you wish to delete your information, you can request it by emailing us at [email].":
-        "Mantendremos tus datos mientras tu cuenta esté activa o mientras sea necesario para proporcionarte nuestros servicios. Si deseas eliminar tu información, puedes solicitarlo enviándonos un correo a [correo electrónico].",
+      "We will retain your data while your account is active or as necessary to provide you with our services. If you wish to delete your information, you can request it by emailing us at support@eternalmemoriesx.com.":
+        "Mantendremos tus datos mientras tu cuenta esté activa o mientras sea necesario para proporcionarte nuestros servicios. Si deseas eliminar tu información, puedes solicitarlo enviándonos un correo a support@eternalmemoriesx.com.",
       "User Rights": "Derechos del Usuario",
       "As a user of Eternal MemoriesX, you have the following rights:":
         "Como usuario de Eternal MemoriesX, tienes los siguientes derechos:",
@@ -464,8 +465,8 @@ const resources = {
         "Eliminación: Puedes pedirnos que eliminemos tu información personal.",
       "Restriction: You can request that we limit the use of your data in certain situations.":
         "Restricción: Puedes solicitar que limitemos el uso de tus datos en ciertas situaciones.",
-      "To exercise these rights, contact us at [email].":
-        "Para ejercer estos derechos, contáctanos en [correo electrónico].",
+      "To exercise these rights, contact us at support@eternalmemoriesx.com.":
+        "Para ejercer estos derechos, contáctanos en support@eternalmemoriesx.com.",
       "Memorial Profile Privacy": "Privacidad en Perfiles Memoriales",
       "The memorial profiles you create can be set as public or private:":
         "Los perfiles memoriales que creas pueden configurarse como públicos o privados:",
@@ -483,7 +484,8 @@ const resources = {
         "Podemos actualizar esta Política de Privacidad ocasionalmente. Te notificaremos cualquier cambio publicándolo en nuestra aplicación y, si es necesario, enviándote un aviso por correo electrónico. La fecha de la última actualización aparecerá al final de este documento.",
       "If you have any questions, concerns, or wish to exercise your privacy rights, you can contact us at:":
         "Si tienes preguntas, inquietudes o deseas ejercer tus derechos relacionados con la privacidad, puedes contactarnos en:",
-      "Email: [email]": "Correo Electrónico: [correo electrónico]",
+      "Email: support@eternalmemoriesx.com":
+        "Correo Electrónico: support@eternalmemoriesx.com",
       "Phone: [contact number, optional]":
         "Teléfono: [número de contacto, opcional]",
       "Last updated:": "Última actualización:",

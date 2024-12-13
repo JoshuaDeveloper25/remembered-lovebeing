@@ -60,7 +60,7 @@ const Header = () => {
               </div>
 
               <div className="md:w-auto w-full">
-                <Link to={"#"} target="_blank">
+                <Link to={"#"}>
                   <button
                     type="button"
                     className="font-medium animation-fade px-6 py-2 inline-block border border-white text-white hover:bg-white hover:text-black rounded-sm"

@@ -123,7 +123,7 @@ const PrivacyPolicy = () => {
         </h2>
         <p className="mt-2 text-lg">
           {t(
-            "We will retain your data while your account is active or as necessary to provide you with our services. If you wish to delete your information, you can request it by emailing us at [email]."
+            "We will retain your data while your account is active or as necessary to provide you with our services. If you wish to delete your information, you can request it by emailing us at support@eternalmemoriesx.com."
           )}
         </p>
       </section>
@@ -152,7 +152,7 @@ const PrivacyPolicy = () => {
           </li>
         </ul>
         <p className="mt-2 text-lg">
-          {t("To exercise these rights, contact us at [email].")}
+          {t("To exercise these rights, contact us at support@eternalmemoriesx.com.")}
         </p>
       </section>
 
@@ -216,7 +216,7 @@ const PrivacyPolicy = () => {
           )}
         </p>
         <ul className="list-disc pl-8 mt-2 text-lg">
-          <li>{t("Email: [email]")}</li>
+          <li>{t("Email: support@eternalmemoriesx.com")}</li>
           <li>{t("Phone: [contact number, optional]")}</li>
         </ul>
         <p className="mt-2 text-lg">{t("Last updated:")} <span className="font-semibold">12/09/2024</span></p>

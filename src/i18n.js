@@ -282,10 +282,12 @@ const resources = {
       "Sending...": "Sending...",
       "Adittional Settings": "Adittional Settings",
       "Contact Form": "Contact Form",
+      Invoice: "Invoice",
     },
   },
   es: {
     translation: {
+      Invoice: "Factura",
       "Contact Form": "Formulario de Contacto",
       "Adittional Settings": "Ajustes Adicionales",
       "Sign in": "Iniciar sesión",

@@ -1,11 +1,16 @@
 import getFastApiErrors from "../../utils/getFastApiErrors";
 import { useMutation } from "@tanstack/react-query";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 import axios from "axios";
 
+import logo from "../../assets/logo.png";
+
 const CheckingStatusPagadito = () => {
+  const { t } = useTranslation();
+
   const [searchParams] = useSearchParams();
   const comprobante = searchParams.get("comprobante").split("-");
 
@@ -53,8 +58,8 @@ const CheckingStatusPagadito = () => {
   }, [getStatusPagaditoPayment?.data?.data?.data?.status]);
 
   return (
-    <main className="flex justify-center items-center h-svh">
-      <div className="text-center bg-white shadow-lg hover:shadow-2xl animation-fade w-fit p-8 rounded-md">
+    <main>
+      {/* <div className="text-center bg-white shadow-lg hover:shadow-2xl animation-fade w-fit p-8 rounded-md">
         {getStatusPagaditoPayment?.isError ? (
           <>
             <h2 className="font-mono max-w-md tracking-wider text-3xl text-primary-color uppercase font-semibold">
@@ -124,7 +129,62 @@ const CheckingStatusPagadito = () => {
               </>
             )}
           </>
-        )}
+        )} 
+      </div> */}
+
+      <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg hover:shadow-2xl animation-fade p-10">
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <img src={logo} className="w-72 rounded-md" alt="App Logo" />
+          </div>
+
+          <div>
+            <h2 className="uppercase font-semibold text-2xl tracking-normal text-primary-color">
+              {t("Invoice")}{" "}
+            </h2>
+          </div>
+        </div>
+
+        <div className=" my-4">
+          <h2>
+            <span className="font-medium">{t("Customer ID")}: 123456789</span>
+          </h2>
+        </div>
+
+        <div class="relative overflow-x-auto">
+          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="px-6 py-3">
+                  Product name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Color
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Category
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Price
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  Apple MacBook Pro 17"
+                </th>
+                <td class="px-6 py-4">Silver</td>
+                <td class="px-6 py-4">Laptop</td>
+                <td class="px-6 py-4">$2999</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </main>
   );

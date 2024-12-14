@@ -45,11 +45,11 @@ const Contact = () => {
         <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
       </div>
       <div className="flex">
-        <setion className="max-w-lg">
-          <img src={contactImage} className="h-full w-full object-cover" alt="Contact Form Image" />
+        <setion className="max-w-[18rem] shadow-xl">
+          <img src={contactImage} className="rounded-s-2xl h-full w-full object-cover" alt="Contact Form Image" />
         </setion>
 
-        <section className="px-6 py-6 text-primary-color bg-white shadow-xl rounded-lg">
+        <section className="px-6 py-6 text-primary-color bg-white shadow-xl rounded-e-2xl">
           <h2 className="font-sans text-2xl text-primary-color capitalize font-semibold mb-4">
             {t("Contact Form")}
           </h2>

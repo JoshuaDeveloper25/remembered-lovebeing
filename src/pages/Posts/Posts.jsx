@@ -17,8 +17,6 @@ const Posts = () => {
       await axios.get(`${import.meta.env.VITE_BASE_URL}/posts/`),
   });
 
-  if (allRememberedPostsQuery?.isLoading) return <h2>{t("Loading...")}</h2>;
-
   return (
     <main className="relative">
       <div className="fixed top-18 right-8">
@@ -52,19 +50,25 @@ const Posts = () => {
           </p>
         </div>
 
-        {!allRememberedPostsQuery?.data?.data?.length ? (
-          <h2 className="text-primary-color text-2xl uppercase mx-auto max-w-2xl tracking-wider text-center my-5">
-            {t("No remembered has made a post...")}
-          </h2>
+        {allRememberedPostsQuery?.isLoading ? (
+          t("Loading...")
         ) : (
-          allRememberedPostsQuery?.data?.data?.map((post, index) => (
-            <PublicPost
-              ownerName={post?.owner?.name}
-              totalComments={post?.comments}
-              post={post}
-              key={index}
-            />
-          ))
+          <>
+            {!allRememberedPostsQuery?.data?.data?.length ? (
+              <h2 className="text-primary-color text-2xl uppercase mx-auto max-w-2xl tracking-wider text-center my-5">
+                {t("No remembered has made a post...")}
+              </h2>
+            ) : (
+              allRememberedPostsQuery?.data?.data?.map((post, index) => (
+                <PublicPost
+                  ownerName={post?.owner?.name}
+                  totalComments={post?.comments}
+                  post={post}
+                  key={index}
+                />
+              ))
+            )}
+          </>
         )}
       </section>
     </main>

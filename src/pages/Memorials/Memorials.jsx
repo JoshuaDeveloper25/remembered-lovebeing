@@ -75,8 +75,6 @@ const Memorials = () => {
     },
   });
 
-  if (memorialsQuery?.isLoading) return <p>Cargando..</p>;
-
   const flapMapeado = memorialsQuery?.data?.pages?.flatMap(
     (item) => item?.data?.items
   );
@@ -182,19 +180,23 @@ const Memorials = () => {
         </div>
       </article>
 
-      {/* No results message */}
-      {!memorialsQuery?.data?.pages[0]?.data?.items?.length && (
-        <h2 className="text-primary-color text-center text-2xl uppercase my-16 tracking-wider">
-          {t("There's no results about this memorial...")}
-        </h2>
+      {memorialsQuery?.isLoading ? (
+        t("Loading...")
+      ) : (
+        <>
+          {!memorialsQuery?.data?.pages[0]?.data?.items?.length ? (
+            <h2 className="text-primary-color text-center text-2xl uppercase my-16 tracking-wider">
+              {t("There's no results about this memorial...")}
+            </h2>
+          ) : (
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-1 gap-7 my-9">
+              {flapMapeado?.map((item, index) => (
+                <Memorial item={item} key={index} />
+              ))}
+            </div>
+          )}{" "}
+        </>
       )}
-
-      {/* Results */}
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-1 gap-7 my-9">
-        {flapMapeado?.map((item, index) => (
-          <Memorial item={item} key={index} />
-        ))}
-      </div>
 
       {/* Load More */}
       {flapMapeado?.length ===

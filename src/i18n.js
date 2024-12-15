@@ -335,7 +335,7 @@ const resources = {
   },
   es: {
     translation: {
-      "N° of Premium Profiles": "N.º de Perfiles Premium",
+      "N° of Premium Profiles": "Nº de Perfiles Premium",
       "No posts": "Sin publicaciones",
       "Up to 6 images": "Hasta 6 imágenes",
       "Generate QR Code": "Generar Código QR",

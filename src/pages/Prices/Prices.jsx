@@ -35,7 +35,7 @@ const Prices = () => {
               <span className="align-text-top text-4xl me-3">$</span>
               <span>0.00</span>
             </h2>
-            <h3 className="text-primary-color-light">{t("for life")}</h3>
+           
           </div>
 
           <ul className="text-muted-color leading-9 my-5">
@@ -101,7 +101,7 @@ const Prices = () => {
               <span className="align-text-top text-4xl me-3">$</span>
               <span>19.99</span>
             </h2>
-            <h3 className="text-primary-color-light">{t("for life")}</h3>
+           
           </div>
 
           <ul className="text-muted-color leading-9 my-5">
@@ -161,7 +161,7 @@ const Prices = () => {
               <span className="align-text-top text-4xl me-3">$</span>
               <span>59.99</span>
             </h2>
-            <h3 className="text-primary-color-light">{t("for life")}</h3>
+           
           </div>
           <ul className="text-muted-color leading-9 my-5">
             <li className="flex items-center gap-3 border-b py-1">

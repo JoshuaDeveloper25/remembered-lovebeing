@@ -107,20 +107,20 @@ const ImagesHandle = ({ setImages, images }) => {
             </ul>
           ) : (
             images?.length !== 0 && (
-              <ul className="flex gap-5 overflow-x-auto w-full max-w-lg my-5 py-5">
+              <ul className="flex gap-5 overflow-x-auto w-full max-w-lg my-5 pt-5 pb-1 rounded-md">
                 {images?.map((item, idx) => (
-                  <li key={idx} className="h-32 min-w-32 relative">
-                    <div className="h-32 min-w-32 relative">
+                  <li key={idx} className="h-32 min-w-32 relative rounded-md">
+                    <div className="h-32 min-w-32 relative shadow-xl rounded-md">
                       <img
                         loading="lazy"
                         decoding="async"
                         src={`${item?.dataURL}`}
                         alt="Image"
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover rounded-md"
                       />
                     </div>
 
-                    <div className="image-item__btn-wrapper absolute flex gap-2 -right-3 -top-3">
+                    <div className="image-item__btn-wrapper  absolute flex gap-2 -right-3 -top-3">
                       <button
                         className="bg-blue-500/85 hover:bg-blue-500/90 hover:text-secondary rounded-full text-white p-1"
                         type="button"

@@ -10,6 +10,7 @@ const FormTribute = ({ setOpenModalCreateTribute, createTributeMutation }) => {
             className=" form-input h-24"
             placeholder={"Description of the tribute."}
             id="content"
+            required
             name="content"
           ></textarea>
         </label>

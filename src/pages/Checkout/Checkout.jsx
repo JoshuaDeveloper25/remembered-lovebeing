@@ -7,7 +7,7 @@ const Checkout = () => {
 
   return (
     <section className="container-page">
-      <div className="flex items-center justify-center h-svh">
+      <div className="flex items-center justify-center min-h-svh">
         <div className="w-full">
           {" "}
           {searchParams?.get("packageName") ? (

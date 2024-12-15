@@ -65,8 +65,7 @@ body {
   }
 
   .nav-active {
-    @apply  
-    animation-fade border-b-2 border-primary-color-light text-primary-color-light font-semibold;
+    @apply animation-fade border-b-2 border-primary-color-light text-primary-color-light font-semibold;
 
     &:hover {
       @apply opacity-65;
@@ -337,4 +336,22 @@ body {
 .dropdownResponsiveProfile.has-modal-open > div {
   transform: none !important;
   display: none;
+}
+
+/* This is for printing a certain section with the API of PRINT */
+@media print {
+  body * {
+    visibility: hidden; /* Hiddes everything by default */
+  }
+
+  .printable-section,
+  .printable-section * {
+    visibility: visible; /* Only shows the inside elements of it */
+  }
+
+  .printable-section {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }

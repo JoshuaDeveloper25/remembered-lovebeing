@@ -116,7 +116,7 @@ const NavbarMobile = ({
           </div>
         </article>
 
-        <article className={"py-8"}>
+        <article className={"py-16"}>
           <h2 className="text-primary-color-light border-b border-b-primary-color-light font-semibold mb-4 pb-1">
             {t("Adittional Settings")}
           </h2>

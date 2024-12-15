@@ -69,7 +69,7 @@ const Form = ({ login, isPending, handleSubmit }) => {
           <div className="w-full h-[1px] bg-white"></div>
 
           <div>
-            <p className="text-nowrap text-fourth-color/65 text-sm">
+            <p className="text-center text-nowrap text-fourth-color/65 text-sm">
               Or continue with
             </p>
           </div>

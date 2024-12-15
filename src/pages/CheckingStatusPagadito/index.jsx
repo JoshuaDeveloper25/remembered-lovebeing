@@ -1,14 +1,22 @@
 import getFastApiErrors from "../../utils/getFastApiErrors";
 import { useMutation } from "@tanstack/react-query";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import { useReactToPrint } from "react-to-print";
+import { AiFillPrinter } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import { useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import axios from "axios";
 
+import AppContext from "../../context/AppProvider";
 import logo from "../../assets/logo.png";
+import cloud from "../../assets/cloud.png";
+import peaceDove from "../../assets/peace-dove.png";
 
 const CheckingStatusPagadito = () => {
+  const contentRef = useRef(null);
+  const reactToPrintFn = useReactToPrint({ contentRef });
+  const { userInfo } = useContext(AppContext);
   const { t } = useTranslation();
 
   const [searchParams] = useSearchParams();
@@ -57,8 +65,29 @@ const CheckingStatusPagadito = () => {
     }
   }, [getStatusPagaditoPayment?.data?.data?.data?.status]);
 
+  const handlePrint = () => {
+    contentRef.current.scrollIntoView();
+    reactToPrintFn();
+  };
+
   return (
-    <main>
+    <main className="relative container-page my-32">
+      <div className="fixed top-16 -z-[1] right-8">
+        <img className="w-32 rotate-[90]" src={peaceDove} />
+      </div>
+
+      <div className="fixed top-16 -z-[1] left-8">
+        <img className="w-32 [transform:rotateY(180deg)]" src={peaceDove} />
+      </div>
+
+      <div className="fixed top-[20rem] left-1/2 transform translate-x-1/2 -translate-y-1/2 -z-[2]">
+        <img className="w-[100rem] rotate-[20deg]" src={cloud} alt="cloud" />
+      </div>
+
+      <div className="fixed top-[20rem] right-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-[2]">
+        <img className="w-[100rem] rotate-[-20deg]" src={cloud} alt="cloud" />
+      </div>
+
       {/* <div className="text-center bg-white shadow-lg hover:shadow-2xl animation-fade w-fit p-8 rounded-md">
         {getStatusPagaditoPayment?.isError ? (
           <>
@@ -132,58 +161,127 @@ const CheckingStatusPagadito = () => {
         )} 
       </div> */}
 
-      <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg hover:shadow-2xl animation-fade p-10">
-        <div className="flex items-center justify-between gap-3">
-          <div>
-            <img src={logo} className="w-72 rounded-md" alt="App Logo" />
-          </div>
-
-          <div>
-            <h2 className="uppercase font-semibold text-2xl tracking-normal text-primary-color">
-              {t("Invoice")}{" "}
+      <div className="flex flex-col sm:flex-row gap-6 justify-center">
+        <div className="sm:max-w-md max-w-full text-center bg-white rounded-xl shadow-lg hover:shadow-2xl animation-fade p-10">
+          <div className="flex flex-col items-center justify-center h-full">
+            <h2 className="font-mono max-w-md tracking-wider text-3xl text-primary-color uppercase font-semibold">
+              Transacción realizada correctamente.
             </h2>
+            <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
+
+            <div className="mt-8">
+              <Link
+                className="btn btn-blue-light border-0"
+                to={"/my-profiles/"}
+              >
+                Ve a Mis Perfiles
+              </Link>
+            </div>
           </div>
         </div>
 
-        <div className=" my-4">
-          <h2>
-            <span className="font-medium">{t("Customer ID")}: 123456789</span>
-          </h2>
-        </div>
+        <div
+          ref={contentRef}
+          className="printable-section w-full bg-white rounded-xl shadow-lg hover:shadow-2xl animation-fade p-10"
+        >
+          <div className="flex items-center justify-between gap-3">
+            <div>
+              <img src={logo} className="w-72 rounded-md" alt="App Logo" />
+            </div>
 
-        <div class="relative overflow-x-auto">
-          <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                <th scope="col" class="px-6 py-3">
-                  Product name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                  Color
-                </th>
-                <th scope="col" class="px-6 py-3">
-                  Category
-                </th>
-                <th scope="col" class="px-6 py-3">
-                  Price
-                </th>
-              </tr>
-            </thead>
+            <div>
+              <h2 className="uppercase font-semibold text-2xl tracking-normal text-primary-color">
+                {t("Invoice")}{" "}
+              </h2>
+            </div>
+          </div>
 
-            <tbody>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Apple MacBook Pro 17"
-                </th>
-                <td class="px-6 py-4">Silver</td>
-                <td class="px-6 py-4">Laptop</td>
-                <td class="px-6 py-4">$2999</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="flex justify-between text-sm my-8 text-primary-color">
+            <div>
+              <h2>
+                <span className="font-semibold">
+                  {t("Cust. Email")}:{" "}
+                  <span className="font-extralight">{userInfo?.email}</span>
+                </span>
+              </h2>
+
+              <h2>
+                <span className="font-semibold">
+                  {t("Invoice Number")}:{" "}
+                  <span className="font-extralight">
+                    {searchParams.get("comprobante")}
+                  </span>
+                </span>
+              </h2>
+            </div>
+
+            <div>
+              <h2>
+                <span className="font-semibold">
+                  {t("Approval Number")}:{" "}
+                  <span className="font-extralight">
+                    {getStatusPagaditoPayment?.data?.data?.data?.reference}
+                  </span>
+                </span>
+              </h2>
+
+              <h2>
+                <span className="font-semibold">
+                  {t("Date")}:{" "}
+                  <span className="font-extralight">
+                    {getStatusPagaditoPayment?.data?.data?.data?.date_trans}
+                  </span>
+                </span>
+              </h2>
+            </div>
+          </div>
+
+          <div className="relative overflow-x-auto">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th scope="col" className="px-6 py-3">
+                    {t("Description")}
+                  </th>
+
+                  <th scope="col" className="px-6 py-3 text-nowrap">
+                    {t("Type Plan")}
+                  </th>
+
+                  <th scope="col" className="px-6 py-3 text-end">
+                    {t("Price")}
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {comprobante[1] === "singlePackage"
+                      ? "SinglePackage Premium"
+                      : "TertiaryPackage Premium"}
+                  </th>
+                  <td className="px-6 py-4">
+                    {comprobante[1] === "singlePackage" ? "Single" : "Tertiary"}
+                  </td>
+                  <td className="px-6 py-4 text-end">
+                    ${comprobante[1] === "singlePackage" ? 19.99 : 59.99}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <button
+            className="bg-gray-400 text-white mt-8 py-3.5 px-6 rounded-md hover:bg-gray-400/80 animation-fade"
+            onClick={handlePrint}
+            type="button"
+          >
+            <AiFillPrinter size={22} />
+          </button>
         </div>
       </div>
     </main>

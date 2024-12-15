@@ -181,7 +181,7 @@ const CheckingStatusPagadito = () => {
                   </div>
 
                   <div className="flex justify-between sm:gap-0 gap-4 text-sm my-8 text-primary-color">
-                    <div>
+                    <div className="text-start">
                       <h2 className="mb-1">
                         <span className="font-semibold">
                           {t("Cust. Email")}:{" "}
@@ -201,7 +201,7 @@ const CheckingStatusPagadito = () => {
                       </h2>
                     </div>
 
-                    <div>
+                    <div className="text-end">
                       <h2 className="mb-1">
                         <span className="font-semibold">
                           {t("Approval Number")}:{" "}
@@ -270,13 +270,15 @@ const CheckingStatusPagadito = () => {
                     </table>
                   </div>
 
-                  <button
-                    className="bg-gray-400 text-white mt-8 py-3.5 px-6 rounded-md hover:bg-gray-400/80 animation-fade"
-                    onClick={handlePrint}
-                    type="button"
-                  >
-                    <AiFillPrinter size={22} />
-                  </button>
+                  <div className="text-start">
+                    <button
+                      className="bg-gray-400 text-white mt-8 py-3.5 px-6 rounded-md hover:bg-gray-400/80 animation-fade"
+                      onClick={handlePrint}
+                      type="button"
+                    >
+                      <AiFillPrinter size={22} />
+                    </button>
+                  </div>
                 </div>
               </div>
             )}

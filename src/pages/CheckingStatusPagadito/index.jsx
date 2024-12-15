@@ -1,17 +1,17 @@
 import getFastApiErrors from "../../utils/getFastApiErrors";
-import { useMutation } from "@tanstack/react-query";
 import { Link, useSearchParams } from "react-router-dom";
+import { useContext, useEffect, useRef } from "react";
+import { useMutation } from "@tanstack/react-query";
+import AppContext from "../../context/AppProvider";
 import { useReactToPrint } from "react-to-print";
 import { AiFillPrinter } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import { useContext, useEffect, useRef } from "react";
 import axios from "axios";
 
-import AppContext from "../../context/AppProvider";
-import logo from "../../assets/logo.png";
-import cloud from "../../assets/cloud.png";
 import peaceDove from "../../assets/peace-dove.png";
+import cloud from "../../assets/cloud.png";
+import logo from "../../assets/logo.png";
 
 const CheckingStatusPagadito = () => {
   const contentRef = useRef(null);
@@ -196,9 +196,9 @@ const CheckingStatusPagadito = () => {
             </div>
           </div>
 
-          <div className="flex justify-between text-sm my-8 text-primary-color">
+          <div className="flex justify-between sm:gap-0 gap-4 text-sm my-8 text-primary-color">
             <div>
-              <h2>
+              <h2 className="mb-1">
                 <span className="font-semibold">
                   {t("Cust. Email")}:{" "}
                   <span className="font-extralight">{userInfo?.email}</span>
@@ -216,7 +216,7 @@ const CheckingStatusPagadito = () => {
             </div>
 
             <div>
-              <h2>
+              <h2  className="mb-1">
                 <span className="font-semibold">
                   {t("Approval Number")}:{" "}
                   <span className="font-extralight">
@@ -241,15 +241,15 @@ const CheckingStatusPagadito = () => {
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="px-6 py-3">
-                    {t("Description")}
+                    Description
                   </th>
 
                   <th scope="col" className="px-6 py-3 text-nowrap">
-                    {t("Type Plan")}
+                    Type Plan
                   </th>
 
                   <th scope="col" className="px-6 py-3 text-end">
-                    {t("Price")}
+                    Price
                   </th>
                 </tr>
               </thead>

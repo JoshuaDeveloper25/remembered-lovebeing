@@ -1,8 +1,11 @@
+import { useTranslation } from "react-i18next";
 import { InputForm } from "../../../components/InputForm";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 const Form = ({ register, isPending, handleSubmit }) => {
+  const { t } = useTranslation();
+  
   return (
     <form className={`flex-1`} onSubmit={handleSubmit}>
       <div className="text-end px-4 sm:pt-0 pt-3">
@@ -77,7 +80,7 @@ const Form = ({ register, isPending, handleSubmit }) => {
               className="btn bg-[#F56965] disabled:opacity-30 hover:shadow-lg px-3 hover:opacity-70 hover:shadow-[#F56965] text-white border-transparent py-3 font-light shadow-[#F56965] shadow-md w-full"
               disabled={isPending}
             >
-              {isPending ? "Loading..." : "Sign Up"}
+              {isPending ? t("Loading...") : "Sign Up"}
             </button>
           </div>
         </div>

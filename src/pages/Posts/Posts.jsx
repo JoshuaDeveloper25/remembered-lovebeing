@@ -17,7 +17,7 @@ const Posts = () => {
       await axios.get(`${import.meta.env.VITE_BASE_URL}/posts/`),
   });
 
-  if (allRememberedPostsQuery?.isLoading) return <h2>Loading...</h2>;
+  if (allRememberedPostsQuery?.isLoading) return <h2>{t("Loading...")}</h2>;
 
   return (
     <main className="relative">

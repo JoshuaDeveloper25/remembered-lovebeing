@@ -39,7 +39,7 @@ const RecentMemorialsCarousel = () => {
     },
   });
 
-  if (memorialsQuery?.isLoading) return <p>Loading...</p>;
+  if (memorialsQuery?.isLoading) return <p>{t("Loading...")}</p>;
 
   return (
     <section className="bg-white">

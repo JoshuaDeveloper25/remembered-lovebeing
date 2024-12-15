@@ -1,12 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getLivedDays } from "../../../utils/getLivedDays";
 import { Link, useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import axios from "axios";
 
 const ProfilePlanStatus = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
 
   // --> 🧓 Get certain profile by remember id
   const rememberProfileQuery = useQuery({
@@ -48,7 +50,7 @@ const ProfilePlanStatus = () => {
     });
   };
 
-  if (rememberProfileQuery?.isLoading) return "loading...";
+  if (rememberProfileQuery?.isLoading) return t("Loading...");
 
   return (
     <div className="flex flex-col sm:flex-row md:gap-12 gap-4 bg-white hover:shadow-2xl animation-fade rounded-md shadow-lg p-4">
@@ -84,7 +86,9 @@ const ProfilePlanStatus = () => {
               loading="lazy"
             />
 
-            <h3 className="text-center font-semibold text-muted-color mt-6 mb-2">In Loving Memory Of</h3>
+            <h3 className="text-center font-semibold text-muted-color mt-6 mb-2">
+              In Loving Memory Of
+            </h3>
 
             <h2 className="capitalize self-end font-bold text-2xl leading-6 text-center my-6">
               {`${

@@ -124,8 +124,8 @@ const FormPost = ({
                       fill="currentFill"
                     />
                   </svg>{" "}
-                  Loading...
-                  <span className="sr-only">Loading...</span>
+                  {t("Loading...")}
+                  <span className="sr-only">{t("Loading...")}</span>
                 </div>
               </>
             ) : (

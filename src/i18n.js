@@ -4,6 +4,7 @@ import i18n from "i18next";
 const resources = {
   en: {
     translation: {
+      Condolences: "Condolences",
       Memorials: "Memorials",
       Posts: "Posts",
       News: "News",
@@ -317,10 +318,37 @@ const resources = {
         "Discover the latest updates and stories shared by our users!",
       "There's no news about the users for the moment...":
         "There's no news about the users for the moment...",
+      "Select Plan": "Select Plan",
+      "Pricing Plans": "Pricing Plans",
+      Free: "Free",
+      "Unlimited images": "Unlimited images",
+      "Unlimited posts": "Unlimited posts",
+      "Generate QR Code": "Generate QR Code",
+      "for life": "for life",
+      "Up to 6 images": "Up to 6 images",
+      "Most Popular!": "Most Popular!",
+      "No posts": "No posts",
+      "Explore our flexible pricing options and find the plan that best suits your needs and budget.":
+        "Explore our flexible pricing options and find the plan that best suits your needs and budget.",
+      "N° of Premium Profiles": "N° of Premium Profiles",
     },
   },
   es: {
     translation: {
+      "N° of Premium Profiles": "N.º de Perfiles Premium",
+      "No posts": "Sin publicaciones",
+      "Up to 6 images": "Hasta 6 imágenes",
+      "Generate QR Code": "Generar Código QR",
+      "Unlimited posts": "Publicaciones ilimitadas",
+      "Unlimited images": "Imágenes ilimitadas",
+      Condolences: "Condolencias",
+      "Most Popular!": "¡Más Popular!",
+      "for life": "de por vida",
+      Free: "Gratis",
+      "Pricing Plans": "Planes de Precios",
+      "Explore our flexible pricing options and find the plan that best suits your needs and budget.":
+        "Explora nuestras opciones de precios flexibles y encuentra el plan que mejor se adapte a tus necesidades y presupuesto.",
+      "Select Plan": "Seleccionar Plan",
       "There's no news about the users for the moment...":
         "No hay noticias de los usuarios por el momento...",
       "Load More": "Cargar Más",

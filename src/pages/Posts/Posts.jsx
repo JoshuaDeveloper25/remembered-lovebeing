@@ -5,8 +5,11 @@ import axios from "axios";
 import cloud from "../../assets/cloud.png";
 import peaceDove from "../../assets/peace-dove.png";
 import landscape from "../../assets/landscape.jpg";
+import { useTranslation } from "react-i18next";
 
 const Posts = () => {
+  const { t } = useTranslation();
+
   // --> 📝 Get all posts of remembereds
   const allRememberedPostsQuery = useQuery({
     queryKey: ["posts"],
@@ -41,17 +44,17 @@ const Posts = () => {
         {/* --> Introduction */}
         <div className="text-center mb-14">
           <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
-            Posts
+            {t("Posts")}
           </h2>
           <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
           <p className="text-xl max-w-2xl mx-auto mt-2 mb-8 text-muted-color">
-            Discover the latest updates and stories shared by our users!
+            {t("Discover the latest updates and stories shared by our users!")}
           </p>
         </div>
 
         {!allRememberedPostsQuery?.data?.data?.length ? (
-          <h2 className="text-primary-color text-2xl uppercase tracking-wider text-center my-5">
-            No remembered has made a post....
+          <h2 className="text-primary-color text-2xl uppercase mx-auto max-w-2xl tracking-wider text-center my-5">
+            {t("No remembered has made a post...")}
           </h2>
         ) : (
           allRememberedPostsQuery?.data?.data?.map((post, index) => (

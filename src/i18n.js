@@ -311,10 +311,23 @@ const resources = {
         "This page is dedicated to honoring and remembering those who have left an indelible mark on our lives.",
       "There's no results about this memorial...":
         "There's no results about this memorial...",
+      "Load More": "Load More",
+      "No remembered has made a post...": "No remembered has made a post...",
+      "Discover the latest updates and stories shared by our users!":
+        "Discover the latest updates and stories shared by our users!",
+      "There's no news about the users for the moment...":
+        "There's no news about the users for the moment...",
     },
   },
   es: {
     translation: {
+      "There's no news about the users for the moment...":
+        "No hay noticias de los usuarios por el momento...",
+      "Load More": "Cargar Más",
+      "Discover the latest updates and stories shared by our users!":
+        "¡Descubre las últimas actualizaciones e historias compartidas por nuestros usuarios!",
+      "No remembered has made a post...":
+        "No se ha realizado ninguna publicación por parte de los recordados...",
       "Stay updated with the latest news of the users!":
         "¡Mantente actualizado con las últimas noticias de los usuarios!",
       "There's no results about this memorial...":

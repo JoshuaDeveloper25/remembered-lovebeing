@@ -86,12 +86,13 @@ const Memorials = () => {
       {/* Introduction */}
       <div className="text-center mb-6">
         <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
-          In Memory of Our Loved Ones
+          {t("In Memory of Our Loved Ones")}
         </h2>
         <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
         <p className="text-xl max-w-2xl mx-auto mt-2 mb-8 text-muted-color">
-          This page is dedicated to honoring and remembering those who have left
-          an indelible mark on our lives.
+          {t(
+            "This page is dedicated to honoring and remembering those who have left an indelible mark on our lives."
+          )}
         </p>
       </div>
 
@@ -103,7 +104,7 @@ const Memorials = () => {
               type="text"
               value={tempSearchFullName}
               onChange={(e) => setTempSearchFullName(e?.target?.value)}
-              placeholder="Full Name"
+              placeholder={t("Full Name")}
             />
           </label>
 
@@ -113,7 +114,7 @@ const Memorials = () => {
               onClick={handleSearch}
               type="button"
             >
-              Search
+              {t("Search")}
             </button>
           </div>
         </div>
@@ -121,14 +122,16 @@ const Memorials = () => {
         {/* Filters */}
         <div className="flex flex-col md:flex-row md:items-center justify-center gap-3">
           <label className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
-            <span className="text-primary-color font-semibold">Country:</span>
+            <span className="text-primary-color font-semibold">
+              {t("Country")}:
+            </span>
             <select
               value={tempSearchBirthCountry}
               onChange={(e) => setTempSearchBirthCountry(e?.target?.value)}
               name="countryMemorial"
               className="py-2 px-2 block border border-tertiary-color/15 rounded-sm bg-white"
             >
-              <option value="">All</option>
+              <option value="">{t("All")}</option>
               {countriesQuery?.data?.data?.map((country, index) => {
                 if (country === null) return null;
                 return (
@@ -142,7 +145,7 @@ const Memorials = () => {
 
           <label className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
             <span className="font-medium text-primary-color">
-              Cause of Death:
+              {t("Cause of Death")}:
             </span>
             <select
               className="py-2 px-2 block border border-tertiary-color/15 bg-white rounded-sm w-[10rem]"
@@ -150,7 +153,7 @@ const Memorials = () => {
               value={tempSearchDesignation}
               name="designation"
             >
-              <option value="">All</option>
+              <option value="">{t("All")}</option>
               <option value="not_to_say">Prefer not to say</option>
               <option value="covid19_victim">COVID-19 victim</option>
               <option value="substance_victim">Substance abuse victim</option>
@@ -162,16 +165,18 @@ const Memorials = () => {
           </label>
 
           <label className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
-            <span className="font-semibold text-primary-color">Gender:</span>
+            <span className="font-semibold text-primary-color">
+              {t("Gender")}:
+            </span>
             <select
               className="py-2 px-2 block border border-tertiary-color/15 bg-white rounded-sm w-[10rem]"
               value={tempSearchGender}
               onChange={(e) => setTempSearchGender(e?.target?.value)}
               name="gender"
             >
-              <option value="">Both</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
+              <option value="">{t("Both")}</option>
+              <option value="male">{t("Male")}</option>
+              <option value="female">{t("Female")}</option>
             </select>
           </label>
         </div>
@@ -180,7 +185,7 @@ const Memorials = () => {
       {/* No results message */}
       {!memorialsQuery?.data?.pages[0]?.data?.items?.length && (
         <h2 className="text-primary-color text-center text-2xl uppercase my-16 tracking-wider">
-          There's no results about this memorial...
+          {t("There's no results about this memorial...")}
         </h2>
       )}
 

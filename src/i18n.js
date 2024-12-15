@@ -7,6 +7,8 @@ const resources = {
       Memorials: "Memorials",
       Posts: "Posts",
       News: "News",
+      "Stay updated with the latest news of the users!":
+        "Stay updated with the latest news of the users!",
       Prices: "Prices",
       "My Profiles": "My Profiles",
       "Log Out": "Log Out",
@@ -296,10 +298,38 @@ const resources = {
       "Checking the transaction status, please wait...":
         "Checking the transaction status, please wait...",
       "Loading...": "Loading...",
+      Search: "Search",
+      All: "All",
+      "Full Name": "Full Name",
+      Both: "Both",
+      Gender: "Gender",
+      Male: "Male",
+      Female: "Female",
+      "Cause of Death": "Cause of Death",
+      "In Memory of Our Loved Ones": "In Memory of Our Loved Ones",
+      "This page is dedicated to honoring and remembering those who have left an indelible mark on our lives.":
+        "This page is dedicated to honoring and remembering those who have left an indelible mark on our lives.",
+      "There's no results about this memorial...":
+        "There's no results about this memorial...",
     },
   },
   es: {
     translation: {
+      "Stay updated with the latest news of the users!":
+        "¡Mantente actualizado con las últimas noticias de los usuarios!",
+      "There's no results about this memorial...":
+        "No hay resultados sobre este memorial...",
+      Male: "Masculino",
+      Female: "Femenino",
+      "Cause of Death": "Causa de Muerte",
+      Both: "Ambos",
+      Gender: "Género",
+      "Full Name": "Nombre Completo",
+      Search: "Buscar",
+      All: "Todos",
+      "This page is dedicated to honoring and remembering those who have left an indelible mark on our lives.":
+        "Esta página está dedicada a honrar y recordar a aquellos que han dejado una huella imborrable en nuestras vidas.",
+      "In Memory of Our Loved Ones": "En Memoria de Nuestros Seres Queridos",
       "Loading...": "Cargando...",
       "Checking the transaction status, please wait...":
         "Comprobando el estado de la transacción, por favor, espere...",

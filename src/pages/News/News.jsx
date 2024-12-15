@@ -2,8 +2,10 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import New from "./components/New";
 import { useState } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const News = () => {
+  const { t } = useTranslation();
   const [nextPage, setNextPage] = useState(2);
 
   const newsQuery = useInfiniteQuery({
@@ -32,11 +34,12 @@ const News = () => {
       {/* --> Introduction */}
       <div className="text-center mb-14">
         <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
-          News
+          {t("News")}
         </h2>
         <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
         <p className="text-xl max-w-2xl mx-auto mt-2 mb-8 text-muted-color">
-          Stay updated with the latest news of the users!
+          {t("Stay updated with the latest news of the users!")}
+          
         </p>
       </div>
 

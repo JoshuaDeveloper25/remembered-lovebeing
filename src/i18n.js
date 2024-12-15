@@ -290,10 +290,22 @@ const resources = {
       Price: "Price",
       Description: "Description",
       "Type Plan": "Type Plan",
+      "This transaction has expired.": "This transaction has expired.",
+      "View Profiles": "View Profiles",
+      "View Plans": "View Plans",
+      "Checking the transaction status, please wait...":
+        "Checking the transaction status, please wait...",
+      "Loading...": "Loading...",
     },
   },
   es: {
     translation: {
+      "Loading...": "Cargando...",
+      "Checking the transaction status, please wait...":
+        "Comprobando el estado de la transacción, por favor, espere...",
+      "View Plans": "Ver Planes",
+      "View Profiles": "Ver Perfiles",
+      "This transaction has expired.": "Esta transacción ha expirado.",
       "Type Plan": "Tipo de Plan",
       Description: "Descripción",
       Price: "Precio",

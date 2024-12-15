@@ -92,7 +92,7 @@ const CheckingStatusPagadito = () => {
         {getStatusPagaditoPayment?.isError ? (
           <>
             <h2 className="font-mono max-w-md tracking-wider text-3xl text-primary-color uppercase font-semibold">
-              Esta transacción ha expirado.
+              {t("This transaction has expired.")}
             </h2>
             <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
 
@@ -101,11 +101,11 @@ const CheckingStatusPagadito = () => {
                 className="btn btn-blue-light border-0"
                 to={"/my-profiles/"}
               >
-                Ver Perfiles
+                {t("View Profiles")}
               </Link>
 
               <Link className="btn btn-blue-light border-0" to={"/prices"}>
-                Ver Planes
+                {t("View Plans")}
               </Link>
             </div>
           </>
@@ -115,7 +115,7 @@ const CheckingStatusPagadito = () => {
             payPremiumProfilePrices?.isPending ? (
               <>
                 <h2 className="font-mono max-w-md tracking-wider text-3xl text-primary-color uppercase font-semibold">
-                  Comprobando el estado de la transacción, por favor, espere...
+                  {t("Checking the transaction status, please wait...")}
                 </h2>
                 <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
 
@@ -137,7 +137,7 @@ const CheckingStatusPagadito = () => {
                       fill="currentFill"
                     />
                   </svg>
-                  <span className="sr-only">Loading...</span>
+                  <span className="sr-only">{t("Loading...")}</span>
                 </div>
               </>
             ) : (

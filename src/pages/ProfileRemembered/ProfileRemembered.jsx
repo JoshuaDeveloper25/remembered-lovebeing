@@ -81,18 +81,18 @@ const ProfileRemembered = () => {
   // });
 
   // --> 📝 Get all posts of a remembered
-  const postsQuery = useQuery({
-    queryKey: ["posts"],
-    queryFn: async () => {
-      const response = await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/posts/${
-          data.data.remembered_profile.id
-        }`
-      );
-      return response;
-    },
-    enabled: !!data?.data?.remembered_profile?.id, // it's going to run just when the ID is available.
-  });
+  // const postsQuery = useQuery({
+  //   queryKey: ["posts"],
+  //   queryFn: async () => {
+  //     const response = await axios.get(
+  //       `${import.meta.env.VITE_BASE_URL}/posts/${
+  //         data.data.remembered_profile.id
+  //       }`
+  //     );
+  //     return response;
+  //   },
+  //   enabled: !!data?.data?.remembered_profile?.id, // it's going to run just when the ID is available.
+  // });
 
   // --> Edit Remembered Profile
   const editRememberedProfileMutation = useMutation({
@@ -293,7 +293,7 @@ const ProfileRemembered = () => {
                   totalProfileCountTabs={data?.data?.remembered_profile}
                   setEditRememberedProfile={setEditRememberedProfile}
                   setStatusOptionSelected={setStatusOptionSelected}
-                  totalLengthPosts={postsQuery?.data?.data?.length}
+                  totalLengthPosts={data?.data?.remembered_profile?.posts?.length}
                   setChangeStatusModal={setChangeStatusModal}
                   statusOptionSelected={statusOptionSelected}
                   changeStatusMutation={changeStatusMutation}
@@ -534,7 +534,7 @@ const ProfileRemembered = () => {
                   textTab={"Posts"}
                   openTab={openTab}
                   numberTab={2}
-                  countTab={postsQuery?.data?.data?.length}
+                  countTab={data?.data?.remembered_profile?.posts?.length}
                 />
 
                 {/* QR Code */}
@@ -590,7 +590,7 @@ const ProfileRemembered = () => {
                         />
                       </div>
 
-                      {!postsQuery?.data?.data?.length ? (
+                      {!data?.data?.remembered_profile?.posts?.length ? (
                         <h2 className="text-center font-bold text-xl text-primary-color my-5">
                           There's no posts in this profile yet...
                           <span className="block">
@@ -601,14 +601,14 @@ const ProfileRemembered = () => {
                           </span>
                         </h2>
                       ) : (
-                        postsQuery?.data?.data?.map((post) => {
+                        data?.data?.remembered_profile?.posts?.map((post) => {
                           return (
                             <Post
                               isOwner={data?.data?.is_owner}
                               rememberName={
                                 data?.data?.remembered_profile?.first_name
                               }
-                              totalComments={postsQuery?.data?.data?.comments}
+                              totalComments={data?.data?.remembered_profile?.posts?.comments}
                               post={post}
                               key={post?.id}
                             />

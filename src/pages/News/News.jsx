@@ -23,8 +23,6 @@ const News = () => {
     },
   });
 
-  if (newsQuery?.isLoading) return <p>Cargando..</p>;
-
   const flapMapeado = newsQuery?.data?.pages?.flatMap(
     (item) => item?.data?.items
   );
@@ -42,33 +40,39 @@ const News = () => {
         </p>
       </div>
 
-      {flapMapeado?.length ? (
+      {newsQuery?.isLoading ? (
+        t("Loading...")
+      ) : (
         <>
-          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 place-content-center place-items-stretch">
-            {flapMapeado?.map((item, index) => {
-              return <New item={item} key={index} />;
-            })}
-          </div>
+          {flapMapeado?.length ? (
+            <>
+              <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 place-content-center place-items-stretch">
+                {flapMapeado?.map((item, index) => {
+                  return <New item={item} key={index} />;
+                })}
+              </div>
 
-          {flapMapeado?.length ===
-          newsQuery?.data?.pages[0]?.data?.total ? null : (
-            <div className="my-5 text-center">
-              <button
-                className="btn btn-blue w-auto"
-                onClick={() => {
-                  setNextPage((prev) => prev + 1);
-                  newsQuery?.fetchNextPage();
-                }}
-              >
-                {t("Load More")}
-              </button>
-            </div>
+              {flapMapeado?.length ===
+              newsQuery?.data?.pages[0]?.data?.total ? null : (
+                <div className="my-5 text-center">
+                  <button
+                    className="btn btn-blue w-auto"
+                    onClick={() => {
+                      setNextPage((prev) => prev + 1);
+                      newsQuery?.fetchNextPage();
+                    }}
+                  >
+                    {t("Load More")}
+                  </button>
+                </div>
+              )}
+            </>
+          ) : (
+            <h2 className="text-primary-color text-2xl max-w-2xl mx-auto uppercase tracking-wider text-center my-5">
+              {t("There's no news about the users for the moment...")}
+            </h2>
           )}
         </>
-      ) : (
-        <h2 className="text-primary-color text-2xl max-w-2xl mx-auto uppercase tracking-wider text-center my-5">
-          {t("There's no news about the users for the moment...")}
-        </h2>
       )}
     </section>
   );

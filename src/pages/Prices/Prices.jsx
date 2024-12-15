@@ -2,8 +2,8 @@ import AppContext from "../../context/AppProvider";
 import { IoCloseSharp } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
 import { GoStop } from "react-icons/go";
+import { useContext } from "react";
 
 const Prices = () => {
   const { userInfo } = useContext(AppContext);
@@ -133,7 +133,13 @@ const Prices = () => {
             </li>
           </ul>
 
-          <Link to={`/checkout/?packageName=singlePackage`}>
+          <Link
+            to={
+              userInfo?.access_token
+                ? "/checkout/?packageName=singlePackage"
+                : "/sign-in?redirect=/checkout/?packageName=singlePackage"
+            }
+          >
             <button
               className="btn bg-primary-color-light text-white hover:bg-primary-color-light/55 animation-fade border w-auto rounded-full"
               type="button"
@@ -185,7 +191,13 @@ const Prices = () => {
               Number of Premium Profiles (3)
             </li>
           </ul>
-          <Link to={`/checkout/?packageName=tertiaryPackage`}>
+          <Link
+            to={
+              userInfo?.access_token
+                ? "/checkout/?packageName=tertiaryPackage"
+                : "/sign-in?redirect=/checkout/?packageName=tertiaryPackage"
+            }
+          >
             <button
               className="btn hover:bg-primary-color-light hover:text-white animation-fade border w-auto rounded-full"
               type="button"

@@ -21,6 +21,8 @@ const Profiles = ({
       await axios.get(
         `${import.meta.env.VITE_BASE_URL}/users/get-premium-remaining`
       ),
+      // refetchOnWindowFocus: false,
+      // refetchOnMount: false,
   });
 
   const handleCreatePremiumProfile = () => {

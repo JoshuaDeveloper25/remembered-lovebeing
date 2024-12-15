@@ -28,6 +28,8 @@ const MyProfiles = () => {
       await axios.get(
         `${import.meta.env.VITE_BASE_URL}/remembereds/get-own-profiles`
       ),
+    // refetchOnWindowFocus: false,
+    // refetchOnMount: false,
   });
 
   const userStatsQuery = useQuery({
@@ -36,6 +38,8 @@ const MyProfiles = () => {
       await axios.get(
         `${import.meta.env.VITE_BASE_URL}/remembereds/user-stats`
       ),
+    // refetchOnWindowFocus: false,
+    // refetchOnMount: false,
   });
 
   const createProfileMutation = useMutation({
@@ -66,6 +70,8 @@ const MyProfiles = () => {
     queryFn: () => {
       return axios.get(`${import.meta.env.VITE_BASE_URL}/favorites`);
     },
+    // refetchOnWindowFocus: false,
+    // refetchOnMount: false,
   });
 
   const handleSubmit = (e) => {

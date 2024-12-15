@@ -1,16 +1,16 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import FormPost from "../pages/ProfileRemembered/components/FormPost";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import { FaPlus } from "react-icons/fa";
-import Modal from "./Modal";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import Modal from "./Modal";
 import axios from "axios";
 
 const UploadPost = ({
   galleryImages,
+  statusPlan,
   isOwner,
-  rememberedProfiles,
   idRemembered,
 }) => {
   const [tempSelectedGalleryImageInfo, setTempSelectedGalleryImageInfo] =
@@ -18,10 +18,6 @@ const UploadPost = ({
   const [openModalCreatePost, setOpenModalCreatePost] = useState(false);
   const [error, setError] = useState("");
   const queryClient = useQueryClient();
-
-  const profileInfo = rememberedProfiles?.data
-    ?.map((item) => item)
-    ?.filter((item) => item?.id === +idRemembered);
 
   const imagesSelectedIds = tempSelectedGalleryImageInfo?.map(
     (item) => item?.id
@@ -50,9 +46,6 @@ const UploadPost = ({
 
     const postInfo = {
       content: e?.target?.content?.value,
-      profile_image_id: profileInfo[0]?.profile_images
-        ? +profileInfo[0]?.profile_images?.id
-        : 0,
       gallery_image_ids: imagesSelectedIds,
     };
 
@@ -67,7 +60,7 @@ const UploadPost = ({
     createPostMutation?.mutate(postInfo);
   };
 
-  return !isOwner ? null : (
+  return !isOwner || statusPlan === "free" ? null : (
     <>
       <button
         onClick={() => setOpenModalCreatePost(true)}
@@ -93,7 +86,6 @@ const UploadPost = ({
           tempSelectedGalleryImageInfo={tempSelectedGalleryImageInfo}
           setTempSelectedGalleryImageInfo={setTempSelectedGalleryImageInfo}
           createPostMutation={createPostMutation}
-          rememberedProfiles={rememberedProfiles}
           isPending={createPostMutation?.isPending}
         />
       </Modal>

@@ -72,13 +72,13 @@ const ProfileRemembered = () => {
   });
 
   // --> 👪 Get all family members of a profile
-  const ownProfilesQuery = useQuery({
-    queryKey: ["ownProfiles"],
-    queryFn: async () =>
-      await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/remembereds/get-own-profiles`
-      ),
-  });
+  // const ownProfilesQuery = useQuery({
+  //   queryKey: ["ownProfiles"],
+  //   queryFn: async () =>
+  //     await axios.get(
+  //       `${import.meta.env.VITE_BASE_URL}/remembereds/get-own-profiles`
+  //     ),
+  // });
 
   // --> 📝 Get all posts of a remembered
   const postsQuery = useQuery({
@@ -579,9 +579,11 @@ const ProfileRemembered = () => {
                         </h2>
 
                         <UploadPost
+                          statusPlan={
+                            data?.data?.remembered_profile?.status_plan
+                          }
                           idRemembered={data?.data?.remembered_profile?.id}
                           isOwner={data?.data?.is_owner}
-                          rememberedProfiles={ownProfilesQuery?.data}
                           galleryImages={
                             data?.data?.remembered_profile?.gallery_images
                           }

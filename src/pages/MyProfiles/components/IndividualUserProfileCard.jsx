@@ -63,8 +63,6 @@ const IndividualUserProfileCard = ({ userStats }) => {
           </div>
         </div>
       </div>
-
-    
     </article>
   );
 };

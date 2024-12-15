@@ -88,7 +88,7 @@ const CheckingStatusPagadito = () => {
         <img className="w-[100rem] rotate-[-20deg]" src={cloud} alt="cloud" />
       </div>
 
-      <div className="text-center bg-white shadow-lg hover:shadow-2xl animation-fade w-fit p-8 rounded-md">
+      <div className="text-center bg-white shadow-lg hover:shadow-2xl mx-auto animation-fade w-fit p-8 rounded-md">
         {getStatusPagaditoPayment?.isError ? (
           <>
             <h2 className="font-mono max-w-md tracking-wider text-3xl text-primary-color uppercase font-semibold">

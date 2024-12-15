@@ -355,3 +355,8 @@ body {
     top: 0;
   }
 }
+
+.ReactCrop__crop-mask,
+.ReactCrop__child-wrapper {
+  border-radius: 13px;
+}

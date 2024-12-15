@@ -130,7 +130,7 @@ const ImagesHandleCrop = ({
       {error && <p className="text-red-400 text-xs">{error}</p>}
 
       {imgSrc && (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center shadow-2xl rounded-[13px]">
           <ReactCrop
             onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
             circularCrop={circle ? true : false}
@@ -146,6 +146,7 @@ const ImagesHandleCrop = ({
               src={imgSrc}
               alt="Upload"
               style={{ maxHeight: "70vh" }}
+              className="rounded-[13px]"
               onLoad={onImageLoad}
             />
           </ReactCrop>

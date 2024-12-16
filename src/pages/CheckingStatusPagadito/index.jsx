@@ -18,6 +18,7 @@ const CheckingStatusPagadito = () => {
   const reactToPrintFn = useReactToPrint({ contentRef });
   const { userInfo } = useContext(AppContext);
   const { t } = useTranslation();
+  let transactionStatus;
 
   const [searchParams] = useSearchParams();
   const comprobante = searchParams.get("comprobante").split("-");
@@ -29,7 +30,7 @@ const CheckingStatusPagadito = () => {
         paymentInfo
       ),
     onSuccess: (res) => {
-      console.log(res);
+      // console.log(res);
     },
     onError: (err) => {
       console.log(err);
@@ -41,7 +42,7 @@ const CheckingStatusPagadito = () => {
       await axios.post(
         `${import.meta.env.VITE_BASE_URL}/payments/get-premium-profiles/pay/${
           comprobante[1] === "singlePackage" ? 1 : 3
-        }`,
+        }/${searchParams?.get("token")}`,
         paymentInfo
       ),
     onSuccess: (res) => {
@@ -52,6 +53,16 @@ const CheckingStatusPagadito = () => {
       toast.error(getFastApiErrors(err));
     },
   });
+
+  if (getStatusPagaditoPayment?.data?.data?.data?.status === "REGISTERED") {
+    transactionStatus = "La transacción no se ha completado.";
+  } else if (
+    getStatusPagaditoPayment?.data?.data?.data?.status === "COMPLETED"
+  ) {
+    transactionStatus = "Transacción realizada correctamente.";
+  } else {
+    transactionStatus = "La transacción ha expirado.";
+  }
 
   useEffect(() => {
     getStatusPagaditoPayment?.mutate({
@@ -111,8 +122,7 @@ const CheckingStatusPagadito = () => {
           </>
         ) : (
           <>
-            {getStatusPagaditoPayment?.isPending ||
-            payPremiumProfilePrices?.isPending ? (
+            {getStatusPagaditoPayment?.isPending ? (
               <>
                 <h2 className="font-mono max-w-md tracking-wider text-3xl text-primary-color uppercase font-semibold">
                   {t("Checking the transaction status, please wait...")}
@@ -145,7 +155,7 @@ const CheckingStatusPagadito = () => {
                 <div className="sm:max-w-md max-w-full text-center bg-white rounded-xl shadow-lg hover:shadow-2xl animation-fade p-10">
                   <div className="flex flex-col items-center justify-center h-full">
                     <h2 className="font-mono max-w-md tracking-wider text-3xl text-primary-color uppercase font-semibold">
-                      Transacción realizada correctamente.
+                      {transactionStatus}
                     </h2>
                     <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
 

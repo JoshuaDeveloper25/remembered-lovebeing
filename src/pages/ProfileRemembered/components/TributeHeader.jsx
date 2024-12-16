@@ -9,7 +9,7 @@ const TributeHeader = ({ userInfo, idRemembered }) => {
   return (
     <div className="flex flex-col gap-6 sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
       <div className="flex-1">
-        <div className="bg-muted-color/20">
+        <div className="bg-primary-color rounded-sm">
           {/* Title */}
           <h2>
             <button

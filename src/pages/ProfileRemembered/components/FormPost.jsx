@@ -38,7 +38,6 @@ const FormPost = ({
             placeholder={"Description of the post."}
             id="content"
             name="content"
-            required={true}
           ></textarea>
         </label>
 

@@ -7,12 +7,7 @@ import { useState } from "react";
 import Modal from "./Modal";
 import axios from "axios";
 
-const UploadPost = ({
-  galleryImages,
-  statusPlan,
-  isOwner,
-  idRemembered,
-}) => {
+const UploadPost = ({ galleryImages, statusPlan, isOwner, idRemembered }) => {
   const [tempSelectedGalleryImageInfo, setTempSelectedGalleryImageInfo] =
     useState([]);
   const [openModalCreatePost, setOpenModalCreatePost] = useState(false);
@@ -53,7 +48,8 @@ const UploadPost = ({
       return setError(
         "Please, upload/add images if you want to create a post."
       );
-    }
+    } else if (!postInfo?.content?.trim(" "))
+      return toast.error("Fill up the blanks available!");
 
     setError("");
 

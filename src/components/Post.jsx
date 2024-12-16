@@ -50,7 +50,8 @@ const Post = ({ isOwner, post, rememberName }) => {
     };
 
     // Form validation
-    if (!commentInfo?.content) return toast.error(`Fill up the blank!`);
+    if (!commentInfo?.content.trim(" "))
+      return toast.error(`Fill up the blank!`);
 
     publishCommentPostMutation.mutate(commentInfo);
 
@@ -128,7 +129,7 @@ const Post = ({ isOwner, post, rememberName }) => {
                     document.body
                   )}
 
-                  <ul className="absolute right-5 shadow-lg bg-gray-200 py-2 w-max rounded max-h-96 z-50">
+                  <ul className="absolute right-5 shadow-lg bg-gray-200 w-max rounded max-h-96 z-50">
                     {/* Edit Post */}
                     <>
                       <NavbarDropdownLink

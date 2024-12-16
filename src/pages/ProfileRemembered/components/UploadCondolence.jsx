@@ -41,6 +41,9 @@ const UploadCondolence = ({ isOwner, idRemembered }) => {
       content: e?.target?.content?.value,
     };
 
+    if (!condolenceInfo?.content?.trim(" "))
+      return toast.error(`Fill up the blank!`);
+
     createCondolenceMutation?.mutate(condolenceInfo);
   };
 

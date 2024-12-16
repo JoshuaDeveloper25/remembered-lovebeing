@@ -31,14 +31,6 @@ const MyProfiles = () => {
       ),
   });
 
-  // Get favourites of remembereds profiles
-  const favouritesRememberedsQuery = useQuery({
-    queryKey: ["favouritesProfiles"],
-    queryFn: () => {
-      return axios.get(`${import.meta.env.VITE_BASE_URL}/favorites`);
-    },
-  });
-
   const createProfileMutation = useMutation({
     mutationFn: async (profileInfo) =>
       await axios.post(
@@ -143,9 +135,7 @@ const MyProfiles = () => {
                 handleSubmit={handleSubmit}
                 setSlug={setSlug}
                 slug={slug}
-                totalFavoritesProfiles={
-                  favouritesRememberedsQuery?.data?.data?.length
-                }
+                totalFavoritesProfiles={data?.data?.favorites?.length}
                 totalOwnProfiles={data?.data?.remembered?.length}
               />
             </div>
@@ -185,7 +175,7 @@ const MyProfiles = () => {
           <div className="col-span-3">
             <IndividualUserProfileTab
               premiumProfilesRemaining={data?.data?.remaining_premium_profiles}
-              favouritesProfiles={favouritesRememberedsQuery?.data?.data}
+              favouritesProfiles={data?.data?.favorites}
               profiles={data?.data?.remembered}
               isPending={isPending}
               handleSubmit={handleSubmit}
@@ -196,9 +186,7 @@ const MyProfiles = () => {
               statusPlan={statusPlan}
               setOpenPremiumModal={setOpenPremiumModal}
               openPremiumModal={openPremiumModal}
-              isPendingFavouritesProfiles={
-                favouritesRememberedsQuery?.isPending
-              }
+              isPendingFavouritesProfiles={isPending}
               openTab={openTab}
               setOpenTab={setOpenTab}
             />

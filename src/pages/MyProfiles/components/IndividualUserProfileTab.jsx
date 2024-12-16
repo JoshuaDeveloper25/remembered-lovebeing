@@ -5,6 +5,7 @@ import Profiles from "./Profiles";
 import TabLink from "./TabLink";
 
 const IndividualUserProfileTab = ({
+  premiumProfilesRemaining,
   handleSubmit,
   slug,
   setSlug,
@@ -62,6 +63,7 @@ const IndividualUserProfileTab = ({
                 statusPlan={statusPlan}
                 setOpenPremiumModal={setOpenPremiumModal}
                 openPremiumModal={openPremiumModal}
+                premiumProfilesRemaining={premiumProfilesRemaining}
               />
             </TabLinkContent>
 

@@ -70,30 +70,7 @@ const ProfileRemembered = () => {
         }`
       ),
   });
-
-  // --> 👪 Get all family members of a profile
-  // const ownProfilesQuery = useQuery({
-  //   queryKey: ["ownProfiles"],
-  //   queryFn: async () =>
-  //     await axios.get(
-  //       `${import.meta.env.VITE_BASE_URL}/remembereds/get-own-profiles`
-  //     ),
-  // });
-
-  // --> 📝 Get all posts of a remembered
-  // const postsQuery = useQuery({
-  //   queryKey: ["posts"],
-  //   queryFn: async () => {
-  //     const response = await axios.get(
-  //       `${import.meta.env.VITE_BASE_URL}/posts/${
-  //         data.data.remembered_profile.id
-  //       }`
-  //     );
-  //     return response;
-  //   },
-  //   enabled: !!data?.data?.remembered_profile?.id, // it's going to run just when the ID is available.
-  // });
-
+  
   // --> Edit Remembered Profile
   const editRememberedProfileMutation = useMutation({
     mutationFn: async (profileInfo) =>
@@ -172,6 +149,8 @@ const ProfileRemembered = () => {
 
     changeStatusMutation?.mutate(profileInfo);
   };
+
+  console.log(data?.data?.remembered_profile)
 
   if (isPending) {
     return (

@@ -15,8 +15,6 @@ import axios from "axios";
 
 const MyProfiles = () => {
   const { userInfo } = useContext(AppContext);
-  console.log(userInfo);
-
   const [openPremiumModal, setOpenPremiumModal] = useState(false);
   const [openFreeModal, setOpenFreeModal] = useState(false);
   const [statusPlan, setStatusPlan] = useState("");
@@ -24,24 +22,21 @@ const MyProfiles = () => {
   const queryClient = useQueryClient();
   const [openTab, setOpenTab] = useState(1);
 
+  // Get own profiles
   const { data, isPending } = useQuery({
     queryKey: ["ownProfiles"],
     queryFn: async () =>
       await axios.get(
         `${import.meta.env.VITE_BASE_URL}/remembereds/get-own-profiles`
       ),
-    // refetchOnWindowFocus: false,
-    // refetchOnMount: false,
   });
 
-  const userStatsQuery = useQuery({
-    queryKey: ["userStats"],
-    queryFn: async () =>
-      await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/remembereds/user-stats`
-      ),
-    // refetchOnWindowFocus: false,
-    // refetchOnMount: false,
+  // Get favourites of remembereds profiles
+  const favouritesRememberedsQuery = useQuery({
+    queryKey: ["favouritesProfiles"],
+    queryFn: () => {
+      return axios.get(`${import.meta.env.VITE_BASE_URL}/favorites`);
+    },
   });
 
   const createProfileMutation = useMutation({
@@ -64,16 +59,6 @@ const MyProfiles = () => {
       console.log(err);
       toast.error(getFastApiErrors(err));
     },
-  });
-
-  // Get favourites of remembereds profiles
-  const favouritesRememberedsQuery = useQuery({
-    queryKey: ["favouritesProfiles"],
-    queryFn: () => {
-      return axios.get(`${import.meta.env.VITE_BASE_URL}/favorites`);
-    },
-    // refetchOnWindowFocus: false,
-    // refetchOnMount: false,
   });
 
   const handleSubmit = (e) => {
@@ -149,7 +134,7 @@ const MyProfiles = () => {
                 setStatusPlan={setStatusPlan}
                 setOpenTab={setOpenTab}
                 isPending={createProfileMutation?.isPending}
-                userStats={userStatsQuery?.data?.data}
+                userStats={data?.data?.user_stats}
                 setOpenFreeModal={setOpenFreeModal}
                 openFreeModal={openFreeModal}
                 handleSubmit={handleSubmit}
@@ -158,7 +143,7 @@ const MyProfiles = () => {
                 totalFavoritesProfiles={
                   favouritesRememberedsQuery?.data?.data?.length
                 }
-                totalOwnProfiles={data?.data?.length}
+                totalOwnProfiles={data?.data?.remembered?.length}
               />
             </div>
           </div>
@@ -191,13 +176,14 @@ const MyProfiles = () => {
 
         <div className="grid md:grid-cols-4 grid-cols-1 items-start min-[1150px]:gap-3 sm:gap-1 gap-0">
           {/* User Profile - 768 to up */}
-          <IndividualUserProfileCard userStats={userStatsQuery?.data?.data} />
+          <IndividualUserProfileCard userStats={data?.data?.user_stats} />
 
           {/* Profiles from user and Tab */}
           <div className="col-span-3">
             <IndividualUserProfileTab
+              premiumProfilesRemaining={data?.data?.remaining_premium_profiles}
               favouritesProfiles={favouritesRememberedsQuery?.data?.data}
-              profiles={data?.data}
+              profiles={data?.data?.remembered}
               isPending={isPending}
               handleSubmit={handleSubmit}
               slug={slug}

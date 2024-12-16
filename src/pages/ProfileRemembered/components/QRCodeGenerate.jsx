@@ -45,6 +45,10 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
   };
 
   const handleGenerateQRCode = () => {
+    const user_request = confirm("Are you sure of this action?");
+
+    if (!user_request) return;
+
     setGeneratedCode(`${location?.pathname}`);
 
     setTimeout(() => {

@@ -129,6 +129,9 @@ const MyProfiles = () => {
 
             <div>
               <ResponsiveMoreInfoRememberedAdmin
+                premiumProfilesRemaining={
+                  data?.data?.remaining_premium_profiles
+                }
                 openPremiumModal={openPremiumModal}
                 setOpenPremiumModal={setOpenPremiumModal}
                 setStatusPlan={setStatusPlan}

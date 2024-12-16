@@ -20,6 +20,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 const ResponsiveMoreInfoRememberedAdmin = ({
+  premiumProfilesRemaining,
   totalFavoritesProfiles,
   totalOwnProfiles,
   setOpenPremiumModal,
@@ -132,16 +133,7 @@ const ResponsiveMoreInfoRememberedAdmin = ({
     // localStorage?.setItem("userInfo", JSON.stringify(newProfileImage));
   };
 
-  const getPremiumProfilesRemaining = useQuery({
-    queryKey: ["premiumProfilesRemaining"],
-    queryFn: async () =>
-      await axios.get(
-        `${import.meta.env.VITE_BASE_URL}/users/get-premium-remaining`
-      ),
-  });
-
-  const totalPremiumProfilesRemaining =
-    getPremiumProfilesRemaining?.data?.data?.remaining_profiles;
+  const totalPremiumProfilesRemaining = premiumProfilesRemaining;
 
   return (
     <>

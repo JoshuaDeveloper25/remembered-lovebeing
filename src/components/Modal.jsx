@@ -38,13 +38,13 @@ const Modal = ({
       <div
         // onClick={handleCloseModal}
         id="responsive-modal"
-        className="h-[100vh] fixed top-0 w-full z-[9999999999]"
+        className="h-[100vh] fixed top-0 w-full z-[99999999]"
       >
         <div
           id="crud-modal"
           tabIndex="-1"
           aria-hidden="true"
-          className={`overflow-x-hidden fixed px-4 top-0  right-0 left-0 z-[2000] flex justify-center items-center w-full min-h-full bg-black/50 overflow-y-hidden`}
+          className={`overflow-x-hidden fixed px-4 top-0  right-0 left-0 z-[99999999] flex justify-center items-center w-full min-h-full bg-black/50 overflow-y-hidden`}
         >
           <div
             className={`relative w-full ${

@@ -158,7 +158,7 @@ const App = () => {
       >
         <QueryClientProvider client={queryClient}>
           <ToastContainer
-            style={{ zIndex: 999999999999999 }}
+            style={{ zIndex: 999999999 }}
             pauseOnFocusLoss={false}
             hideProgressBar={true}
             position="top-center"

@@ -360,3 +360,17 @@ body {
 .ReactCrop__child-wrapper {
   border-radius: 13px;
 }
+
+.Toastify__toast--success {
+  background: #04bffa !important;
+  font-weight: medium;
+}
+.Toastify__toast--error {
+  background: #ec5a5d !important;
+  font-weight: medium;
+}
+.toastBody {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: #10171d; /* #10171D */
+  font-size: 0.875rem !important;
+}

@@ -154,7 +154,7 @@ const ImagesHandleCrop = ({
       )}
 
       <div className="flex justify-end items-center gap-3 mt-4">
-        <button className="btn border-2 w-auto" type="button" onClick={onCancel}>
+        <button className="btn border border-red-500 hover:bg-red-500 text-red-500 hover:text-white w-auto" type="button" onClick={onCancel}>
           Cancel
         </button>
         <button

@@ -15,6 +15,8 @@ import axios from "axios";
 
 const MyProfiles = () => {
   const { userInfo } = useContext(AppContext);
+  console.log(userInfo);
+
   const [openPremiumModal, setOpenPremiumModal] = useState(false);
   const [openFreeModal, setOpenFreeModal] = useState(false);
   const [statusPlan, setStatusPlan] = useState("");

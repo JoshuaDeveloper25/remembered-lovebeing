@@ -41,6 +41,9 @@ const UploadTribute = ({ idRemembered }) => {
       content: e?.target?.content?.value,
     };
 
+    if (!tributeInfo?.content?.trim(" "))
+      return toast.error("Fill up the blanks available!");
+
     createTributeMutation?.mutate(tributeInfo);
   };
 

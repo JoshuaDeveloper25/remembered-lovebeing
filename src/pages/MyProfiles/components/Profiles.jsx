@@ -1,8 +1,6 @@
 import FormCreateProfile from "./FormCreateProfile";
-import { useQuery } from "@tanstack/react-query";
 import Modal from "../../../components/Modal";
 import Profile from "./Profile";
-import axios from "axios";
 
 const Profiles = ({
   premiumProfilesRemaining,

@@ -318,13 +318,17 @@ const Profile = ({ item, isPending }) => {
                 )}
 
                 <NavbarDropdownLink
-                  hoverBgLink={"hover:bg-secondary-color hover:text-white text-xs"}
+                  hoverBgLink={
+                    "hover:bg-secondary-color hover:text-white text-xs"
+                  }
                   linkTo={`/remembered-profile/${item?.slug}`}
                   linkText={"Edit Profile"}
                 />
 
                 <NavbarDropdownLink
-                  hoverBgLink={"hover:bg-secondary-color hover:text-white text-xs"}
+                  hoverBgLink={
+                    "hover:bg-secondary-color hover:text-white text-xs"
+                  }
                   onClick={() => setChangeStatusModal(true)}
                   linkText={"Change Status"}
                 />
@@ -346,11 +350,13 @@ const Profile = ({ item, isPending }) => {
                   />
                 </Modal>
 
-                <NavbarDropdownLink
-                  hoverBgLink={"hover:bg-red-500 hover:text-white text-xs"}
-                  onClick={handleDelete}
-                  linkText={"Delete"}
-                />
+                {item?.status_plan !== "premium" && (
+                  <NavbarDropdownLink
+                    hoverBgLink={"hover:bg-red-500 hover:text-white text-xs"}
+                    onClick={handleDelete}
+                    linkText={"Delete"}
+                  />
+                )}
               </ul>
             </>
           )}

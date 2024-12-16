@@ -23,6 +23,7 @@ const CheckingStatusPagadito = () => {
   const [searchParams] = useSearchParams();
   const comprobante = searchParams.get("comprobante").split("-");
 
+  // Get status of the payment (EXPIRED, COMPLETED, REGISTERED)
   const getStatusPagaditoPayment = useMutation({
     mutationFn: async (paymentInfo) =>
       await axios.post(
@@ -33,10 +34,11 @@ const CheckingStatusPagadito = () => {
       // console.log(res);
     },
     onError: (err) => {
-      console.log(err);
+      toast.error(getFastApiErrors(err));
     },
   });
 
+  // This is for buying a package of 1 or 3
   const payPremiumProfilePrices = useMutation({
     mutationFn: async (paymentInfo) =>
       await axios.post(
@@ -49,7 +51,21 @@ const CheckingStatusPagadito = () => {
       console.log(res);
     },
     onError: (err) => {
-      console.log(err);
+      toast.error(getFastApiErrors(err));
+    },
+  });
+
+  // This is for turning a remembered profile from free to PRO
+  const payRemeberedProProfile = useMutation({
+    mutationFn: async (paymentInfo) =>
+      await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/payments/pay?remembered_id=${comprobante[2]}`,
+        paymentInfo
+      ),
+    onSuccess: (res) => {
+      console.log(res);
+    },
+    onError: (err) => {
       toast.error(getFastApiErrors(err));
     },
   });
@@ -72,7 +88,11 @@ const CheckingStatusPagadito = () => {
 
   useEffect(() => {
     if (getStatusPagaditoPayment?.data?.data?.data?.status === "COMPLETED") {
-      payPremiumProfilePrices?.mutate();
+      if (comprobante[1] === "goPro") {
+        payRemeberedProProfile?.mutate();
+      } else {
+        payPremiumProfilePrices?.mutate();
+      }
     }
   }, [getStatusPagaditoPayment?.data?.data?.data?.status]);
 

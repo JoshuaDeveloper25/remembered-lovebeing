@@ -20,8 +20,6 @@ const ProfilePlanStatus = () => {
   const shortId = uuidv4().slice(0, 8);
   const { t } = useTranslation();
 
-  const ern = `${`${shortId}-`}${"goPro-1"}`;
-
   // --> 🧓 Get certain profile by remember id
   const rememberProfileQuery = useQuery({
     queryKey: [`profile`, searchParams.get("slug")],
@@ -32,6 +30,9 @@ const ProfilePlanStatus = () => {
         }/remembereds/get-profile/${searchParams.get("slug")}`
       ),
   });
+
+  const rememberedId = rememberProfileQuery?.data?.data?.remembered_profile?.id;
+  const ern = `${`${shortId}-`}${`goPro-${rememberedId}`}`;
 
   const generatePaymentURLMutation = useMutation({
     mutationFn: async (paymentInfo) =>

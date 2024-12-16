@@ -20,7 +20,7 @@ const ProfilePlanStatus = () => {
   const shortId = uuidv4().slice(0, 8);
   const { t } = useTranslation();
 
-  const ern = `${`${shortId}-`}${"Go Pro"}`;
+  const ern = `${`${shortId}-`}${"goPro-1"}`;
 
   // --> 🧓 Get certain profile by remember id
   const rememberProfileQuery = useQuery({
@@ -46,13 +46,11 @@ const ProfilePlanStatus = () => {
 
       if (paymentUrl) {
         window.location.href = `${paymentUrl}`;
-        console.log(res?.data?.data?.token);
       } else {
         toast.error("Didn't receive a valid url.");
       }
     },
     onError: (err) => {
-      console.log(err);
       toast.error(getFastApiErrors(err));
     },
   });

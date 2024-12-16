@@ -33,17 +33,14 @@ const PricesPlan = ({ packageName }) => {
       ),
     onSuccess: (res) => {
       const paymentUrl = res?.data?.data?.url;
-      console.log(res);
 
       if (paymentUrl) {
         window.location.href = `${paymentUrl}`;
-        console.log(res?.data?.data?.token);
       } else {
         toast.error("Didn't receive a valid url.");
       }
     },
     onError: (err) => {
-      console.log(err);
       toast.error(getFastApiErrors(err));
     },
   });

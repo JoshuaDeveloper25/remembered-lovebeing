@@ -3,7 +3,6 @@ import getFastApiErrors from "../../../utils/getFastApiErrors";
 import AppContext from "../../../context/AppProvider";
 import payments from "../../../assets/payments.png";
 import paypal from "../../../assets/paypal.png";
-import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { TbPigMoney } from "react-icons/tb";
 import { FaCheck } from "react-icons/fa";
@@ -12,6 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
 const PricesPlan = ({ packageName }) => {
+  const [selectedPayments, setSelectedPayments] = useState(false);
   const { userInfo } = useContext(AppContext);
   const shortId = uuidv4().slice(0, 8);
 
@@ -19,32 +19,9 @@ const PricesPlan = ({ packageName }) => {
     packageName === "singlePackage" ? "singlePackage-1" : "tertiaryPackage-3"
   }`;
 
-  const [selectedPayments, setSelectedPayments] = useState(false);
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
-
   const handlePaymentChange = (value) => {
     setSelectedPayments(value);
   };
-
-  const makeProfilePackagePaymentMutation = useMutation({
-    mutationFn: async (paymentInfo) =>
-      await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/payments/get-premium-profiles/pay/${
-          packageName === "singlePackage" ? 1 : 3
-        }`,
-        paymentInfo
-      ),
-    onSuccess: (res) => {
-      toast.success("Successfully payment realized!");
-      queryClient.invalidateQueries({ queryKey: ["premiumProfilesRemaining"] });
-      navigate("/my-profiles");
-    },
-    onError: (err) => {
-      console.log(err);
-      toast.error(getFastApiErrors(err));
-    },
-  });
 
   const generatePaymentURLMutation = useMutation({
     mutationFn: async (paymentInfo) =>
@@ -92,19 +69,11 @@ const PricesPlan = ({ packageName }) => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e?.preventDefault();
-
-    if (!e?.target?.payment_status?.value.trim())
-      return toast.error("Fill up the blanks available!");
-
-    makeProfilePackagePaymentMutation.mutate({});
-  };
-
   return (
-    <div className="flex flex-col sm:flex-row md:gap-12 gap-4 bg-white rounded-md hover:shadow-2xl animation-fade shadow-lg p-4">
+    <div className="flex flex-col md:flex-row gap-8 bg-primary-color text-white shadow-primary-color hover:shadow-primary-color hover:shadow-2xl animation-fade rounded-md shadow-lg p-4">
+      {/* Package to buy - LEFT */}
       {packageName === "singlePackage" ? (
-        <div className="min-w-[20rem] hover:scale-105 hover:shadow-2xl animation-fade border shadow-xl rounded-sm text-center py-8 px-7">
+        <div className="min-w-[20rem] hover:shadow-2xl animation-fade border border-primary-color-light shadow-xl rounded-sm text-center py-8 px-7">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
             Single Package
           </span>
@@ -117,7 +86,7 @@ const PricesPlan = ({ packageName }) => {
             <h3 className="text-primary-color-light">for life</h3>
           </div>
 
-          <ul className="text-muted-color leading-9 my-5">
+          <ul className="text-white leading-9 my-5">
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
               Tributes
@@ -150,7 +119,7 @@ const PricesPlan = ({ packageName }) => {
           </ul>
         </div>
       ) : (
-        <div className="min-w-[20rem] hover:scale-105 hover:shadow-2xl animation-fade border shadow-xl rounded-sm text-center py-8 px-7">
+        <div className="min-w-[20rem] hover:shadow-2xl animation-fade border border-primary-color-light shadow-xl rounded-sm text-center py-8 px-7">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
             Tertiary Package
           </span>
@@ -195,9 +164,10 @@ const PricesPlan = ({ packageName }) => {
         </div>
       )}
 
-      <div className="flex-[30%] px-4 py-8">
+      {/* Payment Method - RIGHT */}
+      <div className="flex-[40%] px-4 py-8">
         <div>
-          <h2 className="font-mono tracking-wider text-3xl text-primary-color uppercase font-semibold">
+          <h2 className="font-mono tracking-wider text-3xl uppercase font-semibold">
             Select a payment method
           </h2>
           <div className="bg-yellow-500 h-2 w-24 my-3"></div>
@@ -207,20 +177,20 @@ const PricesPlan = ({ packageName }) => {
           <label
             className={`flex items-center justify-between border rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
               selectedPayments === "plural"
-                ? "bg-primary-color-light/50"
-                : "bg-white"
+                ? "bg-primary-color-light/50 text-white"
+                : "bg-white text-gray-900"
             }`}
           >
             <div className="flex items-center gap-2.5">
               <input
                 type="radio"
-                checked={selectedPayments === "plural"} // Compara con el valor de "plural"
+                checked={selectedPayments === "plural"}
                 name="paymentMethod"
                 value="plural"
                 onChange={() => handlePaymentChange("plural")}
                 className="w-4 h-4 text-primary-color-light bg-gray-100 border-gray-300 focus:ring-primary-color-light dark:focus:ring-primary-color-light dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
-              <p className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <p className="ms-2 text-sm font-medium  dark:text-gray-300">
                 Pay with a card
               </p>
             </div>
@@ -245,20 +215,20 @@ const PricesPlan = ({ packageName }) => {
           <label
             className={`flex items-center justify-between border rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
               selectedPayments === "singular"
-                ? "bg-primary-color-light/50"
-                : "bg-white"
+                ? "bg-primary-color-light/50 text-white"
+                : "bg-white text-gray-900"
             }`}
           >
             <div className="flex items-center gap-2.5">
               <input
                 type="radio"
-                checked={selectedPayments === "singular"} // Compara con el valor de "singular"
+                checked={selectedPayments === "singular"}
                 name="paymentMethod"
                 value="singular"
                 onChange={() => handlePaymentChange("singular")}
                 className="w-4 h-4 text-primary-color-light bg-gray-100 border-gray-300 focus:ring-primary-color-light dark:focus:ring-primary-color-light dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
-              <p className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+              <p className="ms-2 text-sm font-medium  dark:text-gray-300">
                 Pay with Paypal
               </p>
             </div>

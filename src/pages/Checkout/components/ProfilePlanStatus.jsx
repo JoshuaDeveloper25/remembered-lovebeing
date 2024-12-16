@@ -1,13 +1,17 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getLivedDays } from "../../../utils/getLivedDays";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { toast } from "react-toastify";
+import { useState } from "react";
 import axios from "axios";
 
+// Images && icons
+import payments from "../../../assets/payments.png";
+import paypal from "../../../assets/paypal.png";
+
 const ProfilePlanStatus = () => {
+  const [selectedPayments, setSelectedPayments] = useState(false);
   const [searchParams] = useSearchParams();
-  const queryClient = useQueryClient();
   const { t } = useTranslation();
 
   // --> 🧓 Get certain profile by remember id
@@ -21,40 +25,12 @@ const ProfilePlanStatus = () => {
       ),
   });
 
-  const makePaymentMutation = useMutation({
-    mutationFn: async (paymentInfo) =>
-      await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/payments/pay?remembered_id=${
-          rememberProfileQuery?.data?.data?.remembered_profile?.id
-        }`,
-        paymentInfo
-      ),
-    onSuccess: (res) => {
-      toast.success("Successfully payment realized!");
-      queryClient.invalidateQueries({ queryKey: ["profile"] });
-    },
-    onError: (err) => {
-      console.log(err);
-      toast.error(getFastApiErrors(err));
-    },
-  });
-
-  const handleSubmit = (e) => {
-    e?.preventDefault();
-
-    if (!e?.target?.payment_status?.value.trim())
-      return toast.error("Fill up the blanks available!");
-
-    makePaymentMutation.mutate({
-      payment_status: e?.target?.payment_status?.value,
-    });
-  };
-
   if (rememberProfileQuery?.isLoading) return t("Loading...");
 
   return (
-    <div className="flex flex-col sm:flex-row md:gap-12 gap-4 bg-white hover:shadow-2xl animation-fade rounded-md shadow-lg p-4">
-      <div className="flex-1 relative shadow-2xl">
+    <div className="flex flex-col md:flex-row gap-8 bg-primary-color text-white shadow-primary-color hover:shadow-primary-color hover:shadow-2xl animation-fade rounded-md shadow-lg p-4">
+      {/* Remebered to pass pro - LEFT */}
+      <div className="flex-1 relative shadow-2xl rounded-md">
         <img
           src={
             rememberProfileQuery?.data?.data?.remembered_profile?.cover_images
@@ -66,9 +42,10 @@ const ProfilePlanStatus = () => {
           decoding="async"
           loading="lazy"
         />
-        <div className="relative p-6 pb-6 rounded-b-lg">
+
+        <div className="relative bg-white p-6 pb-6 rounded-b-lg">
           <div className="absolute top-2 right-2">
-            <p className="text-green-500 bg-green-500/20 p-2">
+            <p className="text-green-500 rounded-sm bg-green-500/20 p-2">
               Plan: <span className="font-semibold">Free</span>
             </p>
           </div>
@@ -90,7 +67,7 @@ const ProfilePlanStatus = () => {
               In Loving Memory Of
             </h3>
 
-            <h2 className="capitalize self-end font-bold text-2xl leading-6 text-center my-6">
+            <h2 className="capitalize self-end font-bold text-2xl text-primary-color leading-6 text-center my-6">
               {`${
                 rememberProfileQuery?.data?.data?.remembered_profile?.first_name
               } ${
@@ -138,42 +115,91 @@ const ProfilePlanStatus = () => {
         </div>
       </div>
 
-      <div className="flex-[30%] px-4 py-8">
+      {/* Payment Method - RIGHT */}
+      <div className="flex-[40%] px-4 py-8">
         <div>
-          <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
-            Complete your order
+          <h2 className="font-mono tracking-wider text-3xl text-white uppercase font-semibold">
+            Select a payment method
           </h2>
           <div className="bg-yellow-500 h-2 w-24 my-3"></div>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-8">
-          <div>
-            <input
-              type="text"
-              placeholder="Address Line"
-              name="payment_status"
-              className="animation-fade px-4 py-3 bg-gray-100 focus:bg-transparent text-gray-800 w-full text-sm rounded-md"
-            />
-          </div>
+        <div className="space-y-4 mt-8">
+          <label
+            className={`flex items-center justify-between border rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
+              selectedPayments === "plural"
+                ? "bg-primary-color-light/50"
+                : "bg-white"
+            }`}
+          >
+            <div className="flex items-center gap-2.5">
+              <input
+                type="radio"
+                checked={selectedPayments === "plural"}
+                name="paymentMethod"
+                value="plural"
+                onChange={() => handlePaymentChange("plural")}
+                className="w-4 h-4 text-white-light bg-gray-100 border-gray-300 focus:ring-primary-color-light dark:focus:ring-primary-color-light dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <p className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                Pay with a card
+              </p>
+            </div>
+            <div>
+              <img src={payments} className="w-36" />
+            </div>
+          </label>
 
-          <div className="flex gap-4 flex-col sm:flex-row mt-8">
-            <button
-              type="submit"
-              className="rounded-md px-6 py-3 w-full text-sm tracking-wide bg-primary-color-light hover:bg-primary-color-light/50 animation-fade font-semibold text-white"
-            >
-              Complete Purchase
-            </button>
-
-            <Link to="/">
+          {selectedPayments === "plural" && (
+            <div className="shadow-md rounded-md bg-white p-4">
               <button
                 type="button"
-                className="rounded-md px-6 py-3 w-full text-sm tracking-wide bg-transparent hover:bg-red-200 border border-red-400 text-red-500 max-md:order-1 animation-fade font-semibold"
+                className="btn bg-green-400 text-white flex mx-auto items-center gap-2 w-fit font-semibold hover:animate-pulse animation-fade"
+                onClick={generatePaymentURL}
               >
-                Cancel
+                <TbPigMoney size={26} />
+                Continue With A Card
               </button>
-            </Link>
-          </div>
-        </form>
+            </div>
+          )}
+
+          <label
+            className={`flex items-center justify-between border rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
+              selectedPayments === "singular"
+                ? "bg-primary-color-light/50"
+                : "bg-white"
+            }`}
+          >
+            <div className="flex items-center gap-2.5">
+              <input
+                type="radio"
+                checked={selectedPayments === "singular"}
+                name="paymentMethod"
+                value="singular"
+                onChange={() => handlePaymentChange("singular")}
+                className="w-4 h-4 text-white-light bg-gray-100 border-gray-300 focus:ring-primary-color-light dark:focus:ring-primary-color-light dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <p className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                Pay with Paypal
+              </p>
+            </div>
+            <div>
+              <img src={paypal} className="w-36" />
+            </div>
+          </label>
+
+          {selectedPayments === "singular" && (
+            <div className="shadow-md rounded-md bg-white p-4">
+              <button
+                type="button"
+                className="btn bg-green-400 text-white flex mx-auto items-center gap-2 w-fit font-semibold hover:animate-pulse animation-fade"
+              >
+                <TbPigMoney size={26} />
+                Continue With PayPal
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

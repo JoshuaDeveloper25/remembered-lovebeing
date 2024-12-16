@@ -48,7 +48,25 @@ const RecentMemorialsCarousel = () => {
         <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
 
         {memorialsQuery?.isLoading ? (
-          t("Loading...")
+          <div className="recent-memorials-carousel grid grid-cols-1 gap-[30px] [@media(min-width:340px)]:grid-cols-2 [@media(min-width:500px)]:grid-cols-3 [@media(min-width:760px)]:grid-cols-4">
+            {[1, 2, 3, 4]?.map((boxes, index) => (
+              <div
+                key={index}
+                className={`p-4 max-w-xs w-full rounded-lg shadow-lg border border-gray-200 animate-pulse ${
+                  index >= 1 && "[@media(max-width:340px)]:hidden"
+                } ${index >= 2 && "[@media(max-width:500px)]:hidden"} ${
+                  index >= 3 && "[@media(max-width:768px)]:hidden"
+                }`}
+              >
+                <div className="h-20 w-20 mx-auto -mt-8 rounded-lg bg-gray-300"></div>
+                <div className="mt-4 h-4 w-1/2 mx-auto bg-gray-300 rounded"></div>
+                <div className="flex justify-between mt-4">
+                  <div className="h-4 w-20 bg-gray-300 rounded"></div>
+                  <div className="h-4 w-20 bg-gray-300 rounded"></div>
+                </div>
+              </div>
+            ))}
+          </div>
         ) : (
           <Swiper
             autoplay={{

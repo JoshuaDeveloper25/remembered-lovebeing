@@ -36,7 +36,6 @@ const ProfileRemembered = () => {
   const [passedMonth, setPassedMonth] = useState("January");
   const [passedDay, setPassedDay] = useState(1);
 
-  const [showMembers, setShowMembers] = useState(false);
   const [editRememberedProfile, setEditRememberedProfile] = useState(false);
   const [changeStatusModal, setChangeStatusModal] = useState(false);
   const [statusOptionSelected, setStatusOptionSelected] = useState("");
@@ -70,6 +69,8 @@ const ProfileRemembered = () => {
         }`
       ),
   });
+
+  console.log(data?.data)
   
   // --> Edit Remembered Profile
   const editRememberedProfileMutation = useMutation({

@@ -331,10 +331,34 @@ const resources = {
       "Explore our flexible pricing options and find the plan that best suits your needs and budget.":
         "Explore our flexible pricing options and find the plan that best suits your needs and budget.",
       "N° of Premium Profiles": "N° of Premium Profiles",
+      "The token provided is invalid. Please check and try again.":
+        "The token provided is invalid. Please check and try again.",
+      "Invalid Token": "Invalid Token",
+      "Sign Up": "Sign Up",
+      "Verifying your account, please wait...":
+        "Verifying your account, please wait...",
+      "We are processing your information to verify your account. This may take a few moments. Please do not close this window.":
+        "We are processing your information to verify your account. This may take a few moments. Please do not close this window.",
+      "Log In": "Log In",
+      "Your account has been verified.": "Your account has been verified.",
+      "Your account has been successfully verified. You can now access all available features.":
+        "Your account has been successfully verified. You can now access all available features.",
     },
   },
   es: {
     translation: {
+      "Your account has been verified.": "Tu cuenta ha sido verificada.",
+      "Your account has been successfully verified. You can now access all available features.":
+        "Tu cuenta se ha verificado exitosamente. Ahora puedes acceder a todas las funciones disponibles.",
+      "Log In": "Iniciar Sesión",
+      "We are processing your information to verify your account. This may take a few moments. Please do not close this window.":
+        "Estamos procesando la información para verificar tu cuenta. Esto puede tomar unos momentos. Por favor, no cierres esta ventana.",
+      "Verifying your account, please wait...":
+        "Verificando tu cuenta, espera por favor...",
+      "Sign Up": "Registrarse",
+      "Invalid Token": "Token Inválido",
+      "The token provided is invalid. Please check and try again.":
+        "El token proporcionado no es válido. Por favor, verifica e inténtalo de nuevo.",
       "N° of Premium Profiles": "Nº de Perfiles Premium",
       "No posts": "Sin publicaciones",
       "Up to 6 images": "Hasta 6 imágenes",

@@ -111,6 +111,7 @@ const CheckingStatusPagadito = () => {
     e.preventDefault();
 
     const invoiceInfo = {
+      user_name: userInfo?.name,
       email_id: userInfo?.email,
       invoice_number: searchParams.get("comprobante"),
       invoice_approval_number: getStatusPagaditoPayment?.data?.data?.data?.reference,
@@ -120,14 +121,14 @@ const CheckingStatusPagadito = () => {
       invoice_price: comprobante[1] === "singlePackage" || comprobante[1] === "goPro" ? 19.99 : 59.99,
     };
 
-    if (Object.keys(invoiceInfo)?.includes("")) {
-      return toast.error("Any of fields are empty, we coudn't send the invoice to email!");
+    if (Object?.keys(invoiceInfo)?.includes("")) {
+      return toast.error("Any of the provided fields are empty, we coudn't send the invoice to email!");
     }
 
     try {
       await emailjs.sendForm(
         import.meta.env.VITE_SERVICE_ID,
-        import.meta.env.VITE_TEMPLATE_ID,
+        import.meta.env.VITE_TEMPLATE_INVOICE_ID,
         invoiceInfo,
         import.meta.env.VITE_PUBLIC_KEY
       );

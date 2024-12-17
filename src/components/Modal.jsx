@@ -59,14 +59,12 @@ const Modal = ({
               <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t bg-tertiary-color/15 dark:border-gray-300">
                 <div>
                   <h3 className="flex  items-center gap-2 text-xl font-semibold text-fourth-color">
-                    {iconTitle ? (
+                    {iconTitle && (
                       <FaFolderOpen className="text-primary-color-light size-7 " />
-                    ) : (
-                      ""
                     )}
                     {titleModal}
                   </h3>
-                  <div className="block bg-primary-color h-1 w-8"></div>
+                  <div className="block bg-primary-color-light h-1 w-8"></div>
                 </div>
 
                 <button

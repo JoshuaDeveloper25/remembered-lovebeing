@@ -122,7 +122,7 @@ const ImagesHandle = ({ setImages, images }) => {
 
                     <div className="image-item__btn-wrapper  absolute flex gap-2 -right-3 -top-3">
                       <button
-                        className="bg-blue-500/85 hover:bg-blue-500/90 hover:text-secondary rounded-full text-white p-1"
+                        className="bg-primary-color-light/85 hover:bg-primary-color-light/90 hover:text-secondary rounded-full text-white p-1"
                         type="button"
                         onClick={() => onImageUpdate(idx)}
                       >

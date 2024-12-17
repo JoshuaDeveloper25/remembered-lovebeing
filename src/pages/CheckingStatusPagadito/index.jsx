@@ -22,7 +22,7 @@ const CheckingStatusPagadito = () => {
   let transactionStatus;
 
   const [searchParams] = useSearchParams();
-  const comprobante = searchParams.get("comprobante").split("-");
+  const comprobante = searchParams.get("comprobante")?.split("-");
 
   // Get status of the payment (EXPIRED, COMPLETED, REGISTERED)
   const getStatusPagaditoPayment = useMutation({

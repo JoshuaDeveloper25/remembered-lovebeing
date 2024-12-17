@@ -53,8 +53,8 @@ export const stepsApp = [
 ];
 
 export const availableLanguages = [
-  { value: "en", language: "English" },
   { value: "es", language: "Español" },
+  { value: "en", language: "English" },
 ];
 
 export const authCarouselPreviews = [

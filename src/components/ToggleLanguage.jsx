@@ -1,8 +1,8 @@
-import usaFlag from "../assets/usa-flag.webp";
 import spainFlag from "../assets/spain-flag.webp";
-import { useState } from "react";
 import { availableLanguages } from "../db/data";
+import usaFlag from "../assets/usa-flag.webp";
 import { createPortal } from "react-dom";
+import { useState } from "react";
 
 const ToggleLanguage = ({ language, handleChange }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

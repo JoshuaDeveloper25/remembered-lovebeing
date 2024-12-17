@@ -59,7 +59,7 @@ const CheckingStatusPagadito = () => {
   const payRemeberedProProfile = useMutation({
     mutationFn: async (paymentInfo) =>
       await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/payments/pay?remembered_id=${comprobante[2]}`,
+        `${import.meta.env.VITE_BASE_URL}/payments/pay?remembered_id=${comprobante[2]}&token=${searchParams.get("token")}`,
         paymentInfo
       ),
     onSuccess: (res) => {

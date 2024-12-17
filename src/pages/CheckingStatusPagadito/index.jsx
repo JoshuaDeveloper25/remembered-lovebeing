@@ -57,7 +57,7 @@ const CheckingStatusPagadito = () => {
   });
 
   // This is for turning a remembered profile from free to PRO
-  const payRemeberedProProfile = useMutation({
+  const payRememberedProProfile = useMutation({
     mutationFn: async (paymentInfo) =>
       await axios.post(
         `${import.meta.env.VITE_BASE_URL}/payments/pay?remembered_id=${
@@ -73,6 +73,7 @@ const CheckingStatusPagadito = () => {
     },
   });
 
+  // This is the transaction text depending of PAGADITO STATUS
   if (getStatusPagaditoPayment?.data?.data?.data?.status === "REGISTERED") {
     transactionStatus = "La transacción no se ha completado.";
   } else if (
@@ -83,24 +84,27 @@ const CheckingStatusPagadito = () => {
     transactionStatus = "La transacción ha expirado.";
   }
 
+  // When component is mounted we mutate the getStatusPagaditoPayment (We send token)
   useEffect(() => {
     getStatusPagaditoPayment?.mutate({
       token: searchParams.get("token"),
     });
   }, []);
 
+  // If getStatusPagaditoPayment changes we want to PAY (If its a REMEMBERED profile or PACKAGE (1, 3))
   useEffect(() => {
     if (getStatusPagaditoPayment?.data?.data?.data?.status === "COMPLETED") {
       sendInvoiceToUserEmail();
 
       if (comprobante[1] === "goPro") {
-        payRemeberedProProfile?.mutate();
+        payRememberedProProfile?.mutate();
       } else {
         payPremiumProfilePrices?.mutate();
       }
     }
   }, [getStatusPagaditoPayment?.data?.data?.data?.status]);
 
+  // Print the invoice
   const handlePrint = () => {
     contentRef.current.scrollIntoView();
     reactToPrintFn();
@@ -114,15 +118,29 @@ const CheckingStatusPagadito = () => {
       user_name: userInfo?.name,
       email_id: userInfo?.email,
       invoice_number: searchParams.get("comprobante"),
-      invoice_approval_number: getStatusPagaditoPayment?.data?.data?.data?.reference,
+      invoice_approval_number:
+        getStatusPagaditoPayment?.data?.data?.data?.reference,
       invoice_date: getStatusPagaditoPayment?.data?.data?.data?.date_trans,
-      invoice_description: comprobante[1] === "goPro" ? "Making FREE profile to PRO" : comprobante[1] === "singlePackage" ? "SinglePackage Premium" : "TertiaryPackage Premium",
-      invoice_type_plan: comprobante[1] === "singlePackage" || comprobante[1] === "goPro" ? "Single" : "Tertiary",
-      invoice_price: comprobante[1] === "singlePackage" || comprobante[1] === "goPro" ? 19.99 : 59.99,
+      invoice_description:
+        comprobante[1] === "goPro"
+          ? "Making FREE profile to PRO"
+          : comprobante[1] === "singlePackage"
+          ? "SinglePackage Premium"
+          : "TertiaryPackage Premium",
+      invoice_type_plan:
+        comprobante[1] === "singlePackage" || comprobante[1] === "goPro"
+          ? "Single"
+          : "Tertiary",
+      invoice_price:
+        comprobante[1] === "singlePackage" || comprobante[1] === "goPro"
+          ? 19.99
+          : 59.99,
     };
 
     if (Object?.keys(invoiceInfo)?.includes("")) {
-      return toast.error("Any of the provided fields are empty, we coudn't send the invoice to email!");
+      return toast.error(
+        "Any of the provided fields are empty, we coudn't send the invoice to email!"
+      );
     }
 
     try {

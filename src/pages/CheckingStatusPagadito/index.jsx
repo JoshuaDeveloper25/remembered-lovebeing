@@ -91,7 +91,7 @@ const CheckingStatusPagadito = () => {
 
   useEffect(() => {
     if (getStatusPagaditoPayment?.data?.data?.data?.status === "COMPLETED") {
-      // sendInvoiceToUserEmail();
+      sendInvoiceToUserEmail();
 
       if (comprobante[1] === "goPro") {
         payRemeberedProProfile?.mutate();
@@ -106,30 +106,33 @@ const CheckingStatusPagadito = () => {
     reactToPrintFn();
   };
 
+  // This is the information that's send to EMAILJS (INVOICE)
   const sendInvoiceToUserEmail = async (e) => {
     e.preventDefault();
 
-    setIsLoading(true);
+    const invoiceInfo = {
+      email_id: userInfo?.email,
+      invoice_number: searchParams.get("comprobante"),
+      invoice_approval_number: getStatusPagaditoPayment?.data?.data?.data?.reference,
+      invoice_date: getStatusPagaditoPayment?.data?.data?.data?.date_trans,
+      invoice_description: comprobante[1] === "goPro" ? "Making FREE profile to PRO" : comprobante[1] === "singlePackage" ? "SinglePackage Premium" : "TertiaryPackage Premium",
+      invoice_type_plan: comprobante[1] === "singlePackage" || comprobante[1] === "goPro" ? "Single" : "Tertiary",
+      invoice_price: comprobante[1] === "singlePackage" || comprobante[1] === "goPro" ? 19.99 : 59.99,
+    };
 
-    if (!form.current) {
-      return toast.error("¡Llena los espacios en blanco!");
+    if (Object.keys(invoiceInfo)?.includes("")) {
+      return toast.error("Any of fields are empty, we coudn't send the invoice to email!");
     }
 
     try {
       await emailjs.sendForm(
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_ID,
-        form.current,
+        invoiceInfo,
         import.meta.env.VITE_PUBLIC_KEY
       );
-      console.log("SUCCESS!");
-      navigate("/email-sent-successfully");
     } catch (error) {
-      console.log(error);
-      console.log("FAILED...", error?.text);
       toast.error(error?.text);
-    } finally {
-      setIsLoading(false);
     }
   };
 

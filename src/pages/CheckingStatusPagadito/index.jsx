@@ -7,6 +7,7 @@ import { useReactToPrint } from "react-to-print";
 import { AiFillPrinter } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import emailjs from "@emailjs/browser";
 import axios from "axios";
 
 import peaceDove from "../../assets/peace-dove.png";
@@ -59,7 +60,9 @@ const CheckingStatusPagadito = () => {
   const payRemeberedProProfile = useMutation({
     mutationFn: async (paymentInfo) =>
       await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/payments/pay?remembered_id=${comprobante[2]}&token=${searchParams.get("token")}`,
+        `${import.meta.env.VITE_BASE_URL}/payments/pay?remembered_id=${
+          comprobante[2]
+        }&token=${searchParams.get("token")}`,
         paymentInfo
       ),
     onSuccess: (res) => {
@@ -88,6 +91,8 @@ const CheckingStatusPagadito = () => {
 
   useEffect(() => {
     if (getStatusPagaditoPayment?.data?.data?.data?.status === "COMPLETED") {
+      // sendInvoiceToUserEmail();
+
       if (comprobante[1] === "goPro") {
         payRemeberedProProfile?.mutate();
       } else {
@@ -99,6 +104,33 @@ const CheckingStatusPagadito = () => {
   const handlePrint = () => {
     contentRef.current.scrollIntoView();
     reactToPrintFn();
+  };
+
+  const sendInvoiceToUserEmail = async (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+
+    if (!form.current) {
+      return toast.error("¡Llena los espacios en blanco!");
+    }
+
+    try {
+      await emailjs.sendForm(
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
+        form.current,
+        import.meta.env.VITE_PUBLIC_KEY
+      );
+      console.log("SUCCESS!");
+      navigate("/email-sent-successfully");
+    } catch (error) {
+      console.log(error);
+      console.log("FAILED...", error?.text);
+      toast.error(error?.text);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -282,18 +314,24 @@ const CheckingStatusPagadito = () => {
                             scope="row"
                             className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                           >
-                            {comprobante[1] === "singlePackage"
+                            {comprobante[1] === "goPro"
+                              ? "Making FREE profile to PRO"
+                              : comprobante[1] === "singlePackage"
                               ? "SinglePackage Premium"
                               : "TertiaryPackage Premium"}
                           </th>
                           <td className="px-6 py-4">
-                            {comprobante[1] === "singlePackage"
+                            {comprobante[1] === "singlePackage" ||
+                            comprobante[1] === "goPro"
                               ? "Single"
                               : "Tertiary"}
                           </td>
                           <td className="px-6 py-4 text-end">
                             $
-                            {comprobante[1] === "singlePackage" ? 19.99 : 59.99}
+                            {comprobante[1] === "singlePackage" ||
+                            comprobante[1] === "goPro"
+                              ? 19.99
+                              : 59.99}
                           </td>
                         </tr>
                       </tbody>

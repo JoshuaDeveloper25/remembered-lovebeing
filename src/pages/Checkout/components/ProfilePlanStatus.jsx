@@ -68,7 +68,7 @@ const ProfilePlanStatus = () => {
       details: [
         {
           quantity: 1,
-          description: "From free to pro",
+          description: "Making FREE profile to PRO",
           price: 19.99,
         },
       ],

@@ -2,8 +2,8 @@ import { InputForm } from "../../components/InputForm";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import Form from "../../components/Form";
+import axios from "axios";
 
 import contactImage from "../../assets/contact.png";
 

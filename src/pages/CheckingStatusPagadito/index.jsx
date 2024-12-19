@@ -1,6 +1,6 @@
 import getFastApiErrors from "../../utils/getFastApiErrors";
 import { Link, useSearchParams } from "react-router-dom";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import AppContext from "../../context/AppProvider";
 import { useReactToPrint } from "react-to-print";
@@ -15,6 +15,7 @@ import cloud from "../../assets/cloud.png";
 import logo from "../../assets/logo.png";
 
 const CheckingStatusPagadito = () => {
+  const [invoiceSent, setInvoiceSent] = useState(false);
   const contentRef = useRef(null);
   const reactToPrintFn = useReactToPrint({ contentRef });
   const { userInfo } = useContext(AppContext);
@@ -52,7 +53,15 @@ const CheckingStatusPagadito = () => {
       console.log(res);
     },
     onError: (err) => {
-      toast.error(getFastApiErrors(err));
+      const error_message = getFastApiErrors(err);
+
+      if (error_message === "No hacer nada") {
+        setInvoiceSent(false);
+      } else {
+        setInvoiceSent(true); 
+      }
+
+      toast.error(error_message);
     },
   });
 
@@ -94,7 +103,10 @@ const CheckingStatusPagadito = () => {
   // If getStatusPagaditoPayment changes we want to PAY (If its a REMEMBERED profile or PACKAGE (1, 3))
   useEffect(() => {
     if (getStatusPagaditoPayment?.data?.data?.data?.status === "COMPLETED") {
-      sendInvoiceToUserEmail();
+      if (!invoiceSent) {
+        sendInvoiceToUserEmail();
+        setInvoiceSent(true);
+      }
 
       if (comprobante[1] === "goPro") {
         payRememberedProProfile?.mutate();
@@ -111,9 +123,7 @@ const CheckingStatusPagadito = () => {
   };
 
   // This is the information that's send to EMAILJS (INVOICE)
-  const sendInvoiceToUserEmail = async (e) => {
-    e.preventDefault();
-
+  const sendInvoiceToUserEmail = async () => {
     const invoiceInfo = {
       user_name: userInfo?.name,
       email_id: userInfo?.email,
@@ -144,7 +154,7 @@ const CheckingStatusPagadito = () => {
     }
 
     try {
-      await emailjs.sendForm(
+      await emailjs.send(
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_INVOICE_ID,
         invoiceInfo,

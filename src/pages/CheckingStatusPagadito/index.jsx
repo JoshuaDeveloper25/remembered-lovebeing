@@ -1,6 +1,6 @@
 import getFastApiErrors from "../../utils/getFastApiErrors";
 import { Link, useSearchParams } from "react-router-dom";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
 import AppContext from "../../context/AppProvider";
 import { useReactToPrint } from "react-to-print";
@@ -15,7 +15,6 @@ import cloud from "../../assets/cloud.png";
 import logo from "../../assets/logo.png";
 
 const CheckingStatusPagadito = () => {
-  const [invoiceSent, setInvoiceSent] = useState(false);
   const contentRef = useRef(null);
   const reactToPrintFn = useReactToPrint({ contentRef });
   const { userInfo } = useContext(AppContext);
@@ -53,15 +52,7 @@ const CheckingStatusPagadito = () => {
       console.log(res);
     },
     onError: (err) => {
-      const error_message = getFastApiErrors(err);
-
-      if (error_message === "No hacer nada") {
-        setInvoiceSent(false);
-      } else {
-        setInvoiceSent(true); 
-      }
-
-      toast.error(error_message);
+      toast.error(err);
     },
   });
 
@@ -103,10 +94,7 @@ const CheckingStatusPagadito = () => {
   // If getStatusPagaditoPayment changes we want to PAY (If its a REMEMBERED profile or PACKAGE (1, 3))
   useEffect(() => {
     if (getStatusPagaditoPayment?.data?.data?.data?.status === "COMPLETED") {
-      if (!invoiceSent) {
-        sendInvoiceToUserEmail();
-        setInvoiceSent(true);
-      }
+      sendInvoiceToUserEmail();
 
       if (comprobante[1] === "goPro") {
         payRememberedProProfile?.mutate();
@@ -124,6 +112,12 @@ const CheckingStatusPagadito = () => {
 
   // This is the information that's send to EMAILJS (INVOICE)
   const sendInvoiceToUserEmail = async () => {
+    const emailSent = localStorage.getItem("invoiceSent");
+
+    if (emailSent) {
+      return;
+    }
+
     const invoiceInfo = {
       user_name: userInfo?.name,
       email_id: userInfo?.email,

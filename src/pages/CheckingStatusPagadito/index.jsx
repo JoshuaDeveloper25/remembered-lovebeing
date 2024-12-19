@@ -49,10 +49,11 @@ const CheckingStatusPagadito = () => {
         paymentInfo
       ),
     onSuccess: (res) => {
+      sendInvoiceToUserEmail();
       console.log(res);
     },
     onError: (err) => {
-      toast.error(err);
+      // toast.error(getFastApiErrors(err));
     },
   });
 
@@ -69,7 +70,7 @@ const CheckingStatusPagadito = () => {
       console.log(res);
     },
     onError: (err) => {
-      toast.error(getFastApiErrors(err));
+      // toast.error(getFastApiErrors(err));
     },
   });
 
@@ -94,8 +95,6 @@ const CheckingStatusPagadito = () => {
   // If getStatusPagaditoPayment changes we want to PAY (If its a REMEMBERED profile or PACKAGE (1, 3))
   useEffect(() => {
     if (getStatusPagaditoPayment?.data?.data?.data?.status === "COMPLETED") {
-      sendInvoiceToUserEmail();
-
       if (comprobante[1] === "goPro") {
         payRememberedProProfile?.mutate();
       } else {
@@ -112,12 +111,6 @@ const CheckingStatusPagadito = () => {
 
   // This is the information that's send to EMAILJS (INVOICE)
   const sendInvoiceToUserEmail = async () => {
-    const emailSent = localStorage.getItem("invoiceSent");
-
-    if (emailSent) {
-      return;
-    }
-
     const invoiceInfo = {
       user_name: userInfo?.name,
       email_id: userInfo?.email,
@@ -148,6 +141,7 @@ const CheckingStatusPagadito = () => {
     }
 
     try {
+      alert("Se envia");
       await emailjs.send(
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_INVOICE_ID,

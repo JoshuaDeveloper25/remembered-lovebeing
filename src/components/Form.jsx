@@ -35,7 +35,7 @@ const Form = ({ children, setIsLoading }) => {
   };
 
   return (
-    <form ref={form} onSubmit={handleSubmit} className="space-y-2.5">
+    <form ref={form} onSubmit={handleSubmit} className="space-y-4">
       {children}
     </form>
   );

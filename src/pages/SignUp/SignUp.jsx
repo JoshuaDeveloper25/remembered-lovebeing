@@ -4,9 +4,9 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { useMutation } from "@tanstack/react-query";
 import AppContext from "../../context/AppProvider";
 import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import Form from "./components/Form";
-import { useContext } from "react";
 import axios from "axios";
 
 const SignUp = () => {

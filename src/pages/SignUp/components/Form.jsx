@@ -3,7 +3,12 @@ import { InputForm } from "../../../components/InputForm";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
-const Form = ({ register, isPending, handleSubmit }) => {
+const Form = ({
+  isRegisterGooglePending,
+  register,
+  isPending,
+  handleSubmit,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -100,10 +105,14 @@ const Form = ({ register, isPending, handleSubmit }) => {
         <div>
           <button
             className="border-2 flex items-center gap-4 hover:bg-black hover:text-white justify-center border-fourth-color/70 text-fourth-color/70 rounded-full p-1 w-full hover:shadow-lg animation-fade"
+            disabled={isRegisterGooglePending}
             onClick={() => register()}
             type="button"
           >
-            <FcGoogle size={36} /> {t("Sign up with Google")}
+            <FcGoogle size={36} />{" "}
+            {isRegisterGooglePending
+              ? t("Loading...")
+              : t("Sign up with Google")}
           </button>
         </div>
       </div>

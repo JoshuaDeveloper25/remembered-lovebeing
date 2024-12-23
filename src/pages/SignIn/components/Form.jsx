@@ -3,7 +3,7 @@ import { InputForm } from "../../../components/InputForm";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
-const Form = ({ login, isPending, handleSubmit }) => {
+const Form = ({ isLoginGooglePending, login, isPending, handleSubmit }) => {
   const { t } = useTranslation();
 
   return (
@@ -82,11 +82,14 @@ const Form = ({ login, isPending, handleSubmit }) => {
 
         <div>
           <button
-            type="button"
-            onClick={() => login()}
             className="border-2 flex items-center gap-4 hover:bg-black hover:text-white justify-center border-fourth-color/70 text-fourth-color/70 rounded-full p-1 w-full hover:shadow-lg animation-fade"
+            disabled={isLoginGooglePending}
+            onClick={() => login()}
+            type="button"
           >
-            <FcGoogle size={36} /> {t("Sign in with Google")}
+            <FcGoogle size={36} />{" "}
+
+            {isLoginGooglePending ? t("Loading...") : t("Sign in with Google")}
           </button>
         </div>
       </div>

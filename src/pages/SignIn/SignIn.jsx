@@ -4,12 +4,13 @@ import CarouselSignIn from "./components/CarouselSignIn";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useMutation } from "@tanstack/react-query";
 import AppContext from "../../context/AppProvider";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import Form from "./components/Form";
-import { useContext } from "react";
 import axios from "axios";
 
 const SignIn = () => {
+  const [isLoginGooglePending, setIsLoginGooglePending] = useState(false);
   const [searchParams] = useSearchParams();
   const { setUserInfo } = useContext(AppContext);
   const navigate = useNavigate();
@@ -69,6 +70,8 @@ const SignIn = () => {
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
+        setIsLoginGooglePending(true);
+
         const { data } = await axios.post(
           `${import.meta.env.VITE_BASE_URL}/users/googlelogin`,
           {
@@ -91,10 +94,9 @@ const SignIn = () => {
         localStorage.setItem("userInfo", JSON.stringify(data));
         setUserInfo(data);
       } catch (error) {
-        console.log(error);
         toast.error(getFastApiErrors(error));
       } finally {
-        console.log("finally");
+        setIsLoginGooglePending(false);
       }
     },
     onNonOAuthError: (err) => {
@@ -113,6 +115,7 @@ const SignIn = () => {
             login={login}
             isPending={isPending}
             handleSubmit={handleSubmit}
+            isLoginGooglePending={isLoginGooglePending}
           />
         </div>
       </div>

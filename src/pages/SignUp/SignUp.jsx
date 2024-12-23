@@ -10,6 +10,7 @@ import { useContext } from "react";
 import axios from "axios";
 
 const SignUp = () => {
+  const [isRegisterGooglePending, setIsRegisterGooglePending] = useState(false);
   const { setUserInfo } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -63,6 +64,8 @@ const SignUp = () => {
   const register = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
+        setIsRegisterGooglePending(true);
+
         const { data } = await axios.post(
           `${import.meta.env.VITE_BASE_URL}/users/googlelogin`,
           {
@@ -76,10 +79,9 @@ const SignUp = () => {
 
         setUserInfo(data);
       } catch (error) {
-        console.log(error);
         toast.error(getFastApiErrors(error));
       } finally {
-        console.log("finally");
+        setIsRegisterGooglePending(false);
       }
     },
     onNonOAuthError: (err) => {
@@ -98,6 +100,7 @@ const SignUp = () => {
             register={register}
             isPending={isPending}
             handleSubmit={handleSubmit}
+            isRegisterGooglePending={isRegisterGooglePending}
           />
         </div>
       </div>

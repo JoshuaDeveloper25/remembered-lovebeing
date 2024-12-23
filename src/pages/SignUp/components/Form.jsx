@@ -5,24 +5,24 @@ import { Link } from "react-router-dom";
 
 const Form = ({ register, isPending, handleSubmit }) => {
   const { t } = useTranslation();
-  
+
   return (
     <form className={`flex-1`} onSubmit={handleSubmit}>
       <div className="text-end px-4 sm:pt-0 pt-3">
         <h3 className="text-fourth-color/70">
-          Already a member?{" "}
+          {t("Already a member?")}{" "}
           <Link className="text-primary-color-light" to={"/sign-in"}>
-            Sign in now
+            {t("Sign in now")}
           </Link>
         </h3>
       </div>
 
       <div className="flex flex-col justify-center h-full max-w-xs mx-auto sm:pb-0 pb-8">
         <h2 className="text-center text-black heading-title text-[1.6rem]">
-          Get Started
+          {t("Get Started")}
         </h2>
         <p className="text-center leading-4 text-fourth-color/70 mt-1.5">
-          Welcome to Remembereds - Let's create your account
+          {t("Welcome to Eternal MemoriesX - Let's create your account")}
         </p>
 
         <div className="mt-6 mb-2">
@@ -30,7 +30,7 @@ const Form = ({ register, isPending, handleSubmit }) => {
             additionalInputClassnames={
               "shadow-md rounded-lg px-5 py-3 placeholder:text-fourth-color/35"
             }
-            inputPlaceholder={"Enter username"}
+            inputPlaceholder={t("Enter username")}
             inputLabelClassName={"mb-4 block"}
             inputName={"name"}
             inputType={"text"}
@@ -42,7 +42,7 @@ const Form = ({ register, isPending, handleSubmit }) => {
               "shadow-md rounded-lg px-5 py-3 placeholder:text-fourth-color/35"
             }
             inputLabelClassName={"mb-4 block"}
-            inputPlaceholder={"Enter email"}
+            inputPlaceholder={t("Enter email")}
             inputName={"email"}
             inputType={"email"}
             inputLabel={false}
@@ -53,7 +53,7 @@ const Form = ({ register, isPending, handleSubmit }) => {
               "shadow-md rounded-lg px-5 py-3 placeholder:text-fourth-color/35"
             }
             inputLabelClassName={"mb-4 block"}
-            inputPlaceholder={"Password"}
+            inputPlaceholder={t("Password")}
             inputName={"password"}
             inputType={"password"}
             inputPassword={true}
@@ -64,7 +64,7 @@ const Form = ({ register, isPending, handleSubmit }) => {
             additionalInputClassnames={
               "shadow-md rounded-lg px-5 py-3 placeholder:text-fourth-color/35"
             }
-            inputPlaceholder={"Repeat Password"}
+            inputPlaceholder={t("Repeat Password")}
             inputLabelClassName={"mb-4 block"}
             inputName={"repeatPassword"}
             inputType={"password"}
@@ -80,7 +80,7 @@ const Form = ({ register, isPending, handleSubmit }) => {
               className="btn bg-[#F56965] disabled:opacity-30 hover:shadow-lg px-3 hover:opacity-70 hover:shadow-[#F56965] text-white border-transparent py-3 font-light shadow-[#F56965] shadow-md w-full"
               disabled={isPending}
             >
-              {isPending ? t("Loading...") : "Sign Up"}
+              {isPending ? t("Loading...") : t("Sign Up")}
             </button>
           </div>
         </div>
@@ -90,7 +90,7 @@ const Form = ({ register, isPending, handleSubmit }) => {
 
           <div>
             <p className="text-nowrap text-fourth-color/65 text-sm">
-              Or continue with
+              {t("Or continue with")}
             </p>
           </div>
 
@@ -103,7 +103,7 @@ const Form = ({ register, isPending, handleSubmit }) => {
             onClick={() => register()}
             type="button"
           >
-            <FcGoogle size={36} /> Sign up with Google
+            <FcGoogle size={36} /> {t("Sign up with Google")}
           </button>
         </div>
       </div>

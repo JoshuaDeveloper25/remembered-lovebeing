@@ -1,22 +1,18 @@
 import { CopyToClipboard } from "react-copy-to-clipboard";
-
 import { useLocation } from "react-router-dom";
 import { MdOutlineMail } from "react-icons/md";
 import { FaFacebookF } from "react-icons/fa6";
 import { BsTwitterX } from "react-icons/bs";
 import { IoIosLink } from "react-icons/io";
 import { toast } from "react-toastify";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const ShareSite = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const fullUrl = `${window.location.origin}${location.pathname}`;
-  const [value, setValue] = useState("");
 
   const onCopy = () => {
-    setValue(fullUrl);
     toast.success("Copied to clipboard!");
   };
 
@@ -71,7 +67,7 @@ const ShareSite = () => {
             </li>
 
             {/* Copy Link */}
-            <CopyToClipboard onCopy={onCopy} text={value}>
+            <CopyToClipboard onCopy={onCopy} text={fullUrl}>
               <button className="size-10 cursor-pointer">
                 <IoIosLink className="animation-fade p-3 rounded-full w-full h-full hover:bg-primary-color hover:text-white bg-white text-primary-color-light" />
               </button>

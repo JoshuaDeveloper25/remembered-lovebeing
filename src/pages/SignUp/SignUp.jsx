@@ -22,7 +22,7 @@ const SignUp = () => {
     },
     onSuccess: (res) => {
       toast.success("¡Successfully registered!");
-      navigate("/sign-in");
+      navigate("/check-mailbox");
     },
     onError: (err) => {
       toast.error(getFastApiErrors(err));

@@ -26,12 +26,13 @@ import Checkout from "./pages/Checkout/Checkout";
 import EmailSendSuccessfully from "./components/EmailSendSuccessfully";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CheckingStatusPagadito from "./pages/CheckingStatusPagadito";
+import CheckMailBox from "./pages/CheckMailBox/CheckMailBox";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 
 import PublicRoutes from "./auth/PublicRoutes";
 import PrivateRoutes from "./auth/PrivateRoutes";
-import CheckingStatusPagadito from "./pages/CheckingStatusPagadito";
 
 const router = createBrowserRouter([
   //🔒 Public Routes - Cannot access if we're logged in...
@@ -49,6 +50,11 @@ const router = createBrowserRouter([
           {
             element: <SignIn />,
             path: "/sign-in",
+          },
+
+          {
+            element: <CheckMailBox />,
+            path: "/check-mailbox",
           },
 
           {

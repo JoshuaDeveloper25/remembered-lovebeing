@@ -343,10 +343,14 @@ const resources = {
       "Your account has been verified.": "Your account has been verified.",
       "Your account has been successfully verified. You can now access all available features.":
         "Your account has been successfully verified. You can now access all available features.",
+      "Check your mailbox!": "Check your mailbox!",
+      "We sent you a link to verify your email. Check your spam folder if you do not hear from us after a while.": "We sent you a link to verify your email. Check your spam folder if you do not hear from us after a while."
     },
   },
   es: {
     translation: {
+      "We sent you a link to verify your email. Check your spam folder if you do not hear from us after a while.": "Te enviamos un enlace para verificar tu correo electrónico. Si no recibes noticias nuestras después de un tiempo, revisa tu carpeta de spam.",
+      "Check your mailbox!": "¡Revisa tu correo!",
       "Your account has been verified.": "Tu cuenta ha sido verificada.",
       "Your account has been successfully verified. You can now access all available features.":
         "Tu cuenta se ha verificado exitosamente. Ahora puedes acceder a todas las funciones disponibles.",

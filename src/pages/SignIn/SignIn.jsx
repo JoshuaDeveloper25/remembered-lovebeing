@@ -10,7 +10,7 @@ import { useContext } from "react";
 import axios from "axios";
 
 const SignIn = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const { setUserInfo } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -75,7 +75,7 @@ const SignIn = () => {
             access_token: tokenResponse?.access_token,
           }
         );
-        
+
         const redirect = searchParams?.get("redirect");
 
         if (redirect) {

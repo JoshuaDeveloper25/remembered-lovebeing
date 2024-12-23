@@ -1,5 +1,7 @@
+import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import { InputForm } from "../../components/InputForm";
 import peaceDove from "../../assets/peace-dove.png";
+import { IoLocationSharp } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
@@ -8,6 +10,7 @@ import Form from "../../components/Form";
 import axios from "axios";
 
 import contactImage from "../../assets/contact.png";
+import { FaPhoneAlt } from "react-icons/fa";
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -63,16 +66,57 @@ const Contact = () => {
           <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
         </div>
 
-        <div className="flex ">
-          <setion className="max-w-[18rem] shadow-xl">
+        <div className="flex">
+          <setion className="relative lg:block hidden max-w-[18rem] rounded-2xl shadow-xl">
             <img
               src={contactImage}
               className="rounded-s-2xl h-full w-full object-cover"
               alt="Contact Form Image"
             />
+
+            <div className="bg-white py-3 px-4 rounded-md shadow-2xl absolute top-1/2 -left-12 transform -translate-y-1/2">
+              <div>
+                <div className="flex items-center gap-1.5">
+                  <IoLocationSharp className="text-primary-color-light" />
+                  <h3 className="font-semibold text-primary-color-light">
+                    {t("Location")}
+                  </h3>
+                </div>
+
+                <h4 className="text-primary-color font-medium text-sm">
+                  Honduras, El Progreso, Yoro.
+                </h4>
+              </div>
+
+              <div className="my-2.5">
+                <div className="flex items-center gap-1.5">
+                  <FaPhoneAlt className="text-primary-color-light" />
+                  <h3 className="font-semibold text-primary-color-light">
+                    Phone
+                  </h3>
+                </div>
+
+                <h4 className="text-primary-color font-medium text-sm">
+                  +504 8945 8498
+                </h4>
+              </div>
+
+              <div>
+                <div className="flex items-center gap-1.5">
+                  <MdOutlineAccessTimeFilled className="text-primary-color-light" />
+                  <h3 className="font-semibold text-primary-color-light">
+                    {t("Hours")}
+                  </h3>
+                </div>
+
+                <h4 className="text-primary-color font-medium text-sm">
+                  {t("Live Support")} - 24/7
+                </h4>
+              </div>
+            </div>
           </setion>
 
-          <section className="px-6 py-6 text-primary-color bg-white shadow-xl rounded-e-2xl">
+          <section className="sticky z-[9999] px-6 py-6 text-primary-color bg-white shadow-xl lg:mx-0 mx-auto rounded-e-2xl">
             <h2 className="font-sans text-2xl text-primary-color capitalize font-semibold mb-4">
               {t("Contact Form")}
             </h2>
@@ -146,7 +190,7 @@ const Contact = () => {
                 />
               </label>
 
-              <div className="text-center">
+              <div className="text-center pt-2">
                 <button
                   type="submit"
                   disabled={isLoading}
@@ -156,6 +200,49 @@ const Contact = () => {
                 </button>
               </div>
             </Form>
+
+            <div className="lg:hidden block">
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-5 items-center justify-between py-3 px-4 rounded-md shadow-lg">
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <IoLocationSharp className="text-primary-color-light" />
+                    <h3 className="font-semibold text-primary-color-light">
+                      {t("Location")}
+                    </h3>
+                  </div>
+
+                  <h4 className="text-primary-color font-medium text-sm">
+                    Honduras, El Progreso, Yoro.
+                  </h4>
+                </div>
+
+                <div className="my-2.5">
+                  <div className="flex items-center gap-1.5">
+                    <FaPhoneAlt className="text-primary-color-light" />
+                    <h3 className="font-semibold text-primary-color-light">
+                      {t("Phone")}
+                    </h3>
+                  </div>
+
+                  <h4 className="text-primary-color font-medium text-sm">
+                    +504 8945 8498
+                  </h4>
+                </div>
+
+                <div>
+                  <div className="flex items-center gap-1.5">
+                    <MdOutlineAccessTimeFilled className="text-primary-color-light" />
+                    <h3 className="font-semibold text-primary-color-light">
+                      {t("Hours")}
+                    </h3>
+                  </div>
+
+                  <h4 className="text-primary-color font-medium text-sm">
+                    {t("Live Support")} - 24/7
+                  </h4>
+                </div>
+              </div>
+            </div>
           </section>
         </div>
       </section>

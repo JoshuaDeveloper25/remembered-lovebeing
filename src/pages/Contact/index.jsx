@@ -54,16 +54,16 @@ const Contact = () => {
         <img className="w-[100rem] rotate-[-20deg]" src={cloud} alt="cloud" />
       </div>
 
-      <section className="container-page my-8">
-        {" "}
+      <section className="max-w-4xl mx-auto px-2 my-8">
         {/* Title */}
-        <div className="text-center">
+        <div className="text-center mb-8">
           <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
             {t("Contact Us")}
           </h2>
           <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
         </div>
-        <div className="flex">
+
+        <div className="flex ">
           <setion className="max-w-[18rem] shadow-xl">
             <img
               src={contactImage}
@@ -150,7 +150,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="btn btn-blue w-fit disabled:bg-primary-color/50 disabled:pointer-events-none"
+                  className="btn btn-blue w-full text-lg rounded-full disabled:bg-primary-color/50 disabled:pointer-events-none"
                 >
                   {isLoading ? t("Sending...") : t("Send")}
                 </button>

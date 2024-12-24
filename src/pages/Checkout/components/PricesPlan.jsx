@@ -48,16 +48,16 @@ const PricesPlan = ({ packageName }) => {
   const generatePaymentURL = () => {
     generatePaymentURLMutation?.mutate({
       ern: ern,
-      amount: packageName === "singlePackage" ? 19.99 : 59.99,
+      amount: packageName === "singlePackage" ? 19.99 : 49.99,
       currency: "USD",
       details: [
         {
-          quantity: packageName === "singlePackage" ? 1 : 3,
+          quantity:  1,
           description:
             packageName === "singlePackage"
-              ? "Compra De SinglePackage Premium"
-              : "Compra De TertiaryPackage Premium",
-          price: 19.99,
+              ? "Compra De SinglePackage Premium (Incluye 1 Perfil Premium)"
+              : "Compra De TertiaryPackage (Incluye 3 Perfiles Premium)",
+          price: packageName === "singlePackage" ? 19.99 : 49.99,
         },
       ],
       custom_params: {
@@ -123,7 +123,7 @@ const PricesPlan = ({ packageName }) => {
           <div className="mt-5">
             <h2 className="font-bold text-primary-color-light text-5xl tracking-tighter">
               <span className="align-text-top text-4xl me-3">$</span>
-              <span>59.99</span>
+              <span>49.99</span>
             </h2>
             <h3 className="text-primary-color-light">for life</h3>
           </div>

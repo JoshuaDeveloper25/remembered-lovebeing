@@ -158,7 +158,7 @@ const Prices = () => {
           <div className="mt-5">
             <h2 className="font-bold text-primary-color-light text-5xl tracking-tighter">
               <span className="align-text-top text-4xl me-3">$</span>
-              <span>59.99</span>
+              <span>49.99</span>
             </h2>
           </div>
           <ul className="text-muted-color leading-9 my-5">

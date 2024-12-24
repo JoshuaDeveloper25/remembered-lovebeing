@@ -131,7 +131,7 @@ const CheckingStatusPagadito = () => {
       invoice_price:
         comprobante[1] === "singlePackage" || comprobante[1] === "goPro"
           ? 19.99
-          : 59.99,
+          : 49.99,
     };
 
     if (Object?.keys(invoiceInfo)?.includes("")) {
@@ -350,7 +350,7 @@ const CheckingStatusPagadito = () => {
                             {comprobante[1] === "singlePackage" ||
                             comprobante[1] === "goPro"
                               ? 19.99
-                              : 59.99}
+                              : 49.99}
                           </td>
                         </tr>
                       </tbody>

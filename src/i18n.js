@@ -364,16 +364,43 @@ const resources = {
       "Already a member?": "Already a member?",
       "Sign in now": "Sign in now",
       "Repeat Password": "Repeat Password",
-      "Welcome to Eternal MemoriesX - Let's create your account": "Welcome to Eternal MemoriesX - Let's create your account",
+      "Welcome to Eternal MemoriesX - Let's create your account":
+        "Welcome to Eternal MemoriesX - Let's create your account",
       "Sign up with Google": "Sign up with Google",
+      "Thank you for your purchase! You now have":
+        "Thank you for your purchase! You now have",
+      "available. Click “Start” to begin": "available. Click “Start” to begin",
+      "and sharing the memories that matter most.":
+        "and sharing the memories that matter most.",
+      "customizing it": "customizing it",
+      "customizing them": "customizing them",
+      profiles: "profiles",
+      profile: "profile",
+      new: "new",
+      Start: "Start",
+      "There's no profiles yet...": "There's no profiles yet...",
     },
   },
   es: {
     translation: {
+      Start: "Empezar",
+      "There's no profiles yet...": "Aún no hay perfiles...",
+      new: "nuevos",
+      profiles: "perfiles",
+      profile: "perfil",
+      "customizing them": "personalizarlos",
+      "customizing it": "personalizarlo",
+      "and sharing the memories that matter most.":
+        "y compartir los recuerdos que más importan.",
+      "available. Click “Start” to begin":
+        "disponibles. Haz clic en “Comenzar” para empezar a",
+      "Thank you for your purchase! You now have":
+        "¡Gracias por tu compra! Ahora tienes",
       "Sign up with Google": "Registrarse con Google",
       "Repeat Password": "Repetir Contraseña",
       "Enter email": "Introduce el correo electrónico",
-      "Welcome to Eternal MemoriesX - Let's create your account": "Bienvenido a Eternal MemoriesX - Vamos a crear tu cuenta",
+      "Welcome to Eternal MemoriesX - Let's create your account":
+        "Bienvenido a Eternal MemoriesX - Vamos a crear tu cuenta",
       "Sign in now": "Iniciar sesión ahora",
       "Already a member?": "¿Ya eres miembro?",
       "Sign in with Google": "Iniciar sesión con Google",

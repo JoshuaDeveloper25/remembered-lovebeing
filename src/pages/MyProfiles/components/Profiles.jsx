@@ -1,8 +1,10 @@
 import FormCreateProfile from "./FormCreateProfile";
+import { useTranslation } from "react-i18next";
 import Modal from "../../../components/Modal";
 import Profile from "./Profile";
 
 const Profiles = ({
+  isPendingFavouritesProfiles,
   premiumProfilesRemaining,
   handleSubmit,
   profiles,
@@ -14,6 +16,8 @@ const Profiles = ({
   setStatusPlan,
   isPendingCreateProfile,
 }) => {
+  const { t } = useTranslation();
+
   const handleCreatePremiumProfile = () => {
     setOpenPremiumModal(true);
     setStatusPlan(true);
@@ -21,48 +25,53 @@ const Profiles = ({
 
   return (
     <>
-      {premiumProfilesRemaining !== 0 && (
-        <>
-          <div className="md:flex hidden flex-col gap-6 sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
-            <h2 className="font-sans font-medium text-muted-color italic">
-              “Thank you for your purchase! You now have{" "}
-              <span className="font-bold">({premiumProfilesRemaining})</span>{" "}
-              new {premiumProfilesRemaining === 1 ? "profile" : "profiles"}{" "}
-              available, click “Start” to begin{" "}
-              <span className="block">
-                {premiumProfilesRemaining === 1
-                  ? "customizing it"
-                  : "customizing them"}{" "}
-                and sharing the memories that matter most.”
-              </span>
-            </h2>
+      {isPendingFavouritesProfiles
+        ? t("Loading...")
+        : premiumProfilesRemaining !== 0 && (
+            <>
+              <div className="md:flex hidden flex-col gap-6 sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
+                <h2 className="font-sans font-medium text-muted-color italic">
+                  “{t("Thank you for your purchase! You now have")}{" "}
+                  <span className="font-bold">
+                    ({premiumProfilesRemaining})
+                  </span>{" "}
+                  {t("new")}{" "}
+                  {premiumProfilesRemaining === 1
+                    ? t("profile")
+                    : t("profiles")}{" "}
+                  {t("available. Click “Start” to begin")}{" "}
+                  {premiumProfilesRemaining === 1
+                    ? t("customizing it")
+                    : t("customizing them")}{" "}
+                  {t("and sharing the memories that matter most.")}”
+                </h2>
 
-            <button
-              onClick={handleCreatePremiumProfile}
-              type="button"
-              className="btn btn-blue w-auto"
-            >
-              Start
-            </button>
+                <button
+                  onClick={handleCreatePremiumProfile}
+                  type="button"
+                  className="btn btn-blue w-auto"
+                >
+                  {t("Start")}
+                </button>
 
-            <Modal
-              titleModal={"New Profile (Premium)"}
-              handleSubmit={handleSubmit}
-              setOpenModal={setOpenPremiumModal}
-              openModal={openPremiumModal}
-              modalForm={true}
-              editableWidth={"max-w-xl"}
-            >
-              <FormCreateProfile
-                slug={slug}
-                setSlug={setSlug}
-                isPending={isPendingCreateProfile}
-                setOpenPremiumModal={setOpenPremiumModal}
-              />
-            </Modal>
-          </div>
-        </>
-      )}
+                <Modal
+                  titleModal={"New Profile (Premium)"}
+                  handleSubmit={handleSubmit}
+                  setOpenModal={setOpenPremiumModal}
+                  openModal={openPremiumModal}
+                  modalForm={true}
+                  editableWidth={"max-w-xl"}
+                >
+                  <FormCreateProfile
+                    slug={slug}
+                    setSlug={setSlug}
+                    isPending={isPendingCreateProfile}
+                    setOpenPremiumModal={setOpenPremiumModal}
+                  />
+                </Modal>
+              </div>
+            </>
+          )}
 
       {profiles?.length !== 0 ? (
         <div>
@@ -90,7 +99,7 @@ const Profiles = ({
       ) : (
         <article className="text-center  py-8">
           <h2 className="text-primary-color/85 text-2xl uppercase">
-            There's no profiles yet...
+            {t("There's no profiles yet...")}
           </h2>
         </article>
       )}

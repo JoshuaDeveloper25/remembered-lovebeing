@@ -64,6 +64,7 @@ const IndividualUserProfileTab = ({
                 setOpenPremiumModal={setOpenPremiumModal}
                 openPremiumModal={openPremiumModal}
                 premiumProfilesRemaining={premiumProfilesRemaining}
+                isPendingFavouritesProfiles={isPendingFavouritesProfiles}
               />
             </TabLinkContent>
 

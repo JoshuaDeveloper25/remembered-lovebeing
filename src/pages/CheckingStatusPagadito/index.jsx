@@ -141,7 +141,6 @@ const CheckingStatusPagadito = () => {
     }
 
     try {
-      alert("Se envia");
       await emailjs.send(
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_INVOICE_ID,

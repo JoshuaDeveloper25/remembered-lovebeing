@@ -1,10 +1,10 @@
 import AppContext from "../../context/AppProvider";
 import { IoCloseSharp } from "react-icons/io5";
+import { useTranslation } from "react-i18next";
 import { FaCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { GoStop } from "react-icons/go";
 import { useContext } from "react";
-import { useTranslation } from "react-i18next";
 
 const Prices = () => {
   const { t } = useTranslation();
@@ -101,7 +101,6 @@ const Prices = () => {
               <span className="align-text-top text-4xl me-3">$</span>
               <span>19.99</span>
             </h2>
-           
           </div>
 
           <ul className="text-muted-color leading-9 my-5">
@@ -161,7 +160,6 @@ const Prices = () => {
               <span className="align-text-top text-4xl me-3">$</span>
               <span>59.99</span>
             </h2>
-           
           </div>
           <ul className="text-muted-color leading-9 my-5">
             <li className="flex items-center gap-3 border-b py-1">

@@ -127,7 +127,7 @@ const PricesPlan = ({ packageName }) => {
             </h2>
             <h3 className="text-primary-color-light">for life</h3>
           </div>
-          <ul className="text-muted-color leading-9 my-5">
+          <ul className="text-white leading-9 my-5">
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
               Tributes

@@ -163,13 +163,13 @@ const MyProfiles = () => {
               </p>
             ) : (
               <p className="font-mono tracking-tighter text-primary-color shadow-lg  bg-slate-200 px-3 rounded-md">
-                Premium profiles <span className="font-bold mx-1">(0)</span>{" "}
+                Premium profiles<span className="font-bold mx-1">(0)</span>
                 available,{" "}
                 <Link
                   to={"/prices"}
                   className="text-primary-color-light font-semibold underline"
                 >
-                  see plans
+                  SEE PLANS
                 </Link>
               </p>
             )}

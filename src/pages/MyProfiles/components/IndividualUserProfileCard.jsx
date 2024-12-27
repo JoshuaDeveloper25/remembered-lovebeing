@@ -1,6 +1,7 @@
 import UploadUserProfileImage from "../../../components/UploadUserProfileImage";
 import AppContext from "../../../context/AppProvider";
 import { useContext } from "react";
+import formatDate from "../../../utils/formatDate";
 
 const IndividualUserProfileCard = ({ userStats }) => {
   const { userInfo } = useContext(AppContext);
@@ -9,7 +10,7 @@ const IndividualUserProfileCard = ({ userStats }) => {
     <article className="md:block hidden md:sticky static top-0 col-span-1 min-w-52 text-center border md:mb-0 mb-8 bg-white shadow-2xl rounded-xl md:-mt-36 py-5 px-4">
       <div className="relative">
         <img
-          className="w-36 h-36 object-cover mx-auto rounded-full shadow-lg"
+          className="w-[100px] h-[100px] object-cover mx-auto rounded-full shadow-lg"
           src={
             userInfo?.profile_image
               ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
@@ -21,7 +22,7 @@ const IndividualUserProfileCard = ({ userStats }) => {
         </div>
       </div>
 
-      <h3 className="font-bold capitalize mt-6 text-xl">{userInfo?.name}</h3>
+      <h3 className="font-bold capitalize mt-4 text-xl">{userInfo?.name}</h3>
       <p className="text-gray-600 font-semibold text-xs mt-2 leading-4">
         {userInfo?.email}
       </p>
@@ -63,6 +64,11 @@ const IndividualUserProfileCard = ({ userStats }) => {
           </div>
         </div>
       </div>
+
+      <p className="text-muted-color text-xs rounded-md mt-3.5">
+        Member since:{" "}
+        <span className="font-bold">{formatDate(userInfo?.created_at)}</span>
+      </p>
     </article>
   );
 };

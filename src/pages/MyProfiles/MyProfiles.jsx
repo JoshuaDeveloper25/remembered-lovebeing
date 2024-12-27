@@ -12,6 +12,7 @@ import Modal from "../../components/Modal";
 import { GoPlus } from "react-icons/go";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const MyProfiles = () => {
   const { userInfo } = useContext(AppContext);
@@ -116,6 +117,8 @@ const MyProfiles = () => {
                 <h4 className="text-gray-600 font-semibold text-sm">
                   {userInfo?.email}
                 </h4>
+
+                
               </div>
             </div>
 
@@ -143,13 +146,24 @@ const MyProfiles = () => {
         </div>
 
         {/* 768px to up */}
-        <article className="md:block hidden mb-8 md:text-end text-start">
+        <article className="md:block hidden mb-2 md:text-end text-start">
+          <div className=" w-fit ms-auto mb-2.5">
+            <p className="font-mono text-primary-color shadow-lg uppercase bg-slate-200 px-3 rounded-md">
+              Premium profiles available <span className="font-bold">(0)</span>,{" "}
+              <Link
+                to={"/prices"}
+                className="text-primary-color-light font-semibold underline"
+              >
+                see plans
+              </Link>
+            </p>
+          </div>
+
           <div className="inline-block">
             <button onClick={handleCreateFreeProfile} className="btn btn-blue">
               <GoPlus className="size-5 inline" /> Create Free Profile
             </button>
           </div>
-
           <Modal
             titleModal={"New Profile"}
             handleSubmit={handleSubmit}

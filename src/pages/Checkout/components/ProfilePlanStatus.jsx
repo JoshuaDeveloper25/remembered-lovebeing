@@ -202,7 +202,7 @@ const ProfilePlanStatus = () => {
               </p>
             </div>
             <div>
-              <img src={payments} className="w-36" />
+              <img src={payments} className="w-52" />
             </div>
           </label>
 
@@ -243,7 +243,7 @@ const ProfilePlanStatus = () => {
               </p>
             </div>
             <div>
-              <img src={paypal} className="w-36" />
+              <img src={paypal} className="w-52" />
             </div>
           </label>
 

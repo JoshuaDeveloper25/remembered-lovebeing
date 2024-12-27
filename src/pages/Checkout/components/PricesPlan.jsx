@@ -194,7 +194,7 @@ const PricesPlan = ({ packageName }) => {
               </p>
             </div>
             <div>
-              <img src={payments} className="w-36" />
+              <img src={payments} className="w-52" />
             </div>
           </label>
 

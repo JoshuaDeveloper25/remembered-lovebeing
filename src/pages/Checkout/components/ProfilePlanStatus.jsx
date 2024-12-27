@@ -117,6 +117,8 @@ const ProfilePlanStatus = () => {
                 loading="lazy"
               />
 
+              <h2 className="text-primary-color-light text-center text-2xl mt-3 font-bold"><span className="align-text-top text-sm font-bold">$ {' '}</span>19.99</h2>
+
               <h3 className="text-center font-semibold text-muted-color mt-6 mb-2">
                 In Loving Memory Of
               </h3>

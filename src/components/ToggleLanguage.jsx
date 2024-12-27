@@ -20,7 +20,7 @@ const ToggleLanguage = ({ language, handleChange }) => {
     <div className="relative inline-block z-[999]">
       {/* Botón que abre el dropdown */}
       <div
-        className=" flex items-center justify-between transition-all duration-500 shadow shadow-primary-color-light hover:shadow-primary-color-light hover:shadow-md rounded-full px-4 py-2 bg-primary-color text-white cursor-pointer"
+        className=" flex items-center justify-between transition-all duration-500 shadow shadow-primary-color-light hover:shadow-primary-color-light hover:shadow-md sm:rounded-full rounded-md px-4 py-2 bg-primary-color text-white cursor-pointer"
         onClick={toggleDropdown}
       >
         <img

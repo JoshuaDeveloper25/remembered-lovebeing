@@ -210,9 +210,9 @@ const ResponsiveMoreInfoRememberedAdmin = ({
             </DropdownItem>
           ) : (
             // If there's no premium profiles
-            <DropdownItem className="p-0">
+            <DropdownItem className="p-0 hover:bg-secondary-color group hover:text-white">
               <li
-                className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+                className={`text-start  py-2.5 px-5 flex gap-2 items-start  font-bold animation-fade text-black text-sm cursor-pointer`}
                 onClick={() => {
                   setOpenPremiumModal(true);
                   setStatusPlan(true);
@@ -249,16 +249,15 @@ const ResponsiveMoreInfoRememberedAdmin = ({
                 </svg>
 
                 <div>
-                  <Link className="block" to={"#"}>
-                    Create Pro Profile
+                  <Link className="block group-hover:text-white" to={"#"}>
+                    See Plans
                   </Link>
 
                   <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                    Create a full-featured memorial profile with no limits. Pro
-                    profiles remaining:{" "}
+                    Premium profiles available{" "}
                     <span className="font-bold">
                       ({totalPremiumProfilesRemaining})
-                    </span>
+                    </span>.
                   </p>
                 </div>
               </li>
@@ -328,40 +327,40 @@ const ResponsiveMoreInfoRememberedAdmin = ({
           </h2>
 
           {/* Profiles */}
-          <DropdownItem className="p-0">
+          <DropdownItem className="p-0 group hover:text-white hover:bg-secondary-color">
             <li
-              className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+              className={`text-start py-2.5 px-5 flex gap-2 items-start  font-bold animation-fade text-black text-sm cursor-pointer`}
               onClick={() => setOpenTab(1)}
             >
-              <CgProfile className="h-[28px] w-[28px]" />
+              <CgProfile className="group-hover:text-white h-[28px] w-[28px]" />
 
               <div>
-                <Link className="block">Profiles ({totalOwnProfiles})</Link>
+                <Link className="block group-hover:text-white">
+                  Profiles ({totalOwnProfiles})
+                </Link>
 
                 <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                  Create a memorial profile at no cost, with some feature
-                  limits.
+                  Explore all your profiles.
                 </p>
               </div>
             </li>
           </DropdownItem>
 
           {/* Favourites */}
-          <DropdownItem className="p-0">
+          <DropdownItem className="p-0 group hover:text-white hover:bg-secondary-color">
             <li
-              className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+              className={`text-start py-2.5 px-5 flex gap-2 items-start  font-bold animation-fade text-black text-sm cursor-pointer`}
               onClick={() => setOpenTab(2)}
             >
               <IoMdHeart className="text-red-500 h-[28px] w-[28px]" />
 
               <div>
-                <Link className="block">
+                <Link className="block group-hover:text-white">
                   Favourites ({totalFavoritesProfiles})
                 </Link>
 
                 <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                  Create a memorial profile at no cost, with some feature
-                  limits.
+                  Find your favorites quickly.
                 </p>
               </div>
             </li>

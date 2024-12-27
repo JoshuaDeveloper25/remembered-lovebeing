@@ -94,7 +94,31 @@ const NavbarMobile = ({
             <span className="sr-only">Close menu</span>
           </button>
 
-          <div className="flex flex-col mt-10 gap-6">
+          <div className="flex flex-col justify-center text-center items-center mt-5">
+            <button
+              className="cursor-default flex items-center animation-fade text-xl hover:rounded-full hover:bg-primary-color-light/40 p-2"
+              type="button"
+            >
+              <img
+                className="w-24 object-cover mx-auto rounded-full shadow-lg"
+                src={
+                  userInfo?.profile_image
+                    ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
+                    : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                }
+              />
+            </button>
+
+            <div className="flex items-center gap-1 cursor-pointer">
+              <h2 className="block font-bold">{userInfo?.name}</h2>
+            </div>
+          </div>
+
+          <h2 className="text-primary-color-light uppercase font-semibold pb-1 mt-9 mb-1.5">
+            {t("Pages")}
+          </h2>
+
+          <div className="flex flex-col gap-6">
             {navbarLinks?.map((navLink, index) => {
               const { to, text } = navLink;
 
@@ -116,70 +140,38 @@ const NavbarMobile = ({
           </div>
         </article>
 
-        <article className={"py-16"}>
-          <h2 className="text-primary-color-light border-b border-b-primary-color-light font-semibold mb-4 pb-1">
+        <article className={"py-20"}>
+          <h2 className="text-primary-color-light uppercase font-semibold pb-1">
             {t("Adittional Settings")}
           </h2>
 
           {/* Language Switcher */}
-          <div className="my-4">
+          <div className="mt-2 mb-3">
             <ToggleLanguage handleChange={handleChange} language={language} />
           </div>
 
           {/* User Dropdown */}
           {userInfo?.access_token ? (
-            <div className="flex gap-1.5 items-center relative">
-              <button
-                className="cursor-default flex items-center animation-fade text-xl hover:rounded-full hover:bg-primary-color-light/40 p-2"
-                type="button"
+            <>
+              <NavLink
+                className="border-b-2 w-full hover:border-secondary-color hover:text-secondary-color group animation-fade flex items-center gap-1.5 mt-2.5"
+                onClick={() => setNavbarOpen(false)}
+                to={"/my-profiles"}
               >
-                <img
-                  className="w-12 object-cover mx-auto rounded-full shadow-lg"
-                  src={
-                    userInfo?.profile_image
-                      ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
-                      : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-                  }
+                {t("My Profiles")}{" "}
+              </NavLink>
+
+              <NavLink
+                className="border-b-2 w-full mt-4 border-b-red-500 text-red-500 hover:border-red-500 hover:text-red-500 group animation-fade flex items-center gap-1.5"
+                onClick={handleLogOut}
+              >
+                {t("Sign out")}{" "}
+                <CiLogin
+                  size={18}
+                  className="group-hover:translate-x-2 animation-fade"
                 />
-              </button>
-
-              {/* This is the dropdown info */}
-              {openDropDown && (
-                <>
-                  {createPortal(
-                    <div
-                      onClick={() => setOpenDropDown(!openDropDown)}
-                      className="h-[100vh]  fixed top-0 w-full"
-                    ></div>,
-                    document.body
-                  )}
-
-                  <ul className="absolute -top-16 left-16 shadow-md shadow-primary-color-light  bg-primary-color w-40 rounded max-h-96 overflow-auto z-[9999]">
-                    <NavbarDropdownLink
-                      hoverBgLink={"text-white hover:bg-primary-color-light"}
-                      onClick={() => setNavbarOpen(false)}
-                      linkText={t("My Profiles")}
-                      linkTo={"/my-profiles/"}
-                    />
-
-                    <NavbarDropdownLink
-                      hoverBgLink={"text-white hover:bg-red-500"}
-                      linkText={t("Log Out")}
-                      onClick={handleLogOut}
-                    />
-                  </ul>
-                </>
-              )}
-
-              <div
-                onClick={() => setOpenDropDown(!openDropDown)}
-                className="flex items-center gap-1 cursor-pointer"
-              >
-                <FaAngleUp className="text-gray-500" />
-
-                <h2 className="block font-bold">{userInfo?.name}</h2>
-              </div>
-            </div>
+              </NavLink>
+            </>
           ) : (
             // Where the user is not logged in
             <NavLink

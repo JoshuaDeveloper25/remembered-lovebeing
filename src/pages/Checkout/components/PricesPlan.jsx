@@ -215,7 +215,7 @@ const PricesPlan = ({ packageName }) => {
           )}
 
           <label
-            className={`flex items-center justify-between border rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
+            className={`pointer-events-none opacity-60 flex items-center justify-between border rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
               selectedPayments === "singular"
                 ? "bg-primary-color-light/50 text-white"
                 : "bg-white text-gray-900"
@@ -231,7 +231,7 @@ const PricesPlan = ({ packageName }) => {
                 className="w-4 h-4 text-primary-color-light bg-gray-100 border-gray-300 focus:ring-primary-color-light dark:focus:ring-primary-color-light dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
               <p className="ms-2 text-sm font-medium  dark:text-gray-300">
-                Pay with Paypal
+                Pay with Paypal (In Development)
               </p>
             </div>
             <div>

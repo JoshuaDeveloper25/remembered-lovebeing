@@ -9,9 +9,11 @@ import { FaCheck } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const PricesPlan = ({ packageName }) => {
   const [selectedPayments, setSelectedPayments] = useState(false);
+  const { t } = useTranslation();
   const { userInfo } = useContext(AppContext);
   const shortId = uuidv4().slice(0, 8);
 
@@ -52,7 +54,7 @@ const PricesPlan = ({ packageName }) => {
       currency: "USD",
       details: [
         {
-          quantity:  1,
+          quantity: 1,
           description:
             packageName === "singlePackage"
               ? "Compra De SinglePackage Premium (Incluye 1 Perfil Premium)"
@@ -200,11 +202,14 @@ const PricesPlan = ({ packageName }) => {
             <div className="shadow-md rounded-md bg-white p-4">
               <button
                 type="button"
-                className="btn bg-green-400 text-white flex mx-auto items-center gap-2 w-fit font-semibold hover:animate-pulse animation-fade"
+                className="disabled:bg-green-300 disabled:pointer-events-none btn bg-green-400 text-white flex mx-auto items-center gap-2 w-fit font-semibold hover:animate-pulse animation-fade"
                 onClick={generatePaymentURL}
+                disabled={generatePaymentURLMutation?.isPending}
               >
                 <TbPigMoney size={26} />
-                Continue With A Card
+                {generatePaymentURLMutation?.isPending
+                  ? t("Loading...")
+                  : "Continue With A Card"}
               </button>
             </div>
           )}

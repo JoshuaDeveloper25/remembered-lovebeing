@@ -379,10 +379,28 @@ const resources = {
       new: "new",
       Start: "Start",
       "There's no profiles yet...": "There's no profiles yet...",
+      "About us": "About us",
+      "At Eternal MemoriesX, we are a team of four developers passionate about creating meaningful digital solutions.":
+        "At Eternal MemoriesX, we are a team of four developers passionate about creating meaningful digital solutions.",
+      "Our story began while working on independent projects for clients, where we were often asked for examples of our work or a personal portfolio. Although we had experience and achievements to showcase, we realized we didn’t have a project of our own that fully reflected our skills and creativity.":
+        "Our story began while working on independent projects for clients, where we were often asked for examples of our work or a personal portfolio. Although we had experience and achievements to showcase, we realized we didn’t have a project of our own that fully reflected our skills and creativity.",
+      "That search led us to reflect on what we could create that would not only be useful but also have a positive impact on people. This is how the idea for Eternal Memories was born—a platform to preserve and honor the memories of those who have passed away. We believe every story deserves to be remembered and shared, and our goal is to provide a space where memories can transcend time.":
+        "That search led us to reflect on what we could create that would not only be useful but also have a positive impact on people. This is how the idea for Eternal Memories was born—a platform to preserve and honor the memories of those who have passed away. We believe every story deserves to be remembered and shared, and our goal is to provide a space where memories can transcend time.",
+      "Our commitment is to combine technology and innovation to deliver an intuitive and meaningful experience. Eternal Memories is more than just an app; it is a tribute to human legacy, created from the heart by people who understand the importance of keeping memories alive.":
+        "Our commitment is to combine technology and innovation to deliver an intuitive and meaningful experience. Eternal Memories is more than just an app; it is a tribute to human legacy, created from the heart by people who understand the importance of keeping memories alive.",
     },
   },
   es: {
     translation: {
+      "Our commitment is to combine technology and innovation to deliver an intuitive and meaningful experience. Eternal Memories is more than just an app; it is a tribute to human legacy, created from the heart by people who understand the importance of keeping memories alive.":
+        "Nuestro compromiso es combinar tecnología e innovación para ofrecer una experiencia intuitiva y significativa. Eternal Memories es más que una aplicación; es un homenaje al legado humano, creado desde el corazón por personas que entienden la importancia de mantener vivos los recuerdos.",
+      "That search led us to reflect on what we could create that would not only be useful but also have a positive impact on people. This is how the idea for Eternal Memories was born—a platform to preserve and honor the memories of those who have passed away. We believe every story deserves to be remembered and shared, and our goal is to provide a space where memories can transcend time.":
+        "Esa búsqueda nos llevó a reflexionar sobre qué podríamos construir que no solo fuera útil, sino que también tuviera un impacto positivo en las personas. Así nació la idea de Eternal Memories, una plataforma para preservar y honrar los recuerdos de quienes han partido. Creemos que cada historia merece ser recordada y compartida, y nuestro objetivo es proporcionar un espacio donde las memorias trasciendan el tiempo.",
+      "Our story began while working on independent projects for clients, where we were often asked for examples of our work or a personal portfolio. Although we had experience and achievements to showcase, we realized we didn’t have a project of our own that fully reflected our skills and creativity.":
+        "Nuestra historia comenzó mientras trabajábamos en proyectos independientes para clientes, donde nos pedían con frecuencia ejemplos de nuestro trabajo o un portafolio personal. Aunque teníamos experiencia y logros para mostrar, notamos que no contábamos con un proyecto propio que reflejara plenamente nuestras habilidades y creatividad.",
+      "At Eternal MemoriesX, we are a team of four developers passionate about creating meaningful digital solutions.":
+        "En Eternal MemoriesX, somos un equipo de cuatro desarrolladores apasionados por crear soluciones digitales significativas.",
+      "About us": "Sobre nosotros",
       Start: "Empezar",
       "There's no profiles yet...": "Aún no hay perfiles...",
       new: "nuevos",

@@ -4,7 +4,7 @@ import { FaEye } from "react-icons/fa";
 const Memorial = ({ item }) => {
   return (
     <article className=" bg-white shadow-xl rounded-sm animation-fade hover:scale-image">
-      {/* Cover */}
+      {/* Cover of Remembered */}
       <div className="coverMemorial [clip-path:polygon(100%_0%,100%_100%,50%_65%,0%_100%,0%_0%)] h-28">
         <div className="flex justify-center items-center h-[60%]">
           <h2 className="text-center font-bold italic text-white tracking-wider text-sm">

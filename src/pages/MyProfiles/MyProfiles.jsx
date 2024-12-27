@@ -206,7 +206,7 @@ const MyProfiles = () => {
               <button
                 onClick={handleCreatePremiumProfile}
                 type="button"
-                className="btn hover:bg-[#fab818] shadow-[#fab818] hover:text-white group animation-fade bg-black/90 uppercase text-[#fab818] w-auto"
+                className="btn hover:bg-[#fab818] hover:shadow-xl hover:shadow-[#fab818]  shadow-lg shadow-black border-transparent hover:text-white group animation-fade bg-black/90 uppercase text-[#fab818] w-auto"
               >
                 <div className="flex items-center gap-1.5">
                   <svg

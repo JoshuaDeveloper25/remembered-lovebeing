@@ -8,10 +8,10 @@ const AboutUs = () => {
     <main className="container-page py-14 lg:px-2 px-5">
       <div className="flex flex-col-reverse md:flex-row gap-8 justify-between items-center">
         <div className="flex-1">
-          <h2 className="text-primary-color font-mono font-bold text-5xl mb-4">
+          <h2 className="text-primary-color font-mono font-bold sm:text-5xl text-4xl mb-4">
             {t("About us")}
           </h2>
-          <p className="text-primary-color font-semibold font-mono max-w-lg text-lg">
+          <p className="text-primary-color font-semibold font-mono max-w-lg sm:text-lg text-base">
             {t(
               "At Eternal MemoriesX, we are a team of four developers passionate about creating meaningful digital solutions."
             )}
@@ -21,7 +21,7 @@ const AboutUs = () => {
         <div className="flex-1">
           <img
             src={aboutUsHero}
-            className="rounded-full ms-auto object-cover h-[23rem] w-[23rem]"
+            className="rounded-full ms-auto object-cover sm:h-[23rem] w-[14rem] sm:w-[23rem] h-[14rem]"
             alt="About Us Hero"
           />
         </div>

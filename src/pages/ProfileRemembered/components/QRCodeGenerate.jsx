@@ -81,7 +81,7 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
             <span></span>
             <span></span>
             <span></span> <MdWorkspacePremium className="inline-block size-6" />{" "}
-            Go Pro / <span className="font-bold">$22</span> Lifetime
+            Go Pro / <span className="font-bold">$19.99</span> Lifetime
           </Link>
         )}
 

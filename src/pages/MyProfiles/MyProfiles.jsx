@@ -13,6 +13,7 @@ import { GoPlus } from "react-icons/go";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const MyProfiles = () => {
   const { userInfo } = useContext(AppContext);
@@ -22,6 +23,7 @@ const MyProfiles = () => {
   const [slug, setSlug] = useState("");
   const queryClient = useQueryClient();
   const [openTab, setOpenTab] = useState(1);
+  const { t } = useTranslation();
 
   // Get own profiles
   const { data, isPending } = useQuery({
@@ -75,6 +77,11 @@ const MyProfiles = () => {
     setStatusPlan(false);
   };
 
+  const handleCreatePremiumProfile = () => {
+    setOpenPremiumModal(true);
+    setStatusPlan(true);
+  };
+
   return (
     <>
       {/* Sky Video */}
@@ -117,8 +124,6 @@ const MyProfiles = () => {
                 <h4 className="text-gray-600 font-semibold text-sm">
                   {userInfo?.email}
                 </h4>
-
-                
               </div>
             </div>
 
@@ -148,37 +153,95 @@ const MyProfiles = () => {
         {/* 768px to up */}
         <article className="md:block hidden mb-2 md:text-end text-start">
           <div className=" w-fit ms-auto mb-2.5">
-            <p className="font-mono text-primary-color shadow-lg uppercase bg-slate-200 px-3 rounded-md">
-              Premium profiles available <span className="font-bold">(0)</span>,{" "}
-              <Link
-                to={"/prices"}
-                className="text-primary-color-light font-semibold underline"
-              >
-                see plans
-              </Link>
-            </p>
+            {data?.data?.remaining_premium_profiles !== 0 ? (
+              <p className="font-mono tracking-tighter text-primary-color shadow-lg  bg-slate-200 px-3 rounded-md">
+                Premium profiles
+                <span className="font-bold mx-1">
+                  ({data?.data?.remaining_premium_profiles})
+                </span>
+                remaining
+              </p>
+            ) : (
+              <p className="font-mono tracking-tighter text-primary-color shadow-lg  bg-slate-200 px-3 rounded-md">
+                Premium profiles <span className="font-bold mx-1">(0)</span>{" "}
+                available,{" "}
+                <Link
+                  to={"/prices"}
+                  className="text-primary-color-light font-semibold underline"
+                >
+                  see plans
+                </Link>
+              </p>
+            )}
           </div>
 
-          <div className="inline-block">
-            <button onClick={handleCreateFreeProfile} className="btn btn-blue">
-              <GoPlus className="size-5 inline" /> Create Free Profile
-            </button>
-          </div>
-          <Modal
-            titleModal={"New Profile"}
-            handleSubmit={handleSubmit}
-            setOpenModal={setOpenFreeModal}
-            openModal={openFreeModal}
-            modalForm={true}
-            editableWidth={"max-w-[700px] px-8"}
-          >
-            <FormCreateProfile
-              slug={slug}
-              setSlug={setSlug}
-              isPending={createProfileMutation?.isPending}
-              setOpenFreeModal={setOpenFreeModal}
-            />
-          </Modal>
+          {data?.data?.remaining_premium_profiles === 0 ? (
+            <>
+              <div className="inline-block">
+                <button
+                  onClick={handleCreateFreeProfile}
+                  className="btn btn-blue"
+                >
+                  <GoPlus className="size-5 inline" /> Create Free Profile
+                </button>
+              </div>
+              <Modal
+                titleModal={"New Profile"}
+                handleSubmit={handleSubmit}
+                setOpenModal={setOpenFreeModal}
+                openModal={openFreeModal}
+                modalForm={true}
+                editableWidth={"max-w-[700px] px-8"}
+              >
+                <FormCreateProfile
+                  slug={slug}
+                  setSlug={setSlug}
+                  isPending={createProfileMutation?.isPending}
+                  setOpenFreeModal={setOpenFreeModal}
+                />
+              </Modal>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={handleCreatePremiumProfile}
+                type="button"
+                className="btn hover:bg-[#fab818] shadow-[#fab818] hover:text-white group animation-fade bg-black/90 uppercase text-[#fab818] w-auto"
+              >
+                <div className="flex items-center gap-1.5">
+                  <svg
+                    className="fill-[#fab818] h-5 group-hover:fill-white premium-filled-icon--nW2Vi header-svg-icon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    data-t="premium-filled-svg"
+                    aria-labelledby="premium-filled-svg"
+                    aria-hidden="true"
+                    role="img"
+                  >
+                    <title id="premium-filled-svg">Premium</title>
+                    <path d="M2.419 13L0 4.797 4.837 6.94 8 2l3.163 4.94L16 4.798 13.581 13z"></path>
+                  </svg>
+                  {t("Create Pro Profile")}
+                </div>
+              </button>
+
+              <Modal
+                titleModal={"New Profile (Premium)"}
+                handleSubmit={handleSubmit}
+                setOpenModal={setOpenPremiumModal}
+                openModal={openPremiumModal}
+                modalForm={true}
+                editableWidth={"max-w-xl"}
+              >
+                <FormCreateProfile
+                  slug={slug}
+                  setSlug={setSlug}
+                  isPending={createProfileMutation?.isPending}
+                  setOpenPremiumModal={setOpenPremiumModal}
+                />
+              </Modal>
+            </>
+          )}
         </article>
 
         <div className="grid md:grid-cols-4 grid-cols-1 items-start min-[1150px]:gap-3 sm:gap-1 gap-0">

@@ -25,54 +25,6 @@ const Profiles = ({
 
   return (
     <>
-      {isPendingFavouritesProfiles
-        ? t("Loading...")
-        : premiumProfilesRemaining !== 0 && (
-            <>
-              <div className="md:flex hidden flex-col gap-6 sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
-                <h2 className="font-sans font-medium text-muted-color italic">
-                  “{t("Thank you for your purchase! You now have")}{" "}
-                  <span className="font-bold">
-                    ({premiumProfilesRemaining})
-                  </span>{" "}
-                  {t("new")}{" "}
-                  {premiumProfilesRemaining === 1
-                    ? t("profile")
-                    : t("profiles")}{" "}
-                  {t("available. Click “Start” to begin")}{" "}
-                  {premiumProfilesRemaining === 1
-                    ? t("customizing it")
-                    : t("customizing them")}{" "}
-                  {t("and sharing the memories that matter most.")}”
-                </h2>
-
-                <button
-                  onClick={handleCreatePremiumProfile}
-                  type="button"
-                  className="btn btn-blue w-auto"
-                >
-                  {t("Start")}
-                </button>
-
-                <Modal
-                  titleModal={"New Profile (Premium)"}
-                  handleSubmit={handleSubmit}
-                  setOpenModal={setOpenPremiumModal}
-                  openModal={openPremiumModal}
-                  modalForm={true}
-                  editableWidth={"max-w-xl"}
-                >
-                  <FormCreateProfile
-                    slug={slug}
-                    setSlug={setSlug}
-                    isPending={isPendingCreateProfile}
-                    setOpenPremiumModal={setOpenPremiumModal}
-                  />
-                </Modal>
-              </div>
-            </>
-          )}
-
       {profiles?.length !== 0 ? (
         <div>
           <div className="border-b-2 pb-8">

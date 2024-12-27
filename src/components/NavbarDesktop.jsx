@@ -59,7 +59,7 @@ const NavbarDesktop = ({
                     type="button"
                   >
                     <img
-                      className="w-12 object-cover mx-auto rounded-full shadow-lg"
+                      className="w-12 object-cover mx-auto rounded-full shadow-lg border-2 border-green-500"
                       src={
                         userInfo?.profile_image
                           ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`

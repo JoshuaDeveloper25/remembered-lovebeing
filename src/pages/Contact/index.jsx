@@ -41,11 +41,11 @@ const Contact = () => {
 
   return (
     <main className="relative">
-      <div className="fixed top-18 right-8">
+      <div className="fixed top-18 right-8  -z-[1]">
         <img className="w-32 rotate-[90]" src={peaceDove} />
       </div>
 
-      <div className="fixed top-18 left-8">
+      <div className="fixed top-18 left-8 -z-[1]">
         <img className="w-32 [transform:rotateY(180deg)]" src={peaceDove} />
       </div>
 

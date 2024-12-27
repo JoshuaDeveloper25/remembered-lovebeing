@@ -100,7 +100,7 @@ const NavbarMobile = ({
               type="button"
             >
               <img
-                className="w-24 object-cover mx-auto rounded-full shadow-lg"
+                className="w-24 border-4 border-green-500  object-cover mx-auto rounded-full shadow-lg"
                 src={
                   userInfo?.profile_image
                     ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`

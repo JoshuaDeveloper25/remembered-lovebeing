@@ -8,6 +8,7 @@ import { createPortal } from "react-dom";
 import { FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 // All Tributes
 const Tributes = ({ tributes, isOwner }) => {
@@ -116,13 +117,34 @@ const Tribute = ({ tribute, isOwner }) => {
   });
 
   const handleDeleteTribute = () => {
-    const user_request = confirm(
-      `Are you sure you want to delete this tribute?`
-    );
-
-    if (!user_request) return;
-
-    deleteTributeMutation.mutate();
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Deseas eliminar este tributo? Esta acción no se puede deshacer.",
+      // icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteTributeMutation.mutate({
+          onSuccess: () => {
+            // Swal.fire({
+            //   title: "¡Eliminado!",
+            //   text: "El tributo ha sido eliminado correctamente.",
+            //   icon: "success",
+            // });
+          },
+          onError: () => {
+            Swal.fire({
+              title: "¡Error!",
+              text: "Hubo un problema al intentar eliminar el tributo.",
+              icon: "error",
+            });
+          },
+        });
+      }
+    });
   };
 
   return (
@@ -181,7 +203,7 @@ const Tribute = ({ tribute, isOwner }) => {
                   document.body
                 )}
 
-                <ul className="absolute right-5 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
+                <ul className="absolute right-5 shadow-lg bg-white z-[1000] w-max rounded max-h-96 overflow-auto">
                   <NavbarDropdownLink
                     hoverBgLink={"hover:bg-secondary-color hover:text-white"}
                     linkText={"Edit"}
@@ -383,13 +405,34 @@ const TributeComment = ({ tributeComment, userInfo }) => {
   });
 
   const handleDeleteCommentTribute = () => {
-    const user_request = confirm(
-      `Are you sure you want to delete this tribute?`
-    );
-
-    if (!user_request) return;
-
-    deleteTributeCommentMutation.mutate();
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Deseas eliminar este comentario del tributo? Esta acción no se puede deshacer.",
+      // icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteTributeCommentMutation.mutate({
+          onSuccess: () => {
+            // Swal.fire({
+            //   title: "¡Eliminado!",
+            //   text: "El comentario del tributo ha sido eliminado correctamente.",
+            //   icon: "success",
+            // });
+          },
+          onError: () => {
+            Swal.fire({
+              title: "¡Error!",
+              text: "Hubo un problema al intentar eliminar el comentario del tributo.",
+              icon: "error",
+            });
+          },
+        });
+      }
+    });
   };
 
   return (
@@ -452,7 +495,7 @@ const TributeComment = ({ tributeComment, userInfo }) => {
                   document.body
                 )}
 
-                <ul className="absolute right-5 shadow-lg bg-white py-2 z-[1000] w-max rounded max-h-96 overflow-auto">
+                <ul className="absolute right-5 shadow-lg bg-white z-[1000] w-max rounded max-h-96 overflow-auto">
                   <NavbarDropdownLink
                     hoverBgLink={"hover:bg-secondary-color hover:text-white"}
                     linkText={"Edit"}

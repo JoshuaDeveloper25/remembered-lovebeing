@@ -6,6 +6,7 @@ import formatDate from "../../../utils/formatDate";
 import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 // All Condolences
 const Condolences = ({ condolences, isOwner }) => {
@@ -147,13 +148,34 @@ const Condolence = ({ condolence, isOwner }) => {
   });
 
   const handleDeleteCondolence = () => {
-    const user_request = confirm(
-      `Are you sure you want to delete this condolence?`
-    );
-
-    if (!user_request) return;
-
-    deleteCondolenceMutation.mutate();
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Deseas eliminar este mensaje de condolencia? Esta acción no se puede deshacer.",
+      // icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCondolenceMutation.mutate({
+          onSuccess: () => {
+            // Swal.fire({
+            //   title: "¡Eliminado!",
+            //   text: "El mensaje de condolencia ha sido eliminado correctamente.",
+            //   icon: "success",
+            // });
+          },
+          onError: () => {
+            Swal.fire({
+              title: "¡Error!",
+              text: "Hubo un problema al intentar eliminar el mensaje de condolencia.",
+              icon: "error",
+            });
+          },
+        });
+      }
+    });
   };
 
   return (

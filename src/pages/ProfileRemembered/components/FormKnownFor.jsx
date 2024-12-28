@@ -7,6 +7,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const FormKnownFor = ({
   handleSubmitAddKnownFor,
@@ -177,13 +178,34 @@ const KnownFor = ({ knownFor, setBestKnownInfoObject }) => {
   });
 
   const handleDeleteBestKnownFor = () => {
-    const user_request = confirm(
-      `Are you sure you want to delete this quality?`
-    );
-
-    if (!user_request) return;
-
-    deleteBestKnownMutation.mutate();
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Deseas eliminar esta cualidad? Esta acción no se puede deshacer.",
+      // icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteBestKnownMutation.mutate({
+          onSuccess: () => {
+            // Swal.fire({
+            //   title: "¡Eliminado!",
+            //   text: "La cualidad ha sido eliminada correctamente.",
+            //   icon: "success",
+            // });
+          },
+          onError: () => {
+            Swal.fire({
+              title: "¡Error!",
+              text: "Hubo un problema al intentar eliminar la cualidad.",
+              icon: "error",
+            });
+          },
+        });
+      }
+    });
   };
 
   return (

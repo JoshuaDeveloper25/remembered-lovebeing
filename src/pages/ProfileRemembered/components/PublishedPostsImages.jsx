@@ -1,4 +1,5 @@
-import ReactImageGrid from "@cordelia273/react-image-grid";
+// import ReactImageGrid from "@cordelia273/react-image-grid";
+import Photogrid from "react-facebook-photo-grid";
 import { MdImageNotSupported } from "react-icons/md";
 
 const PublishedPostsImages = ({ setToggleModal, galleryImages }) => {
@@ -14,11 +15,12 @@ const PublishedPostsImages = ({ setToggleModal, galleryImages }) => {
       </h2>
     </div>
   ) : (
-    <div className="galleryPost ">
-      <ReactImageGrid
-        className={"max-w-[500px] mx-auto"}
-        images={imagesToString}
-      />
+    <div className="galleryPost relative">
+      <button
+        className="bg-transparent absolute inset-0"
+        onClick={() => setToggleModal(true)}
+      ></button>
+      <Photogrid className={"max-w-[500px] mx-auto"} images={imagesToString} />
     </div>
   );
 };

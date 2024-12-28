@@ -14,6 +14,7 @@ import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const PublicPost = ({ post, ownerName }) => {
   const { userInfo } = useContext(AppContext);
@@ -294,13 +295,34 @@ const SingleComment = ({ post, comment, userInfo }) => {
   });
 
   const handleDeleteComment = () => {
-    const user_request = confirm(
-      `Are you sure you want to delete this comment?`
-    );
-
-    if (!user_request) return;
-
-    deleteCommentMutation.mutate();
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to delete this comment? This action cannot be undone.",
+      // icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCommentMutation.mutate({
+          onSuccess: () => {
+            // Swal.fire({
+            //   title: "Deleted!",
+            //   text: "The comment has been successfully deleted.",
+            //   icon: "success",
+            // });
+          },
+          onError: () => {
+            Swal.fire({
+              title: "Error!",
+              text: "There was an issue deleting the comment.",
+              icon: "error",
+            });
+          },
+        });
+      }
+    });
   };
 
   return (

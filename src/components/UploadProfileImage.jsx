@@ -8,6 +8,7 @@ import { FaCameraRetro } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Modal from "./Modal";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const UploadProfileImage = ({ idRemembered }) => {
   const [openModalProfile, setOpenModalProfile] = useState(false);
@@ -61,29 +62,58 @@ const UploadProfileImage = ({ idRemembered }) => {
   const handleSubmitProfileImage = async (e) => {
     e.preventDefault();
 
-    const user_request = confirm(`Are you sure you want to upload the image?`);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to upload the image?",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, upload it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        if (!imgRef.current) {
+          return toast.error("Upload an image before uploading!");
+        }
 
-    if (!imgRef.current && user_request) {
-      return toast.error("Upload an image before uploading!");
-    }
+        setCanvasPreview(
+          imgRef.current, // HTMLImageElement
+          previewCanvasRef.current, // HTMLCanvasElement
+          convertToPixelCrop(
+            crop,
+            imgRef?.current?.width,
+            imgRef?.current?.height
+          )
+        );
 
-    setCanvasPreview(
-      imgRef.current, // HTMLImageElement
-      previewCanvasRef.current, // HTMLCanvasElement
-      convertToPixelCrop(crop, imgRef?.current?.width, imgRef?.current?.height)
-    );
+        const dataUrl = previewCanvasRef.current.toDataURL();
+        updateAvatar(dataUrl);
 
-    const dataUrl = previewCanvasRef.current.toDataURL();
-    updateAvatar(dataUrl);
+        const blob = await fetch(dataUrl).then((res) => res.blob());
+        const file = new File([blob], "remembered-profile-image.png", {
+          type: "image/png",
+        });
 
-    const blob = await fetch(dataUrl).then((res) => res.blob());
-    const file = new File([blob], "remembered-profile-image.png", {
-      type: "image/png",
+        const formData = new FormData();
+        formData.append("file", file);
+
+        changeImageProfileMutation?.mutate(formData, {
+          onSuccess: () => {
+            // Swal.fire({
+            //   title: "Uploaded!",
+            //   text: "Your profile image has been uploaded successfully.",
+            //   icon: "success",
+            // });
+          },
+          onError: () => {
+            Swal.fire({
+              title: "Error!",
+              text: "There was an issue uploading your profile image.",
+              icon: "error",
+            });
+          },
+        });
+      }
     });
-
-    const formData = new FormData();
-    formData.append("file", file);
-    changeImageProfileMutation?.mutate(formData);
   };
 
   return (

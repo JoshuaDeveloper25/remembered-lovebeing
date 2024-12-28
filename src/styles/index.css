@@ -374,3 +374,7 @@ body {
   color: #10171d; /* #10171D */
   font-size: 0.875rem !important;
 }
+
+.swal2-container {
+  z-index: 99999999999999999999 !important;
+}

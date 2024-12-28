@@ -16,6 +16,7 @@ import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
 import Modal from "./Modal";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const Post = ({ isOwner, post, rememberName }) => {
   const { userInfo } = useContext(AppContext);
@@ -74,11 +75,33 @@ const Post = ({ isOwner, post, rememberName }) => {
   });
 
   const handleDeletePost = () => {
-    const user_request = confirm(`Are you sure you want to delete this post?`);
-
-    if (!user_request) return;
-
-    deletePostMutation.mutate();
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deletePostMutation.mutate(null, {
+          onSuccess: () => {
+            // Swal.fire({
+            //   title: "Deleted!",
+            //   text: "Your post has been deleted.",
+            //   icon: "success",
+            // });
+          },
+          onError: () => {
+            Swal.fire({
+              title: "Error!",
+              text: "There was an issue deleting your post.",
+              icon: "error",
+            });
+          },
+        });
+      }
+    });
   };
 
   return (
@@ -415,13 +438,36 @@ const SingleComment = ({ post, comment, userInfo }) => {
   });
 
   const handleDeleteComment = () => {
-    const user_request = confirm(
-      `Are you sure you want to delete this comment?`
-    );
-
-    if (!user_request) return;
-
-    deleteCommentMutation.mutate();
+    Swal.fire({
+      customClass: {
+        popup: "swal-custom-z-index",
+      },
+      title: "Are you sure?",
+      text: "Do you really want to delete this comment?",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCommentMutation.mutate({
+          onSuccess: () => {
+            // Swal.fire({
+            //   title: "Deleted!",
+            //   text: "Your comment has been deleted.",
+            //   icon: "success",
+            // });
+          },
+          onError: () => {
+            Swal.fire({
+              title: "Error!",
+              text: "There was an issue deleting your comment.",
+              icon: "error",
+            });
+          },
+        });
+      }
+    });
   };
 
   return (
@@ -495,7 +541,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
                     document.body
                   )}
 
-                  <ul className="absolute top-34 right-5 shadow-lg bg-white py-2 w-max rounded max-h-96 ">
+                  <ul className="absolute top-34 right-5 shadow-lg bg-white w-max rounded max-h-96 ">
                     <NavbarDropdownLink
                       hoverBgLink={
                         "hover:bg-secondary-color hover:text-white text-xs"

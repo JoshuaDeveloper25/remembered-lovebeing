@@ -45,13 +45,7 @@ const UploadGalleryImage = ({
   const handleSubmitGalleryImage = (e) => {
     e.preventDefault();
 
-    const user_request = confirm(
-      `Are you sure you want to add image(s) to gallery?`
-    );
-
-    if (!user_request) {
-      return;
-    } else if (images?.length === 0) {
+    if (images?.length === 0) {
       return toast.error(`Upload 1 image at least!`);
     }
 

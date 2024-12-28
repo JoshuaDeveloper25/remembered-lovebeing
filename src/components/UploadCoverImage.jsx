@@ -45,9 +45,7 @@ const UploadCoverImage = ({ idRemembered }) => {
   const handleSubmitCoverImage = async (e) => {
     e.preventDefault();
 
-    const user_request = confirm(`Are you sure you want to upload the image?`);
-
-    if (!imgRef.current && user_request) {
+    if (!imgRef.current) {
       return toast.error('Upload an image before uploading!');
     }
 

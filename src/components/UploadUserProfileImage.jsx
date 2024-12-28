@@ -9,6 +9,7 @@ import { FaCameraRetro } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Modal from "./Modal";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const UploadUserProfileImage = ({ iconClassname }) => {
   const [openModalProfile, setOpenModalProfile] = useState(false);
@@ -69,6 +70,8 @@ const UploadUserProfileImage = ({ iconClassname }) => {
 
   const handleSubmitProfileImage = async (e) => {
     e.preventDefault();
+
+    if (!imgRef.current) return toast.error("Upload an image before sending!");
 
     Swal.fire({
       title: "Are you sure?",

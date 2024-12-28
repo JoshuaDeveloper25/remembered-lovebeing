@@ -19,6 +19,7 @@ import { DiAptana } from "react-icons/di";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ResponsiveMoreInfoRemembered = ({
   rememberedId,
@@ -97,29 +98,58 @@ const ResponsiveMoreInfoRemembered = ({
   const handleSubmitProfileImage = async (e) => {
     e.preventDefault();
 
-    const user_request = confirm(`Are you sure you want to upload the image?`);
+    if (!imgRef.current) toast.error("Upload an image before sendidsdsng!");
 
-    if (!imgRef.current && user_request) {
-      return toast.error("Upload an image before uploading!");
-    }
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Deseas subir esta imagen? Esta acción actualizará tu perfil.",
+      // icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, subir",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        setCanvasPreview(
+          imgRef.current, // HTMLImageElement
+          previewCanvasRef.current, // HTMLCanvasElement
+          convertToPixelCrop(
+            crop,
+            imgRef?.current?.width,
+            imgRef?.current?.height
+          )
+        );
 
-    setCanvasPreview(
-      imgRef.current, // HTMLImageElement
-      previewCanvasRef.current, // HTMLCanvasElement
-      convertToPixelCrop(crop, imgRef?.current?.width, imgRef?.current?.height)
-    );
+        const dataUrl = previewCanvasRef.current.toDataURL();
+        updateAvatar(dataUrl);
 
-    const dataUrl = previewCanvasRef.current.toDataURL();
-    updateAvatar(dataUrl);
+        const blob = await fetch(dataUrl).then((res) => res.blob());
+        const file = new File([blob], "remembered-profile-image.png", {
+          type: "image/png",
+        });
 
-    const blob = await fetch(dataUrl).then((res) => res.blob());
-    const file = new File([blob], "remembered-profile-image.png", {
-      type: "image/png",
+        const formData = new FormData();
+        formData.append("file", file);
+
+        changeImageProfileMutation?.mutate(formData, {
+          onSuccess: () => {
+            // Swal.fire({
+            //   title: "¡Imagen subida!",
+            //   text: "Tu imagen de perfil se ha actualizado correctamente.",
+            //   icon: "success",
+            // });
+          },
+          onError: () => {
+            Swal.fire({
+              title: "¡Error!",
+              text: "Hubo un problema al subir la imagen. Intenta nuevamente.",
+              icon: "error",
+            });
+          },
+        });
+      }
     });
-
-    const formData = new FormData();
-    formData.append("file", file);
-    changeImageProfileMutation?.mutate(formData);
   };
 
   return (

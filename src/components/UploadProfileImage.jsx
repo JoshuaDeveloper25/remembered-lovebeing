@@ -62,6 +62,10 @@ const UploadProfileImage = ({ idRemembered }) => {
   const handleSubmitProfileImage = async (e) => {
     e.preventDefault();
 
+    if (!imgRef.current) {
+      return toast.error("Upload an image before uploading!");
+    }
+
     Swal.fire({
       title: "Are you sure?",
       text: "Do you want to upload the image?",
@@ -71,10 +75,6 @@ const UploadProfileImage = ({ idRemembered }) => {
       confirmButtonText: "Yes, upload it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        if (!imgRef.current) {
-          return toast.error("Upload an image before uploading!");
-        }
-
         setCanvasPreview(
           imgRef.current, // HTMLImageElement
           previewCanvasRef.current, // HTMLCanvasElement

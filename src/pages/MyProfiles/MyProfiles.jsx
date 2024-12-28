@@ -7,13 +7,13 @@ import cloudsVideo from "../../assets/videos/clouds-myprofiles-cover.mp4";
 import FormCreateProfile from "./components/FormCreateProfile";
 import getFastApiErrors from "../../utils/getFastApiErrors";
 import AppContext from "../../context/AppProvider";
+import { useTranslation } from "react-i18next";
 import { useContext, useState } from "react";
 import Modal from "../../components/Modal";
 import { GoPlus } from "react-icons/go";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 const MyProfiles = () => {
   const { userInfo } = useContext(AppContext);

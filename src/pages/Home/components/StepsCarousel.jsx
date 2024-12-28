@@ -57,7 +57,7 @@ const StepsCarousel = () => {
                 delay: 3000,
                 disableOnInteraction: false,
               }}
-              loop={true}
+              loop={false}
               style={{
                 "--swiper-pagination-bullet-size": "7px",
                 "--swiper-pagination-bullet-height": "7px",

@@ -73,7 +73,7 @@ const RecentMemorialsCarousel = () => {
               delay: 4000,
               disableOnInteraction: false,
             }}
-            loop={true}
+            loop={false}
             spaceBetween={30}
             pagination={{
               clickable: true,

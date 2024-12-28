@@ -19,7 +19,7 @@ const CarouselCommunity = () => {
           delay: 2500,
           disableOnInteraction: false,
         }}
-        loop={true}
+        loop={false}
         pagination={{
           clickable: true,
         }}

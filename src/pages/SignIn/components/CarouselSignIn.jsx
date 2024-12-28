@@ -12,7 +12,7 @@ const CarouselSignIn = () => {
   return (
     <div className="flex-1">
       <Swiper
-        loop={true}
+        loop={false}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,

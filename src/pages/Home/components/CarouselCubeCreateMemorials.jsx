@@ -49,7 +49,7 @@ const CarouselCubeCreateMemorials = () => {
           clickable: true,
         }}
         speed={1000}
-        loop={true}
+        loop={false}
         modules={[Autoplay, EffectCube, Pagination]}
         className="mySwiper"
       >

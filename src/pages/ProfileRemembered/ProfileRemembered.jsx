@@ -70,8 +70,6 @@ const ProfileRemembered = () => {
       ),
   });
 
-  console.log(data?.data)
-  
   // --> Edit Remembered Profile
   const editRememberedProfileMutation = useMutation({
     mutationFn: async (profileInfo) =>
@@ -150,8 +148,6 @@ const ProfileRemembered = () => {
 
     changeStatusMutation?.mutate(profileInfo);
   };
-
-  console.log(data?.data?.remembered_profile)
 
   if (isPending) {
     return (

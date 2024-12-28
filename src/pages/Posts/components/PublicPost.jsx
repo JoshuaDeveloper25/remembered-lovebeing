@@ -332,8 +332,8 @@ const SingleComment = ({ post, comment, userInfo }) => {
         <img
           className="h-10 w-10 rounded-full border-2 border-primary-color/50"
           src={
-            post?.remembered?.profile_images
-              ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
+            comment?.owner?.user_profile_image
+              ? `${comment?.owner?.user_profile_image?.cloud_front_domain}/${comment?.owner?.user_profile_image?.aws_file_name}`
               : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
           }
         />

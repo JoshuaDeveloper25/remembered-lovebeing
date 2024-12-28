@@ -10,6 +10,7 @@ import { useState, useRef } from "react";
 import { toast } from "react-toastify";
 import { saveAs } from "file-saver";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
   const [generatedCode, setGeneratedCode] = useState("");
@@ -45,23 +46,46 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
   };
 
   const handleGenerateQRCode = () => {
-    const user_request = confirm("Are you sure of this action?");
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¿Estás seguro de realizar esta acción?",
+      // icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, generar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setGeneratedCode(`${location?.pathname}`);
 
-    if (!user_request) return;
+        setTimeout(() => {
+          const canvas = canvasRef.current.querySelector("canvas");
+          const dataURL = canvas.toDataURL("image/png");
 
-    setGeneratedCode(`${location?.pathname}`);
+          const fileName = `QRCode_${new Date().getTime()}.png`;
+          const qrFile = base64ToFile(dataURL, fileName, "image/png");
+          const formData = new FormData();
 
-    setTimeout(() => {
-      const canvas = canvasRef.current.querySelector("canvas");
-      const dataURL = canvas.toDataURL("image/png");
-
-      const fileName = `QRCode_${new Date().getTime()}.png`;
-      const qrFile = base64ToFile(dataURL, fileName, "image/png");
-      const formData = new FormData();
-
-      formData.append("file", qrFile);
-      uploadQrImageMutation?.mutate(formData);
-    }, 50);
+          formData.append("file", qrFile);
+          uploadQrImageMutation?.mutate(formData, {
+            onSuccess: () => {
+              // Swal.fire({
+              //   title: "¡Código QR generado!",
+              //   text: "El código QR se generó y subió exitosamente.",
+              //   icon: "success",
+              // });
+            },
+            onError: () => {
+              Swal.fire({
+                title: "¡Error!",
+                text: "Hubo un problema al generar o subir el código QR.",
+                icon: "error",
+              });
+            },
+          });
+        }, 50);
+      }
+    });
   };
 
   return (

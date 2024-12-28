@@ -70,32 +70,54 @@ const UploadUserProfileImage = ({ iconClassname }) => {
   const handleSubmitProfileImage = async (e) => {
     e.preventDefault();
 
-    const user_request = confirm(`Are you sure you want to upload the image?`);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to upload the image?",
+      // icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, upload it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        setCanvasPreview(
+          imgRef.current, // HTMLImageElement
+          previewCanvasRef.current, // HTMLCanvasElement
+          convertToPixelCrop(crop, imgRef.current.width, imgRef.current.height)
+        );
 
-    if (!user_request) {
-      return;
-    }
+        const dataUrl = previewCanvasRef.current.toDataURL();
+        updateAvatar(dataUrl);
 
-    setCanvasPreview(
-      imgRef.current, // HTMLImageElement
-      previewCanvasRef.current, // HTMLCanvasElement
-      convertToPixelCrop(crop, imgRef.current.width, imgRef.current.height)
-    );
+        const blob = await fetch(dataUrl).then((res) => res.blob());
+        const file = new File([blob], "user-profile-image.png", {
+          type: "image/png",
+        });
 
-    const dataUrl = previewCanvasRef.current.toDataURL();
-    updateAvatar(dataUrl);
+        const formData = new FormData();
+        formData.append("file", file);
 
-    const blob = await fetch(dataUrl).then((res) => res.blob());
-    const file = new File([blob], "user-profile-image.png", {
-      type: "image/png",
+        changeImageProfileMutation?.mutate(formData, {
+          onSuccess: () => {
+            // Swal.fire({
+            //   title: "Uploaded!",
+            //   text: "Your profile image has been successfully uploaded.",
+            //   icon: "success",
+            // });
+          },
+          onError: () => {
+            Swal.fire({
+              title: "Error!",
+              text: "There was an issue uploading your profile image.",
+              icon: "error",
+            });
+          },
+        });
+
+        // Uncomment this if you need to store the image data locally
+        // localStorage?.setItem("userInfo", JSON.stringify(formData));
+      }
     });
-
-    const formData = new FormData();
-    formData.append("file", file);
-    changeImageProfileMutation?.mutate(formData);
-
-    // const newProfileImage = formData;
-    // localStorage?.setItem("userInfo", JSON.stringify(newProfileImage));
   };
 
   return (
@@ -110,7 +132,7 @@ const UploadUserProfileImage = ({ iconClassname }) => {
           className={`${iconClassname ? iconClassname : "size-5"}`}
         />
       </button>
-    
+
       {/* Change User Profile Image Modal */}
       <Modal
         titleModal={"Change Profile Image"}

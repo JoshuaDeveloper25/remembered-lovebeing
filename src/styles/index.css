@@ -390,3 +390,12 @@ body {
 .swal2-container {
   z-index: 99999999999999999999 !important;
 }
+
+.tawk-min-container > button {
+  z-index: -1 !important;
+  border: 10px solid red !important;
+}
+
+iframe[src*="tawk.to"] {
+  z-index: -1000 !important; /* Ajusta el valor a algo más bajo que el resto de tu contenido */
+}

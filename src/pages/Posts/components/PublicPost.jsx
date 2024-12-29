@@ -112,7 +112,7 @@ const PublicPost = ({ post, ownerName }) => {
         openModal={modalPostComments}
         setOpenModal={setModalPostComments}
       >
-        <div className="flex flex-col lg:flex-row min-h-full h-full">
+        <div className="flex flex-col lg:flex-row h-full">
           <article className="flex-[30%]">
             <CarouselCommentPosts
               ownerName={ownerName}
@@ -145,92 +145,90 @@ const PublicPost = ({ post, ownerName }) => {
               <h3 className="mt-1 text-tertiary-color">{post?.content}</h3>
             </div>
 
-            <article
-              className={`relative flex-1 flex flex-col justify-between ${
-                !post?.comments?.length
-                  ? "overflow-y-hidden"
-                  : "overflow-y-auto"
-              } max-h-[100%]`}
-            >
-              {/* If there's no comments we show a title */}
-              {!post?.comments?.length ? (
-                <div className="flex justify-center items-center h-full">
-                  <p className="py-3 px-4 text-center text-xl font-bold">
-                    No comments added yet...{" "}
-                  </p>
-                </div>
-              ) : (
-                <div className="px-4">
-                  {post?.comments?.map((comment) => {
-                    return (
-                      <SingleComment
-                        userInfo={userInfo}
-                        key={comment?.id}
-                        post={post}
-                        comment={comment}
-                      />
-                    );
-                  })}
-                </div>
-              )}
-
-              {userInfo?.access_token ? (
-                <form
-                  className={`self-end w-full sticky bottom-0 bg-transparent z-[9999]`}
-                  onSubmit={handleSubmitPublishComment}
-                >
-                  <div className="relative">
-                    <img
-                      className="absolute left-1 top-1.5 w-8 rounded-full"
-                      src={
-                        userInfo?.profile_image
-                          ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
-                          : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-                      }
-                    />
-
-                    <textarea
-                      rows="1"
-                      cols="1"
-                      wrap="soft"
-                      name="content"
-                      value={comment}
-                      onChange={(e) => setComment(e?.target?.value)}
-                      placeholder="Comment something..."
-                      className="block ps-11 pe-16 py-2.5 w-full text-sm text-fourth-color bg-gray-50 resize-none outline-none"
-                    ></textarea>
-
-                    {comment === "" ? null : (
-                      <button
-                        disabled={publishCommentPostMutation?.isPending}
-                        type="submit"
-                        className="absolute top-2 right-6 text-sm text-secondary-color hover:text-secondary-color/70 animation-fade font-semibold"
-                      >
-                        {publishCommentPostMutation?.isPending
-                          ? "Sending..."
-                          : "Send"}
-                      </button>
-                    )}
+            <div className="overflow-y-scroll lg:max-h-none max-h-[20rem] ">
+              <article
+                className={`relative flex-1 flex flex-col justify-between`}
+              >
+                {/* If there's no comments we show a title */}
+                {!post?.comments?.length ? (
+                  <div className="flex justify-center items-center h-full">
+                    <p className="py-3 px-4 text-center text-xl font-bold">
+                      No comments added yet...{" "}
+                    </p>
                   </div>
-                </form>
-              ) : (
-                <div className="text-center bg-muted-color/20 py-4">
-                  <h2 className="text-lg font-semibold">
-                    Want to comment something?
-                  </h2>
-                  <p>
-                    Please,{" "}
-                    <Link
-                      className="text-primary-color-light underline font-bold"
-                      to={"/sign-in?redirect=/posts"}
-                    >
-                      log in
-                    </Link>{" "}
-                    to leave one!
-                  </p>
-                </div>
-              )}
-            </article>
+                ) : (
+                  <div className="px-4">
+                    {post?.comments?.map((comment) => {
+                      return (
+                        <SingleComment
+                          userInfo={userInfo}
+                          key={comment?.id}
+                          post={post}
+                          comment={comment}
+                        />
+                      );
+                    })}
+                  </div>
+                )}
+
+                {userInfo?.access_token ? (
+                  <form
+                    className={`self-end w-full sticky bottom-0  bg-transparent z-[9999]`}
+                    onSubmit={handleSubmitPublishComment}
+                  >
+                    <div className="relative">
+                      <img
+                        className="absolute left-1 top-1.5 w-8 rounded-full"
+                        src={
+                          userInfo?.profile_image
+                            ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
+                            : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                        }
+                      />
+
+                      <textarea
+                        rows="1"
+                        cols="1"
+                        wrap="soft"
+                        name="content"
+                        value={comment}
+                        onChange={(e) => setComment(e?.target?.value)}
+                        placeholder="Comment something..."
+                        className="block ps-11 pe-16 py-2.5 w-full text-sm text-fourth-color bg-gray-50 resize-none outline-none"
+                      ></textarea>
+
+                      {comment === "" ? null : (
+                        <button
+                          disabled={publishCommentPostMutation?.isPending}
+                          type="submit"
+                          className="absolute top-2 right-6 text-sm text-secondary-color hover:text-secondary-color/70 animation-fade font-semibold"
+                        >
+                          {publishCommentPostMutation?.isPending
+                            ? "Sending..."
+                            : "Send"}
+                        </button>
+                      )}
+                    </div>
+                  </form>
+                ) : (
+                  <div className="text-center bg-muted-color/20 py-4">
+                    <h2 className="text-lg font-semibold">
+                      Want to comment something?
+                    </h2>
+                    <p>
+                      Please,{" "}
+                      <Link
+                        className="text-primary-color-light underline font-bold"
+                        to={"/sign-in?redirect=/posts"}
+                      >
+                        log in
+                      </Link>{" "}
+                      to leave one!
+                    </p>
+                  </div>
+                )}
+              </article>
+            </div>
           </article>
         </div>
       </PostCommentModal>
@@ -403,6 +401,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
                       }
                       onClick={() => {
                         setIsEditing(!isEditing);
+                        setToggleComment(!toggleComment);
                       }}
                       linkText={"Edit"}
                     />

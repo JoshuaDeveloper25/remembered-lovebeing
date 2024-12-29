@@ -48,7 +48,7 @@ const CarouselCommentPosts = ({ commentImages }) => {
         <>
           <button
             type="button"
-            className="absolute top-1/2 left-0 transform -translate-y-1/2 z-30 flex items-center justify-center px-4 cursor-pointer group focus:outline-none"
+            className="absolute top-1/2 left-0 transform -translate-y-1/2 z-30 flex items-center rounded-full justify-center cursor-pointer mx-4 group focus:outline-none"
             onClick={prevSlide}
           >
             <span className="group inline-flex items-center justify-center w-10 h-10 rounded-full border border-white text-white hover:bg-white">
@@ -73,7 +73,7 @@ const CarouselCommentPosts = ({ commentImages }) => {
 
           <button
             type="button"
-            className="absolute top-1/2 right-0 transform -translate-y-1/2 z-30 flex items-center justify-center px-4 cursor-pointer group focus:outline-none"
+            className="absolute top-1/2 right-0 transform -translate-y-1/2 z-30 flex rounded-full items-center justify-center cursor-pointer mx-4 group focus:outline-none"
             onClick={nextSlide}
           >
             <span className="group inline-flex items-center justify-center w-10 h-10 rounded-full border border-white text-white hover:bg-white">

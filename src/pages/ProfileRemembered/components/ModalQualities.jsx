@@ -67,7 +67,7 @@ const ModalQualities = ({
     createPortal(
       <div
         // onClick={handleCloseModal}
-        className="h-[100vh] fixed top-0 w-full z-[9999]"
+        className="h-[100vh] fixed top-0 w-full z-[9999] backdrop-modal"
       >
         <div
           id="crud-modal"

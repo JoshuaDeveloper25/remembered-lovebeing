@@ -88,7 +88,7 @@ const Modal = ({
       <div
         // onClick={handleCloseModal}
         id="responsive-modal"
-        className="h-[100vh] fixed top-0 w-full z-[99999999]"
+        className="h-[100vh] fixed top-0 w-full z-[99999999] backdrop-modal"
       >
         <div
           id="crud-modal"

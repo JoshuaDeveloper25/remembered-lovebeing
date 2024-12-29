@@ -7,10 +7,9 @@ import "../styles/animations.css";
 const Root = () => {
   return (
     <main className="flex flex-col min-h-screen relative">
-
       {/* Back to top button */}
       <BackToTop />
-
+      
       <div id="top" className="flex-1 h-full">
         <Navbar />
 

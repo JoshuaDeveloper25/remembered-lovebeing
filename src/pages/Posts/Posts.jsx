@@ -36,7 +36,7 @@ const Posts = () => {
       </div>
 
       <section
-        className="container-page py-16 mx-auto sticky z-10"
+        className="container-page py-16 mx-auto sticky z-1"
         style={{ maxWidth: "800px" }}
       >
         {/* --> Introduction */}

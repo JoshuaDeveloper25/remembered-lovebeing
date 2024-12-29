@@ -77,7 +77,7 @@ const ModalProfilePhotoResponsive = ({
 
   return (
     openModal && (
-      <div className="flex absolute inset-0 z-[2000] items-center justify-center">
+      <div className="flex absolute inset-0 z-[2000] items-center justify-center backdrop-modal">
         <div
           id="crud-modal"
           tabIndex="-1"

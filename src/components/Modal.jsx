@@ -142,7 +142,7 @@ const Modal = ({
                 </button>
               </div>
 
-              <div className="max-h-[34rem] overflow-y-auto border border-red-400">
+              <div className="max-h-[34rem] overflow-y-auto">
                 {modalForm === false ? (
                   <div className="p-4 md:p-5">{children}</div>
                 ) : (

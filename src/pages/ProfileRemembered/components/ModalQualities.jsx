@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
 const ModalQualities = ({
@@ -7,6 +8,56 @@ const ModalQualities = ({
   setOpenModal,
   editableWidth,
 }) => {
+  useEffect(() => {
+    // Añadir o quitar la clase 'overflow-hidden' en el body
+    if (openModal) {
+      document.body.classList.add("overflow-hidden");
+
+      // Obtener el iframe y acceder a su contenido
+      const iframe = document.querySelector("iframe"); // Suponiendo que solo hay uno
+      if (iframe && iframe.contentWindow) {
+        const iframeDocument = iframe.contentWindow.document;
+        const tawkContainer = iframeDocument.querySelector(
+          ".tawk-min-container"
+        );
+
+        if (tawkContainer) {
+          tawkContainer.style.display = "none";
+        }
+      }
+    } else {
+      document.body.classList.remove("overflow-hidden");
+
+      const iframe = document.querySelector("iframe");
+      if (iframe && iframe.contentWindow) {
+        const iframeDocument = iframe.contentWindow.document;
+        const tawkContainer = iframeDocument.querySelector(
+          ".tawk-min-container"
+        );
+
+        if (tawkContainer) {
+          tawkContainer.style.display = "block";
+        }
+      }
+    }
+
+    // Limpiar el efecto cuando el modal se cierre
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+      const iframe = document.querySelector("iframe");
+      if (iframe && iframe.contentWindow) {
+        const iframeDocument = iframe.contentWindow.document;
+        const tawkContainer = iframeDocument.querySelector(
+          ".tawk-min-container"
+        );
+
+        if (tawkContainer) {
+          tawkContainer.style.display = "block"; // Asegurar que Tawk se muestre
+        }
+      }
+    };
+  }, [openModal]);
+
   const handleCloseModal = () => {
     setOpenModal(false);
   };
@@ -64,9 +115,7 @@ const ModalQualities = ({
                 </button>
               </div>
 
-              <div className="p-4 md:p-5 min-h-full">
-                {children}
-              </div>
+              <div className="p-4 md:p-5 min-h-full">{children}</div>
             </div>
           </div>
         </div>

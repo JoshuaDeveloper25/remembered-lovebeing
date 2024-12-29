@@ -44,6 +44,7 @@ const PostCommentModal = ({ children, openModal, setOpenModal }) => {
       }
     };
   }, [openModal]);
+  
   useEffect(() => {
     if (openModal) {
       document.body.classList.add("overflow-hidden");

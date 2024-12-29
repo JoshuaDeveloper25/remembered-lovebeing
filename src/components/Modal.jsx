@@ -16,6 +16,56 @@ const Modal = ({
   const [closing, setClosing] = useState(false);
 
   useEffect(() => {
+    // Añadir o quitar la clase 'overflow-hidden' en el body
+    if (openModal) {
+      document.body.classList.add("overflow-hidden");
+
+      // Obtener el iframe y acceder a su contenido
+      const iframe = document.querySelector("iframe"); // Suponiendo que solo hay uno
+      if (iframe && iframe.contentWindow) {
+        const iframeDocument = iframe.contentWindow.document;
+        const tawkContainer = iframeDocument.querySelector(
+          ".tawk-min-container"
+        );
+
+        if (tawkContainer) {
+          tawkContainer.style.display = "none";
+        }
+      }
+    } else {
+      document.body.classList.remove("overflow-hidden");
+
+      const iframe = document.querySelector("iframe");
+      if (iframe && iframe.contentWindow) {
+        const iframeDocument = iframe.contentWindow.document;
+        const tawkContainer = iframeDocument.querySelector(
+          ".tawk-min-container"
+        );
+
+        if (tawkContainer) {
+          tawkContainer.style.display = "block";
+        }
+      }
+    }
+
+    // Limpiar el efecto cuando el modal se cierre
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+      const iframe = document.querySelector("iframe");
+      if (iframe && iframe.contentWindow) {
+        const iframeDocument = iframe.contentWindow.document;
+        const tawkContainer = iframeDocument.querySelector(
+          ".tawk-min-container"
+        );
+
+        if (tawkContainer) {
+          tawkContainer.style.display = "block"; // Asegurar que Tawk se muestre
+        }
+      }
+    };
+  }, [openModal]);
+
+  useEffect(() => {
     if (openModal) {
       document.body.classList.add("overflow-hidden");
     } else {

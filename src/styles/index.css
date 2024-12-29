@@ -130,6 +130,18 @@ body {
 }
 
 /* Styles for scrollbar gallery posts, Compatibility: Chrome, Edge, and Safari */
+/* .container-mansory > div > div > div > div > div {
+  height: 300px !important;
+}
+
+.container-mansory > div > div > div > div:last-child > div > div > div{
+  height: 146px !important;
+}
+
+.container-mansory > div > div > div > div:last-child > div {
+  height: 100px !important;
+} */
+
 .galleryPost::-webkit-scrollbar {
   background: #0a023b2d;
   width: 10px;

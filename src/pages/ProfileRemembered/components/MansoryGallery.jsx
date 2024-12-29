@@ -31,7 +31,7 @@ const MansoryGallery = ({
           ) : null}
 
           <div ref={refGallery}>
-            <LightGallery elementClassNames="hidden">
+            <LightGallery className="hidden">
               {galleryImages?.map((item, index) => {
                 return (
                   <React.Fragment key={index}>

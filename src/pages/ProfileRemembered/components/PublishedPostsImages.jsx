@@ -20,7 +20,10 @@ const PublishedPostsImages = ({ setToggleModal, galleryImages }) => {
         className="bg-transparent absolute inset-0"
         onClick={() => setToggleModal(true)}
       ></button>
-      <Photogrid className={"max-w-[500px] mx-auto"} images={imagesToString} />
+
+      <div className="container-mansory ">
+        <Photogrid images={imagesToString} />
+      </div>
     </div>
   );
 };

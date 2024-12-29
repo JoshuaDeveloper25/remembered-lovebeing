@@ -17,7 +17,7 @@ const ToggleLanguage = ({ language, handleChange }) => {
   };
 
   return (
-    <div className="relative inline-block z-[999]">
+    <div className="relative inline-block z-[10]">
       {/* Botón que abre el dropdown */}
       <div
         className=" flex items-center justify-between transition-all duration-500 shadow shadow-primary-color-light hover:shadow-primary-color-light hover:shadow-md sm:rounded-full rounded-md px-4 py-2 bg-primary-color text-white cursor-pointer"
@@ -58,7 +58,7 @@ const ToggleLanguage = ({ language, handleChange }) => {
             document.body
           )}
 
-          <div className="absolute left-0 right-0 mt-2 bg-primary-color text-white shadow-primary-color-light shadow-md rounded-lg z-10">
+          <div className="absolute left-0 right-0 mt-2 bg-primary-color text-white shadow-primary-color-light shadow-md rounded-lg z-[10]">
             {availableLanguages.map((availableLanguage, index) => (
               <div
                 key={index}

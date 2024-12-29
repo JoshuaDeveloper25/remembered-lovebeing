@@ -218,7 +218,7 @@ const Post = ({ isOwner, post, rememberName }) => {
         openModal={modalPostComments}
         setOpenModal={setModalPostComments}
       >
-        <div className="flex min-h-full h-full">
+        <div className="flex flex-col lg:flex-row min-h-full h-full">
           <article className="flex-[30%]">
             <CarouselCommentPosts
               ownerName={post?.owner?.name}

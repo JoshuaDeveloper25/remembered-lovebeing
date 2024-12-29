@@ -103,7 +103,7 @@ const Modal = ({
           >
             {/* Modal content */}
             <div
-              className={`relative top-4 bottom-10 rounded-lg shadow bg-white min-h-full `}
+              className={`relative top-4 bottom-10 rounded-lg shadow bg-white min-h-full`}
             >
               {/* Modal header */}
               <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t bg-tertiary-color/15 dark:border-gray-300">
@@ -142,18 +142,20 @@ const Modal = ({
                 </button>
               </div>
 
-              {modalForm === false ? (
-                <div className="p-4 md:p-5">{children}</div>
-              ) : (
-                <>
-                  <form
-                    onSubmit={handleSubmit}
-                    className="max-h-[80vh] overflow-y-auto"
-                  >
-                    {children}
-                  </form>
-                </>
-              )}
+              <div className="max-h-[34rem] overflow-y-auto border border-red-400">
+                {modalForm === false ? (
+                  <div className="p-4 md:p-5">{children}</div>
+                ) : (
+                  <>
+                    <form
+                      onSubmit={handleSubmit}
+                      className="max-h-[80vh] overflow-y-auto"
+                    >
+                      {children}
+                    </form>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>

@@ -154,11 +154,11 @@ const CheckingStatusPagadito = () => {
 
   return (
     <main className="relative container-page my-32">
-      <div className="fixed top-16 -z-[1] right-8">
+      <div className="md:block hidden fixed top-16 -z-[1] right-8">
         <img className="w-32 rotate-[90]" src={peaceDove} />
       </div>
 
-      <div className="fixed top-16 -z-[1] left-8">
+      <div className="md:block hidden fixed top-16 -z-[1] left-8">
         <img className="w-32 [transform:rotateY(180deg)]" src={peaceDove} />
       </div>
 

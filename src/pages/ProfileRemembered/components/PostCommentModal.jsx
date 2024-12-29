@@ -2,6 +2,49 @@ import { useEffect } from "react";
 
 const PostCommentModal = ({ children, openModal, setOpenModal }) => {
   useEffect(() => {
+    // Añadir o quitar la clase 'overflow-hidden' en el body
+    if (openModal) {
+      document.body.classList.add("overflow-hidden");
+
+      // Obtener el iframe y acceder a su contenido
+      const iframe = document.querySelector("iframe"); // Suponiendo que solo hay uno
+      if (iframe && iframe.contentWindow) {
+        const iframeDocument = iframe.contentWindow.document;
+        const tawkContainer = iframeDocument.querySelector(".tawk-min-container");
+
+        if (tawkContainer) {
+          tawkContainer.style.display = "none";
+        }
+      }
+    } else {
+      document.body.classList.remove("overflow-hidden");
+
+      const iframe = document.querySelector("iframe");
+      if (iframe && iframe.contentWindow) {
+        const iframeDocument = iframe.contentWindow.document;
+        const tawkContainer = iframeDocument.querySelector(".tawk-min-container");
+
+        if (tawkContainer) {
+          tawkContainer.style.display = "block";
+        }
+      }
+    }
+
+    // Limpiar el efecto cuando el modal se cierre
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+      const iframe = document.querySelector("iframe");
+      if (iframe && iframe.contentWindow) {
+        const iframeDocument = iframe.contentWindow.document;
+        const tawkContainer = iframeDocument.querySelector(".tawk-min-container");
+
+        if (tawkContainer) {
+          tawkContainer.style.display = "block"; // Asegurar que Tawk se muestre
+        }
+      }
+    };
+  }, [openModal]);
+  useEffect(() => {
     if (openModal) {
       document.body.classList.add("overflow-hidden");
     } else {
@@ -24,10 +67,10 @@ const PostCommentModal = ({ children, openModal, setOpenModal }) => {
           id="crud-modal"
           tabIndex="-1"
           aria-hidden="true"
-          className={`overflow-hidden fixed top-0 right-0 left-0 z-[9999999999999999999999999] flex justify-center items-center w-full h-[100vh] bg-black/80`}
+          className={`overflow-hidden fixed top-0 right-0 left-0 z-[9999999999999999999999999] flex justify-center items-center w-full h-full`}
         >
           <div
-            className={`relative w-full max-w-[1200px] lg:h-[80%] h-[99%] top-0 rounded-lg shadow bg-white overflow-y-hidden xl:mx-auto mx-4`}
+            className={`relative w-full max-w-[1200px] h-full top-0 rounded-lg shadow bg-white overflow-y-hidden xl:mx-auto mx-4`}
           >
             {/* Close button */}
             <div className="absolute flex left-2 top-2 z-[999] bg-black rounded-full px-2 py-2">
@@ -59,6 +102,8 @@ const PostCommentModal = ({ children, openModal, setOpenModal }) => {
             {children}
           </div>
         </div>
+
+        <div className="bg-black/80 fixed w-full h-full inset-0"></div>
       </>
     )
   );

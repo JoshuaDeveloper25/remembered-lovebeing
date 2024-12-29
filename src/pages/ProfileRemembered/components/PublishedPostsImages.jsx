@@ -21,7 +21,7 @@ const PublishedPostsImages = ({ setToggleModal, galleryImages }) => {
         onClick={() => setToggleModal(true)}
       ></button>
 
-      <div className="container-mansory ">
+      <div className="container-mansory">
         <Photogrid images={imagesToString} />
       </div>
     </div>

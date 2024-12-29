@@ -145,9 +145,9 @@ const PublicPost = ({ post, ownerName }) => {
               <h3 className="mt-1 text-tertiary-color">{post?.content}</h3>
             </div>
 
-            <div className="overflow-y-scroll lg:max-h-none max-h-[20rem] ">
+            <div className="overflow-y-auto lg:max-h-none max-h-[20rem] h-full">
               <article
-                className={`relative flex-1 flex flex-col justify-between`}
+                className={`relative flex-1 flex flex-col justify-between h-full`}
               >
                 {/* If there's no comments we show a title */}
                 {!post?.comments?.length ? (
@@ -173,7 +173,7 @@ const PublicPost = ({ post, ownerName }) => {
 
                 {userInfo?.access_token ? (
                   <form
-                    className={`self-end w-full sticky bottom-0  bg-transparent z-[9999]`}
+                    className={`self-end w-full sticky bottom-0 bg-transparent z-[9999]`}
                     onSubmit={handleSubmitPublishComment}
                   >
                     <div className="relative">
@@ -194,7 +194,7 @@ const PublicPost = ({ post, ownerName }) => {
                         value={comment}
                         onChange={(e) => setComment(e?.target?.value)}
                         placeholder="Comment something..."
-                        className="block ps-11 pe-16 py-2.5 w-full text-sm text-fourth-color bg-gray-50 resize-none outline-none"
+                        className="block ps-11 pe-16 py-2.5 w-full text-base text-fourth-color bg-gray-50 resize-none outline-none"
                       ></textarea>
 
                       {comment === "" ? null : (

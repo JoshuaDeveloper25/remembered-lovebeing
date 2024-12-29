@@ -293,6 +293,8 @@ const SingleComment = ({ post, comment, userInfo }) => {
   });
 
   const handleDeleteComment = () => {
+    setToggleComment(false);
+
     Swal.fire({
       title: "Are you sure?",
       text: "Do you really want to delete this comment? This action cannot be undone.",
@@ -376,7 +378,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
           {comment?.owner?.email === userInfo?.email ? (
             <>
               {/* Three Vertical Dots */}
-              <div className="text-primary-color cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="text-primary-color cursor-pointer  transition-opacity">
                 <BsThreeDots
                   onClick={() => setToggleComment(!toggleComment)}
                   size={18}
@@ -386,15 +388,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
               {/* Comment Edit and Delete Options */}
               {toggleComment && (
                 <>
-                  {createPortal(
-                    <div
-                      onClick={() => setToggleComment(!toggleComment)}
-                      className="h-[100vh] fixed top-0 w-full"
-                    ></div>,
-                    document.body
-                  )}
-
-                  <ul className="absolute top-34 right-5 shadow-lg bg-white py-2 w-max rounded max-h-96 z-50">
+                  <ul className="absolute top-34 right-5 shadow-lg bg-white  w-max rounded max-h-96 z-50">
                     <NavbarDropdownLink
                       hoverBgLink={
                         "hover:bg-secondary-color hover:text-white text-xs"

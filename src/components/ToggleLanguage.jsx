@@ -17,7 +17,7 @@ const ToggleLanguage = ({ language, handleChange }) => {
   };
 
   return (
-    <div className="relative inline-block z-[10]">
+    <div className="relative inline-block">
       {/* Botón que abre el dropdown */}
       <div
         className=" flex items-center justify-between transition-all duration-500 shadow shadow-primary-color-light hover:shadow-primary-color-light hover:shadow-md sm:rounded-full rounded-md px-4 py-2 bg-primary-color text-white cursor-pointer"

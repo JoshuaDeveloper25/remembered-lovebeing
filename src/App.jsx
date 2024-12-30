@@ -28,6 +28,7 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import CheckingStatusPagadito from "./pages/CheckingStatusPagadito";
 import CheckMailBox from "./pages/CheckMailBox/CheckMailBox";
+import Updates from "./pages/Updates/index";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 
@@ -141,6 +142,10 @@ const router = createBrowserRouter([
         path: "/privacy-policy",
       },
 
+      {
+        element: <Updates />,
+        path: "/updates",
+      },
       {
         element: <Contact />,
         path: "/contact",

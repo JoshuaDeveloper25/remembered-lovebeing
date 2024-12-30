@@ -394,3 +394,7 @@ body {
 body:has(.backdrop-modal) .to-top {
   display: none;
 }
+
+.textarea-post-comment:focus {
+  box-shadow: none !important;
+}

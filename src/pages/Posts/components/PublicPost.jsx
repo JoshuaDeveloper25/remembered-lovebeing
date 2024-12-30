@@ -205,7 +205,7 @@ const PublicPost = ({ post, ownerName }) => {
                             textarea.style.height = "auto"; // Restablece la altura cuando el comentario se limpia
                           }
                         }}
-                        className="block ps-12 pe-16 w-full text-base text-white bg-gray-900 placeholder:text-white/80 border-0 outline-none overflow-y-auto resize-none max-h-[500px]"
+                        className="textarea-post-comment block ps-12 pe-16 w-full text-base text-white bg-gray-900 placeholder:text-white/80 border-0 outline-none overflow-y-auto resize-none max-h-[500px]"
                       />
 
                       {comment === "" ? null : (

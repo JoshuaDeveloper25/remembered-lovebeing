@@ -376,7 +376,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
             </button>
           </form>
         ) : (
-          <p className="text-xs font-thin text-black break-all max-w-sm">
+          <p className="text-xs font-thin text-black break-all ">
             {comment?.content}
           </p>
         )}

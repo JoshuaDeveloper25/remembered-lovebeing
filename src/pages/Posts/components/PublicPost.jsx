@@ -10,7 +10,6 @@ import { FaRegMessage } from "react-icons/fa6";
 import { BsThreeDots } from "react-icons/bs";
 import { FaQuoteLeft } from "react-icons/fa";
 import { useContext, useState } from "react";
-import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -47,7 +46,8 @@ const PublicPost = ({ post, ownerName }) => {
     };
 
     // Form validation
-    if (!commentInfo?.content) return toast.error(`Fill up the blank!`);
+    if (!commentInfo?.content.trim(" "))
+      return toast.error(`Fill up the blank!`);
 
     publishCommentPostMutation.mutate(commentInfo);
 
@@ -121,7 +121,7 @@ const PublicPost = ({ post, ownerName }) => {
           </article>
 
           <article className={`flex-1 flex flex-col justify-between`}>
-            <div className="px-4 py-4 border-b border-b-tertiary-color/20">
+            <div className="px-4 py-4 border-b border-b-tertiary-color/20  bg-gray-300">
               <div className="flex items-center gap-3">
                 <img
                   className="w-16 rounded-full"
@@ -136,13 +136,13 @@ const PublicPost = ({ post, ownerName }) => {
                   <h3 className="font-medium text-base capitalize">
                     {post?.owner?.name}
                   </h3>
-                  <h4 className="text-xs text-tertiary-color">
+                  <h4 className="text-xs text-tertiary-color ">
                     Created: {formatDate(post?.created_at)}
                   </h4>
                 </div>
               </div>
 
-              <h3 className="mt-1 text-tertiary-color">{post?.content}</h3>
+              <h3 className="mt-1 text-tertiary-color ">{post?.content}</h3>
             </div>
 
             <div className="overflow-y-auto lg:max-h-none max-h-[20rem] h-full">
@@ -173,12 +173,12 @@ const PublicPost = ({ post, ownerName }) => {
 
                 {userInfo?.access_token ? (
                   <form
-                    className={`self-end w-full sticky bottom-0 bg-transparent z-[9999]`}
+                    className={`self-end w-full sticky bottom-0 bg-gray-200 z-[9999]`}
                     onSubmit={handleSubmitPublishComment}
                   >
                     <div className="relative">
                       <img
-                        className="absolute left-1 top-1.5 w-8 rounded-full"
+                        className="absolute top-1 left-1 transform w-8 rounded-full border-2 border-green-500"
                         src={
                           userInfo?.profile_image
                             ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
@@ -187,21 +187,32 @@ const PublicPost = ({ post, ownerName }) => {
                       />
 
                       <textarea
-                        rows="1"
-                        cols="1"
-                        wrap="soft"
                         name="content"
+                        rows={1}
                         value={comment}
-                        onChange={(e) => setComment(e?.target?.value)}
+                        onChange={(e) => {
+                          setComment(e.target.value);
+                          const target = e.target;
+                          target.style.height = "auto"; // Restablece la altura
+                          target.style.height = `${Math.min(
+                            target.scrollHeight,
+                            200
+                          )}px`; // Ajusta la altura con un máximo de 200px
+                        }}
                         placeholder="Comment something..."
-                        className="block ps-11 pe-16 py-2.5 w-full text-base text-fourth-color bg-gray-50 resize-none outline-none"
-                      ></textarea>
+                        ref={(textarea) => {
+                          if (textarea && comment === "") {
+                            textarea.style.height = "auto"; // Restablece la altura cuando el comentario se limpia
+                          }
+                        }}
+                        className="block ps-12 pe-16 w-full text-base text-white bg-gray-900 placeholder:text-white/80 border-0 outline-none overflow-y-auto resize-none max-h-[500px]"
+                      />
 
                       {comment === "" ? null : (
                         <button
                           disabled={publishCommentPostMutation?.isPending}
                           type="submit"
-                          className="absolute top-2 right-6 text-sm text-secondary-color hover:text-secondary-color/70 animation-fade font-semibold"
+                          className="absolute bottom-0 right-7 transform -translate-y-1/2 text-sm text-secondary-color hover:text-secondary-color/70 animation-fade font-semibold"
                         >
                           {publishCommentPostMutation?.isPending
                             ? "Sending..."
@@ -365,7 +376,9 @@ const SingleComment = ({ post, comment, userInfo }) => {
             </button>
           </form>
         ) : (
-          <p className="text-xs font-thin text-black">{comment?.content}</p>
+          <p className="text-xs font-thin text-black break-all max-w-sm">
+            {comment?.content}
+          </p>
         )}
 
         <FaQuoteLeft className="absolute top-3 right-5 size-5 text-primary-color/70" />
@@ -378,7 +391,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
           {comment?.owner?.email === userInfo?.email ? (
             <>
               {/* Three Vertical Dots */}
-              <div className="text-primary-color cursor-pointer  transition-opacity">
+              <div className="text-primary-color cursor-pointer transition-opacity">
                 <BsThreeDots
                   onClick={() => setToggleComment(!toggleComment)}
                   size={18}
@@ -388,7 +401,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
               {/* Comment Edit and Delete Options */}
               {toggleComment && (
                 <>
-                  <ul className="absolute top-34 right-5 shadow-lg bg-white  w-max rounded max-h-96 z-50">
+                  <ul className="absolute top-34 right-5 shadow-lg bg-white w-max rounded max-h-96 z-[9999999]">
                     <NavbarDropdownLink
                       hoverBgLink={
                         "hover:bg-secondary-color hover:text-white text-xs"

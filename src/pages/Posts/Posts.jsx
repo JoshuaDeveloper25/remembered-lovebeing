@@ -1,11 +1,11 @@
-import PublicPost from "./components/PublicPost";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-
-import cloud from "../../assets/cloud.png";
-import peaceDove from "../../assets/peace-dove.png";
-import landscape from "../../assets/landscape.jpg";
+import PublicPost from "./components/PublicPost";
 import { useTranslation } from "react-i18next";
+import axios, { all } from "axios";
+
+// Images && icons
+import peaceDove from "../../assets/peace-dove.png";
+import cloud from "../../assets/cloud.png";
 
 const Posts = () => {
   const { t } = useTranslation();

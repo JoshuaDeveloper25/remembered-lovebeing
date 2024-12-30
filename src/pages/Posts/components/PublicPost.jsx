@@ -10,16 +10,20 @@ import { FaRegMessage } from "react-icons/fa6";
 import { BsThreeDots } from "react-icons/bs";
 import { FaQuoteLeft } from "react-icons/fa";
 import { useContext, useState } from "react";
+import { IoSend } from "react-icons/io5";
+import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
 import Swal from "sweetalert2";
-import { IoSend } from "react-icons/io5";
-
+import axios from "axios";
+import { Modal, Tooltip } from "flowbite-react";
 
 const PublicPost = ({ post, ownerName }) => {
+  const postLikesMapeados = post?.post_likes?.map((item) => item?.owner?.name);
+  const postLikesWithItsNames = postLikesMapeados?.map((item, index) => <p key={index}>{item}</p>);
   const { userInfo } = useContext(AppContext);
   const [modalPostComments, setModalPostComments] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const [comment, setComment] = useState("");
   const queryClient = useQueryClient();
 
@@ -55,6 +59,27 @@ const PublicPost = ({ post, ownerName }) => {
 
     // e?.target?.reset();
     setComment("");
+  };
+
+  // --> Like a POST
+  const likePostMutation = useMutation({
+    mutationFn: async (commentInfo) =>
+      await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/posts/likes/${post?.id}`,
+        commentInfo
+      ),
+    onSuccess: (res) => {
+      toast.success("Comment liked successfully!");
+      queryClient.invalidateQueries(["posts"]);
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(getFastApiErrors(err));
+    },
+  });
+
+  const handleToggleLikePost = () => {
+    likePostMutation?.mutate();
   };
 
   return (
@@ -107,6 +132,41 @@ const PublicPost = ({ post, ownerName }) => {
             <span className="font-bold">{post?.comments?.length}</span>
           </h3>
         </div>
+
+        <div className="flex items-center gap-3">
+          <Tooltip
+            content={
+              <>
+                <p>{postLikesWithItsNames}</p>
+
+                <button onClick={() => setOpenModal(true)}>See more...</button>
+
+                <Modal
+                  dismissible
+                  show={openModal}
+                  onClose={() => setOpenModal(false)}
+                >
+                  <Modal.Header>Users that liked this post...</Modal.Header>
+
+                  <Modal.Body>
+                    <div className="space-y-2 overflow-y-auto max-h-72">
+                      {postLikesWithItsNames}
+                    </div>
+                  </Modal.Body>
+                </Modal>
+              </>
+            }
+          >
+            <button onClick={handleToggleLikePost} type="button">
+              <FaHeart
+                size={22}
+                className="hover:text-red-500 animation-fade"
+              />
+            </button>
+          </Tooltip>
+
+          <h2>Likes: {post?.post_likes?.length}</h2>
+        </div>
       </div>
 
       {/* Modal to preview post with its comments and images */}
@@ -123,32 +183,31 @@ const PublicPost = ({ post, ownerName }) => {
           </article>
 
           <article className={`flex-1 flex flex-col justify-between`}>
-          
-
             <div className="overflow-y-auto lg:max-h-none max-h-[15rem] h-full">
-            <div className="px-4 py-4 bg-gray-300 lg:mb-0 mb-7">
-              <div className="flex items-center gap-3">
-                <img
-                  className="w-16 rounded-full"
-                  src={
-                    post?.remembered?.profile_images
-                      ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
-                      : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-                  }
-                />
+              <div className="px-4 py-4 bg-gray-300 lg:mb-0 mb-7">
+                <div className="flex items-center gap-3">
+                  <img
+                    className="w-16 rounded-full"
+                    src={
+                      post?.remembered?.profile_images
+                        ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
+                        : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                    }
+                  />
 
-                <div>
-                  <h3 className="font-medium text-base capitalize">
-                    {post?.owner?.name}
-                  </h3>
-                  <h4 className="text-xs text-tertiary-color ">
-                    Created: {formatDate(post?.created_at)}
-                  </h4>
+                  <div>
+                    <h3 className="font-medium text-base capitalize">
+                      {post?.owner?.name}
+                    </h3>
+                    <h4 className="text-xs text-tertiary-color ">
+                      Created: {formatDate(post?.created_at)}
+                    </h4>
+                  </div>
                 </div>
+
+                <h3 className="mt-1 text-tertiary-color ">{post?.content}</h3>
               </div>
 
-              <h3 className="mt-1 text-tertiary-color ">{post?.content}</h3>
-            </div>
               <article
                 className={`relative flex-1 flex flex-col justify-between h-full`}
               >

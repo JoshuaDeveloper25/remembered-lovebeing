@@ -1,3 +1,4 @@
+import { IoMdInformationCircleOutline } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 
 const Updates = () => {
@@ -17,8 +18,25 @@ const Updates = () => {
 
       <article className="grid grid-cols-3 gap-8">
         <div className="col-span-1">
-          <img src="" alt="Imagen de Novedad" />
+          <img
+            className="rounded-xl"
+            src="https://imagenyproyeccion.com/wp-content/uploads/2021/07/diseno-web-marketing-digital-cordoba-1.jpg"
+            alt="Imagen de Novedad"
+          />
           <h3 className="my-3 font-semibold">Pronto NEXTJS</h3>
+
+          <p>
+            ¡Estamos trabajando en la transición a NextJS para ofrecerte una
+            experiencia más rápida y moderna!
+          </p>
+
+          <button
+            className="rounded-lg text-primary-color w-full py-1.5 px-1.5 flex items-center gap-2 mt-3"
+            type="button"
+          >
+            <IoMdInformationCircleOutline />
+            INFO
+          </button>
         </div>
       </article>
     </main>

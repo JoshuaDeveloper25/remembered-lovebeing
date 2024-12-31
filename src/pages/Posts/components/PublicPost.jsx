@@ -6,21 +6,23 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import AppContext from "../../../context/AppProvider";
 import formatDate from "../../../utils/formatDate";
+import { Modal, Tooltip } from "flowbite-react";
 import { FaRegMessage } from "react-icons/fa6";
-import { BsThreeDots } from "react-icons/bs";
+import { BsThreeDots, BsHearts  } from "react-icons/bs";
 import { FaQuoteLeft } from "react-icons/fa";
 import { useContext, useState } from "react";
+import { IoMdHeart  } from "react-icons/io";
 import { IoSend } from "react-icons/io5";
-import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import axios from "axios";
-import { Modal, Tooltip } from "flowbite-react";
 
 const PublicPost = ({ post, ownerName }) => {
   const postLikesMapeados = post?.post_likes?.map((item) => item?.owner?.name);
-  const postLikesWithItsNames = postLikesMapeados?.map((item, index) => <p key={index}>{item}</p>);
+  const postLikesWithItsNames = postLikesMapeados?.map((item, index) => (
+    <p key={index}>{item}</p>
+  ));
   const { userInfo } = useContext(AppContext);
   const [modalPostComments, setModalPostComments] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -84,7 +86,7 @@ const PublicPost = ({ post, ownerName }) => {
 
   return (
     <>
-      <div className="hover:shadow-2xl animation-fade hover:scale-[1.01] bg-white mb-5 p-3 shadow-lg rounded-lg border-b [&:not(:last-child)]:border-gray-400/50 py-3">
+      <div className="hover:shadow-2xl animation-fade  bg-white mb-5 p-3 shadow-lg rounded-lg border-b [&:not(:last-child)]:border-gray-400/50 py-3">
         {/* Header of the post */}
         <div className="flex justify-between items-center gap-3">
           <div className="flex items-center gap-3">
@@ -119,53 +121,72 @@ const PublicPost = ({ post, ownerName }) => {
         />
 
         {/* Footer of the post */}
-        <div className="flex flex-col sm:flex-row gap-2 justify-between sm:items-center items-start my-5">
-          <button
-            onClick={() => setModalPostComments(!modalPostComments)}
-            className="btn btn-blue w-auto flex items-center gap-2.5 font-semibold"
-          >
-            <FaRegMessage size={20} /> Comment
-          </button>
+        <div className="my-5">
+          {/* Descriptions of the post */}
+          <div className="flex items-center justify-between text-gray-500">
+            <div className="flex items-center gap-3">
+              <h2 className="flex items-center gap-1">
+                <BsHearts  
+                  size={22}
+                  className="text-red-500 animation-fade"
+                />
+                : {post?.post_likes?.length}
+              </h2>
+            </div>
 
-          <h3>
-            Comments:{" "}
-            <span className="font-bold">{post?.comments?.length}</span>
-          </h3>
-        </div>
+            <h3>
+              Comments:{" "}
+              <span className="font-bold">{post?.comments?.length}</span>
+            </h3>
+          </div>
 
-        <div className="flex items-center gap-3">
-          <Tooltip
-            content={
-              <>
-                <p>{postLikesWithItsNames}</p>
+          {/* Actions of a post */}
+          <div className="flex items-center gap-8 border-t pt-3 mt-3">
+            <Tooltip
+              content={
+                <>
+                  <p>{postLikesWithItsNames}</p>
 
-                <button onClick={() => setOpenModal(true)}>See more...</button>
+                  <button onClick={() => setOpenModal(true)}>
+                    See more...
+                  </button>
 
-                <Modal
-                  dismissible
-                  show={openModal}
-                  onClose={() => setOpenModal(false)}
-                >
-                  <Modal.Header>Users that liked this post...</Modal.Header>
+                  <Modal
+                    dismissible
+                    show={openModal}
+                    onClose={() => setOpenModal(false)}
+                  >
+                    <Modal.Header>Users that liked this post...</Modal.Header>
 
-                  <Modal.Body>
-                    <div className="space-y-2 overflow-y-auto max-h-72">
-                      {postLikesWithItsNames}
-                    </div>
-                  </Modal.Body>
-                </Modal>
-              </>
-            }
-          >
-            <button onClick={handleToggleLikePost} type="button">
-              <FaHeart
-                size={22}
-                className="hover:text-red-500 animation-fade"
-              />
+                    <Modal.Body>
+                      <div className="space-y-2 overflow-y-auto max-h-72">
+                        {postLikesWithItsNames}
+                      </div>
+                    </Modal.Body>
+                  </Modal>
+                </>
+              }
+            >
+              <button
+                className="flex items-center gap-2.5 text-gray-500 hover:text-red-500"
+                onClick={handleToggleLikePost}
+                type="button"
+              >
+                <IoMdHeart 
+                  size={22}
+                  className="hover:text-red-500 animation-fade"
+                />
+                I love it
+              </button>
+            </Tooltip>
+
+            <button
+              onClick={() => setModalPostComments(!modalPostComments)}
+              className="flex items-center gap-2.5 animation-fade text-gray-500 hover:text-primary-color"
+            >
+              <FaRegMessage size={20} /> Leave a comment
             </button>
-          </Tooltip>
-
-          <h2>Likes: {post?.post_likes?.length}</h2>
+          </div>
         </div>
       </div>
 

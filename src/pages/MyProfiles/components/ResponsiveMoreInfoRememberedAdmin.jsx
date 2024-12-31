@@ -313,7 +313,6 @@ const ResponsiveMoreInfoRememberedAdmin = ({
               </div>
             </li>
 
-            {/* MODAL of Create Free Profile */}
             <Modal
               editableWidth={"max-w-[700px] px-8"}
               setOpenModal={setOpenFreeModal}

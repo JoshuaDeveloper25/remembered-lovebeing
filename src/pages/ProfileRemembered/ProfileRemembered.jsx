@@ -173,39 +173,27 @@ const ProfileRemembered = () => {
     <section className="container-page my-10">
       <article className="rounded-lg">
         {/* Cover Image */}
-        {!data?.data?.is_owner ? (
-          <div>
-            <img
-              loading="lazy"
-              decoding="async"
-              src={
-                data?.data?.remembered_profile?.cover_images
-                  ? `${data?.data?.remembered_profile?.cover_images?.cloud_front_domain}/${data?.data?.remembered_profile?.cover_images?.aws_file_name}`
-                  : `https://images.unsplash.com/photo-1506353187171-d49740268889?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`
-              }
-              className="max-h-[24rem] w-full shadow-2xl min-[1200px]:rounded-t-lg rounded-t-none object-cover z-10"
-            />
-          </div>
-        ) : (
-          <div className="relative">
-            <img
-              loading="lazy"
-              decoding="async"
-              src={
-                data?.data?.remembered_profile?.cover_images
-                  ? `${data?.data?.remembered_profile?.cover_images?.cloud_front_domain}/${data?.data?.remembered_profile?.cover_images?.aws_file_name}`
-                  : `https://images.unsplash.com/photo-1506353187171-d49740268889?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`
-              }
-              className=" max-h-[24rem] w-full shadow-2xl min-[1200px]:rounded-t-lg rounded-t-none object-cover z-10"
-            />
+        <div className="relative">
+          <img
+            loading="lazy"
+            decoding="async"
+            src={
+              data?.data?.remembered_profile?.cover_images
+                ? `${data?.data?.remembered_profile?.cover_images?.cloud_front_domain}/${data?.data?.remembered_profile?.cover_images?.aws_file_name}`
+                : `https://images.unsplash.com/photo-1506353187171-d49740268889?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`
+            }
+            className="sm:h-[40vh] h-[25vh] w-full object-cover shadow-2xl min-[1200px]:rounded-t-lg rounded-t-none z-10"
+          />
 
+          {/* If we are the owner we have access to change photo */}
+          {data?.data?.is_owner && (
             <div className="absolute bottom-3 right-3 cursor-pointer">
               <UploadCoverImage
                 idRemembered={data?.data?.remembered_profile?.id}
               />
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
         <div className="min-[870px]:px-1">
           {/* User Image */}
@@ -269,7 +257,9 @@ const ProfileRemembered = () => {
                   totalProfileCountTabs={data?.data?.remembered_profile}
                   setEditRememberedProfile={setEditRememberedProfile}
                   setStatusOptionSelected={setStatusOptionSelected}
-                  totalLengthPosts={data?.data?.remembered_profile?.posts?.length}
+                  totalLengthPosts={
+                    data?.data?.remembered_profile?.posts?.length
+                  }
                   setChangeStatusModal={setChangeStatusModal}
                   statusOptionSelected={statusOptionSelected}
                   changeStatusMutation={changeStatusMutation}
@@ -584,7 +574,9 @@ const ProfileRemembered = () => {
                               rememberName={
                                 data?.data?.remembered_profile?.first_name
                               }
-                              totalComments={data?.data?.remembered_profile?.posts?.comments}
+                              totalComments={
+                                data?.data?.remembered_profile?.posts?.comments
+                              }
                               post={post}
                               key={post?.id}
                             />

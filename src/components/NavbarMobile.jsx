@@ -94,25 +94,27 @@ const NavbarMobile = ({
             <span className="sr-only">Close menu</span>
           </button>
 
-          <div className="flex flex-col justify-center text-center items-center mt-5">
-            <button
-              className="cursor-default flex items-center animation-fade text-xl hover:rounded-full hover:bg-primary-color-light/40 p-2"
-              type="button"
-            >
-              <img
-                className="w-24 border-4 border-green-500  object-cover mx-auto rounded-full shadow-lg"
-                src={
-                  userInfo?.profile_image
-                    ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
-                    : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-                }
-              />
-            </button>
+          {userInfo?.access_token && (
+            <div className="flex flex-col justify-center text-center items-center mt-5">
+              <button
+                className="cursor-default flex items-center animation-fade text-xl hover:rounded-full hover:bg-primary-color-light/40 p-2"
+                type="button"
+              >
+                <img
+                  className="w-24 border-4 border-green-500  object-cover mx-auto rounded-full shadow-lg"
+                  src={
+                    userInfo?.profile_image
+                      ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
+                      : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                  }
+                />
+              </button>
 
-            <div className="flex items-center gap-1 cursor-pointer">
-              <h2 className="block font-bold">{userInfo?.name}</h2>
+              <div className="flex items-center gap-1 cursor-pointer">
+                <h2 className="block font-bold">{userInfo?.name}</h2>
+              </div>
             </div>
-          </div>
+          )}
 
           <h2 className="text-primary-color-light uppercase font-semibold pb-1 mt-9 mb-1.5">
             {t("Pages")}

@@ -10,7 +10,9 @@ const PostCommentModal = ({ children, openModal, setOpenModal }) => {
       const iframe = document.querySelector("iframe"); // Suponiendo que solo hay uno
       if (iframe && iframe.contentWindow) {
         const iframeDocument = iframe.contentWindow.document;
-        const tawkContainer = iframeDocument.querySelector(".tawk-min-container");
+        const tawkContainer = iframeDocument.querySelector(
+          ".tawk-min-container"
+        );
 
         if (tawkContainer) {
           tawkContainer.style.display = "none";
@@ -22,7 +24,9 @@ const PostCommentModal = ({ children, openModal, setOpenModal }) => {
       const iframe = document.querySelector("iframe");
       if (iframe && iframe.contentWindow) {
         const iframeDocument = iframe.contentWindow.document;
-        const tawkContainer = iframeDocument.querySelector(".tawk-min-container");
+        const tawkContainer = iframeDocument.querySelector(
+          ".tawk-min-container"
+        );
 
         if (tawkContainer) {
           tawkContainer.style.display = "block";
@@ -36,7 +40,9 @@ const PostCommentModal = ({ children, openModal, setOpenModal }) => {
       const iframe = document.querySelector("iframe");
       if (iframe && iframe.contentWindow) {
         const iframeDocument = iframe.contentWindow.document;
-        const tawkContainer = iframeDocument.querySelector(".tawk-min-container");
+        const tawkContainer = iframeDocument.querySelector(
+          ".tawk-min-container"
+        );
 
         if (tawkContainer) {
           tawkContainer.style.display = "block"; // Asegurar que Tawk se muestre
@@ -44,7 +50,7 @@ const PostCommentModal = ({ children, openModal, setOpenModal }) => {
       }
     };
   }, [openModal]);
-  
+
   useEffect(() => {
     if (openModal) {
       document.body.classList.add("overflow-hidden");
@@ -74,15 +80,17 @@ const PostCommentModal = ({ children, openModal, setOpenModal }) => {
             className={`relative w-full max-w-[1200px] h-full top-0 rounded-lg shadow bg-white overflow-y-hidden xl:mx-auto mx-4`}
           >
             {/* Close button */}
-            <div className="absolute flex left-2 top-2 z-[999] bg-black rounded-full px-2 py-2">
+            <div
+              className="absolute flex left-2 top-2 z-[999] bg-black rounded-full px-3 py-3"
+              onClick={handleCloseModal}
+            >
               <button
                 type="button"
                 className="text-white hover:rotate-180 animation-fade"
                 data-modal-toggle="crud-modal"
-                onClick={handleCloseModal}
               >
                 <svg
-                  className="w-4 h-4"
+                  className="w-5 h-5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

@@ -9,7 +9,7 @@ import formatDate from "../../../utils/formatDate";
 import { Modal, Tooltip } from "flowbite-react";
 import { FaRegMessage } from "react-icons/fa6";
 import { BsThreeDots, BsHearts } from "react-icons/bs";
-import { FaQuoteLeft } from "react-icons/fa";
+import { BiSolidQuoteRight } from "react-icons/bi";
 import { useContext, useState } from "react";
 import { IoMdHeart } from "react-icons/io";
 import { IoSend } from "react-icons/io5";
@@ -194,133 +194,233 @@ const PublicPost = ({ post, ownerName }) => {
         openModal={modalPostComments}
         setOpenModal={setModalPostComments}
       >
-        <div className="flex flex-col lg:flex-row h-full">
-          <article className="flex-[30%]">
+        <div className="flex flex-col md:flex-row h-screen">
+          <article className="md:flex-[30%] flex-grow-0">
             <CarouselCommentPosts
               ownerName={ownerName}
               commentImages={post?.gallery_images}
             />
           </article>
 
-          <article className={`flex-1 flex flex-col justify-between`}>
-            <div className="overflow-y-auto lg:max-h-none max-h-[15rem] h-full">
-              <div className="px-4 py-4 bg-gray-300 lg:mb-0 mb-7">
-                <div className="flex items-center gap-3">
-                  <img
-                    className="w-16 rounded-full"
-                    src={
-                      post?.remembered?.profile_images
-                        ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
-                        : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-                    }
-                  />
+          <article className={`flex-1`}>
+            <div className="flex flex-col h-full">
+              {/* Input to leave a comment - LG TO TOP */}
+              <div className="md:hidden block">
+                {userInfo?.access_token ? (
+                  <form
+                    className={`self-end w-full sticky bottom-0 bg-gray-200 z-[9999]`}
+                    onSubmit={handleSubmitPublishComment}
+                  >
+                    <div className="relative flex items-center">
+                      <img
+                        className="absolute top-1 left-1 transform w-8 rounded-full border-2 border-green-500"
+                        src={
+                          userInfo?.profile_image
+                            ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
+                            : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                        }
+                      />
 
-                  <div>
-                    <h3 className="font-medium text-base capitalize">
-                      {post?.owner?.name}
-                    </h3>
-                    <h4 className="text-xs text-tertiary-color ">
-                      Created: {formatDate(post?.created_at)}
-                    </h4>
+                      <textarea
+                        name="content"
+                        rows={1}
+                        value={comment}
+                        onChange={(e) => {
+                          setComment(e.target.value);
+                          const target = e.target;
+                          target.style.height = "auto"; // Restablece la altura
+                          target.style.height = `${Math.min(
+                            target.scrollHeight,
+                            200
+                          )}px`; // Ajusta la altura con un máximo de 200px
+                        }}
+                        placeholder="Comment something..."
+                        ref={(textarea) => {
+                          if (textarea && comment === "") {
+                            textarea.style.height = "auto"; // Restablece la altura cuando el comentario se limpia
+                          }
+                        }}
+                        className="textarea-post-comment block ps-12 pe-16 w-full text-base bg-white shadow-2xl text-black placeholder:text-black border-b-4 border-e-0 border-s-0 border-primary-color outline-none overflow-y-auto resize-none max-h-[500px]"
+                      />
+
+                      {comment === "" ? null : (
+                        <button
+                          disabled={publishCommentPostMutation?.isPending}
+                          type="submit"
+                          className="bg-secondary-color p-1 rounded-full absolute  right-5 text-md text-white animation-fade z-10 h-8 w-8 flex items-center justify-center"
+                        >
+                          <IoSend />
+                        </button>
+                      )}
+                    </div>
+                  </form>
+                ) : (
+                  <div className="text-center bg-muted-color/20 py-4">
+                    <h2 className="text-lg font-semibold">
+                      Want to comment something?
+                    </h2>
+                    <p>
+                      Please,{" "}
+                      <Link
+                        className="text-primary-color-light underline font-bold"
+                        to={"/sign-in?redirect=/posts"}
+                      >
+                        log in
+                      </Link>{" "}
+                      to leave one!
+                    </p>
                   </div>
-                </div>
-
-                <h3 className="mt-1 text-tertiary-color ">{post?.content}</h3>
+                )}
               </div>
 
-              <article
-                className={`relative flex-1 flex flex-col justify-between h-full`}
-              >
-                <div>
-                  {/* If there's no comments we show a title */}
-                  {post?.comments?.length ¿: 0 && (
-                    <div className="px-4">
-                      {post?.comments?.map((comment) => {
-                        return (
-                          <SingleComment
-                            userInfo={userInfo}
-                            key={comment?.id}
-                            post={post}
-                            comment={comment}
-                          />
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              </article>
-            </div>
-
-            <div>
-              {userInfo?.access_token ? (
-                <form
-                  className={`self-end w-full sticky bottom-0 bg-gray-200 z-[9999]`}
-                  onSubmit={handleSubmitPublishComment}
-                >
-                  <div className="relative flex items-center">
-                    <img
-                      className="absolute top-1 left-1 transform w-8 rounded-full border-2 border-green-500"
-                      src={
-                        userInfo?.profile_image
-                          ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
-                          : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-                      }
-                    />
-
-                    <textarea
-                      name="content"
-                      rows={1}
-                      value={comment}
-                      onChange={(e) => {
-                        setComment(e.target.value);
-                        const target = e.target;
-                        target.style.height = "auto"; // Restablece la altura
-                        target.style.height = `${Math.min(
-                          target.scrollHeight,
-                          200
-                        )}px`; // Ajusta la altura con un máximo de 200px
-                      }}
-                      placeholder="Comment something..."
-                      ref={(textarea) => {
-                        if (textarea && comment === "") {
-                          textarea.style.height = "auto"; // Restablece la altura cuando el comentario se limpia
+              {/* If there's no posts, we show a message */}
+              {!post?.comments?.length ? (
+                <>
+                  <div className="px-4 py-4 bg-gray-300 7">
+                    <div className="flex items-center gap-3">
+                      <img
+                        className="w-16 rounded-full"
+                        src={
+                          post?.remembered?.profile_images
+                            ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
+                            : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
                         }
-                      }}
-                      className="textarea-post-comment block ps-12 pe-16 w-full text-base text-white bg-gray-900 placeholder:text-white/80 border-0 outline-none overflow-y-auto resize-none max-h-[500px]"
-                    />
+                      />
 
-                    {comment === "" ? null : (
-                      <button
-                        disabled={publishCommentPostMutation?.isPending}
-                        type="submit"
-                        className="bg-secondary-color p-1 rounded-full absolute  right-5 text-md text-white animation-fade z-10 h-8 w-8 flex items-center justify-center"
-                      >
-                        <IoSend />
+                      <div>
+                        <h3 className="font-medium text-base capitalize">
+                          {post?.owner?.name}
+                        </h3>
+                        <h4 className="text-xs text-tertiary-color ">
+                          Created: {formatDate(post?.created_at)}
+                        </h4>
+                      </div>
+                    </div>
 
-                        {/* {publishCommentPostMutation?.isPending
-                          ? "Sending..."
-                          : "Send"} */}
-                      </button>
-                    )}
+                    <h3 className="mt-1 text-tertiary-color ">
+                      {post?.content}
+                    </h3>
                   </div>
-                </form>
+                  <div className="flex justify-center items-center h-full">
+                    <p className="py-3 px-4 text-center text-xl font-bold">
+                      No comments added yet...{" "}
+                    </p>
+                  </div>
+                </>
               ) : (
-                <div className="text-center bg-muted-color/20 py-4">
-                  <h2 className="text-lg font-semibold">
-                    Want to comment something?
-                  </h2>
-                  <p>
-                    Please,{" "}
-                    <Link
-                      className="text-primary-color-light underline font-bold"
-                      to={"/sign-in?redirect=/posts"}
-                    >
-                      log in
-                    </Link>{" "}
-                    to leave one!
-                  </p>
+                // We show comments
+                <div className="overflow-y-auto md:max-h-none max-h-[75svh] md:pb-0 pb-24">
+                  {/* Post Title Content */}
+                  <div className="px-4 py-4 bg-gray-300 md:sticky static top-0 z-[9999]">
+                    <div className="flex items-center gap-3">
+                      <img
+                        className="w-16 rounded-full"
+                        src={
+                          post?.remembered?.profile_images
+                            ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
+                            : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                        }
+                      />
+
+                      <div>
+                        <h3 className="font-medium text-base capitalize">
+                          {post?.owner?.name}
+                        </h3>
+                        <h4 className="text-xs text-tertiary-color ">
+                          Created: {formatDate(post?.created_at)}
+                        </h4>
+                      </div>
+                    </div>
+
+                    <h3 className="mt-1 text-tertiary-color ">
+                      {post?.content}
+                    </h3>
+                  </div>
+
+                  {/* Post Comments */}
+                  <div className={`px-4`}>
+                    {post?.comments?.map((comment) => {
+                      return (
+                        <SingleComment
+                          userInfo={userInfo}
+                          key={comment?.id}
+                          post={post}
+                          comment={comment}
+                        />
+                      );
+                    })}
+                  </div>
                 </div>
               )}
+
+              {/* Input to leave a comment - LG TO TOP */}
+              <div className="md:block hidden">
+                {userInfo?.access_token ? (
+                  <form
+                    className={`self-end w-full sticky bottom-0 bg-gray-200 z-[9999]`}
+                    onSubmit={handleSubmitPublishComment}
+                  >
+                    <div className="relative flex items-center">
+                      <img
+                        className="absolute top-1 left-1 transform w-8 rounded-full border-2 border-green-500"
+                        src={
+                          userInfo?.profile_image
+                            ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
+                            : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                        }
+                      />
+
+                      <textarea
+                        name="content"
+                        rows={1}
+                        value={comment}
+                        onChange={(e) => {
+                          setComment(e.target.value);
+                          const target = e.target;
+                          target.style.height = "auto"; // Restablece la altura
+                          target.style.height = `${Math.min(
+                            target.scrollHeight,
+                            200
+                          )}px`; // Ajusta la altura con un máximo de 200px
+                        }}
+                        placeholder="Comment something..."
+                        ref={(textarea) => {
+                          if (textarea && comment === "") {
+                            textarea.style.height = "auto"; // Restablece la altura cuando el comentario se limpia
+                          }
+                        }}
+                        className="textarea-post-comment py-2 block ps-12 pe-16 w-full text-base bg-white shadow-2xl text-black placeholder:text-black border-b-4 border-t-0 border-e-0 border-s-0 border-primary-color outline-none overflow-y-auto resize-none max-h-[500px]"
+                      />
+
+                      {comment === "" ? null : (
+                        <button
+                          disabled={publishCommentPostMutation?.isPending}
+                          type="submit"
+                          className="bg-secondary-color rounded-full absolute right-5 text-md text-white animation-fade z-10 h-7 w-7 flex items-center justify-center"
+                        >
+                          <IoSend size={16} />
+                        </button>
+                      )}
+                    </div>
+                  </form>
+                ) : (
+                  <div className="text-center bg-muted-color/20 py-4">
+                    <h2 className="text-lg font-semibold">
+                      Want to comment something?
+                    </h2>
+                    <p>
+                      Please,{" "}
+                      <Link
+                        className="text-primary-color-light underline font-bold"
+                        to={"/sign-in?redirect=/posts"}
+                      >
+                        log in
+                      </Link>{" "}
+                      to leave one!
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
           </article>
         </div>
@@ -432,7 +532,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
         />
         <div>
           <h2 className="font-bold text-sm">{comment?.owner?.name}</h2>
-          <h2 className="text-xs">
+          <h2 className="text-xs text-green-500 font-semibold">
             {comment?.owner?.id === post?.owner?.id ? "Admin" : null}
           </h2>
         </div>
@@ -463,49 +563,57 @@ const SingleComment = ({ post, comment, userInfo }) => {
           </p>
         )}
 
-        <FaQuoteLeft className="absolute top-3 right-5 size-5 text-primary-color/70" />
+        <BiSolidQuoteRight className="absolute right-4 bottom-4 size-5 text-primary-color/70" />
+
+        <div
+          className={`absolute top-5 right-4 size-5  ${
+            comment?.owner?.email === userInfo?.email
+              ? "bg-primary-color h-7 w-7 flex items-center justify-center rounded-full cursor-pointer"
+              : ""
+          }`}
+          onClick={() => setToggleComment(!toggleComment)}
+        >
+          <div className="relative">
+            {comment?.owner?.email === userInfo?.email ? (
+              <>
+                {/* Three Vertical Dots */}
+                <div className="text-white cursor-pointer transition-opacity">
+                  <BsThreeDots size={18} />
+                </div>
+
+                {/* Comment Edit and Delete Options */}
+                {toggleComment && (
+                  <>
+                    <ul className="absolute top-34 right-5 shadow-lg bg-white w-max rounded max-h-96 z-[9999999]">
+                      <NavbarDropdownLink
+                        hoverBgLink={
+                          "hover:bg-secondary-color hover:text-white text-xs"
+                        }
+                        onClick={() => {
+                          setIsEditing(!isEditing);
+                          setToggleComment(!toggleComment);
+                        }}
+                        linkText={"Edit"}
+                      />
+
+                      <NavbarDropdownLink
+                        hoverBgLink={
+                          "hover:bg-red-500 hover:text-white text-xs"
+                        }
+                        onClick={handleDeleteComment}
+                        linkText={"Delete"}
+                      />
+                    </ul>
+                  </>
+                )}
+              </>
+            ) : null}
+          </div>
+        </div>
       </div>
 
       <div className="flex justify-between items-center mt-2">
         <h2 className="text-xs">{formatDate(comment?.created_at)}</h2>
-
-        <div className="relative">
-          {comment?.owner?.email === userInfo?.email ? (
-            <>
-              {/* Three Vertical Dots */}
-              <div className="text-primary-color cursor-pointer transition-opacity">
-                <BsThreeDots
-                  onClick={() => setToggleComment(!toggleComment)}
-                  size={18}
-                />
-              </div>
-
-              {/* Comment Edit and Delete Options */}
-              {toggleComment && (
-                <>
-                  <ul className="absolute top-34 right-5 shadow-lg bg-white w-max rounded max-h-96 z-[9999999]">
-                    <NavbarDropdownLink
-                      hoverBgLink={
-                        "hover:bg-secondary-color hover:text-white text-xs"
-                      }
-                      onClick={() => {
-                        setIsEditing(!isEditing);
-                        setToggleComment(!toggleComment);
-                      }}
-                      linkText={"Edit"}
-                    />
-
-                    <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-red-500 hover:text-white text-xs"}
-                      onClick={handleDeleteComment}
-                      linkText={"Delete"}
-                    />
-                  </ul>
-                </>
-              )}
-            </>
-          ) : null}
-        </div>
       </div>
     </div>
   );

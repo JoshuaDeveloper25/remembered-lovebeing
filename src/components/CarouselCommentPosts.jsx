@@ -16,7 +16,7 @@ const CarouselCommentPosts = ({ commentImages }) => {
   };
 
   return (
-    <div className="relative h-full w-full bg-black">
+    <div className="relative md:h-full h-[15rem] w-full bg-black">
       <div className="relative h-full w-full overflow-hidden">
         {/* Carousel wrapper */}
         {commentImages?.map((item, index) => {

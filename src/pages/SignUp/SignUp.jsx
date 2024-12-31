@@ -92,7 +92,7 @@ const SignUp = () => {
   return (
     <section className="flex flex-col justify-center items-center h-screen">
       <div className="container-page px-2">
-        <div className="grid sm:grid-cols-2 grid-cols-1 gap-2.5 shadow-md rounded-2xl p-6 bg-gradient-to-r from-[#FBFBFE]">
+        <div className="grid sm:grid-cols-2 grid-cols-1 gap-2.5 shadow-md rounded-2xl p-6 bg-gradient-to-r from-[#FBFBFE] border border-gray-300">
           <CarouselSignUp />
 
           {/* Sign Up Form */}

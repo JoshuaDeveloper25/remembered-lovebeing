@@ -203,7 +203,7 @@ const PublicPost = ({ post, ownerName }) => {
           </article>
 
           <article className={`flex-1`}>
-            <div className="flex flex-col h-full">
+            <div className="flex flex-col justify-between h-full">
               {/* Input to leave a comment - LG TO TOP */}
               <div className="md:hidden block">
                 {userInfo?.access_token ? (

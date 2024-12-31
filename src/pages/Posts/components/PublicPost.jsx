@@ -233,13 +233,7 @@ const PublicPost = ({ post, ownerName }) => {
               >
                 <div>
                   {/* If there's no comments we show a title */}
-                  {!post?.comments?.length ? (
-                    <div className="flex justify-center items-center h-full">
-                      <p className="py-3 px-4 text-center text-xl font-bold">
-                        No comments added yet...{" "}
-                      </p>
-                    </div>
-                  ) : (
+                  {post?.comments?.length ¿: 0 && (
                     <div className="px-4">
                       {post?.comments?.map((comment) => {
                         return (

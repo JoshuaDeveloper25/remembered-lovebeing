@@ -149,7 +149,7 @@ const Modal = ({
                   <>
                     <form
                       onSubmit={handleSubmit}
-                      className="max-h-[80vh] overflow-y-auto"
+                      // className="max-h-[80vh] overflow-y-auto"
                     >
                       {children}
                     </form>

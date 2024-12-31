@@ -237,9 +237,9 @@ const ResponsiveMoreInfoRememberedAdmin = ({
             </DropdownItem>
           ) : (
             // If there's no premium profiles
-            <DropdownItem className="p-0 hover:bg-secondary-color group hover:text-white">
+            <DropdownItem className="p-0 hover:bg-secondary-color group hover:text-white w-full">
               <li
-                className={`text-start  py-2.5 px-5 flex gap-2 items-start  font-bold animation-fade text-black text-sm cursor-pointer`}
+                className={`text-start py-2.5 px-5 flex gap-2 items-start font-bold animation-fade text-black text-sm cursor-pointer`}
                 onClick={() => {
                   setOpenPremiumModal(true);
                   setStatusPlan(true);
@@ -293,42 +293,44 @@ const ResponsiveMoreInfoRememberedAdmin = ({
           )}
 
           {/* Edit Profile */}
-          <DropdownItem className="p-0">
-            <li
-              className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
-              onClick={() => {
-                setOpenFreeModal(true);
-                setStatusPlan(false);
-              }}
-            >
-              <FaPlus className="h-[23px] w-[23px]" />
+          {totalPremiumProfilesRemaining >= 1 ? null : (
+            <DropdownItem className="p-0">
+              <li
+                className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+                onClick={() => {
+                  setOpenFreeModal(true);
+                  setStatusPlan(false);
+                }}
+              >
+                <FaPlus className="h-[23px] w-[23px]" />
 
-              <div>
-                <Link className="block">Create Free Profile</Link>
+                <div>
+                  <Link className="block">Create Free Profile</Link>
 
-                <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                  Create a memorial profile at no cost, with some feature
-                  limits.
-                </p>
-              </div>
-            </li>
+                  <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
+                    Create a memorial profile at no cost, with some feature
+                    limits.
+                  </p>
+                </div>
+              </li>
 
-            <Modal
-              editableWidth={"max-w-[700px] px-8"}
-              setOpenModal={setOpenFreeModal}
-              handleSubmit={handleSubmit}
-              titleModal={"New Profile"}
-              openModal={openFreeModal}
-              modalForm={true}
-            >
-              <FormCreateProfile
-                slug={slug}
-                setSlug={setSlug}
-                isPending={isPending}
-                setOpenFreeModal={setOpenFreeModal}
-              />
-            </Modal>
-          </DropdownItem>
+              <Modal
+                editableWidth={"max-w-[700px] px-8"}
+                setOpenModal={setOpenFreeModal}
+                handleSubmit={handleSubmit}
+                titleModal={"New Profile"}
+                openModal={openFreeModal}
+                modalForm={true}
+              >
+                <FormCreateProfile
+                  slug={slug}
+                  setSlug={setSlug}
+                  isPending={isPending}
+                  setOpenFreeModal={setOpenFreeModal}
+                />
+              </Modal>
+            </DropdownItem>
+          )}
 
           {/* Change Profile Photo */}
           <li

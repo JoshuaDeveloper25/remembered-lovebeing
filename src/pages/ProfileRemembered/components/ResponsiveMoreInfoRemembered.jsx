@@ -1,12 +1,18 @@
 import ModalProfilePhotoResponsive from "../../../components/ModalProfilePhotoResponsive";
 import FormUserProfile from "../../MyProfiles/components/FormUserProfile";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+} from "@nextui-org/react";
 import { FaCameraRetro, FaRegImage, FaRibbon } from "react-icons/fa";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import setCanvasPreview from "../../../utils/setCanvasPreview";
 import { BsInfoCircleFill, BsQrCode } from "react-icons/bs";
 import { CgFileDocument, CgProfile } from "react-icons/cg";
-import { Dropdown, DropdownItem } from "flowbite-react";
 import { convertToPixelCrop } from "react-image-crop";
 import { useEffect, useRef, useState } from "react";
 import FormChangeStatus from "./FormChangeStatus";
@@ -18,8 +24,8 @@ import { GrNavigate } from "react-icons/gr";
 import { DiAptana } from "react-icons/di";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const ResponsiveMoreInfoRemembered = ({
   rememberedId,
@@ -37,6 +43,8 @@ const ResponsiveMoreInfoRemembered = ({
   isOwner,
 }) => {
   const [openChangeProfileModal, setOpenChangeProfileModal] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(false);
+  console.log(openDropdown);
   const previewCanvasRef = useRef(null);
   const queryClient = useQueryClient();
   const [crop, setCrop] = useState();

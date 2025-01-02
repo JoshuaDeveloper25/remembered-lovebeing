@@ -190,15 +190,20 @@ const ResponsiveMoreInfoRemembered = ({
             variant="faded"
             className="max-w-sm max-h-[28rem] overflow-y-auto"
             classNames={{
-              base: ["p-0"], 
-              list: 'gap-0'
+              base: ["p-0"],
+              list: "gap-0",
             }}
           >
             {/* Actions that only the owner can do and see */}
             {isOwner && (
               <>
-                <DropdownItem classNames={{ base: "p-0" }}>
-                  <h2 className="flex items-center gap-1.5 bg-gray-200 font-bold py-2.5 px-5 text-gray-700">
+                <DropdownItem
+                  className="cursor-auto bg-gray-200 rounded-none rounded-tl-xl text-gray-700"
+                  classNames={{
+                    base: "p-0 data-[hover=true]:bg-gray-200 data-[hover=true]:text-gray-700",
+                  }}                  isReadOnly
+                >
+                  <h2 className="flex items-center gap-1.5  font-bold  py-2.5 px-5">
                     <DiAptana size={20} /> My Settings
                   </h2>
                 </DropdownItem>
@@ -283,8 +288,14 @@ const ResponsiveMoreInfoRemembered = ({
             )}
 
             {/* Navigation */}
-            <DropdownItem classNames={{ base: "p-0" }}>
-              <h2 className="flex items-center gap-3 bg-gray-200 font-bold py-2.5 px-5 text-gray-700">
+            <DropdownItem
+              className="cursor-auto bg-gray-200  text-gray-700 rounded-none"
+              classNames={{
+                base: "p-0 data-[hover=true]:bg-gray-200 data-[hover=true]:text-gray-700",
+              }}
+              isReadOnly
+            >
+              <h2 className="flex items-center gap-1.5 font-bold py-2.5 px-5">
                 <GrNavigate size={20} /> Navigation
               </h2>
             </DropdownItem>
@@ -391,7 +402,7 @@ const ResponsiveMoreInfoRemembered = ({
             {isOwner && (
               <DropdownItem classNames={{ base: "p-0" }}>
                 <li
-                  className={`text-start hover:bg-secondary-color group rounded-b py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+                  className={`text-start hover:bg-secondary-color group rounded-bl-lg py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
                   onClick={() => setOpenTab(6)}
                 >
                   <BsQrCode className="h-[20px] w-[20px]" />

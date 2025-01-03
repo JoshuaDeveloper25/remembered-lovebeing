@@ -194,6 +194,7 @@ const ResponsiveMoreInfoRemembered = ({
           classNames={{
             wrapper: "z-[99999]",
             base: "bg-primary-color text-white w-[20rem] custom-scrollbar-class",
+            closeButton: "top-2.5 hover:bg-red-500 transition-all duration-200 text-white",
           }}
           backdrop={backdrop}
           isOpen={isOpen}

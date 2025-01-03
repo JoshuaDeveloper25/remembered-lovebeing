@@ -10,7 +10,12 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
-import { FaCameraRetro, FaRegImage, FaRibbon } from "react-icons/fa";
+import {
+  FaCameraRetro,
+  FaChevronDown,
+  FaRegImage,
+  FaRibbon,
+} from "react-icons/fa";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import setCanvasPreview from "../../../utils/setCanvasPreview";
@@ -23,6 +28,7 @@ import { RiExchange2Fill } from "react-icons/ri";
 import { HiDotsVertical } from "react-icons/hi";
 import Modal from "../../../components/Modal";
 import { GiFlowerPot } from "react-icons/gi";
+import { IoMdClose } from "react-icons/io";
 import { GrNavigate } from "react-icons/gr";
 import { DiAptana } from "react-icons/di";
 import { Link } from "react-router-dom";
@@ -184,10 +190,11 @@ const ResponsiveMoreInfoRemembered = ({
         </div>
 
         <Drawer
+          closeButton={<IoMdClose size={40} />}
           className={"drawer-profile-remembered"}
           classNames={{
             wrapper: "z-[99999]",
-            base: "bg-primary-color text-white w-[20rem]",
+            base: "bg-primary-color text-white w-[20rem] custom-scrollbar-class",
           }}
           backdrop={backdrop}
           isOpen={isOpen}
@@ -421,12 +428,17 @@ const ResponsiveMoreInfoRemembered = ({
                       </div>
                     </li>
                   )}
+
+                  <section id="navigation"></section>
                 </DrawerBody>
 
                 <DrawerFooter>
-                  <Button color="danger" variant="flat" onPress={onClose}>
-                    Close
-                  </Button>
+                  <a
+                    className="bg-green-400/80 px-3 rounded-xl flex justify-center items-center h-full py-2.5 mx-auto hover:bg-green-400/60 animation-fade"
+                    href={"#navigation"}
+                  >
+                    <FaChevronDown className="me-2.5" /> More options
+                  </a>
                 </DrawerFooter>
               </>
             )}

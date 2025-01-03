@@ -8,8 +8,10 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+*,
+html,
+body {
+  scroll-behavior: smooth !important;
 }
 
 body {
@@ -397,4 +399,18 @@ body:has(.backdrop-modal) .to-top {
 
 .textarea-post-comment:focus {
   box-shadow: none !important;
+}
+
+[id=":r3:"]::-webkit-scrollbar {
+  width: 10px !important;
+}
+
+[id=":r3:"]::-webkit-scrollbar-track {
+  background: white !important;
+  border-radius: 5px !important;
+}
+
+[id=":r3:"]::-webkit-scrollbar-thumb {
+  background-color: #04bffa !important;
+  border-radius: 5px !important;
 }

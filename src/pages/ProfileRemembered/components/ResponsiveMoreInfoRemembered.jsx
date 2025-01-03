@@ -6,7 +6,6 @@ import {
   DrawerHeader,
   DrawerBody,
   DrawerFooter,
-  Button,
   useDisclosure,
 } from "@nextui-org/react";
 

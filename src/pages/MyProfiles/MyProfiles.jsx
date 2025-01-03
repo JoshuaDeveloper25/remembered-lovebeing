@@ -98,7 +98,7 @@ const MyProfiles = () => {
 
       {/* Profiles */}
       <section className="container-page md:px-1 md:my-3">
-        <div className="md:hidden sticky h-[56px] top-0 z-[9999] bg-white border shadow-lg">
+        <div className="md:hidden sticky h-[56px] top-0 z-[49] bg-white border shadow-lg">
           <div className="flex justify-between  gap-4 items-center px-5 py-2 sticky z-20">
             <div className="flex items-center justify-center gap-3">
               <div className="relative">

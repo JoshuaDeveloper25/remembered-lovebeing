@@ -1,5 +1,6 @@
+import { Accordion, AccordionItem } from "@nextui-org/react";
 import { useTranslation } from "react-i18next";
-import {Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const Footer = () => {
@@ -13,7 +14,8 @@ const Footer = () => {
             <img className="w-72 rounded" src={logo} alt={"Logo"} />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-6 sm:grid-cols-2">
+          {/* SM TO TOP */}
+          <div className="sm:grid hidden grid-cols-3 gap-8">
             {/* Discover Us */}
             <div>
               <h2 className="mb-6 text-base font-semibold uppercase text-primary-color-light border-b inline-block border-b-primary-color-light">
@@ -144,6 +146,169 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
+          </div>
+
+          {/* SM TO BOTTOM */}
+          <div className="sm:hidden block">
+            <Accordion
+              classNames={{
+                base: "bg-red-500 text-red-500",
+                title: "text-white",
+                content: "text-white",
+              }}
+            >
+              <AccordionItem
+                key="1"
+                aria-label="Accordion 1"
+                title={`${t("Discover Us")}`}
+                classNames={{
+                  title: "text-primary-color-light font-bold",
+                  content: "text-white text-sm",
+                  indicator: "text-primary-color-light text-2xl",
+                }}
+              >
+                {/* Discover Us */}
+                <div>
+                  <ul className="space-y-3 font-medium">
+                    <li>
+                      <NavLink
+                        to="/about-us#top"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-primary-color-light/60 font-bold"
+                            : "hover:text-primary-color-light animation-fade"
+                        }
+                      >
+                        {t("About Us")}
+                      </NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink
+                        to="/contact#top"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-primary-color-light/60 font-bold"
+                            : "hover:text-primary-color-light animation-fade"
+                        }
+                      >
+                        {t("Contact")}
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
+              </AccordionItem>
+
+              <AccordionItem
+                key="2"
+                aria-label="Accordion 2"
+                title={`${t("Pages")}`}
+                classNames={{
+                  title: "text-primary-color-light font-bold",
+                  content: "text-white text-sm",
+                  indicator: "text-primary-color-light text-2xl",
+                }}
+              >
+                {/* Pages */}
+                <div>
+                  <ul className="space-y-3 font-medium">
+                    <li>
+                      <NavLink
+                        to="/memorials#top"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-primary-color-light/60 font-bold"
+                            : "hover:text-primary-color-light animation-fade"
+                        }
+                      >
+                        {t("Memorials")}
+                      </NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink
+                        to="/posts#top"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-primary-color-light/60 font-bold"
+                            : "hover:text-primary-color-light animation-fade"
+                        }
+                      >
+                        {t("Posts")}
+                      </NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink
+                        to="/news#top"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-primary-color-light/60 font-bold"
+                            : "hover:text-primary-color-light animation-fade"
+                        }
+                      >
+                        {t("News")}
+                      </NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink
+                        to="/prices#top"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-primary-color-light/60 font-bold"
+                            : "hover:text-primary-color-light animation-fade"
+                        }
+                      >
+                        {t("Prices")}
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
+              </AccordionItem>
+
+              <AccordionItem
+                key="3"
+                aria-label="Accordion 3"
+                title={`${t("Legal")}`}
+                classNames={{
+                  title: "text-primary-color-light font-bold",
+                  content: "text-white text-sm",
+                  indicator: "text-primary-color-light text-2xl",
+                }}
+              >
+                {/* Legal */}
+                <div>
+                  <ul className="space-y-3 font-medium">
+                    <li>
+                      <NavLink
+                        to="/terms-and-conditions#top"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-primary-color-light/60 font-bold"
+                            : "hover:text-primary-color-light animation-fade"
+                        }
+                      >
+                        {t("Terms & Conditions")}
+                      </NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink
+                        to="/privacy-policy#top"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-primary-color-light/60 font-bold"
+                            : "hover:text-primary-color-light animation-fade"
+                        }
+                      >
+                        {t("Privacy Policy")}
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
 

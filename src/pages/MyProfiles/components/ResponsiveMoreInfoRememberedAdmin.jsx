@@ -173,7 +173,7 @@ const ResponsiveMoreInfoRememberedAdmin = ({
               <HiDotsVertical size={23} />
             </span>
           )}
-          className="max-w-sm max-h-[28rem] overflow-y-auto border-2 border-[#fab818]"
+          className="max-w-sm max-h-[28rem] overflow-y-auto border-2 -[#fab818]"
           inline
         >
           <h2 className="flex items-center gap-2 bg-gray-200 font-bold py-2.5 px-5 text-gray-700">

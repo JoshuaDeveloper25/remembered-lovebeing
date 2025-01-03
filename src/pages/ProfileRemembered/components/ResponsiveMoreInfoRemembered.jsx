@@ -44,7 +44,6 @@ const ResponsiveMoreInfoRemembered = ({
   isOwner,
 }) => {
   const [openChangeProfileModal, setOpenChangeProfileModal] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(false);
   const previewCanvasRef = useRef(null);
   const queryClient = useQueryClient();
   const [crop, setCrop] = useState();
@@ -165,7 +164,7 @@ const ResponsiveMoreInfoRemembered = ({
       <div className="flex dropdownResponsiveProfile">
         {/* Dropdown Content */}
         <Dropdown
-          className=" border-2 border-[#fab818]"
+          className="border-2 border-[#fab818]"
           classNames={{
             content: ["p-0"],
           }}
@@ -188,7 +187,7 @@ const ResponsiveMoreInfoRemembered = ({
 
           <DropdownMenu
             variant="faded"
-            className="max-w-sm max-h-[28rem] overflow-y-auto"
+            className="dropdown-blur overflow-y-auto"
             classNames={{
               base: ["p-0"],
               list: "gap-0",
@@ -201,7 +200,8 @@ const ResponsiveMoreInfoRemembered = ({
                   className="cursor-auto bg-gray-200 rounded-none rounded-tl-xl text-gray-700"
                   classNames={{
                     base: "p-0 data-[hover=true]:bg-gray-200 data-[hover=true]:text-gray-700",
-                  }}                  isReadOnly
+                  }}
+                  isReadOnly
                 >
                   <h2 className="flex items-center gap-1.5  font-bold  py-2.5 px-5">
                     <DiAptana size={20} /> My Settings

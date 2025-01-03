@@ -1,11 +1,13 @@
 import ModalProfilePhotoResponsive from "../../../components/ModalProfilePhotoResponsive";
 import FormUserProfile from "../../MyProfiles/components/FormUserProfile";
 import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
   Button,
+  useDisclosure,
 } from "@nextui-org/react";
 
 import { FaCameraRetro, FaRegImage, FaRibbon } from "react-icons/fa";
@@ -17,7 +19,7 @@ import { CgFileDocument, CgProfile } from "react-icons/cg";
 import { convertToPixelCrop } from "react-image-crop";
 import { useEffect, useRef, useState } from "react";
 import FormChangeStatus from "./FormChangeStatus";
-import { MdChangeCircle } from "react-icons/md";
+import { RiExchange2Fill } from "react-icons/ri";
 import { HiDotsVertical } from "react-icons/hi";
 import Modal from "../../../components/Modal";
 import { GiFlowerPot } from "react-icons/gi";
@@ -43,6 +45,14 @@ const ResponsiveMoreInfoRemembered = ({
   status,
   isOwner,
 }) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [backdrop, setBackdrop] = useState("blur");
+
+  const handleBackdropChange = (backdrop) => {
+    setBackdrop(backdrop);
+    onOpen();
+  };
+
   const [openChangeProfileModal, setOpenChangeProfileModal] = useState(false);
   const previewCanvasRef = useRef(null);
   const queryClient = useQueryClient();
@@ -162,264 +172,266 @@ const ResponsiveMoreInfoRemembered = ({
   return (
     <>
       <div className="flex dropdownResponsiveProfile">
-        {/* Dropdown Content */}
-        <Dropdown
-          className="border-2 border-[#fab818]"
-          classNames={{
-            content: ["p-0"],
-          }}
-          backdrop="blur"
-        >
-          <DropdownTrigger>
-            <Button
-              variant="bordered"
-              className="border-0 "
-              style={{ padding: 0, display: "unset", minWidth: 0 }}
-              classNames={{
-                base: "data-[hover=true]:bg-[initial] data-[hover=true]:opacity-100 ",
-              }}
-            >
-              <span className="cursor-pointer">
-                <HiDotsVertical size={23} />
-              </span>
-            </Button>
-          </DropdownTrigger>
-
-          <DropdownMenu
-            variant="faded"
-            className="dropdown-blur overflow-y-auto"
-            classNames={{
-              base: ["p-0"],
-              list: "gap-0",
-            }}
+        <div className="flex gap-2">
+          <button
+            onClick={() => handleBackdropChange(backdrop)}
+            className="capitalize"
+            color="primary"
+            variant="flat"
           >
-            {/* Actions that only the owner can do and see */}
-            {isOwner && (
+            <HiDotsVertical size={24} />
+          </button>
+        </div>
+
+        <Drawer
+          className={"drawer-profile-remembered"}
+          classNames={{
+            wrapper: "z-[99999]",
+            base: "bg-primary-color text-white w-[20rem]",
+          }}
+          backdrop={backdrop}
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
+        >
+          <DrawerContent>
+            {(onClose) => (
               <>
-                <DropdownItem
-                  className="cursor-auto bg-gray-200 rounded-none rounded-tl-xl text-gray-700"
-                  classNames={{
-                    base: "p-0 data-[hover=true]:bg-gray-200 data-[hover=true]:text-gray-700",
-                  }}
-                  isReadOnly
-                >
-                  <h2 className="flex items-center gap-1.5  font-bold  py-2.5 px-5">
-                    <DiAptana size={20} /> My Settings
+                <DrawerHeader className="flex flex-col gap-1">
+                  Profile
+                </DrawerHeader>
+
+                <DrawerBody>
+                  {/* Actions that only the owner can do and see */}
+                  {isOwner && (
+                    <>
+                      <h2 className="flex items-center gap-1.5 text-primary-color-light font-bold  py-2.5 ">
+                        <DiAptana size={20} /> My Settings
+                      </h2>
+
+                      {/* Edit Profile */}
+                      <li
+                        className={`text-start rounded-lg hover:bg-secondary-color group py-2.5 px-2.5 flex gap-3 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+                        onClick={() => {
+                          setEditRememberedProfile(true);
+                          onClose();
+                        }}
+                      >
+                        <CgProfile className="text-white h-[36px] w-[36px]" />
+
+                        <div>
+                          <Link className="block text-white">Edit Profile</Link>
+
+                          <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
+                            Edit your remembered profile as photo, and other
+                            special things.
+                          </p>
+                        </div>
+                      </li>
+
+                      {/* Change Profile Photo */}
+                      <li
+                        className={`changeResponsivePhoto rounded-lg text-start hover:bg-secondary-color group py-2.5 px-2.5 flex gap-3 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+                        onClick={() => {
+                          setOpenChangeProfileModal(!openChangeProfileModal);
+                          onClose();
+                        }}
+                      >
+                        <FaCameraRetro
+                          className={`${"text-white h-[26px] w-[26px]"}`}
+                        />
+
+                        <div>
+                          <button to={"#"} className="block text-white">
+                            Change Your Profile Photo
+                          </button>
+
+                          <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
+                            Update your profile image with a new photo.
+                          </p>
+                        </div>
+                      </li>
+
+                      {/* Memorial Status Options */}
+                      <li
+                        className={`text-start rounded-lg hover:bg-secondary-color group py-2.5 px-2.5 flex gap-3 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+                        onClick={() => {
+                          setChangeStatusModal(true);
+                          onClose();
+                        }}
+                      >
+                        <RiExchange2Fill className="text-white h-[38px] w-[38px]" />
+
+                        <div>
+                          <Link className="block text-white">
+                            Change Status
+                          </Link>
+
+                          <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
+                            Edit your remembered profile as photo, and other
+                            special things.
+                          </p>
+                        </div>
+
+                        <Modal
+                          titleModal={"Memorial Status Options..."}
+                          handleSubmit={handleChangeStatus}
+                          setOpenModal={setChangeStatusModal}
+                          openModal={changeStatusModal}
+                          modalForm={true}
+                          editableWidth={"max-w-xl"}
+                        >
+                          <FormChangeStatus
+                            setChangeStatusModal={setChangeStatusModal}
+                            setStatusOptionSelected={setStatusOptionSelected}
+                            statusOptionSelected={statusOptionSelected}
+                            isPending={changeStatusMutation?.isPending}
+                            status={status}
+                          />
+                        </Modal>
+                      </li>
+                    </>
+                  )}
+
+                  {/* Navigation */}
+
+                  <h2 className="flex items-center gap-1.5 text-primary-color-light font-bold py-2.5">
+                    <GrNavigate size={20} /> Navigation
                   </h2>
-                </DropdownItem>
 
-                {/* Edit Profile */}
-                <DropdownItem classNames={{ base: "p-0" }}>
+                  {/* About */}
                   <li
-                    className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
-                    onClick={() => setEditRememberedProfile(true)}
+                    className={` text-start rounded-lg hover:bg-secondary-color group py-2.5 px-2.5 flex gap-3 items-start hover:text-white font-bold animation-fade text-white text-sm cursor-pointer`}
+                    onClick={() => {
+                      setOpenTab(1);
+                      onClose();
+                    }}
                   >
-                    <CgProfile className="h-[23px] w-[23px]" />
+                    <BsInfoCircleFill className="h-[30px] w-[30px]" />
 
                     <div>
-                      <Link className="block">Edit Profile</Link>
+                      <Link className="block">About</Link>
 
-                      <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                        Edit your remembered profile as photo, and other special
-                        things.
+                      <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
+                        Discover more about this person in common.
                       </p>
                     </div>
                   </li>
-                </DropdownItem>
 
-                {/* Change Profile Photo */}
-                <DropdownItem classNames={{ base: "p-0" }}>
+                  {/* Media */}
                   <li
-                    className={`changeResponsivePhoto text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
-                    onClick={() =>
-                      setOpenChangeProfileModal(!openChangeProfileModal)
-                    }
+                    className={`text-start hover:bg-secondary-color group py-2.5 px-2.5 flex gap-3 items-start hover:text-white font-bold animation-fade text-white rounded-lg text-sm cursor-pointer`}
+                    onClick={() => {
+                      onClose();
+                      setOpenTab(3);
+                    }}
                   >
-                    <FaCameraRetro className={`${"h-[19px] w-[19px]"}`} />
+                    <FaRegImage className="h-[30px] w-[30px]" />
 
                     <div>
-                      <button to={"#"} className="block">
-                        Change Your Profile Photo
-                      </button>
+                      <Link className="block">
+                        Media ({totalProfileCountTabs?.gallery_images?.length})
+                      </Link>
 
-                      <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                        Update your profile image with a new photo.
+                      <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
+                        Pictures from this remembered and its family.
                       </p>
                     </div>
                   </li>
-                </DropdownItem>
 
-                {/* Memorial Status Options */}
-                <DropdownItem classNames={{ base: "p-0" }}>
+                  {/* Tributes */}
                   <li
-                    className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
-                    onClick={() => setChangeStatusModal(true)}
+                    className={`text-start text-white rounded-lg hover:bg-secondary-color group py-2.5 px-2.5 flex gap-3 items-start hover:text-white font-bold animation-fade text-sm cursor-pointer`}
+                    onClick={() => {
+                      setOpenTab(5);
+                      onClose();
+                    }}
                   >
-                    <MdChangeCircle className="h-[23px] w-[23px]" />
+                    <GiFlowerPot className="h-[30px] w-[30px]" />
 
                     <div>
-                      <Link className="block">Change Status</Link>
+                      <Link className="block">
+                        Tributes ({totalProfileCountTabs?.tributes?.length})
+                      </Link>
 
-                      <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                        Edit your remembered profile as photo, and other special
-                        things.
+                      <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
+                        Tributes from this remembered and its family.
                       </p>
                     </div>
+                  </li>
 
-                    <Modal
-                      titleModal={"Memorial Status Options..."}
-                      handleSubmit={handleChangeStatus}
-                      setOpenModal={setChangeStatusModal}
-                      openModal={changeStatusModal}
-                      modalForm={true}
-                      editableWidth={"max-w-xl"}
+                  {/* Condolences */}
+                  <li
+                    className={`text-start hover:bg-secondary-color group py-2.5 px-2.5 flex gap-3 items-start hover:text-white font-bold animation-fade text-white rounded-lg text-sm cursor-pointer`}
+                    onClick={() => {
+                      setOpenTab(4);
+                      onClose();
+                    }}
+                  >
+                    <FaRibbon className="h-[25px] w-[25px]" />
+
+                    <div>
+                      <Link className="block">
+                        Condolences (
+                        {totalProfileCountTabs?.condolences?.length})
+                      </Link>
+
+                      <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
+                        Tributes from this remembered and its family.
+                      </p>
+                    </div>
+                  </li>
+
+                  {/* Posts */}
+                  <li
+                    className={`text-start hover:bg-secondary-color rounded-lg group py-2.5 px-2.5 flex gap-3 items-start hover:text-white font-bold animation-fade text-white text-sm cursor-pointer`}
+                    onClick={() => {
+                      setOpenTab(2);
+                      onClose();
+                    }}
+                  >
+                    <CgFileDocument className="h-[33px] w-[33px]" />
+
+                    <div>
+                      <Link className="block">Posts ({totalLengthPosts})</Link>
+
+                      <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
+                        Posts uploaded from this remembered to share memories.
+                      </p>
+                    </div>
+                  </li>
+
+                  {/* QR Code */}
+                  {isOwner && (
+                    <li
+                      className={`text-start hover:bg-secondary-color group rounded-lg py-2.5 px-2.5 flex gap-3 items-start hover:text-white font-bold animation-fade text-white text-sm cursor-pointer`}
+                      onClick={() => {
+                        setOpenTab(6);
+                        onClose();
+                      }}
                     >
-                      <FormChangeStatus
-                        setChangeStatusModal={setChangeStatusModal}
-                        setStatusOptionSelected={setStatusOptionSelected}
-                        statusOptionSelected={statusOptionSelected}
-                        isPending={changeStatusMutation?.isPending}
-                        status={status}
-                      />
-                    </Modal>
-                  </li>
-                </DropdownItem>
+                      <BsQrCode className="h-[30px] w-[30px]" />
+
+                      <div>
+                        <Link className="block">QR Code</Link>
+
+                        <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
+                          Generate a QR Code to have more accessibility from
+                          other devices!
+                        </p>
+                      </div>
+                    </li>
+                  )}
+                </DrawerBody>
+
+                <DrawerFooter>
+                  <Button color="danger" variant="flat" onPress={onClose}>
+                    Close
+                  </Button>
+                </DrawerFooter>
               </>
             )}
-
-            {/* Navigation */}
-            <DropdownItem
-              className="cursor-auto bg-gray-200  text-gray-700 rounded-none"
-              classNames={{
-                base: "p-0 data-[hover=true]:bg-gray-200 data-[hover=true]:text-gray-700",
-              }}
-              isReadOnly
-            >
-              <h2 className="flex items-center gap-1.5 font-bold py-2.5 px-5">
-                <GrNavigate size={20} /> Navigation
-              </h2>
-            </DropdownItem>
-
-            {/* About */}
-            <DropdownItem classNames={{ base: "p-0" }}>
-              <li
-                className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
-                onClick={() => setOpenTab(1)}
-              >
-                <BsInfoCircleFill className="h-[20px] w-[20px]" />
-
-                <div>
-                  <Link className="block">About</Link>
-
-                  <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                    Discover more about this person in common.
-                  </p>
-                </div>
-              </li>
-            </DropdownItem>
-
-            {/* Media */}
-            <DropdownItem classNames={{ base: "p-0" }}>
-              <li
-                className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
-                onClick={() => setOpenTab(3)}
-              >
-                <FaRegImage className="h-[20px] w-[20px]" />
-
-                <div>
-                  <Link className="block">
-                    Media ({totalProfileCountTabs?.gallery_images?.length})
-                  </Link>
-
-                  <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                    Pictures from this remembered and its family.
-                  </p>
-                </div>
-              </li>
-            </DropdownItem>
-
-            {/* Tributes */}
-            <DropdownItem classNames={{ base: "p-0" }}>
-              <li
-                className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
-                onClick={() => setOpenTab(5)}
-              >
-                <GiFlowerPot className="h-[20px] w-[20px]" />
-
-                <div>
-                  <Link className="block">
-                    Tributes ({totalProfileCountTabs?.tributes?.length})
-                  </Link>
-
-                  <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                    Tributes from this remembered and its family.
-                  </p>
-                </div>
-              </li>
-            </DropdownItem>
-
-            {/* Condolences */}
-            <DropdownItem classNames={{ base: "p-0" }}>
-              <li
-                className={`text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
-                onClick={() => setOpenTab(4)}
-              >
-                <FaRibbon className="h-[20px] w-[20px]" />
-
-                <div>
-                  <Link className="block">
-                    Condolences ({totalProfileCountTabs?.condolences?.length})
-                  </Link>
-
-                  <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                    Tributes from this remembered and its family.
-                  </p>
-                </div>
-              </li>
-            </DropdownItem>
-
-            {/* Posts */}
-            <DropdownItem classNames={{ base: "p-0" }}>
-              <li
-                className={`${
-                  !isOwner ? "rounded-b" : ""
-                } text-start hover:bg-secondary-color group py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
-                onClick={() => setOpenTab(2)}
-              >
-                <CgFileDocument className="h-[23px] w-[23px]" />
-
-                <div>
-                  <Link className="block">Posts ({totalLengthPosts})</Link>
-
-                  <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                    Posts uploaded from this remembered to share memories.
-                  </p>
-                </div>
-              </li>
-            </DropdownItem>
-
-            {/* QR Code */}
-            {isOwner && (
-              <DropdownItem classNames={{ base: "p-0" }}>
-                <li
-                  className={`text-start hover:bg-secondary-color group rounded-bl-lg py-2.5 px-5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
-                  onClick={() => setOpenTab(6)}
-                >
-                  <BsQrCode className="h-[20px] w-[20px]" />
-
-                  <div>
-                    <Link className="block">QR Code</Link>
-
-                    <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                      Generate a QR Code to have more accessibility from other
-                      devices!
-                    </p>
-                  </div>
-                </li>
-              </DropdownItem>
-            )}
-          </DropdownMenu>
-        </Dropdown>
+          </DrawerContent>
+        </Drawer>
       </div>
 
       {/* Modal of Change Photo Profile */}

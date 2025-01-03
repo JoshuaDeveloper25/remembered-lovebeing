@@ -198,7 +198,7 @@ const ProfileRemembered = () => {
         <div className="min-[870px]:px-1">
           {/* User Image */}
           {/* Responsive - from 768px to bottom */}
-          <div className="min-[870px]:hidden mb-5 sticky h-[56px] top-0 z-[9999] bg-white border shadow-lg">
+          <div className="min-[870px]:hidden mb-5 sticky h-[56px] top-0 z-[49] bg-white border shadow-lg">
             <div className="flex justify-between gap-4 items-center px-5 py-2 sticky z-20">
               <div className="flex gap-2 items-center">
                 <div>

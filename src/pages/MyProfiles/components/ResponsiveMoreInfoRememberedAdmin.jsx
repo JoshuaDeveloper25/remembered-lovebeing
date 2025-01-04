@@ -25,8 +25,9 @@ import { CgProfile } from "react-icons/cg";
 import { IoMdClose, IoMdHeart } from "react-icons/io";
 import { DiAptana } from "react-icons/di";
 import { toast } from "react-toastify";
-import axios from "axios";
 import Swal from "sweetalert2";
+import axios from "axios";
+import ModalCreateFreeProfileResponsive from "./ModalCreateFreeProfileResponsive";
 
 const ResponsiveMoreInfoRememberedAdmin = ({
   premiumProfilesRemaining,

@@ -38,6 +38,7 @@
     "react-toastify": "^10.0.5",
     "sweetalert2": "^11.12.1",
     "swiper": "^11.1.4",
+    "tailwind-merge": "^2.6.0",
     "uuid": "^10.0.0"
   },
   "devDependencies": {

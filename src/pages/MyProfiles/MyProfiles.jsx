@@ -14,6 +14,7 @@ import { GoPlus } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import ModalCreateFreeProfileResponsive from "./components/ModalCreateFreeProfileResponsive";
 
 const MyProfiles = () => {
   const { userInfo } = useContext(AppContext);
@@ -185,13 +186,17 @@ const MyProfiles = () => {
                   <GoPlus className="size-5 inline" /> Create Free Profile
                 </button>
               </div>
-              <Modal
+              
+              <ModalCreateFreeProfileResponsive
                 titleModal={"New Profile"}
                 handleSubmit={handleSubmit}
                 setOpenModal={setOpenFreeModal}
                 openModal={openFreeModal}
                 modalForm={true}
-                editableWidth={"max-w-[700px] px-8"}
+                editableWidth={"sm:max-w-[700px] max-w-full sm:px-8 px-0 h-full"}
+                crudModalClassName={"sm:px-4 px-0 "}
+                formContainerClassName={'sm:max-h-[34rem] max-h[34rem] overflow-y-auto'}
+                modalContentClassNames={'sm:relative static'}
               >
                 <FormCreateProfile
                   slug={slug}
@@ -199,7 +204,7 @@ const MyProfiles = () => {
                   isPending={createProfileMutation?.isPending}
                   setOpenFreeModal={setOpenFreeModal}
                 />
-              </Modal>
+              </ModalCreateFreeProfileResponsive>
             </>
           ) : (
             <>

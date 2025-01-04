@@ -414,3 +414,8 @@ body:has(.backdrop-modal) .to-top {
   background-color: #04bffa !important;
   border-radius: 5px !important;
 }
+
+.custom-max-width {
+  max-width: 100% !important;
+  border: 1px solid red!important;
+}

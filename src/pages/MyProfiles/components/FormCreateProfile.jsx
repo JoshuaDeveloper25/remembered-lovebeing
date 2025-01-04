@@ -75,11 +75,11 @@ const FormCreateProfile = ({
 
             <div className="flex-1">
               <label>
-                <span className="w-full inline-block text-start font-medium">
+                <span className="w-full inline-block text-start font-medium ">
                   Relationship
                 </span>
                 <select
-                  className="form-input"
+                  className="form-input border border-gray-300"
                   placeholder="-- Select --"
                   name="user_relationship"
                   required={true}
@@ -107,7 +107,7 @@ const FormCreateProfile = ({
                 Gender
               </h3>
 
-              <div className="flex mt-[.36rem] gap-5 pb-1 rounded-md ">
+              <div className=" border border-gray-300 flex mt-[.36rem] gap-5 py-1.5 px-1.5 rounded-md ">
                 <label>
                   Male
                   <input
@@ -138,7 +138,7 @@ const FormCreateProfile = ({
                   Cause of Death
                 </span>
                 <select
-                  className="form-input"
+                  className="form-input border border-gray-300"
                   placeholder="-- Select --"
                   name="designation"
                   required={true}
@@ -164,7 +164,10 @@ const FormCreateProfile = ({
             <span className="text-primary-color-light font-bold">Note:</span>{" "}
             <span className="text-yellow-500 font-semibold">
               Premium Profiles can't be{" "}
-              <span className="font-extrabold uppercase text-red-500">deleted</span>!
+              <span className="font-extrabold uppercase text-red-500">
+                deleted
+              </span>
+              !
             </span>
           </h2>
         </div>
@@ -194,14 +197,16 @@ const FormCreateProfile = ({
         </div>
       </div>
 
-      <ButtonForm
-        isPending={isPending}
-        statusOff={"Add"}
-        statusOn={"Adding..."}
-        buttonClassName={"mt-0"}
-        setOpenModal={setOpenFreeModal}
-        setOpenModalAlt={setOpenPremiumModal}
-      />
+      <div className="sticky bottom-0 z-50 bg-gray-200 rounded-b-sm">
+        <ButtonForm
+          isPending={isPending}
+          statusOff={"Add"}
+          statusOn={"Adding..."}
+          buttonClassName={"mt-0"}
+          setOpenModal={setOpenFreeModal}
+          setOpenModalAlt={setOpenPremiumModal}
+        />
+      </div>
     </>
   );
 };

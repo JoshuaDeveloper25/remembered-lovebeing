@@ -25,7 +25,7 @@ export const InputForm = ({
       )}
 
       <input
-        className={`form-input focus:shadow-xl ${additionalInputClassnames}`}
+        className={`form-input border border-gray-300 focus:shadow-xl ${additionalInputClassnames}`}
         type={inputType === "password" && showPassword ? "text" : inputType}
         placeholder={inputPlaceholder}
         defaultValue={defaultValue}

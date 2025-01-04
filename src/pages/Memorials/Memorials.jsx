@@ -4,17 +4,21 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import Memorial from "./components/Memorial";
+import { Select, SelectItem } from "@nextui-org/react";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { causeOfDeaths, genres } from "../../db/data";
 
 const Memorials = () => {
   const { t } = useTranslation();
   const [searchFullName, setSearchFullName] = useState("");
   const [tempSearchFullName, setTempSearchFullName] = useState("");
+
   const [searchBirthCountry, setSearchBirthCountry] = useState("");
   const [tempSearchBirthCountry, setTempSearchBirthCountry] = useState("");
+
   const [searchDesignation, setSearchDesignation] = useState("");
   const [tempSearchDesignation, setTempSearchDesignation] = useState("");
   const [searchGender, setSearchGender] = useState("");
@@ -96,7 +100,7 @@ const Memorials = () => {
 
       <article className="px-2 py-5 bg-white rounded-md shadow-lg overlay max-w-4xl mx-auto">
         <div className="flex items-center md:justify-center w-full mb-3">
-          <label className="w-[30rem]">
+          <label className="md:w-[30rem] w-full">
             <input
               className="block py-2 px-2 h-full border border-tertiary-color/15 border-e-0 rounded-sm rounded-e-none w-full"
               type="text"
@@ -119,64 +123,55 @@ const Memorials = () => {
 
         {/* Filters */}
         <div className="flex flex-col md:flex-row md:items-center justify-center gap-3">
-          <label className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
-            <span className="text-primary-color font-semibold">
-              {t("Country")}:
-            </span>
-            <select
-              value={tempSearchBirthCountry}
-              onChange={(e) => setTempSearchBirthCountry(e?.target?.value)}
-              name="countryMemorial"
-              className="py-2 px-2 block border border-tertiary-color/15 rounded-sm bg-white"
-            >
-              <option value="">{t("All")}</option>
-              {countriesQuery?.data?.data?.map((country, index) => {
-                if (country === null) return null;
-                return (
-                  <option key={index} value={country}>
-                    {country}
-                  </option>
-                );
-              })}
-            </select>
-          </label>
+          <Select
+            onChange={(e) => setTempSearchBirthCountry(e?.target?.value)}
+            placeholder={`${t("Select country")}`}
+            value={tempSearchBirthCountry}
+            label={`${t("Country")}`}
+            name="countryMemorial"
+          >
+            {countriesQuery?.data?.data?.map((country) => {
+              if (country === null) return null;
 
-          <label className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
-            <span className="font-medium text-primary-color">
-              {t("Cause of Death")}:
-            </span>
-            <select
-              className="py-2 px-2 block border border-tertiary-color/15 bg-white rounded-sm w-[10rem]"
-              onChange={(e) => setTempSearchDesignation(e?.target?.value)}
-              value={tempSearchDesignation}
-              name="designation"
-            >
-              <option value="">{t("All")}</option>
-              <option value="not_to_say">Prefer not to say</option>
-              <option value="covid19_victim">COVID-19 victim</option>
-              <option value="substance_victim">Substance abuse victim</option>
-              <option value="cancer_victim">Cancer victim</option>
-              <option value="accident_victim">Victim of an accident</option>
-              <option value="crime_victim">Crime victim</option>
-              <option value="heart_attack">Heart attack</option>
-            </select>
-          </label>
+              return (
+                <SelectItem key={country} value={country}>
+                  {country}
+                </SelectItem>
+              );
+            })}
+          </Select>
 
-          <label className="flex flex-col sm:flex-row sm:items-center sm:gap-3">
-            <span className="font-semibold text-primary-color">
-              {t("Gender")}:
-            </span>
-            <select
-              className="py-2 px-2 block border border-tertiary-color/15 bg-white rounded-sm w-[10rem]"
-              value={tempSearchGender}
-              onChange={(e) => setTempSearchGender(e?.target?.value)}
-              name="gender"
-            >
-              <option value="">{t("Both")}</option>
-              <option value="male">{t("Male")}</option>
-              <option value="female">{t("Female")}</option>
-            </select>
-          </label>
+          <Select
+            onChange={(e) => setTempSearchDesignation(e?.target?.value)}
+            label={`${t("Cause of Death")}`}
+            value={tempSearchDesignation}
+            placeholder={`${t("Select cause of death")}`}
+            name="designation"
+          >
+            {causeOfDeaths.map((cause) => {
+              return (
+                <SelectItem key={cause?.value} value={cause?.value}>
+                  {cause?.causeDeath}
+                </SelectItem>
+              );
+            })}
+          </Select>
+
+          <Select
+            onChange={(e) => setTempSearchGender(e?.target?.value)}
+            placeholder={`${t("Select a gender")}`}
+            value={tempSearchDesignation}
+            label={`${t("Gender")}`}
+            name="gender"
+          >
+            {genres.map((genre) => {
+              return (
+                <SelectItem key={genre?.value} value={genre?.value}>
+                  {genre?.type}
+                </SelectItem>
+              );
+            })}
+          </Select>
         </div>
       </article>
 

@@ -99,3 +99,62 @@ export const websiteAnalytics = [
     analyticName: "Visitors",
   },
 ];
+
+export const causeOfDeaths = [
+  {
+    value: "",
+    causeDeath: "All",
+  },
+
+  {
+    value: "not_to_say",
+    causeDeath: "Prefer not to say",
+  },
+
+  {
+    value: "covid19_victim",
+    causeDeath: "COVID-19 victim",
+  },
+
+  {
+    value: "substance_victim",
+    causeDeath: "Substance abuse victim",
+  },
+
+  {
+    value: "cancer_victim",
+    causeDeath: "Cancer victim",
+  },
+
+  {
+    value: "accident_victim",
+    causeDeath: "Victim of an accident",
+  },
+
+  {
+    value: "crime_victim",
+    causeDeath: "Crime victim",
+  },
+
+  {
+    value: "heart_attack",
+    causeDeath: "Heart attack",
+  },
+];
+
+export const genres = [
+  {
+    value: "",
+    type: "Both",
+  },
+
+  {
+    value: "female",
+    type: "Female",
+  },
+
+  {
+    value: "male",
+    type: "Male",
+  },
+];

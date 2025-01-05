@@ -1,4 +1,5 @@
 import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
+import heroResponsive from "../../../assets/hero-responsive.jpg";
 import homeVideo from "../../../assets/videos/home-hero.mp4";
 import AppContext from "../../../context/AppProvider";
 import { useTranslation } from "react-i18next";
@@ -15,14 +16,19 @@ const Header = () => {
     <>
       <header className="relative sm:h-[75vh] h-[55vh]">
         <video
-          className="absolute top-0 left-0 w-full h-full object-cover"
+          className="sm:block hidden absolute top-0 left-0 w-full h-full object-cover"
           src={homeVideo}
           autoPlay
           loop
           muted
         />
 
-        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+        <img
+          className="sm:hidden block absolute top-0 left-0 w-full h-full object-cover"
+          src={heroResponsive}
+        />
+
+        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-60"></div>
 
         <div
           className={`container-page relative z-10 px-3 py-4 h-full animated-box-comingDown ${
@@ -31,8 +37,14 @@ const Header = () => {
           ref={ref}
         >
           <div className="flex flex-col items-center justify-center text-center h-full ">
-            <h1 className="font-serif sm:text-5xl text-3xl text-white uppercase max-w-2xl sm:mb-0 mb-5">
+            <h1 className="sm:block hidden font-serif sm:text-5xl text-3xl text-white uppercase max-w-2xl sm:mb-0 mb-5">
               {t("Preserve the memories of those you love")}
+            </h1>
+
+            <h1 className="sm:hidden block font-serif text-[28px] leading-8 text-white uppercase max-w-2xl sm:mb-0 mb-5">
+              {t(
+                "Honor and preserve the memories of your loved ones who have passed away"
+              )}
             </h1>
 
             <p className="sm:block hidden md:text-xl text-lg max-w-2xl text-white my-5">

@@ -391,10 +391,12 @@ const resources = {
       "Sign out": "Sign out",
       "Create memorial": "Create memorial",
       GenerateQRCode: "Generate QR Code",
+      "Honor and preserve the memories of your loved ones who have passed away": "Honor and preserve the memories of your loved ones who have passed away",
     },
   },
   es: {
     translation: {
+      "Honor and preserve the memories of your loved ones who have passed away": "Honra y preserva los recuerdos de tus seres queridos que han partido",
       "Create memorial": "Crear memorial",
       "Sign out": "Cerrar sesión",
       "Our commitment is to combine technology and innovation to deliver an intuitive and meaningful experience. Eternal Memories is more than just an app; it is a tribute to human legacy, created from the heart by people who understand the importance of keeping memories alive.":

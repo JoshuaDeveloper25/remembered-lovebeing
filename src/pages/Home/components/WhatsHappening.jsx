@@ -6,7 +6,7 @@ const WhatsHappening = () => {
   const { t } = useTranslation(); // Hook para traducciones
 
   return (
-    <section className="bg-white sm:pt-8 pt-2 py-8 relative">
+    <section className="bg-white sm:pt-8 pt-2 py-8 relative sm:block hidden">
       <div className="container-page sticky">
         <div className="text-center sm:pb-8 pb-2">
           <h2 className="font-mono text-4xl sm:text-5xl font-semibold text-primary-color tracking-wider">

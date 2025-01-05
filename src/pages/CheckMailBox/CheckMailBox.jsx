@@ -9,7 +9,7 @@ const CheckMailBox = () => {
 
   return (
     <main className="relative">
-      <div className="md:block hidden fixed top-18 right-8">
+      {/* <div className="md:block hidden fixed top-18 right-8">
         <img className="w-32 rotate-[90]" src={peaceDove} />
       </div>
 
@@ -23,7 +23,7 @@ const CheckMailBox = () => {
 
       <div className="fixed top-[20rem] right-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-[1]">
         <img className="w-[100rem] rotate-[-20deg]" src={cloud} alt="cloud" />
-      </div>
+      </div> */}
       <section className="flex justify-center items-center min-h-[100vh]">
         <div>
           <img className="w-96 mx-auto rounded-md mb-8" src={logo} alt="Logo" />

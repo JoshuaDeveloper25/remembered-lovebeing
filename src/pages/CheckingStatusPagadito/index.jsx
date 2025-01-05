@@ -154,7 +154,7 @@ const CheckingStatusPagadito = () => {
 
   return (
     <main className="relative container-page my-32">
-      <div className="md:block hidden fixed top-16 -z-[1] right-8">
+      {/* <div className="md:block hidden fixed top-16 -z-[1] right-8">
         <img className="w-32 rotate-[90]" src={peaceDove} />
       </div>
 
@@ -168,7 +168,7 @@ const CheckingStatusPagadito = () => {
 
       <div className="fixed top-[20rem] right-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-[2]">
         <img className="w-[100rem] rotate-[-20deg]" src={cloud} alt="cloud" />
-      </div>
+      </div> */}
 
       <div className="text-center bg-white shadow-lg hover:shadow-2xl mx-auto animation-fade w-fit p-8 rounded-md">
         {getStatusPagaditoPayment?.isError ? (

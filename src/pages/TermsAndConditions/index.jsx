@@ -7,7 +7,7 @@ const TermsAndConditions = () => {
 
   return (
     <main className="relative">
-      <div className="md:block hidden fixed top-18 right-8">
+      {/* <div className="md:block hidden fixed top-18 right-8">
         <img className="w-32 rotate-[90]" src={peaceDove} />
       </div>
 
@@ -21,7 +21,7 @@ const TermsAndConditions = () => {
 
       <div className="fixed top-[20rem] right-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-[1]">
         <img className="w-[100rem] rotate-[-20deg]" src={cloud} alt="cloud" />
-      </div>
+      </div> */}
       <section className="max-w-3xl mx-auto px-6 py-6 text-primary-color bg-white shadow-xl rounded-lg my-12">
         <div className="mb-8">
           <h2 className="font-mono tracking-wider text-4xl uppercase font-semibold text-center">

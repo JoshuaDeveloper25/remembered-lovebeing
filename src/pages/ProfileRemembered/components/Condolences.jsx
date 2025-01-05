@@ -1,6 +1,12 @@
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  Button,
+} from "@nextui-org/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import getFastApiErrors from "../../../utils/getFastApiErrors";
 import { useContext, useEffect, useRef, useState } from "react";
+import getFastApiErrors from "../../../utils/getFastApiErrors";
 import AppContext from "../../../context/AppProvider";
 import formatDate from "../../../utils/formatDate";
 import { createPortal } from "react-dom";
@@ -289,47 +295,46 @@ const Condolence = ({ condolence, isOwner }) => {
             {/* Just Owner Can See Edit Condolence Reply */}
             {isOwner && (
               <>
-                {/* Edit Reply Button */}
-                <button
-                  onClick={() => setReply(!reply)}
-                  className="text-tertiary-color text-xs"
-                  type="button"
+                <Popover
+                  isOpen={reply}
+                  onOpenChange={setReply}
+                  placement="bottom"
+                  showArrow={true}
+                  classNames={{
+                    content: "p-0",
+                  }}
                 >
-                  Edit Condolence Reply
-                </button>
+                  <PopoverTrigger>
+                    <button
+                      type="button"
+                      className="animation-fade py-1 text-sm font-medium px-2 rounded text-white bg-secondary-color"
+                    >
+                      Edit Condolence Reply
+                    </button>
+                  </PopoverTrigger>
 
-                {/* Dropdown Edit Condolence Reply */}
-                {reply && (
-                  <>
-                    {createPortal(
-                      <div
-                        onClick={() => setReply(!reply)}
-                        className="h-[100vh] fixed top-0 w-full"
-                      ></div>,
-                      document.body
-                    )}
-
+                  <PopoverContent>
                     <form
-                      className="absolute shadow-lg bg-white border py-2 z-[1000] w-max max-h-96 p-2 overflow-auto"
+                      className="bg-gray-200 p-3 rounded-[14px]"
                       onSubmit={handleSubmitReplyCondolence}
                     >
                       <textarea
-                        className="text-tertiary-color border-tertiary-color/20 py-2 px-2 rounded-sm border text-sm outline-none resize-none"
+                        className="bg-gray-200 text-tertiary-color border border-black/20 py-2 px-2 rounded-sm text-sm outline-none resize-none"
                         placeholder="Write your condolence here..."
                         defaultValue={condolence?.owner_reply}
                         name="owner_reply"
                         rows={4}
                       />
                       <button
-                        className="block text-xs text-secondary-color font-bold"
+                        className=" block text-xs text-secondary-color font-bold"
                         disabled={replyCondolenceMutation?.isPending}
                         type="submit"
                       >
                         Send
                       </button>
                     </form>
-                  </>
-                )}
+                  </PopoverContent>
+                </Popover>
               </>
             )}
           </>
@@ -337,48 +342,48 @@ const Condolence = ({ condolence, isOwner }) => {
           <>
             {/* Creating A Reply Of A Condolence || Just Owner Can See It*/}
             {isOwner && (
-              <>
-                <div className="flex justify-between border-t border-tertiary-color/40 py-4">
-                  <button
-                    onClick={() => setReply(!reply)}
-                    className="text-tertiary-color text-xs"
-                    type="button"
-                  >
-                    Reply?
-                  </button>
-                </div>
+              <div className="border-t border-tertiary-color/40 py-4">
+                <Popover
+                  isOpen={reply}
+                  onOpenChange={setReply}
+                  placement="bottom"
+                  showArrow={true}
+                  classNames={{
+                    content: "p-0",
+                  }}
+                >
+                  <PopoverTrigger>
+                    <button
+                      type="button"
+                      className="animation-fade py-1 text-sm font-medium px-2 rounded text-white bg-secondary-color"
+                    >
+                      Reply?
+                    </button>
+                  </PopoverTrigger>
 
-                {reply && (
-                  <>
-                    {createPortal(
-                      <div
-                        onClick={() => setReply(!reply)}
-                        className="h-[100vh] fixed top-0 w-full"
-                      ></div>,
-                      document.body
-                    )}
-
+                  <PopoverContent>
                     <form
-                      className="absolute shadow-lg bg-white border py-2 z-[1000] w-max max-h-96 p-2 overflow-auto"
+                      className="bg-gray-200 p-3 rounded-[14px]"
                       onSubmit={handleSubmitReplyCondolence}
                     >
                       <textarea
-                        className="text-tertiary-color border-tertiary-color/20 py-2 px-2 rounded-sm border text-sm outline-none resize-none"
+                        className="bg-gray-200 text-tertiary-color border border-black/20 py-2 px-2 rounded-sm text-sm outline-none resize-none"
                         placeholder="Write your condolence here..."
                         name="owner_reply"
                         rows={4}
                       />
+
                       <button
-                        className="block text-xs text-secondary-color font-bold"
+                        className=" block pt-1 pb-1 text-xs text-secondary-color font-bold"
                         disabled={replyCondolenceMutation?.isPending}
                         type="submit"
                       >
                         Send
                       </button>
                     </form>
-                  </>
-                )}
-              </>
+                  </PopoverContent>
+                </Popover>
+              </div>
             )}
           </>
         )}

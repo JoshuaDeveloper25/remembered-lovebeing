@@ -151,8 +151,7 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
       {generatedCode && (
         <div ref={canvasRef} className="hidden">
           <QRCodeCanvas
-            // value={`http://192.168.100.26:5173${generatedCode}`}
-            value={`/${generatedCode}`}
+            value={`${import.meta.env.VITE_BASE_URL_ORIGINAL}${generatedCode}`}
           />
         </div>
       )}

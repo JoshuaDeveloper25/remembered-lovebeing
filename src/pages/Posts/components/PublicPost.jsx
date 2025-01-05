@@ -170,14 +170,28 @@ const PublicPost = ({ post, ownerName }) => {
 
           {/* Actions of a post */}
           <div className="flex items-center gap-8 border-t pt-3 mt-3">
-            <button
-              className="flex items-center gap-2.5 text-gray-500 hover:text-red-500"
-              onClick={handleToggleLikePost}
-              type="button"
-            >
-              <IoMdHeart size={22} className="text-red-500 animation-fade" />
-              {alreadyLikedPost ? "Already left a heart" : "Leave a heart"}
-            </button>
+            {userInfo?.access_token ? (
+              <button
+                className={`flex items-center gap-2.5 text-gray-500 hover:text-red-500 ${
+                  alreadyLikedPost && "opacity-40 hover:text-gray-500"
+                }`}
+                onClick={handleToggleLikePost}
+                disabled={alreadyLikedPost}
+                type="button"
+              >
+                <IoMdHeart size={22} className="text-red-500 animation-fade" />
+                {alreadyLikedPost ? "Already left a heart" : "Leave a heart"}
+              </button>
+            ) : (
+              <Link
+                className={`flex items-center gap-2.5 text-gray-500 hover:text-red-500`}
+                to={'/sign-in?redirect=/posts'}
+                type="button"
+              >
+                <IoMdHeart size={22} className="text-red-500 animation-fade" />
+                Leave a heart
+              </Link>
+            )}
 
             <button
               onClick={() => setModalPostComments(!modalPostComments)}

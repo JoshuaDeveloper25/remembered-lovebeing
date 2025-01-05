@@ -15,16 +15,16 @@ const CreateMemorial = () => {
             <h2 className="sm:text-4xl text-3xl text-fourth-color font-semibold my-4">
               {t("Create an online memorial")}{" "}
               <span className="text-modern-color block font-medium sm:text-3xl text-2xl">
-                {t(`Share your loved one's story`)}
+                {t(`Share your loved one's story`)}.
               </span>
             </h2>
-            <p className="text-muted-color max-w-sm text-xl">
+            <p className="text-muted-color max-w-sm text-xl sm:block hidden">
               {t(
                 "Create a meaningful online memorial to celebrate your loved one’s life. Share stories, upload photos, receive condolences, post tributes, and keep their memory alive."
               )}
             </p>
             <button
-              className="btn btn-blue-light w-auto text-xl mt-4"
+              className="btn btn-blue-light w-auto text-xl sm:mt-4"
               type="button"
             >
               {t("Create a Memorial")}

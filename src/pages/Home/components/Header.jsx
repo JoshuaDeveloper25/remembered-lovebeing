@@ -13,7 +13,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="relative h-[75vh]">
+      <header className="relative sm:h-[75vh] h-[55vh]">
         <video
           className="absolute top-0 left-0 w-full h-full object-cover"
           src={homeVideo}
@@ -31,11 +31,11 @@ const Header = () => {
           ref={ref}
         >
           <div className="flex flex-col items-center justify-center text-center h-full ">
-            <h1 className="font-serif text-5xl text-white uppercase max-w-2xl">
+            <h1 className="font-serif sm:text-5xl text-3xl text-white uppercase max-w-2xl sm:mb-0 mb-5">
               {t("Preserve the memories of those you love")}
             </h1>
 
-            <p className="md:text-xl text-lg max-w-2xl text-white my-5">
+            <p className="sm:block hidden md:text-xl text-lg max-w-2xl text-white my-5">
               {t(
                 `Create a profile for your loved one, upload photos, share memories through posts and allow others to leave tributes and condolences. Generate a QR code.`
               )}
@@ -54,7 +54,7 @@ const Header = () => {
                     type="button"
                     className="btn btn-blue-light w-full block rounded-sm"
                   >
-                    {t("Get Started")}
+                    {t("Create memorial")}
                   </button>
                 </Link>
               </div>

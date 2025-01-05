@@ -389,10 +389,13 @@ const resources = {
       "Our commitment is to combine technology and innovation to deliver an intuitive and meaningful experience. Eternal Memories is more than just an app; it is a tribute to human legacy, created from the heart by people who understand the importance of keeping memories alive.":
         "Our commitment is to combine technology and innovation to deliver an intuitive and meaningful experience. Eternal Memories is more than just an app; it is a tribute to human legacy, created from the heart by people who understand the importance of keeping memories alive.",
       "Sign out": "Sign out",
+      "Create memorial": "Create memorial",
+      GenerateQRCode: "Generate QR Code",
     },
   },
   es: {
     translation: {
+      "Create memorial": "Crear memorial",
       "Sign out": "Cerrar sesión",
       "Our commitment is to combine technology and innovation to deliver an intuitive and meaningful experience. Eternal Memories is more than just an app; it is a tribute to human legacy, created from the heart by people who understand the importance of keeping memories alive.":
         "Nuestro compromiso es combinar tecnología e innovación para ofrecer una experiencia intuitiva y significativa. Eternal Memories es más que una aplicación; es un homenaje al legado humano, creado desde el corazón por personas que entienden la importancia de mantener vivos los recuerdos.",
@@ -541,7 +544,7 @@ const resources = {
       "Create an online memorial": "Crea un memorial en línea",
       "Share your loved one's story": "Comparte la historia de tu ser querido",
       "Create a meaningful online memorial to celebrate your loved one’s life. Share stories, upload photos, receive condolences, post tributes, and keep their memory alive.":
-        "Crea un honor en línea significativo para celebrar la vida de tu ser querido. Comparte historias, sube fotos, recibe condolencias, publica tributos y mantén viva su memoria.",
+        "Crea un homenaje en línea significativo para celebrar la vida de tu ser querido. Comparte historias, sube fotos, recibe condolencias, publica tributos y mantén viva su memoria.",
       "Create a Memorial": "Crear un Memorial",
       "Recent online memorials": "Memoriales en línea recientes",
       "There's no recent memorials for the moment...":

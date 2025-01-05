@@ -112,7 +112,7 @@ const PostCommentModal = ({ children, openModal, setOpenModal }) => {
           </div>
         </div>
 
-        <div className="bg-black/50 fixed w-full h-full inset-0 backdrop-modal z-[99] backdrop-blur-lg"></div>
+        <div className="bg-black/50 fixed w-full h-full inset-0 backdrop-modal z-[999] backdrop-blur-lg"></div>
       </>
     )
   );

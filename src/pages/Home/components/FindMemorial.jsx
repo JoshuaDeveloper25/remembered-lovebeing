@@ -28,7 +28,7 @@ const FindMemorial = () => {
   return (
     <section className="px-3 sm:py-8 py-3 sm:border-none border-gray-400 border">
       <div className="container-page">
-        <div className="sm:my-12">
+        <div className="sm:my-12 sm:block hidden">
           <h2 className="font-mono sm:tracking-wider sm:text-4xl text-3xl text-primary-color text-center uppercase font-semibold ">
             {t("Looking for a loved one? Search now!")}
           </h2>

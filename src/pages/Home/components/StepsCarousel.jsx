@@ -76,7 +76,7 @@ const StepsCarousel = () => {
             >
               <SwiperSlide>
                 <img
-                  className="w-full h-[23rem] rounded-md object-contain"
+                  className="w-full h-[23rem] rounded-md sm:object-contain object-cover"
                   loading="lazy"
                   src={grave}
                   decoding="async"
@@ -85,7 +85,7 @@ const StepsCarousel = () => {
 
               <SwiperSlide>
                 <img
-                  className="w-full h-[23rem] rounded-md object-contain"
+                  className="w-full h-[23rem] rounded-md sm:object-contain object-cover"
                   src={caballete}
                   loading="lazy"
                   decoding="async"
@@ -94,7 +94,7 @@ const StepsCarousel = () => {
 
               <SwiperSlide>
                 <img
-                  className="w-full h-[23rem] rounded-md object-contain"
+                  className="w-full h-[23rem] rounded-md sm:object-contain object-cover"
                   src={urna}
                   loading="lazy"
                   decoding="async"
@@ -103,7 +103,7 @@ const StepsCarousel = () => {
 
               <SwiperSlide>
                 <img
-                  className="w-full h-[23rem] rounded-md object-contain"
+                  className="w-full h-[23rem] rounded-md sm:object-contain object-cover"
                   src={bookmark}
                   loading="lazy"
                   decoding="async"

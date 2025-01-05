@@ -58,7 +58,7 @@ const ToggleLanguage = ({ language, handleChange }) => {
             document.body
           )}
 
-          <div className="absolute left-0 right-0 mt-2 bg-primary-color text-white shadow-primary-color-light shadow-md rounded-lg z-[10]">
+          <div className="absolute left-0 right-0 mt-2 bg-primary-color text-white shadow-primary-color-light shadow-md rounded-lg z-[20]">
             {availableLanguages.map((availableLanguage, index) => (
               <div
                 key={index}

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import PublicPost from "./components/PublicPost";
 import { useTranslation } from "react-i18next";
-import axios, { all } from "axios";
+import axios from "axios";
 
 // Images && icons
 import peaceDove from "../../assets/peace-dove.png";
@@ -19,20 +19,20 @@ const Posts = () => {
 
   return (
     <main className="relative">
-      <div className="md:block hidden fixed top-18 right-8">
+       <div className="fixed top-18 right-8">
+        <img className="w-[20rem] rotate-[20deg]" src={cloud} alt="cloud" />
+      </div>
+
+      <div className="fixed top-18 left-8">
+        <img className="w-[20rem] rotate-[-20deg]" src={cloud} alt="cloud" />
+      </div>
+
+      <div className="fixed top-[20rem] left-1/2 transform translate-x-1/2 -translate-y-1/2">
         <img className="w-32 rotate-[90]" src={peaceDove} />
       </div>
 
-      <div className="md:block hidden fixed top-18 left-8">
-        <img className="w-32 [transform:rotateY(180deg)]" src={peaceDove} />
-      </div>
-
-      <div className="fixed top-[20rem] left-1/2 transform translate-x-1/2 -translate-y-1/2 -z-[1]">
-        <img className="w-[100rem] rotate-[20deg]" src={cloud} alt="cloud" />
-      </div>
-
       <div className="fixed top-[20rem] right-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-[1]">
-        <img className="w-[100rem] rotate-[-20deg]" src={cloud} alt="cloud" />
+        <img className="w-[20rem] rotate-[-20deg]" src={cloud} alt="cloud" />
       </div>
 
       <section

@@ -73,11 +73,13 @@ const MyProfiles = () => {
     createProfileMutation?.mutate(profileInfo);
   };
 
+  // SI es false es gratis
   const handleCreateFreeProfile = () => {
     setOpenFreeModal(true);
     setStatusPlan(false);
   };
 
+  // SI es true es PREMIUM
   const handleCreatePremiumProfile = () => {
     setOpenPremiumModal(true);
     setStatusPlan(true);
@@ -130,6 +132,7 @@ const MyProfiles = () => {
 
             <div>
               <ResponsiveMoreInfoRememberedAdmin
+              statusPlan={statusPlan}
                 premiumProfilesRemaining={
                   data?.data?.remaining_premium_profiles
                 }
@@ -186,19 +189,24 @@ const MyProfiles = () => {
                   <GoPlus className="size-5 inline" /> Create Free Profile
                 </button>
               </div>
-              
+
               <ModalCreateFreeProfileResponsive
                 titleModal={"New Profile"}
                 handleSubmit={handleSubmit}
                 setOpenModal={setOpenFreeModal}
                 openModal={openFreeModal}
                 modalForm={true}
-                editableWidth={"sm:max-w-[700px] max-w-full sm:px-8 px-0 h-full"}
+                editableWidth={
+                  "sm:max-w-[700px] max-w-full sm:px-8 px-0 h-full"
+                }
                 crudModalClassName={"sm:px-4 px-0 "}
-                formContainerClassName={'sm:max-h-[34rem] max-h[34rem] overflow-y-auto'}
-                modalContentClassNames={'sm:relative static'}
+                formContainerClassName={
+                  "sm:max-h-[34rem] max-h[34rem] overflow-y-auto"
+                }
+                modalContentClassNames={"sm:relative static"}
               >
                 <FormCreateProfile
+                  statusPlan={statusPlan}
                   slug={slug}
                   setSlug={setSlug}
                   isPending={createProfileMutation?.isPending}
@@ -239,6 +247,7 @@ const MyProfiles = () => {
                 editableWidth={"max-w-xl"}
               >
                 <FormCreateProfile
+                  statusPlan={statusPlan}
                   slug={slug}
                   setSlug={setSlug}
                   isPending={createProfileMutation?.isPending}

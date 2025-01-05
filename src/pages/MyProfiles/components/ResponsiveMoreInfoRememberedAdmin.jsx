@@ -30,6 +30,7 @@ import axios from "axios";
 import ModalCreateFreeProfileResponsive from "./ModalCreateFreeProfileResponsive";
 
 const ResponsiveMoreInfoRememberedAdmin = ({
+  statusPlan,
   premiumProfilesRemaining,
   totalFavoritesProfiles,
   totalOwnProfiles,
@@ -215,7 +216,8 @@ const ResponsiveMoreInfoRememberedAdmin = ({
           classNames={{
             wrapper: "z-[99999]",
             base: "bg-primary-color text-white w-[20rem] custom-scrollbar-class",
-            closeButton: "top-2.5 hover:bg-red-500 transition-all duration-200 text-white",
+            closeButton:
+              "top-2.5 hover:bg-red-500 transition-all duration-200 text-white",
           }}
           backdrop={backdrop}
           isOpen={isOpen}
@@ -253,6 +255,7 @@ const ResponsiveMoreInfoRememberedAdmin = ({
                         editableWidth={"max-w-xl"}
                       >
                         <FormCreateProfile
+                          statusPlan={statusPlan}
                           slug={slug}
                           setSlug={setSlug}
                           isPending={isPending}
@@ -310,6 +313,7 @@ const ResponsiveMoreInfoRememberedAdmin = ({
                           slug={slug}
                           setSlug={setSlug}
                           isPending={isPending}
+                          statusPlan={statusPlan}
                           setOpenPremiumModal={setOpenPremiumModal}
                         />
                       </Modal>
@@ -378,6 +382,7 @@ const ResponsiveMoreInfoRememberedAdmin = ({
                           slug={slug}
                           setSlug={setSlug}
                           isPending={isPending}
+                          statusPlan={statusPlan}
                           setOpenFreeModal={setOpenFreeModal}
                         />
                       </Modal>

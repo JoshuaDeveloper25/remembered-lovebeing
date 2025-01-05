@@ -3,6 +3,7 @@ import ButtonForm from "../../../components/ButtonForm";
 import { useEffect, useState } from "react";
 
 const FormCreateProfile = ({
+  statusPlan,
   slug,
   setSlug,
   isPending,
@@ -11,6 +12,8 @@ const FormCreateProfile = ({
 }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [middleName, setMiddleName] = useState("");
+
   const splittedLastName = lastName.split(" ");
 
   useEffect(() => {
@@ -22,7 +25,11 @@ const FormCreateProfile = ({
   }, [firstName, lastName]);
 
   const handleFirstName = (e) => {
-    setFirstName(e?.target?.value);
+    setFirstName(e?.target?.value.replace(/\s/g, ""));
+  };
+
+  const handleMiddleName = (e) => {
+    setMiddleName(e?.target?.value.replace(/\s/g, ""));
   };
 
   const handleLastName = (e) => {
@@ -55,6 +62,7 @@ const FormCreateProfile = ({
                 inputName="middle_name"
                 inputPlaceholder={"Input Middle Name"}
                 labelClassNameAdd={"mb-0"}
+                inputProps={{ value: middleName, onChange: handleMiddleName }}
               />
             </div>
           </div>
@@ -159,18 +167,20 @@ const FormCreateProfile = ({
           </div>
         </div>
 
-        <div className="bg-red-100 px-5 md:px-4 py-1.5 font-mono">
-          <h2>
-            <span className="text-primary-color-light font-bold">Note:</span>{" "}
-            <span className="text-yellow-500 font-semibold">
-              Premium Profiles can't be{" "}
-              <span className="font-extrabold uppercase text-red-500">
-                deleted
+        {statusPlan && (
+          <div className="bg-red-100 px-5 md:px-4 py-1.5 font-mono">
+            <h2>
+              <span className="text-primary-color-light font-bold">Note:</span>{" "}
+              <span className="text-yellow-500 font-semibold">
+                Premium Profiles can't be{" "}
+                <span className="font-extrabold uppercase text-red-500">
+                  deleted
+                </span>
+                !
               </span>
-              !
-            </span>
-          </h2>
-        </div>
+            </h2>
+          </div>
+        )}
 
         <div className="bg-green-700 text-white p-4 md:p-5 mb-7">
           <h3 className="w-full inline-block text-xl text-start font-semibold mb-2.5">

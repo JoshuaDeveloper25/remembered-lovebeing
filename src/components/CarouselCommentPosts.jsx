@@ -1,6 +1,10 @@
+import lgShare from "lightgallery/plugins/share";
+import lgHash from "lightgallery/plugins/hash";
+import lgZoom from "lightgallery/plugins/zoom";
+import LightGallery from "lightgallery/react";
 import { useState } from "react";
 
-const CarouselCommentPosts = ({ commentImages }) => {
+const CarouselCommentPosts = ({ commentImages, ownerName }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
@@ -15,32 +19,42 @@ const CarouselCommentPosts = ({ commentImages }) => {
     );
   };
 
+  const handleOpenGalleryImage = () => {
+    const selectedGalleryImage = commentImages?.filter((item) => item?.id === currentIndex);
+    console.log("me ejecuto", selectedGalleryImage);
+  };
+
   return (
     <div className="relative md:h-full h-[15rem] w-full bg-black">
       <div className="relative h-full w-full overflow-hidden">
-        {/* Carousel wrapper */}
-        {commentImages?.map((item, index) => {
-          return (
-            <div
-              key={item?.id}
-              className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                index === currentIndex ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <img
-                src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
-                className="block w-full h-full object-contain"
-                alt={`Image ${item?.id}`}
-                onError={() =>
-                  console.log(
-                    "Error loading image:",
-                    `${item?.cloud_front_domain}/${item?.aws_file_name}`
-                  )
-                }
-              />
-            </div>
-          );
-        })}
+        <LightGallery onBeforeOpen={handleOpenGalleryImage}>
+          {/* Carousel wrapper */}
+          {commentImages?.map((item, index) => {
+            return (
+              <div
+                key={item?.id}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  index === currentIndex ? "opacity-100" : "opacity-0"
+                }`}
+                data-sub-html={`<h4>Uploaded by - ${ownerName}</h4><p> This is a souvenir from this lovebeing...</p>`}
+                data-src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
+                plugins={[lgZoom, lgShare, lgHash]}
+              >
+                <img
+                  src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
+                  className="block w-full h-full object-contain"
+                  alt={`Image ${item?.id}`}
+                  onError={() =>
+                    console.log(
+                      "Error loading image:",
+                      `${item?.cloud_front_domain}/${item?.aws_file_name}`
+                    )
+                  }
+                />
+              </div>
+            );
+          })}
+        </LightGallery>
       </div>
 
       {/* Slider controls */}

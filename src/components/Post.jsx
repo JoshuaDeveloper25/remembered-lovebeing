@@ -20,6 +20,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const Post = ({ isOwner, post, rememberName }) => {
+  console.log(post, 'este es el post de aqui')
   const { userInfo } = useContext(AppContext);
   const [openModalEditPost, setOpenModalEditPost] = useState(false);
   const [modalPostComments, setModalPostComments] = useState(false);

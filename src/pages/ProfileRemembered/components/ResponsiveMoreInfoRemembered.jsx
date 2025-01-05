@@ -120,17 +120,17 @@ const ResponsiveMoreInfoRemembered = ({
   const handleSubmitProfileImage = async (e) => {
     e.preventDefault();
 
-    if (!imgRef.current) toast.error("Upload an image before sendidsdsng!");
+    if (!imgRef.current) {
+      return toast.error("Upload an image before uploading!");
+    }
 
     Swal.fire({
-      title: "¿Estás seguro?",
-      text: "¿Deseas subir esta imagen? Esta acción actualizará tu perfil.",
-      // icon: "warning",
+      title: "Are you sure?",
+      text: "Do you want to upload the image?",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, subir",
-      cancelButtonText: "Cancelar",
+      confirmButtonText: "Yes, upload it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
         setCanvasPreview(
@@ -143,29 +143,36 @@ const ResponsiveMoreInfoRemembered = ({
           )
         );
 
-        const dataUrl = previewCanvasRef.current.toDataURL();
-        updateAvatar(dataUrl);
+        // Obtener el src del imgRef
+        const imgSrc = imgRef.current.src;
 
+        // Extraer el tipo MIME del Data URL
+        const mimeType = imgSrc.match(/data:(.*?);base64/)?.[1] || "image/png"; // Por defecto PNG
+
+        // Convertir el canvas a DataURL con el tipo MIME
+        const dataUrl = previewCanvasRef.current.toDataURL(mimeType);
+
+        // Convertir el DataURL a Blob
         const blob = await fetch(dataUrl).then((res) => res.blob());
-        const file = new File([blob], "remembered-profile-image.png", {
-          type: "image/png",
-        });
+
+        // Crear el nombre del archivo dinámicamente
+        const fileName = `${e?.target?.uploadImages?.files[0]?.name}`;
+
+        // Crear el archivo
+        const file = new File([blob], fileName, { type: mimeType });
 
         const formData = new FormData();
         formData.append("file", file);
+        console.log(formData.get("file"));
 
         changeImageProfileMutation?.mutate(formData, {
           onSuccess: () => {
-            // Swal.fire({
-            //   title: "¡Imagen subida!",
-            //   text: "Tu imagen de perfil se ha actualizado correctamente.",
-            //   icon: "success",
-            // });
+            // Opcional: Mostrar éxito
           },
           onError: () => {
             Swal.fire({
-              title: "¡Error!",
-              text: "Hubo un problema al subir la imagen. Intenta nuevamente.",
+              title: "Error!",
+              text: "There was an issue uploading your profile image.",
               icon: "error",
             });
           },
@@ -173,7 +180,6 @@ const ResponsiveMoreInfoRemembered = ({
       }
     });
   };
-
   return (
     <>
       <div className="flex dropdownResponsiveProfile">

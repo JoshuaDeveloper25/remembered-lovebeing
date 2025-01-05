@@ -24,6 +24,9 @@ const PublicPost = ({ post, ownerName }) => {
     <p key={index}>{item}</p>
   ));
   const { userInfo } = useContext(AppContext);
+  const alreadyLikedPost = post?.post_likes?.find(
+    (item) => item?.owner?.email === userInfo?.email
+  );
   const [modalPostComments, setModalPostComments] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [comment, setComment] = useState("");
@@ -76,7 +79,7 @@ const PublicPost = ({ post, ownerName }) => {
     },
     onError: (err) => {
       console.log(err);
-      toast.error(getFastApiErrors(err));
+      // toast.error(getFastApiErrors(err));
     },
   });
 
@@ -172,11 +175,8 @@ const PublicPost = ({ post, ownerName }) => {
               onClick={handleToggleLikePost}
               type="button"
             >
-              <IoMdHeart
-                size={22}
-                className="hover:text-red-500 animation-fade"
-              />
-              Leave a heart
+              <IoMdHeart size={22} className="text-red-500 animation-fade" />
+              {alreadyLikedPost ? "Already left a heart" : "Leave a heart"}
             </button>
 
             <button

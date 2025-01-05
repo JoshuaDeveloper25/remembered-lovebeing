@@ -91,8 +91,7 @@ const ImagesHandleCrop = ({
 
   return (
     <div className="p-4 md:p-5">
-      {imgRef?.current ? null : (
-        <>
+        <div className={`${imgRef.current && 'hidden'}`}>
           <div className="mb-6">
             <h3 className="font-semibold">Upload a file <span className="text-red-400 text-sm">(jpg, jpeg, png)*</span></h3>
             <p className="text-muted-color">Attach the file below</p>
@@ -124,8 +123,7 @@ const ImagesHandleCrop = ({
               className="sr-only block w-full text-sm text-tertiary-color file:py-1 file:px-2 file:rounded-full file:border-0 file:text-xs file:bg-black file:text-white hover:file:text-tertiary-color hover:file:bg-black/90"
             />
           </label>
-        </>
-      )}
+        </div>
 
       {error && <p className="text-red-400 text-xs">{error}</p>}
 

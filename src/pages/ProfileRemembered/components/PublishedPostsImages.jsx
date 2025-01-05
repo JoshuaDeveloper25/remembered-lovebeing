@@ -3,8 +3,8 @@ import Photogrid from "react-facebook-photo-grid";
 import { MdImageNotSupported } from "react-icons/md";
 
 const PublishedPostsImages = ({ setToggleModal, galleryImages }) => {
-  const imagesToString = galleryImages?.map(
-    (item) => `${item?.cloud_front_domain}/${item?.aws_file_name}`
+  const imagesToString = galleryImages?.map((item) =>
+    `${item?.cloud_front_domain}/${encodeURIComponent(item?.aws_file_name)}`
   );
 
   return !galleryImages?.length ? (

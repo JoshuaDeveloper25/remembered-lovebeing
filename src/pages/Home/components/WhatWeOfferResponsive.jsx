@@ -18,7 +18,7 @@ const WhatWeOfferResponsive = () => {
 
   return (
     <section className="sm:hidden block px-3 sm:py-8 py-3  border border-gray-400">
-      <div className="container-page relative">
+      <div className="container-page relative z-[1]">
         <div className="sm:my-12">
           <h2 className="font-mono sm:tracking-wider sm:text-4xl text-3xl text-primary-color text-center uppercase font-semibold ">
             {t("We offer modern designs.")}

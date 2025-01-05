@@ -54,7 +54,6 @@ const WhatWeOfferResponsive = () => {
               <SwiperSlide>
                 <img
                   className="w-full rounded-md"
-                  loading="lazy"
                   src={rememberedProfilePrev1}
                   decoding="async"
                 />
@@ -64,7 +63,6 @@ const WhatWeOfferResponsive = () => {
                 <img
                   className="w-full rounded-md"
                   src={rememberedProfilePrev2}
-                  loading="lazy"
                   decoding="async"
                 />
               </SwiperSlide>
@@ -73,7 +71,6 @@ const WhatWeOfferResponsive = () => {
                 <img
                   className="w-full rounded-md"
                   src={rememberedProfilePrev3}
-                  loading="lazy"
                   decoding="async"
                 />
               </SwiperSlide>

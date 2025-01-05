@@ -71,12 +71,13 @@ const UploadUserProfileImage = ({ iconClassname }) => {
   const handleSubmitProfileImage = async (e) => {
     e.preventDefault();
 
-    if (!imgRef.current) return toast.error("Upload an image before sending!");
+    if (!imgRef.current) {
+      return toast.error("Upload an image before uploading!");
+    }
 
     Swal.fire({
       title: "Are you sure?",
       text: "Do you want to upload the image?",
-      // icon: "question",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -86,19 +87,34 @@ const UploadUserProfileImage = ({ iconClassname }) => {
         setCanvasPreview(
           imgRef.current, // HTMLImageElement
           previewCanvasRef.current, // HTMLCanvasElement
-          convertToPixelCrop(crop, imgRef.current.width, imgRef.current.height)
+          convertToPixelCrop(
+            crop,
+            imgRef?.current?.width,
+            imgRef?.current?.height
+          )
         );
 
-        const dataUrl = previewCanvasRef.current.toDataURL();
-        updateAvatar(dataUrl);
+        // Obtener el src del imgRef
+        const imgSrc = imgRef.current.src;
 
+        // Extraer el tipo MIME del Data URL
+        const mimeType = imgSrc.match(/data:(.*?);base64/)?.[1] || "image/png"; // Por defecto PNG
+
+        // Convertir el canvas a DataURL con el tipo MIME
+        const dataUrl = previewCanvasRef.current.toDataURL(mimeType);
+
+        // Convertir el DataURL a Blob
         const blob = await fetch(dataUrl).then((res) => res.blob());
-        const file = new File([blob], "user-profile-image.png", {
-          type: "image/png",
-        });
+
+        // Crear el nombre del archivo dinámicamente
+        const fileName = `${e?.target?.uploadImages?.files[0]?.name}`;
+
+        // Crear el archivo
+        const file = new File([blob], fileName, { type: mimeType });
 
         const formData = new FormData();
         formData.append("file", file);
+        console.log(formData.get("file"));
 
         changeImageProfileMutation?.mutate(formData, {
           onSuccess: () => {

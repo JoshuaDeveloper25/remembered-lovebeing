@@ -16,7 +16,7 @@ const ImagesHandleCrop = ({
   setCrop,
   crop,
   circle,
-  onCancel
+  onCancel,
 }) => {
   const [imgSrc, setImgSrc] = useState();
   const [error, setError] = useState("");
@@ -91,39 +91,42 @@ const ImagesHandleCrop = ({
 
   return (
     <div className="p-4 md:p-5">
-        <div className={`${imgRef.current && 'hidden'}`}>
-          <div className="mb-6">
-            <h3 className="font-semibold">Upload a file <span className="text-red-400 text-sm">(jpg, jpeg, png)*</span></h3>
-            <p className="text-muted-color">Attach the file below</p>
-          </div>
-
-          <label
-            className={`relative block mb-3 cursor-pointer text-center border-2 border-dashed rounded-sm py-10 px-1 ${
-              dragging
-                ? "border-primary-color-light"
-                : "hover:border-primary-color-light"
-            } ${dragging ? "animation-fade" : ""}`}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-          >
-            <span className="sr-only">Choose photo</span>
-            <LuFileInput className="text-primary-color-light size-9 mx-auto" />
-            <h3 className="font-semibold mt-2">Drag file(s) here to upload</h3>
-            <p className="text-muted-color my-1">
-              Alternatively, you can select a file by
-            </p>
-            <p className="font-bold text-primary-color-light">clicking here</p>
-
-            <input
-              type="file"
-              name="uploadImages"
-              accept="image/png, image/jpeg, image/jpg"
-              onChange={onSelectFile}
-              className="sr-only block w-full text-sm text-tertiary-color file:py-1 file:px-2 file:rounded-full file:border-0 file:text-xs file:bg-black file:text-white hover:file:text-tertiary-color hover:file:bg-black/90"
-            />
-          </label>
+      <div className={`${imgRef.current && "hidden"}`}>
+        <div className="mb-6">
+          <h3 className="font-semibold">
+            Upload a file{" "}
+            <span className="text-red-400 text-sm">(jpg, jpeg, png)*</span>
+          </h3>
+          <p className="text-muted-color">Attach the file below</p>
         </div>
+
+        <label
+          className={`relative block mb-3 cursor-pointer text-center border-2 border-dashed rounded-sm py-10 px-1 ${
+            dragging
+              ? "border-primary-color-light"
+              : "hover:border-primary-color-light"
+          } ${dragging ? "animation-fade" : ""}`}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+        >
+          <span className="sr-only">Choose photo</span>
+          <LuFileInput className="text-primary-color-light size-9 mx-auto" />
+          <h3 className="font-semibold mt-2">Drag file(s) here to upload</h3>
+          <p className="text-muted-color my-1">
+            Alternatively, you can select a file by
+          </p>
+          <p className="font-bold text-primary-color-light">clicking here</p>
+
+          <input
+            type="file"
+            name="uploadImages"
+            accept="image/png, image/jpeg, image/jpg"
+            onChange={onSelectFile}
+            className="sr-only block w-full text-sm text-tertiary-color file:py-1 file:px-2 file:rounded-full file:border-0 file:text-xs file:bg-black file:text-white hover:file:text-tertiary-color hover:file:bg-black/90"
+          />
+        </label>
+      </div>
 
       {error && <p className="text-red-400 text-xs">{error}</p>}
 
@@ -152,7 +155,11 @@ const ImagesHandleCrop = ({
       )}
 
       <div className="flex justify-end items-center gap-3 mt-4">
-        <button className="btn border border-red-500 hover:bg-red-500 text-red-500 hover:text-white w-auto" type="button" onClick={onCancel}>
+        <button
+          className="btn border border-red-500 hover:bg-red-500 text-red-500 hover:text-white w-auto"
+          type="button"
+          onClick={onCancel}
+        >
           Cancel
         </button>
         <button

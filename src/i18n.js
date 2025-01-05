@@ -391,12 +391,18 @@ const resources = {
       "Sign out": "Sign out",
       "Create memorial": "Create memorial",
       GenerateQRCode: "Generate QR Code",
-      "Honor and preserve the memories of your loved ones who have passed away": "Honor and preserve the memories of your loved ones who have passed away",
+      "Honor and preserve the memories of your loved ones who have passed away":
+        "Honor and preserve the memories of your loved ones who have passed away",
+      "Your invoice has been sent by email. If you can't find it in your inbox, please check your spam.":
+        "Your invoice has been sent by email. If you can't find it in your inbox, please check your spam.",
     },
   },
   es: {
     translation: {
-      "Honor and preserve the memories of your loved ones who have passed away": "Honra y preserva los recuerdos de tus seres queridos que han partido",
+      "Your invoice has been sent by email. If you can't find it in your inbox, please check your spam.":
+        "Tu factura ha sido enviada por email. Si no la encuentras revisa la carpeta de spam.",
+      "Honor and preserve the memories of your loved ones who have passed away":
+        "Honra y preserva los recuerdos de tus seres queridos que han partido",
       "Create memorial": "Crear memorial",
       "Sign out": "Cerrar sesión",
       "Our commitment is to combine technology and innovation to deliver an intuitive and meaningful experience. Eternal Memories is more than just an app; it is a tribute to human legacy, created from the heart by people who understand the importance of keeping memories alive.":

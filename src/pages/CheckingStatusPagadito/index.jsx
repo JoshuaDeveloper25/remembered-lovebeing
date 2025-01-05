@@ -225,10 +225,20 @@ const CheckingStatusPagadito = () => {
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <div className="sm:max-w-md max-w-full text-center bg-white rounded-xl shadow-lg hover:shadow-2xl animation-fade p-10">
                   <div className="flex flex-col items-center justify-center h-full">
-                    <h2 className="font-mono max-w-md tracking-wider text-3xl text-primary-color uppercase font-semibold">
+                    <h2 className="font-mono max-w-md tracking-wider text-2xl text-primary-color uppercase font-semibold">
                       {transactionStatus}
                     </h2>
+
                     <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
+
+                    {getStatusPagaditoPayment?.data?.data?.data?.status ===
+                      "COMPLETED" && (
+                      <p className="max-w-md text-[14px] font-semibold">
+                        {t(
+                          "Your invoice has been sent by email. If you can't find it in your inbox, please check your spam."
+                        )}
+                      </p>
+                    )}
 
                     <div className="mt-8">
                       <Link

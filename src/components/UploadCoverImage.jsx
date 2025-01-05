@@ -46,7 +46,7 @@ const UploadCoverImage = ({ idRemembered }) => {
     e.preventDefault();
 
     if (!imgRef.current) {
-      return toast.error('Upload an image before uploading!');
+      return toast.error("Upload an image before uploading!");
     }
 
     setCanvasPreview(
@@ -55,14 +55,27 @@ const UploadCoverImage = ({ idRemembered }) => {
       convertToPixelCrop(crop, imgRef?.current?.width, imgRef?.current?.height)
     );
 
-    const dataUrl = previewCanvasRef.current.toDataURL();
-    updateAvatar(dataUrl);
+    // Obtener el src del imgRef
+    const imgSrc = imgRef.current.src;
 
+    // Extraer el tipo MIME del Data URL
+    const mimeType = imgSrc.match(/data:(.*?);base64/)?.[1] || "image/png"; // Por defecto PNG
+
+    // Convertir el canvas a DataURL con el tipo MIME
+    const dataUrl = previewCanvasRef.current.toDataURL(mimeType);
+
+    // Convertir el DataURL a Blob
     const blob = await fetch(dataUrl).then((res) => res.blob());
-    const file = new File([blob], "cover-image.png", { type: "image/png" });
+
+    // Crear el nombre del archivo dinámicamente
+    const fileName = `${e?.target?.uploadImages?.files[0]?.name}`;
+
+    // Crear el archivo
+    const file = new File([blob], fileName, { type: mimeType });
 
     const formData = new FormData();
     formData.append("file", file);
+    console.log(formData.get("file"));
     changeImageCoverMutation?.mutate(formData);
   };
 

@@ -8,6 +8,8 @@ import grave from "../../../assets/grave.jpeg";
 import caballete from "../../../assets/caballete.png";
 import urna from "../../../assets/urna.png";
 import bookmark from "../../../assets/bookmark.png";
+import urnaResponsive from "../../../assets/urna-responsive.png";
+import graveResponsive from "../../../assets/grave-responsive.png";
 
 // import required modules
 import { FaCircleChevronLeft, FaCircleChevronRight } from "react-icons/fa6";
@@ -76,8 +78,14 @@ const StepsCarousel = () => {
             >
               <SwiperSlide>
                 <img
-                  className="w-full h-[23rem] rounded-md sm:object-contain object-cover"
+                  className="sm:block hidden w-full h-[23rem] rounded-md sm:object-contain object-cover"
                   src={grave}
+                  decoding="async"
+                />
+
+                <img
+                  className="sm:hidden block w-full h-[23rem] rounded-md sm:object-contain object-cover"
+                  src={graveResponsive}
                   decoding="async"
                 />
               </SwiperSlide>
@@ -92,8 +100,14 @@ const StepsCarousel = () => {
 
               <SwiperSlide>
                 <img
-                  className="w-full h-[23rem] rounded-md sm:object-contain object-cover"
+                  className="sm:block hidden w-full h-[23rem] rounded-md sm:object-contain object-cover"
                   src={urna}
+                  decoding="async"
+                />
+
+                <img
+                  className="sm:hidden block w-full h-[23rem] rounded-md sm:object-contain object-cover"
+                  src={urnaResponsive}
                   decoding="async"
                 />
               </SwiperSlide>

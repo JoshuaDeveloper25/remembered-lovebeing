@@ -246,23 +246,6 @@ const ResponsiveMoreInfoRememberedAdmin = ({
                         onClose();
                       }}
                     >
-                      <Modal
-                        titleModal={"New Profile (Premium)"}
-                        handleSubmit={handleSubmit}
-                        setOpenModal={setOpenPremiumModal}
-                        openModal={openPremiumModal}
-                        modalForm={true}
-                        editableWidth={"max-w-xl"}
-                      >
-                        <FormCreateProfile
-                          statusPlan={statusPlan}
-                          slug={slug}
-                          setSlug={setSlug}
-                          isPending={isPending}
-                          setOpenPremiumModal={setOpenPremiumModal}
-                        />
-                      </Modal>
-
                       <svg
                         className="fill-[#fab818] h-6 premium-filled-icon--nW2Vi header-svg-icon"
                         xmlns="http://www.w3.org/2000/svg"
@@ -295,29 +278,9 @@ const ResponsiveMoreInfoRememberedAdmin = ({
                     <li
                       className={`text-start py-2.5 rounded-lg hover:bg-secondary-color flex gap-3 items-start px-2 font-bold animation-fade text-white text-sm cursor-pointer`}
                       onClick={() => {
-                        setOpenPremiumModal(true);
-                        setStatusPlan(true);
-                        onClose();
                         navigate(`/prices/`);
                       }}
                     >
-                      <Modal
-                        titleModal={"New Profile (Premium)"}
-                        handleSubmit={handleSubmit}
-                        setOpenModal={setOpenPremiumModal}
-                        openModal={openPremiumModal}
-                        modalForm={true}
-                        editableWidth={"max-w-xl"}
-                      >
-                        <FormCreateProfile
-                          slug={slug}
-                          setSlug={setSlug}
-                          isPending={isPending}
-                          statusPlan={statusPlan}
-                          setOpenPremiumModal={setOpenPremiumModal}
-                        />
-                      </Modal>
-
                       <svg
                         className="fill-[#fab818] h-4 premium-filled-icon--nW2Vi header-svg-icon"
                         xmlns="http://www.w3.org/2000/svg"

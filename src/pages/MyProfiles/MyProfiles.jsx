@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import ModalCreateFreeProfileResponsive from "./components/ModalCreateFreeProfileResponsive";
+import ModalCreatePremiumProfileResponsive from "./components/ModalCreatePremiumProfileResponsive";
 
 const MyProfiles = () => {
   const { userInfo } = useContext(AppContext);
@@ -132,7 +133,7 @@ const MyProfiles = () => {
 
             <div>
               <ResponsiveMoreInfoRememberedAdmin
-              statusPlan={statusPlan}
+                statusPlan={statusPlan}
                 premiumProfilesRemaining={
                   data?.data?.remaining_premium_profiles
                 }
@@ -238,13 +239,20 @@ const MyProfiles = () => {
                 </div>
               </button>
 
-              <Modal
+              <ModalCreatePremiumProfileResponsive
                 titleModal={"New Profile (Premium)"}
                 handleSubmit={handleSubmit}
                 setOpenModal={setOpenPremiumModal}
                 openModal={openPremiumModal}
                 modalForm={true}
-                editableWidth={"max-w-xl"}
+                editableWidth={
+                  "sm:max-w-[700px] max-w-full sm:px-8 px-0 h-full"
+                }
+                crudModalClassName={"sm:px-4 px-0 "}
+                formContainerClassName={
+                  "sm:max-h-[34rem] max-h[34rem] overflow-y-auto"
+                }
+                modalContentClassNames={"sm:relative static"}
               >
                 <FormCreateProfile
                   statusPlan={statusPlan}
@@ -253,7 +261,7 @@ const MyProfiles = () => {
                   isPending={createProfileMutation?.isPending}
                   setOpenPremiumModal={setOpenPremiumModal}
                 />
-              </Modal>
+              </ModalCreatePremiumProfileResponsive>
             </>
           )}
         </article>

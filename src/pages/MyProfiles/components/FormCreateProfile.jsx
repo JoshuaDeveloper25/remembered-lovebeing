@@ -167,7 +167,7 @@ const FormCreateProfile = ({
           </div>
         </div>
 
-        {statusPlan && (
+        {/* {statusPlan && (
           <div className="bg-red-100 px-5 md:px-4 py-1.5 font-mono">
             <h2>
               <span className="text-primary-color-light font-bold">Note:</span>{" "}
@@ -180,7 +180,7 @@ const FormCreateProfile = ({
               </span>
             </h2>
           </div>
-        )}
+        )} */}
 
         <div className="bg-green-700 text-white p-4 md:p-5 mb-7">
           <h3 className="w-full inline-block text-xl text-start font-semibold mb-2.5">

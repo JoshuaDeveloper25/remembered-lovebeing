@@ -252,7 +252,9 @@ body {
 .carousel-steps-swiper-button-prev.swiper-button-disabled,
 .carousel-steps-swiper-button-next.swiper-button-disabled,
 .modernDesigns-swiper-button-prev.swiper-button-disabled,
-.modernDesigns-swiper-button-next.swiper-button-disabled {
+.modernDesigns-swiper-button-next.swiper-button-disabled,
+.modernDesignsResponsive-swiper-button-prev.swiper-button-disabled
+ {
   opacity: 0.35;
   cursor: auto;
   pointer-events: none;

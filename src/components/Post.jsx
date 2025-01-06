@@ -22,6 +22,7 @@ import Swal from "sweetalert2";
 import { IoMdHeart } from "react-icons/io";
 import { Button } from "@nextui-org/react";
 import { IoSend } from "react-icons/io5";
+import { BiSolidQuoteRight } from "react-icons/bi";
 
 export const HeartIcon = ({
   fill = "currentColor",
@@ -384,7 +385,7 @@ const Post = ({ isOwner, post, rememberName }) => {
           </article>
 
           <article className={`flex-1`}>
-            <div className="flex flex-col justify-between h-full">
+            <div className="flex flex-col md:justify-between justify-start  h-full">
               {/* Input to leave a comment - LG TO TOP */}
               <div className="md:hidden block">
                 {userInfo?.access_token ? (
@@ -723,11 +724,9 @@ const SingleComment = ({ post, comment, userInfo }) => {
     setToggleComment(false);
 
     Swal.fire({
-      customClass: {
-        popup: "swal-custom-z-index",
-      },
       title: "Are you sure?",
-      text: "Do you really want to delete this comment?",
+      text: "Do you really want to delete this comment? This action cannot be undone.",
+      // icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -738,14 +737,14 @@ const SingleComment = ({ post, comment, userInfo }) => {
           onSuccess: () => {
             // Swal.fire({
             //   title: "Deleted!",
-            //   text: "Your comment has been deleted.",
+            //   text: "The comment has been successfully deleted.",
             //   icon: "success",
             // });
           },
           onError: () => {
             Swal.fire({
               title: "Error!",
-              text: "There was an issue deleting your comment.",
+              text: "There was an issue deleting the comment.",
               icon: "error",
             });
           },
@@ -768,7 +767,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
         />
         <div>
           <h2 className="font-bold text-sm">{comment?.owner?.name}</h2>
-          <h2 className="text-xs">
+          <h2 className="text-xs text-green-500 font-semibold">
             {comment?.owner?.id === post?.owner?.id ? "Admin" : null}
           </h2>
         </div>
@@ -794,60 +793,62 @@ const SingleComment = ({ post, comment, userInfo }) => {
             </button>
           </form>
         ) : (
-          <p className="text-xs font-thin text-black">{comment?.content}</p>
+          <p className="text-xs font-thin text-black break-all ">
+            {comment?.content}
+          </p>
         )}
 
-        <FaQuoteLeft className="absolute top-3 right-5 size-5 text-primary-color/70" />
+        <BiSolidQuoteRight className="absolute right-4 bottom-4 size-5 text-primary-color/70" />
+
+        <div
+          className={`absolute top-5 right-4 size-5  ${
+            comment?.owner?.email === userInfo?.email
+              ? "bg-primary-color h-7 w-7 flex items-center justify-center rounded-full cursor-pointer"
+              : ""
+          }`}
+          onClick={() => setToggleComment(!toggleComment)}
+        >
+          <div className="relative">
+            {comment?.owner?.email === userInfo?.email ? (
+              <>
+                {/* Three Vertical Dots */}
+                <div className="text-white cursor-pointer transition-opacity">
+                  <BsThreeDots size={18} />
+                </div>
+
+                {/* Comment Edit and Delete Options */}
+                {toggleComment && (
+                  <>
+                    <ul className="absolute top-34 right-5 shadow-lg bg-white w-max rounded max-h-96 z-[9999999]">
+                      <NavbarDropdownLink
+                        hoverBgLink={
+                          "hover:bg-secondary-color hover:text-white text-xs"
+                        }
+                        onClick={() => {
+                          setIsEditing(!isEditing);
+                          setToggleComment(!toggleComment);
+                        }}
+                        linkText={"Edit"}
+                      />
+
+                      <NavbarDropdownLink
+                        hoverBgLink={
+                          "hover:bg-red-500 hover:text-white text-xs"
+                        }
+                        onClick={handleDeleteComment}
+                        linkText={"Delete"}
+                      />
+                    </ul>
+                  </>
+                )}
+              </>
+            ) : null}
+          </div>
+        </div>
       </div>
 
       <div className="flex justify-between items-center mt-2">
         <h2 className="text-xs">{formatDate(comment?.created_at)}</h2>
-
-        <div className="relative">
-          {comment?.owner?.email === userInfo?.email ? (
-            <>
-              {/* Three Vertical Dots */}
-              <div className="text-primary-color cursor-pointer  transition-opacity">
-                <BsThreeDots
-                  onClick={() => setToggleComment(!toggleComment)}
-                  size={18}
-                />
-              </div>
-
-              {/* Comment Edit and Delete Options */}
-              {toggleComment && (
-                <>
-                  {createPortal(
-                    <div
-                      onClick={() => setToggleComment(!toggleComment)}
-                      className="h-[100vh] fixed top-0 w-full"
-                    ></div>,
-                    document.body
-                  )}
-
-                  <ul className="absolute top-34 right-5 shadow-lg bg-white w-max rounded max-h-96 z-50">
-                    <NavbarDropdownLink
-                      hoverBgLink={
-                        "hover:bg-secondary-color hover:text-white text-xs"
-                      }
-                      onClick={() => {
-                        setIsEditing(!isEditing);
-                        setToggleComment(false);
-                      }}
-                      linkText={"Edit"}
-                    />
-
-                    <NavbarDropdownLink
-                      hoverBgLink={"hover:bg-red-500 text-xs hover:text-white"}
-                      onClick={handleDeleteComment}
-                      linkText={"Delete"}
-                    />
-                  </ul>
-                </>
-              )}
-            </>
-          ) : null}
-        </div>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import AppContext from "../../../context/AppProvider";
 import formatDate from "../../../utils/formatDate";
 import { Modal, Tooltip } from "flowbite-react";
 import { FaRegMessage } from "react-icons/fa6";
+import { Button } from "@nextui-org/react";
 import { BsThreeDots, BsHearts } from "react-icons/bs";
 import { BiSolidQuoteRight } from "react-icons/bi";
 import { useContext, useState } from "react";
@@ -17,6 +18,34 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import axios from "axios";
+
+export const HeartIcon = ({
+  fill = "currentColor",
+  filled,
+  size,
+  height,
+  width,
+  ...props
+}) => {
+  return (
+    <svg
+      fill={filled ? fill : "none"}
+      height={size || height || 24}
+      viewBox="0 0 24 24"
+      width={size || width || 24}
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M12.62 20.81c-.34.12-.9.12-1.24 0C8.48 19.82 2 15.69 2 8.69 2 5.6 4.49 3.1 7.56 3.1c1.82 0 3.43.88 4.44 2.24a5.53 5.53 0 0 1 4.44-2.24C19.51 3.1 22 5.6 22 8.69c0 7-6.48 11.13-9.38 12.12Z"
+        stroke={fill}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={1.5}
+      />
+    </svg>
+  );
+};
 
 const PublicPost = ({ post, ownerName }) => {
   const postLikesMapeados = post?.post_likes?.map((item) => item?.owner?.name);
@@ -74,7 +103,7 @@ const PublicPost = ({ post, ownerName }) => {
         commentInfo
       ),
     onSuccess: (res) => {
-      toast.success("Comment liked successfully!");
+      toast.success("Heart given successfully!");
       queryClient.invalidateQueries(["posts"]);
     },
     onError: (err) => {
@@ -169,7 +198,7 @@ const PublicPost = ({ post, ownerName }) => {
           </div>
 
           {/* Actions of a post */}
-          <div className="flex items-center gap-8 border-t pt-3 mt-3">
+          <div className="flex items-center sm:justify-start justify-between gap-8 border-t pt-3 mt-3">
             {userInfo?.access_token ? (
               <button
                 className={`flex items-center gap-2.5 text-gray-500 hover:text-red-500 ${
@@ -179,17 +208,47 @@ const PublicPost = ({ post, ownerName }) => {
                 disabled={alreadyLikedPost}
                 type="button"
               >
-                <IoMdHeart size={22} className="text-red-500 animation-fade" />
-                {alreadyLikedPost ? "Already left a heart" : "Leave a heart"}
+                {alreadyLikedPost ? (
+                  <IoMdHeart
+                    size={22}
+                    className="text-red-500 animation-fade"
+                  />
+                ) : (
+                  <div className="animation-fade flex items-center gap-3 group transition-all duration-250">
+                    <Button
+                      onPress={handleToggleLikePost}
+                      isIconOnly
+                      aria-label="Like"
+                      color="danger"
+                      className="sm:w-9 w-8 sm:h-9 h-8 sm:rounded-lg rounded-md group-hover:bg-opacity-60"
+                    >
+                      <HeartIcon />
+                    </Button>
+
+                    <p className="sm:block hidden group-hover:text-red-500">
+                      Leave a heart
+                    </p>
+                  </div>
+                )}
+
+                {alreadyLikedPost && "You left a heart"}
               </button>
             ) : (
               <Link
                 className={`flex items-center gap-2.5 text-gray-500 hover:text-red-500`}
-                to={'/sign-in?redirect=/posts'}
-                type="button"
+                to={"/sign-in?redirect=/posts"}
               >
-                <IoMdHeart size={22} className="text-red-500 animation-fade" />
-                Leave a heart
+                <Button
+                  onPress={(e) => e.preventDefault()}
+                  type="button"
+                  isIconOnly
+                  aria-label="Like"
+                  color="danger"
+                  className="sm:w-9 w-8 sm:h-9 h-8 sm:rounded-lg rounded-md group-hover:bg-opacity-60"
+                >
+                  <HeartIcon />
+                </Button>
+                <span className="sm:block hidden">Leave a heart</span>
               </Link>
             )}
 

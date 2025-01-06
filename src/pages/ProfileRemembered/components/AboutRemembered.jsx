@@ -189,22 +189,32 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
       <div className="flex flex-col md:flex-row gap-6">
         {/* Life Journey */}
         <article className="flex-[55%]">
-          <fieldset className="relative border-2 border-black pt-4 pb-8 px-3 rounded-md bg-white">
+          <fieldset className="relative border-2 border-black pt-2 pb-8 px-3 rounded-md bg-white">
             <legend className="text-xl font-bold ps-1 pe-2">
               Life Journey:
             </legend>
 
             {owner && (
-              <div className="absolute right-5 bottom-3">
-                <TfiPencilAlt
+              // <div className="absolute right-5 bottom-3">
+              //   <TfiPencilAlt
+              //     onClick={() => setOpenLifeJourneyModal(!openLifeJourneyModal)}
+              //     className="text-secondary-color cursor-pointer hover:scale-105 animation-fade"
+              //     size={28}
+              //   />
+              // </div>
+
+              <div className="absolute left-2.5 bottom-1">
+                <button
+                  className="px-3.5 py-1 transparent bg-primary-color text-white text-base rounded-md mt-3 hover:bg-primary-color hover:text-white animation-fade"
                   onClick={() => setOpenLifeJourneyModal(!openLifeJourneyModal)}
-                  className="text-secondary-color cursor-pointer hover:scale-105 animation-fade"
-                  size={28}
-                />
+                >
+                  <TfiPencilAlt className="inline align-sub size-5" /> Edit
+                  Profile
+                </button>
               </div>
             )}
 
-            <div className="mb-3">
+            <div className="mb-2">
               <h3 className="font-bold">Where and when born:</h3>
               <p>
                 {!rememberedProfileInfo?.birth_date ? (
@@ -364,7 +374,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
         ) : null} */}
       </div>
 
-      {/* My lovebeing quotes */}
+      {/* My lovebeing quotes 
       <article className=" mx-0 mt-6">
         <fieldset className="relative border-2 border-black p-3 rounded-md bg-white">
           <legend className="text-xl font-bold ps-1 pe-2">
@@ -387,7 +397,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
                 {/* <p className="text-sm text-gray-700/95">
                   The vastness of human folly seems boundless, often surpassing
                   even the immense, possibly limitless, universe.
-                </p> */}
+                </p> 
               </div>
             </li>
             {/* 
@@ -398,7 +408,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
                 </h3>
                 <p></p>
               </div>
-            </li> */}
+            </li> 
 
             <li>
               <div className="mb-3">
@@ -416,6 +426,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
           </ul>
         </fieldset>
       </article>
+      */}
 
       <ReactQuillAbout rememberedProfile={rememberedProfile} owner={owner} />
     </section>

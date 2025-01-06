@@ -26,6 +26,7 @@ import Modal from "../../components/Modal";
 import Post from "../../components/Post";
 import { toast } from "react-toastify";
 import axios from "axios";
+import TabsResponsive from "./components/TabsResponsive";
 
 const ProfileRemembered = () => {
   const currentYear = new Date().getFullYear();
@@ -199,11 +200,11 @@ const ProfileRemembered = () => {
           {/* User Image */}
           {/* Responsive - from 768px to bottom */}
           <div className="min-[870px]:hidden mb-5 sticky h-[56px] top-0 z-[49] bg-white border shadow-lg">
-            <div className="flex justify-between gap-4 items-center px-5 py-2 sticky z-20">
+            <div className="flex justify-between gap-4 items-center sm:px-5 px-2 py-2 sticky z-20">
               <div className="flex gap-2 items-center">
                 <div>
                   <img
-                    className="w-[40px] h-[40px] object-cover mx-auto rounded-full shadow-lg"
+                    className="sm:w-[40px] w-[35px] sm:h-[40px] h-[35px] object-cover mx-auto rounded-full shadow-lg"
                     loading="lazy"
                     decoding="async"
                     src={
@@ -212,6 +213,7 @@ const ProfileRemembered = () => {
                         : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
                     }
                   />
+
                   {!data?.data?.is_owner ? null : (
                     <div className="min-[870px]:block hidden absolute bottom-0 left-16 z-[100] cursor-pointer">
                       <UploadProfileImage
@@ -222,11 +224,11 @@ const ProfileRemembered = () => {
                 </div>
 
                 <div>
-                  <h2 className="font-semibold text-sm text-muted-color">
+                  <h2 className="font-bold capitalize leading-3 text-base ">
                     {data?.data?.remembered_profile?.epitaph ||
                       "In loving memory of"}
                   </h2>
-                  <h3 className="font-bold capitalize text-lg leading-3">
+                  <h3 className="text-gray-600 font-semibold text-sm ">
                     {data?.data?.remembered_profile?.first_name}{" "}
                     {data?.data?.remembered_profile?.last_name}
                   </h3>
@@ -516,6 +518,10 @@ const ProfileRemembered = () => {
                   />
                 )}
               </ul>
+
+              <div className="min-[870px]:hidden block">
+                <TabsResponsive />
+              </div>
 
               <div className="flex flex-col min-w-0 break-words w-full">
                 <div className="flex-auto">

@@ -203,7 +203,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
               //   />
               // </div>
 
-              <div className="absolute left-2.5 bottom-1">
+              <div className="absolute min-[870px]:left-auto left-2.5 min-[870px]:right-2.5 right-0 bottom-1">
                 <button
                   className="px-3.5 py-1 transparent bg-primary-color text-white text-base rounded-md mt-3 hover:bg-primary-color hover:text-white animation-fade"
                   onClick={() => setOpenLifeJourneyModal(!openLifeJourneyModal)}

@@ -5,6 +5,7 @@ import Profiles from "./Profiles";
 import TabLink from "./TabLink";
 
 const IndividualUserProfileTab = ({
+  handleCreateFreeProfile,
   premiumProfilesRemaining,
   handleSubmit,
   slug,
@@ -65,6 +66,7 @@ const IndividualUserProfileTab = ({
                 openPremiumModal={openPremiumModal}
                 premiumProfilesRemaining={premiumProfilesRemaining}
                 isPendingFavouritesProfiles={isPendingFavouritesProfiles}
+                handleCreateFreeProfile={handleCreateFreeProfile}
               />
             </TabLinkContent>
 

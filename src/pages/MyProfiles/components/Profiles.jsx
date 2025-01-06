@@ -1,9 +1,13 @@
 import FormCreateProfile from "./FormCreateProfile";
 import { useTranslation } from "react-i18next";
 import Modal from "../../../components/Modal";
+import { IoCartOutline } from "react-icons/io5";
 import Profile from "./Profile";
+import { GoPlus } from "react-icons/go";
+import { Link } from "react-router-dom";
 
 const Profiles = ({
+  handleCreateFreeProfile,
   isPendingFavouritesProfiles,
   premiumProfilesRemaining,
   handleSubmit,
@@ -25,14 +29,38 @@ const Profiles = ({
 
   return (
     <>
-      {/* <div className="flex items-center gap-2 justify-center">
-        <button className="btn btn-blue w-fit  text-base mb-3" type="button">
-          Crear Perfil Gratis
-        </button>
-        <button className="btn btn-blue w-fit  text-base mb-3" type="button">
-          See Plans
-        </button>
-      </div> */}
+      <div className="md:hidden flex items-center gap-2 justify-center mb-5">
+        {premiumProfilesRemaining ? (
+          <>
+            <div className="inline-block me-auto">
+              <button
+                onClick={handleCreatePremiumProfile}
+                className="btn px-3 text-primary-color border-primary-color hover:text-white hover:bg-primary-color"
+              >
+                <GoPlus className="size-5 inline" /> Create Pro Profile
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="inline-block">
+              <Link className="btn btn-blue border-2 block" to={"/prices"}>
+                <IoCartOutline className="size-5 inline" /> See Plans
+              </Link>
+            </div>
+
+            <div className="inline-block">
+              <button
+                onClick={handleCreateFreeProfile}
+                className="btn px-3 text-primary-color border-primary-color hover:text-white hover:bg-primary-color"
+              >
+                <GoPlus className="size-5 inline" /> Create Free Profile
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+
       <div className="bg-white shadow-lg px-2 py-2 border-2 rounded-md">
         {profiles?.length !== 0 ? (
           <div>

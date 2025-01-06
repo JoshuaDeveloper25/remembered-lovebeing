@@ -273,6 +273,7 @@ const MyProfiles = () => {
           {/* Profiles from user and Tab */}
           <div className="col-span-3">
             <IndividualUserProfileTab
+              handleCreateFreeProfile={handleCreateFreeProfile}
               premiumProfilesRemaining={data?.data?.remaining_premium_profiles}
               favouritesProfiles={data?.data?.favorites}
               profiles={data?.data?.remembered}

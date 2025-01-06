@@ -159,7 +159,7 @@ const PublicPost = ({ post, ownerName }) => {
             <Tooltip
               content={
                 <>
-                  <p>{postLikesWithItsNames}</p>
+                  {postLikesWithItsNames}
 
                   <button onClick={() => setOpenModal(true)}>
                     See more...

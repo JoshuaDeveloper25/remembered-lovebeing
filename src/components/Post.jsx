@@ -5,24 +5,29 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import CarouselCommentPosts from "./CarouselCommentPosts";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import NavbarDropdownLink from "./NavbarDropdownLink";
-import { HiDotsVertical } from "react-icons/hi";
-import AppContext from "../context/AppProvider";
-import { FaRegMessage } from "react-icons/fa6";
-import formatDate from "../utils/formatDate";
-import { FaQuoteLeft } from "react-icons/fa";
-import { useContext, useState } from "react";
-import { BsHearts, BsThreeDots } from "react-icons/bs";
-import { createPortal } from "react-dom";
-import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
-import { Tooltip } from "flowbite-react";
 import Modal from "./Modal";
-import axios from "axios";
+import AppContext from "../context/AppProvider";
+import formatDate from "../utils/formatDate";
+import { useContext, useState } from "react";
+import { createPortal } from "react-dom";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import { IoMdHeart } from "react-icons/io";
+import axios from "axios";
+
+// Nextui imports
 import { Button } from "@nextui-org/react";
-import { IoSend } from "react-icons/io5";
+
+// Flowbite imports
+import { Modal as ModalFlowbite, Tooltip } from "flowbite-react";
+
+// Icons
+import { BsHearts, BsThreeDots } from "react-icons/bs";
 import { BiSolidQuoteRight } from "react-icons/bi";
+import { HiDotsVertical } from "react-icons/hi";
+import { FaRegMessage } from "react-icons/fa6";
+import { IoMdHeart } from "react-icons/io";
+import { IoSend } from "react-icons/io5";
 
 export const HeartIcon = ({
   fill = "currentColor",
@@ -266,27 +271,27 @@ const Post = ({ isOwner, post, rememberName }) => {
             <Tooltip
               content={
                 <>
-                  <p>{postLikesWithItsNames}</p>
+                  {postLikesWithItsNames}
 
                   <button onClick={() => setOpenModal(true)}>
                     See more...
                   </button>
 
-                  <Modal
+                  <ModalFlowbite
                     dismissible
                     show={openModal}
                     onClose={() => setOpenModal(false)}
                   >
-                    <Modal.Header>
-                      <h3>Users that liked this post...</h3>
-                    </Modal.Header>
+                    <ModalFlowbite.Header>
+                      Users that liked this post...
+                    </ModalFlowbite.Header>
 
-                    <Modal.Body>
+                    <ModalFlowbite.Body>
                       <div className="space-y-2 overflow-y-auto max-h-72">
                         {postLikesWithItsNames}
                       </div>
-                    </Modal.Body>
-                  </Modal>
+                    </ModalFlowbite.Body>
+                  </ModalFlowbite>
                 </>
               }
             >
@@ -431,7 +436,7 @@ const Post = ({ isOwner, post, rememberName }) => {
                           type="submit"
                           className="bg-secondary-color p-1 rounded-full absolute  right-5 text-md text-white animation-fade z-10 h-8 w-8 flex items-center justify-center"
                         >
-                          <IoSend />
+                          <IoSend size={16} />
                         </button>
                       )}
                     </div>

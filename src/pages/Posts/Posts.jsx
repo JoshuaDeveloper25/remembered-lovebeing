@@ -18,7 +18,7 @@ const Posts = () => {
   });
 
   return (
-    <main className="relative">
+    <main className="relative z-[1]">
       {/* <div className="fixed top-18 right-8">
         <img className="w-[20rem] rotate-[20deg]" src={cloud} alt="cloud" />
       </div>

@@ -11,17 +11,56 @@ import { FaRegMessage } from "react-icons/fa6";
 import formatDate from "../utils/formatDate";
 import { FaQuoteLeft } from "react-icons/fa";
 import { useContext, useState } from "react";
-import { BsThreeDots } from "react-icons/bs";
+import { BsHearts, BsThreeDots } from "react-icons/bs";
 import { createPortal } from "react-dom";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { Tooltip } from "flowbite-react";
 import Modal from "./Modal";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { IoMdHeart } from "react-icons/io";
+import { Button } from "@nextui-org/react";
+import { IoSend } from "react-icons/io5";
+
+export const HeartIcon = ({
+  fill = "currentColor",
+  filled,
+  size,
+  height,
+  width,
+  ...props
+}) => {
+  return (
+    <svg
+      fill={filled ? fill : "none"}
+      height={size || height || 24}
+      viewBox="0 0 24 24"
+      width={size || width || 24}
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        d="M12.62 20.81c-.34.12-.9.12-1.24 0C8.48 19.82 2 15.69 2 8.69 2 5.6 4.49 3.1 7.56 3.1c1.82 0 3.43.88 4.44 2.24a5.53 5.53 0 0 1 4.44-2.24C19.51 3.1 22 5.6 22 8.69c0 7-6.48 11.13-9.38 12.12Z"
+        stroke={fill}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={1.5}
+      />
+    </svg>
+  );
+};
 
 const Post = ({ isOwner, post, rememberName }) => {
-  console.log(post, 'este es el post de aqui')
   const { userInfo } = useContext(AppContext);
+  const postLikesMapeados = post?.post_likes?.map((item) => item?.owner?.name);
+  const postLikesWithItsNames = postLikesMapeados?.map((item, index) => (
+    <p key={index}>{item}</p>
+  ));
+  const alreadyLikedPost = post?.post_likes?.find(
+    (item) => item?.owner?.email === userInfo?.email
+  );
+  const [openModal, setOpenModal] = useState(false);
   const [openModalEditPost, setOpenModalEditPost] = useState(false);
   const [modalPostComments, setModalPostComments] = useState(false);
   const [openPostDropDown, setOpenPostDropDown] = useState(false);
@@ -104,6 +143,27 @@ const Post = ({ isOwner, post, rememberName }) => {
         });
       }
     });
+  };
+
+  // --> Like a POST
+  const likePostMutation = useMutation({
+    mutationFn: async (commentInfo) =>
+      await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/posts/likes/${post?.id}`,
+        commentInfo
+      ),
+    onSuccess: (res) => {
+      toast.success("Heart given successfully!");
+      queryClient.invalidateQueries(["posts"]);
+    },
+    onError: (err) => {
+      console.log(err);
+      // toast.error(getFastApiErrors(err));
+    },
+  });
+
+  const handleToggleLikePost = () => {
+    likePostMutation?.mutate();
   };
 
   return (
@@ -194,24 +254,119 @@ const Post = ({ isOwner, post, rememberName }) => {
 
         {/* Images Gallery Mansory */}
         <PublishedPostsImages
-          rememberName={rememberName}
-          galleryImages={post?.gallery_images}
           setToggleModal={setModalPostComments}
+          galleryImages={post?.gallery_images}
         />
 
         {/* Footer of the post */}
-        <div className="flex flex-col sm:flex-row gap-2 justify-between sm:items-center items-start my-5">
-          <button
-            onClick={() => setModalPostComments(!modalPostComments)}
-            className="btn btn-blue w-auto flex items-center gap-2.5 font-semibold"
-          >
-            <FaRegMessage size={20} /> Comment
-          </button>
+        <div className="my-5">
+          {/* Descriptions of the post */}
+          <div className="flex items-center justify-between text-gray-500">
+            <Tooltip
+              content={
+                <>
+                  <p>{postLikesWithItsNames}</p>
 
-          <h3>
-            Comments:{" "}
-            <span className="font-bold">{post?.comments?.length}</span>
-          </h3>
+                  <button onClick={() => setOpenModal(true)}>
+                    See more...
+                  </button>
+
+                  <Modal
+                    dismissible
+                    show={openModal}
+                    onClose={() => setOpenModal(false)}
+                  >
+                    <Modal.Header>
+                      <h3>Users that liked this post...</h3>
+                    </Modal.Header>
+
+                    <Modal.Body>
+                      <div className="space-y-2 overflow-y-auto max-h-72">
+                        {postLikesWithItsNames}
+                      </div>
+                    </Modal.Body>
+                  </Modal>
+                </>
+              }
+            >
+              <div className="flex items-center gap-3 cursor-pointer">
+                <h2 className="flex items-center gap-1">
+                  <BsHearts size={22} className="text-red-500 animation-fade" />
+                  <span className="font-semibold">
+                    {post?.post_likes?.length}
+                  </span>
+                </h2>
+              </div>
+            </Tooltip>
+
+            <h3>
+              Comments:{" "}
+              <span className="font-bold">{post?.comments?.length}</span>
+            </h3>
+          </div>
+
+          {/* Actions of a post */}
+          <div className="flex items-center sm:justify-start justify-between gap-8 border-t pt-3 mt-3">
+            {userInfo?.access_token ? (
+              <button
+                className={`flex items-center gap-2.5 text-gray-500 hover:text-red-500 ${
+                  alreadyLikedPost && "opacity-40 hover:text-gray-500"
+                }`}
+                onClick={handleToggleLikePost}
+                disabled={alreadyLikedPost}
+                type="button"
+              >
+                {alreadyLikedPost ? (
+                  <IoMdHeart
+                    size={22}
+                    className="text-red-500 animation-fade"
+                  />
+                ) : (
+                  <div className="animation-fade flex items-center gap-3 group transition-all duration-250">
+                    <Button
+                      onPress={handleToggleLikePost}
+                      isIconOnly
+                      aria-label="Like"
+                      color="danger"
+                      className="sm:w-9 w-8 sm:h-9 h-8 sm:rounded-lg rounded-md group-hover:bg-opacity-60"
+                    >
+                      <HeartIcon />
+                    </Button>
+
+                    <p className="sm:block hidden group-hover:text-red-500">
+                      Leave a heart
+                    </p>
+                  </div>
+                )}
+
+                {alreadyLikedPost && "You left a heart"}
+              </button>
+            ) : (
+              <Link
+                className={`flex items-center gap-2.5 text-gray-500 hover:text-red-500`}
+                to={"/sign-in?redirect=/posts"}
+              >
+                <Button
+                  onPress={(e) => e.preventDefault()}
+                  type="button"
+                  isIconOnly
+                  aria-label="Like"
+                  color="danger"
+                  className="sm:w-9 w-8 sm:h-9 h-8 sm:rounded-lg rounded-md group-hover:bg-opacity-60"
+                >
+                  <HeartIcon />
+                </Button>
+                <span className="sm:block hidden">Leave a heart</span>
+              </Link>
+            )}
+
+            <button
+              onClick={() => setModalPostComments(!modalPostComments)}
+              className="flex items-center gap-2.5 animation-fade text-gray-500 hover:text-primary-color"
+            >
+              <FaRegMessage size={20} /> Leave a comment
+            </button>
+          </div>
         </div>
       </div>
 
@@ -220,73 +375,26 @@ const Post = ({ isOwner, post, rememberName }) => {
         openModal={modalPostComments}
         setOpenModal={setModalPostComments}
       >
-        <div className="flex flex-col lg:flex-row h-full">
-          <article className="flex-[30%]">
+        <div className="flex flex-col md:flex-row h-screen">
+          <article className="md:flex-[30%] flex-grow-0">
             <CarouselCommentPosts
-              ownerName={post?.owner?.name}
+              ownerName={rememberName}
               commentImages={post?.gallery_images}
             />
           </article>
 
-          <article className={`flex-1 flex flex-col justify-between`}>
-            <div className="px-4 py-4 border-b border-b-tertiary-color/20">
-              <div className="flex items-center gap-3">
-                <img
-                  className="w-16 rounded-full"
-                  src={
-                    post?.remembered?.profile_images
-                      ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
-                      : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
-                  }
-                />
-
-                <div>
-                  <h3 className="font-medium text-base capitalize">
-                    {post?.owner?.name}
-                  </h3>
-                  <h4 className="text-xs text-tertiary-color">
-                    Created: {formatDate(post?.created_at)}
-                  </h4>
-                </div>
-              </div>
-
-              <h3 className="mt-1 text-tertiary-color">{post?.content}</h3>
-            </div>
-
-            <div className="overflow-y-auto lg:max-h-none max-h-[20rem] h-full">
-              <article
-                className={`relative flex-1 flex flex-col justify-between h-full`}
-              >
-                {/* If there's no comments we show a title */}
-                {!post?.comments?.length ? (
-                  <div className="flex justify-center items-center h-full">
-                    <p className="py-3 px-4 text-center text-xl font-bold">
-                      No comments added yet...{" "}
-                    </p>
-                  </div>
-                ) : (
-                  <div className="px-4">
-                    {post?.comments?.map((comment) => {
-                      return (
-                        <SingleComment
-                          userInfo={userInfo}
-                          key={comment?.id}
-                          post={post}
-                          comment={comment}
-                        />
-                      );
-                    })}
-                  </div>
-                )}
-
+          <article className={`flex-1`}>
+            <div className="flex flex-col justify-between h-full">
+              {/* Input to leave a comment - LG TO TOP */}
+              <div className="md:hidden block">
                 {userInfo?.access_token ? (
                   <form
-                    className={`self-end w-full sticky bottom-0 bg-transparent z-[9999]`}
+                    className={`self-end w-full sticky bottom-0 bg-gray-200 z-[9999]`}
                     onSubmit={handleSubmitPublishComment}
                   >
-                    <div className="relative">
+                    <div className="relative flex items-center">
                       <img
-                        className="absolute left-1 top-1.5 w-8 rounded-full"
+                        className="absolute top-1 left-1 transform w-8 rounded-full border-2 border-green-500"
                         src={
                           userInfo?.profile_image
                             ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
@@ -295,25 +403,34 @@ const Post = ({ isOwner, post, rememberName }) => {
                       />
 
                       <textarea
-                        rows="1"
-                        cols="1"
-                        wrap="soft"
                         name="content"
+                        rows={1}
                         value={comment}
-                        onChange={(e) => setComment(e?.target?.value)}
+                        onChange={(e) => {
+                          setComment(e.target.value);
+                          const target = e.target;
+                          target.style.height = "auto"; // Restablece la altura
+                          target.style.height = `${Math.min(
+                            target.scrollHeight,
+                            200
+                          )}px`; // Ajusta la altura con un máximo de 200px
+                        }}
                         placeholder="Comment something..."
-                        className="block ps-11 pe-16 py-2.5 w-full text-base text-fourth-color bg-gray-50 resize-none outline-none"
-                      ></textarea>
+                        ref={(textarea) => {
+                          if (textarea && comment === "") {
+                            textarea.style.height = "auto"; // Restablece la altura cuando el comentario se limpia
+                          }
+                        }}
+                        className="textarea-post-comment block ps-12 pe-16 w-full text-base bg-white shadow-2xl text-black placeholder:text-black border-b-4 border-e-0 border-s-0 border-primary-color outline-none overflow-y-auto resize-none max-h-[500px]"
+                      />
 
                       {comment === "" ? null : (
                         <button
                           disabled={publishCommentPostMutation?.isPending}
                           type="submit"
-                          className="absolute top-2 right-6 text-sm text-secondary-color hover:text-secondary-color/70 animation-fade font-semibold"
+                          className="bg-secondary-color p-1 rounded-full absolute  right-5 text-md text-white animation-fade z-10 h-8 w-8 flex items-center justify-center"
                         >
-                          {publishCommentPostMutation?.isPending
-                            ? "Sending..."
-                            : "Send"}
+                          <IoSend />
                         </button>
                       )}
                     </div>
@@ -335,7 +452,156 @@ const Post = ({ isOwner, post, rememberName }) => {
                     </p>
                   </div>
                 )}
-              </article>
+              </div>
+
+              {/* If there's no posts, we show a message */}
+              {!post?.comments?.length ? (
+                <>
+                  <div className="px-4 py-4 bg-gray-300 7">
+                    <div className="flex items-center gap-3">
+                      <img
+                        className="w-16 rounded-full"
+                        src={
+                          post?.remembered?.profile_images
+                            ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
+                            : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                        }
+                      />
+
+                      <div>
+                        <h3 className="font-medium text-base capitalize">
+                          {post?.owner?.name}
+                        </h3>
+                        <h4 className="text-xs text-tertiary-color ">
+                          Created: {formatDate(post?.created_at)}
+                        </h4>
+                      </div>
+                    </div>
+
+                    <h3 className="mt-1 text-tertiary-color ">
+                      {post?.content}
+                    </h3>
+                  </div>
+                  <div className="flex justify-center items-center h-full">
+                    <p className="py-3 px-4 text-center text-xl font-bold">
+                      No comments added yet...{" "}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                // We show comments
+                <div className="overflow-y-auto md:max-h-none max-h-[75svh] md:pb-0 pb-24">
+                  {/* Post Title Content */}
+                  <div className="px-4 py-4 bg-gray-300 md:sticky static top-0 z-[9999]">
+                    <div className="flex items-center gap-3">
+                      <img
+                        className="w-16 rounded-full"
+                        src={
+                          post?.remembered?.profile_images
+                            ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
+                            : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                        }
+                      />
+
+                      <div>
+                        <h3 className="font-medium text-base capitalize">
+                          {post?.owner?.name}
+                        </h3>
+                        <h4 className="text-xs text-tertiary-color ">
+                          Created: {formatDate(post?.created_at)}
+                        </h4>
+                      </div>
+                    </div>
+
+                    <h3 className="mt-1 text-tertiary-color ">
+                      {post?.content}
+                    </h3>
+                  </div>
+
+                  {/* Post Comments */}
+                  <div className={`px-4`}>
+                    {post?.comments?.map((comment) => {
+                      return (
+                        <SingleComment
+                          userInfo={userInfo}
+                          key={comment?.id}
+                          post={post}
+                          comment={comment}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Input to leave a comment - LG TO TOP */}
+              <div className="md:block hidden">
+                {userInfo?.access_token ? (
+                  <form
+                    className={`self-end w-full sticky bottom-0 bg-gray-200 z-[9999]`}
+                    onSubmit={handleSubmitPublishComment}
+                  >
+                    <div className="relative flex items-center">
+                      <img
+                        className="absolute top-1 left-1 transform w-8 rounded-full border-2 border-green-500"
+                        src={
+                          userInfo?.profile_image
+                            ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
+                            : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                        }
+                      />
+
+                      <textarea
+                        name="content"
+                        rows={1}
+                        value={comment}
+                        onChange={(e) => {
+                          setComment(e.target.value);
+                          const target = e.target;
+                          target.style.height = "auto"; // Restablece la altura
+                          target.style.height = `${Math.min(
+                            target.scrollHeight,
+                            200
+                          )}px`; // Ajusta la altura con un máximo de 200px
+                        }}
+                        placeholder="Comment something..."
+                        ref={(textarea) => {
+                          if (textarea && comment === "") {
+                            textarea.style.height = "auto"; // Restablece la altura cuando el comentario se limpia
+                          }
+                        }}
+                        className="textarea-post-comment py-2 block ps-12 pe-16 w-full text-base bg-white shadow-2xl text-black placeholder:text-black border-b-4 border-t-0 border-e-0 border-s-0 border-primary-color outline-none overflow-y-auto resize-none max-h-[500px]"
+                      />
+
+                      {comment === "" ? null : (
+                        <button
+                          disabled={publishCommentPostMutation?.isPending}
+                          type="submit"
+                          className="bg-secondary-color rounded-full absolute right-5 text-md text-white animation-fade z-10 h-7 w-7 flex items-center justify-center"
+                        >
+                          <IoSend size={16} />
+                        </button>
+                      )}
+                    </div>
+                  </form>
+                ) : (
+                  <div className="text-center bg-muted-color/20 py-4">
+                    <h2 className="text-lg font-semibold">
+                      Want to comment something?
+                    </h2>
+                    <p>
+                      Please,{" "}
+                      <Link
+                        className="text-primary-color-light underline font-bold"
+                        to={"/sign-in?redirect=/posts"}
+                      >
+                        log in
+                      </Link>{" "}
+                      to leave one!
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
           </article>
         </div>

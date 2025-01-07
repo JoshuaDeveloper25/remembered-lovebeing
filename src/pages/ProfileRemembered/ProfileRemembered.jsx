@@ -519,7 +519,7 @@ const ProfileRemembered = () => {
                 )}
               </ul>
 
-              <div className="min-[870px]:hidden block">
+              <div className="min-[870px]:hidden block mb-1">
                 <TabsResponsive />
               </div>
 

@@ -253,8 +253,8 @@ body {
 .carousel-steps-swiper-button-next.swiper-button-disabled,
 .modernDesigns-swiper-button-prev.swiper-button-disabled,
 .modernDesigns-swiper-button-next.swiper-button-disabled,
-.modernDesignsResponsive-swiper-button-prev.swiper-button-disabled
- {
+.modernDesignsResponsive-swiper-button-prev.swiper-button-disabled,
+.modernDesignsResponsive-swiper-button-next.swiper-button-disabled {
   opacity: 0.35;
   cursor: auto;
   pointer-events: none;
@@ -419,5 +419,5 @@ body:has(.backdrop-modal) .to-top {
 
 .custom-max-width {
   max-width: 100% !important;
-  border: 1px solid red!important;
+  border: 1px solid red !important;
 }

@@ -11,9 +11,7 @@ import { createPortal } from "react-dom";
 import logo from "../assets/logo.png";
 
 const NavbarMobile = ({
-  setOpenDropDown,
   setNavbarOpen,
-  openDropDown,
   handleChange,
   handleLogOut,
   navbarOpen,
@@ -47,7 +45,7 @@ const NavbarMobile = ({
           {createPortal(
             <div
               onClick={() => setNavbarOpen(!navbarOpen)}
-              className={`lg:hidden bg-black/50 h-[100vh] z-[999999999] fixed top-0 w-full`}
+              className={`lg:hidden bg-black/50 h-[100vh] z-[50] fixed top-0 w-full`}
             ></div>,
             document.body
           )}
@@ -56,7 +54,7 @@ const NavbarMobile = ({
 
       {/* This is the offcanvas when it's opened */}
       <div
-        className={`flex flex-col justify-between lg:hidden right-0 w-80 fixed top-0 left-0 z-[9999999999999999999] h-screen p-4 overflow-y-auto transition-transform duration-500 bg-primary-color text-white ${
+        className={`flex flex-col justify-between lg:hidden right-0 w-80 fixed top-0 left-0 z-[99] h-screen p-4 overflow-y-auto transition-transform duration-500 bg-primary-color text-white ${
           !navbarOpen ? "-translate-x-full" : null
         }`}
       >

@@ -199,8 +199,8 @@ const ProfileRemembered = () => {
         <div className="min-[870px]:px-1">
           {/* User Image */}
           {/* Responsive - from 768px to bottom */}
-          <div className="min-[870px]:hidden mb-5 sticky h-[56px] top-0 z-[49] bg-white border shadow-lg">
-            <div className="flex justify-between gap-4 items-center sm:px-5 px-2 py-2 sticky z-20">
+          <div className="min-[870px]:hidden mb-3 sticky h-[56px] top-0 z-[49] bg-white border shadow-lg">
+            <div className="flex justify-between gap-4 items-center h-full sm:px-5 px-2 py-2 sticky z-20">
               <div className="flex gap-2 items-center">
                 <div>
                   <img
@@ -520,7 +520,7 @@ const ProfileRemembered = () => {
               </ul>
 
               <div className="min-[870px]:hidden block mb-1">
-                <TabsResponsive />
+                <TabsResponsive setOpenTab={setOpenTab} openTab={openTab} />
               </div>
 
               <div className="flex flex-col min-w-0 break-words w-full">

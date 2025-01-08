@@ -1,21 +1,17 @@
+import AboutRememberedProfileModal from "./AboutRememberedProfileModal";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import formatDateJourney from "../../../helpers/formatDateJourney";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
-import { BsChatLeftQuote } from "react-icons/bs";
 import ReactQuillAbout from "./ReactQuillAbout";
 import FormLifeJourney from "./FormLifeJourney";
 import { TfiPencilAlt } from "react-icons/tfi";
-import Modal from "../../../components/Modal";
-import ModalQualities from "./ModalQualities";
 import { useParams } from "react-router-dom";
-import FormKnownFor from "./FormKnownFor";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import axios from "axios";
 
 const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
   const rememberedProfileInfo = rememberedProfile?.remembered_profile;
-  const [openAddKnownModal, setOpenAddKnownModal] = useState(false);
   const [openLifeJourneyModal, setOpenLifeJourneyModal] = useState(false);
   const currentYear = new Date().getFullYear();
   const [bornYear, setBornYear] = useState(1900 || currentYear);
@@ -279,13 +275,20 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
               </div>
             )} */}
 
-            <Modal
+            <AboutRememberedProfileModal
               titleModal={"Edit life journey profile"}
               handleSubmit={handleSubmitEditLifeJourney}
               setOpenModal={setOpenLifeJourneyModal}
               openModal={openLifeJourneyModal}
               modalForm={true}
-              editableWidth={"max-w-2xl"}
+              editableWidth={
+                "sm:max-w-[700px] max-w-full sm:px-8 px-0 h-full"
+              }
+              crudModalClassName={"sm:px-4 px-0 "}
+              formContainerClassName={
+                "max-h-[34rem] overflow-y-auto"
+              }
+              modalContentClassNames={"relative"}
             >
               <FormLifeJourney
                 setOpenLifeJourneyModal={setOpenLifeJourneyModal}
@@ -310,7 +313,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
                 isPending={editLifeJourneyMutation?.isPending}
                 months={months}
               />
-            </Modal>
+            </AboutRememberedProfileModal>
           </fieldset>
         </article>
 

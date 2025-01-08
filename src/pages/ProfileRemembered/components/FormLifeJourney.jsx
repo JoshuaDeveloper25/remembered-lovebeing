@@ -33,11 +33,11 @@ const FormLifeJourney = ({
   const deathDate = rememberedProfileInfo?.death_date;
 
   const [birthCountry, setBirthCountry] = useState(
-     rememberedProfileInfo?.birth_country
+    rememberedProfileInfo?.birth_country
   );
 
   const [deathCountry, setDeathCountry] = useState(
-     rememberedProfileInfo?.death_country
+    rememberedProfileInfo?.death_country
   );
 
   // Get all information about countries from public API
@@ -327,12 +327,14 @@ const FormLifeJourney = ({
       </main>
 
       {/* Submit changes */}
-      <ButtonForm
-        setOpenModal={setOpenLifeJourneyModal}
-        isPending={isPending}
-        statusOff={"Save Changes"}
-        statusOn={"Saving..."}
-      />
+      <div className="sticky bottom-0 z-50 bg-gray-200 rounded-b-sm">
+        <ButtonForm
+          setOpenModal={setOpenLifeJourneyModal}
+          isPending={isPending}
+          statusOff={"Save Changes"}
+          statusOn={"Saving..."}
+        />
+      </div>
     </>
   );
 };

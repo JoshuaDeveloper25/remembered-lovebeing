@@ -1,7 +1,6 @@
 import spainFlag from "../assets/spain-flag.webp";
 import { availableLanguages } from "../db/data";
 import usaFlag from "../assets/usa-flag.webp";
-import { createPortal } from "react-dom";
 import { useState } from "react";
 
 // Nextui imports
@@ -9,22 +8,16 @@ import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
-  DropdownSection,
   DropdownItem,
-  Button,
-  User,
+  Button
 } from "@nextui-org/react";
 
 const ToggleLanguage = ({ language, handleChange }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const toggleDropdown = () => {
+  const selectLanguage = (language) => {
+    handleChange(language);
     setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  const selectLanguage = (value) => {
-    handleChange(value);
-    setIsDropdownOpen(false);
   };
 
   return (
@@ -34,14 +27,13 @@ const ToggleLanguage = ({ language, handleChange }) => {
       classNames={{
         base: "before:bg-white w-fit ", // change arrow background
         content: "p-0 min-w-fit",
-        backdrop: "custom-z-index"
+        backdrop: "custom-z-index",
       }}
+      isOpen={isDropdownOpen}
+      onOpenChange={(open) => setIsDropdownOpen(open)}
     >
       <DropdownTrigger>
-        <div
-          className="w-fit flex items-center justify-between transition-all duration-500 shadow shadow-primary-color-light hover:shadow-primary-color-light hover:shadow-md sm:rounded-full rounded-md px-4 py-2 bg-primary-color text-white cursor-pointer"
-          onClick={toggleDropdown}
-        >
+        <Button className="w-fit flex gap-0 items-center justify-between transition-all duration-500 shadow shadow-primary-color-light hover:shadow-primary-color-light hover:shadow-md sm:rounded-full rounded-md px-4 py-2 bg-primary-color text-white cursor-pointer">
           <img
             src={language === "en" ? usaFlag : spainFlag}
             className="w-6 h-6 object-contain mr-2"
@@ -50,7 +42,7 @@ const ToggleLanguage = ({ language, handleChange }) => {
           <span>{language === "en" ? "Eng" : "Esp"}</span>
           <svg
             className={`w-4 h-4 ml-2 transform transition-transform duration-300 ${
-              isDropdownOpen ? "rotate-180" : ""
+              isDropdownOpen ? "rotate-180" : "rotate-360"
             }`}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -64,11 +56,11 @@ const ToggleLanguage = ({ language, handleChange }) => {
               d="M19 9l-7 7-7-7"
             />
           </svg>
-        </div>
+        </Button>
       </DropdownTrigger>
 
       <DropdownMenu
-      className="p-0 rounded-xl"
+        className="p-0 rounded-xl"
         itemClasses={{
           base: [
             "rounded-md",
@@ -82,20 +74,20 @@ const ToggleLanguage = ({ language, handleChange }) => {
             "data-[focus-visible=true]:ring-transparent0",
             "w-fit",
             "p-0",
-            "custom-z-index"
+            "custom-z-index",
           ],
         }}
       >
         <DropdownItem key="languages">
-          <div className=" bg-primary-color text-white  shadow-md rounded-lg">
+          <div className=" bg-primary-color text-white shadow-md rounded-lg">
             {availableLanguages.map((availableLanguage, index) => (
-              <div
-                key={index}
-                onClick={() => selectLanguage(availableLanguage.value)}
+              <Button
+                key={availableLanguage.value}
+                onPress={() => selectLanguage(availableLanguage.value)}
                 className={`${
-                  availableLanguage.value === language &&
-                  "first:rounded-t-lg last:rounded-b-lg bg-primary-color-light/25 pointer-events-none"
-                } animation-fade flex items-center px-4 py-2 cursor-pointer hover:first:rounded-t-lg  last:rounded-b-lg hover:last:rounded-b-lg hover:bg-primary-color-light`}
+                  availableLanguage.value === language ?
+                  "bg-primary-color-light pointer-events-none" : "bg-primary-color-light/25"
+                } rounded-none text-white animation-fade w-full flex items-center justify-start gap-0 text-start px-4 py-2 cursor-pointer hover:first:rounded-t-lg hover:last:rounded-b-lg hover:bg-primary-color-light`}
               >
                 <img
                   src={availableLanguage.value === "en" ? usaFlag : spainFlag}
@@ -103,7 +95,7 @@ const ToggleLanguage = ({ language, handleChange }) => {
                   alt={availableLanguage.value}
                 />
                 <span>{availableLanguage.language}</span>
-              </div>
+              </Button>
             ))}
           </div>
         </DropdownItem>

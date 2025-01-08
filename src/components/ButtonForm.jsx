@@ -15,7 +15,7 @@ const ButtonForm = ({
   };
 
   return (
-    <div className="flex justify-end items-center gap-3 p-3.5">
+    <div className="flex justify-end items-center gap-3 p-3.5 bg-gray-200">
       <button
         onClick={closeModal}
         type="button"

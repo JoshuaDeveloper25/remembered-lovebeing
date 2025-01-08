@@ -294,13 +294,15 @@ const FormEditProfile = ({
         </div>
       </div>
 
-      <ButtonForm
-        setOpenModal={setEditRememberedProfile}
-        isPending={isPending}
-        buttonClassName={"mt-0"}
-        statusOff={"Save changes"}
-        statusOn={"Saving..."}
-      />
+      <div className="sticky bottom-0 z-50 bg-gray-200 rounded-b-sm">
+        <ButtonForm
+          setOpenModal={setEditRememberedProfile}
+          isPending={isPending}
+          buttonClassName={"mt-0"}
+          statusOff={"Save changes"}
+          statusOn={"Saving..."}
+        />
+      </div>
     </>
   );
 };

@@ -27,6 +27,7 @@ import Post from "../../components/Post";
 import { toast } from "react-toastify";
 import axios from "axios";
 import TabsResponsive from "./components/TabsResponsive";
+import ModalEditRememberedProfile from "./components/ModalEditRememberedProfile";
 
 const ProfileRemembered = () => {
   const currentYear = new Date().getFullYear();
@@ -275,13 +276,20 @@ const ProfileRemembered = () => {
           </div>
 
           {/* Modal to edit rememberedProfile */}
-          <Modal
+          <ModalEditRememberedProfile
             titleModal={"Edit Remembered Profile..."}
             handleSubmit={handleSubmit}
             setOpenModal={setEditRememberedProfile}
             openModal={editRememberedProfile}
             modalForm={true}
-            editableWidth={"max-w-xl"}
+            editableWidth={
+              "sm:max-w-[700px] max-w-full sm:px-8 px-0 h-full"
+            }
+            crudModalClassName={"sm:px-4 px-0 "}
+            formContainerClassName={
+              "sm:max-h-[34rem] max-h[34rem] overflow-y-auto"
+            }
+            modalContentClassNames={"sm:relative static"}
           >
             <FormEditProfile
               setEditRememberedProfile={setEditRememberedProfile}
@@ -302,7 +310,7 @@ const ProfileRemembered = () => {
               isPending={editRememberedProfileMutation?.isPending}
               months={months}
             />
-          </Modal>
+          </ModalEditRememberedProfile>
 
           {/* Desktop - from 768px to up! */}
           <div className="grid min-[870px]:grid-cols-4 grid-cols-1 items-start min-[1150px]:gap-3 sm:gap-1 gap-0 px-2.5">

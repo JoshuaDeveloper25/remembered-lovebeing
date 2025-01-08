@@ -280,7 +280,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
             )} */}
 
             <Modal
-              titleModal={"Life journey of your lovebeing..."}
+              titleModal={"Edit life journey profile"}
               handleSubmit={handleSubmitEditLifeJourney}
               setOpenModal={setOpenLifeJourneyModal}
               openModal={openLifeJourneyModal}

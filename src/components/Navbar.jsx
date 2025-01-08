@@ -11,7 +11,6 @@ const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [language, setLanguage] = useState("es");
   const { t, i18n } = useTranslation();
-  console.log(language, 'idioma seleccionado!')
 
   useEffect(() => {
     if (navbarOpen) {

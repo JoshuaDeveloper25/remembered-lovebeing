@@ -281,13 +281,8 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
               setOpenModal={setOpenLifeJourneyModal}
               openModal={openLifeJourneyModal}
               modalForm={true}
-              editableWidth={
-                "sm:max-w-[700px] max-w-full sm:px-8 px-0 h-full"
-              }
               crudModalClassName={"sm:px-4 px-0 "}
-              formContainerClassName={
-                "max-h-[34rem] overflow-y-auto"
-              }
+          
               modalContentClassNames={"relative"}
             >
               <FormLifeJourney

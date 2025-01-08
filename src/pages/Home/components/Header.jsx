@@ -1,32 +1,51 @@
 import useIntersectionObserver from "../../../hooks/useIntersectionObserver";
 import heroResponsive from "../../../assets/hero-responsive.jpg";
 import homeVideo from "../../../assets/videos/home-hero.mp4";
+import { useContext, useEffect, useState } from "react";
 import AppContext from "../../../context/AppProvider";
 import { useTranslation } from "react-i18next";
 import { stepsApp } from "../../../db/data";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
 
 const Header = () => {
   const [ref, isIntersecting] = useIntersectionObserver({ threshold: 0.4 });
   const { userInfo } = useContext(AppContext);
   const { t } = useTranslation();
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth > 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth > 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
       <header className="relative sm:h-[75vh] h-[55vh]">
-        <video
-          className="sm:block hidden absolute top-0 left-0 w-full h-full object-cover"
-          src={homeVideo}
-          autoPlay
-          loop
-          muted
-        />
+        {isMobile && (
+          <div className="md:block hidden">
+            <video
+              className="absolute top-0 left-0 w-full h-full object-cover"
+              autoPlay
+              loop
+              muted
+            >
+              <source src={homeVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        )}
 
-        <img
-          className="sm:hidden block absolute top-0 left-0 w-full h-full object-cover"
-          src={heroResponsive}
-        />
+        <div className="md:hidden block">
+          <img
+            className=" absolute top-0 left-0 w-full h-full object-cover"
+            src={heroResponsive}
+          />
+        </div>
 
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-60"></div>
 

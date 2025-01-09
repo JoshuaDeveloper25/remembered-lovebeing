@@ -114,8 +114,8 @@ const resources = {
       "Technical failures, data loss, or service interruptions.":
         "Technical failures, data loss, or service interruptions.",
       "Account Cancellation": "Account Cancellation",
-      "We reserve the right to suspend or delete accounts that violate the terms of use or remain inactive for an extended period.":
-        "We reserve the right to suspend or delete accounts that violate the terms of use or remain inactive for an extended period.",
+      "We reserve the right to suspend or delete accounts that violate the application's terms of use.":
+        "We reserve the right to suspend or delete accounts that violate the application's terms of use.",
       "Changes to Terms": "Changes to Terms",
       "These terms may be modified at any time. Changes will be notified to users via the application and will take effect immediately.":
         "These terms may be modified at any time. Changes will be notified to users via the application and will take effect immediately.",
@@ -664,8 +664,8 @@ const resources = {
       "Technical failures, data loss, or service interruptions.":
         "Fallos técnicos, pérdida de datos o interrupciones en el servicio.",
       "Account Cancellation": "Cancelación de Cuentas",
-      "We reserve the right to suspend or delete accounts that violate the terms of use or remain inactive for an extended period.":
-        "Nos reservamos el derecho de suspender o eliminar cuentas que violen los términos de uso o que permanezcan inactivas durante un periodo prolongado.",
+      "We reserve the right to suspend or delete accounts that violate the application's terms of use.":
+        "Nos reservamos el derecho de suspender o eliminar cuentas que violen los términos de uso de la aplicación.",
       "Changes to Terms": "Modificaciones a los Términos",
       "These terms may be modified at any time. Changes will be notified to users via the application and will take effect immediately.":
         "Estos términos pueden ser modificados en cualquier momento. Los cambios serán notificados a los usuarios a través de la aplicación y entrarán en vigencia inmediatamente.",

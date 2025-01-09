@@ -143,7 +143,7 @@ const TermsAndConditions = () => {
           </h2>
           <p className="mt-2 text-lg">
             {t(
-              "We reserve the right to suspend or delete accounts that violate the terms of use or remain inactive for an extended period."
+              "We reserve the right to suspend or delete accounts that violate the application's terms of use."
             )}
           </p>
         </section>

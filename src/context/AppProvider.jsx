@@ -4,6 +4,7 @@ import axios from "axios";
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
+  const [languageSelected, setLanguageSelected] = useState("es");
   const [userInfo, setUserInfo] = useState(
     JSON?.parse(localStorage?.getItem("userInfo")) || {}
   );
@@ -17,6 +18,8 @@ const AppProvider = ({ children }) => {
       value={{
         userInfo,
         setUserInfo,
+        languageSelected,
+        setLanguageSelected
       }}
     >
       {children}

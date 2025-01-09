@@ -1,7 +1,8 @@
 import spainFlag from "../assets/spain-flag.webp";
 import { availableLanguages } from "../db/data";
 import usaFlag from "../assets/usa-flag.webp";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AppContext from "../context/AppProvider";
 
 // Nextui imports
 import {
@@ -9,13 +10,15 @@ import {
   DropdownTrigger,
   DropdownMenu,
   DropdownItem,
-  Button
+  Button,
 } from "@nextui-org/react";
 
 const ToggleLanguage = ({ language, handleChange }) => {
+  const { setLanguageSelected } = useContext(AppContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const selectLanguage = (language) => {
+    setLanguageSelected(language);
     handleChange(language);
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -25,6 +28,7 @@ const ToggleLanguage = ({ language, handleChange }) => {
       showArrow
       backdrop="blur"
       classNames={{
+        trigger: "z-[1]",
         base: "before:bg-white w-fit ", // change arrow background
         content: "p-0 min-w-fit",
         backdrop: "custom-z-index",
@@ -85,8 +89,9 @@ const ToggleLanguage = ({ language, handleChange }) => {
                 key={availableLanguage.value}
                 onPress={() => selectLanguage(availableLanguage.value)}
                 className={`${
-                  availableLanguage.value === language ?
-                  "bg-primary-color-light pointer-events-none" : "bg-primary-color-light/25"
+                  availableLanguage.value === language
+                    ? "bg-primary-color-light pointer-events-none"
+                    : "bg-primary-color-light/25"
                 } rounded-none text-white animation-fade w-full flex items-center justify-start gap-0 text-start px-4 py-2 cursor-pointer hover:first:rounded-t-lg hover:last:rounded-b-lg hover:bg-primary-color-light`}
               >
                 <img

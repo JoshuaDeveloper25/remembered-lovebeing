@@ -4,14 +4,15 @@ import CarouselCommentPosts from "../../../components/CarouselCommentPosts";
 import NavbarDropdownLink from "../../../components/NavbarDropdownLink";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
+import { BsThreeDots, BsHearts } from "react-icons/bs";
 import AppContext from "../../../context/AppProvider";
 import formatDate from "../../../utils/formatDate";
-import { Modal, Tooltip } from "flowbite-react";
-import { FaRegMessage } from "react-icons/fa6";
-import { Button } from "@nextui-org/react";
-import { BsThreeDots, BsHearts } from "react-icons/bs";
 import { BiSolidQuoteRight } from "react-icons/bi";
+import { Modal, Tooltip } from "flowbite-react";
+import { useTranslation } from "react-i18next";
+import { FaRegMessage } from "react-icons/fa6";
 import { useContext, useState } from "react";
+import { Button } from "@nextui-org/react";
 import { IoMdHeart } from "react-icons/io";
 import { IoSend } from "react-icons/io5";
 import { Link } from "react-router-dom";
@@ -48,11 +49,13 @@ export const HeartIcon = ({
 };
 
 const PublicPost = ({ post, ownerName }) => {
+  const { t } = useTranslation();
   const postLikesMapeados = post?.post_likes?.map((item) => item?.owner?.name);
   const postLikesWithItsNames = postLikesMapeados?.map((item, index) => (
     <p key={index}>{item}</p>
   ));
-  const { userInfo } = useContext(AppContext);
+  const { userInfo, languageSelected } = useContext(AppContext);
+
   const alreadyLikedPost = post?.post_likes?.find(
     (item) => item?.owner?.email === userInfo?.email
   );
@@ -136,7 +139,11 @@ const PublicPost = ({ post, ownerName }) => {
                 {post?.owner?.name}
               </h3>
               <h4 className="text-xs text-tertiary-color">
-                Created: {formatDate(post?.created_at)}
+                {t("Created")}:{" "}
+                {formatDate(
+                  post?.created_at,
+                  languageSelected === "es" ? "spanish" : "english"
+                )}
               </h4>
             </div>
           </div>
@@ -148,6 +155,7 @@ const PublicPost = ({ post, ownerName }) => {
 
         {/* Images Gallery Mansory */}
         <PublishedPostsImages
+          t={t}
           setToggleModal={setModalPostComments}
           galleryImages={post?.gallery_images}
         />
@@ -162,7 +170,7 @@ const PublicPost = ({ post, ownerName }) => {
                   {postLikesWithItsNames}
 
                   <button onClick={() => setOpenModal(true)}>
-                    See more...
+                    {t("See more...")}
                   </button>
 
                   <Modal
@@ -170,7 +178,9 @@ const PublicPost = ({ post, ownerName }) => {
                     show={openModal}
                     onClose={() => setOpenModal(false)}
                   >
-                    <Modal.Header>Users that liked this post...</Modal.Header>
+                    <Modal.Header>
+                      {t("Users that liked this post...")}
+                    </Modal.Header>
 
                     <Modal.Body>
                       <div className="space-y-2 overflow-y-auto max-h-72">
@@ -192,7 +202,7 @@ const PublicPost = ({ post, ownerName }) => {
             </Tooltip>
 
             <h3>
-              Comments:{" "}
+              {t("Comments")}:{" "}
               <span className="font-bold">{post?.comments?.length}</span>
             </h3>
           </div>
@@ -226,12 +236,12 @@ const PublicPost = ({ post, ownerName }) => {
                     </Button>
 
                     <p className="sm:block hidden group-hover:text-red-500">
-                      Leave a heart
+                      {t("Leave a heart")}
                     </p>
                   </div>
                 )}
 
-                {alreadyLikedPost && "You left a heart"}
+                {alreadyLikedPost && t("You left a heart")}
               </button>
             ) : (
               <Link
@@ -248,7 +258,7 @@ const PublicPost = ({ post, ownerName }) => {
                 >
                   <HeartIcon />
                 </Button>
-                <span className="sm:block hidden">Leave a heart</span>
+                <span className="sm:block hidden">{t("Leave a heart")}</span>
               </Link>
             )}
 
@@ -256,7 +266,7 @@ const PublicPost = ({ post, ownerName }) => {
               onClick={() => setModalPostComments(!modalPostComments)}
               className="flex items-center gap-2.5 animation-fade text-gray-500 hover:text-primary-color"
             >
-              <FaRegMessage size={20} /> Leave a comment
+              <FaRegMessage size={20} /> {t("Leave a comment")}
             </button>
           </div>
         </div>
@@ -307,7 +317,7 @@ const PublicPost = ({ post, ownerName }) => {
                             200
                           )}px`; // Ajusta la altura con un máximo de 200px
                         }}
-                        placeholder="Comment something..."
+                        placeholder={t("Comment something...")}
                         ref={(textarea) => {
                           if (textarea && comment === "") {
                             textarea.style.height = "auto"; // Restablece la altura cuando el comentario se limpia
@@ -330,17 +340,17 @@ const PublicPost = ({ post, ownerName }) => {
                 ) : (
                   <div className="text-center bg-muted-color/20 py-4">
                     <h2 className="text-lg font-semibold">
-                      Want to comment something?
+                      {t("Want to comment something?")}
                     </h2>
                     <p>
-                      Please,{" "}
+                      {t("Please")},{" "}
                       <Link
                         className="text-primary-color-light underline font-bold"
                         to={"/sign-in?redirect=/posts"}
                       >
-                        log in
+                        {t("log in")}
                       </Link>{" "}
-                      to leave one!
+                      {t("to leave one!")}
                     </p>
                   </div>
                 )}
@@ -365,7 +375,11 @@ const PublicPost = ({ post, ownerName }) => {
                           {post?.owner?.name}
                         </h3>
                         <h4 className="text-xs text-tertiary-color ">
-                          Created: {formatDate(post?.created_at)}
+                          {t("Created")}:{" "}
+                          {formatDate(
+                            post?.created_at,
+                            languageSelected === "es" ? "spanish" : "english"
+                          )}
                         </h4>
                       </div>
                     </div>
@@ -376,7 +390,7 @@ const PublicPost = ({ post, ownerName }) => {
                   </div>
                   <div className="flex justify-center items-center h-full">
                     <p className="py-3 px-4 text-center text-xl font-bold">
-                      No comments added yet...{" "}
+                      {t("No comments added yet...")}{" "}
                     </p>
                   </div>
                 </>
@@ -400,7 +414,11 @@ const PublicPost = ({ post, ownerName }) => {
                           {post?.owner?.name}
                         </h3>
                         <h4 className="text-xs text-tertiary-color ">
-                          Created: {formatDate(post?.created_at)}
+                          {t("Created")}:{" "}
+                          {formatDate(
+                            post?.created_at,
+                            languageSelected === "es" ? "spanish" : "english"
+                          )}
                         </h4>
                       </div>
                     </div>
@@ -415,6 +433,8 @@ const PublicPost = ({ post, ownerName }) => {
                     {post?.comments?.map((comment) => {
                       return (
                         <SingleComment
+                          t={t}
+                          languageSelected={languageSelected}
                           userInfo={userInfo}
                           key={comment?.id}
                           post={post}
@@ -456,7 +476,7 @@ const PublicPost = ({ post, ownerName }) => {
                             200
                           )}px`; // Ajusta la altura con un máximo de 200px
                         }}
-                        placeholder="Comment something..."
+                        placeholder={t("Comment something...")}
                         ref={(textarea) => {
                           if (textarea && comment === "") {
                             textarea.style.height = "auto"; // Restablece la altura cuando el comentario se limpia
@@ -479,17 +499,17 @@ const PublicPost = ({ post, ownerName }) => {
                 ) : (
                   <div className="text-center bg-muted-color/20 py-4">
                     <h2 className="text-lg font-semibold">
-                      Want to comment something?
+                      {t("Want to comment something?")}
                     </h2>
                     <p>
-                      Please,{" "}
+                      {t("Please")},{" "}
                       <Link
                         className="text-primary-color-light underline font-bold"
                         to={"/sign-in?redirect=/posts"}
                       >
-                        log in
+                        {t("log in")}
                       </Link>{" "}
-                      to leave one!
+                      {t("to leave one!")}
                     </p>
                   </div>
                 )}
@@ -505,7 +525,7 @@ const PublicPost = ({ post, ownerName }) => {
 export default PublicPost;
 
 // Single Comment
-const SingleComment = ({ post, comment, userInfo }) => {
+const SingleComment = ({ post, comment, userInfo, languageSelected, t }) => {
   const [toggleComment, setToggleComment] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const queryClient = useQueryClient();
@@ -627,7 +647,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
               disabled={editCommentMutation?.isPending}
               type="submit"
             >
-              {editCommentMutation?.isPending ? "Saving..." : "Save"}
+              {editCommentMutation?.isPending ? t("Saving...") : t("Save")}
             </button>
           </form>
         ) : (
@@ -666,7 +686,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
                           setIsEditing(!isEditing);
                           setToggleComment(!toggleComment);
                         }}
-                        linkText={"Edit"}
+                        linkText={t("Edit")}
                       />
 
                       <NavbarDropdownLink
@@ -674,7 +694,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
                           "hover:bg-red-500 hover:text-white text-xs"
                         }
                         onClick={handleDeleteComment}
-                        linkText={"Delete"}
+                        linkText={t("Delete")}
                       />
                     </ul>
                   </>
@@ -686,7 +706,13 @@ const SingleComment = ({ post, comment, userInfo }) => {
       </div>
 
       <div className="flex justify-between items-center mt-2">
-        <h2 className="text-xs">{formatDate(comment?.created_at)}</h2>
+        <h2 className="text-xs">
+          {" "}
+          {formatDate(
+            post?.created_at,
+            languageSelected === "es" ? "spanish" : "english"
+          )}
+        </h2>
       </div>
     </div>
   );

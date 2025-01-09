@@ -28,6 +28,7 @@ import { HiDotsVertical } from "react-icons/hi";
 import { FaRegMessage } from "react-icons/fa6";
 import { IoMdHeart } from "react-icons/io";
 import { IoSend } from "react-icons/io5";
+import { useTranslation } from "react-i18next";
 
 export const HeartIcon = ({
   fill = "currentColor",
@@ -58,6 +59,7 @@ export const HeartIcon = ({
 };
 
 const Post = ({ isOwner, post, rememberName }) => {
+  const { t } = useTranslation();
   const { userInfo } = useContext(AppContext);
   const postLikesMapeados = post?.post_likes?.map((item) => item?.owner?.name);
   const postLikesWithItsNames = postLikesMapeados?.map((item, index) => (
@@ -192,7 +194,7 @@ const Post = ({ isOwner, post, rememberName }) => {
                 {post?.owner?.name}
               </h3>
               <h4 className="text-xs text-tertiary-color">
-                Created: {formatDate(post?.created_at)}
+                {t("Created")}: {formatDate(post?.created_at)}
               </h4>
             </div>
           </div>

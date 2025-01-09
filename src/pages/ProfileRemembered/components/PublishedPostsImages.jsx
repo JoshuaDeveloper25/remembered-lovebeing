@@ -2,7 +2,7 @@
 import Photogrid from "react-facebook-photo-grid";
 import { MdImageNotSupported } from "react-icons/md";
 
-const PublishedPostsImages = ({ setToggleModal, galleryImages }) => {
+const PublishedPostsImages = ({ setToggleModal, galleryImages, t }) => {
   const imagesToString = galleryImages?.map((item) =>
     `${item?.cloud_front_domain}/${encodeURIComponent(item?.aws_file_name)}`
   );
@@ -11,7 +11,7 @@ const PublishedPostsImages = ({ setToggleModal, galleryImages }) => {
     <div className="bg-gray-300 text-center rounded py-16">
       <MdImageNotSupported className="inline-block object-cover size-20 text-primary-color" />
       <h2 className="text-primary-color font-bold text-lg">
-        No Image Available
+        {t("No Image Available")}
       </h2>
     </div>
   ) : (

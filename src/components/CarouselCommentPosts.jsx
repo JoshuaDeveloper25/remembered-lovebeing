@@ -1,7 +1,7 @@
-import lgShare from "lightgallery/plugins/share";
-import lgHash from "lightgallery/plugins/hash";
-import lgZoom from "lightgallery/plugins/zoom";
-import LightGallery from "lightgallery/react";
+// import lgShare from "lightgallery/plugins/share";
+// import lgHash from "lightgallery/plugins/hash";
+// import lgZoom from "lightgallery/plugins/zoom";
+// import LightGallery from "lightgallery/react";
 import { useState } from "react";
 
 const CarouselCommentPosts = ({ commentImages, ownerName }) => {
@@ -19,15 +19,15 @@ const CarouselCommentPosts = ({ commentImages, ownerName }) => {
     );
   };
 
-  const handleOpenGalleryImage = () => {
-    const selectedGalleryImage = commentImages?.filter((item) => item?.id === currentIndex);
-    console.log("me ejecuto", selectedGalleryImage);
-  };
+  // const handleOpenGalleryImage = () => {
+  //   const selectedGalleryImage = commentImages?.filter((item) => item?.id === currentIndex);
+  //   console.log("me ejecuto", selectedGalleryImage);
+  // };
 
   return (
     <div className="relative md:h-full h-[15rem] w-full bg-black">
       <div className="relative h-full w-full overflow-hidden">
-        <LightGallery onBeforeOpen={handleOpenGalleryImage}>
+        {/* <LightGallery onBeforeOpen={handleOpenGalleryImage}> */}
           {/* Carousel wrapper */}
           {commentImages?.map((item, index) => {
             return (
@@ -36,9 +36,9 @@ const CarouselCommentPosts = ({ commentImages, ownerName }) => {
                 className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
                   index === currentIndex ? "opacity-100" : "opacity-0"
                 }`}
-                data-sub-html={`<h4>Uploaded by - ${ownerName}</h4><p> This is a souvenir from this lovebeing...</p>`}
-                data-src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
-                plugins={[lgZoom, lgShare, lgHash]}
+                // data-sub-html={`<h4>Uploaded by - ${ownerName}</h4><p> This is a souvenir from this lovebeing...</p>`}
+                // data-src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
+                // plugins={[lgZoom, lgShare, lgHash]}
               >
                 <img
                   src={`${item?.cloud_front_domain}/${item?.aws_file_name}`}
@@ -54,7 +54,7 @@ const CarouselCommentPosts = ({ commentImages, ownerName }) => {
               </div>
             );
           })}
-        </LightGallery>
+        {/* </LightGallery> */}
       </div>
 
       {/* Slider controls */}

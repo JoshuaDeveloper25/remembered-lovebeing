@@ -64,7 +64,7 @@ const CondolenceHeader = ({ userInfo, isOwner, idRemembered }) => {
               Log In
             </Link>
           </span>
-          , to leave a tribute.
+          , to leave a condolence.
         </h4>
       )}
 

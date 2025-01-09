@@ -1,3 +1,5 @@
+import { Accordion, AccordionItem } from "@nextui-org/react";
+
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 
@@ -16,29 +18,17 @@ const Updates = () => {
         </p>
       </div>
 
-      <article className="grid grid-cols-3 gap-8">
-        <div className="col-span-1">
-          <img
-            className="rounded-xl"
-            src="https://imagenyproyeccion.com/wp-content/uploads/2021/07/diseno-web-marketing-digital-cordoba-1.jpg"
-            alt="Imagen de Novedad"
-          />
-          <h3 className="my-3 font-semibold">Pronto NEXTJS</h3>
-
-          <p>
-            ¡Estamos trabajando en la transición a NextJS para ofrecerte una
-            experiencia más rápida y moderna!
-          </p>
-
-          <button
-            className="rounded-lg text-primary-color w-full py-1.5 px-1.5 flex items-center gap-2 mt-3"
-            type="button"
-          >
-            <IoMdInformationCircleOutline />
-            INFO
-          </button>
-        </div>
-      </article>
+      <Accordion variant="splitted" className="max-w-2xl mx-auto">
+        <AccordionItem key="1" aria-label="Accordion 1" title="Accordion 1">
+          {"defaultContent"}
+        </AccordionItem>
+        <AccordionItem key="2" aria-label="Accordion 2" title="Accordion 2">
+          {"defaultContent"}
+        </AccordionItem>
+        <AccordionItem key="3" aria-label="Accordion 3" title="Accordion 3">
+          {"defaultContent"}
+        </AccordionItem>
+      </Accordion>
     </main>
   );
 };

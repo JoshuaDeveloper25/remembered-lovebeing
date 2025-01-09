@@ -116,7 +116,7 @@ const Contact = () => {
             </div>
           </setion>
 
-          <section className="sticky z-[9999] px-6 py-6 text-primary-color bg-white shadow-xl lg:mx-0 mx-auto rounded-e-2xl">
+          <section className="sticky z-[1] px-6 py-6 text-primary-color bg-white shadow-xl lg:mx-0 mx-auto rounded-e-2xl">
             <h2 className="font-sans text-2xl text-primary-color capitalize font-semibold mb-4">
               {t("Contact Form")}
             </h2>

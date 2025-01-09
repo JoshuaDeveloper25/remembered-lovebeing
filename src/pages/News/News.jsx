@@ -48,7 +48,7 @@ const News = () => {
             <>
               <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 place-content-center place-items-stretch">
                 {flapMapeado?.map((item, index) => {
-                  return <New item={item} key={index} />;
+                  return <New t={t} item={item} key={index} />;
                 })}
               </div>
 

@@ -1,13 +1,16 @@
 import { RiImageEditFill, RiImageAddFill } from "react-icons/ri";
 import { BiCommentEdit, BiCommentAdd } from "react-icons/bi";
+import AppContext from "../../../context/AppProvider";
 import { HiMiniDocumentPlus } from "react-icons/hi2";
 import formatDate from "../../../utils/formatDate";
 import { MdEditDocument } from "react-icons/md";
 import { PiFlowerFill } from "react-icons/pi";
-import { TbPhotoPlus } from "react-icons/tb";
 import { FiUserPlus } from "react-icons/fi";
+import { useContext } from "react";
 
-const New = ({ item }) => {
+const New = ({ item, t }) => {
+  const { languageSelected } = useContext(AppContext);
+
   const statusIcons = [
     {
       eventType: "post created",
@@ -71,11 +74,15 @@ const New = ({ item }) => {
       </div>
 
       <h2 className="text-muted-color capitalize font-bold mt-9">
-        {item?.event_type}
+        {t(item?.event_type)}
       </h2>
 
       <h4 className="text-[.6rem] mb-2 text-tertiary-color font-medium">
-        Created: {formatDate(item?.created_at)}
+        {t("Created")}:{" "}
+        {formatDate(
+          item?.created_at,
+          languageSelected === "es" ? "spanish" : "english"
+        )}
       </h4>
 
       <p className="max-w-[18rem] text-sm mx-auto text-tertiary-color">

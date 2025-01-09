@@ -396,10 +396,14 @@ const resources = {
       "Your invoice has been sent by email. If you can't find it in your inbox, please check your spam.":
         "Your invoice has been sent by email. If you can't find it in your inbox, please check your spam.",
       Updates: "Updates",
+      "Copied to clipboard!": "Copied to clipboard!",
+      "In loving memory of...": "In loving memory of..."
     },
   },
   es: {
     translation: {
+      "In loving memory of...": "Con amor y respeto hacia...",
+      "Copied to clipboard!": "¡Copiado al portapapeles!",
       Updates: "Novedades",
       "Your invoice has been sent by email. If you can't find it in your inbox, please check your spam.":
         "Tu factura ha sido enviada por email. Si no la encuentras revisa la carpeta de spam.",

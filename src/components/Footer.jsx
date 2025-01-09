@@ -339,7 +339,7 @@ const Footer = () => {
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
 
         <p className="text-sm dark:text-gray-400">
-          © 2024 Eternal MemoriesX . {t("All Rights Reserved")}.
+          © 2024 - 2025 Eternal MemoriesX . {t("All Rights Reserved")}.
         </p>
       </div>
     </footer>

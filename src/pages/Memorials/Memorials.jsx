@@ -186,7 +186,7 @@ const Memorials = () => {
           ) : (
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-cols-1 gap-7 my-9">
               {flapMapeado?.map((item, index) => (
-                <Memorial item={item} key={index} />
+                <Memorial item={item} key={index} t={t} />
               ))}
             </div>
           )}{" "}

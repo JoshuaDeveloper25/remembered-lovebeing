@@ -13,7 +13,7 @@ const ShareSite = () => {
   const fullUrl = `${window.location.origin}${location.pathname}`;
 
   const onCopy = () => {
-    toast.success("Copied to clipboard!");
+    toast.success(t("Copied to clipboard!"));
   };
 
   return (

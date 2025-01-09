@@ -395,10 +395,12 @@ const resources = {
         "Honor and preserve the memories of your loved ones who have passed away",
       "Your invoice has been sent by email. If you can't find it in your inbox, please check your spam.":
         "Your invoice has been sent by email. If you can't find it in your inbox, please check your spam.",
+      Updates: "Updates",
     },
   },
   es: {
     translation: {
+      Updates: "Novedades",
       "Your invoice has been sent by email. If you can't find it in your inbox, please check your spam.":
         "Tu factura ha sido enviada por email. Si no la encuentras revisa la carpeta de spam.",
       "Honor and preserve the memories of your loved ones who have passed away":

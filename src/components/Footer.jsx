@@ -35,7 +35,18 @@ const Footer = () => {
                     {t("About Us")}
                   </NavLink>
                 </li>
-
+                <li>
+                  <NavLink
+                    to="/updates#top"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-primary-color-light/60 font-bold"
+                        : "hover:text-primary-color-light animation-fade"
+                    }
+                  >
+                    {t("Updates")}
+                  </NavLink>
+                </li>
                 <li>
                   <NavLink
                     to="/contact#top"
@@ -180,6 +191,19 @@ const Footer = () => {
                         }
                       >
                         {t("About Us")}
+                      </NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink
+                        to="/updates#top"
+                        className={({ isActive }) =>
+                          isActive
+                            ? "text-primary-color-light/60 font-bold"
+                            : "hover:text-primary-color-light animation-fade"
+                        }
+                      >
+                        {t("Updates")}
                       </NavLink>
                     </li>
 

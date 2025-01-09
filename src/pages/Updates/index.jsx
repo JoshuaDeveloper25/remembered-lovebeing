@@ -1,6 +1,4 @@
 import { Accordion, AccordionItem } from "@nextui-org/react";
-
-import { IoMdInformationCircleOutline } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 
 const Updates = () => {
@@ -20,21 +18,69 @@ const Updates = () => {
 
       <Accordion variant="splitted" className="max-w-2xl mx-auto">
         <AccordionItem
-          classNames={{ title: "font-semibold text-white", base: "bg-primary-color/50", content: "text-white text-sm", indicator: "text-white text-xl" }}
-          title="Incorporación Multilingüe en la Página Web"
+          classNames={{
+            title: "font-semibold text-black",
+            content: "text-sm",
+            indicator: "text-xl",
+          }}
+          title="Profiles"
           key="1"
         >
-          Expande el alcance global de tu página web al añadir soporte para
-          múltiples idiomas, ofreciendo una experiencia personalizada a usuarios
-          de diferentes regiones.
+          <ul className="pl-4 list-disc space-y-4">
+            <li>
+              <h3 className="font-bold">
+                {t(
+                  "Invita a tus seres queridos a gestionar este perfil conmemorativo"
+                )}
+              </h3>
+
+              <p>
+                Permite que tus seres queridos ayuden a gestionar y mantener
+                vivo el perfil conmemorativo.
+              </p>
+            </li>
+
+            <li>
+              <h3 className="font-bold">
+                {t(
+                  "Recordatorio en su aniversario de fallecimiento para seguidores del perfil"
+                )}
+              </h3>
+
+              <p>
+                Recibe un mensaje por correo electrónico en el aniversario de su
+                fallecimiento, para recordar y honrar su memoria de una forma
+                especial.
+              </p>
+            </li>
+          </ul>
         </AccordionItem>
 
-        <AccordionItem key="2" title="Accordion 2">
-          {"defaultContent"}
-        </AccordionItem>
+        <AccordionItem
+          classNames={{
+            title: "font-semibold text-black",
+            content: "text-sm",
+            indicator: "text-xl",
+          }}
+          title="Profiles Management"
+          key="2"
+        >
+          <ul className="pl-4 list-disc space-y-4">
+            <li>
+              <h3 className="font-bold">
+                {t(
+                  "Actualiza tu perfil GRATIS a PRO usando tus paquetes Premium adquiridos"
+                )}
+              </h3>
 
-        <AccordionItem key="3" title="Accordion 3">
-          {"defaultContent"}
+              <p>
+                Si ya has adquirido paquetes Premium, puedes usar esos
+                beneficios para actualizar tu perfil gratuito a Pro, sin
+                necesidad de realizar una compra adicional. Aprovecha al máximo
+                tus compras y mejora tu experiencia.
+              </p>
+            </li>
+          </ul>
         </AccordionItem>
       </Accordion>
     </main>

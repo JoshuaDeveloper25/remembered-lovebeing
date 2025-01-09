@@ -146,9 +146,9 @@ const NavbarMobile = ({
           </h2>
 
           {/* Language Switcher */}
-          <div className="mt-2 mb-3">
+          {/* <div className="mt-2 mb-3">
             <ToggleLanguage handleChange={handleChange} language={language} />
-          </div>
+          </div> */}
 
           {/* User Dropdown */}
           {userInfo?.access_token ? (

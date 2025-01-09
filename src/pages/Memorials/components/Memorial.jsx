@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
+import { PiCakeFill } from "react-icons/pi";
+import { GiTombstone } from "react-icons/gi";
 
 const Memorial = ({ item, t }) => {
   return (
@@ -35,11 +37,11 @@ const Memorial = ({ item, t }) => {
       <div className="px-4">
         <div className="flex justify-between my-6">
           <p className="text-xs">
-            <span className="font-bold">Birth:</span>{" "}
+            <PiCakeFill className="inline-block size-6 align-bottom" />: {" "}
             {item?.birth_date === null ? t("No Date...") : item?.birth_date}
           </p>
           <p className="text-xs ">
-            <span className="font-bold">Death:</span>{" "}
+            <GiTombstone className="inline-block size-6 align-bottom" />: {" "}
             {item?.death_date === null ? t("No Date...") : item?.death_date}
           </p>
         </div>
@@ -53,7 +55,7 @@ const Memorial = ({ item, t }) => {
           className={`btn bg-[#00A2B3] text-white hover:bg-[#00A2B3]/80 w-full inline-block text-center animation-fade rounded-sm text-sm my-4`}
         >
           <FaEye className="inline-block me-1" />
-          View
+          {t("View")}
         </Link>
       </div>
     </article>

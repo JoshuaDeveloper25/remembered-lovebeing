@@ -129,6 +129,9 @@ const Memorials = () => {
             value={tempSearchBirthCountry}
             label={`${t("Country")}`}
             name="countryMemorial"
+            listboxProps={{
+              emptyContent: t("No options available...")
+            }}
           >
             {countriesQuery?.data?.data?.map((country) => {
               if (country === null) return null;
@@ -151,7 +154,7 @@ const Memorials = () => {
             {causeOfDeaths.map((cause) => {
               return (
                 <SelectItem key={cause?.value} value={cause?.value}>
-                  {cause?.causeDeath}
+                  {t(cause?.causeDeath)}
                 </SelectItem>
               );
             })}
@@ -167,7 +170,7 @@ const Memorials = () => {
             {genres.map((genre) => {
               return (
                 <SelectItem key={genre?.value} value={genre?.value}>
-                  {genre?.type}
+                  {t(genre?.type)}
                 </SelectItem>
               );
             })}
@@ -204,7 +207,7 @@ const Memorials = () => {
               memorialsQuery?.fetchNextPage();
             }}
           >
-            Load More
+            {t("Load More")}
           </button>
         </div>
       )}

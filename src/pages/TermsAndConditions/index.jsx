@@ -69,7 +69,7 @@ const TermsAndConditions = () => {
             <h3 className="text-xl font-semibold">3.1 {t("Free Plan")}</h3>
             <ul className="list-disc pl-8 mt-2 text-lg">
               <li>{t("Allows the creation of memorial profiles.")}</li>
-              <li>{t("Ability to upload up to 5 images in the gallery.")}</li>
+              <li>{t("Ability to upload up to 6 images in the gallery.")}</li>
               <li>{t("Does not include the option to create posts.")}</li>
             </ul>
           </div>

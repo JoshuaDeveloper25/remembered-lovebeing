@@ -82,8 +82,8 @@ const resources = {
       "Free Plan": "Free Plan",
       "Allows the creation of memorial profiles.":
         "Allows the creation of memorial profiles.",
-      "Ability to upload up to 5 images in the gallery.":
-        "Ability to upload up to 5 images in the gallery.",
+      "Ability to upload up to 6 images in the gallery.":
+        "Ability to upload up to 6 images in the gallery.",
       "Does not include the option to create posts.":
         "Does not include the option to create posts.",
       "Pro Plan": "Pro Plan",
@@ -632,8 +632,8 @@ const resources = {
       "Free Plan": "Plan Gratuito",
       "Allows the creation of memorial profiles.":
         "Permite la creación de perfiles memoriales.",
-      "Ability to upload up to 5 images in the gallery.":
-        "Capacidad para subir hasta 5 imágenes en la galería.",
+      "Ability to upload up to 6 images in the gallery.":
+        "Capacidad para subir hasta 6 imágenes en la galería.",
       "Does not include the option to create posts.":
         "No incluye la opción de crear publicaciones.",
       "Pro Plan": "Plan Pro",

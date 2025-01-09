@@ -48,7 +48,7 @@ const NavbarDesktop = ({
             })}
 
             {/* Language Switcher */}
-            {/* <ToggleLanguage handleChange={handleChange} language={language} /> */}
+            <ToggleLanguage handleChange={handleChange} language={language} />
 
             {userInfo?.access_token && (
               <>

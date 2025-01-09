@@ -201,19 +201,19 @@ const resources = {
       "Information We Collect": "Information We Collect",
       "When you use our application, we may collect the following categories of data":
         "When you use our application, we may collect the following categories of data",
-      "Personal Information: Name, email, contact details, and payment information (in case of subscriptions).":
-        "Personal Information: Name, email, contact details, and payment information (in case of subscriptions).",
+      "Personal Information: Name, email, and contact details.":
+        "Personal Information: Name, email, and contact details.",
       "Memorial Profile Information: Names, birth and death dates, images, and tributes.":
         "Memorial Profile Information: Names, birth and death dates, images, and tributes.",
-      "Browsing Data: IP address, browser type, device used, and app usage statistics.":
-        "Browsing Data: IP address, browser type, device used, and app usage statistics.",
+      "Browsing Data: Browser type, device used, and app usage statistics.":
+        "Browsing Data: Browser type, device used, and app usage statistics.",
       "How We Use Your Information": "How We Use Your Information",
       "The information we collect is used to:":
         "The information we collect is used to:",
       "Provide and improve the services offered in our app.":
         "Provide and improve the services offered in our app.",
-      "Manage your account, subscriptions, and features such as uploading images or tributes.":
-        "Manage your account, subscriptions, and features such as uploading images or tributes.",
+      "Manage your account, features such as uploading images or tributes.":
+        "Manage your account, features such as uploading images or tributes.",
       "Ensure the security of the platform and prevent misuse.":
         "Ensure the security of the platform and prevent misuse.",
       "Send important notifications, such as service updates or reminders.":
@@ -221,8 +221,8 @@ const resources = {
       "Data Sharing": "Data Sharing",
       "We do not share your personal data with third parties, except in the following situations:":
         "We do not share your personal data with third parties, except in the following situations:",
-      "External Service Providers: We use services such as PayPal or Stripe to securely process payments.":
-        "External Service Providers: We use services such as PayPal or Stripe to securely process payments.",
+      "External Service Providers: We use services such as PayPal or Pagadito to securely process payments.":
+        "External Service Providers: We use services such as PayPal or Pagadito to securely process payments.",
       "Legal Requirements: If requested by any authority in accordance with the law.":
         "Legal Requirements: If requested by any authority in accordance with the law.",
       "User Consent: When you explicitly authorize us to share your information.":
@@ -410,10 +410,18 @@ const resources = {
       "Crime victim": "Crime victim",
       "Heart attack": "Heart attack",
       "No options available...": "No options available...",
+      "Data and Image Storage": "Data and Image Storage",
+      "Photos and other files uploaded to our application are securely stored on Amazon Web Services (AWS) servers, a platform recognized for its high security and international standards. These servers may be located outside of Honduras, ensuring the protection and accessibility of your data at all times.":
+        "Photos and other files uploaded to our application are securely stored on Amazon Web Services (AWS) servers, a platform recognized for its high security and international standards. These servers may be located outside of Honduras, ensuring the protection and accessibility of your data at all times.",
+      Email: "Email",
     },
   },
   es: {
     translation: {
+      Email: "Correo Electrónico",
+      "Photos and other files uploaded to our application are securely stored on Amazon Web Services (AWS) servers, a platform recognized for its high security and international standards. These servers may be located outside of Honduras, ensuring the protection and accessibility of your data at all times.":
+        "Las fotos y demás archivos subidos a nuestra aplicación se almacenan de forma segura en servidores de Amazon Web Services (AWS), una plataforma reconocida por su alta seguridad y estándares internacionales. Estos servidores pueden estar ubicados fuera de Honduras, garantizando la protección y accesibilidad de tus datos en todo momento.",
+      "Data and Image Storage": "Almacenamiento de Datos e Imágenes",
       "No options available...": "Sin opciones disponibles...",
       "Heart attack": "Ataque al corazón",
       "Crime victim": "Víctima de crimen",
@@ -682,19 +690,19 @@ const resources = {
       "Information We Collect": "Información que Recopilamos",
       "When you use our application, we may collect the following categories of data":
         "Cuando usas nuestra aplicación, podemos recopilar las siguientes categorías de datos",
-      "Personal Information: Name, email, contact details, and payment information (in case of subscriptions).":
-        "Información Personal: Nombre, correo electrónico, datos de contacto y detalles de pago (en caso de suscripciones).",
+      "Personal Information: Name, email, and contact details.":
+        "Información Personal: Nombre, correo electrónico y datos de contacto.",
       "Memorial Profile Information: Names, birth and death dates, images, and tributes.":
         "Información de los Perfiles Memoriales: Nombres, fechas de nacimiento y fallecimiento, imágenes, y tributos.",
-      "Browsing Data: IP address, browser type, device used, and app usage statistics.":
-        "Datos de navegación: Dirección IP, tipo de navegador, dispositivo utilizado y estadísticas de uso de la aplicación.",
+      "Browsing Data: Browser type, device used, and app usage statistics.":
+        "Datos de navegación: Tipo de navegador, dispositivo utilizado y estadísticas de uso de la aplicación.",
       "How We Use Your Information": "Cómo Usamos Tu Información",
       "The information we collect is used to:":
         "La información que recopilamos se utiliza para:",
       "Provide and improve the services offered in our app.":
         "Proporcionar y mejorar los servicios ofrecidos en nuestra aplicación.",
-      "Manage your account, subscriptions, and features such as uploading images or tributes.":
-        "Gestionar tu cuenta, suscripciones y funcionalidades, como subir imágenes o tributos.",
+      "Manage your account, features such as uploading images or tributes.":
+        "Gestionar tu cuenta, funcionalidades, como subir imágenes o tributos.",
       "Ensure the security of the platform and prevent misuse.":
         "Garantizar la seguridad de la plataforma y prevenir usos indebidos.",
       "Send important notifications, such as service updates or reminders.":
@@ -702,8 +710,8 @@ const resources = {
       "Data Sharing": "Compartición de Datos",
       "We do not share your personal data with third parties, except in the following situations:":
         "No compartimos tus datos personales con terceros, excepto en las siguientes situaciones:",
-      "External Service Providers: We use services such as PayPal or Stripe to securely process payments.":
-        "Proveedores de servicios externos: Utilizamos servicios como PayPal o Stripe para procesar pagos de manera segura.",
+      "External Service Providers: We use services such as PayPal or Pagadito to securely process payments.":
+        "Proveedores de servicios externos: Utilizamos servicios como PayPal o Pagadito para procesar pagos de manera segura.",
       "Legal Requirements: If requested by any authority in accordance with the law.":
         "Requerimientos legales: Si alguna autoridad lo solicita conforme a la ley.",
       "User Consent: When you explicitly authorize us to share your information.":

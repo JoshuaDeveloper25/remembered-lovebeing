@@ -22,7 +22,7 @@ const PrivacyPolicy = () => {
       <div className="fixed top-[20rem] right-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
         <img className="w-[100rem] rotate-[-20deg]" src={cloud} alt="cloud" />
       </div> */}
-      
+
       <section className="max-w-3xl mx-auto px-6 py-6 text-primary-color bg-white shadow-xl rounded-lg my-12">
         <div className="mb-8">
           <h2 className="font-mono tracking-wider text-4xl uppercase font-semibold text-center">
@@ -55,9 +55,7 @@ const PrivacyPolicy = () => {
           </p>
           <ul className="list-disc pl-8 mt-2 text-lg">
             <li>
-              {t(
-                "Personal Information: Name, email, contact details, and payment information (in case of subscriptions)."
-              )}
+              {t("Personal Information: Name, email, and contact details.")}
             </li>
             <li>
               {t(
@@ -66,7 +64,7 @@ const PrivacyPolicy = () => {
             </li>
             <li>
               {t(
-                "Browsing Data: IP address, browser type, device used, and app usage statistics."
+                "Browsing Data: Browser type, device used, and app usage statistics."
               )}
             </li>
           </ul>
@@ -83,7 +81,7 @@ const PrivacyPolicy = () => {
             <li>{t("Provide and improve the services offered in our app.")}</li>
             <li>
               {t(
-                "Manage your account, subscriptions, and features such as uploading images or tributes."
+                "Manage your account, features such as uploading images or tributes."
               )}
             </li>
             <li>
@@ -109,7 +107,7 @@ const PrivacyPolicy = () => {
           <ul className="list-disc pl-8 mt-2 text-lg">
             <li>
               {t(
-                "External Service Providers: We use services such as PayPal or Stripe to securely process payments."
+                "External Service Providers: We use services such as PayPal or Pagadito to securely process payments."
               )}
             </li>
             <li>
@@ -242,28 +240,29 @@ const PrivacyPolicy = () => {
               "If you have any questions, concerns, or wish to exercise your privacy rights, you can contact us at:"
             )}
           </p>
-          <ul className="list-disc pl-8 mt-2 text-lg">
-            <li>{t("Email: support@eternalmemoriesx.com")}</li>
-            <li>{t("Phone: [contact number, optional]")}</li>
-          </ul>
+
+          <div className="my-4">
+            {" "}
+            <p className="font-bold text-lg">{t("Email")}:</p>
+            <ul className="list-disc text-lg pl-5">
+              <li className="break-words ">
+                <p> support@eternalmemoriesx.com</p>
+              </li>
+            </ul>
+          </div>
           <p className="mt-2 text-lg">
             {t("Last updated:")}{" "}
-            <span className="font-semibold">12/09/2024</span>
+            <span className="font-semibold">09/01/2024</span>
           </p>
         </section>
 
         <section className="mb-6">
           <h2 className="text-2xl font-semibold text-primary-color-light">
-            12. {t("Additional Notes")}
+            12. {t("Data and Image Storage")}
           </h2>
           <p className="mt-2 text-lg">
             {t(
-              "If you plan to expand internationally or include users outside of Honduras, you may add a specific section on international data transfers."
-            )}
-          </p>
-          <p className="mt-2 text-lg">
-            {t(
-              "If you use a hosting provider (such as AWS or Azure), mention that data is stored on secure servers, possibly located outside of Honduras."
+              "Photos and other files uploaded to our application are securely stored on Amazon Web Services (AWS) servers, a platform recognized for its high security and international standards. These servers may be located outside of Honduras, ensuring the protection and accessibility of your data at all times."
             )}
           </p>
         </section>

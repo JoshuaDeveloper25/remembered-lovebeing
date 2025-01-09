@@ -421,3 +421,9 @@ body:has(.backdrop-modal) .to-top {
   max-width: 100% !important;
   border: 1px solid red !important;
 }
+
+.react-tooltip {
+  z-index: 9999 !important;
+  width: 16rem !important;
+  padding-inline: .6rem!important;
+}

@@ -1,10 +1,11 @@
 import AppContext from "../../context/AppProvider";
 import { IoCloseSharp } from "react-icons/io5";
 import { useTranslation } from "react-i18next";
-import { FaCheck } from "react-icons/fa";
+import { FaCheck, FaQuestionCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { GoStop } from "react-icons/go";
 import { useContext } from "react";
+import QuestionMarkInfo from "../../components/QuestionMarkInfo";
 
 const Prices = () => {
   const { t } = useTranslation();
@@ -25,7 +26,7 @@ const Prices = () => {
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-8 mt-16">
-        <div className="min-w-[20rem] hover:scale-105 hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white">
+        <div className="min-w-[20rem] hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
             {t("Free")}
           </span>
@@ -35,7 +36,6 @@ const Prices = () => {
               <span className="align-text-top text-4xl me-3">$</span>
               <span>0.00</span>
             </h2>
-           
           </div>
 
           <ul className="text-muted-color leading-9 my-5">
@@ -56,17 +56,44 @@ const Prices = () => {
 
             <li className="flex items-center gap-3 border-b py-1">
               <IoCloseSharp className="text-red-500 size-[1.3rem] font-bold inline-block" />
-              {t("No posts")}
+              {t("No posts")}{" "}
+              <QuestionMarkInfo toolTipId={"postsHelp"}>
+                <div className="text-white max-w-sm leading-5 text-xs">
+                  <h3 className="font-bold text-sm">Posts</h3>
+                  <p className="text-start">
+                    Crea publicaciones especiales con imágenes significativas de
+                    tus seres queridos, permitiendo a otros dejar comentarios y
+                    corazones como muestra de cariño y apoyo.
+                  </p>
+                </div>
+              </QuestionMarkInfo>
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
               <IoCloseSharp className="text-red-500 size-[1.3rem] font-bold inline-block" />
-              {t("Generate QR Code")}
+              {t("Generate QR Code")}{" "}
+              <QuestionMarkInfo toolTipId={"generateQRCodeHelp"}>
+                <div className="text-white max-w-sm leading-5 text-xs">
+                  <h3 className="font-bold text-sm">Código QR</h3>
+
+                  <p className="text-start">
+                    Genera un QR único para acceder fácilmente al perfil
+                    conmemorativo, ideal para colocarlo en objetos
+                    significativos, como:
+                  </p>
+
+                  <ul className="pl-5 list-disc text-start mt-4">
+                    <li>Urna</li>
+                    <li>Lápida</li>
+                    <li>Camisetas</li>
+                  </ul>
+                </div>
+              </QuestionMarkInfo>
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
               <IoCloseSharp className="text-red-500 size-[1.3rem] font-bold inline-block" />
-              {t("N° of Premium Profiles")} (0)
+              {t("N° of Premium Profiles")} (0){" "}
             </li>
           </ul>
           <Link
@@ -85,7 +112,7 @@ const Prices = () => {
           </Link>
         </div>
 
-        <div className="min-w-[20rem] hover:scale-105 hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white relative">
+        <div className="min-w-[20rem] hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white relative">
           <div className="absolute top-5 -left-8">
             <h3 className="bg-red-500 shadow-lg rounded-sm text-white font-semibold tracking-wider font-mono uppercase -rotate-45 px-2">
               {t("Most Popular!")}
@@ -121,12 +148,39 @@ const Prices = () => {
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              {t("Unlimited posts")}
+              {t("Unlimited posts")}{" "}
+              <QuestionMarkInfo toolTipId={"postsHelp"}>
+                <div className="text-white max-w-sm leading-5 text-xs">
+                  <h3 className="font-bold text-sm">Posts</h3>
+                  <p className="text-start">
+                    Crea publicaciones especiales con imágenes significativas de
+                    tus seres queridos, permitiendo a otros dejar comentarios y
+                    corazones como muestra de cariño y apoyo.
+                  </p>
+                </div>
+              </QuestionMarkInfo>
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              {t("Generate QR Code")}
+              {t("Generate QR Code")}{" "}
+              <QuestionMarkInfo toolTipId={"generateQRCodeHelp"}>
+                <div className="text-white max-w-sm leading-5 text-xs">
+                  <h3 className="font-bold text-sm">Código QR</h3>
+
+                  <p className="text-start">
+                    Genera un QR único para acceder fácilmente al perfil
+                    conmemorativo, ideal para colocarlo en objetos
+                    significativos, como:
+                  </p>
+
+                  <ul className="pl-5 list-disc text-start mt-4">
+                    <li>Urna</li>
+                    <li>Lápida</li>
+                    <li>Camisetas</li>
+                  </ul>
+                </div>
+              </QuestionMarkInfo>
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
@@ -151,7 +205,7 @@ const Prices = () => {
           </Link>
         </div>
 
-        <div className="min-w-[20rem] hover:scale-105 hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white">
+        <div className="min-w-[20rem] hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
             Tertiary Package
           </span>
@@ -180,11 +234,38 @@ const Prices = () => {
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
               {t("Unlimited posts")}
+              <QuestionMarkInfo toolTipId={"postsHelp"}>
+                <div className="text-white max-w-sm leading-5 text-xs">
+                  <h3 className="font-bold text-sm">Posts</h3>
+                  <p className="text-start">
+                    Crea publicaciones especiales con imágenes significativas de
+                    tus seres queridos, permitiendo a otros dejar comentarios y
+                    corazones como muestra de cariño y apoyo.
+                  </p>
+                </div>
+              </QuestionMarkInfo>
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              {t("Generate QR Code")}
+              {t("Generate QR Code")}{" "}
+              <QuestionMarkInfo toolTipId={"generateQRCodeHelp"}>
+                <div className="text-white max-w-sm leading-5 text-xs">
+                  <h3 className="font-bold text-sm">Código QR</h3>
+
+                  <p className="text-start">
+                    Genera un QR único para acceder fácilmente al perfil
+                    conmemorativo, ideal para colocarlo en objetos
+                    significativos, como:
+                  </p>
+
+                  <ul className="pl-5 list-disc text-start mt-4">
+                    <li>Urna</li>
+                    <li>Lápida</li>
+                    <li>Camisetas</li>
+                  </ul>
+                </div>
+              </QuestionMarkInfo>
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">

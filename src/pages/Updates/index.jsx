@@ -23,8 +23,26 @@ const Updates = () => {
             content: "text-sm",
             indicator: "text-xl",
           }}
-          title="Profiles"
+          title="Future Mobile App Transition: Android & iOS" // Transición Futuro de la App a Móviles: Android e iOS
           key="1"
+        >
+          <p>
+            Si eres usuario de teléfonos móviles, muy pronto podrás disfrutar de
+            la experiencia completa de nuestra app en tus dispositivos Android e
+            iOS. Mantente atento a una transición fácil y fluida hacia tu
+            plataforma favorita, con características mejoradas y un rendimiento
+            optimizado para móviles.
+          </p>
+        </AccordionItem>
+
+        <AccordionItem
+          classNames={{
+            title: "font-semibold text-black",
+            content: "text-sm",
+            indicator: "text-xl",
+          }}
+          title="Profiles"
+          key="2"
         >
           <ul className="pl-4 list-disc space-y-4">
             <li>
@@ -63,7 +81,7 @@ const Updates = () => {
             indicator: "text-xl",
           }}
           title="Profiles Management"
-          key="2"
+          key="3"
         >
           <ul className="pl-4 list-disc space-y-4">
             <li>

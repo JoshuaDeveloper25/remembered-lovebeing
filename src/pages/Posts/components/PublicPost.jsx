@@ -241,7 +241,11 @@ const PublicPost = ({ post, ownerName }) => {
                   </div>
                 )}
 
-                {alreadyLikedPost && t("You left a heart")}
+                {alreadyLikedPost && (
+                  <span className="sm:block hidden">
+                    {t("You left a heart")}
+                  </span>
+                )}
               </button>
             ) : (
               <Link

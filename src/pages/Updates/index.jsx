@@ -19,13 +19,21 @@ const Updates = () => {
       </div>
 
       <Accordion variant="splitted" className="max-w-2xl mx-auto">
-        <AccordionItem key="1" aria-label="Accordion 1" title="Accordion 1">
+        <AccordionItem
+          classNames={{ title: "font-semibold text-white", base: "bg-primary-color/50", content: "text-white text-sm", indicator: "text-white text-xl" }}
+          title="Incorporación Multilingüe en la Página Web"
+          key="1"
+        >
+          Expande el alcance global de tu página web al añadir soporte para
+          múltiples idiomas, ofreciendo una experiencia personalizada a usuarios
+          de diferentes regiones.
+        </AccordionItem>
+
+        <AccordionItem key="2" title="Accordion 2">
           {"defaultContent"}
         </AccordionItem>
-        <AccordionItem key="2" aria-label="Accordion 2" title="Accordion 2">
-          {"defaultContent"}
-        </AccordionItem>
-        <AccordionItem key="3" aria-label="Accordion 3" title="Accordion 3">
+
+        <AccordionItem key="3" title="Accordion 3">
           {"defaultContent"}
         </AccordionItem>
       </Accordion>

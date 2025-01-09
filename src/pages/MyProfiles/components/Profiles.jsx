@@ -29,16 +29,49 @@ const Profiles = ({
 
   return (
     <>
-      <div className="md:hidden flex items-center gap-2 justify-center mb-5">
+      <div className="md:hidden flex items-center gap-2 mb-5">
         {premiumProfilesRemaining ? (
           <>
-            <div className="inline-block me-auto">
-              <button
-                onClick={handleCreatePremiumProfile}
-                className="btn px-3 text-primary-color border-primary-color hover:text-white hover:bg-primary-color"
-              >
-                <GoPlus className="size-5 inline" /> Create Pro Profile
-              </button>
+            <div className="flex gap-2.5 items-center w-full">
+              <div className="flex-[20%]">
+                {" "}
+                <button
+                  onClick={handleCreatePremiumProfile}
+                  className="btn text-sm px-3 text-primary-color border-primary-color hover:text-white hover:bg-primary-color"
+                >
+                  <GoPlus className="size-5 inline" /> Create Pro Profile
+                </button>
+              </div>
+
+              <div className="flex-1">
+                <p className="flex text-[#fab818 border font-mono tracking-tighter text-sm py-2.5  px-3 rounded-md">
+                  <div className="flex items-center text-sm justify-center text-[#fab818] w-fit px-1.5 mx-auto">
+                    <svg
+                      className="fill-[#fab818] h-4 premium-filled-icon--nW2Vi header-svg-icon"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 16 16"
+                      data-t="premium-filled-svg"
+                      aria-labelledby="premium-filled-svg"
+                      aria-hidden="true"
+                      role="img"
+                    >
+                      <title id="premium-filled-svg">Premium</title>
+                      <path d="M2.419 13L0 4.797 4.837 6.94 8 2l3.163 4.94L16 4.798 13.581 13z"></path>
+                    </svg>
+
+                    <h2
+                      className={`ms-1.5 rounded text-center font-semibold uppercase font-[poppins] me-1`}
+                    >
+                      PRO
+                    </h2>
+
+                    <span className="font-bold me-1 text-black">
+                      ({premiumProfilesRemaining})
+                    </span>
+                    <span className="text-black">remaining</span>
+                  </div>
+                </p>
+              </div>
             </div>
           </>
         ) : (

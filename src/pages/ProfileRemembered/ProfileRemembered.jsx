@@ -287,7 +287,7 @@ const ProfileRemembered = () => {
             }
             crudModalClassName={"sm:px-4 px-0 "}
             formContainerClassName={
-              "sm:max-h-[34rem] max-h[34rem] overflow-y-auto"
+              "max-h-[34rem] overflow-y-auto"
             }
             modalContentClassNames={"sm:relative static"}
           >

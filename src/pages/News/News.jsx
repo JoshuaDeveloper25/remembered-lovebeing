@@ -1,8 +1,8 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 import New from "./components/New";
 import { useState } from "react";
 import axios from "axios";
-import { useTranslation } from "react-i18next";
 
 const News = () => {
   const { t } = useTranslation();

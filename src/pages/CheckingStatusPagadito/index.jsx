@@ -32,7 +32,7 @@ const CheckingStatusPagadito = () => {
         paymentInfo
       ),
     onSuccess: (res) => {
-      // console.log(res);
+      console.log(res, 'success');
     },
     onError: (err) => {
       toast.error(getFastApiErrors(err));
@@ -45,12 +45,11 @@ const CheckingStatusPagadito = () => {
       await axios.post(
         `${import.meta.env.VITE_BASE_URL}/payments/get-premium-profiles/pay/${
           comprobante[1] === "singlePackage" ? 1 : 3
-        }/${searchParams?.get("token")}`,
+        }/${searchParams?.get("token")}/${"pagadito"}`,
         paymentInfo
       ),
     onSuccess: (res) => {
       sendInvoiceToUserEmail();
-      console.log(res);
     },
     onError: (err) => {
       // toast.error(getFastApiErrors(err));
@@ -70,7 +69,7 @@ const CheckingStatusPagadito = () => {
       console.log(res);
     },
     onError: (err) => {
-      // toast.error(getFastApiErrors(err));
+      toast.error(getFastApiErrors(err));
     },
   });
 

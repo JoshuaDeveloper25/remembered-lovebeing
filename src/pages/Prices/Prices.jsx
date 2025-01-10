@@ -1,11 +1,11 @@
+import QuestionMarkInfo from "../../components/QuestionMarkInfo";
 import AppContext from "../../context/AppProvider";
 import { IoCloseSharp } from "react-icons/io5";
 import { useTranslation } from "react-i18next";
-import { FaCheck, FaQuestionCircle } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { GoStop } from "react-icons/go";
 import { useContext } from "react";
-import QuestionMarkInfo from "../../components/QuestionMarkInfo";
 
 const Prices = () => {
   const { t } = useTranslation();
@@ -57,13 +57,13 @@ const Prices = () => {
             <li className="flex items-center gap-3 border-b py-1">
               <IoCloseSharp className="text-red-500 size-[1.3rem] font-bold inline-block" />
               {t("No posts")}{" "}
-              <QuestionMarkInfo toolTipId={"postsHelp"}>
+              <QuestionMarkInfo toolTipId={"postsHelpFree"}>
                 <div className="text-white max-w-sm leading-5 text-xs">
-                  <h3 className="font-bold text-sm">Posts</h3>
+                  <h3 className="font-bold text-sm">{t("Posts")}</h3>
                   <p className="text-start">
-                    Crea publicaciones especiales con imágenes significativas de
-                    tus seres queridos, permitiendo a otros dejar comentarios y
-                    corazones como muestra de cariño y apoyo.
+                    {t(
+                      "Create special posts with meaningful images of your loved ones, allowing others to leave comments and hearts as a token of affection and support."
+                    )}
                   </p>
                 </div>
               </QuestionMarkInfo>
@@ -72,20 +72,20 @@ const Prices = () => {
             <li className="flex items-center gap-3 border-b py-1">
               <IoCloseSharp className="text-red-500 size-[1.3rem] font-bold inline-block" />
               {t("Generate QR Code")}{" "}
-              <QuestionMarkInfo toolTipId={"generateQRCodeHelp"}>
+              <QuestionMarkInfo toolTipId={"generateQRCodeHelpFree"}>
                 <div className="text-white max-w-sm leading-5 text-xs">
-                  <h3 className="font-bold text-sm">Código QR</h3>
+                  <h3 className="font-bold text-sm">{t("QR Code")}</h3>
 
                   <p className="text-start">
-                    Genera un QR único para acceder fácilmente al perfil
-                    conmemorativo, ideal para colocarlo en objetos
-                    significativos, como:
+                    {t(
+                      "Generate a unique QR code for easy access to the memorial profile, perfect for placing on meaningful objects such as:"
+                    )}
                   </p>
 
                   <ul className="pl-5 list-disc text-start mt-4">
-                    <li>Urna</li>
-                    <li>Lápida</li>
-                    <li>Camisetas</li>
+                    <li>{t("Urn")}</li>
+                    <li>{t("Headstone")}</li>
+                    <li>{t("T-shirts")}</li>
                   </ul>
                 </div>
               </QuestionMarkInfo>
@@ -120,7 +120,7 @@ const Prices = () => {
           </div>
 
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
-            Single Package
+            {t("Single Package")}
           </span>
 
           <div className="mt-5">
@@ -149,13 +149,13 @@ const Prices = () => {
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
               {t("Unlimited posts")}{" "}
-              <QuestionMarkInfo toolTipId={"postsHelp"}>
+              <QuestionMarkInfo toolTipId={"postsHelp19"}>
                 <div className="text-white max-w-sm leading-5 text-xs">
-                  <h3 className="font-bold text-sm">Posts</h3>
+                  <h3 className="font-bold text-sm">{t("Posts")}</h3>
                   <p className="text-start">
-                    Crea publicaciones especiales con imágenes significativas de
-                    tus seres queridos, permitiendo a otros dejar comentarios y
-                    corazones como muestra de cariño y apoyo.
+                    {t(
+                      "Create special posts with meaningful images of your loved ones, allowing others to leave comments and hearts as a token of affection and support."
+                    )}
                   </p>
                 </div>
               </QuestionMarkInfo>
@@ -164,20 +164,20 @@ const Prices = () => {
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
               {t("Generate QR Code")}{" "}
-              <QuestionMarkInfo toolTipId={"generateQRCodeHelp"}>
+              <QuestionMarkInfo toolTipId={"generateQRCodeHelp19"}>
                 <div className="text-white max-w-sm leading-5 text-xs">
-                  <h3 className="font-bold text-sm">Código QR</h3>
+                  <h3 className="font-bold text-sm">{t("QR Code")}</h3>
 
                   <p className="text-start">
-                    Genera un QR único para acceder fácilmente al perfil
-                    conmemorativo, ideal para colocarlo en objetos
-                    significativos, como:
+                    {t(
+                      "Generate a unique QR code for easy access to the memorial profile, perfect for placing on meaningful objects such as:"
+                    )}
                   </p>
 
                   <ul className="pl-5 list-disc text-start mt-4">
-                    <li>Urna</li>
-                    <li>Lápida</li>
-                    <li>Camisetas</li>
+                    <li>{t("Urn")}</li>
+                    <li>{t("Headstone")}</li>
+                    <li>{t("T-shirts")}</li>
                   </ul>
                 </div>
               </QuestionMarkInfo>
@@ -207,7 +207,7 @@ const Prices = () => {
 
         <div className="min-w-[20rem] hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
-            Tertiary Package
+            {t("Tertiary Package")}
           </span>
           <div className="mt-5">
             <h2 className="font-bold text-primary-color-light text-5xl tracking-tighter">
@@ -234,13 +234,13 @@ const Prices = () => {
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
               {t("Unlimited posts")}
-              <QuestionMarkInfo toolTipId={"postsHelp"}>
+              <QuestionMarkInfo toolTipId={"postsHelp49"}>
                 <div className="text-white max-w-sm leading-5 text-xs">
-                  <h3 className="font-bold text-sm">Posts</h3>
+                  <h3 className="font-bold text-sm">{t("Posts")}</h3>
                   <p className="text-start">
-                    Crea publicaciones especiales con imágenes significativas de
-                    tus seres queridos, permitiendo a otros dejar comentarios y
-                    corazones como muestra de cariño y apoyo.
+                    {t(
+                      "Create special posts with meaningful images of your loved ones, allowing others to leave comments and hearts as a token of affection and support."
+                    )}
                   </p>
                 </div>
               </QuestionMarkInfo>
@@ -249,20 +249,20 @@ const Prices = () => {
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
               {t("Generate QR Code")}{" "}
-              <QuestionMarkInfo toolTipId={"generateQRCodeHelp"}>
+              <QuestionMarkInfo toolTipId={"generateQRCodeHelp49"}>
                 <div className="text-white max-w-sm leading-5 text-xs">
-                  <h3 className="font-bold text-sm">Código QR</h3>
+                  <h3 className="font-bold text-sm">{t("QR Code")}</h3>
 
                   <p className="text-start">
-                    Genera un QR único para acceder fácilmente al perfil
-                    conmemorativo, ideal para colocarlo en objetos
-                    significativos, como:
+                    {t(
+                      "Generate a unique QR code for easy access to the memorial profile, perfect for placing on meaningful objects such as:"
+                    )}
                   </p>
 
                   <ul className="pl-5 list-disc text-start mt-4">
-                    <li>Urna</li>
-                    <li>Lápida</li>
-                    <li>Camisetas</li>
+                    <li>{t("Urn")}</li>
+                    <li>{t("Headstone")}</li>
+                    <li>{t("T-shirts")}</li>
                   </ul>
                 </div>
               </QuestionMarkInfo>

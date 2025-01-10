@@ -1,21 +1,31 @@
+import PaypalComponent from "../../../components/PaypalComponent";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import AppContext from "../../../context/AppProvider";
-import payments from "../../../assets/payments.png";
 import { useMutation } from "@tanstack/react-query";
+import payments from "../../../assets/payments.png";
 import paypal from "../../../assets/paypal.png";
+import { useTranslation } from "react-i18next";
 import { useContext, useState } from "react";
+import { Navigate } from "react-router-dom";
 import { TbPigMoney } from "react-icons/tb";
+import { packages } from "../../../db/data";
 import { FaCheck } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
-import { useTranslation } from "react-i18next";
+
+const packageNames = Object.keys(packages);
 
 const PricesPlan = ({ packageName }) => {
   const [selectedPayments, setSelectedPayments] = useState(false);
   const { t } = useTranslation();
   const { userInfo } = useContext(AppContext);
   const shortId = uuidv4().slice(0, 8);
+
+  console.log(packageNames.findIndex((item) => item === packageName));
+
+  if (packageNames.findIndex((item) => item === packageName) === -1)
+    return <Navigate to={"/*?type=altered-url"} />;
 
   const ern = `${`${shortId}-`}${
     packageName === "singlePackage" ? "singlePackage-1" : "tertiaryPackage-3"
@@ -74,7 +84,7 @@ const PricesPlan = ({ packageName }) => {
       {packageName === "singlePackage" ? (
         <div className="min-w-[20rem] hover:shadow-2xl animation-fade border border-primary-color-light shadow-xl rounded-sm text-center py-8 px-7">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
-            Single Package
+            {t("Single Package")}
           </span>
 
           <div className="mt-5">
@@ -120,7 +130,7 @@ const PricesPlan = ({ packageName }) => {
       ) : (
         <div className="min-w-[20rem] hover:shadow-2xl animation-fade border border-primary-color-light shadow-xl rounded-sm text-center py-8 px-7">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
-            Tertiary Package
+            {t("Tertiary Package")}
           </span>
           <div className="mt-5">
             <h2 className="font-bold text-primary-color-light text-5xl tracking-tighter">
@@ -202,7 +212,7 @@ const PricesPlan = ({ packageName }) => {
             <div className="shadow-md rounded-md bg-white p-4">
               <button
                 type="button"
-                className="disabled:bg-green-300 disabled:pointer-events-none btn bg-green-400 text-white flex mx-auto items-center gap-2 w-fit font-semibold hover:animate-pulse animation-fade"
+                className="btn bg-green-400 text-white flex mx-auto items-center gap-2 w-fit font-semibold hover:animate-pulse animation-fade"
                 onClick={generatePaymentURL}
                 disabled={generatePaymentURLMutation?.isPending}
               >
@@ -215,7 +225,7 @@ const PricesPlan = ({ packageName }) => {
           )}
 
           <label
-            className={`pointer-events-none opacity-60 flex items-center justify-between border rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
+            className={`flex items-center justify-between border rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
               selectedPayments === "singular"
                 ? "bg-primary-color-light/50 text-white"
                 : "bg-white text-gray-900"
@@ -240,15 +250,9 @@ const PricesPlan = ({ packageName }) => {
           </label>
 
           {selectedPayments === "singular" && (
-            <div className="shadow-md rounded-md bg-white p-4">
-              <button
-                type="button"
-                className="btn bg-green-400 text-white flex mx-auto items-center gap-2 w-fit font-semibold hover:animate-pulse animation-fade"
-              >
-                <TbPigMoney size={26} />
-                Continue With PayPal
-              </button>
-            </div>
+            <>
+              <PaypalComponent packageName={packageName} />
+            </>
           )}
         </div>
       </div>

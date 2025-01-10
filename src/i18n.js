@@ -440,10 +440,32 @@ const resources = {
       "profile created": "profile created",
       "post updated": "post updated",
       "tribute created": "tribute created",
+      Posts: "Posts",
+      "Create special posts with meaningful images of your loved ones, allowing others to leave comments and hearts as a token of affection and support.":
+        "Create special posts with meaningful images of your loved ones, allowing others to leave comments and hearts as a token of affection and support.",
+      "QR Code": "QR Code",
+      "Generate a unique QR code for easy access to the memorial profile, perfect for placing on meaningful objects such as:":
+        "Generate a unique QR code for easy access to the memorial profile, perfect for placing on meaningful objects such as:",
+      "T-shirts": "T-shirts",
+      Urn: "Urn",
+      Headstone: "Headstone",
+      "Single Package": "Single Package",
+      "Tertiary Package": "Tertiary Package",
     },
   },
   es: {
     translation: {
+      "Single Package": "Paquete de 1",
+      "Tertiary Package": "Paquete de 3",
+      Headstone: "Lápida",
+      Urn: "Urna",
+      "T-shirts": "Camisetas",
+      "Generate a unique QR code for easy access to the memorial profile, perfect for placing on meaningful objects such as:":
+        "Genera un QR único para acceder fácilmente al perfil conmemorativo, ideal para colocarlo en objetos significativos, como:",
+      "QR Code": "Código QR",
+      "Create special posts with meaningful images of your loved ones, allowing others to leave comments and hearts as a token of affection and support.":
+        "Crea publicaciones especiales con imágenes significativas de tus seres queridos, permitiendo a otros dejar comentarios y corazones como muestra de cariño y apoyo.",
+      Posts: "Publicaciones",
       "tribute created": "tributo creado",
       "post updated": "publicación actualizada",
       "profile created": "perfil creado",

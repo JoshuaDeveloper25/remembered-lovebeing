@@ -5,7 +5,18 @@ import rememberedMediaPrev from "../assets/rememberedMediaPrev.png";
 import { GiCandleHolder, GiFlowerPot } from "react-icons/gi";
 import { MdEditDocument } from "react-icons/md";
 import { LiaUsersSolid } from "react-icons/lia";
-import { Trans } from "react-i18next";
+
+export const packages = {
+  singlePackage: {
+    name: "Single Package",
+    price: 20,
+  },
+
+  tertiaryPackage: {
+    name: "Tertiary Package",
+    price: 50,
+  }
+}
 
 export const navbarLinks = [
   {

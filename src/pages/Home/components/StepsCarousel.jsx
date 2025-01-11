@@ -15,6 +15,7 @@ import graveResponsive from "../../../assets/grave-responsive.png";
 import { FaCircleChevronLeft, FaCircleChevronRight } from "react-icons/fa6";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const StepsCarousel = () => {
   const { t } = useTranslation();
@@ -44,12 +45,14 @@ const StepsCarousel = () => {
                 "Generate a QR code to link to your memorial. Place it on headstones, urns, keepsakes, or remembrance cards to share their story with friends and family."
               )}
             </p>
-            <button
-              className="btn btn-blue-light w-auto text-xl mt-4"
-              type="button"
-            >
-              {t("Create a Memorial")}
-            </button>
+            <Link to={"/prices/"}>
+              <button
+                className="btn btn-blue-light w-auto text-xl mt-4"
+                type="button"
+              >
+                {t("Create a Memorial")}
+              </button>
+            </Link>
           </div>
 
           <div>

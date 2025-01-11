@@ -77,7 +77,7 @@ const Header = () => {
                 <Link
                   to={
                     userInfo?.access_token
-                      ? "/my-profiles/"
+                      ? "/prices/"
                       : "/sign-in?redirect=/my-profiles/"
                   }
                 >

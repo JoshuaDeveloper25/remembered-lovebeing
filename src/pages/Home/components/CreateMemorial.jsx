@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CarouselCubeCreateMemorials from "./CarouselCubeCreateMemorials";
 import { useTranslation } from "react-i18next";
 
@@ -23,12 +24,14 @@ const CreateMemorial = () => {
                 "Create a meaningful online memorial to celebrate your loved one’s life. Share stories, upload photos, receive condolences, post tributes, and keep their memory alive."
               )}
             </p>
-            <button
-              className="btn btn-blue-light w-auto text-xl sm:mt-4"
-              type="button"
-            >
-              {t("Create a Memorial")}
-            </button>
+            <Link to="/prices/">
+              <button
+                className="btn btn-blue-light w-auto text-xl sm:mt-4"
+                type="button"
+              >
+                {t("Create a Memorial")}
+              </button>
+            </Link>
           </div>
 
           <div className="md:block hidden flex-1">

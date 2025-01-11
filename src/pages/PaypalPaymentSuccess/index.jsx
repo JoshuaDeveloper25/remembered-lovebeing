@@ -1,16 +1,37 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import formatDate from "../../utils/formatDate";
 import { AiFillPrinter } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/logo.png";
-import { useRef } from "react";
 
 const PaypalPaymentSuccess = () => {
   const contentRef = useRef(null);
   const reactToPrintFn = useReactToPrint({ contentRef });
   const { t } = useTranslation();
   const location = useLocation();
+  const [details, setDetails] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const retrievedObject = localStorage.getItem("invoiceDetails");
+
+    if (retrievedObject) {
+      setDetails(JSON.parse(retrievedObject));
+      localStorage.removeItem("invoiceDetails");
+    }
+
+    setIsLoading(false);
+  }, []);
+
+  if (isLoading) {
+    return <div>Cargando...</div>;
+  }
+
+  if (!details) {
+    return <Navigate to={"/*"} />;
+  }
 
   // Print the invoice
   const handlePrint = () => {

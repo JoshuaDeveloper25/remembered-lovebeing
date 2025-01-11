@@ -70,7 +70,7 @@ const PaypalComponent = ({ packageName }) => {
         purchase_units: [
           {
             description: "Paying in Eternal MemoriesX",
-            amount: { value: packageName === "singlePackage" ? 20 : 50 },
+            amount: { value: packageName === "singlePackage" ? 2 : 50 },
             custom_id: JSON.stringify({
               id: userInfo?.email,
             }),
@@ -113,8 +113,9 @@ const PaypalComponent = ({ packageName }) => {
       console.log(data, "data quii");
 
       try {
+        localStorage.setItem("invoiceDetails", JSON.stringify(invoiceDetails));
         payPremiumProfilePrices?.mutate();
-
+        
         // const url = `${import.meta.env.VITE_BASE_URL}/orders/pay`;
 
         // const bodyParameter = {

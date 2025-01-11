@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import axios from "axios";
+import SignInModal from "../../../components/SignInModal";
 
 export const HeartIcon = ({
   fill = "currentColor",
@@ -507,12 +508,11 @@ const PublicPost = ({ post, ownerName }) => {
                     </h2>
                     <p>
                       {t("Please")},{" "}
-                      <Link
-                        className="text-primary-color-light underline font-bold"
-                        to={"/sign-in?redirect=/posts"}
-                      >
+
+                      <SignInModal className="text-primary-color-light underline font-bold">
                         {t("log in")}
-                      </Link>{" "}
+                      </SignInModal>{" "}
+                      
                       {t("to leave one!")}
                     </p>
                   </div>

@@ -20,15 +20,16 @@ import { Button } from "@nextui-org/react";
 
 // Flowbite imports
 import { Modal as ModalFlowbite, Tooltip } from "flowbite-react";
+import SignInModal from "./SignInModal";
 
 // Icons
 import { BsHearts, BsThreeDots } from "react-icons/bs";
 import { BiSolidQuoteRight } from "react-icons/bi";
 import { HiDotsVertical } from "react-icons/hi";
+import { useTranslation } from "react-i18next";
 import { FaRegMessage } from "react-icons/fa6";
 import { IoMdHeart } from "react-icons/io";
 import { IoSend } from "react-icons/io5";
-import { useTranslation } from "react-i18next";
 
 export const HeartIcon = ({
   fill = "currentColor",
@@ -350,22 +351,14 @@ const Post = ({ isOwner, post, rememberName }) => {
                 {alreadyLikedPost && "You left a heart"}
               </button>
             ) : (
-              <Link
-                className={`flex items-center gap-2.5 text-gray-500 hover:text-red-500`}
-                to={"/sign-in?redirect=/posts"}
+              <SignInModal
+                heartDesign={true}
+                additionalText={
+                  <span className="sm:block hidden">Leave a heart</span>
+                }
               >
-                <Button
-                  onPress={(e) => e.preventDefault()}
-                  type="button"
-                  isIconOnly
-                  aria-label="Like"
-                  color="danger"
-                  className="sm:w-9 w-8 sm:h-9 h-8 sm:rounded-lg rounded-md group-hover:bg-opacity-60"
-                >
-                  <HeartIcon />
-                </Button>
-                <span className="sm:block hidden">Leave a heart</span>
-              </Link>
+                <HeartIcon />
+              </SignInModal>
             )}
 
             <button
@@ -449,14 +442,13 @@ const Post = ({ isOwner, post, rememberName }) => {
                       Want to comment something?
                     </h2>
                     <p>
-                      Please,{" "}
-                      <Link
-                        className="text-primary-color-light underline font-bold"
-                        to={"/sign-in?redirect=/posts"}
-                      >
-                        log in
-                      </Link>{" "}
-                      to leave one!
+                      {t("Please")},{" "}
+                      <SignInModal>
+                        <span className="text-primary-color-light underline font-bold">
+                          {t("log in")}
+                        </span>
+                      </SignInModal>{" "}
+                      {t("to leave one!")}
                     </p>
                   </div>
                 )}
@@ -598,14 +590,13 @@ const Post = ({ isOwner, post, rememberName }) => {
                       Want to comment something?
                     </h2>
                     <p>
-                      Please,{" "}
-                      <Link
-                        className="text-primary-color-light underline font-bold"
-                        to={"/sign-in?redirect=/posts"}
-                      >
-                        log in
-                      </Link>{" "}
-                      to leave one!
+                      {t("Please")},{" "}
+                      <SignInModal>
+                        <span className="text-primary-color-light underline font-bold">
+                          {t("log in")}
+                        </span>
+                      </SignInModal>{" "}
+                      {t("to leave one!")}
                     </p>
                   </div>
                 )}

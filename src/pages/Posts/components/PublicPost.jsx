@@ -249,22 +249,14 @@ const PublicPost = ({ post, ownerName }) => {
                 )}
               </button>
             ) : (
-              <Link
-                className={`flex items-center gap-2.5 text-gray-500 hover:text-red-500`}
-                to={"/sign-in?redirect=/posts"}
+              <SignInModal
+                heartDesign={true}
+                additionalText={
+                  <span className="sm:block hidden">Leave a heart</span>
+                }
               >
-                <Button
-                  onPress={(e) => e.preventDefault()}
-                  type="button"
-                  isIconOnly
-                  aria-label="Like"
-                  color="danger"
-                  className="sm:w-9 w-8 sm:h-9 h-8 sm:rounded-lg rounded-md group-hover:bg-opacity-60"
-                >
-                  <HeartIcon />
-                </Button>
-                <span className="sm:block hidden">{t("Leave a heart")}</span>
-              </Link>
+                <HeartIcon />
+              </SignInModal>
             )}
 
             <button
@@ -349,12 +341,11 @@ const PublicPost = ({ post, ownerName }) => {
                     </h2>
                     <p>
                       {t("Please")},{" "}
-                      <Link
-                        className="text-primary-color-light underline font-bold"
-                        to={"/sign-in?redirect=/posts"}
-                      >
-                        {t("log in")}
-                      </Link>{" "}
+                      <SignInModal>
+                        <span className="text-primary-color-light underline font-bold">
+                          {t("log in")}
+                        </span>
+                      </SignInModal>{" "}
                       {t("to leave one!")}
                     </p>
                   </div>
@@ -508,11 +499,11 @@ const PublicPost = ({ post, ownerName }) => {
                     </h2>
                     <p>
                       {t("Please")},{" "}
-
-                      <SignInModal className="text-primary-color-light underline font-bold">
-                        {t("log in")}
+                      <SignInModal>
+                        <span className="text-primary-color-light underline font-bold">
+                          {t("log in")}
+                        </span>
                       </SignInModal>{" "}
-                      
                       {t("to leave one!")}
                     </p>
                   </div>

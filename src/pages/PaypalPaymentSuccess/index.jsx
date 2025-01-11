@@ -5,6 +5,7 @@ import formatDate from "../../utils/formatDate";
 import { AiFillPrinter } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/logo.png";
+import emailjs from "@emailjs/browser";
 
 const PaypalPaymentSuccess = () => {
   const contentRef = useRef(null);
@@ -13,6 +14,7 @@ const PaypalPaymentSuccess = () => {
   const location = useLocation();
   const [details, setDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [emailSent, setEmailSent] = useState(false);
 
   useEffect(() => {
     const retrievedObject = localStorage.getItem("invoiceDetails");
@@ -24,6 +26,36 @@ const PaypalPaymentSuccess = () => {
 
     setIsLoading(false);
   }, []);
+
+  useEffect(() => {
+    if (!details || emailSent) return;
+
+    const invoiceDetailsToEmail = {
+      email_id: location?.state?.id,
+      invoice_approval_number: location?.state?.approvalNumber,
+      invoice_number: location?.state?.invoiceNumber,
+      invoice_date: formatDate(location?.state?.creation_date),
+      invoice_description: location?.state?.description,
+      invoice_price: location?.state?.price,
+      invoice_type_plan: location?.state?.type_plan,
+    };
+
+    const sendInvoiceToUserEmail = async () => {
+      try {
+        await emailjs.send(
+          import.meta.env.VITE_SERVICE_ID,
+          import.meta.env.VITE_TEMPLATE_INVOICE_ID,
+          invoiceDetailsToEmail,
+          import.meta.env.VITE_PUBLIC_KEY
+        );
+        setEmailSent(true);
+      } catch (error) {
+        console.error("Error sending email:", error);
+      }
+    };
+
+    sendInvoiceToUserEmail();
+  }, [details, emailSent]);
 
   if (isLoading) {
     return <div>Cargando...</div>;

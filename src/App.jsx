@@ -185,6 +185,7 @@ const App = () => {
           options={{
             "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID,
             components: "buttons",
+            currency: "USD"
           }}
         >
           <QueryClientProvider client={queryClient}>

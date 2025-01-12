@@ -115,7 +115,7 @@ const CoverRememberedModal = ({
               )}
             >
               {/* Modal header */}
-              <div className="flex items-center justify-between p-4 md:p-5 border-b  bg-tertiary-color/15 dark:border-gray-300">
+              <div className="flex items-center justify-between p-4 md:p-5 border-b sm:static absolute left-0 right-0  bg-tertiary-color/15 dark:border-gray-300">
                 <div>
                   <h3 className="flex  items-center gap-2 text-xl font-semibold text-fourth-color">
                     {iconTitle && (
@@ -153,7 +153,7 @@ const CoverRememberedModal = ({
 
               <div
                 className={twMerge(
-                  "max-h-[34rem] overflow-y-auto",
+                  "sm:max-h-[34rem] max-h-full overflow-y-auto",
                   formContainerClassName
                 )}
               >

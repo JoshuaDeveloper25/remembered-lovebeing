@@ -13,15 +13,17 @@ const FormGalleryImages = ({
         <ImagesHandle setImages={setImages} images={images} />
       </div>
 
-      <ButtonForm
-        imagesAvailabe={true}
-        images={images}
-        setClearCache={setImages}
-        setOpenModal={setOpenModalGallery}
-        isPending={isPending}
-        statusOn={"Uploading..."}
-        statusOff={"Upload"}
-      />
+      <div className="sticky bottom-0 z-10">
+        <ButtonForm
+          imagesAvailabe={true}
+          images={images}
+          setClearCache={setImages}
+          setOpenModal={setOpenModalGallery}
+          isPending={isPending}
+          statusOn={"Uploading..."}
+          statusOff={"Upload"}
+        />
+      </div>
     </>
   );
 };

@@ -22,7 +22,7 @@ const ImagesHandleCrop = ({
   const [error, setError] = useState("");
   const [dragging, setDragging] = useState(false);
 
-  const MIN_DIMENSION = circle ? 125 : 250;
+  const MIN_DIMENSION = circle ? 80 : 250;
   const ASPECT_RATIO = circle ? 1 : 10 / 3.5;
 
   const onSelectFile = async (e) => {
@@ -30,7 +30,7 @@ const ImagesHandleCrop = ({
     if (!file) return;
 
     try {
-      const resizedFile = await uploadResizedImage(file, 850, 850, 90);
+      const resizedFile = await uploadResizedImage(file, 1300, 1300, 100);
 
       const reader = new FileReader();
       reader.addEventListener("load", () => {

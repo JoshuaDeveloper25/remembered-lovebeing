@@ -1,3 +1,4 @@
+import PaypalComponent from "../../../components/PaypalComponent";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getLivedDays } from "../../../utils/getLivedDays";
 import AppContext from "../../../context/AppProvider";
@@ -117,7 +118,10 @@ const ProfilePlanStatus = () => {
                 loading="lazy"
               />
 
-              <h2 className="text-primary-color-light text-center text-2xl mt-3 font-bold"><span className="align-text-top text-sm font-bold">$ {' '}</span>19.99</h2>
+              <h2 className="text-primary-color-light text-center text-2xl mt-3 font-bold">
+                <span className="align-text-top text-sm font-bold">$ </span>
+                19.99
+              </h2>
 
               <h3 className="text-center font-semibold text-muted-color mt-6 mb-2">
                 In Loving Memory Of
@@ -225,7 +229,7 @@ const ProfilePlanStatus = () => {
           )}
 
           <label
-            className={`pointer-events-none opacity-60 flex items-center justify-between border rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
+            className={`flex items-center justify-between border rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
               selectedPayments === "singular"
                 ? "bg-primary-color-light/50 text-white"
                 : "bg-white text-gray-900"
@@ -250,15 +254,9 @@ const ProfilePlanStatus = () => {
           </label>
 
           {selectedPayments === "singular" && (
-            <div className="shadow-md rounded-md bg-white p-4">
-              <button
-                type="button"
-                className="btn bg-green-400 text-white flex mx-auto items-center gap-2 w-fit font-semibold hover:animate-pulse animation-fade"
-              >
-                <TbPigMoney size={26} />
-                Continue With PayPal
-              </button>
-            </div>
+            <>
+              <PaypalComponent rememberedId={rememberProfileQuery?.data?.data?.remembered_profile?.id} />
+            </>
           )}
         </div>
       </div>

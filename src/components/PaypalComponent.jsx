@@ -7,11 +7,31 @@ import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const PaypalComponent = ({ packageName }) => {
+const PaypalComponent = ({ packageName, rememberedId }) => {
   const [paypalInvoiceDetails, setPaypalInvoiceDetails] = useState({});
   const [{ isPending }, dispatchPaypal] = usePayPalScriptReducer();
   const { userInfo } = useContext(AppContext);
   const navigate = useNavigate();
+
+  // This is for turning a remembered profile from free to PRO
+  const payRememberedProProfile = useMutation({
+    mutationFn: async (paymentInfo) =>
+      await axios.post(
+        `${
+          import.meta.env.VITE_BASE_URL
+        }/payments/pay?remembered_id=${rememberedId}&token=${
+          userInfo?.access_token
+        }`,
+        paymentInfo
+      ),
+    onSuccess: (res) => {
+      console.log(res);
+      navigate(`/paypal-payment-success/`, { state: paypalInvoiceDetails });
+    },
+    onError: (err) => {
+      toast.error(getFastApiErrors(err));
+    },
+  });
 
   // This is for buying a package of 1 or 3
   const payPremiumProfilePrices = useMutation({
@@ -70,7 +90,13 @@ const PaypalComponent = ({ packageName }) => {
         purchase_units: [
           {
             description: "Paying in Eternal MemoriesX",
-            amount: { value: packageName === "singlePackage" ? 2 : 50 },
+            amount: {
+              value: rememberedId
+                ? 2
+                : packageName === "singlePackage"
+                ? 2
+                : 5,
+            },
             custom_id: JSON.stringify({
               id: userInfo?.email,
             }),
@@ -104,18 +130,20 @@ const PaypalComponent = ({ packageName }) => {
         creation_date: details?.create_time,
         description: details?.purchase_units[0]?.description,
         price: details?.purchase_units[0]?.amount?.value,
-        type_plan: packageName === "singlePackage" ? "Single" : "Tertiary",
+        type_plan: rememberedId ? "Upgrading FREE profile to PRO" : packageName === "singlePackage" ? "Single" : "Tertiary",
       };
 
       setPaypalInvoiceDetails(invoiceDetails);
 
-      console.log(details, "details aqui");
-      console.log(data, "data quii");
-
       try {
         localStorage.setItem("invoiceDetails", JSON.stringify(invoiceDetails));
-        payPremiumProfilePrices?.mutate();
-        
+
+        if (rememberedId) {
+          payRememberedProProfile?.mutate();
+        } else {
+          payPremiumProfilePrices?.mutate();
+        }
+
         // const url = `${import.meta.env.VITE_BASE_URL}/orders/pay`;
 
         // const bodyParameter = {
@@ -128,27 +156,27 @@ const PaypalComponent = ({ packageName }) => {
         // };
 
         // const { data } = await axios.post(url, bodyParameter, config);
-        // console.log(data);
         // dispatch({ type: "clear cart" });
       } catch (error) {
-        // toast.error(getError(error));
         console.log(error);
       }
     });
   };
 
-  const onError = () => {};
+  const onError = (err) => {
+    console.log(err);
+  };
 
   return (
     <div>
       {isPending ? (
-        <div>Loading...</div>
+        <p>Loading...</p>
       ) : (
         <PayPalButtons
+          fundingSource={undefined}
           createOrder={createOrder}
           onApprove={onApprove}
           onError={onError}
-          fundingSource={undefined}
         />
       )}
     </div>

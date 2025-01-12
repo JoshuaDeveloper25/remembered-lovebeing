@@ -28,6 +28,7 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import axios from "axios";
 import ModalCreateFreeProfileResponsive from "./ModalCreateFreeProfileResponsive";
+import ImagesHandleCrop from "../../../components/ImagesHandleCrop";
 
 const ResponsiveMoreInfoRememberedAdmin = ({
   statusPlan,
@@ -438,23 +439,19 @@ const ResponsiveMoreInfoRememberedAdmin = ({
       </div>
 
       {/* Modal of Change Photo Profile */}
-      <ModalProfilePhotoResponsive
+      <ImagesHandleCrop
         titleModal={"Change Profile Image"}
+        imgRef={imgRef}
         handleSubmit={handleSubmitProfileImage}
-        setOpenModal={setOpenChangeProfileModal}
-        openModal={openChangeProfileModal}
-        modalForm={true}
-        iconTitle={true}
-      >
-        <FormUserProfile
-          isPending={changeImageProfileMutation?.isPending}
-          setOpenModalProfile={setOpenChangeProfileModal}
-          previewCanvasRef={previewCanvasRef}
-          setCrop={setCrop}
-          imgRef={imgRef}
-          crop={crop}
-        />
-      </ModalProfilePhotoResponsive>
+        setOpenModalCover={setOpenChangeProfileModal}
+        openModalCover={openChangeProfileModal}
+        onCancel={() => setOpenModalProfile(false)}
+        isPending={changeImageProfileMutation?.isPending}
+        previewCanvasRef={previewCanvasRef}
+        setCrop={setCrop}
+        crop={crop}
+        circle={true}
+      />
     </>
   );
 };

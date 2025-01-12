@@ -1,4 +1,4 @@
-import { FaFolderOpen } from "react-icons/fa";
+import { FaFolderOpen, FaRegTrashAlt } from "react-icons/fa";
 import { uploadResizedImage } from "../utils/resizeImageFile";
 import ButtonForm from "./ButtonForm";
 import { useState } from "react";
@@ -103,16 +103,6 @@ const ImagesHandleCrop = ({
         onClose={handleClearImage}
         footer={
           <div className="flex justify-end items-center gap-3 p-3.5 bg-gray-200 h-20">
-            {imgSrc && (
-              <button
-                className="btn border border-red-500 hover:bg-red-500 text-red-500 hover:text-white w-auto"
-                type="button"
-                onClick={() => setImgSrc("")}
-              >
-                Clear
-              </button>
-            )}
-
             <button
               className="btn border border-red-500 hover:bg-red-500 text-red-500 hover:text-white w-auto"
               type="button"
@@ -167,9 +157,9 @@ const ImagesHandleCrop = ({
         modalForm={true}
         iconTitle={true}
       >
-        <div className="p-4 md:p-5">
+        <div className="p-4 md:p-5 grid place-items-center h-full">
           <div className={`${imgSrc && "hidden"}`}>
-            <div className="mb-6">
+            <div className="mb-6 w-full">
               <h3 className="font-semibold">
                 Upload a file{" "}
                 <span className="text-red-400 text-sm">(jpg, jpeg, png)*</span>
@@ -178,7 +168,7 @@ const ImagesHandleCrop = ({
             </div>
 
             <label
-              className={`relative block mb-3 cursor-pointer text-center border-2 border-dashed rounded-sm py-10 px-1 ${
+              className={`relative flex flex-col justify-center items-center h-[300px] w-full mb-3 cursor-pointer text-center border-2 border-dashed rounded-sm py-10 px-1 ${
                 dragging
                   ? "border-primary-color-light"
                   : "hover:border-primary-color-light"
@@ -212,7 +202,17 @@ const ImagesHandleCrop = ({
           {error && <p className="text-red-400 text-xs">{error}</p>}
 
           {imgSrc && (
-            <div className="flex rounded-[8px] h-[400px] justify-center bg-black">
+            <div className="flex rounded-[8px] rounded-e-none h-[400px] justify-center bg-black w-full relative">
+              <div className="absolute -top-7 right-0 z-[999]">
+                <button
+                  className="rounded-md flex items-center gap-1.5 rounded-b-none bg-red-500 text-white animation-fade px-3 py-1 text-sm hover:opacity-65"
+                  type="button"
+                  onClick={() => setImgSrc("")}
+                >
+                  Clear Image <FaRegTrashAlt />
+                </button>
+              </div>
+
               <ReactCrop
                 onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
                 circularCrop={circle ? true : false}

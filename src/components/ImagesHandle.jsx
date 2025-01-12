@@ -62,7 +62,10 @@ const ImagesHandle = ({ setImages, images }) => {
         <div className="upload__image-wrapper">
           <div className="mb-5">
             <div className="mb-6">
-              <h3 className="font-semibold">Upload a file <span className="text-red-400 text-sm">(jpg, jpeg, png)*</span></h3>
+              <h3 className="font-semibold">
+                Upload a file{" "}
+                <span className="text-red-400 text-sm">(jpg, jpeg, png)*</span>
+              </h3>
               <p className="text-muted-color">Attach the file below</p>
             </div>
             <button
@@ -88,8 +91,8 @@ const ImagesHandle = ({ setImages, images }) => {
                   <span className="text-muted-color my-1">
                     Alternatively, you can select a file by
                   </span>
-                  <span className="font-bold text-primary-color-light">
-                    clicking here
+                  <span className="font-bold text-white btn btn-blue text-sm w-fit mx-auto">
+                  Browse a file (s)
                   </span>
                 </>
               )}
@@ -122,7 +125,7 @@ const ImagesHandle = ({ setImages, images }) => {
 
                     <div className="image-item__btn-wrapper  absolute flex gap-2 -right-3 -top-3">
                       <button
-                        className="bg-primary-color-light/85 hover:bg-primary-color-light/90 hover:text-secondary rounded-full text-white p-1"
+                        className="bg-primary-color-light/85 hover:bg-primary-color-light/90 hover:opacity-80 rounded-full text-white p-1"
                         type="button"
                         onClick={() => onImageUpdate(idx)}
                       >
@@ -130,7 +133,7 @@ const ImagesHandle = ({ setImages, images }) => {
                       </button>
 
                       <button
-                        className="hover:bg-red-500/90 hover:text-secondary bg-red-500/85 rounded-full text-white p-1"
+                        className="hover:bg-red-500/90 bg-red-500/85 hover:opacity-80 rounded-full text-white p-1"
                         type="button"
                         onClick={() => onImageRemove(idx)}
                       >

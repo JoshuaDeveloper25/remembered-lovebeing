@@ -127,7 +127,7 @@ const PublicPost = ({ post, ownerName }) => {
         <div className="flex justify-between items-center gap-3">
           <div className="flex items-center gap-3">
             <img
-              className="w-16 rounded-full"
+              className="w-16 h-16 rounded-full"
               src={
                 post?.remembered?.profile_images
                   ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`

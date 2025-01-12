@@ -229,7 +229,7 @@ const ProfileRemembered = () => {
                     {data?.data?.remembered_profile?.epitaph ||
                       "In loving memory of"}
                   </h2>
-                  <h3 className="text-gray-600 font-semibold text-sm ">
+                  <h3 className="text-gray-600 font-semibold text-sm leading-4">
                     {data?.data?.remembered_profile?.first_name}{" "}
                     {data?.data?.remembered_profile?.last_name}
                   </h3>

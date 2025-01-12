@@ -32,6 +32,7 @@ const Navbar = () => {
     toast.success("¡Successfully logged out!");
     localStorage.removeItem("userInfo");
     setOpenDropDown(false);
+    setNavbarOpen(false);
     setUserInfo({});
   };
 

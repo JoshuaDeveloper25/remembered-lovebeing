@@ -109,12 +109,12 @@ const RememberedMedia = ({
       {isOwner ? (
         <div className="absolute right-0 top-0">
           <button
-            className="rounded-tr-lg text-red-500 hover:bg-red-500/50 animation-fade rounded-sm text-sm"
+            className="rounded-tr-md text-red-500 hover:bg-red-500/50 border animation-fade  text-sm"
             onClick={() => setSelectedImageGallery(galleryItem?.id)}
             disabled={deleteImageGalleryMutation?.isPending}
           >
             {deleteImageGalleryMutation?.isPending ? (
-              <div className="rounded-tr-lg bg-red-500/20 p-3" role="status">
+              <div className=" bg-red-500/20 p-3" role="status">
                 <svg
                   aria-hidden="true"
                   className="w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-red-500"

@@ -93,28 +93,30 @@ const NavbarMobile = ({
           </button>
 
           {userInfo?.access_token && (
-            <div className="flex flex-col justify-center text-center items-center mt-5">
+            <div className="flex flex-col justify-start text-start items-start mt-5">
               <button
-                className="cursor-default flex items-center animation-fade text-xl hover:rounded-full hover:bg-primary-color-light/40 p-2"
+                className="cursor-default flex items-center text-start gap-2.5 animation-fade text-xl hover:rounded-full hover:bg-primary-color-light/40"
                 type="button"
               >
                 <img
-                  className="w-24 border-4 border-green-500  object-cover mx-auto rounded-full shadow-lg"
+                  className="w-14 h-14 border-4 border-green-500  object-cover mx-auto rounded-full shadow-lg"
                   src={
                     userInfo?.profile_image
                       ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
                       : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
                   }
                 />
-              </button>
 
-              <div className="flex items-center gap-1 cursor-pointer">
-                <h2 className="block font-bold">{userInfo?.name}</h2>
-              </div>
+                  <h3 className="text-base font-semibold text-white pe-2">
+                    {/* {userInfo?.name}  */}
+                    Manuel arnaldo antunez  
+                  </h3>
+                
+              </button>
             </div>
           )}
 
-          <h2 className="text-primary-color-light uppercase font-semibold pb-1 mt-9 mb-1.5">
+          <h2 className="text-green-500 uppercase font-extrabold pb-1 mt-9 mb-1.5">
             {t("Pages")}
           </h2>
 
@@ -127,8 +129,8 @@ const NavbarMobile = ({
                   onClick={() => setNavbarOpen(false)}
                   className={({ isActive }) =>
                     isActive
-                      ? "text-primary-color-light font-extrabold border-b-primary-color-light border-b pb-1 family-nunito-black"
-                      : "text-white border-b-white hover:text-primary-color-light pb-1 hover:border-b-primary-color-light transition-all duration-200 border-b font-extrabold family-nunito-black"
+                      ? "w-fit text-primary-color-light font-extrabold border-b-primary-color-light border-b pb-1 family-nunito-black"
+                      : "w-fit text-white border-b-white hover:text-primary-color-light pb-1 hover:border-b-primary-color-light transition-all duration-200 border-b font-extrabold family-nunito-black"
                   }
                   key={index}
                   to={to}
@@ -140,8 +142,8 @@ const NavbarMobile = ({
           </div>
         </article>
 
-        <article className={"py-20"}>
-          <h2 className="text-primary-color-light uppercase font-semibold pb-1">
+        <article className={"pb-16"}>
+          <h2 className="text-green-500 uppercase font-semibold pb-1">
             {t("Adittional Settings")}
           </h2>
 
@@ -154,7 +156,7 @@ const NavbarMobile = ({
           {userInfo?.access_token ? (
             <>
               <NavLink
-                className="border-b-2 w-full hover:border-secondary-color hover:text-secondary-color group animation-fade flex items-center gap-1.5 mt-2.5"
+                className="border-b-2 w-fit hover:border-secondary-color hover:text-secondary-color group animation-fade flex items-center gap-1.5 mt-2.5"
                 onClick={() => setNavbarOpen(false)}
                 to={"/my-profiles"}
               >
@@ -162,7 +164,7 @@ const NavbarMobile = ({
               </NavLink>
 
               <NavLink
-                className="border-b-2 w-full mt-4 border-b-red-500 text-red-500 hover:border-red-500 hover:text-red-500 group animation-fade flex items-center gap-1.5"
+                className="border-b-2 w-fit mt-4 border-b-red-500 text-red-500 hover:border-red-500 hover:text-red-500 group animation-fade flex items-center gap-1.5"
                 onClick={handleLogOut}
               >
                 {t("Sign out")}{" "}

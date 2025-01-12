@@ -1,9 +1,9 @@
 import { usePayPalScriptReducer, PayPalButtons } from "@paypal/react-paypal-js";
 import getFastApiErrors from "../utils/getFastApiErrors";
+import { useContext, useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import AppContext from "../context/AppProvider";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -57,7 +57,6 @@ const PaypalComponent = ({ packageName, rememberedId }) => {
   //   const totalOrder = Number((subTotalOrder + tax).toFixed(2));
 
   useEffect(() => {
-    console.log("cargando el paypal");
     dispatchPaypal({
       type: "setLoadingStatus",
       value: "pending",

@@ -60,7 +60,7 @@ const UploadGalleryImage = ({
 
   return !isOwner ? null : (
     <>
-      {statusPlan === "free" && imagesGallery?.length >= 5 ? (
+      {statusPlan === "free" && imagesGallery?.length >= 6 ? (
         <>
           <Link
             to={`/checkout/?slug=${params?.slug}`}

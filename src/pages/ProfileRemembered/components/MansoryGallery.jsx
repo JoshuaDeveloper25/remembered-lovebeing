@@ -21,11 +21,11 @@ const MansoryGallery = ({
     <>
       {galleryImages?.length !== 0 ? (
         <div className="py-3 px-3 bg-white rounded-lg shadow-2xl">
-          {isOwner && statusPlan === "free" && galleryImages?.length >= 5 ? (
+          {isOwner && statusPlan === "free" && galleryImages?.length >= 6 ? (
             <div className="mt-2 mb-3">
               <h3 className=" font-semibold text-center py-2.5 shadow-lg rounded-sm text-gray-900 text-lg  bg-yellow-400 animate-pulse ">
                 <IoIosWarning className="inline-block size-8 me-1.5 align-middle" />
-                You have reached the limit of 5 images
+                You have reached the limit of 6 images
               </h3>
             </div>
           ) : null}

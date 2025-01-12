@@ -16,6 +16,8 @@ const CoverRememberedModal = ({
   setClearCache = () => {},
   formContainerClassName,
   modalContentClassNames,
+  footer,
+  onClose = () => null
 }) => {
   const [closing, setClosing] = useState(false);
 
@@ -74,6 +76,7 @@ const CoverRememberedModal = ({
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
+      onClose();
     }
 
     // Clean up to ensure overflow is removed if modal is closed
@@ -83,7 +86,7 @@ const CoverRememberedModal = ({
   const handleCloseModal = () => {
     setClosing(false);
     setOpenModal(false);
-    setClearCache([]);
+    setClearCache();
   };
 
   return (
@@ -108,14 +111,15 @@ const CoverRememberedModal = ({
             className={`relative w-full sm:max-w-[600px] max-w-full sm:px-8 px-0 sm:h-full h-svh mx-auto animate-slide-up`}
           >
             {/* Modal content */}
-            <div
+            <form
               className={twMerge(
-                `sm:rounded-md shadow bg-white min-h-full`,
+                `sm:rounded-md rounded-none shadow bg-white h-full flex flex-col`,
                 modalContentClassNames
               )}
+              onSubmit={handleSubmit}
             >
               {/* Modal header */}
-              <div className="flex items-center justify-between p-4 md:p-5 border-b sm:static absolute left-0 right-0  bg-tertiary-color/15 dark:border-gray-300">
+              <div className="flex items-center justify-between p-4 md:p-5 border-b  bg-gray-200 z-[999] dark:border-gray-300">
                 <div>
                   <h3 className="flex  items-center gap-2 text-xl font-semibold text-fourth-color">
                     {iconTitle && (
@@ -128,7 +132,7 @@ const CoverRememberedModal = ({
 
                 <button
                   type="button"
-                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-fourth-color rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-fourth-color sm:rounded-md rounded-none text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                   data-modal-toggle="crud-modal"
                   onClick={handleCloseModal}
                 >
@@ -153,22 +157,19 @@ const CoverRememberedModal = ({
 
               <div
                 className={twMerge(
-                  "sm:max-h-[34rem] max-h-full overflow-y-auto",
+                  "sm:max-h-[34rem] max-h-full overflow-y-auto flex-1",
                   formContainerClassName
                 )}
               >
                 {modalForm === false ? (
                   <div className="p-4 md:p-5">{children}</div>
                 ) : (
-                  <form
-                    onSubmit={handleSubmit}
-                    // className="max-h-[80vh] overflow-y-auto"
-                  >
-                    {children}
-                  </form>
+                  children 
                 )}
               </div>
-            </div>
+
+              {footer}
+            </form>
           </div>
         </div>
       </div>,

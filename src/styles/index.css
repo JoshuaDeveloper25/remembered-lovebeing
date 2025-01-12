@@ -427,3 +427,7 @@ body:has(.backdrop-modal) .to-top {
   width: 16rem !important;
   padding-inline: .6rem!important;
 }
+
+.ReactCrop__child-wrapper {
+  height: 100% !important;
+}

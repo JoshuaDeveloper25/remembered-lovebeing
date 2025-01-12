@@ -8,8 +8,8 @@ const FormGalleryImages = ({
   images,
 }) => {
   return (
-    <>
-      <div className="p-4">
+    <div className="flex flex-col justify-between sm:h-full h-svh">
+      <div className="p-4 sm:mt-0 mt-16">
         <ImagesHandle setImages={setImages} images={images} />
       </div>
 
@@ -24,7 +24,7 @@ const FormGalleryImages = ({
           statusOff={"Upload"}
         />
       </div>
-    </>
+    </div>
   );
 };
 

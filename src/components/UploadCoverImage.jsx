@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import FormCover from "../pages/ProfileRemembered/components/FormCover";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import setCanvasPreview from "../utils/setCanvasPreview";
 import { convertToPixelCrop } from "react-image-crop";
@@ -10,6 +9,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import { Button } from "@nextui-org/react";
 import CoverRememberedModal from "../pages/ProfileRemembered/components/CoverRememberedModal";
+import ImagesHandleCrop from "./ImagesHandleCrop";
 
 export const CameraIcon = ({
   fill = "currentColor",
@@ -169,23 +169,18 @@ const UploadCoverImage = ({ idRemembered }) => {
       </div>
 
       {/* Change Cover Image Modal */}
-      <CoverRememberedModal
-        titleModal={"Change Cover Image"}
+      <ImagesHandleCrop
+        imgRef={imgRef}
         handleSubmit={handleSubmitCoverImage}
-        setOpenModal={setOpenModalCover}
-        openModal={openModalCover}
-        modalForm={true}
-        iconTitle={true}
-      >
-        <FormCover
-          isPending={changeImageCoverMutation?.isPending}
-          previewCanvasRef={previewCanvasRef}
-          setCrop={setCrop}
-          imgRef={imgRef}
-          crop={crop}
-          setOpenModalCover={setOpenModalCover}
-        />
-      </CoverRememberedModal>
+        setOpenModalCover={setOpenModalCover}
+        openModalCover={openModalCover}
+        onCancel={() => setOpenModalCover(false)}
+        isPending={changeImageCoverMutation?.isPending}
+        previewCanvasRef={previewCanvasRef}
+        setCrop={setCrop}
+        crop={crop}
+        circle={false}
+      />
     </>
   );
 };

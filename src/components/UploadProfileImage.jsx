@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import Modal from "./Modal";
 import axios from "axios";
+import ImagesHandleCrop from "./ImagesHandleCrop";
 
 export const CameraIcon = ({
   fill = "currentColor",
@@ -164,23 +165,19 @@ const UploadProfileImage = ({ idRemembered }) => {
       </Button>
 
       {/* Change Profile Image Modal */}
-      <Modal
-        titleModal={"Change Profile Image"}
+      <ImagesHandleCrop
+        isPending={changeImageProfileMutation?.isPending}
+        onCancel={() => setOpenModalProfile(false)}
+        setOpenModalCover={setOpenModalProfile}
         handleSubmit={handleSubmitProfileImage}
-        setOpenModal={setOpenModalProfile}
-        openModal={openModalProfile}
-        editableWidth={'sm:max-w-[600px] max-w-full'}
-        modalForm={true}
-      >
-        <FormProfile
-          isPending={changeImageProfileMutation?.isPending}
-          setOpenModalProfile={setOpenModalProfile}
-          previewCanvasRef={previewCanvasRef}
-          setCrop={setCrop}
-          imgRef={imgRef}
-          crop={crop}
-        />
-      </Modal>
+        titleModal={"Change Profile Image"}
+        previewCanvasRef={previewCanvasRef}
+        openModalCover={openModalProfile}
+        setCrop={setCrop}
+        imgRef={imgRef}
+        circle={true}
+        crop={crop}
+      />
     </>
   );
 };

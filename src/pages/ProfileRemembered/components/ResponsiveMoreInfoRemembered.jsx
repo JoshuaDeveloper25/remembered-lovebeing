@@ -35,6 +35,7 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import axios from "axios";
 import ProfileRememberedModal from "./ProfileRememberedModal";
+import ImagesHandleCrop from "../../../components/ImagesHandleCrop";
 
 const ResponsiveMoreInfoRemembered = ({
   rememberedId,
@@ -201,7 +202,8 @@ const ResponsiveMoreInfoRemembered = ({
           classNames={{
             wrapper: "z-[99999]",
             base: "bg-primary-color text-white w-[20rem] custom-scrollbar-class",
-            closeButton: "top-2.5 hover:bg-red-500 transition-all duration-200 text-white",
+            closeButton:
+              "top-2.5 hover:bg-red-500 transition-all duration-200 text-white",
           }}
           backdrop={backdrop}
           isOpen={isOpen}
@@ -454,23 +456,19 @@ const ResponsiveMoreInfoRemembered = ({
       </div>
 
       {/* Modal of Change Photo Profile */}
-      <ProfileRememberedModal
-        titleModal={"Change Profile Image"}
+      <ImagesHandleCrop
+        onCancel={() => setOpenChangeProfileModal(false)}
+        isPending={changeImageProfileMutation?.isPending}
+        setOpenModalCover={setOpenChangeProfileModal}
         handleSubmit={handleSubmitProfileImage}
-        setOpenModal={setOpenChangeProfileModal}
-        openModal={openChangeProfileModal}
-        modalForm={true}
-        iconTitle={true}
-      >
-        <FormUserProfile
-          isPending={changeImageProfileMutation?.isPending}
-          setOpenModalProfile={setOpenChangeProfileModal}
-          previewCanvasRef={previewCanvasRef}
-          setCrop={setCrop}
-          imgRef={imgRef}
-          crop={crop}
-        />
-      </ProfileRememberedModal>
+        openModalCover={openChangeProfileModal}
+        titleModal={"Change Profile Image"}
+        previewCanvasRef={previewCanvasRef}
+        setCrop={setCrop}
+        imgRef={imgRef}
+        circle={true}
+        crop={crop}
+      />
     </>
   );
 };

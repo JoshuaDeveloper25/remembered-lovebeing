@@ -115,7 +115,7 @@ const ProfileRememberedModal = ({
               )}
             >
               {/* Modal header */}
-              <div className="flex items-center justify-between p-4 md:p-5 sm:static absolute right-0 left-0 border-b  bg-tertiary-color/15 dark:border-gray-300">
+              <div className="flex items-center justify-between p-4 md:p-5 sm:static absolute right-0 left-0 border-b  bg-gray-200 z-[999] dark:border-gray-300">
                 <div>
                   <h3 className="flex  items-center gap-2 text-xl font-semibold text-fourth-color">
                     {iconTitle && (

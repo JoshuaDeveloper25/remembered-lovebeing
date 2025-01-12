@@ -180,11 +180,10 @@ const UploadUserProfileImage = ({ iconClassname }) => {
 
       {/* Change User Profile Image Modal */}
       <Modal
-        titleModal={"Change Profile Image"}
+        titleModal={"Change Profile Imagsde"}
         handleSubmit={handleSubmitProfileImage}
         setOpenModal={setOpenModalProfile}
         openModal={openModalProfile}
-        modalForm={true}
         iconTitle={true}
       >
         <FormUserProfile

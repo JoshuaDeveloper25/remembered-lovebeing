@@ -9,6 +9,7 @@ import Modal from "./Modal";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Button } from "@nextui-org/react";
+import CoverRememberedModal from "../pages/ProfileRemembered/components/CoverRememberedModal";
 
 export const CameraIcon = ({
   fill = "currentColor",
@@ -168,7 +169,7 @@ const UploadCoverImage = ({ idRemembered }) => {
       </div>
 
       {/* Change Cover Image Modal */}
-      <Modal
+      <CoverRememberedModal
         titleModal={"Change Cover Image"}
         handleSubmit={handleSubmitCoverImage}
         setOpenModal={setOpenModalCover}
@@ -184,7 +185,7 @@ const UploadCoverImage = ({ idRemembered }) => {
           crop={crop}
           setOpenModalCover={setOpenModalCover}
         />
-      </Modal>
+      </CoverRememberedModal>
     </>
   );
 };

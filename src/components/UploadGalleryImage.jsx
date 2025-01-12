@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import axios from "axios";
 import { MdWorkspacePremium } from "react-icons/md";
+import AddImagesToMediaGalleryModal from "../pages/ProfileRemembered/components/AddImagesToMediaGalleryModal";
 
 const UploadGalleryImage = ({
   imagesGallery,
@@ -85,7 +86,7 @@ const UploadGalleryImage = ({
       )}
 
       {/* Add Gallery Image Modal */}
-      <Modal
+      <AddImagesToMediaGalleryModal
         titleModal={"Add Gallery Images"}
         handleSubmit={handleSubmitGalleryImage}
         setOpenModal={setOpenModalGallery}
@@ -101,7 +102,7 @@ const UploadGalleryImage = ({
           setImages={setImages}
           images={images}
         />
-      </Modal>
+      </AddImagesToMediaGalleryModal>
     </>
   );
 };

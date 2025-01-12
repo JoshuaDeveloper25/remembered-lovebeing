@@ -163,12 +163,13 @@ const UploadProfileImage = ({ idRemembered }) => {
         <CameraIcon />
       </Button>
 
-      {/* Change Cover Image Modal */}
+      {/* Change Profile Image Modal */}
       <Modal
         titleModal={"Change Profile Image"}
         handleSubmit={handleSubmitProfileImage}
         setOpenModal={setOpenModalProfile}
         openModal={openModalProfile}
+        editableWidth={'sm:max-w-[600px] max-w-full'}
         modalForm={true}
       >
         <FormProfile

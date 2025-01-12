@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { twMerge } from "tailwind-merge";
 
-const CoverRememberedModal = ({
+const AddImagesToMediaGalleryModal = ({
   handleSubmit,
   children,
   titleModal,
@@ -177,4 +177,4 @@ const CoverRememberedModal = ({
   );
 };
 
-export default CoverRememberedModal;
+export default AddImagesToMediaGalleryModal;

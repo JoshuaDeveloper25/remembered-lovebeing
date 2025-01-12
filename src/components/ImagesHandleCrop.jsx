@@ -90,73 +90,75 @@ const ImagesHandleCrop = ({
   };
 
   return (
-    <div className="p-4 md:p-5">
-      <div className={`${imgRef.current && "hidden"}`}>
-        <div className="mb-6">
-          <h3 className="font-semibold">
-            Upload a file{" "}
-            <span className="text-red-400 text-sm">(jpg, jpeg, png)*</span>
-          </h3>
-          <p className="text-muted-color">Attach the file below</p>
+    <div>
+      <div className="p-4 md:p-5">
+        <div className={`${imgRef.current && "hidden"}`}>
+          <div className="mb-6">
+            <h3 className="font-semibold">
+              Upload a file{" "}
+              <span className="text-red-400 text-sm">(jpg, jpeg, png)*</span>
+            </h3>
+            <p className="text-muted-color">Attach the file below</p>
+          </div>
+
+          <label
+            className={`relative block mb-3 cursor-pointer text-center border-2 border-dashed rounded-sm py-10 px-1 ${
+              dragging
+                ? "border-primary-color-light"
+                : "hover:border-primary-color-light"
+            } ${dragging ? "animation-fade" : ""}`}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+          >
+            <span className="sr-only">Choose photo</span>
+            <LuFileInput className="text-primary-color-light size-9 mx-auto" />
+            <h3 className="font-semibold mt-2">Drag file(s) here to upload</h3>
+            <p className="text-muted-color my-1">
+              Alternatively, you can select a file by
+            </p>
+            <p className="font-bold text-white btn btn-blue text-sm w-fit mx-auto">
+              Browse a file
+            </p>
+
+            <input
+              type="file"
+              name="uploadImages"
+              accept="image/png, image/jpeg, image/jpg"
+              onChange={onSelectFile}
+              className="sr-only block w-full text-sm text-tertiary-color file:py-1 file:px-2 file:rounded-full file:border-0 file:text-xs file:bg-black file:text-white hover:file:text-tertiary-color hover:file:bg-black/90"
+            />
+          </label>
         </div>
 
-        <label
-          className={`relative block mb-3 cursor-pointer text-center border-2 border-dashed rounded-sm py-10 px-1 ${
-            dragging
-              ? "border-primary-color-light"
-              : "hover:border-primary-color-light"
-          } ${dragging ? "animation-fade" : ""}`}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-        >
-          <span className="sr-only">Choose photo</span>
-          <LuFileInput className="text-primary-color-light size-9 mx-auto" />
-          <h3 className="font-semibold mt-2">Drag file(s) here to upload</h3>
-          <p className="text-muted-color my-1">
-            Alternatively, you can select a file by
-          </p>
-          <p className="font-bold text-white btn btn-blue text-sm w-fit mx-auto">
-            Browse a file
-          </p>
+        {error && <p className="text-red-400 text-xs">{error}</p>}
 
-          <input
-            type="file"
-            name="uploadImages"
-            accept="image/png, image/jpeg, image/jpg"
-            onChange={onSelectFile}
-            className="sr-only block w-full text-sm text-tertiary-color file:py-1 file:px-2 file:rounded-full file:border-0 file:text-xs file:bg-black file:text-white hover:file:text-tertiary-color hover:file:bg-black/90"
-          />
-        </label>
+        {imgSrc && (
+          <div className="flex flex-col items-center rounded-[13px]">
+            <ReactCrop
+              onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
+              circularCrop={circle ? true : false}
+              aspect={ASPECT_RATIO}
+              minWidth={MIN_DIMENSION}
+              keepSelection
+              crop={crop}
+            >
+              <img
+                loading="lazy"
+                decoding="async"
+                ref={imgRef}
+                src={imgSrc}
+                alt="Upload"
+                style={{ maxHeight: "70vh" }}
+                className="rounded-[13px]"
+                onLoad={onImageLoad}
+              />
+            </ReactCrop>
+          </div>
+        )}
       </div>
 
-      {error && <p className="text-red-400 text-xs">{error}</p>}
-
-      {imgSrc && (
-        <div className="flex flex-col items-center rounded-[13px]">
-          <ReactCrop
-            onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
-            circularCrop={circle ? true : false}
-            aspect={ASPECT_RATIO}
-            minWidth={MIN_DIMENSION}
-            keepSelection
-            crop={crop}
-          >
-            <img
-              loading="lazy"
-              decoding="async"
-              ref={imgRef}
-              src={imgSrc}
-              alt="Upload"
-              style={{ maxHeight: "70vh" }}
-              className="rounded-[13px]"
-              onLoad={onImageLoad}
-            />
-          </ReactCrop>
-        </div>
-      )}
-
-      <div className="flex justify-end items-center gap-3 mt-4">
+      <div className="flex justify-end items-center gap-3 p-3.5 bg-gray-200">
         <button
           className="btn border border-red-500 hover:bg-red-500 text-red-500 hover:text-white w-auto"
           type="button"

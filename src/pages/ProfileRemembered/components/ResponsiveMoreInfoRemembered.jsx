@@ -34,6 +34,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import axios from "axios";
+import ProfileRememberedModal from "./ProfileRememberedModal";
 
 const ResponsiveMoreInfoRemembered = ({
   rememberedId,
@@ -453,7 +454,7 @@ const ResponsiveMoreInfoRemembered = ({
       </div>
 
       {/* Modal of Change Photo Profile */}
-      <ModalProfilePhotoResponsive
+      <ProfileRememberedModal
         titleModal={"Change Profile Image"}
         handleSubmit={handleSubmitProfileImage}
         setOpenModal={setOpenChangeProfileModal}
@@ -469,7 +470,7 @@ const ResponsiveMoreInfoRemembered = ({
           imgRef={imgRef}
           crop={crop}
         />
-      </ModalProfilePhotoResponsive>
+      </ProfileRememberedModal>
     </>
   );
 };

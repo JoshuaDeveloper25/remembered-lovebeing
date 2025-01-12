@@ -89,6 +89,7 @@ const UploadGalleryImage = ({
         titleModal={"Add Gallery Images"}
         handleSubmit={handleSubmitGalleryImage}
         setOpenModal={setOpenModalGallery}
+        // editableWidth={'max-w-xl'}
         openModal={openModalGallery}
         modalForm={true}
         iconTitle={true}

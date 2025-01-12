@@ -282,7 +282,6 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
               openModal={openLifeJourneyModal}
               modalForm={true}
               crudModalClassName={"sm:px-4 px-0 "}
-          
               modalContentClassNames={"relative"}
             >
               <FormLifeJourney

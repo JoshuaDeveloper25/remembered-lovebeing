@@ -43,7 +43,7 @@ const FindMemorial = () => {
 
             <p className="text-muted-color max-w-sm text-base my-4">
               {t(
-                "Find the memorial of a family member or friend. Leave memories or send flowers."
+                "Find the memorial of a family member or friend. Leave memories or comments."
               )}
             </p>
 
@@ -53,7 +53,7 @@ const FindMemorial = () => {
                   <span className="font-medium">{t("Memorial Name")}:</span>
                   <input
                     className="w-full py-2 px-2 border border-tertiary-color/30 text-muted-color border-r-0 rounded-sm rounded-e-none outline-none"
-                    placeholder={`${t("Example")}: Jennifer Mejia`}
+                    placeholder={`${t("Example")}: Jennifer Ramírez`}
                     name="memorialName"
                     type="text"
                   />

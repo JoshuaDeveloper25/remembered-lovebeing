@@ -42,8 +42,8 @@ const resources = {
       "Looking for a loved one? Search now!":
         "Looking for a loved one? Search now!",
       "Find a Memorial": "Find a Memorial",
-      "Find the memorial of a family member or friend. Leave memories or send flowers.":
-        "Find the memorial of a family member or friend. Leave memories or send flowers.",
+      "Find the memorial of a family member or friend. Leave memories or comments.":
+        "Find the memorial of a family member or friend. Leave memories or comments.",
       "Memorial Name": "Memorial Name",
       Example: "Example",
       "Ways to use your QR code": "Ways to use your QR code",
@@ -674,8 +674,8 @@ const resources = {
       "Looking for a loved one? Search now!":
         "¿Buscas a un ser querido? ¡Búscalo ahora!",
       "Find a Memorial": "Encuentra un Memorial",
-      "Find the memorial of a family member or friend. Leave memories or send flowers.":
-        "Encuentra el memorial de un familiar o amigo. Deja recuerdos o envía flores.",
+      "Find the memorial of a family member or friend. Leave memories or comments.":
+        "Encuentra el memorial de un familiar o amigo. Deja recuerdos o comentarios.",
       "Memorial Name": "Nombre del Memorial",
       Example: "Ejemplo",
       "Ways to use your QR code": "Formas de usar tu código QR",

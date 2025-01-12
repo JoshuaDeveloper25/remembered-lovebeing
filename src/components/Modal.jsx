@@ -13,6 +13,7 @@ const Modal = ({
   modalForm,
   iconTitle = false,
   setClearCache = () => {},
+  notModalFormClassName,
 }) => {
   const [closing, setClosing] = useState(false);
 
@@ -145,7 +146,9 @@ const Modal = ({
 
               <div className="max-h-[34rem] overflow-y-auto">
                 {modalForm === false ? (
-                  <div className="p-4 md:p-5">{children}</div>
+                  <div className={twMerge("p-4 md:p-5", notModalFormClassName)}>
+                    {children}
+                  </div>
                 ) : (
                   <>
                     <form

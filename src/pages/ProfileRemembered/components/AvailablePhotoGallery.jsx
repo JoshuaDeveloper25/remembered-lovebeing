@@ -35,7 +35,7 @@ const AvailablePhotoGallery = ({
         onClick={handleSelectedImage}
         className={`transition-all duration-150 ${
           active &&
-          "transition-all duration-150 outline-2 outline-dotted rounded-md p-1.5 bg-gray-200"
+          "transition-all duration-150 outline-2 outline-dotted rounded-md p-1.5 bg-primary-color/20"
         }`}
       >
         <img

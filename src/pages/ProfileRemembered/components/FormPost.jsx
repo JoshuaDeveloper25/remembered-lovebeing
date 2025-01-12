@@ -62,45 +62,54 @@ const FormPost = ({
           setOpenModal={setOpenAvailableGalleryImages}
           openModal={openAvailableGalleryImages}
           modalForm={false}
+          notModalFormClassName={"!p-0"}
         >
-          {!galleryImages?.length ? (
-            <h2 className="text-center text-lg bg-red-400 text-white font-medium rounded py-1.5 px-1 animate-pulse">
-              Please, upload/add a photo from Media tab!
-            </h2>
-          ) : (
-            <>
-              <h2 className="text-center text-base mb-3 bg-primary-color-light text-white font-medium rounded py-1.5 px-1 w-fit">
+          {galleryImages?.length && (
+            <div className="sticky top-0 z-20">
+              <h2 className="text-center text-base bg-primary-color shadow-black shadow-md text-white font-medium py-1.5 px-1">
                 Selected Media{" "}
-                <span className="font-bold">
+                <span className="font-bold text-primary-color-light">
                   ({tempSelectedGalleryImageInfo?.length})
                 </span>
               </h2>
-
-              <div className="grid border rounded py-3 min-[300px]:grid-cols-2 min-[450px]:grid-cols-3 grid-cols-1 place-items-center place-content-centers justify-center items-center gap-4">
-                {galleryImages?.map((item) => {
-                  return (
-                    <AvailablePhotoGallery
-                      setSelectedGalleryImageInfo={
-                        setTempSelectedGalleryImageInfo
-                      }
-                      selectedGalleryImageInfo={tempSelectedGalleryImageInfo}
-                      item={item}
-                      key={item?.id}
-                    />
-                  );
-                })}
-              </div>
-            </>
+            </div>
           )}
 
-          <button
-            className={`disabled:bg-primary-color/40 disabled:pointer-events-none btn btn-blue mt-4`}
-            disabled={!galleryImages?.length}
-            onClick={handleSelectedImagesGallery}
-            type="button"
-          >
-            Done
-          </button>
+          <div className="p-4 md:p-5">
+            {!galleryImages?.length ? (
+              <h2 className="text-center text-lg bg-red-400 text-white font-medium rounded py-1.5 px-1 animate-pulse">
+                Please, upload/add a photo from Media tab!
+              </h2>
+            ) : (
+              <>
+                <div className="grid sm:py-4 py-1.5 px-1.5 border rounded min-[300px]:grid-cols-2 min-[450px]:grid-cols-3 grid-cols-1 place-items-center place-content-centers justify-center items-center gap-y-4 md:gap-x-0 gap-x-4 shadow-2xl">
+                  {galleryImages?.map((item) => {
+                    return (
+                      <AvailablePhotoGallery
+                        setSelectedGalleryImageInfo={
+                          setTempSelectedGalleryImageInfo
+                        }
+                        selectedGalleryImageInfo={tempSelectedGalleryImageInfo}
+                        item={item}
+                        key={item?.id}
+                      />
+                    );
+                  })}
+                </div>
+              </>
+            )}
+          </div>
+
+          <div className="sticky bottom-0 bg-primary-color shadow-black shadow-md w-full p-4">
+            <button
+              className={`disabled:bg-primary-color/40 disabled:pointer-events-none btn btn-blue-light border-0`}
+              disabled={!galleryImages?.length}
+              onClick={handleSelectedImagesGallery}
+              type="button"
+            >
+              Done
+            </button>
+          </div>
         </Modal>
 
         <ul

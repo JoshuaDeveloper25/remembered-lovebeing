@@ -19,8 +19,8 @@ const ImagesHandle = ({ setImages, images }) => {
         imageList.map(async (image) => {
           const resizedFile = await uploadResizedImage(
             image.file,
-            850,
-            850,
+            750,
+            750,
             90
           );
           const reader = new FileReader();

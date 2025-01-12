@@ -157,7 +157,7 @@ const ImagesHandleCrop = ({
         modalForm={true}
         iconTitle={true}
       >
-        <div className="p-4 md:p-5 grid place-items-center h-full">
+        <div className="p-4 sm:p-8 grid place-items-center h-full">
           <div className={`${imgSrc && "hidden"}`}>
             <div className="mb-6 w-full">
               <h3 className="font-semibold">

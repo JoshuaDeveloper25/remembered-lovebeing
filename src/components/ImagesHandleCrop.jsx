@@ -91,7 +91,7 @@ const ImagesHandleCrop = ({
 
   return (
     <div className="flex flex-col justify-between sm:h-full h-svh ">
-      <div className="p-4 md:p-5 md:mt-0 mt-16">
+      <div className="p-4 md:p-5 sm:mt-0 mt-16">
         <div className={`${imgRef.current && "hidden"}`}>
           <div className="mb-6">
             <h3 className="font-semibold">

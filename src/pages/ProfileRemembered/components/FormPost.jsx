@@ -30,7 +30,7 @@ const FormPost = ({
 
   return (
     <>
-      <div className="grid place-items-center h-full p-4">
+      <div className="grid place-items-center h-[70vh] p-4">
         <div className="w-full">
           <label htmlFor="content">
             <span className="w-full inline-block text-start">Content</span>

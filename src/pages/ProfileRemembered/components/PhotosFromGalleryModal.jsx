@@ -142,10 +142,8 @@ const PhotosFromGalleryModal = ({
                 </button>
               </div>
 
-              <div className="sm:max-h-full max-h-[34rem] overflow-y-auto">
-                <div className={twMerge("p-4 md:p-5", notModalFormClassName)}>
-                  {children}
-                </div>
+              <div className={twMerge("p-4 md:p-5", notModalFormClassName)}>
+                {children}
               </div>
             </div>
           </div>

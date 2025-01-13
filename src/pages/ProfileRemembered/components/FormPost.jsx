@@ -67,7 +67,7 @@ const FormPost = ({
             openModal={openAvailableGalleryImages}
             notModalFormClassName={"!p-0"}
           >
-            {galleryImages?.length && (
+            {galleryImages?.length ? (
               <div className="sticky top-0 z-20">
                 <h2 className="text-center text-base bg-primary-color shadow-black shadow-md text-white font-medium py-1.5 px-1">
                   Selected Media{" "}
@@ -76,9 +76,9 @@ const FormPost = ({
                   </span>
                 </h2>
               </div>
-            )}
+            ): ""}
 
-            <div className="max-h-[24rem] overflow-y-auto">
+            <div className="max-h-[60vh] overflow-y-auto">
               <div className="p-4 sm:p-5 ">
                 {!galleryImages?.length ? (
                   <h2 className="text-center text-lg bg-red-400 text-white font-medium rounded py-1.5 px-1 animate-pulse">

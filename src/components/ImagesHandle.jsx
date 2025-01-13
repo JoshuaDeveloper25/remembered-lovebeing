@@ -76,7 +76,7 @@ const ImagesHandle = ({ setImages, images }) => {
                 isDragging
                   ? "border-primary-color-light animation-fade"
                   : "hover:border-primary-color-light animation-fade"
-              } w-full bg-white text-base rounded max-w-md h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed mx-auto`}
+              } w-full bg-white text-base rounded  h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed`}
             >
               <LuFileInput className="text-primary-color-light size-9 mx-auto" />
               {isDragging ? (

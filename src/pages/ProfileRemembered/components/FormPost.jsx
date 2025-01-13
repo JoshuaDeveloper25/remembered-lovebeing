@@ -76,7 +76,9 @@ const FormPost = ({
                   </span>
                 </h2>
               </div>
-            ): ""}
+            ) : (
+              ""
+            )}
 
             <div className="max-h-[60vh] overflow-y-auto">
               <div className="p-4 sm:p-5 ">
@@ -107,16 +109,20 @@ const FormPost = ({
               </div>
             </div>
 
-            <div className="sm:sticky fixed right-0 left-0 bottom-0 bg-primary-color shadow-black shadow-md w-full p-4">
-              <button
-                className={`disabled:bg-primary-color/40 disabled:pointer-events-none btn btn-blue-light border-0`}
-                disabled={!galleryImages?.length}
-                onClick={handleSelectedImagesGallery}
-                type="button"
-              >
-                Done
-              </button>
-            </div>
+            {!galleryImages?.length ? (
+              ""
+            ) : (
+              <div className="sm:sticky fixed right-0 left-0 bottom-0 bg-primary-color shadow-black shadow-md w-full p-4">
+                <button
+                  className={`disabled:bg-primary-color/40 disabled:pointer-events-none btn btn-blue-light border-0`}
+                  disabled={!galleryImages?.length}
+                  onClick={handleSelectedImagesGallery}
+                  type="button"
+                >
+                  Done
+                </button>
+              </div>
+            )}
           </PhotosFromGalleryModal>
 
           <ul

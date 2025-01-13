@@ -9,7 +9,7 @@ const FormGalleryImages = ({
 }) => {
   return (
     <div className="flex flex-col justify-between sm:h-full h-svh">
-      <div className="p-4 sm:mt-0 mt-16">
+      <div className="grid place-items-center h-full p-4 sm:mt-0 mt-16">
         <ImagesHandle setImages={setImages} images={images} />
       </div>
 

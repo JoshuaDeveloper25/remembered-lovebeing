@@ -59,7 +59,7 @@ const ImagesHandle = ({ setImages, images }) => {
         isDragging,
         dragProps,
       }) => (
-        <div className="upload__image-wrapper">
+        <div className="upload__image-wrapper relative w-full">
           <div className="mb-5">
             <div className="mb-6">
               <h3 className="font-semibold">
@@ -92,7 +92,7 @@ const ImagesHandle = ({ setImages, images }) => {
                     Alternatively, you can select a file by
                   </span>
                   <span className="font-bold text-white btn btn-blue text-sm w-fit mx-auto">
-                  Browse a file (s)
+                    Browse a file (s)
                   </span>
                 </>
               )}
@@ -100,8 +100,17 @@ const ImagesHandle = ({ setImages, images }) => {
           </div>
 
           {/* Images uploaded by user */}
+          {images?.length !== 0 && (
+            <div className="absolute top-[284px]">
+              <h2>
+                Selected media:{" "}
+                <span className="font-extrabold"> ({images?.length})</span>
+              </h2>
+            </div>
+          )}
+
           {isPending ? (
-            <ul className="flex gap-5 overflow-x-auto w-full max-w-lg my-5 py-5">
+            <ul className="flex gap-5 overflow-x-auto w-full max-w-lg py-5">
               {[1, 2, 3, 4]?.map((item, idx) => (
                 <li key={idx} className="h-32 min-w-32 relative">
                   <div className="h-32 min-w-32 relative bg-tertiary-color/50 animate-pulse"></div>
@@ -110,10 +119,13 @@ const ImagesHandle = ({ setImages, images }) => {
             </ul>
           ) : (
             images?.length !== 0 && (
-              <ul className="flex gap-5 overflow-x-auto w-full max-w-lg my-5 pt-5 pb-1 rounded-md">
+              <ul className="flex gap-5 overflow-x-auto w-full max-w-lg pt-5 pb-1 rounded-md scrollbar">
                 {images?.map((item, idx) => (
-                  <li key={idx} className="h-32 min-w-32 relative rounded-md">
-                    <div className="h-32 min-w-32 relative shadow-xl rounded-md">
+                  <li
+                    key={idx}
+                    className="h-[128px] w-[128px] min-w-[128px] relative rounded-md"
+                  >
+                    <div className="h-[128px] w-[128px] min-w-[128px] relative shadow-xl rounded-md">
                       <img
                         loading="lazy"
                         decoding="async"

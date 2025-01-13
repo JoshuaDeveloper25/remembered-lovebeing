@@ -157,16 +157,12 @@ const AddImagesToMediaGalleryModal = ({
                   formContainerClassName
                 )}
               >
-                {modalForm === false ? (
-                  <div className="p-4 md:p-5">{children}</div>
-                ) : (
-                  <form
-                    onSubmit={handleSubmit}
-                    // className="max-h-[80vh] overflow-y-auto"
-                  >
-                    {children}
-                  </form>
-                )}
+                <form
+                  onSubmit={handleSubmit}
+                  // className="max-h-[80vh] overflow-y-auto"
+                >
+                  {children}
+                </form>
               </div>
             </div>
           </div>

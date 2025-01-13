@@ -9,6 +9,7 @@ import ReactCrop, {
 } from "react-image-crop";
 import { LuFileInput } from "react-icons/lu";
 import CoverRememberedModal from "../pages/ProfileRemembered/components/CoverRememberedModal";
+import { RiImageEditFill } from "react-icons/ri";
 
 const ImagesHandleCrop = ({
   titleModal,
@@ -94,7 +95,13 @@ const ImagesHandleCrop = ({
     }
   };
 
-  const handleClearImage = () => setImgSrc("");
+  const handleClearImage = () => {
+    setImgSrc("");
+
+    if (imgRef?.current) {
+      imgRef.current.value = null;
+    }
+  };
 
   return (
     <>
@@ -157,8 +164,8 @@ const ImagesHandleCrop = ({
         modalForm={true}
         iconTitle={true}
       >
-        <div className="p-4 sm:p-8 grid place-items-center h-full">
-          <div className={`${imgSrc && "hidden"}`}>
+        <div className="p-4 sm:p-8 grid sm:place-items-start place-items-center w-full h-full">
+          <div className={`${imgSrc && "hidden"} w-full`}>
             <div className="mb-6 w-full">
               <h3 className="font-semibold">
                 Upload a file{" "}
@@ -168,6 +175,7 @@ const ImagesHandleCrop = ({
             </div>
 
             <label
+              htmlFor="uploadImages"
               className={`relative flex flex-col justify-center items-center h-[300px] w-full mb-3 cursor-pointer text-center border-2 border-dashed rounded-sm py-10 px-1 ${
                 dragging
                   ? "border-primary-color-light"
@@ -190,6 +198,7 @@ const ImagesHandleCrop = ({
               </p>
 
               <input
+                id="uploadImages"
                 type="file"
                 name="uploadImages"
                 accept="image/png, image/jpeg, image/jpg"
@@ -203,15 +212,14 @@ const ImagesHandleCrop = ({
 
           {imgSrc && (
             <div className="flex rounded-[8px] rounded-e-none h-[400px] justify-center bg-black w-full relative">
-              <div className="absolute -top-7 right-0 z-[999]">
-                <button
-                  className="rounded-md flex items-center gap-1.5 rounded-b-none bg-red-500 text-white animation-fade px-3 py-1 text-sm hover:opacity-65"
-                  type="button"
-                  onClick={() => setImgSrc("")}
-                >
-                  Clear Image <FaRegTrashAlt />
-                </button>
-              </div>
+              <label
+                className="absolute -top-7 right-0 z-[999] cursor-pointer"
+                htmlFor="uploadImages"
+              >
+                <span className="rounded-md flex items-center gap-1.5 rounded-b-none bg-primary-color-light text-white animation-fade px-3 py-1 text-sm hover:opacity-65">
+                  Change Image <RiImageEditFill size={19} />
+                </span>
+              </label>
 
               <ReactCrop
                 onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}

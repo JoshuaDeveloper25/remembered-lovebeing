@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import Modal from "./Modal";
 import axios from "axios";
+import AddPostModal from "../pages/ProfileRemembered/components/AddPostModal";
 
 const UploadPost = ({ galleryImages, statusPlan, isOwner, idRemembered }) => {
   const [tempSelectedGalleryImageInfo, setTempSelectedGalleryImageInfo] =
@@ -67,7 +68,7 @@ const UploadPost = ({ galleryImages, statusPlan, isOwner, idRemembered }) => {
       </button>
 
       {/* Add Post Modal */}
-      <Modal
+      <AddPostModal
         setClearCache={setTempSelectedGalleryImageInfo}
         titleModal={"Add Post"}
         handleSubmit={handleSubmitCreatePost}
@@ -84,7 +85,7 @@ const UploadPost = ({ galleryImages, statusPlan, isOwner, idRemembered }) => {
           createPostMutation={createPostMutation}
           isPending={createPostMutation?.isPending}
         />
-      </Modal>
+      </AddPostModal>
     </>
   );
 };

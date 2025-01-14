@@ -9,6 +9,7 @@ import { useState } from "react";
 import axios from "axios";
 import { MdWorkspacePremium } from "react-icons/md";
 import AddImagesToMediaGalleryModal from "../pages/ProfileRemembered/components/AddImagesToMediaGalleryModal";
+import ButtonForm from "./ButtonForm";
 
 const UploadGalleryImage = ({
   imagesGallery,
@@ -92,9 +93,19 @@ const UploadGalleryImage = ({
         setOpenModal={setOpenModalGallery}
         // editableWidth={'max-w-xl'}
         openModal={openModalGallery}
-        modalForm={true}
         iconTitle={true}
         setClearCache={setImages}
+        footer={
+          <ButtonForm
+            imagesAvailabe={true}
+            images={images}
+            setClearCache={setImages}
+            setOpenModal={setOpenModalGallery}
+            isPending={addGalleryImageMutation?.isPending}
+            statusOn={"Uploading..."}
+            statusOff={"Upload"}
+          />
+        }
       >
         <FormGalleryImages
           setOpenModalGallery={setOpenModalGallery}

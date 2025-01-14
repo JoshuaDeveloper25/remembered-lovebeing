@@ -16,6 +16,7 @@ const AddImagesToMediaGalleryModal = ({
   setClearCache = () => {},
   formContainerClassName,
   modalContentClassNames,
+  footer,
 }) => {
   const [closing, setClosing] = useState(false);
 
@@ -108,14 +109,15 @@ const AddImagesToMediaGalleryModal = ({
             className={`relative w-full sm:max-w-[600px] max-w-full sm:px-8 px-0 sm:h-full h-svh mx-auto animate-slide-up`}
           >
             {/* Modal content */}
-            <div
+            <form
               className={twMerge(
-                `sm:rounded-md shadow bg-white min-h-full`,
+                `sm:rounded-md shadow bg-white h-full flex flex-col`,
                 modalContentClassNames
               )}
+              onSubmit={handleSubmit}
             >
               {/* Modal header */}
-              <div className="flex items-center justify-between p-4 md:p-5 border-b sm:static absolute z-[999] right-0 left-0 bg-gray-200 dark:border-gray-300">
+              <div className="flex items-center justify-between p-4 md:p-5 border-b bg-gray-200 dark:border-gray-300">
                 <div>
                   <h3 className="flex  items-center gap-2 text-xl font-semibold text-fourth-color">
                     {iconTitle && (
@@ -153,18 +155,15 @@ const AddImagesToMediaGalleryModal = ({
 
               <div
                 className={twMerge(
-                  "sm:max-h-[34rem] max-h-full overflow-y-auto",
+                  "sm:max-h-[34rem] max-h-full overflow-y-auto flex-1 flex",
                   formContainerClassName
                 )}
               >
-                <form
-                  onSubmit={handleSubmit}
-                  // className="max-h-[80vh] overflow-y-auto"
-                >
-                  {children}
-                </form>
+                {children}
               </div>
-            </div>
+
+              {footer}
+            </form>
           </div>
         </div>
       </div>,

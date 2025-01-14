@@ -73,7 +73,7 @@ const CarouselProfiles = ({ rememberedProfiles }) => {
                 src={
                   remember?.profile_images
                     ? `${remember?.profile_images?.cloud_front_domain}/${remember?.profile_images?.aws_file_name}`
-                    : `https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg`
+                    : `https://i.pinimg.com/474x/51/f6/fb/51f6fb256629fc755b8870c801092942.jpg`
                 }
               />
 

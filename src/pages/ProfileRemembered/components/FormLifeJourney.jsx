@@ -101,7 +101,7 @@ const FormLifeJourney = ({
             <h4 className="font-semibold">Born:</h4>
 
             <select
-              className="border border-muted-color/20 rounded pe-4 py-1.5 text-muted-color/50"
+              className="border border-muted-color/20 rounded pe-4 py-1.5 "
               value={bornYear}
               onChange={(e) => setBornYear(parseInt(e.target.value))}
               name="born_year"
@@ -115,7 +115,7 @@ const FormLifeJourney = ({
             </select>
 
             <select
-              className="border border-muted-color/20 rounded pe-4 py-1.5 text-muted-color/50"
+              className="border border-muted-color/20 rounded pe-4 py-1.5 "
               value={bornMonth}
               name="born_month"
               onChange={(e) => setBornMonth(e.target.value)}
@@ -129,7 +129,7 @@ const FormLifeJourney = ({
             </select>
 
             <select
-              className="border border-muted-color/20 rounded pe-4 py-1.5 text-muted-color/50"
+              className="border border-muted-color/20 rounded pe-4 py-1.5 "
               value={bornDay}
               name="born_day"
               onChange={(e) => setBornDay(parseInt(e.target.value))}
@@ -171,12 +171,12 @@ const FormLifeJourney = ({
             <label>
               <span className="font-semibold">Country:</span>
               <select
-                className="border border-muted-color/20 rounded pe-4 py-1.5 w-full text-muted-color/50 "
+                className="border border-muted-color/20 rounded pe-4 py-1.5 w-full  "
                 name="born_country"
                 value={birthCountry}
                 onChange={(e) => setBirthCountry(e?.target?.value)}
               >
-                <option className="text-muted-color/50" value={""}>
+                <option className="" value={""}>
                   -- Select Country --
                 </option>
 
@@ -202,7 +202,7 @@ const FormLifeJourney = ({
             <h4 className="font-semibold">Passed Away:</h4>
 
             <select
-              className="border border-muted-color/20 rounded pe-4 py-1.5 text-muted-color/50"
+              className="border border-muted-color/20 rounded pe-4 py-1.5 "
               value={passedYear}
               name="death_year"
               onChange={(e) => setPassedYear(parseInt(e.target.value))}
@@ -217,7 +217,7 @@ const FormLifeJourney = ({
             </select>
 
             <select
-              className="border border-muted-color/20 rounded pe-4 py-1.5 text-muted-color/50"
+              className="border border-muted-color/20 rounded pe-4 py-1.5 "
               value={passedMonth}
               name="death_month"
               onChange={(e) => setPassedMonth(e.target.value)}
@@ -231,7 +231,7 @@ const FormLifeJourney = ({
             </select>
 
             <select
-              className="border border-muted-color/20 rounded pe-4 py-1.5 text-muted-color/50"
+              className="border border-muted-color/20 rounded pe-4 py-1.5 "
               value={passedDay}
               name="death_day"
               onChange={(e) => setPassedDay(parseInt(e.target.value))}
@@ -273,12 +273,12 @@ const FormLifeJourney = ({
             <label>
               <span className="font-semibold">Country:</span>
               <select
-                className="border border-muted-color/20 rounded pe-4 py-1.5 w-full text-muted-color/50"
+                className="border border-muted-color/20 rounded pe-4 py-1.5 w-full "
                 value={deathCountry}
                 onChange={(e) => setDeathCountry(e?.target?.value)}
                 name="passed_away_country"
               >
-                <option className="text-muted-color/50" value={""}>
+                <option className="" value={""}>
                   -- Select Country --
                 </option>
 

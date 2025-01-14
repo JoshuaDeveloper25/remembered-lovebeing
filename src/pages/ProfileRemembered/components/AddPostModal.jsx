@@ -97,7 +97,7 @@ const AddPostModal = ({
           id="crud-modal"
           tabIndex="-1"
           aria-hidden="true"
-          className={`overflow-x-hidden fixed sm:px-4 px-0 top-0  right-0 left-0 z-[99999999] flex justify-center items-center w-full min-h-full bg-black/50 overflow-y-hidden`}
+          className={`overflow-x-hidden fixed sm:px-4 px-0 top-0  right-0 left-0 z-[99999999] flex justify-center items-center w-full min-h-full bg-black/50 backdrop-blur-sm overflow-y-hidden`}
         >
           <div
             className={`relative w-full sm:max-w-md max-w-full mx-auto h-full animate-slide-up`}

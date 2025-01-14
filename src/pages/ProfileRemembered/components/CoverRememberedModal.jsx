@@ -17,7 +17,7 @@ const CoverRememberedModal = ({
   formContainerClassName,
   modalContentClassNames,
   footer,
-  onClose = () => null
+  onClose = () => null,
 }) => {
   const [closing, setClosing] = useState(false);
 
@@ -103,7 +103,7 @@ const CoverRememberedModal = ({
           aria-hidden="true"
           className={twMerge(
             `overflow-x-hidden fixed top-0 right-0 left-0 z-[99999999] flex justify-center items-center w-full 
-             min-h-full bg-black/50 overflow-y-hidden`,
+             min-h-full bg-black/50 backdrop-blur-sm overflow-y-hidden`,
             crudModalClassName
           )}
         >
@@ -119,7 +119,7 @@ const CoverRememberedModal = ({
               onSubmit={handleSubmit}
             >
               {/* Modal header */}
-              <div className="flex items-center justify-between p-4 md:p-5 border-b  bg-gray-200 z-[999] dark:border-gray-300">
+              <div className="flex items-center justify-between p-4 md:p-5 border-b  z-[999] ">
                 <div>
                   <h3 className="flex  items-center gap-2 text-xl font-semibold text-fourth-color">
                     {iconTitle && (
@@ -164,7 +164,7 @@ const CoverRememberedModal = ({
                 {modalForm === false ? (
                   <div className="p-4 md:p-5">{children}</div>
                 ) : (
-                  children 
+                  children
                 )}
               </div>
 

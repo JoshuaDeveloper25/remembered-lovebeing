@@ -97,7 +97,7 @@ const PhotosFromGalleryModal = ({
           id="crud-modal"
           tabIndex="-1"
           aria-hidden="true"
-          className={`overflow-x-hidden fixed sm:px-4 px-0 top-0  right-0 left-0 z-[99999999] flex justify-center items-center w-full min-h-full bg-black/50 overflow-y-hidden`}
+          className={`overflow-x-hidden fixed sm:px-4 px-0 top-0  right-0 left-0 z-[99999999] flex justify-center items-center w-full min-h-full bg-black/50 backdrop-blur-sm overflow-y-hidden`}
         >
           <div
             className={`relative w-full sm:max-w-xl max-w-full mx-auto sm:h-full h-svh animate-slide-up`}
@@ -107,7 +107,7 @@ const PhotosFromGalleryModal = ({
               className={`flex flex-col h-full relative sm:top-4 top-0 bottom-10 sm:rounded-lg rounded-none shadow bg-white min-h-full`}
             >
               {/* Modal header */}
-              <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t bg-tertiary-color/15 dark:border-gray-300">
+              <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
                 <div>
                   <h3 className="flex  items-center gap-2 text-xl font-semibold text-fourth-color">
                     {iconTitle && (

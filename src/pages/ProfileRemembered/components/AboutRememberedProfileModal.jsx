@@ -99,7 +99,7 @@ const AboutRememberedProfileModal = ({
           tabIndex="-1"
           aria-hidden="true"
           className={twMerge(`overflow-x-hidden fixed top-0 right-0 left-0 z-[99999999] flex justify-center items-center w-full 
-             min-h-full bg-black/50 overflow-y-hidden`, crudModalClassName)}
+             min-h-full bg-black/50 backdrop-blur-sm overflow-y-hidden`, crudModalClassName)}
         >
           <div
             className={`relative w-full sm:max-w-[700px] max-w-full sm:px-8 px-0 h-full mx-auto animate-slide-up`}
@@ -109,7 +109,7 @@ const AboutRememberedProfileModal = ({
               className={twMerge(`rounded-lg shadow bg-white min-h-full`, modalContentClassNames)}
             >
               {/* Modal header */}
-              <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t bg-tertiary-color/15 dark:border-gray-300">
+              <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
                 <div>
                   <h3 className="flex  items-center gap-2 text-xl font-semibold text-fourth-color">
                     {iconTitle && (

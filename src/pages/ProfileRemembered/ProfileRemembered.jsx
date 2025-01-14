@@ -319,7 +319,7 @@ const ProfileRemembered = () => {
                 <div className="sticky z-20">
                   {!data?.data?.is_owner ? (
                     <img
-                      className="w-36 h-36 object-cover mx-auto rounded-full shadow-lg"
+                      className="w-[120px] h-[120px] object-cover mx-auto rounded-full shadow-lg"
                       src={
                         data?.data?.remembered_profile?.profile_images
                           ? `${data?.data?.remembered_profile?.profile_images?.cloud_front_domain}/${data?.data?.remembered_profile?.profile_images?.aws_file_name}`
@@ -329,7 +329,7 @@ const ProfileRemembered = () => {
                   ) : (
                     <>
                       <img
-                        className="w-36 h-36 object-cover mx-auto rounded-full shadow-lg"
+                        className="w-[120px] h-[120px] object-cover mx-auto rounded-full shadow-lg"
                         src={
                           data?.data?.remembered_profile?.profile_images
                             ? `${data?.data?.remembered_profile?.profile_images?.cloud_front_domain}/${data?.data?.remembered_profile?.profile_images?.aws_file_name}`

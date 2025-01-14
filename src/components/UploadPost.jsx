@@ -7,6 +7,7 @@ import { useState } from "react";
 import Modal from "./Modal";
 import axios from "axios";
 import AddPostModal from "../pages/ProfileRemembered/components/AddPostModal";
+import ButtonForm from "./ButtonForm";
 
 const UploadPost = ({ galleryImages, statusPlan, isOwner, idRemembered }) => {
   const [tempSelectedGalleryImageInfo, setTempSelectedGalleryImageInfo] =
@@ -75,6 +76,15 @@ const UploadPost = ({ galleryImages, statusPlan, isOwner, idRemembered }) => {
         setOpenModal={setOpenModalCreatePost}
         openModal={openModalCreatePost}
         modalForm={true}
+        footer={
+          <ButtonForm
+            setClearCache={setTempSelectedGalleryImageInfo}
+            setOpenModal={setOpenModalCreatePost}
+            isPending={createPostMutation?.isPending}
+            statusOn={"Creating..."}
+            statusOff={"Create"}
+          />
+        }
       >
         <FormPost
           error={error}

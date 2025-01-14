@@ -14,6 +14,7 @@ const AddPostModal = ({
   iconTitle = false,
   setClearCache = () => {},
   notModalFormClassName,
+  footer,
 }) => {
   const [closing, setClosing] = useState(false);
 
@@ -104,7 +105,7 @@ const AddPostModal = ({
             {/* Modal content */}
             <form
               onSubmit={handleSubmit}
-              className={`relative sm:top-4 top-0 bottom-10 sm:rounded-lg rounded-none shadow bg-white sm:min-h-full min-h-svh`}
+              className={`flex flex-col h-full relative sm:top-4 top-0 bottom-10 sm:rounded-lg rounded-none shadow bg-white sm:min-h-full min-h-svh`}
             >
               {/* Modal header */}
               <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t bg-tertiary-color/15 dark:border-gray-300">
@@ -143,7 +144,11 @@ const AddPostModal = ({
                 </button>
               </div>
 
-              {children}
+              <div className="overflow-y-auto max-h-full flex-1 flex">
+                {children}
+              </div>
+
+              {footer}
             </form>
           </div>
         </div>

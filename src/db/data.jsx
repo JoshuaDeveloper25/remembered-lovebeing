@@ -118,7 +118,7 @@ export const causeOfDeaths = [
   },
 
   {
-    value: "not_to_say",
+    value: "prefer_not_to_say",
     causeDeath: "Prefer not to say",
   },
 

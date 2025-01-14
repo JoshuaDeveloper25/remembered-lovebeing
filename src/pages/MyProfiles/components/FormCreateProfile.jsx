@@ -152,7 +152,7 @@ const FormCreateProfile = ({
                   required={true}
                 >
                   <option value="">-- Select --</option>
-                  <option value="not_to_say">Prefer not to say</option>
+                  <option value="prefer_not_to_say">Prefer not to say</option>
                   <option value="covid19_victim">COVID-19 victim</option>
                   <option value="substance_victim">
                     Substance abuse victim

@@ -451,10 +451,16 @@ const resources = {
       Headstone: "Headstone",
       "Single Package": "Single Package",
       "Tertiary Package": "Tertiary Package",
+      "Birth Place": "Birth Place",
+      "No Country": "No Country",
+      "No Country...": "No Country..."
     },
   },
   es: {
     translation: {
+      "No Country...": "Sin País...",
+      "No Country": "Sin País",
+      "Birth Place": "Lugar de Nacimiento",
       "Single Package": "Paquete de 1",
       "Tertiary Package": "Paquete de 3",
       Headstone: "Lápida",

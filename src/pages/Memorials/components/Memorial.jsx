@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { FaEye } from "react-icons/fa";
 import { PiCakeFill } from "react-icons/pi";
 import { GiTombstone } from "react-icons/gi";
+import { FaEarthAmericas } from "react-icons/fa6";
 
 const Memorial = ({ item, t }) => {
   return (
@@ -37,17 +38,50 @@ const Memorial = ({ item, t }) => {
       <div className="px-4">
         <div className="flex justify-between my-6">
           <p className="text-xs">
-            <PiCakeFill className="inline-block size-6 align-bottom" />: {" "}
+            <PiCakeFill className="inline-block size-6 align-bottom" />:{" "}
             {item?.birth_date === null ? t("No Date...") : item?.birth_date}
           </p>
           <p className="text-xs ">
-            <GiTombstone className="inline-block size-6 align-bottom" />: {" "}
+            <GiTombstone className="inline-block size-6 align-bottom" />:{" "}
             {item?.death_date === null ? t("No Date...") : item?.death_date}
           </p>
         </div>
 
-        <p className="text-xs text-center">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit in ea.
+        <p className="flex items-center gap-1.5 text-xs text-start">
+          <FaEarthAmericas size={16} />{" "}
+          <span className="font-extrabold"> {t("Birth Place")}:</span>{" "}
+          {
+            <div className="relative group cursor-pointer">
+              {/* Desktop one */}
+              <span className="text-sm text-tertiary-color overflow-hidden text-ellipsis whitespace-nowrap max-w-[80px] sm:block hidden">
+                {item?.birth_country?.substring(0, 10) || t("No Country")}...
+              </span>
+
+              {/* Responsive one */}
+              <div className="sm:block hidden">
+                <span className="text-sm text-tertiary-color overflow-hidden sm:hidden block max-w-[8rem]">
+                  {item?.birth_country || t("No Country")}...
+                </span>
+              </div>
+
+              <div className="sm:block hidden">
+                {" "}
+                {item?.birth_country ? (
+                  <span className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 hidden w-max px-2 py-1 text-white bg-black rounded-md text-sm group-hover:block">
+                    {item?.birth_country}
+                  </span>
+                ) : (
+                  <span className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 hidden w-max px-2 py-1 text-white bg-black rounded-md text-sm group-hover:block">
+                    {t("No Country")}...
+                  </span>
+                )}
+              </div>
+            </div>
+          }
+        </p>
+
+        <p className="text-sm text-tertiary-color overflow-hidden sm:hidden block max-w-[8rem] mt-1">
+          {item?.birth_country || t("No Country...")}
         </p>
 
         <Link

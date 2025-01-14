@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
+import pagaditoCertificado from "../assets/pagadito-certificado.png";
+
 const Footer = () => {
   const { t } = useTranslation();
 
@@ -12,6 +14,12 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between gap-2 sm:gap-6">
           <div className="mb-6 md:mb-0">
             <img className="w-72 rounded" src={logo} alt={"Logo"} />
+
+            <img
+              className="w-32 mt-8 rounded"
+              src={pagaditoCertificado}
+              alt={"Logo"}
+            />
           </div>
 
           {/* SM TO TOP */}

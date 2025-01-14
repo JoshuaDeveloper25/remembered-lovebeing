@@ -15,7 +15,7 @@ const AboutRememberedProfileModal = ({
   crudModalClassName,
   setClearCache = () => {},
   formContainerClassName,
-  modalContentClassNames
+  modalContentClassNames,
 }) => {
   const [closing, setClosing] = useState(false);
 
@@ -98,15 +98,21 @@ const AboutRememberedProfileModal = ({
           id="crud-modal"
           tabIndex="-1"
           aria-hidden="true"
-          className={twMerge(`overflow-x-hidden fixed top-0 right-0 left-0 z-[99999999] flex justify-center items-center w-full 
-             min-h-full bg-black/50 backdrop-blur-sm overflow-y-hidden`, crudModalClassName)}
+          className={twMerge(
+            `overflow-x-hidden fixed top-0 right-0 left-0 z-[99999999] flex justify-center items-center w-full 
+             min-h-full bg-black/50 backdrop-blur-sm overflow-y-hidden`,
+            crudModalClassName
+          )}
         >
           <div
             className={`relative w-full sm:max-w-[700px] max-w-full sm:px-8 px-0 h-full mx-auto animate-slide-up`}
           >
             {/* Modal content */}
             <div
-              className={twMerge(`rounded-lg shadow bg-white min-h-full`, modalContentClassNames)}
+              className={twMerge(
+                `rounded-lg shadow bg-white min-h-full`,
+                modalContentClassNames
+              )}
             >
               {/* Modal header */}
               <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
@@ -145,7 +151,12 @@ const AboutRememberedProfileModal = ({
                 </button>
               </div>
 
-              <div className={twMerge("max-h-[34rem] overflow-y-auto", formContainerClassName)}>
+              <div
+                className={twMerge(
+                  "max-h-[34rem] overflow-y-auto",
+                  formContainerClassName
+                )}
+              >
                 {modalForm === false ? (
                   <div className="p-4 md:p-5">{children}</div>
                 ) : (

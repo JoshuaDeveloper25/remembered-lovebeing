@@ -1,15 +1,54 @@
 import QuestionMarkInfo from "../../components/QuestionMarkInfo";
+import { useMutation } from "@tanstack/react-query";
 import AppContext from "../../context/AppProvider";
 import { IoCloseSharp } from "react-icons/io5";
 import { useTranslation } from "react-i18next";
+import SelectCurrency from "./SelectCurrency";
+import { useContext, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { GoStop } from "react-icons/go";
-import { useContext } from "react";
+import axios from "axios";
 
 const Prices = () => {
   const { t } = useTranslation();
   const { userInfo } = useContext(AppContext);
+  const [currency, setCurrency] = useState("");
+  let currencySymbol;
+
+  if (currency === "HNL") {
+    currencySymbol = "L";
+  } else if (currency === "GTQ") {
+    currencySymbol = "Q";
+  } else if (currency === "NIO") {
+    currencySymbol = "C$";
+  } else if (currency === "CRC") {
+    currencySymbol = "₡";
+  } else if (currency === "MXN") {
+    currencySymbol = "Mex$";
+  }
+
+  // This is for turning a remembered profile from free to PRO
+  const getCurrencyMutation = useMutation({
+    mutationFn: async () =>
+      await axios.get(
+        `https://v6.exchangerate-api.com/v6/${
+          import.meta.env.VITE_CURRENCY_KEY
+        }/pair/USD/${currency}`
+      ),
+    onSuccess: (res) => {
+      console.log(res);
+    },
+    onError: (err) => {
+      console.log(err);
+    },
+  });
+
+  const handleChangeCurrency = (e) => {
+    setCurrency(e.target.value);
+
+    getCurrencyMutation.mutate();
+  };
 
   return (
     <section className="container-page px-3 py-16">
@@ -25,7 +64,16 @@ const Prices = () => {
         </p>
       </div>
 
-      <div className="flex flex-wrap items-center justify-center gap-8 mt-16">
+      <div className="grid place-items-center mt-8">
+        <SelectCurrency
+          handleChangeCurrency={handleChangeCurrency}
+          setCurrency={setCurrency}
+          currency={currency}
+          t={t}
+        />
+      </div>
+
+      <div className="flex flex-wrap items-center justify-center gap-8 mt-12">
         <div className="min-w-[20rem] hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
             {t("Free")}
@@ -128,6 +176,19 @@ const Prices = () => {
               <span className="align-text-top text-4xl me-3">$</span>
               <span>19.99</span>
             </h2>
+
+            {currency ? (
+              <h4 className="text-muted-color">
+                {t("Aprox.")} {currencySymbol}{" "}
+                <span className="font-extrabold">
+                  {(
+                    getCurrencyMutation?.data?.data?.conversion_rate * 19.99
+                  ).toFixed("2")}
+                </span>
+              </h4>
+            ) : (
+              ""
+            )}
           </div>
 
           <ul className="text-muted-color leading-9 my-5">
@@ -214,6 +275,19 @@ const Prices = () => {
               <span className="align-text-top text-4xl me-3">$</span>
               <span>49.99</span>
             </h2>
+
+            {currency ? (
+              <h4 className="text-muted-color">
+                {t("Aprox.")} {currencySymbol}{" "}
+                <span className="font-extrabold">
+                  {(
+                    getCurrencyMutation?.data?.data?.conversion_rate * 49.99
+                  ).toFixed("2")}
+                </span>
+              </h4>
+            ) : (
+              ""
+            )}
           </div>
           <ul className="text-muted-color leading-9 my-5">
             <li className="flex items-center gap-3 border-b py-1">

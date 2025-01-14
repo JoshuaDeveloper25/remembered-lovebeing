@@ -453,11 +453,13 @@ const resources = {
       "Tertiary Package": "Tertiary Package",
       "Birth Place": "Birth Place",
       "No Country": "No Country",
-      "No Country...": "No Country..."
+      "No Country...": "No Country...",
+      "Select currency": "Select currency",
     },
   },
   es: {
     translation: {
+      "Select currency": "Selecciona tu moneda",
       "No Country...": "Sin País...",
       "No Country": "Sin País",
       "Birth Place": "Lugar de Nacimiento",

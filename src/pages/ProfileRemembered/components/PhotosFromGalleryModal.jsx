@@ -14,6 +14,7 @@ const PhotosFromGalleryModal = ({
   iconTitle = false,
   setClearCache = () => {},
   notModalFormClassName,
+  footer
 }) => {
   const [closing, setClosing] = useState(false);
 
@@ -103,7 +104,7 @@ const PhotosFromGalleryModal = ({
           >
             {/* Modal content */}
             <div
-              className={`relative sm:top-4 top-0 bottom-10 sm:rounded-lg rounded-none shadow bg-white min-h-full`}
+              className={`flex flex-col h-full relative sm:top-4 top-0 bottom-10 sm:rounded-lg rounded-none shadow bg-white min-h-full`}
             >
               {/* Modal header */}
               <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t bg-tertiary-color/15 dark:border-gray-300">
@@ -142,9 +143,11 @@ const PhotosFromGalleryModal = ({
                 </button>
               </div>
 
-              <div className={twMerge("p-4 md:p-5", notModalFormClassName)}>
+              <div className={twMerge("p-4 md:p-5 flex-1 sm:max-h-[28rem] max-h-full overflow-y-auto", notModalFormClassName)}>
                 {children}
               </div>
+
+              {footer}
             </div>
           </div>
         </div>

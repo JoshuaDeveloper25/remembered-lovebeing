@@ -66,6 +66,22 @@ const FormPost = ({
             setOpenModal={setOpenAvailableGalleryImages}
             openModal={openAvailableGalleryImages}
             notModalFormClassName={"!p-0"}
+            footer={
+              !galleryImages?.length ? (
+                ""
+              ) : (
+                <div className="  bg-primary-color shadow-black shadow-md w-full p-4">
+                  <button
+                    className={`disabled:bg-primary-color/40 disabled:pointer-events-none btn btn-blue-light border-0`}
+                    disabled={!galleryImages?.length}
+                    onClick={handleSelectedImagesGallery}
+                    type="button"
+                  >
+                    Done
+                  </button>
+                </div>
+              )
+            }
           >
             {galleryImages?.length ? (
               <div className="sticky top-0 z-20">
@@ -80,49 +96,32 @@ const FormPost = ({
               ""
             )}
 
-            <div className="max-h-[60vh] overflow-y-auto">
-              <div className="p-4 sm:p-5 ">
-                {!galleryImages?.length ? (
-                  <h2 className="text-center text-lg bg-red-400 text-white font-medium rounded py-1.5 px-1 animate-pulse">
-                    Please, upload/add a photo from Media tab!
-                  </h2>
-                ) : (
-                  <>
-                    <div className="grid sm:py-4 py-1.5 px-1.5 border rounded min-[300px]:grid-cols-2 min-[450px]:grid-cols-3 grid-cols-1 place-items-center place-content-centers justify-center items-center gap-y-4 md:gap-x-0 gap-x-4 shadow-2xl">
-                      {galleryImages?.map((item) => {
-                        return (
-                          <AvailablePhotoGallery
-                            setSelectedGalleryImageInfo={
-                              setTempSelectedGalleryImageInfo
-                            }
-                            selectedGalleryImageInfo={
-                              tempSelectedGalleryImageInfo
-                            }
-                            item={item}
-                            key={item?.id}
-                          />
-                        );
-                      })}
-                    </div>
-                  </>
-                )}
-              </div>
+            <div className="p-4 sm:p-5 ">
+              {!galleryImages?.length ? (
+                <h2 className="text-center text-lg bg-red-400 text-white font-medium rounded py-1.5 px-1 animate-pulse">
+                  Please, upload/add a photo from Media tab!
+                </h2>
+              ) : (
+                <>
+                  <div className="grid sm:py-4 py-1.5 px-1.5 border rounded min-[300px]:grid-cols-2 min-[450px]:grid-cols-3 grid-cols-1 place-items-center place-content-centers justify-center items-center gap-y-4 md:gap-x-0 gap-x-4 shadow-2xl">
+                    {galleryImages?.map((item) => {
+                      return (
+                        <AvailablePhotoGallery
+                          setSelectedGalleryImageInfo={
+                            setTempSelectedGalleryImageInfo
+                          }
+                          selectedGalleryImageInfo={
+                            tempSelectedGalleryImageInfo
+                          }
+                          item={item}
+                          key={item?.id}
+                        />
+                      );
+                    })}
+                  </div>
+                </>
+              )}
             </div>
-
-            {!galleryImages?.length ? (
-              ""
-            ) : (
-              <div className="sm:sticky fixed right-0 left-0 bottom-0 bg-primary-color shadow-black shadow-md w-full p-4">
-                <button
-                  className={`disabled:bg-primary-color/40 disabled:pointer-events-none btn btn-blue-light border-0`}
-                  disabled={!galleryImages?.length}
-                  onClick={handleSelectedImagesGallery}
-                  type="button"
-                >
-                  Done
-                </button>
-              </div>
-            )}
           </PhotosFromGalleryModal>
 
           <ul

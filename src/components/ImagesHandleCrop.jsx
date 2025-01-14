@@ -235,7 +235,7 @@ const ImagesHandleCrop = ({
                   ref={imgRef}
                   src={imgSrc}
                   alt="Upload"
-                  className="h-full mx-auto !rounded-none"
+                  className="h-full mx-auto !rounded-none object-contain"
                   onLoad={onImageLoad}
                 />
               </ReactCrop>

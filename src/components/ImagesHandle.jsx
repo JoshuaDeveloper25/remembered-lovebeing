@@ -110,7 +110,7 @@ const ImagesHandle = ({ setImages, images }) => {
           )}
 
           {isPending ? (
-            <ul className="flex gap-5 overflow-x-auto w-full max-w-lg py-5">
+            <ul className="flex gap-5 overflow-x-auto w-full py-5">
               {[1, 2, 3, 4]?.map((item, idx) => (
                 <li key={idx} className="h-32 min-w-32 relative">
                   <div className="h-32 min-w-32 relative bg-tertiary-color/50 animate-pulse"></div>
@@ -119,7 +119,7 @@ const ImagesHandle = ({ setImages, images }) => {
             </ul>
           ) : (
             images?.length !== 0 && (
-              <ul className="flex gap-5 overflow-x-auto w-full max-w-lg pt-5 pb-1 rounded-md scrollbar">
+              <ul className="flex gap-5 overflow-x-auto w-full pt-5 pb-1 rounded-md scrollbar">
                 {images?.map((item, idx) => (
                   <li
                     key={idx}

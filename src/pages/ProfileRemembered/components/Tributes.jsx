@@ -9,15 +9,21 @@ import { FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 import axios from "axios";
 import Swal from "sweetalert2";
+import AlertUserExample from "../../../components/AlertUserExample";
 
 // All Tributes
-const Tributes = ({ tributes, isOwner }) => {
+const Tributes = ({ isAlbertEinstein, tributes, isOwner }) => {
   return (
     <section className="bg-white mb-5 p-3 shadow-2xl rounded-lg border-b [&:not(:last-child)]:border-gray-400/50 py-3">
       <div className="grid grid-cols-1 gap-4">
         {tributes?.map((tribute) => {
           return (
-            <Tribute isOwner={isOwner} tribute={tribute} key={tribute?.id} />
+            <Tribute
+              isAlbertEinstein={isAlbertEinstein}
+              isOwner={isOwner}
+              tribute={tribute}
+              key={tribute?.id}
+            />
           );
         })}
       </div>
@@ -28,7 +34,7 @@ const Tributes = ({ tributes, isOwner }) => {
 export default Tributes;
 
 // Individual Tribute
-const Tribute = ({ tribute, isOwner }) => {
+const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
   const [openTributeOptions, setOpenTributeOptions] = useState(false);
   const [commentingTribute, setCommentingTribute] = useState(false);
   const [edititingTribute, setEditingTribute] = useState(false);
@@ -329,15 +335,26 @@ const Tribute = ({ tribute, isOwner }) => {
                   rows={5}
                 ></textarea>
 
-                <button
-                  className="flex-1 animation-fade py-1 text-sm font-medium px-2 rounded text-white bg-secondary-color"
-                  disabled={replyTributeMutation?.isPending}
-                  type="submit"
-                >
-                  {replyTributeMutation?.isPending
-                    ? "Sending comment..."
-                    : "Send"}
-                </button>
+                {isAlbertEinstein && !isOwner ? (
+                  <AlertUserExample toolTipId={"addNewTributeComment"}>
+                    <button
+                      className="flex-1 animation-fade py-1 text-sm font-medium px-2 rounded text-white bg-secondary-color pointer-events-none"
+                      type="button"
+                    >
+                      Send
+                    </button>
+                  </AlertUserExample>
+                ) : (
+                  <button
+                    className="flex-1 animation-fade py-1 text-sm font-medium px-2 rounded text-white bg-secondary-color"
+                    disabled={replyTributeMutation?.isPending}
+                    type="submit"
+                  >
+                    {replyTributeMutation?.isPending
+                      ? "Sending comment..."
+                      : "Send"}
+                  </button>
+                )}
               </>
             )}
           </>

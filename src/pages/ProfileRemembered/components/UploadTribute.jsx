@@ -8,8 +8,9 @@ import { FaPlus } from "react-icons/fa";
 import FormTribute from "./FormTribute";
 import { toast } from "react-toastify";
 import axios from "axios";
+import AlertUserExample from "../../../components/AlertUserExample";
 
-const UploadTribute = ({ idRemembered }) => {
+const UploadTribute = ({ isAlbertEinstein, idRemembered, isOwner }) => {
   const { userInfo } = useContext(AppContext);
   const [openModalCreateTribute, setOpenModalCreateTribute] = useState(false);
   const queryClient = useQueryClient();
@@ -49,27 +50,40 @@ const UploadTribute = ({ idRemembered }) => {
 
   return !userInfo?.access_token ? null : (
     <>
-      <button
-        onClick={() => setOpenModalCreateTribute(true)}
-        className="btn btn-blue w-auto"
-        type="button"
-      >
-        <FaPlus className="inline-block" /> Add New Tribute
-      </button>
+      {isAlbertEinstein && !isOwner ? (
+        <AlertUserExample toolTipId={"addNewTribute"}>
+          <button
+            className="btn btn-blue w-auto pointer-events-none"
+            type="button"
+          >
+            <FaPlus className="inline-block" /> Add New Tribute
+          </button>
+        </AlertUserExample>
+      ) : (
+        <>
+          <button
+            onClick={() => setOpenModalCreateTribute(true)}
+            className="btn btn-blue w-auto"
+            type="button"
+          >
+            <FaPlus className="inline-block" /> Add New Tribute
+          </button>
 
-      {/* Add Tribute Modal */}
-      <Modal
-        titleModal={"Add Tribute"}
-        handleSubmit={handleSubmitTribute}
-        setOpenModal={setOpenModalCreateTribute}
-        openModal={openModalCreateTribute}
-        modalForm={true}
-      >
-        <FormTribute
-          setOpenModalCreateTribute={setOpenModalCreateTribute}
-          createTributeMutation={createTributeMutation}
-        />
-      </Modal>
+          {/* Add Tribute Modal */}
+          <Modal
+            titleModal={"Add Tribute"}
+            handleSubmit={handleSubmitTribute}
+            setOpenModal={setOpenModalCreateTribute}
+            openModal={openModalCreateTribute}
+            modalForm={true}
+          >
+            <FormTribute
+              setOpenModalCreateTribute={setOpenModalCreateTribute}
+              createTributeMutation={createTributeMutation}
+            />
+          </Modal>
+        </>
+      )}
     </>
   );
 };

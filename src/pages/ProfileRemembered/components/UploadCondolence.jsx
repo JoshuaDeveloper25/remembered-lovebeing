@@ -8,8 +8,9 @@ import { useContext, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
 import axios from "axios";
+import AlertUserExample from "../../../components/AlertUserExample";
 
-const UploadCondolence = ({ isOwner, idRemembered }) => {
+const UploadCondolence = ({ isAlbertEinstein, isOwner, idRemembered }) => {
   const { userInfo } = useContext(AppContext);
 
   const [openModalCreateCondolence, setOpenModalCreateCondolence] =
@@ -49,27 +50,40 @@ const UploadCondolence = ({ isOwner, idRemembered }) => {
 
   return isOwner || !userInfo?.access_token ? null : (
     <>
-      <button
-        onClick={() => setOpenModalCreateCondolence(true)}
-        className="btn btn-blue w-auto"
-        type="button"
-      >
-        <FaPlus className="inline-block" /> Add New Condolence
-      </button>
+      {isAlbertEinstein && !isOwner ? (
+        <AlertUserExample toolTipId={"addNewCondolence"}>
+          <button
+            className="btn btn-blue w-auto pointer-events-none"
+            type="button"
+          >
+            <FaPlus className="inline-block" /> Add New Condolence
+          </button>
+        </AlertUserExample>
+      ) : (
+        <>
+          <button
+            onClick={() => setOpenModalCreateCondolence(true)}
+            className="btn btn-blue w-auto"
+            type="button"
+          >
+            <FaPlus className="inline-block" /> Add New Condolence
+          </button>
 
-      {/* Add Condolence Modal */}
-      <Modal
-        titleModal={"Add Condolence"}
-        handleSubmit={handleSubmitCondolence}
-        setOpenModal={setOpenModalCreateCondolence}
-        openModal={openModalCreateCondolence}
-        modalForm={true}
-      >
-        <FormCondolence
-          setOpenModalCreateCondolence={setOpenModalCreateCondolence}
-          createCondolenceMutation={createCondolenceMutation}
-        />
-      </Modal>
+          {/* Add Condolence Modal */}
+          <Modal
+            titleModal={"Add Condolence"}
+            handleSubmit={handleSubmitCondolence}
+            setOpenModal={setOpenModalCreateCondolence}
+            openModal={openModalCreateCondolence}
+            modalForm={true}
+          >
+            <FormCondolence
+              setOpenModalCreateCondolence={setOpenModalCreateCondolence}
+              createCondolenceMutation={createCondolenceMutation}
+            />
+          </Modal>
+        </>
+      )}
     </>
   );
 };

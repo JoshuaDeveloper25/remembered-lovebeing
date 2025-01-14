@@ -3,7 +3,12 @@ import UploadCondolence from "./UploadCondolence";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const CondolenceHeader = ({ userInfo, isOwner, idRemembered }) => {
+const CondolenceHeader = ({
+  userInfo,
+  isOwner,
+  idRemembered,
+  isAlbertEinstein,
+}) => {
   const [condolenceDesc, setCondolenceDesc] = useState(false);
 
   return (
@@ -68,7 +73,11 @@ const CondolenceHeader = ({ userInfo, isOwner, idRemembered }) => {
         </h4>
       )}
 
-      <UploadCondolence idRemembered={idRemembered} isOwner={isOwner} />
+      <UploadCondolence
+        isAlbertEinstein={isAlbertEinstein}
+        idRemembered={idRemembered}
+        isOwner={isOwner}
+      />
     </div>
   );
 };

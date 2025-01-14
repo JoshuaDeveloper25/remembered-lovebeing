@@ -3,7 +3,12 @@ import UploadTribute from "./UploadTribute";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const TributeHeader = ({ userInfo, idRemembered }) => {
+const TributeHeader = ({
+  userInfo,
+  idRemembered,
+  isAlbertEinstein,
+  isOwner,
+}) => {
   const [tributeDesc, setTributeDesc] = useState(false);
 
   return (
@@ -29,10 +34,12 @@ const TributeHeader = ({ userInfo, idRemembered }) => {
           {/* Content */}
           {tributeDesc && (
             <div className="relative">
-              <div className={'absolute top-0 z-50 right-0 left-0 w-full h-full  text-white'}>
-                <div
-                  className={`bg-black/60 p-5 backdrop-blur-lg`}
-                >
+              <div
+                className={
+                  "absolute top-0 z-50 right-0 left-0 w-full h-full  text-white"
+                }
+              >
+                <div className={`bg-black/60 p-5 backdrop-blur-lg`}>
                   <strong>Description: </strong>This section is designed for
                   family and friends to share memories and special messages
                   about their loved one. Here those who knew them can express
@@ -64,7 +71,11 @@ const TributeHeader = ({ userInfo, idRemembered }) => {
         </h4>
       )}
 
-      <UploadTribute idRemembered={idRemembered} />
+      <UploadTribute
+        isOwner={isOwner}
+        isAlbertEinstein={isAlbertEinstein}
+        idRemembered={idRemembered}
+      />
     </div>
   );
 };

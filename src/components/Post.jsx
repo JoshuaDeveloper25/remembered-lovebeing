@@ -19,7 +19,7 @@ import axios from "axios";
 import { Button } from "@nextui-org/react";
 
 // Flowbite imports
-import { Modal as ModalFlowbite, Tooltip } from "flowbite-react";
+import { Alert, Modal as ModalFlowbite, Tooltip } from "flowbite-react";
 import SignInModal from "./SignInModal";
 
 // Icons
@@ -30,6 +30,8 @@ import { useTranslation } from "react-i18next";
 import { FaRegMessage } from "react-icons/fa6";
 import { IoMdHeart } from "react-icons/io";
 import { IoSend } from "react-icons/io5";
+
+import AlertUserExample from "../components/AlertUserExample";
 
 export const HeartIcon = ({
   fill = "currentColor",
@@ -59,7 +61,7 @@ export const HeartIcon = ({
   );
 };
 
-const Post = ({ isOwner, post, rememberName }) => {
+const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
   const { t } = useTranslation();
   const { userInfo } = useContext(AppContext);
   const postLikesMapeados = post?.post_likes?.map((item) => item?.owner?.name);
@@ -425,7 +427,16 @@ const Post = ({ isOwner, post, rememberName }) => {
                         className="textarea-post-comment block ps-12 pe-16 w-full text-base bg-white shadow-2xl text-black placeholder:text-black border-b-4 border-e-0 border-s-0 border-primary-color outline-none overflow-y-auto resize-none max-h-[500px]"
                       />
 
-                      {comment === "" ? null : (
+                      {comment === "" ? null : isAlbertEinstein && !isOwner ? (
+                        <AlertUserExample toolTipId={"addCommentToPost2"}>
+                          <button
+                            className="bg-secondary-color p-1 rounded-full absolute top-1 right-5 text-md text-white animation-fade z-10 h-8 w-8 flex items-center justify-center"
+                            type="button"
+                          >
+                            <IoSend size={16} />
+                          </button>
+                        </AlertUserExample>
+                      ) : (
                         <button
                           disabled={publishCommentPostMutation?.isPending}
                           type="submit"
@@ -460,7 +471,7 @@ const Post = ({ isOwner, post, rememberName }) => {
                   <div className="px-4 py-4 bg-gray-300 7">
                     <div className="flex items-center gap-3">
                       <img
-                        className="w-16 rounded-full"
+                        className="w-14 h-14 object-cover rounded-full"
                         src={
                           post?.remembered?.profile_images
                             ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
@@ -495,7 +506,7 @@ const Post = ({ isOwner, post, rememberName }) => {
                   <div className="px-4 py-4 bg-gray-300 md:sticky static top-0 z-[9999]">
                     <div className="flex items-center gap-3">
                       <img
-                        className="w-16 rounded-full"
+                        className="w-14 h-14 object-cover rounded-full"
                         src={
                           post?.remembered?.profile_images
                             ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
@@ -573,7 +584,16 @@ const Post = ({ isOwner, post, rememberName }) => {
                         className="textarea-post-comment py-2 block ps-12 pe-16 w-full text-base bg-white shadow-2xl text-black placeholder:text-black border-b-4 border-t-0 border-e-0 border-s-0 border-primary-color outline-none overflow-y-auto resize-none max-h-[500px]"
                       />
 
-                      {comment === "" ? null : (
+                      {comment === "" ? null : isAlbertEinstein && !isOwner ? (
+                        <AlertUserExample toolTipId={"addCommentToPost"}>
+                          <button
+                            className="bg-secondary-color rounded-full absolute right-5 top-1.5 text-md text-white animation-fade z-10 h-7 w-7 flex items-center justify-center"
+                            type="button"
+                          >
+                            <IoSend size={16} />
+                          </button>
+                        </AlertUserExample>
+                      ) : (
                         <button
                           disabled={publishCommentPostMutation?.isPending}
                           type="submit"

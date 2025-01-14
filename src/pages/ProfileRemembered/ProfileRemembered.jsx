@@ -46,6 +46,8 @@ const ProfileRemembered = () => {
   const queryClient = useQueryClient();
   const params = useParams();
 
+  const isAlbertEinstein = params?.slug === "albert-einsteinx";
+
   const months = [
     "January",
     "February",
@@ -282,13 +284,9 @@ const ProfileRemembered = () => {
             setOpenModal={setEditRememberedProfile}
             openModal={editRememberedProfile}
             modalForm={true}
-            editableWidth={
-              "sm:max-w-[700px] max-w-full sm:px-8 px-0 h-full"
-            }
+            editableWidth={"sm:max-w-[700px] max-w-full sm:px-8 px-0 h-full"}
             crudModalClassName={"sm:px-4 px-0 "}
-            formContainerClassName={
-              "max-h-[34rem] overflow-y-auto"
-            }
+            formContainerClassName={"max-h-[34rem] overflow-y-auto"}
             modalContentClassNames={"sm:relative static"}
           >
             <FormEditProfile
@@ -584,6 +582,7 @@ const ProfileRemembered = () => {
                         data?.data?.remembered_profile?.posts?.map((post) => {
                           return (
                             <Post
+                              isAlbertEinstein={isAlbertEinstein}
                               isOwner={data?.data?.is_owner}
                               rememberName={
                                 data?.data?.remembered_profile?.first_name
@@ -649,6 +648,7 @@ const ProfileRemembered = () => {
                       <CondolenceHeader
                         userInfo={userInfo}
                         isOwner={data?.data?.is_owner}
+                        isAlbertEinstein={isAlbertEinstein}
                         idRemembered={data?.data?.remembered_profile?.id}
                       />
 
@@ -673,6 +673,8 @@ const ProfileRemembered = () => {
                       idTab={"#tributes"}
                     >
                       <TributeHeader
+                        isOwner={data?.data?.is_owner}
+                        isAlbertEinstein={isAlbertEinstein}
                         userInfo={userInfo}
                         idRemembered={data?.data?.remembered_profile?.id}
                       />
@@ -683,6 +685,7 @@ const ProfileRemembered = () => {
                         </h2>
                       ) : (
                         <Tributes
+                          isAlbertEinstein={isAlbertEinstein}
                           isOwner={data?.data?.is_owner}
                           tributes={data?.data?.remembered_profile?.tributes}
                         />

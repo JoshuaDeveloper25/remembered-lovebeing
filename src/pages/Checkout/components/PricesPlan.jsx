@@ -9,7 +9,7 @@ import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { TbPigMoney } from "react-icons/tb";
 import { packages } from "../../../db/data";
-import { FaCheck } from "react-icons/fa";
+import { FaCheck, FaCreditCard } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
@@ -212,11 +212,11 @@ const PricesPlan = ({ packageName }) => {
             <div className="shadow-md rounded-md bg-white p-4">
               <button
                 type="button"
-                className="btn bg-green-400 text-white flex mx-auto items-center gap-2 w-fit font-semibold hover:animate-pulse animation-fade"
+                className="btn bg-[#41CA7F] hover:opacity-50 text-white flex mx-auto items-center gap-2 w-fit font-semibold disabled:animate-pulse animation-fade"
                 onClick={generatePaymentURL}
                 disabled={generatePaymentURLMutation?.isPending}
               >
-                <TbPigMoney size={26} />
+                <FaCreditCard  size={26} />
                 {generatePaymentURLMutation?.isPending
                   ? t("Loading...")
                   : "Continue With A Card"}

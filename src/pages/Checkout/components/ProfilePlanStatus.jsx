@@ -13,6 +13,7 @@ import axios from "axios";
 // Images && icons
 import payments from "../../../assets/payments.png";
 import paypal from "../../../assets/paypal.png";
+import { FaCreditCard } from "react-icons/fa";
 
 const ProfilePlanStatus = () => {
   const { userInfo } = useContext(AppContext);
@@ -216,11 +217,11 @@ const ProfilePlanStatus = () => {
             <div className="shadow-md rounded-md bg-white p-4">
               <button
                 type="button"
-                className="disabled:bg-green-300 disabled:pointer-events-none btn bg-green-400 text-white flex mx-auto items-center gap-2 w-fit font-semibold hover:animate-pulse animation-fade"
+                className="disabled:bg-green-300 disabled:pointer-events-none btn bg-[#41CA7F] text-white hover:opacity-50 flex mx-auto items-center gap-2 w-fit font-semibold disabled:animate-pulse animation-fade"
                 onClick={generatePaymentURL}
                 disabled={generatePaymentURLMutation?.isPending}
               >
-                <TbPigMoney size={26} />
+                <FaCreditCard  size={26} />
                 {generatePaymentURLMutation?.isPending
                   ? t("Loading...")
                   : "Continue With A Card"}

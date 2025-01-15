@@ -208,7 +208,7 @@ const ProfilePlanStatus = () => {
               </p>
             </div>
             <div>
-              <img src={payments} className="w-52" />
+              <img src={payments} className="sm:w-52 w-32" />
             </div>
           </label>
 
@@ -245,11 +245,11 @@ const ProfilePlanStatus = () => {
                 className="w-4 h-4 text-primary-color-light bg-gray-100 border-gray-300 focus:ring-primary-color-light dark:focus:ring-primary-color-light dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
               <p className="ms-2 text-sm font-medium  dark:text-gray-300">
-                Pay with Paypal (In Development)
+                Pay with Paypal
               </p>
             </div>
             <div>
-              <img src={paypal} className="w-36" />
+              <img src={paypal} className="sm:w-36 w-32" />
             </div>
           </label>
 

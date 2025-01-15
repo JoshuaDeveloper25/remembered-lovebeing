@@ -79,10 +79,10 @@ const PricesPlan = ({ packageName }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-8 bg-primary-color text-white shadow-primary-color hover:shadow-primary-color hover:shadow-2xl animation-fade rounded-md shadow-lg p-4">
+    <div className="flex items-start flex-col md:flex-row gap-8 bg-primary-color text-white shadow-primary-color hover:shadow-primary-color hover:shadow-2xl animation-fade rounded-md shadow-lg p-4">
       {/* Package to buy - LEFT */}
       {packageName === "singlePackage" ? (
-        <div className="min-w-[20rem] hover:shadow-2xl animation-fade border border-primary-color-light shadow-xl rounded-sm text-center py-8 px-7">
+        <div className="min-w-[20rem] mx-auto hover:shadow-2xl animation-fade border border-primary-color-light shadow-xl rounded-sm text-center py-8 px-7">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
             {t("Single Package")}
           </span>
@@ -128,7 +128,7 @@ const PricesPlan = ({ packageName }) => {
           </ul>
         </div>
       ) : (
-        <div className="min-w-[20rem] hover:shadow-2xl animation-fade border border-primary-color-light shadow-xl rounded-sm text-center py-8 px-7">
+        <div className="min-w-[20rem] mx-auto hover:shadow-2xl animation-fade border border-primary-color-light shadow-xl rounded-sm text-center py-8 px-7">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
             {t("Tertiary Package")}
           </span>
@@ -174,7 +174,7 @@ const PricesPlan = ({ packageName }) => {
       )}
 
       {/* Payment Method - RIGHT */}
-      <div className="flex-[40%] px-4 py-8">
+      <div className="md:flex-[40%] w-full px-4 py-8">
         <div>
           <h2 className="font-mono tracking-wider text-3xl uppercase font-semibold">
             Select a payment method
@@ -204,7 +204,7 @@ const PricesPlan = ({ packageName }) => {
               </p>
             </div>
             <div>
-              <img src={payments} className="w-52" />
+              <img src={payments} className="sm:w-52 w-32" />
             </div>
           </label>
 
@@ -241,11 +241,11 @@ const PricesPlan = ({ packageName }) => {
                 className="w-4 h-4 text-primary-color-light bg-gray-100 border-gray-300 focus:ring-primary-color-light dark:focus:ring-primary-color-light dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
               <p className="ms-2 text-sm font-medium  dark:text-gray-300">
-                Pay with Paypal (In Development)
+                Pay with Paypal
               </p>
             </div>
             <div>
-              <img src={paypal} className="w-36" />
+              <img src={paypal} className="sm:w-36 w-32" />
             </div>
           </label>
 

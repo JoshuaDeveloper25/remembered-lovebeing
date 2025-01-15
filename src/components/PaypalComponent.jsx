@@ -167,7 +167,7 @@ const PaypalComponent = ({ packageName, rememberedId }) => {
   };
 
   return (
-    <div>
+    <div className="bg-white shadow-lg rounded-md p-3 overflow-y-auto max-h-96">
       {isPending ? (
         <p>Loading...</p>
       ) : (

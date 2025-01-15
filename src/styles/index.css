@@ -425,7 +425,7 @@ body:has(.backdrop-modal) .to-top {
 .react-tooltip {
   z-index: 9999 !important;
   width: 16rem !important;
-  padding-inline: .6rem!important;
+  padding-inline: 0.6rem !important;
 }
 
 .ReactCrop__child-wrapper {
@@ -434,20 +434,24 @@ body:has(.backdrop-modal) .to-top {
 
 /* For Firefox Browser */
 .scrollbar {
-  scrollbar-width: thin!important;
-  scrollbar-color: #000 #fff!important;
+  scrollbar-width: thin !important;
+  scrollbar-color: #000 #fff !important;
 }
-
 
 /* For Chrome, EDGE, Opera, Others */
 .scrollbar::-webkit-scrollbar {
-  width: 30px!important;
+  width: 30px !important;
 }
 
-.scrollbar::-webkit-scrollbar-track { 
-  background: #fff!important;
+.scrollbar::-webkit-scrollbar-track {
+  background: #fff !important;
 }
 
-.scrollbar::-webkit-scrollbar-thumb { 
-  background:#000!important;
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #000 !important;
+}
+
+.ReactCrop__crop-mask,
+.ReactCrop__child-wrapper {
+  border-radius: 0 !important;
 }

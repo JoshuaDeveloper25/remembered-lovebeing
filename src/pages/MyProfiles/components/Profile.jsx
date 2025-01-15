@@ -372,10 +372,10 @@ const Profile = ({ item, isPending }) => {
               <h4 className="text-gray-700 font-medium text-sm">
                 {!item?.birth_date && !item?.death_date ? (
                   <>
-                    Would you like to add lifetime?
+                    Would you like to add lifetime?{" "}
                     <button
                       onClick={() => setOpenLifeTimeModal(!openLifeTimeModal)}
-                      className="inline-block text-center underline text-secondary-color"
+                      className="inline-block text-center ms-0.5 underline text-secondary-color"
                     >
                       Click here.
                     </button>

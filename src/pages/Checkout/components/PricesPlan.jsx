@@ -182,7 +182,7 @@ const PricesPlan = ({ packageName }) => {
 
         <div className="space-y-4 mt-8">
           <label
-            className={`flex items-center justify-between border rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
+            className={`flex items-center justify-between border-2 rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
               selectedPayments === "plural"
                 ? "bg-primary-color-light/50 text-white"
                 : "bg-white text-gray-900"
@@ -223,7 +223,7 @@ const PricesPlan = ({ packageName }) => {
           )}
 
           <label
-            className={`flex items-center justify-between border rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
+            className={`flex items-center justify-between border-2 rounded-md py-1.5 px-4 shadow-md hover:shadow-lg animation-fade active:shadow-2xl ${
               selectedPayments === "singular"
                 ? "bg-primary-color-light/50 text-white"
                 : "bg-white text-gray-900"

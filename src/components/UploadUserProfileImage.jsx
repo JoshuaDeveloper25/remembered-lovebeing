@@ -111,36 +111,16 @@ const UploadUserProfileImage = ({ iconClassname }) => {
       confirmButtonText: "Yes, upload it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        setCanvasPreview(
-          imgRef.current, // HTMLImageElement
-          previewCanvasRef.current, // HTMLCanvasElement
-          convertToPixelCrop(
-            crop,
-            imgRef?.current?.width,
-            imgRef?.current?.height
-          )
-        );
-
-        // Obtener el src del imgRef
-        const imgSrc = imgRef.current.src;
-
-        // Extraer el tipo MIME del Data URL
-        const mimeType = imgSrc.match(/data:(.*?);base64/)?.[1] || "image/png"; // Por defecto PNG
-
-        // Convertir el canvas a DataURL con el tipo MIME
-        const dataUrl = previewCanvasRef.current.toDataURL(mimeType);
-
-        // Convertir el DataURL a Blob
-        const blob = await fetch(dataUrl).then((res) => res.blob());
-
-        // Crear el nombre del archivo dinámicamente
-        const fileName = `${e?.target?.uploadImages?.files[0]?.name}`;
-
-        // Crear el archivo
-        const file = new File([blob], fileName, { type: mimeType });
-
-        const formData = new FormData();
-        formData.append("file", file);
+        const canvas = imgRef.current?.getCanvas();
+        if (canvas) {
+          const form = new FormData();
+          canvas.toBlob((blob) => {
+            if (blob) {
+              form.append("file", blob);
+              changeImageProfileMutation?.mutate(form);
+            }
+          }, e.target?.uploadImages?.files[0]?.type);
+        }
 
         changeImageProfileMutation?.mutate(formData, {
           onSuccess: () => {

@@ -455,3 +455,13 @@ body:has(.backdrop-modal) .to-top {
 .ReactCrop__child-wrapper {
   border-radius: 0 !important;
 }
+
+.react-advanced-cropper-wrapper {
+  background-color: #F6F5EF;
+  width: 20rem;
+  height: 400px;
+}
+
+.advanced-cropper-background-image {
+  box-shadow: 0 0 50px white;
+}

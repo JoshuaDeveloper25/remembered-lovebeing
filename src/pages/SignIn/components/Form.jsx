@@ -62,6 +62,7 @@ const Form = ({ onSuccess = null }) => {
 
     formData.append("username", e?.target?.email?.value.trim());
     formData.append("password", e?.target?.password?.value.trim());
+    formData.append("created_at", new Date());
 
     // Form validation
     if ([formData.get("username"), formData.get("password")].includes("")) {
@@ -82,6 +83,7 @@ const Form = ({ onSuccess = null }) => {
           `${import.meta.env.VITE_BASE_URL}/users/googlelogin`,
           {
             access_token: tokenResponse?.access_token,
+            created_at: new Date(),
           }
         );
 

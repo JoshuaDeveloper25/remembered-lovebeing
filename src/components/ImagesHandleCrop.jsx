@@ -1,15 +1,14 @@
-import { FaFolderOpen, FaRegTrashAlt } from "react-icons/fa";
-import { uploadResizedImage } from "../utils/resizeImageFile";
-import ButtonForm from "./ButtonForm";
-import { useState } from "react";
-import ReactCrop, {
-  centerCrop,
-  convertToPixelCrop,
-  makeAspectCrop,
-} from "react-image-crop";
-import { LuFileInput } from "react-icons/lu";
 import CoverRememberedModal from "../pages/ProfileRemembered/components/CoverRememberedModal";
+import { centerCrop, makeAspectCrop } from "react-image-crop";
+import { uploadResizedImage } from "../utils/resizeImageFile";
+import {
+  Cropper,
+  CircleStencil,
+  RectangleStencil,
+} from "react-advanced-cropper";
 import { RiImageEditFill } from "react-icons/ri";
+import { LuFileInput } from "react-icons/lu";
+import { useState } from "react";
 
 const ImagesHandleCrop = ({
   titleModal,
@@ -164,7 +163,7 @@ const ImagesHandleCrop = ({
         modalForm={true}
         iconTitle={true}
       >
-        <div className="p-4 sm:p-8 grid sm:place-items-start place-items-center w-full h-full">
+        <div className="p-4 sm:p-8 grid place-items-center w-full h-full">
           <div className={`${imgSrc && "hidden"} w-full`}>
             <div className="mb-6 w-full">
               <h3 className="font-semibold">
@@ -211,7 +210,7 @@ const ImagesHandleCrop = ({
           {error && <p className="text-red-400 text-xs">{error}</p>}
 
           {imgSrc && (
-            <div className="flex rounded-[8px] rounded-e-none h-[400px] justify-center bg-black w-full relative">
+            <div className="relative">
               <label
                 className="absolute -top-7 right-0 z-[999] cursor-pointer"
                 htmlFor="uploadImages"
@@ -221,24 +220,13 @@ const ImagesHandleCrop = ({
                 </span>
               </label>
 
-              <ReactCrop
-                onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
-                circularCrop={circle ? true : false}
-                aspect={ASPECT_RATIO}
-                minWidth={MIN_DIMENSION}
-                keepSelection
-                crop={crop}
-              >
-                <img
-                  loading="lazy"
-                  decoding="async"
-                  ref={imgRef}
-                  src={imgSrc}
-                  alt="Upload"
-                  className="h-full mx-auto !rounded-none object-contain"
-                  onLoad={onImageLoad}
-                />
-              </ReactCrop>
+              <Cropper
+                className="react-advanced-cropper-wrapper"
+                stencilComponent={circle ? CircleStencil : RectangleStencil}
+                aspectRatio={circle ? undefined : 2.1}
+                ref={imgRef}
+                src={imgSrc}
+              />
             </div>
           )}
         </div>

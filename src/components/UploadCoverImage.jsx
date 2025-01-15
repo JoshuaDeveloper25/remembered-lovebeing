@@ -103,48 +103,21 @@ const UploadCoverImage = ({ idRemembered }) => {
       return toast.error("Upload an image before uploading!");
     }
 
-    setCanvasPreview(
-      imgRef.current, // HTMLImageElement
-      previewCanvasRef.current, // HTMLCanvasElement
-      convertToPixelCrop(crop, imgRef?.current?.width, imgRef?.current?.height)
-    );
-
-    // Obtener el src del imgRef
-    const imgSrc = imgRef.current.src;
-
-    // Extraer el tipo MIME del Data URL
-    const mimeType = imgSrc.match(/data:(.*?);base64/)?.[1] || "image/png"; // Por defecto PNG
-
-    // Convertir el canvas a DataURL con el tipo MIME
-    const dataUrl = previewCanvasRef.current.toDataURL(mimeType);
-
-    // Convertir el DataURL a Blob
-    const blob = await fetch(dataUrl).then((res) => res.blob());
-
-    // Crear el nombre del archivo dinámicamente
-    const fileName = `${e?.target?.uploadImages?.files[0]?.name}`;
-
-    // Crear el archivo
-    const file = new File([blob], fileName, { type: mimeType });
-
-    const formData = new FormData();
-    formData.append("file", file);
-    changeImageCoverMutation?.mutate(formData);
+    const canvas = imgRef.current?.getCanvas();
+    if (canvas) {
+      const form = new FormData();
+      canvas.toBlob((blob) => {
+        if (blob) {
+          form.append("file", blob);
+          changeImageCoverMutation?.mutate(form);
+        }
+      }, e.target?.uploadImages?.files[0]?.type);
+    }
   };
 
   return (
     <>
       {/* Button to Open Profile Modal */}
-      {/* <div className="lg:block hidden">
-        <button
-          className="btn flex items-center text-white bg-black/50 hover:bg-black hover:border-black animation-fade"
-          type="button"
-        >
-          <FaCameraRetro className="lg:me-2 size-5" />
-          <span>Edit Cover Photo</span>
-        </button>
-      </div> */}
-
       <div className="lg:block hidden">
         <Button
           onPress={() => setOpenModalCover(true)}

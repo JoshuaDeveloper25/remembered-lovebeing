@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import React from "react";
 
 // --> 🔗 Styles
+import "react-advanced-cropper/dist/style.css";
 import "./styles/index.css";
 import App from "./App";
 import "./i18n";

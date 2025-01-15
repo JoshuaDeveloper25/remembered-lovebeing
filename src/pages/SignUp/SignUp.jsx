@@ -71,6 +71,7 @@ const SignUp = () => {
           `${import.meta.env.VITE_BASE_URL}/users/googlelogin`,
           {
             access_token: tokenResponse?.access_token,
+            created_at: new Date(),
           }
         );
 

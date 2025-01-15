@@ -169,7 +169,6 @@ const ResponsiveMoreInfoRememberedAdmin = ({
 
         const formData = new FormData();
         formData.append("file", file);
-        console.log(formData.get("file"));
 
         changeImageProfileMutation?.mutate(formData, {
           onSuccess: () => {

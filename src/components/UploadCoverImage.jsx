@@ -129,7 +129,6 @@ const UploadCoverImage = ({ idRemembered }) => {
 
     const formData = new FormData();
     formData.append("file", file);
-    console.log(formData.get("file"));
     changeImageCoverMutation?.mutate(formData);
   };
 

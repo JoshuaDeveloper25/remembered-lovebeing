@@ -22,8 +22,6 @@ const PricesPlan = ({ packageName }) => {
   const { userInfo } = useContext(AppContext);
   const shortId = uuidv4().slice(0, 8);
 
-  console.log(packageNames.findIndex((item) => item === packageName));
-
   if (packageNames.findIndex((item) => item === packageName) === -1)
     return <Navigate to={"/*?type=altered-url"} />;
 

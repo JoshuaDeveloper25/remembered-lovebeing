@@ -61,8 +61,6 @@ const FormKnownFor = ({
     e?.target?.reset();
   };
 
-  console.log(bestKnownInfoObject?.description?.id);
-
   return (
     <>
       {/* Editing Quality */}

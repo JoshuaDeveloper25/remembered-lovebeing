@@ -313,7 +313,7 @@ const Profile = ({ item, isPending }) => {
                       "hover:bg-[#fab818] text-xs hover:text-white border-b-2 border-[#fab818]"
                     }
                     linkTo={`/checkout/?slug=${item?.slug}`}
-                    linkText={"Go Pro / $19.99"}
+                    linkText={"Go Pro / $1.00"}
                   />
                 )}
 

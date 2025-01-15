@@ -90,7 +90,7 @@ const PricesPlan = ({ packageName }) => {
           <div className="mt-5">
             <h2 className="font-bold text-primary-color-light text-5xl tracking-tighter">
               <span className="align-text-top text-4xl me-3">$</span>
-              <span>19.99</span>
+              <span>1.00</span>
             </h2>
             <h3 className="text-primary-color-light">for life</h3>
           </div>

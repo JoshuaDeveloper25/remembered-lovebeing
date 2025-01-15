@@ -129,7 +129,7 @@ const CheckingStatusPagadito = () => {
           : "Tertiary",
       invoice_price:
         comprobante[1] === "singlePackage" || comprobante[1] === "goPro"
-          ? 19.99
+          ? 1.00
           : 49.99,
     };
 
@@ -358,7 +358,7 @@ const CheckingStatusPagadito = () => {
                             $
                             {comprobante[1] === "singlePackage" ||
                             comprobante[1] === "goPro"
-                              ? 19.99
+                              ? 1.00
                               : 49.99}
                           </td>
                         </tr>

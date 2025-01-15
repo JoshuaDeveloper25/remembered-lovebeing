@@ -6,6 +6,7 @@ import axios from "axios";
 // Images && icons
 import peaceDove from "../../assets/peace-dove.png";
 import cloud from "../../assets/cloud.png";
+import { Helmet } from "react-helmet-async";
 
 const Posts = () => {
   const { t } = useTranslation();
@@ -34,6 +35,10 @@ const Posts = () => {
       <div className="fixed top-[16rem] right-0">
         <img className="w-32 rotate-[90]" src={peaceDove} />
       </div> */}
+
+      <Helmet>
+        <title>Eternal MemoriesX | Posts</title>
+      </Helmet>
 
       <section
         className="container-page py-16 mx-auto sticky z-1"

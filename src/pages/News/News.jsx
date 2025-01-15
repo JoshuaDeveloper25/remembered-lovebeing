@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet-async";
 import New from "./components/New";
 import { useState } from "react";
 import axios from "axios";
@@ -29,6 +30,10 @@ const News = () => {
 
   return (
     <section className="container-page py-16 px-4">
+      <Helmet>
+        <title>Eternal MemoriesX | News</title>
+      </Helmet>
+
       {/* --> Introduction */}
       <div className="text-center mb-14">
         <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">

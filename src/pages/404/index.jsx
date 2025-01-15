@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { Link, useSearchParams } from "react-router-dom";
 
@@ -8,10 +9,16 @@ const Page404 = () => {
 
   return (
     <section className="h-[60vh]">
+      <Helmet>
+        <title>Eternal MemoriesX | Not Found</title>
+      </Helmet>
+
       {/* --> Introduction */}
       <div className="flex flex-col justify-center items-center h-full text-center px-2">
         <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
-          {urlType === "altered-url" ? t("The URL has been altered!") : t("Page Not Found")}
+          {urlType === "altered-url"
+            ? t("The URL has been altered!")
+            : t("Page Not Found")}
         </h2>
 
         <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>

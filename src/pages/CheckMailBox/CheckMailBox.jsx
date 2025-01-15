@@ -1,6 +1,7 @@
 import peaceDove from "../../assets/peace-dove.png";
 import { useTranslation } from "react-i18next";
 import mailbox from "../../assets/mailbox.png";
+import { Helmet } from "react-helmet-async";
 import cloud from "../../assets/cloud.png";
 import logo from "../../assets/logo.png";
 
@@ -9,6 +10,10 @@ const CheckMailBox = () => {
 
   return (
     <main className="relative">
+      <Helmet>
+        <title>Eternal MemoriesX | Check Mail Box</title>
+      </Helmet>
+
       {/* <div className="md:block hidden fixed top-18 right-8">
         <img className="w-32 rotate-[90]" src={peaceDove} />
       </div>

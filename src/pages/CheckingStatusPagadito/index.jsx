@@ -13,6 +13,7 @@ import axios from "axios";
 import peaceDove from "../../assets/peace-dove.png";
 import cloud from "../../assets/cloud.png";
 import logo from "../../assets/logo.png";
+import { Helmet } from "react-helmet-async";
 
 const CheckingStatusPagadito = () => {
   const contentRef = useRef(null);
@@ -32,7 +33,7 @@ const CheckingStatusPagadito = () => {
         paymentInfo
       ),
     onSuccess: (res) => {
-      console.log(res, 'success');
+      console.log(res, "success");
     },
     onError: (err) => {
       toast.error(getFastApiErrors(err));
@@ -129,7 +130,7 @@ const CheckingStatusPagadito = () => {
           : "Tertiary",
       invoice_price:
         comprobante[1] === "singlePackage" || comprobante[1] === "goPro"
-          ? 1.00
+          ? 1.0
           : 49.99,
     };
 
@@ -153,6 +154,10 @@ const CheckingStatusPagadito = () => {
 
   return (
     <main className="relative container-page my-32">
+      <Helmet>
+        <title>Eternal MemoriesX | Pagadito Status</title>
+      </Helmet>
+
       {/* <div className="md:block hidden fixed top-16 -z-[1] right-8">
         <img className="w-32 rotate-[90]" src={peaceDove} />
       </div>
@@ -358,7 +363,7 @@ const CheckingStatusPagadito = () => {
                             $
                             {comprobante[1] === "singlePackage" ||
                             comprobante[1] === "goPro"
-                              ? 1.00
+                              ? 1.0
                               : 49.99}
                           </td>
                         </tr>

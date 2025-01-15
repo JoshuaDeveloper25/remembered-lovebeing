@@ -9,6 +9,7 @@ import { FaCheck } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { GoStop } from "react-icons/go";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const Prices = () => {
   const { t } = useTranslation();
@@ -52,6 +53,10 @@ const Prices = () => {
 
   return (
     <section className="container-page px-3 py-16">
+      <Helmet>
+        <title>Eternal MemoriesX | Prices</title>
+      </Helmet>
+
       <div className="text-center">
         <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
           {t("Pricing Plans")}
@@ -182,7 +187,7 @@ const Prices = () => {
                 {t("Aprox.")} {currencySymbol}{" "}
                 <span className="font-extrabold">
                   {(
-                    getCurrencyMutation?.data?.data?.conversion_rate * 1.00
+                    getCurrencyMutation?.data?.data?.conversion_rate * 1.0
                   ).toFixed("2")}
                 </span>
               </h4>
@@ -265,7 +270,7 @@ const Prices = () => {
             </button>
           </Link>
         </div>
-{/* 
+        {/* 
         <div className="min-w-[20rem] hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
             {t("Tertiary Package")}

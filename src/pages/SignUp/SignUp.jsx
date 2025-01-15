@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import Form from "./components/Form";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const [isRegisterGooglePending, setIsRegisterGooglePending] = useState(false);
@@ -91,6 +92,10 @@ const SignUp = () => {
 
   return (
     <section className="flex flex-col justify-center items-center h-screen">
+      <Helmet>
+        <title>Eternal MemoriesX | Sign Up</title>
+      </Helmet>
+
       <div className="container-page px-2">
         <div className="grid sm:grid-cols-2 grid-cols-1 gap-2.5 shadow-md rounded-2xl p-6 bg-gradient-to-r from-[#FBFBFE] border border-gray-300">
           <CarouselSignUp />

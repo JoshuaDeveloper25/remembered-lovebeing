@@ -8,9 +8,15 @@ import FindMemorial from "./components/FindMemorial";
 import ShareSite from "./components/ShareSite";
 import Header from "./components/Header";
 
+import { Helmet } from "react-helmet-async";
+
 const Home = () => {
   return (
     <>
+      <Helmet>
+        <title>Eternal MemoriesX | Home</title>
+      </Helmet>
+      
       {/* Header */}
       <Header />
 

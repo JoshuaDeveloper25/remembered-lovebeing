@@ -37,6 +37,7 @@ import Page404 from "./pages/404";
 
 import PublicRoutes from "./auth/PublicRoutes";
 import PrivateRoutes from "./auth/PrivateRoutes";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const router = createBrowserRouter([
   //🔒 Public Routes - Cannot access if we're logged in...
@@ -176,34 +177,40 @@ const App = () => {
   const queryClient = new QueryClient();
 
   return (
-    <AppProvider>
-      <GoogleOAuthProvider
-        clientId={`${import.meta.env.VITE_GOOGLE_CLIENT_ID}`}
-      >
-        <PayPalScriptProvider
-          deferLoading={true}
-          options={{
-            "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID,
-            components: "buttons",
-            currency: "USD",
-          }}
+    <HelmetProvider>
+      <AppProvider>
+        <Helmet>
+          <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+        </Helmet>
+
+        <GoogleOAuthProvider
+          clientId={`${import.meta.env.VITE_GOOGLE_CLIENT_ID}`}
         >
-          <QueryClientProvider client={queryClient}>
-            <ToastContainer
-              style={{ zIndex: 999999999 }}
-              pauseOnFocusLoss={false}
-              hideProgressBar={true}
-              position="top-center"
-              autoClose={3000}
-              theme="colored"
-              draggable
-              stacked
-            />
-            <RouterProvider router={router} />
-          </QueryClientProvider>
-        </PayPalScriptProvider>
-      </GoogleOAuthProvider>
-    </AppProvider>
+          <PayPalScriptProvider
+            deferLoading={true}
+            options={{
+              "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID,
+              components: "buttons",
+              currency: "USD",
+            }}
+          >
+            <QueryClientProvider client={queryClient}>
+              <ToastContainer
+                style={{ zIndex: 999999999 }}
+                pauseOnFocusLoss={false}
+                hideProgressBar={true}
+                position="top-center"
+                autoClose={3000}
+                theme="colored"
+                draggable
+                stacked
+              />
+              <RouterProvider router={router} />
+            </QueryClientProvider>
+          </PayPalScriptProvider>
+        </GoogleOAuthProvider>
+      </AppProvider>
+    </HelmetProvider>
   );
 };
 

@@ -1,4 +1,6 @@
+import ModalCreatePremiumProfileResponsive from "./components/ModalCreatePremiumProfileResponsive";
 import ResponsiveMoreInfoRememberedAdmin from "./components/ResponsiveMoreInfoRememberedAdmin";
+import ModalCreateFreeProfileResponsive from "./components/ModalCreateFreeProfileResponsive";
 import IndividualUserProfileCard from "./components/IndividualUserProfileCard";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import IndividualUserProfileTab from "./components/IndividualUserProfileTab";
@@ -9,13 +11,11 @@ import getFastApiErrors from "../../utils/getFastApiErrors";
 import AppContext from "../../context/AppProvider";
 import { useTranslation } from "react-i18next";
 import { useContext, useState } from "react";
-import Modal from "../../components/Modal";
 import { GoPlus } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-import ModalCreateFreeProfileResponsive from "./components/ModalCreateFreeProfileResponsive";
-import ModalCreatePremiumProfileResponsive from "./components/ModalCreatePremiumProfileResponsive";
+import { Helmet } from "react-helmet-async";
 
 const MyProfiles = () => {
   const { userInfo } = useContext(AppContext);
@@ -88,6 +88,10 @@ const MyProfiles = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Eternal MemoriesX | My Profiles</title>
+      </Helmet>
+
       {/* Sky Video */}
       <video
         className="md:flex hidden w-full h-60 object-cover"

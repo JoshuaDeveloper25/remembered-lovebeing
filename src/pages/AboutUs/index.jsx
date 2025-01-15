@@ -1,11 +1,16 @@
 import aboutUsHero from "../../assets/about-us.jpg";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet-async";
 
 const AboutUs = () => {
   const { t } = useTranslation();
 
   return (
     <main className="container-page py-14 lg:px-2 px-5">
+      <Helmet>
+        <title>Eternal MemoriesX | About Us</title>
+      </Helmet>
+
       <div className="flex flex-col-reverse md:flex-row gap-8 justify-between items-center">
         <div className="flex-1">
           <h2 className="text-primary-color font-mono font-bold sm:text-5xl text-4xl mb-4">

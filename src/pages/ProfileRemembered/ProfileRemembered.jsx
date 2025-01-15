@@ -28,6 +28,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import TabsResponsive from "./components/TabsResponsive";
 import ModalEditRememberedProfile from "./components/ModalEditRememberedProfile";
+import { Helmet } from "react-helmet-async";
 
 const ProfileRemembered = () => {
   const currentYear = new Date().getFullYear();
@@ -175,6 +176,10 @@ const ProfileRemembered = () => {
 
   return (
     <section className="container-page my-10">
+      <Helmet>
+        <title>Eternal MemoriesX | Remembered Profile</title>
+      </Helmet>
+
       <article className="rounded-lg">
         {/* Cover Image */}
         <div className="relative">

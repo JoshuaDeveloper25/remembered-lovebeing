@@ -11,6 +11,7 @@ import axios from "axios";
 
 import contactImage from "../../assets/contact.png";
 import { FaPhoneAlt } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -41,6 +42,10 @@ const Contact = () => {
 
   return (
     <main className="relative">
+      <Helmet>
+        <title>Eternal MemoriesX | Contact</title>
+      </Helmet>
+
       {/* <div className="md:block hidden fixed top-18 right-8  -z-[1]">
         <img className="w-32 rotate-[90]" src={peaceDove} />
       </div>

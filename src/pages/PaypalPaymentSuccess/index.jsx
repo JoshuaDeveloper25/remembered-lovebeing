@@ -6,6 +6,7 @@ import { AiFillPrinter } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 import logo from "../../assets/logo.png";
 import emailjs from "@emailjs/browser";
+import { Helmet } from "react-helmet-async";
 
 const PaypalPaymentSuccess = () => {
   const contentRef = useRef(null);
@@ -73,6 +74,10 @@ const PaypalPaymentSuccess = () => {
 
   return (
     <main className="container-page my-32">
+      <Helmet>
+        <title>Eternal MemoriesX | Paypal Payment Success</title>
+      </Helmet>
+
       <div className="text-center bg-white shadow-lg hover:shadow-2xl mx-auto animation-fade w-fit p-8 rounded-md">
         <div className="flex flex-col sm:flex-row gap-6 justify-center">
           <div className="sm:max-w-md max-w-full text-center bg-white rounded-xl shadow-lg hover:shadow-2xl animation-fade p-10">

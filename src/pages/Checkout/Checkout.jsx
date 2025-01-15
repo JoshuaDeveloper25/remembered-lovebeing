@@ -1,12 +1,17 @@
 import ProfilePlanStatus from "./components/ProfilePlanStatus";
 import { useSearchParams } from "react-router-dom";
 import PricesPlan from "./components/PricesPlan";
+import { Helmet } from "react-helmet-async";
 
 const Checkout = () => {
   const [searchParams] = useSearchParams();
 
   return (
     <section className="container-page">
+      <Helmet>
+        <title>Eternal MemoriesX | Check Out</title>
+      </Helmet>
+
       <div className="flex items-center justify-center min-h-svh">
         <div className="w-full my-14">
           {searchParams?.get("packageName") ? (

@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { causeOfDeaths, genres } from "../../db/data";
+import { Helmet } from "react-helmet-async";
 
 const Memorials = () => {
   const { t } = useTranslation();
@@ -85,6 +86,10 @@ const Memorials = () => {
 
   return (
     <section className="container-page px-2 py-16">
+      <Helmet>
+        <title>Eternal MemoriesX | Memorials</title>
+      </Helmet>
+
       {/* Introduction */}
       <div className="text-center mb-6">
         <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
@@ -130,7 +135,7 @@ const Memorials = () => {
             label={`${t("Country")}`}
             name="countryMemorial"
             listboxProps={{
-              emptyContent: t("No options available...")
+              emptyContent: t("No options available..."),
             }}
           >
             {countriesQuery?.data?.data?.map((country) => {

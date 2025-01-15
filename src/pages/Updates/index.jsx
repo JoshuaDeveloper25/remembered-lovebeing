@@ -1,4 +1,5 @@
 import { Accordion, AccordionItem } from "@nextui-org/react";
+import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 
 const Updates = () => {
@@ -6,6 +7,10 @@ const Updates = () => {
 
   return (
     <main className="container-page py-16 px-2">
+      <Helmet>
+        <title>Eternal MemoriesX | Updates</title>
+      </Helmet>
+
       <div className="text-center mb-14">
         <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
           {t("Nuevas Novedades")}

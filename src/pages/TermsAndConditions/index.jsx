@@ -1,12 +1,17 @@
 import peaceDove from "../../assets/peace-dove.png";
 import { useTranslation } from "react-i18next";
 import cloud from "../../assets/cloud.png";
+import { Helmet } from "react-helmet-async";
 
 const TermsAndConditions = () => {
   const { t } = useTranslation();
 
   return (
     <main className="relative">
+      <Helmet>
+        <title>Eternal MemoriesX | Terms & Conditions</title>
+      </Helmet>
+
       {/* <div className="md:block hidden fixed top-18 right-8">
         <img className="w-32 rotate-[90]" src={peaceDove} />
       </div>

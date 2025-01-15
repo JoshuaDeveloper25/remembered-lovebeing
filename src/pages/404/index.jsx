@@ -1,6 +1,6 @@
-import { Helmet } from "react-helmet-async";
-import { useTranslation } from "react-i18next";
 import { Link, useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet-async";
 
 const Page404 = () => {
   const [searchParams] = useSearchParams();
@@ -10,7 +10,7 @@ const Page404 = () => {
   return (
     <section className="h-[60vh]">
       <Helmet>
-        <title>Eternal MemoriesX | Not Found</title>
+        <title>Eternal MemoriesX | {t("Not Found")}</title>
       </Helmet>
 
       {/* --> Introduction */}

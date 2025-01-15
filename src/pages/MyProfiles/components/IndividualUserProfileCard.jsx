@@ -1,7 +1,7 @@
 import UploadUserProfileImage from "../../../components/UploadUserProfileImage";
 import AppContext from "../../../context/AppProvider";
-import { useContext } from "react";
 import formatDate from "../../../utils/formatDate";
+import { useContext } from "react";
 
 const IndividualUserProfileCard = ({ userStats }) => {
   const { userInfo } = useContext(AppContext);

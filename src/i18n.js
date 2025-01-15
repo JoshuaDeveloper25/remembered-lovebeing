@@ -455,10 +455,22 @@ const resources = {
       "No Country": "No Country",
       "No Country...": "No Country...",
       "Select currency": "Select currency",
+      "Not Found": "Not Found",
+      "Page Not Found": "Page Not Found",
+      "Oops! The page you're looking for doesn't exist. It might have been moved, deleted, or never existed in the first place. Please check the URL or go back to the homepage.":
+        "Oops! The page you're looking for doesn't exist. It might have been moved, deleted, or never existed in the first place. Please check the URL or go back to the homepage.",
+      "The URL has been altered!": "The URL has been altered!",
+      "Go Prices": "Go Prices",
     },
   },
   es: {
     translation: {
+      "Go Prices": "Ir a Precios",
+      "The URL has been altered!": "¡La URL ha sido modificada!",
+      "Oops! The page you're looking for doesn't exist. It might have been moved, deleted, or never existed in the first place. Please check the URL or go back to the homepage.":
+        "¡Ups! La página que estás buscando no existe. Es posible que haya sido movida, eliminada o que nunca haya existido. Por favor, verifica la URL o regresa a la página de inicio.",
+      "Page Not Found": "Página No Encontrada",
+      "Not Found": "No Encontrada",
       "Select currency": "Selecciona tu moneda",
       "No Country...": "Sin País...",
       "No Country": "Sin País",

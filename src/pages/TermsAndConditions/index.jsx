@@ -181,7 +181,7 @@ const TermsAndConditions = () => {
           </h2>
           <p className="mt-2 text-lg">
             {t(
-              "If you have any questions or concerns about these terms, you can contact us at [email address]."
+              "If you have any questions or concerns about these terms, you can contact us at support@eternalmemoriesx.com."
             )}
           </p>
         </section>

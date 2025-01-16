@@ -122,8 +122,8 @@ const resources = {
       "Applicable Law and Jurisdiction": "Applicable Law and Jurisdiction",
       "These terms will be governed by the laws of Honduras, and any disputes will be resolved in the courts of El Progreso, Yoro.":
         "These terms will be governed by the laws of Honduras, and any disputes will be resolved in the courts of El Progreso, Yoro.",
-      "If you have any questions or concerns about these terms, you can contact us at [email address].":
-        "If you have any questions or concerns about these terms, you can contact us at [email address].",
+      "If you have any questions or concerns about these terms, you can contact us at support@eternalmemoriesx.com.":
+        "If you have any questions or concerns about these terms, you can contact us at support@eternalmemoriesx.com.",
       "Discover Us": "Discover Us",
       "About Us": "Abous Us",
       "Privacy Policy": "Privacy Policy",
@@ -162,7 +162,7 @@ const resources = {
         "We have implemented technical and organizational measures to protect your personal information from unauthorized access, loss, alteration, or disclosure. However, no security system is completely infallible. We recommend using strong passwords and keeping your information confidential.",
       "Data Retention": "Data Retention",
       "Retention Policy":
-        "We will retain your data while your account is active or as necessary to provide our services. If you want to delete your information, you can request it by emailing us at [email address].",
+        "We will retain your data while your account is active or as necessary to provide our services. If you want to delete your information, you can request it by emailing us at support@eternalmemoriesx.com.",
       "User Rights": "User Rights",
       "Rights List":
         "As a user of Eternal MemoriesX, you have the following rights:",
@@ -173,7 +173,7 @@ const resources = {
       Restriction:
         "Restriction: You can request that we limit the use of your data in certain situations.",
       "Exercise Rights":
-        "To exercise these rights, contact us at [email address].",
+        "To exercise these rights, contact us at support@eternalmemoriesx.com.",
       "Memorial Privacy": "Memorial Profile Privacy",
       "Memorial Privacy Text":
         "The memorial profiles you create can be set as public or private:",
@@ -192,7 +192,7 @@ const resources = {
       Contact: "Contact",
       "Contact Info":
         "If you have questions, concerns, or want to exercise your privacy rights, you can contact us at:",
-      Email: "Email: [email address]",
+      Email: "Email: support@eternalmemoriesx.com",
       Phone: "Phone: [contact number, optional]",
       "Last Update": "Last updated:",
       "Privacy Policy": "Privacy Policy",
@@ -819,7 +819,7 @@ const resources = {
       "Applicable Law and Jurisdiction": "Ley Aplicable y Jurisdicción",
       "These terms will be governed by the laws of Honduras, and any disputes will be resolved in the courts of El Progreso, Yoro.":
         "Estos términos se regirán por las leyes de Honduras y cualquier disputa será resuelta en los tribunales de El Progreso, Yoro.",
-      "If you have any questions or concerns about these terms, you can contact us at [email address].":
+      "If you have any questions or concerns about these terms, you can contact us at support@eternalmemoriesx.com.":
         "Si tienes alguna pregunta o inquietud sobre estos términos, puedes contactarnos en support@eternalmemoriesx.com.",
       "Discover Us": "Descubrénos",
       "About Us": "Sobre Nosotros",

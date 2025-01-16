@@ -4,8 +4,13 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 import pagaditoCertificado from "../assets/pagadito-certificado.png";
+import pagaditoCertificadoEng from "../assets/pagadito-certificado-eng.png";
+
+import AppContext from "../context/AppProvider";
+import { useContext } from "react";
 
 const Footer = () => {
+  const { languageSelected } = useContext(AppContext);
   const { t } = useTranslation();
 
   return (
@@ -17,7 +22,11 @@ const Footer = () => {
 
             <img
               className="w-32 mt-8 rounded"
-              src={pagaditoCertificado}
+              src={
+                languageSelected === "es"
+                  ? pagaditoCertificado
+                  : pagaditoCertificadoEng
+              }
               alt={"Logo"}
             />
           </div>

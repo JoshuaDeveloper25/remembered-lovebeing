@@ -96,7 +96,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
       ].includes("")
     ) {
       return setErrorBornValidation(
-        `Please, don't leave empty blanks on the born inputs!`
+        t(`Please, don't leave empty blanks on the born inputs!`)
       );
     } else if (
       [
@@ -106,20 +106,20 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
       ].includes("")
     ) {
       return setErrorDeathValidation(
-        `Please, don't leave empty blanks on the death inputs!`
+        t(`Please, don't leave empty blanks on the death inputs!`)
       );
     } else if (
       (e?.target?.born_city_or_town?.value ||
         e?.target?.born_state_or_area?.value) &&
       e?.target?.born_country?.value === ""
     ) {
-      return setErrorCountryBorn("Country is required!");
+      return setErrorCountryBorn(t("Country is required!"));
     } else if (
       (e?.target?.passed_away_city_or_town?.value ||
         e?.target?.passed_away_state_or_area?.value) &&
       e?.target?.passed_away_country?.value === ""
     ) {
-      return setErrorCountryDeath("Country is required!");
+      return setErrorCountryDeath(t("Country is required!"));
     }
 
     setErrorCountryDeath(false);
@@ -175,7 +175,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
         <h2>
           <span className="font-bold text-5xl">{t("Who Was")}</span>{" "}
           <span className="font-medium block">
-            {rememberedProfileInfo?.user_relationship === "none" ||
+            {rememberedProfileInfo?.user_relationship === "prefer_not_to_say" ||
             rememberedProfileInfo?.user_relationship === null
               ? null
               : `${t("my")} ${t(

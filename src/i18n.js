@@ -662,10 +662,20 @@ const resources = {
       "Parent Names": "Parent Names",
       "Do Changes": "Do Changes",
       my: "my",
+      "Country is required!": "Country is required!",
+      "Please, don't leave empty blanks on the death inputs!":
+        "Please, don't leave empty blanks on the death inputs!",
+      "Please, don't leave empty blanks on the born inputs!":
+        "Please, don't leave empty blanks on the born inputs!",
     },
   },
   es: {
     translation: {
+      "Please, don't leave empty blanks on the born inputs!":
+      "¡Por favor, no dejes campos vacíos en los datos de nacimiento!",
+      "Please, don't leave empty blanks on the death inputs!":
+        "¡Por favor, no dejes campos vacíos en los datos de fallecimiento!",
+      "Country is required!": "¡El país es obligatorio!",
       my: "mi",
       "Do Changes": "Hacer Cambios",
       "Parent Names": "Nombre de Padres",

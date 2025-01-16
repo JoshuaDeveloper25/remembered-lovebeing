@@ -97,12 +97,12 @@ const Contact = () => {
                 <div className="flex items-center gap-1.5">
                   <FaPhoneAlt className="text-primary-color-light" />
                   <h3 className="font-semibold text-primary-color-light">
-                    Phone
+                    {t("Phone")}
                   </h3>
                 </div>
 
                 <h4 className="text-primary-color font-medium text-sm">
-                  +504 8945 8498
+                  +504 8927 4186
                 </h4>
               </div>
 
@@ -230,7 +230,7 @@ const Contact = () => {
                   </div>
 
                   <h4 className="text-primary-color font-medium text-sm">
-                    +504 8945 8498
+                    +504 8927 4186
                   </h4>
                 </div>
 

@@ -514,10 +514,12 @@ const resources = {
       "User hasn't input a date...": "User hasn't input a date...",
       Lived: "Lived",
       Verified: "Verified",
+      "Paypal Payment Success": "Paypal Payment Success"
     },
   },
   es: {
     translation: {
+      "Paypal Payment Success": "Pago de PayPal Exitoso",
       Verified: "Verificado",
       Lived: "Vivió",
       "User hasn't input a date...":

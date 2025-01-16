@@ -54,7 +54,7 @@ const Prices = () => {
   return (
     <section className="container-page px-3 py-16">
       <Helmet>
-        <title>Eternal MemoriesX | Prices</title>
+        <title>Eternal MemoriesX | {t("Prices")}</title>
       </Helmet>
 
       <div className="text-center">

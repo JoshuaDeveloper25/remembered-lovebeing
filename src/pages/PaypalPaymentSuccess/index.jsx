@@ -1,14 +1,16 @@
 import { Link, Navigate, useLocation } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import AppContext from "../../context/AppProvider";
 import { useReactToPrint } from "react-to-print";
 import formatDate from "../../utils/formatDate";
-import { AiFillPrinter } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
+import { AiFillPrinter } from "react-icons/ai";
+import { Helmet } from "react-helmet-async";
 import logo from "../../assets/logo.png";
 import emailjs from "@emailjs/browser";
-import { Helmet } from "react-helmet-async";
 
 const PaypalPaymentSuccess = () => {
+  const { languageSelected } = useContext(AppContext);
   const contentRef = useRef(null);
   const reactToPrintFn = useReactToPrint({ contentRef });
   const { t } = useTranslation();
@@ -59,7 +61,7 @@ const PaypalPaymentSuccess = () => {
   }, [details, emailSent]);
 
   if (isLoading) {
-    return <div>Cargando...</div>;
+    return <div>{t("Loading...")}</div>;
   }
 
   if (!details) {
@@ -75,7 +77,7 @@ const PaypalPaymentSuccess = () => {
   return (
     <main className="container-page my-32">
       <Helmet>
-        <title>Eternal MemoriesX | Paypal Payment Success</title>
+        <title>Eternal MemoriesX | {t("Paypal Payment Success")}</title>
       </Helmet>
 
       <div className="text-center bg-white shadow-lg hover:shadow-2xl mx-auto animation-fade w-fit p-8 rounded-md">
@@ -83,7 +85,7 @@ const PaypalPaymentSuccess = () => {
           <div className="sm:max-w-md max-w-full text-center bg-white rounded-xl shadow-lg hover:shadow-2xl animation-fade p-10">
             <div className="flex flex-col items-center justify-center h-full">
               <h2 className="font-mono max-w-md tracking-wider text-2xl text-primary-color uppercase font-semibold">
-                {"Transacción realizada correctamente"}
+                {t("Transaction completed successfully.")}
               </h2>
 
               <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
@@ -99,7 +101,7 @@ const PaypalPaymentSuccess = () => {
                   className="btn btn-blue-light border-0"
                   to={"/my-profiles/"}
                 >
-                  Ve a Mis Perfiles
+                  {t("Go to My Profiles")}
                 </Link>
               </div>
             </div>
@@ -156,7 +158,10 @@ const PaypalPaymentSuccess = () => {
                   <span className="font-semibold">
                     {t("Date")}:{" "}
                     <span className="font-extralight">
-                      {formatDate(location?.state?.creation_date)}
+                      {formatDate(
+                        location?.state?.creation_date,
+                        languageSelected === "es" ? "spanish" : "english"
+                      )}
                     </span>
                   </span>
                 </h2>
@@ -168,15 +173,15 @@ const PaypalPaymentSuccess = () => {
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" className="px-6 py-3">
-                      Description
+                      {t("Description")}
                     </th>
 
                     <th scope="col" className="px-6 py-3 text-nowrap">
-                      Type Plan
+                      {t("Type Plan")}
                     </th>
 
                     <th scope="col" className="px-6 py-3 text-end">
-                      Price
+                      {t("Price")}
                     </th>
                   </tr>
                 </thead>
@@ -187,9 +192,11 @@ const PaypalPaymentSuccess = () => {
                       scope="row"
                       className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     >
-                      {location?.state?.description}
+                      {t(location?.state?.description)}
                     </th>
-                    <td className="px-6 py-4">{location?.state?.type_plan}</td>
+                    <td className="px-6 py-4">
+                      {t(location?.state?.type_plan)}
+                    </td>
                     <td className="px-6 py-4 text-end">
                       ${location?.state?.price}
                     </td>

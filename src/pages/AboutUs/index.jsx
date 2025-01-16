@@ -8,7 +8,7 @@ const AboutUs = () => {
   return (
     <main className="container-page py-14 lg:px-2 px-5">
       <Helmet>
-        <title>Eternal MemoriesX | About Us</title>
+        <title>Eternal MemoriesX | {t("About Us")}</title>
       </Helmet>
 
       <div className="flex flex-col-reverse md:flex-row gap-8 justify-between items-center">

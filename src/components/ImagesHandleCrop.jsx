@@ -9,6 +9,7 @@ import {
 import { RiImageEditFill } from "react-icons/ri";
 import { LuFileInput } from "react-icons/lu";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const ImagesHandleCrop = ({
   titleModal,
@@ -23,6 +24,7 @@ const ImagesHandleCrop = ({
   onCancel,
   handleSubmit,
 }) => {
+  const { t } = useTranslation();
   const [imgSrc, setImgSrc] = useState();
   const [error, setError] = useState("");
   const [dragging, setDragging] = useState(false);
@@ -117,7 +119,7 @@ const ImagesHandleCrop = ({
                 // handleClearImage();
               }}
             >
-              Cancel
+              {t("Cancel")}
             </button>
 
             {imgSrc && (
@@ -145,18 +147,18 @@ const ImagesHandleCrop = ({
                           fill="currentFill"
                         />
                       </svg>{" "}
-                      {"Uploading Files..."}
-                      <span className="sr-only">{"Uploading Files..."}</span>
+                      {t("Uploading Files...")}
+                      <span className="sr-only">{t("Uploading Files...")}</span>
                     </div>
                   </>
                 ) : (
-                  "Upload File"
+                  t("Upload File")
                 )}
               </button>
             )}
           </div>
         }
-        titleModal={titleModal || "Change Cover Image"}
+        titleModal={titleModal || t("Change Cover Image")}
         handleSubmit={handleSubmit}
         setOpenModal={setOpenModalCover}
         openModal={openModalCover}
@@ -167,10 +169,10 @@ const ImagesHandleCrop = ({
           <div className={`${imgSrc && "hidden"} w-full`}>
             <div className="mb-6 w-full">
               <h3 className="font-semibold">
-                Upload a file{" "}
+                {t("Upload a file")}{" "}
                 <span className="text-red-400 text-sm">(jpg, jpeg, png)*</span>
               </h3>
-              <p className="text-muted-color">Attach the file below</p>
+              <p className="text-muted-color">{t("Attach the file below")}</p>
             </div>
 
             <label
@@ -184,16 +186,16 @@ const ImagesHandleCrop = ({
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
             >
-              <span className="sr-only">Choose photo</span>
+              <span className="sr-only">{t("Choose photo")}</span>
               <LuFileInput className="text-primary-color-light size-9 mx-auto" />
               <h3 className="font-semibold mt-2">
-                Drag file(s) here to upload
+                {t("Drag file(s) here to upload")}
               </h3>
-              <p className="text-muted-color my-1">
-                Alternatively, you can select a file by
+              <p className="text-muted-color my-1 max-w-xs">
+                {t("Alternatively, you can select a file by")}
               </p>
               <p className="font-bold text-white btn btn-blue text-sm w-fit mx-auto">
-                Browse a file
+                {t("Browse a file")}
               </p>
 
               <input
@@ -216,7 +218,7 @@ const ImagesHandleCrop = ({
                 htmlFor="uploadImages"
               >
                 <span className="rounded-md flex items-center gap-1.5 rounded-b-none bg-primary-color-light text-white animation-fade px-3 py-1 text-sm hover:opacity-65">
-                  Change Image <RiImageEditFill size={19} />
+                  {t("Change Image")} <RiImageEditFill size={19} />
                 </span>
               </label>
 

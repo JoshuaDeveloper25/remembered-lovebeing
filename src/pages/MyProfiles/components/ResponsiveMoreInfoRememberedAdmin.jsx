@@ -340,18 +340,18 @@ const ResponsiveMoreInfoRememberedAdmin = ({
 
                     <div>
                       <button to={"#"} className="block">
-                        Change Your Profile Photo
+                        {t("Change Your Profile Photo")}
                       </button>
 
                       <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
-                        Update your profile image with a new photo.
+                        {t("Update your profile image with a new photo.")}
                       </p>
                     </div>
                   </li>
 
                   {/* Navigation */}
                   <h2 className="flex items-center gap-1.5 text-primary-color-light font-bold py-2.5">
-                    <GrNavigate size={20} /> Navigation
+                    <GrNavigate size={20} /> {t("Navigation")}
                   </h2>
 
                   {/* Profiles */}
@@ -366,11 +366,11 @@ const ResponsiveMoreInfoRememberedAdmin = ({
 
                     <div>
                       <Link className="block group-hover:text-white">
-                        Profiles ({totalOwnProfiles})
+                        {t("Profiles")} ({totalOwnProfiles})
                       </Link>
 
                       <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
-                        Explore all your profiles.
+                        {t("Explore all your profiles.")}
                       </p>
                     </div>
                   </li>
@@ -387,11 +387,11 @@ const ResponsiveMoreInfoRememberedAdmin = ({
 
                     <div>
                       <Link className="block group-hover:text-white">
-                        Favourites ({totalFavoritesProfiles})
+                        {t("Favourites")} ({totalFavoritesProfiles})
                       </Link>
 
                       <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
-                        Find your favorites quickly.
+                        {t("Find your favorites quickly.")}
                       </p>
                     </div>
                   </li>
@@ -415,7 +415,7 @@ const ResponsiveMoreInfoRememberedAdmin = ({
 
       {/* Modal of Change Photo Profile */}
       <ImagesHandleCrop
-        titleModal={"Change Profile Image"}
+        titleModal={t("Change Profile Image")}
         imgRef={imgRef}
         handleSubmit={handleSubmitProfileImage}
         setOpenModalCover={setOpenChangeProfileModal}

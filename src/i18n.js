@@ -682,7 +682,7 @@ const resources = {
       "Where and when born": "Dónde y cuándo nació",
       "Life Journey": "Historia de Vida",
       "Let me tell you!": "¡Déjame decirte!",
-      "Who Was": "¿Quién fue",
+      "Who Was": "¿Quién Fue",
       "Memorial Status": "Estado del Memorial",
       Follow: "Seguir",
       Unfollow: "Dejar de Seguir",

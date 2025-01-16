@@ -2,16 +2,18 @@ import AboutRememberedProfileModal from "./AboutRememberedProfileModal";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import formatDateJourney from "../../../helpers/formatDateJourney";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
+import AppContext from "../../../context/AppProvider";
 import ReactQuillAbout from "./ReactQuillAbout";
+import { useTranslation } from "react-i18next";
 import FormLifeJourney from "./FormLifeJourney";
 import { TfiPencilAlt } from "react-icons/tfi";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
-import { useTranslation } from "react-i18next";
 
 const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
+  const { languageSelected } = useContext(AppContext);
   const rememberedProfileInfo = rememberedProfile?.remembered_profile;
   const [openLifeJourneyModal, setOpenLifeJourneyModal] = useState(false);
   const currentYear = new Date().getFullYear();
@@ -223,15 +225,35 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
                   } ${t("hasn't input a born date yet...")}`
                 ) : (
                   <>
-                    {rememberedProfileInfo?.first_name}{" "}
-                    {rememberedProfileInfo?.last_name} was born{" "}
-                    {rememberedProfileInfo?.birth_country && "in"}{" "}
-                    {rememberedProfileInfo?.birth_city &&
-                      `${rememberedProfileInfo?.birth_city}, `}
-                    {rememberedProfileInfo?.birth_state &&
-                      `${rememberedProfileInfo?.birth_state}, `}
-                    {rememberedProfileInfo?.birth_country} on{" "}
-                    {formatDateJourney(rememberedProfileInfo?.birth_date)}.
+                    {languageSelected === "es" ? (
+                      <>
+                        {rememberedProfileInfo?.first_name}{" "}
+                        {rememberedProfileInfo?.last_name} nació{" "}
+                        {rememberedProfileInfo?.birth_country && "en"}{" "}
+                        {rememberedProfileInfo?.birth_city &&
+                          `${rememberedProfileInfo?.birth_city}, `}
+                        {rememberedProfileInfo?.birth_state &&
+                          `${rememberedProfileInfo?.birth_state}, `}
+                        {rememberedProfileInfo?.birth_country} el{" "}
+                        {formatDateJourney(
+                          rememberedProfileInfo?.birth_date,
+                          "es"
+                        )}
+                        .
+                      </>
+                    ) : (
+                      <>
+                        {rememberedProfileInfo?.first_name}{" "}
+                        {rememberedProfileInfo?.last_name} was born{" "}
+                        {rememberedProfileInfo?.birth_country && "in"}{" "}
+                        {rememberedProfileInfo?.birth_city &&
+                          `${rememberedProfileInfo?.birth_city}, `}
+                        {rememberedProfileInfo?.birth_state &&
+                          `${rememberedProfileInfo?.birth_state}, `}
+                        {rememberedProfileInfo?.birth_country} on{" "}
+                        {formatDateJourney(rememberedProfileInfo?.birth_date)}.
+                      </>
+                    )}
                   </>
                 )}
               </p>
@@ -246,15 +268,35 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
                   } ${t("hasn't input a death date yet...")}`
                 ) : (
                   <>
-                    {rememberedProfileInfo?.first_name}{" "}
-                    {rememberedProfileInfo?.last_name} passed away{" "}
-                    {rememberedProfileInfo?.death_country && "in"}{" "}
-                    {rememberedProfileInfo?.death_city &&
-                      `${rememberedProfileInfo?.death_city}, `}
-                    {rememberedProfileInfo?.death_state &&
-                      `${rememberedProfileInfo?.death_state}, `}
-                    {rememberedProfileInfo?.death_country} on{" "}
-                    {formatDateJourney(rememberedProfileInfo?.death_date)}.
+                    {languageSelected === "es" ? (
+                      <>
+                        {rememberedProfileInfo?.first_name}{" "}
+                        {rememberedProfileInfo?.last_name} falleció{" "}
+                        {rememberedProfileInfo?.death_country && "en"}{" "}
+                        {rememberedProfileInfo?.death_city &&
+                          `${rememberedProfileInfo?.death_city}, `}
+                        {rememberedProfileInfo?.death_state &&
+                          `${rememberedProfileInfo?.death_state}, `}
+                        {rememberedProfileInfo?.death_country} el{" "}
+                        {formatDateJourney(
+                          rememberedProfileInfo?.death_date,
+                          "es"
+                        )}
+                        .
+                      </>
+                    ) : (
+                      <>
+                        {rememberedProfileInfo?.first_name}{" "}
+                        {rememberedProfileInfo?.last_name} passed away{" "}
+                        {rememberedProfileInfo?.death_country && "in"}{" "}
+                        {rememberedProfileInfo?.death_city &&
+                          `${rememberedProfileInfo?.death_city}, `}
+                        {rememberedProfileInfo?.death_state &&
+                          `${rememberedProfileInfo?.death_state}, `}
+                        {rememberedProfileInfo?.death_country} on{" "}
+                        {formatDateJourney(rememberedProfileInfo?.death_date)}.
+                      </>
+                    )}
                   </>
                 )}
               </p>

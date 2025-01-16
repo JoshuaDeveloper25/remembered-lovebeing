@@ -1,4 +1,4 @@
-function formatDateJourney(inputDate) {
+function formatDateJourney(inputDate, language) {
   const months = [
     "January",
     "February",
@@ -14,16 +14,39 @@ function formatDateJourney(inputDate) {
     "December",
   ];
 
+  const monthsSpanish = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
+
   if (!inputDate) {
-    return "Unknown date";
+    return language === "es" ? "Fecha desconocida" : "Unknown date";
   }
 
   const [year, month, day] = inputDate.split("-");
 
-  // --> conver the month to name of it and set the index of it
-  const monthName = months[parseInt(month) - 1];
+  // Obtén el nombre del mes dependiendo del idioma
+  const monthName =
+    language === "es"
+      ? monthsSpanish[parseInt(month) - 1]
+      : months[parseInt(month) - 1];
 
-  // obtain the correct sufix of the day
+  // Devuelve la fecha en el formato deseado
+  if (language === "es") {
+    return `${parseInt(day)} de ${monthName} de ${year}`;
+  }
+
+  // Para otros idiomas, usa el formato tradicional en inglés
   const daySuffix = (day) => {
     if (day >= 11 && day <= 13) return "th";
     switch (day % 10) {

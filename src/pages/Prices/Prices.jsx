@@ -187,7 +187,7 @@ const Prices = () => {
                 {t("Aprox.")} {currencySymbol}{" "}
                 <span className="font-extrabold">
                   {(
-                    getCurrencyMutation?.data?.data?.conversion_rate * 1.0
+                    getCurrencyMutation?.data?.data?.conversion_rate * 1.00
                   ).toFixed("2")}
                 </span>
               </h4>

@@ -499,10 +499,32 @@ const resources = {
       "Transaction completed successfully.":
         "Transaction completed successfully.",
       "The transaction has expired.": "The transaction has expired.",
+      "Check Out": "Check Out",
+      "Purchase of SinglePackage (Includes 1 Premium Profile)":
+        "Purchase of SinglePackage (Includes 1 Premium Profile)",
+      "Purchase of TertiaryPackage (Includes 3 Premium Profiles)":
+        "Purchase of TertiaryPackage (Includes 3 Premium Profiles)",
+      "Select a payment method": "Select a payment method",
+      "Pay with a card": "Pay with a card",
+      "Continue With A Card": "Continue With A Card",
+      "Pay with Paypal": "Pay with Paypal",
+      "Paying in Eternal MemoriesX": "Paying in Eternal MemoriesX",
+      "Upgrading FREE profile to PRO": "Upgrading FREE profile to PRO"
     },
   },
   es: {
     translation: {
+      "Upgrading FREE profile to PRO": "Actualizando perfil GRATIS a PRO",
+      "Paying in Eternal MemoriesX": "Pagando en Eternal MemoriesX",
+      "Pay with Paypal": "Pagar con Paypal",
+      "Continue With A Card": "Continuar Con Una Tarjeta",
+      "Pay with a card": "Pagar con una tarjeta",
+      "Select a payment method": "Selecciona un método de pago",
+      "Purchase of TertiaryPackage (Includes 3 Premium Profiles)":
+        "Compra De PaqueteDe3 (Incluye 3 Perfiles Premium)",
+      "Purchase of SinglePackage (Includes 1 Premium Profile)":
+        "Compra De PaqueteDe1 (Incluye 1 Perfil Premium)",
+      "Check Out": "Proceso de Pago",
       "The transaction has expired.": "La transacción ha expirado.",
       "Transaction completed successfully.":
         "Transacción realizada correctamente.",

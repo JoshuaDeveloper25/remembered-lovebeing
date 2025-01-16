@@ -1,5 +1,6 @@
 import PaypalComponent from "../../../components/PaypalComponent";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
+import { FaCheck, FaCreditCard } from "react-icons/fa";
 import AppContext from "../../../context/AppProvider";
 import { useMutation } from "@tanstack/react-query";
 import payments from "../../../assets/payments.png";
@@ -7,12 +8,11 @@ import paypal from "../../../assets/paypal.png";
 import { useTranslation } from "react-i18next";
 import { useContext, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { TbPigMoney } from "react-icons/tb";
 import { packages } from "../../../db/data";
-import { FaCheck, FaCreditCard } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import QuestionMarkInfo from "../../../components/QuestionMarkInfo";
 
 const packageNames = Object.keys(packages);
 
@@ -58,16 +58,16 @@ const PricesPlan = ({ packageName }) => {
   const generatePaymentURL = () => {
     generatePaymentURLMutation?.mutate({
       ern: ern,
-      amount: packageName === "singlePackage" ? 1 : 49.99,
+      amount: packageName === "singlePackage" ? 1.0 : 49.99,
       currency: "USD",
       details: [
         {
           quantity: 1,
           description:
             packageName === "singlePackage"
-              ? "Compra De SinglePackage Premium (Incluye 1 Perfil Premium)"
-              : "Compra De TertiaryPackage (Incluye 3 Perfiles Premium)",
-          price: packageName === "singlePackage" ? 1 : 49.99,
+              ? t("Purchase of SinglePackage (Includes 1 Premium Profile)")
+              : t("Purchase of TertiaryPackage (Includes 3 Premium Profiles)"),
+          price: packageName === "singlePackage" ? 1.0 : 49.99,
         },
       ],
       custom_params: {
@@ -90,38 +90,64 @@ const PricesPlan = ({ packageName }) => {
               <span className="align-text-top text-4xl me-3">$</span>
               <span>1.00</span>
             </h2>
-            <h3 className="text-primary-color-light">for life</h3>
           </div>
 
           <ul className="text-white leading-9 my-5">
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Tributes
+              {t("Tributes")}
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Condolences
+              {t("Condolences")}
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Unlimited images
+              {t("Unlimited images")}
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Unlimited posts
+              {t("Unlimited posts")}
+              <QuestionMarkInfo toolTipId={"postsHelp19Checkout"}>
+                <div className="text-white max-w-sm leading-5 text-xs">
+                  <h3 className="font-bold text-sm">{t("Posts")}</h3>
+                  <p className="text-start">
+                    {t(
+                      "Create special posts with meaningful images of your loved ones, allowing others to leave comments and hearts as a token of affection and support."
+                    )}
+                  </p>
+                </div>
+              </QuestionMarkInfo>
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Generate QR Code
+              {t("Generate QR Code")}
+              <QuestionMarkInfo toolTipId={"generateQRCodeHelp19Checkout"}>
+                <div className="text-white max-w-sm leading-5 text-xs">
+                  <h3 className="font-bold text-sm">{t("QR Code")}</h3>
+
+                  <p className="text-start">
+                    {t(
+                      "Generate a unique QR code for easy access to the memorial profile, perfect for placing on meaningful objects such as:"
+                    )}
+                  </p>
+
+                  <ul className="pl-5 list-disc text-start mt-4">
+                    <li>{t("Urn")}</li>
+                    <li>{t("Headstone")}</li>
+                    <li>{t("T-shirts")}</li>
+                  </ul>
+                </div>
+              </QuestionMarkInfo>
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Number of Premium Profiles (1)
+              {t("N° of Premium Profiles")} (1)
             </li>
           </ul>
         </div>
@@ -135,37 +161,63 @@ const PricesPlan = ({ packageName }) => {
               <span className="align-text-top text-4xl me-3">$</span>
               <span>49.99</span>
             </h2>
-            <h3 className="text-primary-color-light">for life</h3>
           </div>
           <ul className="text-white leading-9 my-5">
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Tributes
+              {t("Tributes")}
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Condolences
+              {t("Condolences")}
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Unlimited images
+              {t("Unlimited images")}
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Unlimited posts
+              {t("Unlimited posts")}
+              <QuestionMarkInfo toolTipId={"postsHelp50Checkout"}>
+                <div className="text-white max-w-sm leading-5 text-xs">
+                  <h3 className="font-bold text-sm">{t("Posts")}</h3>
+                  <p className="text-start">
+                    {t(
+                      "Create special posts with meaningful images of your loved ones, allowing others to leave comments and hearts as a token of affection and support."
+                    )}
+                  </p>
+                </div>
+              </QuestionMarkInfo>
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Generate QR Code
+              {t("Generate QR Code")}
+              <QuestionMarkInfo toolTipId={"generateQRCodeHelp50Checkout"}>
+                <div className="text-white max-w-sm leading-5 text-xs">
+                  <h3 className="font-bold text-sm">{t("QR Code")}</h3>
+
+                  <p className="text-start">
+                    {t(
+                      "Generate a unique QR code for easy access to the memorial profile, perfect for placing on meaningful objects such as:"
+                    )}
+                  </p>
+
+                  <ul className="pl-5 list-disc text-start mt-4">
+                    <li>{t("Urn")}</li>
+                    <li>{t("Headstone")}</li>
+                    <li>{t("T-shirts")}</li>
+                  </ul>
+                </div>
+              </QuestionMarkInfo>
             </li>
 
             <li className="flex items-center gap-3 border-b py-1">
               <FaCheck className="text-green-500 size-5 font-bold inline-block" />
-              Number of Premium Profiles (3)
+              {t("N° of Premium Profiles")} (3)
             </li>
           </ul>
         </div>
@@ -175,7 +227,7 @@ const PricesPlan = ({ packageName }) => {
       <div className="md:flex-[40%] w-full px-4 py-8">
         <div>
           <h2 className="font-mono tracking-wider text-3xl uppercase font-semibold">
-            Select a payment method
+            {t("Select a payment method")}
           </h2>
           <div className="bg-yellow-500 h-2 w-24 my-3"></div>
         </div>
@@ -198,7 +250,7 @@ const PricesPlan = ({ packageName }) => {
                 className="w-4 h-4 text-primary-color-light bg-gray-100 border-gray-300 focus:ring-primary-color-light dark:focus:ring-primary-color-light dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
               <p className="ms-2 text-sm font-medium  dark:text-gray-300">
-                Pay with a card
+                {t("Pay with a card")}
               </p>
             </div>
             <div>
@@ -214,10 +266,10 @@ const PricesPlan = ({ packageName }) => {
                 onClick={generatePaymentURL}
                 disabled={generatePaymentURLMutation?.isPending}
               >
-                <FaCreditCard  size={26} />
+                <FaCreditCard size={26} />
                 {generatePaymentURLMutation?.isPending
                   ? t("Loading...")
-                  : "Continue With A Card"}
+                  : t("Continue With A Card")}
               </button>
             </div>
           )}
@@ -239,7 +291,7 @@ const PricesPlan = ({ packageName }) => {
                 className="w-4 h-4 text-primary-color-light bg-gray-100 border-gray-300 focus:ring-primary-color-light dark:focus:ring-primary-color-light dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
               <p className="ms-2 text-sm font-medium  dark:text-gray-300">
-                Pay with Paypal
+                {t("Pay with Paypal")}
               </p>
             </div>
             <div>

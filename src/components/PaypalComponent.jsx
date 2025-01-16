@@ -6,10 +6,12 @@ import AppContext from "../context/AppProvider";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const PaypalComponent = ({ packageName, rememberedId }) => {
   const [paypalInvoiceDetails, setPaypalInvoiceDetails] = useState({});
   const [{ isPending }, dispatchPaypal] = usePayPalScriptReducer();
+  const { t } = useTranslation();
   const { userInfo } = useContext(AppContext);
   const navigate = useNavigate();
 
@@ -88,13 +90,9 @@ const PaypalComponent = ({ packageName, rememberedId }) => {
       return actions.order.create({
         purchase_units: [
           {
-            description: "Paying in Eternal MemoriesX",
+            description: t("Paying in Eternal MemoriesX"),
             amount: {
-              value: rememberedId
-                ? 1
-                : packageName === "singlePackage"
-                ? 1
-                : 5,
+              value: rememberedId ? 1 : packageName === "singlePackage" ? 1 : 5,
             },
             custom_id: JSON.stringify({
               id: userInfo?.email,
@@ -129,7 +127,11 @@ const PaypalComponent = ({ packageName, rememberedId }) => {
         creation_date: details?.create_time,
         description: details?.purchase_units[0]?.description,
         price: details?.purchase_units[0]?.amount?.value,
-        type_plan: rememberedId ? "Upgrading FREE profile to PRO" : packageName === "singlePackage" ? "Single" : "Tertiary",
+        type_plan: rememberedId
+          ? t("Upgrading FREE profile to PRO")
+          : packageName === "singlePackage"
+          ? t("Single")
+          : t("Tertiary"),
       };
 
       setPaypalInvoiceDetails(invoiceDetails);
@@ -169,7 +171,7 @@ const PaypalComponent = ({ packageName, rememberedId }) => {
   return (
     <div className="bg-white shadow-lg rounded-md p-3 overflow-y-auto max-h-96">
       {isPending ? (
-        <p>Loading...</p>
+        <p>{t("Loading...")}</p>
       ) : (
         <PayPalButtons
           fundingSource={undefined}

@@ -1,5 +1,6 @@
 import MansoryGallery from "../../pages/ProfileRemembered/components/MansoryGallery";
 import ResponsiveMoreInfoRemembered from "./components/ResponsiveMoreInfoRemembered";
+import ModalEditRememberedProfile from "./components/ModalEditRememberedProfile";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import TabLinkContent from "../../pages/MyProfiles/components/TabLinkContent";
 import UploadProfileImage from "../../components/UploadProfileImage";
@@ -13,23 +14,22 @@ import AboutRemembered from "./components/AboutRemembered";
 import FormEditProfile from "./components/FormEditProfile";
 import FollowRemember from "./components/FollowRemember";
 import QRCodeGenerate from "./components/QRCodeGenerate";
+import TabsResponsive from "./components/TabsResponsive";
 import { getLivedDays } from "../../utils/getLivedDays";
 import TributeHeader from "./components/TributeHeader";
 import UploadPost from "../../components/UploadPost";
 import AppContext from "../../context/AppProvider";
 import Condolences from "./components/Condolences";
+import { useTranslation } from "react-i18next";
 import { TfiPencilAlt } from "react-icons/tfi";
 import { useParams } from "react-router-dom";
 import Tributes from "./components/Tributes";
 import { useContext, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Modal from "../../components/Modal";
 import Post from "../../components/Post";
 import { toast } from "react-toastify";
 import axios from "axios";
-import TabsResponsive from "./components/TabsResponsive";
-import ModalEditRememberedProfile from "./components/ModalEditRememberedProfile";
-import { Helmet } from "react-helmet-async";
-import { useTranslation } from "react-i18next";
 
 const ProfileRemembered = () => {
   const currentYear = new Date().getFullYear();

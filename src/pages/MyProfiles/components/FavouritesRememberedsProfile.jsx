@@ -3,6 +3,7 @@ import FavouriteProfile from "./FavouriteProfile";
 const FavouritesRememberedsProfile = ({
   isPendingFavouritesProfiles,
   favouritesProfiles,
+  t
 }) => {
   return (
     <section>
@@ -20,7 +21,7 @@ const FavouritesRememberedsProfile = ({
         </article>
       ) : (
         <h2 className="text-primary-color text-center text-2xl uppercase tracking-wider my-8">
-          There's no favourites profiles yet...
+          {t("There's no favourites profiles yet...")}
         </h2>
       )}
     </section>

@@ -5,6 +5,7 @@ import getFastApiErrors from "../../../utils/getFastApiErrors";
 import { getLivedDays } from "../../../utils/getLivedDays";
 import { useEffect, useRef, useState } from "react";
 import { HiDotsVertical } from "react-icons/hi";
+import { useTranslation } from "react-i18next";
 import Modal from "../../../components/Modal";
 import { GiTombstone } from "react-icons/gi";
 import { PiCakeFill } from "react-icons/pi";
@@ -17,6 +18,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 
 const Profile = ({ item, isPending }) => {
+  const { t } = useTranslation();
   const [openOptions, setOpenOptions] = useState(false);
   const [changeStatusModal, setChangeStatusModal] = useState(false);
   const currentYear = new Date().getFullYear();
@@ -247,7 +249,7 @@ const Profile = ({ item, isPending }) => {
               <h2
                 className={`ms-1.5 rounded text-center font-semibold uppercase`}
               >
-                {item?.status_plan}
+                {t(item?.status_plan)}
               </h2>
             </div>
           ) : (
@@ -255,7 +257,7 @@ const Profile = ({ item, isPending }) => {
               <h2
                 className={`text-sm uppercase bg-[#94a4a8] text-white rounded w-fit px-3 mx-auto`}
               >
-                {item?.status_plan}
+                {t(item?.status_plan)}
               </h2>
             </>
           )}
@@ -279,9 +281,9 @@ const Profile = ({ item, isPending }) => {
                 : "text-green-500 bg-green-500/20"
             } px-1 py-2 mt-3 text-center`}
           >
-            Status:{" "}
+            {t("Status")}:{" "}
             <span className="font-semibold capitalize">
-              {item?.status_privacy}
+              {t(item?.status_privacy)}
             </span>
           </p>
         </div>
@@ -313,7 +315,7 @@ const Profile = ({ item, isPending }) => {
                       "hover:bg-[#fab818] text-xs hover:text-white border-b-2 border-[#fab818]"
                     }
                     linkTo={`/checkout/?slug=${item?.slug}`}
-                    linkText={"Go Pro / $1.00"}
+                    linkText={`${t("Go Pro")} / $1.00`}
                   />
                 )}
 
@@ -322,7 +324,7 @@ const Profile = ({ item, isPending }) => {
                     "hover:bg-secondary-color hover:text-white text-xs"
                   }
                   linkTo={`/remembered-profile/${item?.slug}`}
-                  linkText={"Edit Profile"}
+                  linkText={t("Edit Profile")}
                 />
 
                 <NavbarDropdownLink
@@ -330,11 +332,11 @@ const Profile = ({ item, isPending }) => {
                     "hover:bg-secondary-color hover:text-white text-xs"
                   }
                   onClick={() => setChangeStatusModal(true)}
-                  linkText={"Change Status"}
+                  linkText={t("Change Status")}
                 />
 
                 <Modal
-                  titleModal={"Memorial Status Options..."}
+                  titleModal={t("Memorial Status Options...")}
                   handleSubmit={handleChangeStatus}
                   setOpenModal={setChangeStatusModal}
                   openModal={changeStatusModal}
@@ -354,7 +356,7 @@ const Profile = ({ item, isPending }) => {
                   <NavbarDropdownLink
                     hoverBgLink={"hover:bg-red-500 hover:text-white text-xs"}
                     onClick={handleDelete}
-                    linkText={"Delete"}
+                    linkText={t("Delete")}
                   />
                 )}
               </ul>
@@ -372,15 +374,15 @@ const Profile = ({ item, isPending }) => {
               <h4 className="text-gray-700 font-medium text-sm">
                 {!item?.birth_date && !item?.death_date ? (
                   <>
-                    Would you like to add lifetime?{" "}
+                    {t("Would you like to add lifetime?")}{" "}
                     <button
                       onClick={() => setOpenLifeTimeModal(!openLifeTimeModal)}
                       className="inline-block text-center ms-0.5 underline text-secondary-color"
                     >
-                      Click here.
+                      {t("Click here.")}
                     </button>
                     <Modal
-                      titleModal={"Lifetime of your lovebeing..."}
+                      titleModal={t("Lifetime of your lovebeing...")}
                       handleSubmit={handleSubmit}
                       setOpenModal={setOpenLifeTimeModal}
                       openModal={openLifeTimeModal}
@@ -424,7 +426,7 @@ const Profile = ({ item, isPending }) => {
                 <span className="block text-[.7rem] font-bold">
                   {!item?.birth_date && !item?.death_date
                     ? null
-                    : `Lived: ${getLivedDays(
+                    : `${t("Lived")}: ${getLivedDays(
                         item?.birth_date,
                         item?.death_date
                       )}`}
@@ -441,7 +443,7 @@ const Profile = ({ item, isPending }) => {
                     "pointer-events-none opacity-75 cursor-wait"
                   }`}
                 >
-                  <FaEye size={18} /> View
+                  <FaEye size={18} /> {t("View")}
                 </button>
               </Link>
             </div>

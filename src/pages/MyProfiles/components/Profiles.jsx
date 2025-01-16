@@ -8,17 +8,11 @@ import { Link } from "react-router-dom";
 
 const Profiles = ({
   handleCreateFreeProfile,
-  isPendingFavouritesProfiles,
   premiumProfilesRemaining,
-  handleSubmit,
   profiles,
   setOpenPremiumModal,
-  openPremiumModal,
   isPending,
-  slug,
-  setSlug,
   setStatusPlan,
-  isPendingCreateProfile,
 }) => {
   const { t } = useTranslation();
 
@@ -39,7 +33,7 @@ const Profiles = ({
                   onClick={handleCreatePremiumProfile}
                   className="btn text-sm px-3 text-primary-color border-primary-color hover:text-white hover:bg-primary-color"
                 >
-                  <GoPlus className="size-5 inline" /> Create Pro Profile
+                  <GoPlus className="size-5 inline" /> {t("Create Pro Profile")}
                 </button>
               </div>
 
@@ -68,7 +62,7 @@ const Profiles = ({
                     <span className="font-bold me-1 text-black">
                       ({premiumProfilesRemaining})
                     </span>
-                    <span className="text-black">remaining</span>
+                    <span className="text-black">{t("remaining")}</span>
                   </div>
                 </p>
               </div>
@@ -78,7 +72,7 @@ const Profiles = ({
           <>
             <div className="inline-block">
               <Link className="btn btn-blue border-2 block" to={"/prices"}>
-                <IoCartOutline className="size-5 inline" /> See Plans
+                <IoCartOutline className="size-5 inline" /> {t("See Plans")}
               </Link>
             </div>
 
@@ -87,7 +81,7 @@ const Profiles = ({
                 onClick={handleCreateFreeProfile}
                 className="btn px-3 text-primary-color border-primary-color hover:text-white hover:bg-primary-color"
               >
-                <GoPlus className="size-5 inline" /> Create Free Profile
+                <GoPlus className="size-5 inline" /> {t("Create Free Profile")}
               </button>
             </div>
           </>
@@ -100,9 +94,9 @@ const Profiles = ({
             <div className="border-b-2 pb-8">
               <div className="mb-3">
                 <h2 className="font-light text-base text-yellow-500 tracking-wider font-mono">
-                  <span className="text-2xl">My</span>{" "}
+                  <span className="text-2xl">{t("My")}</span>{" "}
                   <span className="text-primary-color-light tracking-tighter">
-                    Profiles
+                    {t("Profiles")}
                   </span>
                 </h2>
 

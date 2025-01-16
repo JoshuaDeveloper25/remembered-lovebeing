@@ -1,5 +1,6 @@
 import FavouritesRememberedsProfile from "./FavouritesRememberedsProfile";
 import { FaCross, FaHeart } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 import TabLinkContent from "./TabLinkContent";
 import Profiles from "./Profiles";
 import TabLink from "./TabLink";
@@ -22,6 +23,8 @@ const IndividualUserProfileTab = ({
   openTab,
   setOpenTab,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <ul
@@ -30,7 +33,7 @@ const IndividualUserProfileTab = ({
       >
         <TabLink
           setOpenTab={setOpenTab}
-          textTab={"Profiles"}
+          textTab={t("Profiles")}
           linkTab={"#profiles"}
           iconTab={<FaCross className="text-primary-color" />}
           openTab={openTab}
@@ -41,7 +44,7 @@ const IndividualUserProfileTab = ({
         <TabLink
           setOpenTab={setOpenTab}
           linkTab={"#favourites"}
-          textTab={"Favourites"}
+          textTab={t("Favourites")}
           iconTab={<FaHeart className="text-red-500" />}
           openTab={openTab}
           numberTab={2}
@@ -76,6 +79,7 @@ const IndividualUserProfileTab = ({
               idTab={"#favourites"}
             >
               <FavouritesRememberedsProfile
+                t={t}
                 favouritesProfiles={favouritesProfiles}
                 isPendingFavouritesProfiles={isPendingFavouritesProfiles}
               />

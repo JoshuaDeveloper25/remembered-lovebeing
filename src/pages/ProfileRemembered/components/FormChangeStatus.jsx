@@ -1,4 +1,5 @@
 import ButtonForm from "../../../components/ButtonForm";
+import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 
 const FormChangeStatus = ({
@@ -8,6 +9,8 @@ const FormChangeStatus = ({
   isPending,
   status,
 }) => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     setStatusOptionSelected(status);
   }, []);
@@ -33,14 +36,17 @@ const FormChangeStatus = ({
               />
 
               <span className="font-semibold align-top">
-                All visitors can view and contribute{" "}
-                <span className="font-semibold text-green-500">*(Public)</span>
+                {t("All visitors can view and contribute")}{" "}
+                <span className="font-semibold text-green-500">
+                  *({t("Public")})
+                </span>
               </span>
             </div>
 
             <span className="block text-xs">
-              Recommended for most memorials. This option allows easy access to
-              the website and facilitates collaboration.
+              {t(
+                "Recommended for most memorials. This option allows easy access to the website and facilitates collaboration."
+              )}
             </span>
           </label>
         </div>
@@ -63,14 +69,17 @@ const FormChangeStatus = ({
               />
 
               <span className="font-semibold align-top">
-                Visible only to me{" "}
-                <span className="font-semibold text-red-500">*(Private)</span>
+                {t("Visible only to me")}{" "}
+                <span className="font-semibold text-red-500">
+                  *({t("Private")})
+                </span>
               </span>
             </div>
 
             <span className="block text-xs">
-              Choose this option if you do not want the memorial to be visible
-              to others at this time.
+              {t(
+                "Choose this option if you do not want the memorial to be visible to others at this time."
+              )}
             </span>
           </label>
         </div>
@@ -80,8 +89,8 @@ const FormChangeStatus = ({
         setOpenModal={setChangeStatusModal}
         isPending={isPending}
         buttonClassName={"mt-0"}
-        statusOff={"Save changes"}
-        statusOn={"Saving..."}
+        statusOff={t("Save changes")}
+        statusOn={t("Saving...")}
       />
     </>
   );

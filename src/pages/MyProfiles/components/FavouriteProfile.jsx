@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { useTranslation } from "react-i18next";
 import { FaCheckCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,6 +8,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const FavouriteProfile = ({ item, isPending }) => {
+  const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
   const queryClient = useQueryClient();
 
@@ -20,7 +22,7 @@ const FavouriteProfile = ({ item, isPending }) => {
     onSuccess: (res) => {
       console.log(res);
       toast.success("You aren't following this user anymore...");
-      queryClient.invalidateQueries({ queryKey: ["favouritesProfiles"] });
+      queryClient.invalidateQueries({ queryKey: ["ownProfiles"] });
     },
     onError: (err) => {
       console.log(getFastApiErrors(err));
@@ -90,10 +92,10 @@ const FavouriteProfile = ({ item, isPending }) => {
               {`${item?.first_name} ${item?.last_name}`}
             </h2>
           </Link>
-          <p className="text-tertiary-color block">
-            <span className="font-medium">Lifetime:</span>{" "}
-            {`${item?.birth_date ?? "No Date"} - ${
-              item?.death_date ?? "No Date"
+          <p className="text-tertiary-color block text-sm">
+            <span className="font-medium">{t("Lifetime")}:</span>{" "}
+            {`${item?.birth_date ?? t("No Date...")} - ${
+              item?.death_date ?? t("No Date...")
             }`}
           </p>
         </div>
@@ -113,12 +115,12 @@ const FavouriteProfile = ({ item, isPending }) => {
         {isHovered ? (
           <>
             {" "}
-            <IoIosCloseCircleOutline size={20} className="inline" /> Stop
-            Following
+            <IoIosCloseCircleOutline size={20} className="inline" />{" "}
+            {t("Stop Following")}
           </>
         ) : (
           <>
-            <FaCheckCircle className="inline" /> Following
+            <FaCheckCircle className="inline" /> {t("Following")}
           </>
         )}
       </button>

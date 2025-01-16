@@ -287,7 +287,7 @@ const ProfileRemembered = () => {
 
           {/* Modal to edit rememberedProfile */}
           <ModalEditRememberedProfile
-            titleModal={"Edit Remembered Profile..."}
+            titleModal={t("Edit Remembered Profile...")}
             handleSubmit={handleSubmit}
             setOpenModal={setEditRememberedProfile}
             openModal={editRememberedProfile}
@@ -298,6 +298,7 @@ const ProfileRemembered = () => {
             modalContentClassNames={"sm:relative static"}
           >
             <FormEditProfile
+              t={t}
               setEditRememberedProfile={setEditRememberedProfile}
               currentYear={currentYear}
               bornYear={bornYear}

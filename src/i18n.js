@@ -641,10 +641,12 @@ const resources = {
       "Generate a QR Code to have more accessibility from other devices!":
         "Generate a QR Code to have more accessibility from other devices!",
       "More options": "More options",
+      "Edit Remembered Profile...": "Edit Remembered Profile...",
     },
   },
   es: {
     translation: {
+      "Edit Remembered Profile...": "Editar Perfil del Ser Querido...",
       "More options": "Más opciones",
       "Generate a QR Code to have more accessibility from other devices!":
         "¡Genera un código QR para tener más accesibilidad desde otros dispositivos!",

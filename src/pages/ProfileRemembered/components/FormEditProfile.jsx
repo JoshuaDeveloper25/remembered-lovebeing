@@ -1,3 +1,4 @@
+import { causeOfDeaths, relationships } from "../../../db/data";
 import getDaysInMonth from "../../../helpers/getDaysInMonth";
 import { InputForm } from "../../../components/InputForm";
 import ButtonForm from "../../../components/ButtonForm";
@@ -21,6 +22,7 @@ const FormEditProfile = ({
   setPassedDay,
   currentYear,
   months,
+  t,
 }) => {
   const [gender, setGender] = useState("");
   const [bornDays, setBornDays] = useState([]);
@@ -77,7 +79,7 @@ const FormEditProfile = ({
         <div className="flex flex-col sm:flex-row gap-6 mb-3">
           <div className="flex-1">
             <InputForm
-              inputLabel="First Name"
+              inputLabel={t("First Name")}
               inputClassNameAdd={"mb-1"}
               inputType="text"
               inputName="first_name"
@@ -91,7 +93,7 @@ const FormEditProfile = ({
 
           <div className="flex-1">
             <InputForm
-              inputLabel="Middle Name (Optional)"
+              inputLabel={t("Middle Name (Optional)")}
               inputClassNameAdd={"mb-1"}
               inputType="text"
               inputName="middle_name"
@@ -106,7 +108,7 @@ const FormEditProfile = ({
         <div className="flex flex-col sm:flex-row gap-6 mb-3">
           <div className="flex-1">
             <InputForm
-              inputLabel="Last Name"
+              inputLabel={t("Last Name")}
               inputClassNameAdd={"mb-1"}
               inputType="text"
               inputName="last_name"
@@ -121,29 +123,22 @@ const FormEditProfile = ({
           <div className="flex-1">
             <label>
               <span className="w-full inline-block text-start font-medium">
-                Relationship
+                {t("Relationship")}
               </span>
               <select
-                className=" form-input"
-                placeholder="-- Select --"
+                className=" form-input border border-[#949DA6]/35"
+                placeholder={t("-- Select --")}
                 name="user_relationship"
                 required={true}
                 defaultValue={
                   rememberedProfileInfo?.remembered_profile?.user_relationship
                 }
               >
-                <option value="">-- Select --</option>
-                <option value="none">Prefer not to say</option>
-                <option value="dad">Dad</option>
-                <option value="mom">Mom</option>
-                <option value="son">Son</option>
-                <option value="sister">Sister</option>
-                <option value="stepsister">Stepsister</option>
-                <option value="brother">Brother</option>
-                <option value="stepbrother">Sterbrother</option>
-                <option value="daughter">Daughter</option>
-                <option value="grandmother">Grandmother</option>
-                <option value="grandfather">Grandfather</option>
+                {relationships?.map((item, index) => (
+                  <option value={item?.value} key={index}>
+                    {t(item?.relationship)}
+                  </option>
+                ))}
               </select>
             </label>
           </div>
@@ -152,12 +147,12 @@ const FormEditProfile = ({
         <div className="flex flex-col sm:flex-row items-start gap-6 mb-3">
           <div className="flex-1">
             <h3 className="w-full inline-block text-start font-semibold">
-              Gender
+              {t("Gender")}
             </h3>
 
             <div className="flex mt-[.36rem] gap-5 pb-1">
               <label>
-                Male
+                {t("Male")}
                 <input
                   className="ms-2"
                   type="radio"
@@ -170,7 +165,7 @@ const FormEditProfile = ({
               </label>
 
               <label>
-                Female
+                {t("Female")}
                 <input
                   className="ms-2"
                   type="radio"
@@ -184,28 +179,26 @@ const FormEditProfile = ({
             </div>
           </div>
 
-          <div className="flex-1">
+          <div className="flex-1 w-full">
             <label>
               <span className="w-full inline-block text-start font-medium">
-                Cause of Death
+                {t("Cause of Death")}
               </span>
               <select
-                className=" form-input"
-                placeholder="-- Select --"
+                className=" form-input border border-[#949DA6]/35"
+                placeholder={t("-- Select --")}
                 name="designation"
                 required={true}
                 defaultValue={
                   rememberedProfileInfo?.remembered_profile?.designation
                 }
               >
-                <option value="">-- Select --</option>
-                <option value="prefer_not_to_say">Prefer not to say</option>
-                <option value="covid19_victim">COVID-19 victim</option>
-                <option value="substance_victim">Substance abuse victim</option>
-                <option value="cancer_victim">Cancer victim</option>
-                <option value="accident_victim">Victim of an accident</option>
-                <option value="crime_victim">Crime victim</option>
-                <option value="heart_attack">Heart attack</option>
+                <option value={""}>{t("-- Select --")}</option>
+                {causeOfDeaths?.map((item, index) => (
+                  <option value={item?.value} key={index}>
+                    {t(item?.causeDeath)}
+                  </option>
+                ))}
               </select>
             </label>
           </div>
@@ -213,10 +206,10 @@ const FormEditProfile = ({
 
         <div className="mb-3">
           <div className="flex flex-col md:flex-row gap-4">
-            <h4 className="font-semibold">Born:</h4>
+            <h4 className="font-semibold">{t("Born")}:</h4>
 
             <select
-              className="border border-tertiary-color rounded pe-4"
+              className="border border-[#949DA6]/35 rounded pe-4"
               value={bornYear}
               onChange={(e) => setBornYear(parseInt(e.target.value))}
             >
@@ -228,19 +221,19 @@ const FormEditProfile = ({
             </select>
 
             <select
-              className="border border-tertiary-color rounded pe-4"
+              className="border border-[#949DA6]/35 rounded pe-4"
               value={bornMonth}
               onChange={(e) => setBornMonth(e.target.value)}
             >
               {months.map((month) => (
                 <option key={month} value={month}>
-                  {month}
+                  {t(month)}
                 </option>
               ))}
             </select>
 
             <select
-              className="border border-tertiary-color rounded pe-4"
+              className="border border-[#949DA6]/35 rounded pe-4"
               value={bornDay}
               onChange={(e) => setBornDay(parseInt(e.target.value))}
             >
@@ -253,10 +246,10 @@ const FormEditProfile = ({
           </div>
 
           <div className="flex flex-col md:flex-row gap-4 mt-2">
-            <h4 className="font-semibold">Passed Away:</h4>
+            <h4 className="font-semibold">{t("Passed Away")}:</h4>
 
             <select
-              className="border border-tertiary-color rounded pe-4"
+              className="border border-[#949DA6]/35 rounded pe-4"
               value={passedYear}
               onChange={(e) => setPassedYear(parseInt(e.target.value))}
             >
@@ -268,19 +261,19 @@ const FormEditProfile = ({
             </select>
 
             <select
-              className="border border-tertiary-color rounded pe-4"
+              className="border border-[#949DA6]/35 rounded pe-4"
               value={passedMonth}
               onChange={(e) => setPassedMonth(e.target.value)}
             >
               {months.map((month) => (
                 <option key={month} value={month}>
-                  {month}
+                  {t(month)}
                 </option>
               ))}
             </select>
 
             <select
-              className="border border-tertiary-color rounded pe-4"
+              className="border border-[#949DA6]/35 rounded pe-4"
               value={passedDay}
               onChange={(e) => setPassedDay(parseInt(e.target.value))}
             >
@@ -299,8 +292,8 @@ const FormEditProfile = ({
           setOpenModal={setEditRememberedProfile}
           isPending={isPending}
           buttonClassName={"mt-0"}
-          statusOff={"Save changes"}
-          statusOn={"Saving..."}
+          statusOff={t("Save changes")}
+          statusOn={t("Saving...")}
         />
       </div>
     </>

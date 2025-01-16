@@ -11,7 +11,7 @@ const CheckMailBox = () => {
   return (
     <main className="relative">
       <Helmet>
-        <title>Eternal MemoriesX | Check Mail Box</title>
+        <title>Eternal MemoriesX | {t("Check Mail Box")}</title>
       </Helmet>
 
       {/* <div className="md:block hidden fixed top-18 right-8">

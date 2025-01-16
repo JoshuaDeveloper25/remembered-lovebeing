@@ -483,10 +483,42 @@ const resources = {
       "If you’ve already purchased Premium packages, you can use those benefits to upgrade your free profile to Pro without making an additional purchase. Make the most of your purchases and enhance your experience.":
         "If you’ve already purchased Premium packages, you can use those benefits to upgrade your free profile to Pro without making an additional purchase. Make the most of your purchases and enhance your experience.",
       Phone: "Phone",
+      "Check Mail Box": "Check Mail Box",
+      "Pagadito Status": "Pagadito Status",
+      "Go to My Profiles": "Go to My Profiles",
+      Description: "Description",
+      "Type Plan": "Type Plan",
+      Price: "Price",
+      "Making FREE profile to PRO": "Making FREE profile to PRO",
+      Single: "Single",
+      Tertiary: "Tertiary",
+      "TertiaryPackage Premium": "TertiaryPackage Premium",
+      "SinglePackage Premium": "SinglePackage Premium",
+      "The transaction has not been completed.":
+        "The transaction has not been completed.",
+      "Transaction completed successfully.":
+        "Transaction completed successfully.",
+      "The transaction has expired.": "The transaction has expired.",
     },
   },
   es: {
     translation: {
+      "The transaction has expired.": "La transacción ha expirado.",
+      "Transaction completed successfully.":
+        "Transacción realizada correctamente.",
+      "The transaction has not been completed.":
+        "La transacción no se ha completado.",
+      "TertiaryPackage Premium": "PaqueteDe3 Premium",
+      "SinglePackage Premium": "PaqueteDe1 Premium",
+      Single: "De 1",
+      Tertiary: "De 3",
+      "Making FREE profile to PRO": "Pasando perfil GRATIS a PRO",
+      Description: "Descripción",
+      "Type Plan": "Tipo de Plan",
+      Price: "Precio",
+      "Go to My Profiles": "Ve a Mis Perfiles",
+      "Pagadito Status": "Estado de Pagadito",
+      "Check Mail Box": "Revisa tu correo",
       Phone: "Teléfono",
       "If you’ve already purchased Premium packages, you can use those benefits to upgrade your free profile to Pro without making an additional purchase. Make the most of your purchases and enhance your experience.":
         "Si ya has adquirido paquetes Premium, puedes usar esos beneficios para actualizar tu perfil gratuito a Pro, sin necesidad de realizar una compra adicional. Aprovecha al máximo tus compras y mejora tu experiencia.",

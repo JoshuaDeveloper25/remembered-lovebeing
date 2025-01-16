@@ -76,13 +76,13 @@ const CheckingStatusPagadito = () => {
 
   // This is the transaction text depending of PAGADITO STATUS
   if (getStatusPagaditoPayment?.data?.data?.data?.status === "REGISTERED") {
-    transactionStatus = "La transacción no se ha completado.";
+    transactionStatus = t("The transaction has not been completed.");
   } else if (
     getStatusPagaditoPayment?.data?.data?.data?.status === "COMPLETED"
   ) {
-    transactionStatus = "Transacción realizada correctamente.";
+    transactionStatus = t("Transaction completed successfully.");
   } else {
-    transactionStatus = "La transacción ha expirado.";
+    transactionStatus = t("The transaction has expired.");
   }
 
   // When component is mounted we mutate the getStatusPagaditoPayment (We send token)
@@ -120,14 +120,14 @@ const CheckingStatusPagadito = () => {
       invoice_date: getStatusPagaditoPayment?.data?.data?.data?.date_trans,
       invoice_description:
         comprobante[1] === "goPro"
-          ? "Making FREE profile to PRO"
+          ? t("Making FREE profile to PRO")
           : comprobante[1] === "singlePackage"
-          ? "SinglePackage Premium"
-          : "TertiaryPackage Premium",
+          ? t("SinglePackage Premium")
+          : t("TertiaryPackage Premium"),
       invoice_type_plan:
         comprobante[1] === "singlePackage" || comprobante[1] === "goPro"
-          ? "Single"
-          : "Tertiary",
+          ? t("Single")
+          : t("Tertiary"),
       invoice_price:
         comprobante[1] === "singlePackage" || comprobante[1] === "goPro"
           ? 1.0
@@ -155,7 +155,7 @@ const CheckingStatusPagadito = () => {
   return (
     <main className="relative container-page my-32">
       <Helmet>
-        <title>Eternal MemoriesX | Pagadito Status</title>
+        <title>Eternal MemoriesX | {t("Pagadito Status")}</title>
       </Helmet>
 
       {/* <div className="md:block hidden fixed top-16 -z-[1] right-8">
@@ -249,7 +249,7 @@ const CheckingStatusPagadito = () => {
                         className="btn btn-blue-light border-0"
                         to={"/my-profiles/"}
                       >
-                        Ve a Mis Perfiles
+                        {t("Go to My Profiles")}
                       </Link>
                     </div>
                   </div>
@@ -328,15 +328,15 @@ const CheckingStatusPagadito = () => {
                       <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                           <th scope="col" className="px-6 py-3">
-                            Description
+                            {t("Description")}
                           </th>
 
                           <th scope="col" className="px-6 py-3 text-nowrap">
-                            Type Plan
+                            {t("Type Plan")}
                           </th>
 
                           <th scope="col" className="px-6 py-3 text-end">
-                            Price
+                            {t("Price")}
                           </th>
                         </tr>
                       </thead>
@@ -348,16 +348,16 @@ const CheckingStatusPagadito = () => {
                             className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                           >
                             {comprobante[1] === "goPro"
-                              ? "Making FREE profile to PRO"
+                              ? t("Making FREE profile to PRO")
                               : comprobante[1] === "singlePackage"
-                              ? "SinglePackage Premium"
-                              : "TertiaryPackage Premium"}
+                              ? t("SinglePackage Premium")
+                              : t("TertiaryPackage Premium")}
                           </th>
                           <td className="px-6 py-4">
                             {comprobante[1] === "singlePackage" ||
                             comprobante[1] === "goPro"
-                              ? "Single"
-                              : "Tertiary"}
+                              ? t("Single")
+                              : t("Tertiary")}
                           </td>
                           <td className="px-6 py-4 text-end">
                             $

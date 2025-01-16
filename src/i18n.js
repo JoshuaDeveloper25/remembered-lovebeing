@@ -642,10 +642,20 @@ const resources = {
         "Generate a QR Code to have more accessibility from other devices!",
       "More options": "More options",
       "Edit Remembered Profile...": "Edit Remembered Profile...",
+      "In loving memory of": "In loving memory of",
+      "Managed by": "Managed by",
+      Unfollow: "Unfollow",
+      Follow: "Follow",
+      "Memorial Status": "Memorial Status",
     },
   },
   es: {
     translation: {
+      "Memorial Status": "Estado del Memorial",
+      Follow: "Seguir",
+      Unfollow: "Dejar de Seguir",
+      "Managed by": "Gestionado por",
+      "In loving memory of": "Con amor hacia",
       "Edit Remembered Profile...": "Editar Perfil del Ser Querido...",
       "More options": "Más opciones",
       "Generate a QR Code to have more accessibility from other devices!":

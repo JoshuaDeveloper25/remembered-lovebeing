@@ -6,7 +6,7 @@ import { BsPlus } from "react-icons/bs";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const FollowRemember = ({ idRemembered }) => {
+const FollowRemember = ({ idRemembered, t }) => {
   const queryClient = useQueryClient();
   const params = useParams();
 
@@ -78,7 +78,7 @@ const FollowRemember = ({ idRemembered }) => {
       onClick={handleUnfollowRemember}
       type="button"
     >
-      <FaMinus size={20} className="me-1.5" /> Unfollow
+      <FaMinus size={20} className="me-1.5" /> {t("Unfollow")}
     </button>
   ) : (
     <button
@@ -88,7 +88,7 @@ const FollowRemember = ({ idRemembered }) => {
       onClick={handleFollowRemember}
       type="button"
     >
-      <BsPlus size={26} /> Follow
+      <BsPlus size={26} /> {t("Follow")}
     </button>
   );
 };

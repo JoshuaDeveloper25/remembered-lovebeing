@@ -1,6 +1,10 @@
 import { Button, ButtonGroup } from "@nextui-org/react";
+import AppContext from "../../../context/AppProvider";
+import { useContext } from "react";
 
-const TabsResponsive = ({ setOpenTab, openTab }) => {
+const TabsResponsive = ({ setOpenTab, openTab, t }) => {
+  const { languageSelected } = useContext(AppContext);
+
   return (
     <ButtonGroup variant="faded" className="mb-3 justify-center w-full">
       <Button
@@ -10,7 +14,7 @@ const TabsResponsive = ({ setOpenTab, openTab }) => {
           "bg-primary-color/30 text-black text-xs font-bold uppercase  shadow-lg rounded block leading-normal"
         } min-w-fit w-full px-2`}
       >
-        About
+        {t("About")}
       </Button>
 
       <Button
@@ -20,7 +24,7 @@ const TabsResponsive = ({ setOpenTab, openTab }) => {
           "bg-primary-color/30 text-black text-xs font-bold uppercase  shadow-lg rounded block leading-normal"
         } min-w-fit w-full px-2`}
       >
-        Media
+        {t("Media")}
       </Button>
 
       <Button
@@ -30,7 +34,7 @@ const TabsResponsive = ({ setOpenTab, openTab }) => {
           "bg-primary-color/30 text-black text-xs font-bold uppercase  shadow-lg rounded block leading-normal"
         } min-w-fit w-full px-2`}
       >
-        Tributes
+        {t("Tributes")}
       </Button>
 
       <Button
@@ -50,7 +54,7 @@ const TabsResponsive = ({ setOpenTab, openTab }) => {
           "bg-primary-color/30 text-black text-xs font-bold uppercase  shadow-lg rounded block leading-normal"
         } min-w-fit w-full px-2`}
       >
-        Posts
+        {languageSelected === "es" ? "Public.." : "Posts"}
       </Button>
     </ButtonGroup>
   );

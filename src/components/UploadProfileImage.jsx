@@ -1,16 +1,12 @@
-import FormProfile from "../pages/ProfileRemembered/components/FormProfile";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../utils/getFastApiErrors";
-import setCanvasPreview from "../utils/setCanvasPreview";
-import { convertToPixelCrop } from "react-image-crop";
 import { useEffect, useRef, useState } from "react";
-import { FaCameraRetro } from "react-icons/fa";
+import ImagesHandleCrop from "./ImagesHandleCrop";
+import { useTranslation } from "react-i18next";
 import { Button } from "@nextui-org/react";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import Modal from "./Modal";
 import axios from "axios";
-import ImagesHandleCrop from "./ImagesHandleCrop";
 
 export const CameraIcon = ({
   fill = "currentColor",
@@ -39,6 +35,7 @@ export const CameraIcon = ({
 };
 
 const UploadProfileImage = ({ idRemembered }) => {
+  const { t } = useTranslation();
   const [openModalProfile, setOpenModalProfile] = useState(false);
   const previewCanvasRef = useRef(null);
   const queryClient = useQueryClient();
@@ -149,7 +146,7 @@ const UploadProfileImage = ({ idRemembered }) => {
         onCancel={() => setOpenModalProfile(false)}
         setOpenModalCover={setOpenModalProfile}
         handleSubmit={handleSubmitProfileImage}
-        titleModal={"Change Profile Image"}
+        titleModal={t("Change Profile Image")}
         previewCanvasRef={previewCanvasRef}
         openModalCover={openModalProfile}
         setCrop={setCrop}

@@ -44,7 +44,7 @@ const ProfileRemembered = () => {
   const [editRememberedProfile, setEditRememberedProfile] = useState(false);
   const [changeStatusModal, setChangeStatusModal] = useState(false);
   const [statusOptionSelected, setStatusOptionSelected] = useState("");
-  const { userInfo } = useContext(AppContext);
+  const { userInfo, languageSelected } = useContext(AppContext);
   const [openTab, setOpenTab] = useState(1);
   const queryClient = useQueryClient();
   const params = useParams();
@@ -320,7 +320,7 @@ const ProfileRemembered = () => {
           </ModalEditRememberedProfile>
 
           {/* Desktop - from 768px to up! */}
-          <div className="grid min-[870px]:grid-cols-4 grid-cols-1 items-start min-[1150px]:gap-3 sm:gap-1 gap-0 px-2.5">
+          <div className="grid min-[870px]:grid-cols-4 grid-cols-1 items-start min-[1150px]:gap-3 sm:gap-1 gap-0 sm:px-2.5 px-0 ">
             <article className="col-span-1 sticky top-11 min-w-52 ">
               <div className="text-center border bg-white shadow-2xl rounded-xl md:-mt-12 py-5 px-4 min-[870px]:block hidden">
                 <div className="sticky z-20">
@@ -354,7 +354,7 @@ const ProfileRemembered = () => {
 
                 <h3 className="font-bold text-sm text-muted-color mt-3 capitalize">
                   {data?.data?.remembered_profile?.epitaph ||
-                    "In loving memory of"}
+                    t("In loving memory of")}
                 </h3>
                 <h3 className="font-bold capitalize text-xl">
                   {data?.data?.remembered_profile?.first_name}{" "}
@@ -363,16 +363,17 @@ const ProfileRemembered = () => {
                 <p className="text-muted-color my-2 text-[13px] leading-4">
                   <span className="block font-bold mb-1 text-sm">
                     {" "}
-                    Lifetime:
+                    {t("Lifetime")}:
                   </span>{" "}
                   {data?.data?.remembered_profile?.birth_date}{" "}
                   <span className="font-bold mx-1">X</span>{" "}
                   {data?.data?.remembered_profile?.death_date}{" "}
                   <span className="block font-bold">
-                    Lived:{" "}
+                    {t("Lived")}:{" "}
                     {getLivedDays(
                       data?.data?.remembered_profile?.birth_date,
-                      data?.data?.remembered_profile?.death_date
+                      data?.data?.remembered_profile?.death_date,
+                      languageSelected
                     )}{" "}
                   </span>
                   {/* <span className="block font-bold">
@@ -382,7 +383,7 @@ const ProfileRemembered = () => {
                 </p>
 
                 <p className="text-muted-color text-xs font-bold mt-2 leading-4">
-                  Managed by:{" "}
+                  {t("Managed by")}:{" "}
                   <span className="font-bold">
                     {data?.data?.remembered_profile?.owner?.name}
                   </span>
@@ -390,6 +391,7 @@ const ProfileRemembered = () => {
 
                 {!data?.data?.is_owner && userInfo?.access_token && (
                   <FollowRemember
+                    t={t}
                     idRemembered={data?.data?.remembered_profile?.id}
                   />
                 )}
@@ -400,8 +402,8 @@ const ProfileRemembered = () => {
                       className="btn btn-blue bg-transparent border border-primary-color text-primary-color text-base rounded-sm mt-3 hover:bg-primary-color hover:text-white animation-fade"
                       onClick={() => setEditRememberedProfile(true)}
                     >
-                      <TfiPencilAlt className="inline align-sub size-5" /> Edit
-                      Profile
+                      <TfiPencilAlt className="inline align-sub size-5" />{" "}
+                      {t("Edit Profile")}
                     </button>
                   </div>
                 )}
@@ -417,19 +419,19 @@ const ProfileRemembered = () => {
                   } bg-white shadow-2xl rounded-s-none rounded-xl mt-4 py-5 px-4 min-[870px]:block hidden`}
                 >
                   <h3 className="font-bold text-muted-color">
-                    Memorial Status:
+                    {t("Memorial Status")}:
                   </h3>
 
                   <div className="flex items-center justify-between my-2">
-                    <h2 className="font-semibold">Status:</h2>
+                    <h2 className="font-semibold">{t("Status")}:</h2>
                     {data?.data?.remembered_profile?.status_privacy ===
                     "public" ? (
                       <h4 className="text-center rounded-sm inline-block font-semibold px-2 py-1 text-green-500 bg-green-200">
-                        Public
+                        {t("Public")}
                       </h4>
                     ) : (
                       <h4 className="text-center rounded-sm inline-block font-semibold px-2 py-1 text-red-400 bg-red-200">
-                        Private
+                        {t("Private")}
                       </h4>
                     )}
                   </div>
@@ -439,11 +441,11 @@ const ProfileRemembered = () => {
                     onClick={() => setChangeStatusModal(true)}
                     type="button"
                   >
-                    Change Status
+                    {t("Change Status")}
                   </button>
 
                   <Modal
-                    titleModal={"Memorial Status Options..."}
+                    titleModal={t("Memorial Status Options...")}
                     handleSubmit={handleChangeStatus}
                     setOpenModal={setChangeStatusModal}
                     openModal={changeStatusModal}
@@ -471,7 +473,7 @@ const ProfileRemembered = () => {
                 <TabLink
                   setOpenTab={setOpenTab}
                   linkTab={"#about"}
-                  textTab={"About"}
+                  textTab={t("About")}
                   openTab={openTab}
                   numberTab={1}
                   countTab={false}
@@ -481,7 +483,7 @@ const ProfileRemembered = () => {
                 {/* Media */}
                 <TabLink
                   setOpenTab={setOpenTab}
-                  textTab={"Media"}
+                  textTab={t("Media")}
                   linkTab={"#media"}
                   openTab={openTab}
                   numberTab={3}
@@ -494,7 +496,7 @@ const ProfileRemembered = () => {
                 <TabLink
                   setOpenTab={setOpenTab}
                   linkTab={"#tributes"}
-                  textTab={"Tributes"}
+                  textTab={t("Tributes")}
                   openTab={openTab}
                   numberTab={5}
                   countTab={data?.data?.remembered_profile?.tributes?.length}
@@ -504,7 +506,7 @@ const ProfileRemembered = () => {
                 <TabLink
                   setOpenTab={setOpenTab}
                   linkTab={"#condolences"}
-                  textTab={"Condolences"}
+                  textTab={t("Condolences")}
                   openTab={openTab}
                   numberTab={4}
                   countTab={data?.data?.remembered_profile?.condolences?.length}
@@ -514,7 +516,7 @@ const ProfileRemembered = () => {
                 <TabLink
                   setOpenTab={setOpenTab}
                   linkTab={"#posts"}
-                  textTab={"Posts"}
+                  textTab={t("Posts")}
                   openTab={openTab}
                   numberTab={2}
                   countTab={data?.data?.remembered_profile?.posts?.length}
@@ -525,7 +527,7 @@ const ProfileRemembered = () => {
                   <TabLink
                     setOpenTab={setOpenTab}
                     linkTab={"#qrCode"}
-                    textTab={"Qr Code"}
+                    textTab={t("QR Code")}
                     openTab={openTab}
                     numberTab={6}
                     countTab={false}
@@ -535,7 +537,11 @@ const ProfileRemembered = () => {
               </ul>
 
               <div className="min-[870px]:hidden block mb-1">
-                <TabsResponsive setOpenTab={setOpenTab} openTab={openTab} />
+                <TabsResponsive
+                  t={t}
+                  setOpenTab={setOpenTab}
+                  openTab={openTab}
+                />
               </div>
 
               <div className="flex flex-col min-w-0 break-words w-full">

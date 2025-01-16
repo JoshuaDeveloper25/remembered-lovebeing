@@ -1,9 +1,10 @@
 import FormChangeStatus from "../../ProfileRemembered/components/FormChangeStatus";
 import NavbarDropdownLink from "../../../components/NavbarDropdownLink";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useContext, useEffect, useRef, useState } from "react";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import { getLivedDays } from "../../../utils/getLivedDays";
-import { useEffect, useRef, useState } from "react";
+import AppContext from "../../../context/AppProvider";
 import { HiDotsVertical } from "react-icons/hi";
 import { useTranslation } from "react-i18next";
 import Modal from "../../../components/Modal";
@@ -18,6 +19,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 
 const Profile = ({ item, isPending }) => {
+  const { languageSelected } = useContext(AppContext);
   const { t } = useTranslation();
   const [openOptions, setOpenOptions] = useState(false);
   const [changeStatusModal, setChangeStatusModal] = useState(false);
@@ -390,6 +392,7 @@ const Profile = ({ item, isPending }) => {
                       editableWidth={"max-w-xl"}
                     >
                       <FormLifeTime
+                        t={t}
                         setOpenLifeTimeModal={setOpenLifeTimeModal}
                         currentYear={currentYear}
                         bornYear={bornYear}
@@ -428,7 +431,8 @@ const Profile = ({ item, isPending }) => {
                     ? null
                     : `${t("Lived")}: ${getLivedDays(
                         item?.birth_date,
-                        item?.death_date
+                        item?.death_date,
+                        languageSelected
                       )}`}
                 </span>
               </h4>

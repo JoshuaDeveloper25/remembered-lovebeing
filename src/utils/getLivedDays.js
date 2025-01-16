@@ -1,5 +1,9 @@
-export const getLivedDays = (date1, date2) => {
-  const diffTime = Math.abs(new Date(`${date1}T00:00:00Z`) - new Date(`${date2}T00:00:00Z`));
+export const getLivedDays = (date1, date2, language) => {
+  const spanishSelected = language === "es" ? "spanish" : "english";
+
+  const diffTime = Math.abs(
+    new Date(`${date1}T00:00:00Z`) - new Date(`${date2}T00:00:00Z`)
+  );
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
   const years = Math.floor(diffDays / 365);
@@ -8,18 +12,22 @@ export const getLivedDays = (date1, date2) => {
   let result = "";
 
   if (date1 === date2) {
-    return `0 days`;
+    return `0 ${spanishSelected ? "días" : "dias"}`;
   }
 
   if (years > 0) {
-    result += `${years} year${years > 1 ? "s" : ""}`;
+    result += `${years} ${spanishSelected ? "año" : "year"}${
+      years > 1 ? "s" : ""
+    }`;
   }
 
   if (days > 0) {
     if (years > 0) {
-      result += " and ";
+      result += ` ${spanishSelected ? "y" : "and"} `;
     }
-    result += `${days} day${days > 1 ? "s" : ""}`;
+    result += `${days} ${spanishSelected ? "día" : "day"}${
+      days > 1 ? "s" : ""
+    }`;
   }
 
   return result;

@@ -3,6 +3,7 @@ import ButtonForm from "../../../components/ButtonForm";
 import { useState, useEffect } from "react";
 
 const FormLifeTime = ({
+  t,
   setOpenLifeTimeModal,
   bornYear,
   setBornYear,
@@ -53,7 +54,7 @@ const FormLifeTime = ({
     <>
       <div className="p-4">
         <div className="flex flex-col md:flex-row gap-4">
-          <h4>Born:</h4>
+          <h4>{t("Born")}:</h4>
 
           <select
             className="border border-tertiary-color rounded pe-4"
@@ -74,7 +75,7 @@ const FormLifeTime = ({
           >
             {months.map((month) => (
               <option key={month} value={month}>
-                {month}
+                {t(month)}
               </option>
             ))}
           </select>
@@ -93,7 +94,7 @@ const FormLifeTime = ({
         </div>
 
         <div className="flex flex-col md:flex-row gap-4 mt-4">
-          <h4>Passed Away:</h4>
+          <h4>{t("Passed Away")}:</h4>
 
           <select
             className="border border-tertiary-color rounded pe-4"
@@ -114,7 +115,7 @@ const FormLifeTime = ({
           >
             {months.map((month) => (
               <option key={month} value={month}>
-                {month}
+                {t(month)}
               </option>
             ))}
           </select>
@@ -136,8 +137,8 @@ const FormLifeTime = ({
       <ButtonForm
         setOpenModal={setOpenLifeTimeModal}
         isPending={isPending}
-        statusOff={"Add"}
-        statusOn={"Adding..."}
+        statusOff={t("Add")}
+        statusOn={t("Adding...")}
       />
     </>
   );

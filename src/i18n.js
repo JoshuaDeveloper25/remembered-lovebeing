@@ -461,10 +461,52 @@ const resources = {
         "Oops! The page you're looking for doesn't exist. It might have been moved, deleted, or never existed in the first place. Please check the URL or go back to the homepage.",
       "The URL has been altered!": "The URL has been altered!",
       "Go Prices": "Go Prices",
+      "New Updates": "New Updates",
+      "Keep up with the latest changes and what's coming next!":
+        "Keep up with the latest changes and what's coming next!",
+      "Future Mobile App Transition: Android & iOS":
+        "Future Mobile App Transition: Android & iOS",
+      "If you’re a mobile phone user, you’ll soon be able to enjoy the full experience of our app on your Android and iOS devices. Stay tuned for a seamless and smooth transition to your favorite platform, featuring enhanced features and optimized performance for mobile.":
+        "If you’re a mobile phone user, you’ll soon be able to enjoy the full experience of our app on your Android and iOS devices. Stay tuned for a seamless and smooth transition to your favorite platform, featuring enhanced features and optimized performance for mobile.",
+      Profiles: "Profiles",
+      "Invite your loved ones to manage this memorial profile":
+        "Invite your loved ones to manage this memorial profile",
+      "Allow your loved ones to help manage and keep the memorial profile alive.":
+        "Allow your loved ones to help manage and keep the memorial profile alive.",
+      "Reminder on their death anniversary for profile followers":
+        "Reminder on their death anniversary for profile followers",
+      "Receive an email message on their death anniversary to remember and honor their memory in a special way.":
+        "Receive an email message on their death anniversary to remember and honor their memory in a special way.",
+      "Profiles Management": "Profiles Management",
+      "Upgrade your profile to PRO for FREE using your purchased Premium packages":
+        "Upgrade your profile to PRO for FREE using your purchased Premium packages",
+      "If you’ve already purchased Premium packages, you can use those benefits to upgrade your free profile to Pro without making an additional purchase. Make the most of your purchases and enhance your experience.":
+        "If you’ve already purchased Premium packages, you can use those benefits to upgrade your free profile to Pro without making an additional purchase. Make the most of your purchases and enhance your experience.",
     },
   },
   es: {
     translation: {
+      "If you’ve already purchased Premium packages, you can use those benefits to upgrade your free profile to Pro without making an additional purchase. Make the most of your purchases and enhance your experience.":
+        "Si ya has adquirido paquetes Premium, puedes usar esos beneficios para actualizar tu perfil gratuito a Pro, sin necesidad de realizar una compra adicional. Aprovecha al máximo tus compras y mejora tu experiencia.",
+      "Upgrade your profile to PRO for FREE using your purchased Premium packages":
+        "Actualiza tu perfil GRATIS a PRO usando tus paquetes Premium adquiridos",
+      "Profiles Management": "Gestión de Perfiles",
+      "Receive an email message on their death anniversary to remember and honor their memory in a special way.":
+        "Recibe un mensaje por correo electrónico en el aniversario de su fallecimiento, para recordar y honrar su memoria de una forma especial.",
+      "Reminder on their death anniversary for profile followers":
+        "Recordatorio en su aniversario de fallecimiento para seguidores del perfil",
+      "Allow your loved ones to help manage and keep the memorial profile alive.":
+        "Permite que tus seres queridos ayuden a gestionar y mantener vivo el perfil conmemorativo.",
+      "Invite your loved ones to manage this memorial profile":
+        "Invita a tus seres queridos a gestionar este perfil conmemorativo",
+      Profiles: "Perfiles",
+      "If you’re a mobile phone user, you’ll soon be able to enjoy the full experience of our app on your Android and iOS devices. Stay tuned for a seamless and smooth transition to your favorite platform, featuring enhanced features and optimized performance for mobile.":
+        "Si eres usuario de teléfonos móviles, muy pronto podrás disfrutar de la experiencia completa de nuestra app en tus dispositivos Android e iOS. Mantente atento a una transición fácil y fluida hacia tu plataforma favorita, con características mejoradas y un rendimiento optimizado para móviles.",
+      "Future Mobile App Transition: Android & iOS":
+        "Transición Futuro de la App a Móviles: Android e iOS",
+      "Keep up with the latest changes and what's coming next!":
+        "¡Mantente al día con los últimos cambios y lo que está por venir!",
+      "New Updates": "Nuevas Novedades",
       "Go Prices": "Ir a Precios",
       "The URL has been altered!": "¡La URL ha sido modificada!",
       "Oops! The page you're looking for doesn't exist. It might have been moved, deleted, or never existed in the first place. Please check the URL or go back to the homepage.":

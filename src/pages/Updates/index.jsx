@@ -8,12 +8,12 @@ const Updates = () => {
   return (
     <main className="container-page py-16 px-2">
       <Helmet>
-        <title>Eternal MemoriesX | Updates</title>
+        <title>Eternal MemoriesX | {t("Updates")}</title>
       </Helmet>
 
       <div className="text-center mb-14">
         <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
-          {t("Nuevas Novedades")}
+          {t("New Updates")}
         </h2>
         <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
         <p className="text-xl max-w-2xl mx-auto mt-2 mb-8 text-muted-color">
@@ -28,15 +28,13 @@ const Updates = () => {
             content: "text-sm",
             indicator: "text-xl",
           }}
-          title="Future Mobile App Transition: Android & iOS" // Transición Futuro de la App a Móviles: Android e iOS
+          title={t("Future Mobile App Transition: Android & iOS")} // Transición Futuro de la App a Móviles: Android e iOS
           key="1"
         >
           <p>
-            Si eres usuario de teléfonos móviles, muy pronto podrás disfrutar de
-            la experiencia completa de nuestra app en tus dispositivos Android e
-            iOS. Mantente atento a una transición fácil y fluida hacia tu
-            plataforma favorita, con características mejoradas y un rendimiento
-            optimizado para móviles.
+            {t(
+              "If you’re a mobile phone user, you’ll soon be able to enjoy the full experience of our app on your Android and iOS devices. Stay tuned for a seamless and smooth transition to your favorite platform, featuring enhanced features and optimized performance for mobile."
+            )}
           </p>
         </AccordionItem>
 
@@ -46,34 +44,31 @@ const Updates = () => {
             content: "text-sm",
             indicator: "text-xl",
           }}
-          title="Profiles"
+          title={t("Profiles")}
           key="2"
         >
           <ul className="pl-4 list-disc space-y-4">
             <li>
               <h3 className="font-bold">
-                {t(
-                  "Invita a tus seres queridos a gestionar este perfil conmemorativo"
-                )}
+                {t("Invite your loved ones to manage this memorial profile")}
               </h3>
 
               <p>
-                Permite que tus seres queridos ayuden a gestionar y mantener
-                vivo el perfil conmemorativo.
+                {t(
+                  "Allow your loved ones to help manage and keep the memorial profile alive."
+                )}
               </p>
             </li>
 
             <li>
               <h3 className="font-bold">
-                {t(
-                  "Recordatorio en su aniversario de fallecimiento para seguidores del perfil"
-                )}
+                {t("Reminder on their death anniversary for profile followers")}
               </h3>
 
               <p>
-                Recibe un mensaje por correo electrónico en el aniversario de su
-                fallecimiento, para recordar y honrar su memoria de una forma
-                especial.
+                {t(
+                  "Receive an email message on their death anniversary to remember and honor their memory in a special way."
+                )}
               </p>
             </li>
           </ul>
@@ -85,22 +80,21 @@ const Updates = () => {
             content: "text-sm",
             indicator: "text-xl",
           }}
-          title="Profiles Management"
+          title={t("Profiles Management")}
           key="3"
         >
           <ul className="pl-4 list-disc space-y-4">
             <li>
               <h3 className="font-bold">
                 {t(
-                  "Actualiza tu perfil GRATIS a PRO usando tus paquetes Premium adquiridos"
+                  "Upgrade your profile to PRO for FREE using your purchased Premium packages"
                 )}
               </h3>
 
               <p>
-                Si ya has adquirido paquetes Premium, puedes usar esos
-                beneficios para actualizar tu perfil gratuito a Pro, sin
-                necesidad de realizar una compra adicional. Aprovecha al máximo
-                tus compras y mejora tu experiencia.
+                {t(
+                  "If you’ve already purchased Premium packages, you can use those benefits to upgrade your free profile to Pro without making an additional purchase. Make the most of your purchases and enhance your experience."
+                )}
               </p>
             </li>
           </ul>

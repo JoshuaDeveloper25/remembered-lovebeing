@@ -31,7 +31,7 @@ const News = () => {
   return (
     <section className="container-page py-16 px-4">
       <Helmet>
-        <title>Eternal MemoriesX | News</title>
+        <title>Eternal MemoriesX | {t("News")}</title>
       </Helmet>
 
       {/* --> Introduction */}

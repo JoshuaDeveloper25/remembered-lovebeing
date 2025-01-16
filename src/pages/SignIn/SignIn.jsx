@@ -1,12 +1,15 @@
 import { Helmet } from "react-helmet-async";
 import CarouselSignIn from "./components/CarouselSignIn";
 import Form from "./components/Form";
+import { useTranslation } from "react-i18next";
 
 const SignIn = () => {
+  const { t } = useTranslation();
+  
   return (
     <section className="flex flex-col justify-center items-center h-screen">
       <Helmet>
-        <title>Eternal MemoriesX | Sign In</title>
+        <title>Eternal MemoriesX | {t("Sign In")}</title>
       </Helmet>
 
       <div className="container-page px-2">

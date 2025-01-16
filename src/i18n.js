@@ -514,11 +514,17 @@ const resources = {
       "User hasn't input a date...": "User hasn't input a date...",
       Lived: "Lived",
       Verified: "Verified",
-      "Paypal Payment Success": "Paypal Payment Success"
+      "Paypal Payment Success": "Paypal Payment Success",
+      Home: "Home",
+      "Remembered Profile": "Remembered Profile",
+      "Terms & Conditions": "Terms & Conditions",
     },
   },
   es: {
     translation: {
+      "Terms & Conditions": "Términos y Condiciones",
+      "Remembered Profile": "Perfil de Recordado",
+      Home: "Inicio",
       "Paypal Payment Success": "Pago de PayPal Exitoso",
       Verified: "Verificado",
       Lived: "Vivió",

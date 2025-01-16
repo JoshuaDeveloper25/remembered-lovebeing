@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
   return (
     <main className="relative">
       <Helmet>
-        <title>Eternal MemoriesX | Privacy Policy</title>
+        <title>Eternal MemoriesX | {t("Privacy Policy")}</title>
       </Helmet>
 
       {/* <div className="md:block hidden fixed top-18 right-8">

@@ -9,7 +9,7 @@ const TermsAndConditions = () => {
   return (
     <main className="relative">
       <Helmet>
-        <title>Eternal MemoriesX | Terms & Conditions</title>
+        <title>Eternal MemoriesX | {t("Terms & Conditions")}</title>
       </Helmet>
 
       {/* <div className="md:block hidden fixed top-18 right-8">

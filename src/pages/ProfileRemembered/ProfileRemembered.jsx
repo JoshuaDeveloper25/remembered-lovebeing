@@ -29,6 +29,7 @@ import axios from "axios";
 import TabsResponsive from "./components/TabsResponsive";
 import ModalEditRememberedProfile from "./components/ModalEditRememberedProfile";
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 
 const ProfileRemembered = () => {
   const currentYear = new Date().getFullYear();
@@ -38,6 +39,7 @@ const ProfileRemembered = () => {
   const [passedYear, setPassedYear] = useState(1900 || currentYear);
   const [passedMonth, setPassedMonth] = useState("January");
   const [passedDay, setPassedDay] = useState(1);
+  const { t } = useTranslation();
 
   const [editRememberedProfile, setEditRememberedProfile] = useState(false);
   const [changeStatusModal, setChangeStatusModal] = useState(false);
@@ -177,7 +179,7 @@ const ProfileRemembered = () => {
   return (
     <section className="container-page my-10">
       <Helmet>
-        <title>Eternal MemoriesX | Remembered Profile</title>
+        <title>Eternal MemoriesX | {t("Remembered Profile")}</title>
       </Helmet>
 
       <article className="rounded-lg">

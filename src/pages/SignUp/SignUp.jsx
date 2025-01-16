@@ -4,16 +4,18 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { useMutation } from "@tanstack/react-query";
 import AppContext from "../../context/AppProvider";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useContext, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import Form from "./components/Form";
 import axios from "axios";
-import { Helmet } from "react-helmet-async";
 
 const SignUp = () => {
   const [isRegisterGooglePending, setIsRegisterGooglePending] = useState(false);
   const { setUserInfo } = useContext(AppContext);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (userInfo) => {
@@ -94,7 +96,7 @@ const SignUp = () => {
   return (
     <section className="flex flex-col justify-center items-center h-screen">
       <Helmet>
-        <title>Eternal MemoriesX | Sign Up</title>
+        <title>Eternal MemoriesX | {t("Sign Up")}</title>
       </Helmet>
 
       <div className="container-page px-2">

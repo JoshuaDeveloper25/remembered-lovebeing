@@ -89,7 +89,7 @@ const MyProfiles = () => {
   return (
     <>
       <Helmet>
-        <title>Eternal MemoriesX | My Profiles</title>
+        <title>Eternal MemoriesX | {t("My Profiles")}</title>
       </Helmet>
 
       {/* Sky Video */}

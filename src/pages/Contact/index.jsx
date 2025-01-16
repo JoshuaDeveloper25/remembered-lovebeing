@@ -43,7 +43,7 @@ const Contact = () => {
   return (
     <main className="relative">
       <Helmet>
-        <title>Eternal MemoriesX | Contact</title>
+        <title>Eternal MemoriesX | {t("Contact")}</title>
       </Helmet>
 
       {/* <div className="md:block hidden fixed top-18 right-8  -z-[1]">

@@ -37,7 +37,7 @@ const Posts = () => {
       </div> */}
 
       <Helmet>
-        <title>Eternal MemoriesX | Posts</title>
+        <title>Eternal MemoriesX | {t("Posts")}</title>
       </Helmet>
 
       <section

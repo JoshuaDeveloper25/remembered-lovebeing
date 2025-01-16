@@ -87,7 +87,7 @@ const Memorials = () => {
   return (
     <section className="container-page px-2 py-16">
       <Helmet>
-        <title>Eternal MemoriesX | Memorials</title>
+        <title>Eternal MemoriesX | {t("Memorials")}</title>
       </Helmet>
 
       {/* Introduction */}

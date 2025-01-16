@@ -9,14 +9,17 @@ import ShareSite from "./components/ShareSite";
 import Header from "./components/Header";
 
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const { t } = useTranslation();
+  
   return (
     <>
       <Helmet>
-        <title>Eternal MemoriesX | Home</title>
+        <title>Eternal MemoriesX | {t("Home")}</title>
       </Helmet>
-      
+
       {/* Header */}
       <Header />
 

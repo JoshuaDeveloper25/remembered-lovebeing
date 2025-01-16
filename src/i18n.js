@@ -510,7 +510,7 @@ const resources = {
       "Pay with Paypal": "Pay with Paypal",
       "Paying in Eternal MemoriesX": "Paying in Eternal MemoriesX",
       "Upgrading FREE profile to PRO": "Upgrading FREE profile to PRO",
-      "In Loving Memory Of": " In Loving Memory Of",
+      "In Loving Memory Of": "In Loving Memory Of",
       "User hasn't input a date...": "User hasn't input a date...",
       Lived: "Lived",
       Verified: "Verified",
@@ -622,10 +622,48 @@ const resources = {
       December: "December",
       Born: "Born",
       "Passed Away": "Passed Away",
+      Profile: "Profile",
+      "Edit your remembered profile as photo, and other special things.":
+        "Edit your remembered profile as photo, and other special things.",
+      "Control the visibility of your profile: private for more privacy and public to share with everyone.":
+        "Control the visibility of your profile: private for more privacy and public to share with everyone.",
+      About: "About",
+      "Discover more about this person in common.":
+        "Discover more about this person in common.",
+      "Pictures from this remembered and its family.":
+        "Pictures from this remembered and its family.",
+      "Tributes from this remembered and its family.":
+        "Tributes from this remembered and its family.",
+      "Condolences from this remembered and its family.":
+        "Condolences from this remembered and its family.",
+      "Posts uploaded from this remembered to share memories.":
+        "Posts uploaded from this remembered to share memories.",
+      "Generate a QR Code to have more accessibility from other devices!":
+        "Generate a QR Code to have more accessibility from other devices!",
+      "More options": "More options",
     },
   },
   es: {
     translation: {
+      "More options": "Más opciones",
+      "Generate a QR Code to have more accessibility from other devices!":
+        "¡Genera un código QR para tener más accesibilidad desde otros dispositivos!",
+      "Posts uploaded from this remembered to share memories.":
+        "Publicaciones subidas de este ser querido para compartir recuerdos.",
+      "Condolences from this remembered and its family.":
+        "Condolencias de este ser querido y su familia.",
+      "Tributes from this remembered and its family.":
+        "Tributos de este ser querido y su familia.",
+      "Pictures from this remembered and its family.":
+        "Imágenes de este ser querido y su familia.",
+      "Discover more about this person in common.":
+        "Descubre más sobre esta persona en común.",
+      About: "Sobre",
+      "Control the visibility of your profile: private for more privacy and public to share with everyone.":
+        "Controla la visibilidad de tu perfil: privado para mayor privacidad y público para compartir con todos.",
+      "Edit your remembered profile as photo, and other special things.":
+        "Edita el perfil de tu ser querido, como la foto y otras cosas especiales.",
+      Profile: "Perfil",
       "Passed Away": "Fallecido",
       Born: "Nacido",
       January: "Enero",
@@ -732,14 +770,14 @@ const resources = {
       "Your browser does not support HTML video.":
         "Tu navegador no soporta video HTML",
       "Terms & Conditions": "Términos y Condiciones",
-      "Remembered Profile": "Perfil de Recordado",
+      "Remembered Profile": "Perfil de Ser Querido",
       Home: "Inicio",
       "Paypal Payment Success": "Pago de PayPal Exitoso",
       Verified: "Verificado",
       Lived: "Vivió",
       "User hasn't input a date...":
         "El usuario no ha introducido una fecha...",
-      "In Loving Memory Of": " Con Amor Y Respeto Hacia",
+      "In Loving Memory Of": "Con Amor Hacia",
       "Upgrading FREE profile to PRO": "Actualizando perfil GRATIS a PRO",
       "Paying in Eternal MemoriesX": "Pagando en Eternal MemoriesX",
       "Pay with Paypal": "Pagar con Paypal",
@@ -853,7 +891,7 @@ const resources = {
       "Select cause of death": "Seleccionar causa de muerte",
       "Select country": "Seleccionar país",
       View: "Ver",
-      "In loving memory of...": "Con amor y respeto hacia...",
+      "In loving memory of...": "Con amor hacia...",
       "Copied to clipboard!": "¡Copiado al portapapeles!",
       Updates: "Novedades",
       "Your invoice has been sent by email. If you can't find it in your inbox, please check your spam.":
@@ -941,7 +979,7 @@ const resources = {
       "Discover the latest updates and stories shared by our users!":
         "¡Descubre las últimas actualizaciones e historias compartidas por nuestros usuarios!",
       "No remembered has made a post...":
-        "No se ha realizado ninguna publicación por parte de los recordados...",
+        "No se ha realizado ninguna publicación por parte de los seres queridos...",
       "Stay updated with the latest news of the users!":
         "¡Mantente actualizado con las últimas noticias de los usuarios!",
       "There's no results about this memorial...":

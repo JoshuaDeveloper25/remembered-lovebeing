@@ -1,5 +1,3 @@
-import ModalProfilePhotoResponsive from "../../../components/ModalProfilePhotoResponsive";
-import FormUserProfile from "../../MyProfiles/components/FormUserProfile";
 import {
   Drawer,
   DrawerContent,
@@ -15,12 +13,11 @@ import {
   FaRegImage,
   FaRibbon,
 } from "react-icons/fa";
+import ImagesHandleCrop from "../../../components/ImagesHandleCrop";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
-import setCanvasPreview from "../../../utils/setCanvasPreview";
 import { BsInfoCircleFill, BsQrCode } from "react-icons/bs";
 import { CgFileDocument, CgProfile } from "react-icons/cg";
-import { convertToPixelCrop } from "react-image-crop";
 import { useEffect, useRef, useState } from "react";
 import FormChangeStatus from "./FormChangeStatus";
 import { RiExchange2Fill } from "react-icons/ri";
@@ -34,8 +31,6 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import axios from "axios";
-import ProfileRememberedModal from "./ProfileRememberedModal";
-import ImagesHandleCrop from "../../../components/ImagesHandleCrop";
 
 const ResponsiveMoreInfoRemembered = ({
   rememberedId,
@@ -51,6 +46,7 @@ const ResponsiveMoreInfoRemembered = ({
   setOpenTab,
   status,
   isOwner,
+  t,
 }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [backdrop, setBackdrop] = useState("blur");
@@ -95,10 +91,6 @@ const ResponsiveMoreInfoRemembered = ({
 
     return () => dropdown?.classList.remove("has-modal-open");
   }, [openChangeProfileModal]);
-
-  const updateAvatar = (imgSrc) => {
-    avatarUrl.current = imgSrc;
-  };
 
   const changeImageProfileMutation = useMutation({
     mutationFn: async (imageInfo) =>
@@ -163,7 +155,7 @@ const ResponsiveMoreInfoRemembered = ({
   };
   return (
     <>
-      <div className="flex dropdownResponsiveProfile">
+      <div className="flex dropdownResponsiveProfile ">
         <div className="flex gap-2">
           <button
             onClick={() => handleBackdropChange(backdrop)}
@@ -192,7 +184,7 @@ const ResponsiveMoreInfoRemembered = ({
             {(onClose) => (
               <>
                 <DrawerHeader className="flex flex-col gap-1">
-                  Profile
+                  {t("Profile")}
                 </DrawerHeader>
 
                 <DrawerBody>
@@ -200,7 +192,7 @@ const ResponsiveMoreInfoRemembered = ({
                   {isOwner && (
                     <>
                       <h2 className="flex items-center gap-1.5 text-primary-color-light font-bold  py-2.5 ">
-                        <DiAptana size={20} /> My Settings
+                        <DiAptana size={20} /> {t("My Settings")}
                       </h2>
 
                       {/* Edit Profile */}
@@ -214,11 +206,14 @@ const ResponsiveMoreInfoRemembered = ({
                         <CgProfile className="text-white h-[36px] w-[36px]" />
 
                         <div>
-                          <Link className="block text-white">Edit Profile</Link>
+                          <Link className="block text-white">
+                            {t("Edit Profile")}
+                          </Link>
 
                           <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
-                            Edit your remembered profile as photo, and other
-                            special things.
+                            {t(
+                              "Edit your remembered profile as photo, and other special things."
+                            )}
                           </p>
                         </div>
                       </li>
@@ -237,18 +232,18 @@ const ResponsiveMoreInfoRemembered = ({
 
                         <div>
                           <button to={"#"} className="block text-white">
-                            Change Your Profile Photo
+                            {t("Change Your Profile Photo")}
                           </button>
 
                           <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
-                            Update your profile image with a new photo.
+                            {t("Update your profile image with a new photo.")}
                           </p>
                         </div>
                       </li>
 
                       {/* Memorial Status Options */}
                       <li
-                        className={`text-start rounded-lg hover:bg-secondary-color group py-2.5 px-2.5 flex gap-3 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
+                        className={`text-start rounded-lg hover:bg-secondary-color group py-2.5 px-2.5 flex gap-2 items-start hover:text-white font-bold animation-fade text-black text-sm cursor-pointer`}
                         onClick={() => {
                           setChangeStatusModal(true);
                           onClose();
@@ -258,17 +253,18 @@ const ResponsiveMoreInfoRemembered = ({
 
                         <div>
                           <Link className="block text-white">
-                            Change Status
+                            {t("Change Status")}
                           </Link>
 
                           <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
-                            Edit your remembered profile as photo, and other
-                            special things.
+                            {t(
+                              "Control the visibility of your profile: private for more privacy and public to share with everyone."
+                            )}
                           </p>
                         </div>
 
                         <Modal
-                          titleModal={"Memorial Status Options..."}
+                          titleModal={t("Memorial Status Options...")}
                           handleSubmit={handleChangeStatus}
                           setOpenModal={setChangeStatusModal}
                           openModal={changeStatusModal}
@@ -290,7 +286,7 @@ const ResponsiveMoreInfoRemembered = ({
                   {/* Navigation */}
 
                   <h2 className="flex items-center gap-1.5 text-primary-color-light font-bold py-2.5">
-                    <GrNavigate size={20} /> Navigation
+                    <GrNavigate size={20} /> {t("Navigation")}
                   </h2>
 
                   {/* About */}
@@ -304,10 +300,10 @@ const ResponsiveMoreInfoRemembered = ({
                     <BsInfoCircleFill className="h-[30px] w-[30px]" />
 
                     <div>
-                      <Link className="block">About</Link>
+                      <Link className="block">{t("About")}</Link>
 
                       <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
-                        Discover more about this person in common.
+                        {t("Discover more about this person in common.")}
                       </p>
                     </div>
                   </li>
@@ -324,11 +320,12 @@ const ResponsiveMoreInfoRemembered = ({
 
                     <div>
                       <Link className="block">
-                        Media ({totalProfileCountTabs?.gallery_images?.length})
+                        {t("Media")} (
+                        {totalProfileCountTabs?.gallery_images?.length})
                       </Link>
 
                       <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
-                        Pictures from this remembered and its family.
+                        {t("Pictures from this remembered and its family.")}
                       </p>
                     </div>
                   </li>
@@ -345,11 +342,12 @@ const ResponsiveMoreInfoRemembered = ({
 
                     <div>
                       <Link className="block">
-                        Tributes ({totalProfileCountTabs?.tributes?.length})
+                        {t("Tributes")} (
+                        {totalProfileCountTabs?.tributes?.length})
                       </Link>
 
                       <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
-                        Tributes from this remembered and its family.
+                        {t("Tributes from this remembered and its family.")}
                       </p>
                     </div>
                   </li>
@@ -371,7 +369,7 @@ const ResponsiveMoreInfoRemembered = ({
                       </Link>
 
                       <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
-                        Tributes from this remembered and its family.
+                        {t("Condolences from this remembered and its family.")}
                       </p>
                     </div>
                   </li>
@@ -387,10 +385,14 @@ const ResponsiveMoreInfoRemembered = ({
                     <CgFileDocument className="h-[33px] w-[33px]" />
 
                     <div>
-                      <Link className="block">Posts ({totalLengthPosts})</Link>
+                      <Link className="block">
+                        {t("Posts")} ({totalLengthPosts})
+                      </Link>
 
                       <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
-                        Posts uploaded from this remembered to share memories.
+                        {t(
+                          "Posts uploaded from this remembered to share memories."
+                        )}
                       </p>
                     </div>
                   </li>
@@ -407,11 +409,12 @@ const ResponsiveMoreInfoRemembered = ({
                       <BsQrCode className="h-[30px] w-[30px]" />
 
                       <div>
-                        <Link className="block">QR Code</Link>
+                        <Link className="block">{t("QR Code")}</Link>
 
                         <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
-                          Generate a QR Code to have more accessibility from
-                          other devices!
+                          {t(
+                            "Generate a QR Code to have more accessibility from other devices!"
+                          )}
                         </p>
                       </div>
                     </li>
@@ -425,7 +428,7 @@ const ResponsiveMoreInfoRemembered = ({
                     className="bg-green-400/80 px-3 rounded-xl flex justify-center items-center h-full py-2.5 mx-auto hover:bg-green-400/60 animation-fade"
                     href={"#navigation"}
                   >
-                    <FaChevronDown className="me-2.5" /> More options
+                    <FaChevronDown className="me-2.5" /> {t("More options")}
                   </a>
                 </DrawerFooter>
               </>

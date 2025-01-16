@@ -236,7 +236,7 @@ const ProfileRemembered = () => {
                 <div>
                   <h2 className="font-bold capitalize leading-3 text-base ">
                     {data?.data?.remembered_profile?.epitaph ||
-                      "In loving memory of"}
+                      t("In Loving Memory Of")}
                   </h2>
                   <h3 className="text-gray-600 font-semibold text-sm leading-4">
                     {data?.data?.remembered_profile?.first_name}{" "}
@@ -248,7 +248,7 @@ const ProfileRemembered = () => {
               {/* Status */}
               {data?.data?.is_owner && (
                 <div className="text-sm">
-                  <p className="inline">Status:</p>
+                  <p className="inline">{t("Status")}:</p>
                   <p
                     className={`capitalize inline font-semibold ms-1.5 ${
                       data?.data?.remembered_profile?.status_privacy ===
@@ -257,13 +257,14 @@ const ProfileRemembered = () => {
                         : "text-red-500"
                     } `}
                   >
-                    {data?.data?.remembered_profile?.status_privacy}
+                    {t(data?.data?.remembered_profile?.status_privacy)}
                   </p>
                 </div>
               )}
 
               <div>
                 <ResponsiveMoreInfoRemembered
+                  t={t}
                   rememberedId={data?.data?.remembered_profile?.id}
                   status={data?.data?.remembered_profile?.status_privacy}
                   totalProfileCountTabs={data?.data?.remembered_profile}

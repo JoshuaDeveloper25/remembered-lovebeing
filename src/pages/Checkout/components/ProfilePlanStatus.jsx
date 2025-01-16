@@ -5,7 +5,6 @@ import AppContext from "../../../context/AppProvider";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useContext, useState } from "react";
-import { TbPigMoney } from "react-icons/tb";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
@@ -65,13 +64,13 @@ const ProfilePlanStatus = () => {
   const generatePaymentURL = () => {
     generatePaymentURLMutation?.mutate({
       ern: ern,
-      amount: 1.00,
+      amount: 1.0,
       currency: "USD",
       details: [
         {
           quantity: 1,
-          description: "Making FREE profile to PRO",
-          price: 1.00,
+          description: t("Making FREE profile to PRO"),
+          price: 1.0,
         },
       ],
       custom_params: {
@@ -102,7 +101,7 @@ const ProfilePlanStatus = () => {
           <div className="relative bg-white p-6 pb-6 rounded-b-lg">
             <div className="absolute top-2 right-2">
               <p className="text-green-500 rounded-sm bg-green-500/20 p-2">
-                Plan: <span className="font-semibold">Free</span>
+                Plan: <span className="font-semibold">{t("Free")}</span>
               </p>
             </div>
 
@@ -125,7 +124,7 @@ const ProfilePlanStatus = () => {
               </h2>
 
               <h3 className="text-center font-semibold text-muted-color mt-6 mb-2">
-                In Loving Memory Of
+                {t("In Loving Memory Of")}
               </h3>
 
               <h2 className="capitalize self-end font-bold text-2xl text-primary-color leading-6 text-center my-6">
@@ -143,7 +142,7 @@ const ProfilePlanStatus = () => {
               !rememberProfileQuery?.data?.data?.remembered_profile
                 ?.birth_date ? (
                 <h2 className="text-center font-semibold mt-4 text-muted-color">
-                  User hasn't input a date...
+                  {t("User hasn't input a date...")}
                 </h2>
               ) : (
                 <div className="mt-4 text-center">
@@ -163,7 +162,7 @@ const ProfilePlanStatus = () => {
                       !rememberProfileQuery?.data?.data?.remembered_profile
                         ?.death_date
                         ? null
-                        : `Lived: ${getLivedDays(
+                        : `${t("Lived")}: ${getLivedDays(
                             rememberProfileQuery?.data?.data?.remembered_profile
                               ?.birth_date,
                             rememberProfileQuery?.data?.data?.remembered_profile
@@ -182,7 +181,7 @@ const ProfilePlanStatus = () => {
       <div className="flex-[40%] px-4 py-8">
         <div>
           <h2 className="font-mono tracking-wider text-3xl uppercase font-semibold">
-            Select a payment method
+            {t("Select a payment method")}
           </h2>
           <div className="bg-yellow-500 h-2 w-24 my-3"></div>
         </div>
@@ -205,7 +204,7 @@ const ProfilePlanStatus = () => {
                 className="w-4 h-4 text-primary-color-light bg-gray-100 border-gray-300 focus:ring-primary-color-light dark:focus:ring-primary-color-light dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
               <p className="ms-2 text-sm font-medium  dark:text-gray-300">
-                Pay with a card
+                {t("Pay with a card")}
               </p>
             </div>
             <div>
@@ -221,10 +220,10 @@ const ProfilePlanStatus = () => {
                 onClick={generatePaymentURL}
                 disabled={generatePaymentURLMutation?.isPending}
               >
-                <FaCreditCard  size={26} />
+                <FaCreditCard size={26} />
                 {generatePaymentURLMutation?.isPending
                   ? t("Loading...")
-                  : "Continue With A Card"}
+                  : t("Continue With A Card")}
               </button>
             </div>
           )}
@@ -246,7 +245,7 @@ const ProfilePlanStatus = () => {
                 className="w-4 h-4 text-primary-color-light bg-gray-100 border-gray-300 focus:ring-primary-color-light dark:focus:ring-primary-color-light dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
               <p className="ms-2 text-sm font-medium  dark:text-gray-300">
-                Pay with Paypal
+                {t("Pay with Paypal")}
               </p>
             </div>
             <div>
@@ -256,7 +255,11 @@ const ProfilePlanStatus = () => {
 
           {selectedPayments === "singular" && (
             <>
-              <PaypalComponent rememberedId={rememberProfileQuery?.data?.data?.remembered_profile?.id} />
+              <PaypalComponent
+                rememberedId={
+                  rememberProfileQuery?.data?.data?.remembered_profile?.id
+                }
+              />
             </>
           )}
         </div>

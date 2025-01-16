@@ -509,11 +509,18 @@ const resources = {
       "Continue With A Card": "Continue With A Card",
       "Pay with Paypal": "Pay with Paypal",
       "Paying in Eternal MemoriesX": "Paying in Eternal MemoriesX",
-      "Upgrading FREE profile to PRO": "Upgrading FREE profile to PRO"
+      "Upgrading FREE profile to PRO": "Upgrading FREE profile to PRO",
+      "In Loving Memory Of": " In Loving Memory Of",
+      "User hasn't input a date...": "User hasn't input a date...",
+      Lived: "Lived",
     },
   },
   es: {
     translation: {
+      Lived: "Vivió",
+      "User hasn't input a date...":
+        "El usuario no ha introducido una fecha...",
+      "In Loving Memory Of": " Con Amor Y Respeto Hacia",
       "Upgrading FREE profile to PRO": "Actualizando perfil GRATIS a PRO",
       "Paying in Eternal MemoriesX": "Pagando en Eternal MemoriesX",
       "Pay with Paypal": "Pagar con Paypal",

@@ -513,10 +513,12 @@ const resources = {
       "In Loving Memory Of": " In Loving Memory Of",
       "User hasn't input a date...": "User hasn't input a date...",
       Lived: "Lived",
+      Verified: "Verified",
     },
   },
   es: {
     translation: {
+      Verified: "Verificado",
       Lived: "Vivió",
       "User hasn't input a date...":
         "El usuario no ha introducido una fecha...",

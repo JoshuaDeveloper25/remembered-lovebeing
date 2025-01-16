@@ -11,10 +11,10 @@ const VerifyingContent = ({ isPending, error }) => {
   return (
     <main className="relative">
       <Helmet>
-        <title>Eternal MemoriesX | Verified</title>
+        <title>Eternal MemoriesX | {t("Verified")}</title>
       </Helmet>
 
-      <div className="fixed top-18 right-8">
+      {/* <div className="fixed top-18 right-8">
         <img className="w-32 rotate-[90]" src={peaceDove} />
       </div>
 
@@ -28,7 +28,7 @@ const VerifyingContent = ({ isPending, error }) => {
 
       <div className="fixed top-[20rem] right-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-[1]">
         <img className="w-[100rem] rotate-[-20deg]" src={cloud} alt="cloud" />
-      </div>
+      </div> */}
 
       <section className="flex justify-center items-center min-h-[100vh]">
         <div className="bg-primary-color text-white max-w-2xl mx-4 shadow-primary-color shadow-xl hover:shadow-primary-color hover:shadow-2xl animation-fade p-5 rounded-lg">

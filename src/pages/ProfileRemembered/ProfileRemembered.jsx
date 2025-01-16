@@ -568,7 +568,7 @@ const ProfileRemembered = () => {
                     >
                       <div className="flex flex-col sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
                         <h2 className="text-primary-color font-bold text-xl sm:my-0 my-3">
-                          Posts{" "}
+                          {t("Posts")}{" "}
                         </h2>
 
                         <UploadPost
@@ -584,12 +584,12 @@ const ProfileRemembered = () => {
                       </div>
 
                       {!data?.data?.remembered_profile?.posts?.length ? (
-                        <h2 className="text-center font-bold text-xl text-primary-color my-5">
-                          There's no posts in this profile yet...
-                          <span className="block">
+                        <h2 className="text-center font-bold text-xl max-w-lg mx-auto text-primary-color mt-8">
+                          {t("There's no posts in this profile yet...")}
+                          <span className="block mt-4">
                             {data?.data?.remembered_profile?.status_plan ===
                             "free"
-                              ? "Go to buy the Premium plan to publish posts and more!"
+                              ? t("Go to buy the Premium plan to publish posts and more!")
                               : null}
                           </span>
                         </h2>

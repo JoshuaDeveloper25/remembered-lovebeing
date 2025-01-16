@@ -63,7 +63,7 @@ export const HeartIcon = ({
 
 const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
   const { t } = useTranslation();
-  const { userInfo } = useContext(AppContext);
+  const { userInfo, languageSelected } = useContext(AppContext);
   const postLikesMapeados = post?.post_likes?.map((item) => item?.owner?.name);
   const postLikesWithItsNames = postLikesMapeados?.map((item, index) => (
     <p key={index}>{item}</p>
@@ -197,7 +197,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                 {post?.owner?.name}
               </h3>
               <h4 className="text-xs text-tertiary-color">
-                {t("Created")}: {formatDate(post?.created_at)}
+                {t("Created")}: {formatDate(post?.created_at, languageSelected === 'es' ? 'spanish' : "english")}
               </h4>
             </div>
           </div>
@@ -232,7 +232,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                         hoverBgLink={
                           "hover:bg-secondary-color hover:text-white"
                         }
-                        linkText={"Edit Post"}
+                        linkText={t("Edit Post")}
                         onClick={() => {
                           // setOpenPostDropDown(false);
                           setOpenModalEditPost(true);
@@ -248,7 +248,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                       {/* Delete Post */}
                       <NavbarDropdownLink
                         hoverBgLink={"hover:bg-red-500 hover:text-white"}
-                        linkText={"Delete Post"}
+                        linkText={t("Delete Post")}
                         onClick={handleDeletePost}
                       />
                     </>
@@ -279,7 +279,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                   {postLikesWithItsNames}
 
                   <button onClick={() => setOpenModal(true)}>
-                    See more...
+                    {t("See more...")}
                   </button>
 
                   <ModalFlowbite
@@ -288,7 +288,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                     onClose={() => setOpenModal(false)}
                   >
                     <ModalFlowbite.Header>
-                      Users that liked this post...
+                      {t("Users that liked this post...")}
                     </ModalFlowbite.Header>
 
                     <ModalFlowbite.Body>
@@ -311,7 +311,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
             </Tooltip>
 
             <h3>
-              Comments:{" "}
+              {t("Comments")}:{" "}
               <span className="font-bold">{post?.comments?.length}</span>
             </h3>
           </div>
@@ -345,18 +345,18 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                     </Button>
 
                     <p className="sm:block hidden group-hover:text-red-500">
-                      Leave a heart
+                      {t("Leave a heart")}
                     </p>
                   </div>
                 )}
 
-                {alreadyLikedPost && "You left a heart"}
+                {alreadyLikedPost && t("You left a heart")}
               </button>
             ) : (
               <SignInModal
                 heartDesign={true}
                 additionalText={
-                  <span className="sm:block hidden">Leave a heart</span>
+                  <span className="sm:block hidden">{t("Leave a heart")}</span>
                 }
               >
                 <HeartIcon />
@@ -367,7 +367,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
               onClick={() => setModalPostComments(!modalPostComments)}
               className="flex items-center gap-2.5 animation-fade text-gray-500 hover:text-primary-color"
             >
-              <FaRegMessage size={20} /> Leave a comment
+              <FaRegMessage size={20} /> {t("Leave a comment")}
             </button>
           </div>
         </div>
@@ -450,7 +450,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                 ) : (
                   <div className="text-center bg-muted-color/20 py-4">
                     <h2 className="text-lg font-semibold">
-                      Want to comment something?
+                      {t("Want to comment something?")}
                     </h2>
                     <p>
                       {t("Please")},{" "}

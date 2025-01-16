@@ -667,12 +667,24 @@ const resources = {
         "Please, don't leave empty blanks on the death inputs!",
       "Please, don't leave empty blanks on the born inputs!":
         "Please, don't leave empty blanks on the born inputs!",
+      "There's no posts in this profile yet...":
+        "There's no posts in this profile yet...",
+      "Go to buy the Premium plan to publish posts and more!":
+        "Go to buy the Premium plan to publish posts and more!",
+      "Edit Post": "Edit Post",
+      "Delete Post": "Delete Post",
     },
   },
   es: {
     translation: {
+      "Delete Post": "Eliminar Publicación",
+      "Edit Post": "Editar Publicación",
+      "Go to buy the Premium plan to publish posts and more!":
+        "¡Ve a comprar el plan Premium para publicar publicaciones y más!",
+      "There's no posts in this profile yet...":
+        "Aún no hay publicaciones en este perfil...",
       "Please, don't leave empty blanks on the born inputs!":
-      "¡Por favor, no dejes campos vacíos en los datos de nacimiento!",
+        "¡Por favor, no dejes campos vacíos en los datos de nacimiento!",
       "Please, don't leave empty blanks on the death inputs!":
         "¡Por favor, no dejes campos vacíos en los datos de fallecimiento!",
       "Country is required!": "¡El país es obligatorio!",

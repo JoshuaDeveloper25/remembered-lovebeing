@@ -165,21 +165,21 @@ const MyProfiles = () => {
           <div className=" w-fit ms-auto mb-2.5">
             {data?.data?.remaining_premium_profiles !== 0 ? (
               <p className="font-mono tracking-tighter text-primary-color shadow-lg  bg-slate-200 px-3 rounded-md">
-                Premium profiles
+                {t("Premium profiles")}
                 <span className="font-bold mx-1">
                   ({data?.data?.remaining_premium_profiles})
                 </span>
-                remaining
+                {t("remaining")}
               </p>
             ) : (
               <p className="font-mono tracking-tighter text-primary-color shadow-lg  bg-slate-200 px-3 rounded-md">
-                Premium profiles<span className="font-bold mx-1">(0)</span>
-                available,{" "}
+                {t("Premium profiles")}<span className="font-bold mx-1">(0)</span>
+                {t("available")},{" "}
                 <Link
                   to={"/prices"}
                   className="text-primary-color-light font-semibold underline"
                 >
-                  SEE PLANS
+                  {t("SEE PLANS")}
                 </Link>
               </p>
             )}
@@ -192,7 +192,7 @@ const MyProfiles = () => {
                   onClick={handleCreateFreeProfile}
                   className="btn btn-blue"
                 >
-                  <GoPlus className="size-5 inline" /> Create Free Profile
+                  <GoPlus className="size-5 inline" /> {t("Create Free Profile")}
                 </button>
               </div>
 

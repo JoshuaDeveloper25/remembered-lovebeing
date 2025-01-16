@@ -1,16 +1,13 @@
-import FormUserProfile from "../pages/MyProfiles/components/FormUserProfile";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useContext, useEffect, useRef, useState } from "react";
 import getFastApiErrors from "../utils/getFastApiErrors";
-import setCanvasPreview from "../utils/setCanvasPreview";
-import { convertToPixelCrop } from "react-image-crop";
+import ImagesHandleCrop from "./ImagesHandleCrop";
+import { useTranslation } from "react-i18next";
 import AppContext from "../context/AppProvider";
 import { Button } from "@nextui-org/react";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import Modal from "./Modal";
 import axios from "axios";
-import ImagesHandleCrop from "./ImagesHandleCrop";
 
 export const CameraIcon = ({
   fill = "currentColor",
@@ -39,6 +36,7 @@ export const CameraIcon = ({
 };
 
 const UploadUserProfileImage = ({ iconClassname }) => {
+  const { t } = useTranslation();
   const [openModalProfile, setOpenModalProfile] = useState(false);
   const { userInfo, setUserInfo } = useContext(AppContext);
   const previewCanvasRef = useRef(null);
@@ -64,10 +62,6 @@ const UploadUserProfileImage = ({ iconClassname }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  const updateAvatar = (imgSrc) => {
-    avatarUrl.current = imgSrc;
-  };
 
   const changeImageProfileMutation = useMutation({
     mutationFn: async (imageInfo) =>
@@ -151,7 +145,7 @@ const UploadUserProfileImage = ({ iconClassname }) => {
       <Button
         onPress={() => setOpenModalProfile(true)}
         isIconOnly
-        aria-label="Take a photo"
+        aria-label={t("Take a photo")}
         color="warning"
         variant="faded"
       >
@@ -160,7 +154,7 @@ const UploadUserProfileImage = ({ iconClassname }) => {
 
       {/* Change User Profile Image Modal */}
       <ImagesHandleCrop
-        titleModal={"Change Profile Image"}
+        titleModal={t("Change Profile Image")}
         imgRef={imgRef}
         handleSubmit={handleSubmitProfileImage}
         setOpenModalCover={setOpenModalProfile}

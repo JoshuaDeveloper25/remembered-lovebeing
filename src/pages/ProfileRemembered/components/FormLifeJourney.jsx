@@ -5,6 +5,7 @@ import ButtonForm from "../../../components/ButtonForm";
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const FormLifeJourney = ({
   setOpenLifeJourneyModal,
@@ -29,6 +30,7 @@ const FormLifeJourney = ({
   currentYear,
   months,
 }) => {
+  const { t } = useTranslation();
   const birthDate = rememberedProfileInfo?.birth_date;
   const deathDate = rememberedProfileInfo?.death_date;
 
@@ -98,7 +100,7 @@ const FormLifeJourney = ({
         {/* Born */}
         <article className="border-b border-tertiary-color pb-8 mb-8">
           <div className="flex flex-col md:flex-row gap-4 md:items-center">
-            <h4 className="font-semibold">Born:</h4>
+            <h4 className="font-semibold">{t("Born")}:</h4>
 
             <select
               className="border border-muted-color/20 rounded pe-4 py-1.5 "
@@ -123,7 +125,7 @@ const FormLifeJourney = ({
               <option value="">Month</option>
               {months.map((month) => (
                 <option key={month} value={month}>
-                  {month}
+                  {t(month)}
                 </option>
               ))}
             </select>
@@ -149,27 +151,25 @@ const FormLifeJourney = ({
 
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 my-3">
             <label>
-              <span className="font-semibold">City or town:</span>
+              <span className="font-semibold">{t("City or town")}:</span>
               <input
                 className="outline-none border border-muted-color/20 rounded px-2 py-1.5 block w-full"
-                placeholder="City or town"
                 name="born_city_or_town"
                 defaultValue={rememberedProfileInfo?.birth_city}
               />
             </label>
 
             <label>
-              <span className="font-semibold">State or area:</span>
+              <span className="font-semibold">{t("State or area")}:</span>
               <input
                 className="outline-none border border-muted-color/20 rounded px-2 py-1.5 block w-full"
-                placeholder="State or area"
                 name="born_state_or_area"
                 defaultValue={rememberedProfileInfo?.birth_state}
               />
             </label>
 
             <label>
-              <span className="font-semibold">Country:</span>
+              <span className="font-semibold">{t("Country")}:</span>
               <select
                 className="border border-muted-color/20 rounded pe-4 py-1.5 w-full  "
                 name="born_country"
@@ -177,7 +177,7 @@ const FormLifeJourney = ({
                 onChange={(e) => setBirthCountry(e?.target?.value)}
               >
                 <option className="" value={""}>
-                  -- Select Country --
+                  {t("-- Select --")}
                 </option>
 
                 {countriesApiQuery?.data?.data?.map((countryName, index) => {
@@ -199,7 +199,7 @@ const FormLifeJourney = ({
         {/* Passed Away */}
         <article className="border-b border-tertiary-color pb-8 mb-8">
           <div className="flex flex-col md:flex-row gap-4 md:items-center">
-            <h4 className="font-semibold">Passed Away:</h4>
+            <h4 className="font-semibold">{t("Passed Away")}:</h4>
 
             <select
               className="border border-muted-color/20 rounded pe-4 py-1.5 "
@@ -225,7 +225,7 @@ const FormLifeJourney = ({
               <option value="">Month</option>
               {months.map((month) => (
                 <option key={month} value={month}>
-                  {month}
+                  {t(month)}
                 </option>
               ))}
             </select>
@@ -251,27 +251,25 @@ const FormLifeJourney = ({
 
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3 my-3">
             <label>
-              <span className="font-semibold">City or town:</span>
+              <span className="font-semibold">{t("City or town")}:</span>
               <input
                 className="outline-none border border-muted-color/20 rounded px-2 py-1.5 block w-full"
                 defaultValue={rememberedProfileInfo?.death_city}
                 name="passed_away_city_or_town"
-                placeholder="City or town"
               />
             </label>
 
             <label>
-              <span className="font-semibold">State or area:</span>
+              <span className="font-semibold">{t("State or area")}:</span>
               <input
                 className="outline-none border border-muted-color/20 rounded px-2 py-1.5 block w-full"
                 defaultValue={rememberedProfileInfo?.death_state}
                 name="passed_away_state_or_area"
-                placeholder="State or area"
               />
             </label>
 
             <label>
-              <span className="font-semibold">Country:</span>
+              <span className="font-semibold">{t("Country")}:</span>
               <select
                 className="border border-muted-color/20 rounded pe-4 py-1.5 w-full "
                 value={deathCountry}
@@ -279,7 +277,7 @@ const FormLifeJourney = ({
                 name="passed_away_country"
               >
                 <option className="" value={""}>
-                  -- Select Country --
+                  {t("-- Select --")}
                 </option>
 
                 {countriesApiQuery?.data?.data?.map((countryName, index) => {
@@ -300,24 +298,22 @@ const FormLifeJourney = ({
 
         {/* Parent Names */}
         <article>
-          <h4 className="font-semibold">Parent Names:</h4>
+          <h4 className="font-semibold text-lg">{t("Parent Names")}</h4>
 
           <div className="flex flex-col md:flex-row gap-4">
             <label>
-              <span className="font-semibold">Mother:</span>
+              <span className="font-semibold">{t("Mother")}:</span>
               <input
                 className="outline-none border border-muted-color/20 rounded px-2 py-1.5 block w-full"
-                placeholder="Mother"
                 name="mom_name"
                 defaultValue={rememberedProfileInfo?.mom_name}
               />
             </label>
 
             <label>
-              <span className="font-semibold">Father:</span>
+              <span className="font-semibold">{t("Father")}:</span>
               <input
                 className="outline-none border border-muted-color/20 rounded px-2 py-1.5 block w-full"
-                placeholder="Father"
                 name="dad_name"
                 defaultValue={rememberedProfileInfo?.dad_name}
               />
@@ -331,8 +327,8 @@ const FormLifeJourney = ({
         <ButtonForm
           setOpenModal={setOpenLifeJourneyModal}
           isPending={isPending}
-          statusOff={"Save Changes"}
-          statusOn={"Saving..."}
+          statusOff={t("Save changes")}
+          statusOn={t("Saving...")}
         />
       </div>
     </>

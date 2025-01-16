@@ -15,8 +15,8 @@ export const packages = {
   tertiaryPackage: {
     name: "Tertiary Package",
     price: 50,
-  }
-}
+  },
+};
 
 export const navbarLinks = [
   {
@@ -177,52 +177,52 @@ export const relationships = [
   },
 
   {
-    value: "dad",
+    value: "Dad",
     relationship: "Dad",
   },
 
   {
-    value: "mom",
+    value: "Mom",
     relationship: "Mom",
   },
 
   {
-    value: "son",
+    value: "Son",
     relationship: "Son",
   },
 
   {
-    value: "sister",
+    value: "Sister",
     relationship: "Sister",
   },
 
   {
-    value: "stepsister",
+    value: "Stepsister",
     relationship: "Stepsister",
   },
 
   {
-    value: "brother",
+    value: "Brother",
     relationship: "Brother",
   },
 
   {
-    value: "stepbrother",
+    value: "Stepbrother",
     relationship: "Stepbrother",
   },
 
   {
-    value: "daughter",
+    value: "Daughter",
     relationship: "Daughter",
   },
 
   {
-    value: "grandmother",
+    value: "Grandmother",
     relationship: "Grandmother",
   },
 
   {
-    value: "grandfather",
+    value: "Grandfather",
     relationship: "Grandfather",
   },
 ];

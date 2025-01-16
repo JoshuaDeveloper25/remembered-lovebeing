@@ -1,23 +1,33 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
+import AppContext from "../../../context/AppProvider";
+import { useTranslation } from "react-i18next";
+import { useContext, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { toast } from "react-toastify";
 import ReactQuill from "react-quill";
-import { useState } from "react";
 import axios from "axios";
 
 const ReactQuillAbout = ({ rememberedProfile, owner }) => {
+  const gender = rememberedProfile?.remembered_profile?.gender;
+  const lastName = rememberedProfile?.remembered_profile?.last_name;
+  const firstName = rememberedProfile?.remembered_profile?.first_name;
+
+  const { languageSelected } = useContext(AppContext);
+  const { t } = useTranslation();
   const [value, setValue] = useState(
     !rememberedProfile?.remembered_profile?.remembered_history?.content
-      ? `This memorial website was created in memory of our loved one, ${
-          rememberedProfile?.remembered_profile?.first_name
-        } ${
-          rememberedProfile?.remembered_profile?.last_name
-        }. We will remember ${
-          rememberedProfile?.remembered_profile?.gender === "male"
-            ? "him"
-            : "her"
-        } forever.`
+      ? languageSelected === "es"
+        ? `${`Este sitio conmemorativo fue creado en memoria de nuestro ser querid${
+            gender === "male" ? "o" : "a"
+          },`} ${firstName} ${lastName}. L${
+            gender === "male" ? "o" : "a"
+          } recordaremos por siempre.`
+        : `${t(
+            "This memorial website was created in memory of our loved one,"
+          )} ${firstName} ${lastName}. We will remember ${
+            gender === "male" ? "him" : "her"
+          } forever.`
       : rememberedProfile?.remembered_profile?.remembered_history?.content
   );
 
@@ -101,10 +111,10 @@ const ReactQuillAbout = ({ rememberedProfile, owner }) => {
           {isEditing ? (
             <button
               className="bg-secondary-color text-white px-6 py-1 font-semibold rounded-md"
-              type="button"
               onClick={handleSubmitHistory}
+              type="button"
             >
-              Save Changes
+              {t("Save changes")}
             </button>
           ) : (
             <>
@@ -112,7 +122,7 @@ const ReactQuillAbout = ({ rememberedProfile, owner }) => {
                 onClick={() => setIsEditing(true)}
                 className="bg-secondary-color text-white px-4 py-1 font-medium rounded-md cursor-pointer hover:scale-105 transition-transform mt-2"
               >
-                + Do Changes
+                + {t("Do Changes")}
               </button>
             </>
           )}

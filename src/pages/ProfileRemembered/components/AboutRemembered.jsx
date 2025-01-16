@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
   const rememberedProfileInfo = rememberedProfile?.remembered_profile;
@@ -26,6 +27,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
   const [errorCountryBorn, setErrorCountryBorn] = useState(false);
   const [errorLength, setErrorLength] = useState(false);
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
   const params = useParams();
 
   const months = [
@@ -147,7 +149,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
     editLifeJourneyMutation?.mutate(lifeJourneyInfo);
   };
 
-  // This is for add a quality or best known for the rembered
+  // This is for add a quality or best known for the remembered
   const handleSubmitAddKnownFor = (e) => {
     e.preventDefault();
 
@@ -169,17 +171,19 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
     <section className="bg-white shadow-2xl rounded-md media-spacing px-8 py-1">
       <div className="text-center mt-2 mb-5">
         <h2>
-          <span className="font-bold text-5xl">Who Was</span>{" "}
+          <span className="font-bold text-5xl">{t("Who Was")}</span>{" "}
           <span className="font-medium block">
             {rememberedProfileInfo?.user_relationship === "none" ||
             rememberedProfileInfo?.user_relationship === null
               ? null
-              : `my ${rememberedProfileInfo?.user_relationship}`}{" "}
+              : `${t("my")} ${t(
+                  rememberedProfileInfo?.user_relationship
+                )}`}{" "}
             {rememberedProfileInfo?.first_name}{" "}
             {rememberedProfileInfo?.last_name}?
           </span>
         </h2>
-        <h3 className="font-bold">Let me tell you!</h3>
+        <h3 className="font-bold">{t("Let me tell you!")}</h3>
       </div>
 
       <div className="flex flex-col md:flex-row gap-6">
@@ -187,7 +191,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
         <article className="flex-[55%]">
           <fieldset className="relative border-2 border-black pt-2 pb-8 px-3 rounded-md bg-white">
             <legend className="text-xl font-bold ps-1 pe-2">
-              Life Journey:
+              {t("Life Journey")}:
             </legend>
 
             {owner && (
@@ -204,17 +208,19 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
                   className="px-3.5 py-1 transparent bg-primary-color text-white text-base rounded-md mt-3 hover:bg-primary-color hover:text-white animation-fade"
                   onClick={() => setOpenLifeJourneyModal(!openLifeJourneyModal)}
                 >
-                  <TfiPencilAlt className="inline align-sub size-5" /> Edit
-                  Profile
+                  <TfiPencilAlt className="inline align-sub size-5" />{" "}
+                  {t("Edit Profile")}
                 </button>
               </div>
             )}
 
             <div className="mb-2">
-              <h3 className="font-bold">Where and when born:</h3>
+              <h3 className="font-bold">{t("Where and when born")}:</h3>
               <p>
                 {!rememberedProfileInfo?.birth_date ? (
-                  `${rememberedProfileInfo?.first_name} ${rememberedProfileInfo?.last_name} hasn't input a born date yet...`
+                  `${rememberedProfileInfo?.first_name} ${
+                    rememberedProfileInfo?.last_name
+                  } ${t("hasn't input a born date yet...")}`
                 ) : (
                   <>
                     {rememberedProfileInfo?.first_name}{" "}
@@ -232,10 +238,12 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
             </div>
 
             <div className="mb-3">
-              <h3 className="font-bold">Where and when passed away:</h3>
+              <h3 className="font-bold">{t("Where and when passed away")}:</h3>
               <p>
                 {!rememberedProfileInfo?.death_date ? (
-                  `${rememberedProfileInfo?.first_name} ${rememberedProfileInfo?.last_name} hasn't input a death date yet...`
+                  `${rememberedProfileInfo?.first_name} ${
+                    rememberedProfileInfo?.last_name
+                  } ${t("hasn't input a death date yet...")}`
                 ) : (
                   <>
                     {rememberedProfileInfo?.first_name}{" "}
@@ -276,7 +284,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
             )} */}
 
             <AboutRememberedProfileModal
-              titleModal={"Edit life journey profile"}
+              titleModal={t("Edit life journey profile")}
               handleSubmit={handleSubmitEditLifeJourney}
               setOpenModal={setOpenLifeJourneyModal}
               openModal={openLifeJourneyModal}

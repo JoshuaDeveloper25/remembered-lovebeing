@@ -1,4 +1,3 @@
-import ModalProfilePhotoResponsive from "../../../components/ModalProfilePhotoResponsive";
 import {
   Drawer,
   DrawerContent,
@@ -7,28 +6,24 @@ import {
   DrawerFooter,
   useDisclosure,
 } from "@nextui-org/react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import ImagesHandleCrop from "../../../components/ImagesHandleCrop";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useContext, useEffect, useRef, useState } from "react";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
-import setCanvasPreview from "../../../utils/setCanvasPreview";
-import { Dropdown, DropdownItem } from "flowbite-react";
-import { FaCameraRetro, FaChevronDown, FaPlus } from "react-icons/fa";
-import { convertToPixelCrop } from "react-image-crop";
+import { FaCameraRetro, FaPlus } from "react-icons/fa";
 import AppContext from "../../../context/AppProvider";
+import { IoMdClose, IoMdHeart } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import FormCreateProfile from "./FormCreateProfile";
-import FormUserProfile from "./FormUserProfile";
 import { HiDotsVertical } from "react-icons/hi";
+import { useTranslation } from "react-i18next";
 import Modal from "../../../components/Modal";
 import { GrNavigate } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
-import { IoMdClose, IoMdHeart } from "react-icons/io";
 import { DiAptana } from "react-icons/di";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import axios from "axios";
-import ModalCreateFreeProfileResponsive from "./ModalCreateFreeProfileResponsive";
-import ImagesHandleCrop from "../../../components/ImagesHandleCrop";
 
 const ResponsiveMoreInfoRememberedAdmin = ({
   statusPlan,
@@ -36,7 +31,6 @@ const ResponsiveMoreInfoRememberedAdmin = ({
   totalFavoritesProfiles,
   totalOwnProfiles,
   setOpenPremiumModal,
-  openPremiumModal,
   setOpenFreeModal,
   openFreeModal,
   setStatusPlan,
@@ -48,6 +42,7 @@ const ResponsiveMoreInfoRememberedAdmin = ({
 }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [backdrop, setBackdrop] = useState("blur");
+  const { t } = useTranslation();
 
   const handleBackdropChange = (backdrop) => {
     setBackdrop(backdrop);
@@ -91,10 +86,6 @@ const ResponsiveMoreInfoRememberedAdmin = ({
 
     return () => dropdown?.classList.remove("has-modal-open");
   }, [openChangeProfileModal]);
-
-  const updateAvatar = (imgSrc) => {
-    avatarUrl.current = imgSrc;
-  };
 
   const changeImageProfileMutation = useMutation({
     mutationFn: async (imageInfo) =>
@@ -207,12 +198,12 @@ const ResponsiveMoreInfoRememberedAdmin = ({
             {(onClose) => (
               <>
                 <DrawerHeader className="flex flex-col gap-1">
-                  Profile Settings
+                  {t("Profile Settings")}
                 </DrawerHeader>
 
                 <DrawerBody>
                   <h2 className="flex items-center gap-1.5 text-primary-color-light font-bold  py-2.5 ">
-                    <DiAptana size={20} /> My Settings
+                    <DiAptana size={20} /> {t("My Settings")}
                   </h2>
 
                   {/* Create Pro Profile OR Go tu buy it */}
@@ -241,12 +232,13 @@ const ResponsiveMoreInfoRememberedAdmin = ({
 
                       <div>
                         <Link className="block" to={"#"}>
-                          Create Pro Profile
+                          {t("Create Pro Profile")}
                         </Link>
 
-                        <p className="text-sm max-w-[392px] font-normal text-muted-color group-hover:text-white/90">
-                          Create a full-featured memorial profile with no
-                          limits. Pro profiles remaining:{" "}
+                        <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
+                          {t(
+                            "Create a full-featured memorial profile with no limits. Pro profiles remaining:"
+                          )}{" "}
                           <span className="font-bold">
                             ({totalPremiumProfilesRemaining})
                           </span>
@@ -276,11 +268,11 @@ const ResponsiveMoreInfoRememberedAdmin = ({
 
                       <div>
                         <Link className="block group-hover:text-white" to={"#"}>
-                          See Plans
+                          {t("See Plans")}
                         </Link>
 
                         <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
-                          Premium profiles available{" "}
+                          {t("Premium profiles available")}{" "}
                           <span className="font-bold">
                             ({totalPremiumProfilesRemaining})
                           </span>
@@ -304,11 +296,14 @@ const ResponsiveMoreInfoRememberedAdmin = ({
                         <FaPlus className="h-[23px] w-[23px]" />
 
                         <div>
-                          <Link className="block">Create Free Profile</Link>
+                          <Link className="block">
+                            {t("Create Free Profile")}
+                          </Link>
 
                           <p className="text-sm max-w-[392px] font-normal text-white/50 group-hover:text-white/90">
-                            Create a memorial profile at no cost, with some
-                            feature limits.
+                            {t(
+                              "Create a memorial profile at no cost, with some feature limits."
+                            )}
                           </p>
                         </div>
                       </li>
@@ -317,11 +312,12 @@ const ResponsiveMoreInfoRememberedAdmin = ({
                         editableWidth={"max-w-[700px] px-8"}
                         setOpenModal={setOpenFreeModal}
                         handleSubmit={handleSubmit}
-                        titleModal={"New Profile"}
+                        titleModal={t("New Profile")}
                         openModal={openFreeModal}
                         modalForm={true}
                       >
                         <FormCreateProfile
+                          t={t}
                           slug={slug}
                           setSlug={setSlug}
                           isPending={isPending}

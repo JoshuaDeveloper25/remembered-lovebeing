@@ -113,11 +113,6 @@ export const websiteAnalytics = [
 
 export const causeOfDeaths = [
   {
-    value: "",
-    causeDeath: "All",
-  },
-
-  {
     value: "prefer_not_to_say",
     causeDeath: "Prefer not to say",
   },
@@ -167,5 +162,67 @@ export const genres = [
   {
     value: "male",
     type: "Male",
+  },
+];
+
+export const relationships = [
+  {
+    value: "",
+    relationship: "-- Select --",
+  },
+
+  {
+    value: "prefer_not_to_say",
+    relationship: "Prefer not to say",
+  },
+
+  {
+    value: "dad",
+    relationship: "Dad",
+  },
+
+  {
+    value: "mom",
+    relationship: "Mom",
+  },
+
+  {
+    value: "son",
+    relationship: "Son",
+  },
+
+  {
+    value: "sister",
+    relationship: "Sister",
+  },
+
+  {
+    value: "stepsister",
+    relationship: "Stepsister",
+  },
+
+  {
+    value: "brother",
+    relationship: "Brother",
+  },
+
+  {
+    value: "stepbrother",
+    relationship: "Stepbrother",
+  },
+
+  {
+    value: "daughter",
+    relationship: "Daughter",
+  },
+
+  {
+    value: "grandmother",
+    relationship: "Grandmother",
+  },
+
+  {
+    value: "grandfather",
+    relationship: "Grandfather",
   },
 ];

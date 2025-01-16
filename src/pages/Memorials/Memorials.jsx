@@ -156,6 +156,10 @@ const Memorials = () => {
             placeholder={`${t("Select cause of death")}`}
             name="designation"
           >
+            <SelectItem key={""} value={""}>
+              {t("All")}
+            </SelectItem>
+            
             {causeOfDeaths.map((cause) => {
               return (
                 <SelectItem key={cause?.value} value={cause?.value}>

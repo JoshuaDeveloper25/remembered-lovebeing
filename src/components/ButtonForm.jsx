@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 const ButtonForm = ({
   isPending,
   statusOn,
@@ -9,6 +11,8 @@ const ButtonForm = ({
   imagesAvailabe = false,
   images = [],
 }) => {
+  const { t } = useTranslation();
+
   // Close modal function ();
   const closeModal = () => {
     setOpenModalAlt(false);
@@ -23,7 +27,7 @@ const ButtonForm = ({
         type="button"
         className="btn w-fit border hover:bg-red-500 hover:text-white animation-fade border-red-500 text-red-500"
       >
-        Cancel
+        {t("Cancel")}
       </button>
 
       {!imagesAvailabe && !images?.length ? (

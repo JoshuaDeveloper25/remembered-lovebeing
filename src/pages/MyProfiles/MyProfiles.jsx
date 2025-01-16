@@ -11,11 +11,11 @@ import getFastApiErrors from "../../utils/getFastApiErrors";
 import AppContext from "../../context/AppProvider";
 import { useTranslation } from "react-i18next";
 import { useContext, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { GoPlus } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { Helmet } from "react-helmet-async";
 
 const MyProfiles = () => {
   const { userInfo } = useContext(AppContext);
@@ -101,7 +101,7 @@ const MyProfiles = () => {
         loop
       >
         <source src={cloudsVideo} type="video/mp4" />
-        Your browser does not support HTML video.
+        {t("Your browser does not support HTML video.")}
       </video>
 
       {/* Profiles */}
@@ -137,6 +137,7 @@ const MyProfiles = () => {
 
             <div>
               <ResponsiveMoreInfoRememberedAdmin
+                t={t}
                 statusPlan={statusPlan}
                 premiumProfilesRemaining={
                   data?.data?.remaining_premium_profiles

@@ -197,7 +197,7 @@ const MyProfiles = () => {
               </div>
 
               <ModalCreateFreeProfileResponsive
-                titleModal={"New Profile"}
+                titleModal={t("New Profile")}
                 handleSubmit={handleSubmit}
                 setOpenModal={setOpenFreeModal}
                 openModal={openFreeModal}
@@ -245,7 +245,7 @@ const MyProfiles = () => {
               </button>
 
               <ModalCreatePremiumProfileResponsive
-                titleModal={"New Profile (Premium)"}
+                titleModal={`${t("New Profile")} (Premium)`}
                 handleSubmit={handleSubmit}
                 setOpenModal={setOpenPremiumModal}
                 openModal={openPremiumModal}

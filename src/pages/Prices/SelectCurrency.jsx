@@ -1,6 +1,5 @@
 import { Select, SelectItem, Avatar } from "@nextui-org/react";
 import { PiCoinFill } from "react-icons/pi";
-import { useState } from "react";
 
 const SelectCurrency = ({ handleChangeCurrency, currency, t }) => {
   let countrySelected;
@@ -54,6 +53,8 @@ const SelectCurrency = ({ handleChangeCurrency, currency, t }) => {
       classNames={{
         trigger: "bg-primary-color data-[hover=true]:bg-primary-color/90",
         selectorIcon: "text-white",
+        label: "mb-1",
+        value: "!text-white",
       }}
       startContent={countrySelected}
       label={

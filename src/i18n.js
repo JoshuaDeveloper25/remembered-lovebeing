@@ -749,10 +749,24 @@ const resources = {
       "Comment on this tribute...": "Comment on this tribute...",
       "Sending comment...": "Sending comment...",
       "Find the Perfect Plan": "Find the Perfect Plan",
+      Before: "Before",
+      "Exclusive launch offer for the first 50 purchases.":
+        "Exclusive launch offer for the first 50 purchases.",
+      "76% of Discount!": "76% of Discount!",
+      "75% of Discount!": "75% of Discount!",
+      "Lifetime plan": "Lifetime plan",
+      "No credit card needed": "No credit card needed",
     },
   },
   es: {
     translation: {
+      "No credit card needed": "No se necesita tarjeta de crédito",
+      "Lifetime plan": "Plan de por vida",
+      "75% of Discount!": "¡75% de Descuento!",
+      "76% of Discount!": "¡76% de Descuento!",
+      "Exclusive launch offer for the first 50 purchases.":
+        "Oferta de lanzamiento en las primeras 50 compras.",
+      Before: "Antes",
       "Find the Perfect Plan": "Encuentra el Plan Perfecto",
       "Sending comment...": "Enviando comentario...",
       "Comment on this tribute...": "Comentar en este tributo...",

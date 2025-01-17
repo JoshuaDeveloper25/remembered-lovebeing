@@ -64,13 +64,13 @@ const ProfilePlanStatus = () => {
   const generatePaymentURL = () => {
     generatePaymentURLMutation?.mutate({
       ern: ern,
-      amount: 5.00,
+      amount: 4.99,
       currency: "USD",
       details: [
         {
           quantity: 1,
           description: t("Making FREE profile to PRO"),
-          price: 5.00,
+          price: 4.99,
         },
       ],
       custom_params: {
@@ -120,7 +120,7 @@ const ProfilePlanStatus = () => {
 
               <h2 className="text-primary-color-light text-center text-2xl mt-3 font-bold">
                 <span className="align-text-top text-sm font-bold">$ </span>
-                5.00
+                4.99
               </h2>
 
               <h3 className="text-center font-semibold text-muted-color mt-6 mb-2">

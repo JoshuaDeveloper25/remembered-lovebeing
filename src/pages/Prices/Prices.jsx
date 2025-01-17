@@ -84,11 +84,15 @@ const Prices = () => {
             {t("Free")}
           </span>
 
-          <div className="mt-5">
+          <div className="mt-0">
             <h2 className="font-bold text-primary-color-light text-5xl tracking-tighter">
               <span className="align-text-top text-4xl me-3">$</span>
               <span>0.00</span>
             </h2>
+
+            <h4 className="font-semibold text-primary-color-light text-sm max-w-[10rem] mx-auto">
+              {t("No credit card needed")}
+            </h4>
           </div>
 
           <ul className="text-muted-color leading-9 my-5">
@@ -166,28 +170,44 @@ const Prices = () => {
         </div>
 
         <div className="min-w-[20rem] hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white relative">
+          <div className="absolute right-1 top-1">
+            <h2 className="text-red-500 font-extrabold text-base uppercase">
+              {t("75% of Discount!")}
+            </h2>
+          </div>
+
           <div className="absolute top-5 -left-8">
             <h3 className="bg-red-500 shadow-lg rounded-sm text-white font-semibold tracking-wider font-mono uppercase -rotate-45 px-2">
               {t("Most Popular!")}
             </h3>
           </div>
 
+          <h2 className="text-warning-300 text-sm max-w-[12rem] mx-auto leading-4">
+            {t("Exclusive launch offer for the first 50 purchases.")}
+          </h2>
+
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
             {t("Single Package")}
           </span>
 
-          <div className="mt-5">
+          <div className="mt-0">
+            <p className="font-semibold text-red-500">
+              {t("Before")}: <span className="line-through">$19.99</span>
+            </p>
             <h2 className="font-bold text-primary-color-light text-5xl tracking-tighter">
               <span className="align-text-top text-4xl me-3">$</span>
-              <span>5.00</span>
+              <span>4.99</span>
             </h2>
+            <h4 className="font-semibold text-primary-color-light text-sm">
+              {t("Lifetime plan")}
+            </h4>
 
             {currency ? (
               <h4 className="text-muted-color">
                 {t("Aprox.")} {currencySymbol}{" "}
                 <span className="font-extrabold">
                   {(
-                    getCurrencyMutation?.data?.data?.conversion_rate * 5.00
+                    getCurrencyMutation?.data?.data?.conversion_rate * 5.0
                   ).toFixed("2")}
                 </span>
               </h4>
@@ -270,23 +290,39 @@ const Prices = () => {
             </button>
           </Link>
         </div>
-         
-        <div className="min-w-[20rem] hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white">
+
+        <div className="min-w-[20rem] hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white relative">
+          <div className="absolute right-1 top-1">
+            <h2 className="text-red-500 font-extrabold text-base uppercase">
+              {t("76% of Discount!")}
+            </h2>
+          </div>
+          <h2 className="text-warning-300 text-sm max-w-[12rem] mx-auto leading-4">
+            {t("Exclusive launch offer for the first 50 purchases.")}
+          </h2>
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
             {t("Tertiary Package")}
           </span>
-          <div className="mt-5">
+          <div className="mt-0">
+            <p className="font-semibold text-red-500">
+              {t("Before")}: <span className="line-through">$49.99</span>
+            </p>
+
             <h2 className="font-bold text-primary-color-light text-5xl tracking-tighter">
               <span className="align-text-top text-4xl me-3">$</span>
-              <span>49.99</span>
+              <span>11.99</span>
             </h2>
+
+            <h4 className="font-semibold text-primary-color-light text-sm">
+              {t("Lifetime plan")}
+            </h4>
 
             {currency ? (
               <h4 className="text-muted-color">
                 {t("Aprox.")} {currencySymbol}{" "}
                 <span className="font-extrabold">
                   {(
-                    getCurrencyMutation?.data?.data?.conversion_rate * 49.99
+                    getCurrencyMutation?.data?.data?.conversion_rate * 11.99
                   ).toFixed("2")}
                 </span>
               </h4>
@@ -366,7 +402,7 @@ const Prices = () => {
               {t("Select Plan")}
             </button>
           </Link>
-        </div> 
+        </div>
       </div>
     </section>
   );

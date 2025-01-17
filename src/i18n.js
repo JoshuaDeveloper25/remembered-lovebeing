@@ -715,12 +715,30 @@ const resources = {
       "Selected Media": "Selected Media",
       "Please, upload/add images if you want to create a post.":
         "Please, upload/add images if you want to create a post.",
+      "Description of the condolence.": "Description of the condolence.",
+      "Save Changes": "Save Changes",
+      "Saving Changes...": "Saving Changes...",
+      "Read More": "Read More",
+      "Owner Reply": "Owner Reply",
+      "Edit Condolence Reply": "Edit Condolence Reply",
+      "Write your condolence here...": "Write your condolence here...",
+      "Reply?": "Reply?",
+      "Stop Editing": "Stop Editing",
     },
   },
   es: {
     translation: {
+      "Stop Editing": "Dejar de Editar",
+      "Reply?": "¿Responder?",
+      "Write your condolence here...": "Escribe tu condolencia aquí...",
+      "Edit Condolence Reply": "Editar Respuesta de Condolencia",
+      "Owner Reply": "Respuesta del Dueño",
+      "Read More": "Leer Más",
+      "Save Changes": "Guardar Cambios",
+      "Saving Changes...": "Guardando Cambios...",
+      "Description of the condolence.": "Descripción de la condolencia.",
       "Please, upload/add images if you want to create a post.":
-      "Por favor, sube/agrega imágenes si deseas crear una publicación.",
+        "Por favor, sube/agrega imágenes si deseas crear una publicación.",
       "Selected Media": "Medios Seleccionados",
       "Please, upload/add a photo from Media tab!":
         "¡Por favor, sube/agrega una foto desde la pestaña de Medios!",

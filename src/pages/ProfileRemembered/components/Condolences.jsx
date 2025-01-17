@@ -1,18 +1,13 @@
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  Button,
-} from "@nextui-org/react";
+import { Popover, PopoverTrigger, PopoverContent } from "@nextui-org/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useContext, useEffect, useRef, useState } from "react";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import AppContext from "../../../context/AppProvider";
 import formatDate from "../../../utils/formatDate";
-import { createPortal } from "react-dom";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
-import axios from "axios";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 // All Condolences
 const Condolences = ({ condolences, isOwner }) => {
@@ -37,10 +32,11 @@ export default Condolences;
 
 // Individual Condolence
 const Condolence = ({ condolence, isOwner }) => {
+  const { t } = useTranslation();
   const [edititingCondolence, setEditingCondolence] = useState(false);
   const [showTooltipReply, setShowTooltipReply] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
-  const { userInfo } = useContext(AppContext);
+  const { userInfo, languageSelected } = useContext(AppContext);
   const [reply, setReply] = useState(false);
   const queryClient = useQueryClient();
   const tooltipRef = useRef(null);
@@ -191,8 +187,14 @@ const Condolence = ({ condolence, isOwner }) => {
       </h2>
 
       <h4 className="text-tertiary-color text-[.7rem] font-medium">
-        Created:{" "}
-        <span className="font-bold"> {formatDate(condolence?.created_at)}</span>
+        {t("Created")}:{" "}
+        <span className="font-bold">
+          {" "}
+          {formatDate(
+            condolence?.created_at,
+            languageSelected === "es" ? "spanish" : "english"
+          )}
+        </span>
       </h4>
 
       <div className="inline-block">
@@ -211,8 +213,8 @@ const Condolence = ({ condolence, isOwner }) => {
               type="submit"
             >
               {editCondolenceMutation?.isPending
-                ? "Saving Changes..."
-                : "Save Changes"}
+                ? t("Saving Changes...")
+                : t("Save Changes")}
             </button>
           </form>
         ) : (
@@ -233,7 +235,7 @@ const Condolence = ({ condolence, isOwner }) => {
                   className="text-secondary-color font-semibold tracking-wide cursor-pointer text-sm text-center w-full z-10 relative"
                   type="button"
                 >
-                  Read More
+                  {t("Read More")}
                 </button>
 
                 {showTooltip && (
@@ -257,7 +259,7 @@ const Condolence = ({ condolence, isOwner }) => {
           <>
             {/* Editing Reply Of A Condolence */}
             <div className="border-t border-tertiary-color/40 py-4">
-              <h3 className="font-medium">Owner Reply</h3>
+              <h3 className="font-medium">{t("Owner Reply")}</h3>
 
               {/* Condolence Desc */}
               <p className="text-tertiary-color text-sm my-1 md:line-clamp-1">
@@ -275,7 +277,7 @@ const Condolence = ({ condolence, isOwner }) => {
                     className="text-secondary-color font-semibold tracking-wide cursor-pointer text-sm text-center w-full z-10 relative"
                     type="button"
                   >
-                    Read More
+                    {t("Read More")}
                   </button>
 
                   {showTooltipReply && (
@@ -309,7 +311,7 @@ const Condolence = ({ condolence, isOwner }) => {
                       type="button"
                       className="animation-fade py-1 text-sm font-medium px-2 rounded text-white bg-secondary-color"
                     >
-                      Edit Condolence Reply
+                      {t("Edit Condolence Reply")}
                     </button>
                   </PopoverTrigger>
 
@@ -320,7 +322,7 @@ const Condolence = ({ condolence, isOwner }) => {
                     >
                       <textarea
                         className="bg-gray-200 text-tertiary-color border border-black/20 py-2 px-2 rounded-sm text-sm outline-none resize-none"
-                        placeholder="Write your condolence here..."
+                        placeholder={t("Write your condolence here...")}
                         defaultValue={condolence?.owner_reply}
                         name="owner_reply"
                         rows={4}
@@ -330,7 +332,7 @@ const Condolence = ({ condolence, isOwner }) => {
                         disabled={replyCondolenceMutation?.isPending}
                         type="submit"
                       >
-                        Send
+                        {t("Send")}
                       </button>
                     </form>
                   </PopoverContent>
@@ -357,7 +359,7 @@ const Condolence = ({ condolence, isOwner }) => {
                       type="button"
                       className="animation-fade py-1 text-sm font-medium px-2 rounded text-white bg-secondary-color"
                     >
-                      Reply?
+                      {t("Reply?")}
                     </button>
                   </PopoverTrigger>
 
@@ -368,7 +370,7 @@ const Condolence = ({ condolence, isOwner }) => {
                     >
                       <textarea
                         className="bg-gray-200 text-tertiary-color border border-black/20 py-2 px-2 rounded-sm text-sm outline-none resize-none"
-                        placeholder="Write your condolence here..."
+                        placeholder={t("Write your condolence here...")}
                         name="owner_reply"
                         rows={4}
                       />
@@ -378,7 +380,7 @@ const Condolence = ({ condolence, isOwner }) => {
                         disabled={replyCondolenceMutation?.isPending}
                         type="submit"
                       >
-                        Send
+                        {t("Send")}
                       </button>
                     </form>
                   </PopoverContent>
@@ -398,7 +400,7 @@ const Condolence = ({ condolence, isOwner }) => {
             disabled={editCondolenceMutation?.isPending}
             type="button"
           >
-            {edititingCondolence ? "Stop Editing" : "Edit"}
+            {edititingCondolence ? t("Stop Editing") : t("Edit")}
           </button>
 
           <button
@@ -407,7 +409,7 @@ const Condolence = ({ condolence, isOwner }) => {
             onClick={handleDeleteCondolence}
             type="button"
           >
-            Delete
+            {t("Delete")}
           </button>
         </div>
       )}

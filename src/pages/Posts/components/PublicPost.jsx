@@ -293,7 +293,7 @@ const PublicPost = ({ post, ownerName }) => {
                   >
                     <div className="relative flex items-center">
                       <img
-                        className="absolute top-1 left-1 transform w-8 rounded-full border-2 border-green-500"
+                        className="absolute top-1 left-1 transform w-8 h-8 object-cover rounded-full border-2 border-green-500"
                         src={
                           userInfo?.profile_image
                             ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
@@ -451,7 +451,7 @@ const PublicPost = ({ post, ownerName }) => {
                   >
                     <div className="relative flex items-center">
                       <img
-                        className="absolute top-1 left-1 transform w-8 rounded-full border-2 border-green-500"
+                        className="absolute top-1 left-1 transform w-8 h-8 object-cover rounded-full border-2 border-green-500"
                         src={
                           userInfo?.profile_image
                             ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`

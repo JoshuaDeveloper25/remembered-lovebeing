@@ -55,7 +55,11 @@ const PublicPost = ({ post, ownerName }) => {
     ?.slice(0, 10)
     .map((item, index) => <p key={index}>{item}</p>);
   const postLikesWithItsNamesNotLimited = postLikesMapeados?.map(
-    (item, index) => <p className="mb-2" key={index}>{item}</p>
+    (item, index) => (
+      <p className="mb-2" key={index}>
+        {item}
+      </p>
+    )
   );
   const { userInfo, languageSelected } = useContext(AppContext);
 
@@ -171,10 +175,13 @@ const PublicPost = ({ post, ownerName }) => {
               content={
                 <>
                   {postLikesWithItsNamesLimited}
-
-                  <button onClick={() => setOpenModal(true)}>
-                    {t("See more...")}
-                  </button>
+                  {postLikesMapeados?.length > 0 ? (
+                    <button onClick={() => setOpenModal(true)}>
+                      {t("See more...")}
+                    </button>
+                  ) : (
+                    <button>{t("No results...")}</button>
+                  )}
 
                   <Modal
                     dismissible

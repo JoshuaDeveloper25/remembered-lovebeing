@@ -285,9 +285,15 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                 <>
                   {postLikesWithItsNamesLimited}
 
-                  <button onClick={() => setOpenModal(true)}>
-                    {t("See more...")}
-                  </button>
+                  {postLikesMapeados?.length > 0 ? (
+                    <button onClick={() => setOpenModal(true)}>
+                      {t("See more...")}
+                    </button>
+                  ) : (
+                    <button>
+                      {t("No results...")}
+                    </button>
+                  )}
 
                   <ModalFlowbite
                     dismissible

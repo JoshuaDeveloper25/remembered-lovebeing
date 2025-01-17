@@ -1,4 +1,5 @@
 import RememberedMedia from "./RememberedMedia";
+import { useTranslation } from "react-i18next";
 import { IoIosWarning } from "react-icons/io";
 import LightGallery from "lightgallery/react";
 import React, { useRef } from "react";
@@ -11,6 +12,7 @@ const MansoryGallery = ({
   galleryImages,
 }) => {
   const refGallery = useRef(null);
+  const { t } = useTranslation();
 
   const handleImageClick = (indexImage) => {
     const imagesOpen = refGallery.current.querySelectorAll(".pics")[indexImage];
@@ -25,7 +27,7 @@ const MansoryGallery = ({
             <div className="mt-2 mb-3">
               <h3 className=" font-semibold text-center py-2.5 shadow-lg rounded-sm text-gray-900 text-lg  bg-yellow-400 animate-pulse ">
                 <IoIosWarning className="inline-block size-8 me-1.5 align-middle" />
-                You have reached the limit of 6 images
+                {t("You have reached the limit of 6 images")}
               </h3>
             </div>
           ) : null}
@@ -63,7 +65,7 @@ const MansoryGallery = ({
         </div>
       ) : (
         <h2 className="text-center text-xl my-8 text-primary-color font-bold">
-          There's no images uploaded yet...
+          {t("There's no images uploaded yet...")}
         </h2>
       )}
     </>

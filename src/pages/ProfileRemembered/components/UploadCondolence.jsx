@@ -1,17 +1,19 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import AlertUserExample from "../../../components/AlertUserExample";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import AppContext from "../../../context/AppProvider";
+import { useTranslation } from "react-i18next";
 import Modal from "../../../components/Modal";
 import FormCondolence from "./FormCondolence";
-import { useParams } from "react-router-dom";
 import { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
 import axios from "axios";
-import AlertUserExample from "../../../components/AlertUserExample";
 
 const UploadCondolence = ({ isAlbertEinstein, isOwner, idRemembered }) => {
   const { userInfo } = useContext(AppContext);
+  const { t } = useTranslation();
 
   const [openModalCreateCondolence, setOpenModalCreateCondolence] =
     useState(false);
@@ -56,7 +58,7 @@ const UploadCondolence = ({ isAlbertEinstein, isOwner, idRemembered }) => {
             className="btn btn-blue w-auto pointer-events-none"
             type="button"
           >
-            <FaPlus className="inline-block" /> Add New Condolence
+            <FaPlus className="inline-block" /> {t("Add New Condolence")}
           </button>
         </AlertUserExample>
       ) : (
@@ -66,12 +68,12 @@ const UploadCondolence = ({ isAlbertEinstein, isOwner, idRemembered }) => {
             className="btn btn-blue w-auto"
             type="button"
           >
-            <FaPlus className="inline-block" /> Add New Condolence
+            <FaPlus className="inline-block" /> {t("Add New Condolence")}
           </button>
 
           {/* Add Condolence Modal */}
           <Modal
-            titleModal={"Add Condolence"}
+            titleModal={t("Add Condolence")}
             handleSubmit={handleSubmitCondolence}
             setOpenModal={setOpenModalCreateCondolence}
             openModal={openModalCreateCondolence}

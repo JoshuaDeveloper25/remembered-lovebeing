@@ -1,10 +1,9 @@
-import AvailablePhotoGallery from "./AvailablePhotoGallery";
-import ButtonForm from "../../../components/ButtonForm";
-import Modal from "../../../components/Modal";
-import { useParams } from "react-router-dom";
-import { useState } from "react";
-import { BiImageAdd } from "react-icons/bi";
 import PhotosFromGalleryModal from "./PhotosFromGalleryModal";
+import AvailablePhotoGallery from "./AvailablePhotoGallery";
+import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
+import { BiImageAdd } from "react-icons/bi";
+import { useState } from "react";
 
 const FormPost = ({
   error,
@@ -14,6 +13,7 @@ const FormPost = ({
   setTempSelectedGalleryImageInfo,
   createPostMutation,
 }) => {
+  const { t } = useTranslation();
   const [selectedGalleryImageInfo, setSelectedGalleryImageInfo] = useState([]);
   const [openAvailableGalleryImages, setOpenAvailableGalleryImages] =
     useState(false);
@@ -32,10 +32,10 @@ const FormPost = ({
   return (
     <div className="w-full p-4 self-center">
       <label htmlFor="content">
-        <span className="w-full inline-block text-start">Content</span>
+        <span className="w-full inline-block text-start">{t("Content")}</span>
         <textarea
           className="border border-gray-200 form-input h-24"
-          placeholder={"Description of the post."}
+          placeholder={t("Description of the post.")}
           id="content"
           name="content"
         ></textarea>
@@ -51,13 +51,13 @@ const FormPost = ({
           <BiImageAdd className="rounded-full inline-block" size={26} />{" "}
         </span>
         <span className="group-hover:bg-gray-200 group-hover:text-tertiary-color group-hover:font-medium animation-fade rounded py-2 -ms-3.5 px-4">
-          Add photos from your gallery
+          {t("Add photos from your gallery")}
         </span>
       </button>
 
       {/* Photos available from gallery modal */}
       <PhotosFromGalleryModal
-        titleModal={"Photos from Gallery"}
+        titleModal={t("Photos from Gallery")}
         setOpenModal={setOpenAvailableGalleryImages}
         openModal={openAvailableGalleryImages}
         notModalFormClassName={"!p-0"}
@@ -72,7 +72,7 @@ const FormPost = ({
                 onClick={handleSelectedImagesGallery}
                 type="button"
               >
-                Done
+                {t("Done")}
               </button>
             </div>
           )
@@ -81,7 +81,7 @@ const FormPost = ({
         {galleryImages?.length ? (
           <div className="sticky top-0 z-20">
             <h2 className="text-center text-base bg-primary-color shadow-black shadow-md text-white font-medium py-1.5 px-1">
-              Selected Media{" "}
+              {t("Selected Media")}{" "}
               <span className="font-bold text-primary-color-light">
                 ({tempSelectedGalleryImageInfo?.length})
               </span>
@@ -94,7 +94,7 @@ const FormPost = ({
         <div className="p-4 sm:p-5 ">
           {!galleryImages?.length ? (
             <h2 className="text-center text-lg bg-red-400 text-white font-medium rounded py-1.5 px-1 animate-pulse">
-              Please, upload/add a photo from Media tab!
+              {t("Please, upload/add a photo from Media tab!")}
             </h2>
           ) : (
             <>

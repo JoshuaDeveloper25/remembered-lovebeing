@@ -8,6 +8,7 @@ const CondolenceHeader = ({
   isOwner,
   idRemembered,
   isAlbertEinstein,
+  t,
 }) => {
   const [condolenceDesc, setCondolenceDesc] = useState(false);
 
@@ -22,7 +23,7 @@ const CondolenceHeader = ({
               onClick={() => setCondolenceDesc(!condolenceDesc)}
               type="button"
             >
-              Condolences: A Message of Solidarity
+              {t("Condolences: A Message of Solidarity")}
               {condolenceDesc ? (
                 <FaChevronUp className="text-white inline" />
               ) : (
@@ -40,18 +41,18 @@ const CondolenceHeader = ({
                 }
               >
                 <div className={`bg-black/50 p-5 backdrop-blur-lg`}>
-                  <strong>Description: </strong>This section allows everyone to
-                  express their feelings of support and condolences. It is a
-                  space where comfort and solidarity can be offered, regardless
-                  of whether you personally knew the loved one. Your message can
-                  be a source of comfort for the family and friends during this
-                  difficult time.{" "}
+                  <strong>{t("Description")}: </strong>
+                  {t(
+                    "This section allows everyone to express their feelings of support and condolences. It is a space where comfort and solidarity can be offered, regardless of whether you personally knew the loved one. Your message can be a source of comfort for the family and friends during this difficult time."
+                  )}{" "}
                   <span className="block mt-3">
-                    <strong>Example:</strong>{" "}
+                    <strong>{t("Example")}:</strong>{" "}
                     <i>
-                      “My deepest condolences. Although I did not know Jennifer,
-                      my heart is with her family in this time of loss. May they
-                      find peace and strength. ”
+                      “
+                      {t(
+                        "My deepest condolences. Although I did not know Jennifer, my heart is with her family in this time of loss. May they find peace and strength."
+                      )}
+                      ”
                     </i>
                   </span>
                 </div>
@@ -63,13 +64,13 @@ const CondolenceHeader = ({
 
       {!userInfo?.access_token && (
         <h4 className="font-medium text-tertiary-color">
-          Please,{" "}
+          {t("Please")},{" "}
           <span>
             <Link className="text-secondary-color underline" to={"/sign-in"}>
-              Log In
+              {t("Log in")}
             </Link>
           </span>
-          , to leave a condolence.
+          , {t("to leave a condolence")}.
         </h4>
       )}
 

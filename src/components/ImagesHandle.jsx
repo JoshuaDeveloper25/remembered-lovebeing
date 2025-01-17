@@ -1,13 +1,12 @@
 import { uploadResizedImage } from "../utils/resizeImageFile";
 import { LuFileInput, LuPencilLine } from "react-icons/lu";
+import ReactImageUploading from "react-images-uploading";
+import { useTranslation } from "react-i18next";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
-import ReactImageUploading, {
-  ImageListType,
-  ImageType,
-} from "react-images-uploading";
 
 const ImagesHandle = ({ setImages, images }) => {
+  const { t } = useTranslation();
   const [isPending, setIsPending] = useState(false);
 
   const onChange = async (imageList, addUpdateIndex) => {
@@ -63,10 +62,10 @@ const ImagesHandle = ({ setImages, images }) => {
           <div className="mb-5">
             <div className="mb-6">
               <h3 className="font-semibold">
-                Upload a file{" "}
+                {t("Upload a file")}{" "}
                 <span className="text-red-400 text-sm">(jpg, jpeg, png)*</span>
               </h3>
-              <p className="text-muted-color">Attach the file below</p>
+              <p className="text-muted-color">{t("Attach the file below")}</p>
             </div>
             <button
               {...dragProps}
@@ -81,18 +80,18 @@ const ImagesHandle = ({ setImages, images }) => {
               <LuFileInput className="text-primary-color-light size-9 mx-auto" />
               {isDragging ? (
                 <span className="font-semibold mt-4 uppercase">
-                  Drop it here!
+                  {t("Drop it here!")}
                 </span>
               ) : (
                 <>
                   <span className="font-semibold mt-2">
-                    Drag file(s) here to upload
+                    {t("Drag file(s) here to upload")}
                   </span>
-                  <span className="text-muted-color my-1">
-                    Alternatively, you can select a file by
+                  <span className="text-muted-color my-1 max-w-sm mx-auto">
+                    {t("Alternatively, you can select a file by")}
                   </span>
                   <span className="font-bold text-white btn btn-blue text-sm w-fit mx-auto">
-                    Browse a file (s)
+                    {t("Browse a file(s)")}
                   </span>
                 </>
               )}
@@ -103,7 +102,7 @@ const ImagesHandle = ({ setImages, images }) => {
           {images?.length !== 0 && (
             <div className="absolute top-[284px]">
               <h2>
-                Selected media:{" "}
+                {t("Selected media")}:{" "}
                 <span className="font-extrabold"> ({images?.length})</span>
               </h2>
             </div>

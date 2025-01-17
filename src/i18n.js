@@ -675,10 +675,90 @@ const resources = {
       "Delete Post": "Delete Post",
       Content: "Content",
       "Description of the post.": "Description of the post.",
+      Photos: "Photos",
+      "Add New Photo": "Add New Photo",
+      "Add Gallery Images": "Add Gallery Images",
+      Upload: "Upload",
+      "Uploading...": "Uploading...",
+      "Drop it here!": "Drop it here!",
+      "Browse a file(s)": "Browse a file(s)",
+      "Selected media": "Selected media",
+      "You have reached the limit of 6 images":
+        "You have reached the limit of 6 images",
+      "There's no images uploaded yet...": "There's no images uploaded yet...",
+      "Uploaded by": "Uploaded by",
+      "This is a souvenir from this lovebeing...":
+        "This is a souvenir from this lovebeing...",
+      "There's no condolences in this profile yet...":
+        "There's no condolences in this profile yet...",
+      "Condolences: A Message of Solidarity":
+        "Condolences: A Message of Solidarity",
+      "This section allows everyone to express their feelings of support and condolences. It is a space where comfort and solidarity can be offered, regardless of whether you personally knew the loved one. Your message can be a source of comfort for the family and friends during this difficult time.":
+        "This section allows everyone to express their feelings of support and condolences. It is a space where comfort and solidarity can be offered, regardless of whether you personally knew the loved one. Your message can be a source of comfort for the family and friends during this difficult time.",
+      "My deepest condolences. Although I did not know Jennifer, my heart is with her family in this time of loss. May they find peace and strength.":
+        "My deepest condolences. Although I did not know Jennifer, my heart is with her family in this time of loss. May they find peace and strength.",
+      "to leave a condolence": "to leave a condolence",
+      "Log in": "Log in",
+      "Add New Condolence": "Add New Condolence",
+      "This is a sample profile and cannot be edited.":
+        "This is a sample profile and cannot be edited.",
+      "Add Condolence": "Add Condolence",
+      Create: "Create",
+      "Creating...": "Creating...",
+      "Add Post": "Add Post",
+      "Add New Post": "Add New Post",
+      "Add photos from your gallery": "Add photos from your gallery",
+      "Photos from Gallery": "Photos from Gallery",
+      Done: "Done",
+      "Please, upload/add a photo from Media tab!":
+        "Please, upload/add a photo from Media tab!",
+      "Selected Media": "Selected Media",
+      "Please, upload/add images if you want to create a post.":
+        "Please, upload/add images if you want to create a post.",
     },
   },
   es: {
     translation: {
+      "Please, upload/add images if you want to create a post.":
+      "Por favor, sube/agrega imágenes si deseas crear una publicación.",
+      "Selected Media": "Medios Seleccionados",
+      "Please, upload/add a photo from Media tab!":
+        "¡Por favor, sube/agrega una foto desde la pestaña de Medios!",
+      Done: "Hecho",
+      "Photos from Gallery": "Fotos desde la Galería",
+      "Add photos from your gallery": "Agregar fotos desde tu galería",
+      "Add New Post": "Agregar Nueva Publicación",
+      "Add Post": "Agregar Publicación",
+      "Creating...": "Creando...",
+      Create: "Crear",
+      "Add Condolence": "Agregar Condolencia",
+      "This is a sample profile and cannot be edited.":
+        "Este es un perfil de muestra y no se puede editar.",
+      "Add New Condolence": "Agregar Nueva Condolencia",
+      "Log in": "Inicia sesión",
+      "to leave a condolence": "para dejar una condolencia",
+      "My deepest condolences. Although I did not know Jennifer, my heart is with her family in this time of loss. May they find peace and strength.":
+        "Mis más profundas condolencias. Aunque no conocía a Jennifer, mi corazón está con su familia en este momento de pérdida. Que encuentren paz y fortaleza.",
+      "This section allows everyone to express their feelings of support and condolences. It is a space where comfort and solidarity can be offered, regardless of whether you personally knew the loved one. Your message can be a source of comfort for the family and friends during this difficult time.":
+        "Esta sección permite a todos expresar sus sentimientos de apoyo y condolencias. Es un espacio donde se puede ofrecer consuelo y solidaridad, independientemente de si conocías personalmente al ser querido. Tu mensaje puede ser una fuente de alivio para la familia y los amigos durante este momento difícil.",
+      "Condolences: A Message of Solidarity":
+        "Condolencias: Un Mensaje de Solidaridad",
+      "There's no condolences in this profile yet...":
+        "Aún no hay condolencias en este perfil...",
+      "This is a souvenir from this lovebeing...":
+        "Este es un recuerdo de este ser querido...",
+      "Uploaded by": "Subido por",
+      "There's no images uploaded yet...": "Aún no se han subido imágenes...",
+      "You have reached the limit of 6 images":
+        "Has alcanzado el límite de 6 imágenes",
+      "Selected media": "Medios seleccionados",
+      "Browse a file(s)": "Buscar un archivo(s)",
+      "Drop it here!": "¡Déjalos aquí!",
+      "Uploading...": "Subiendo...",
+      Upload: "Subir",
+      "Add Gallery Images": "Agregar Imágenes de Galería",
+      "Add New Photo": "Agregar Nueva Foto",
+      Photos: "Fotos",
       "Description of the post.": "Descripción de la publicación.",
       Content: "Contenido",
       "Delete Post": "Eliminar Publicación",

@@ -17,6 +17,7 @@ const UploadGalleryImage = ({
   statusPlan,
   isOwner,
   idRemembered,
+  t,
 }) => {
   const [openModalGallery, setOpenModalGallery] = useState(false);
   const [images, setImages] = useState([]);
@@ -73,7 +74,7 @@ const UploadGalleryImage = ({
             <span></span>
             <span></span>
             <span></span> <MdWorkspacePremium className="inline-block size-6" />{" "}
-            Go Pro / <span className="font-bold">$19.99</span> Lifetime
+            {t("Go Pro")} / <span className="font-bold">$19.99</span> {t("for life")}
           </Link>
         </>
       ) : (
@@ -82,13 +83,13 @@ const UploadGalleryImage = ({
           className="btn btn-blue w-auto"
           type="button"
         >
-          <FaPlus className="inline-block" /> Add New Photo
+          <FaPlus className="inline-block" /> {t("Add New Photo")}
         </button>
       )}
 
       {/* Add Gallery Image Modal */}
       <AddImagesToMediaGalleryModal
-        titleModal={"Add Gallery Images"}
+        titleModal={t("Add Gallery Images")}
         handleSubmit={handleSubmitGalleryImage}
         setOpenModal={setOpenModalGallery}
         // editableWidth={'max-w-xl'}
@@ -102,8 +103,8 @@ const UploadGalleryImage = ({
             setClearCache={setImages}
             setOpenModal={setOpenModalGallery}
             isPending={addGalleryImageMutation?.isPending}
-            statusOn={"Uploading..."}
-            statusOff={"Upload"}
+            statusOn={t("Uploading...")}
+            statusOff={t("Upload")}
           />
         }
       >

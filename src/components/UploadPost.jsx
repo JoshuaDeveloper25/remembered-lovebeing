@@ -1,13 +1,13 @@
+import AddPostModal from "../pages/ProfileRemembered/components/AddPostModal";
 import FormPost from "../pages/ProfileRemembered/components/FormPost";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../utils/getFastApiErrors";
+import { useTranslation } from "react-i18next";
 import { FaPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { useState } from "react";
-import Modal from "./Modal";
-import axios from "axios";
-import AddPostModal from "../pages/ProfileRemembered/components/AddPostModal";
 import ButtonForm from "./ButtonForm";
+import { useState } from "react";
+import axios from "axios";
 
 const UploadPost = ({ galleryImages, statusPlan, isOwner, idRemembered }) => {
   const [tempSelectedGalleryImageInfo, setTempSelectedGalleryImageInfo] =
@@ -15,6 +15,7 @@ const UploadPost = ({ galleryImages, statusPlan, isOwner, idRemembered }) => {
   const [openModalCreatePost, setOpenModalCreatePost] = useState(false);
   const [error, setError] = useState("");
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
 
   const imagesSelectedIds = tempSelectedGalleryImageInfo?.map(
     (item) => item?.id
@@ -48,7 +49,7 @@ const UploadPost = ({ galleryImages, statusPlan, isOwner, idRemembered }) => {
 
     if (!tempSelectedGalleryImageInfo?.length) {
       return setError(
-        "Please, upload/add images if you want to create a post."
+        t("Please, upload/add images if you want to create a post.")
       );
     } else if (!postInfo?.content?.trim(" "))
       return toast.error("Fill up the blanks available!");
@@ -65,13 +66,13 @@ const UploadPost = ({ galleryImages, statusPlan, isOwner, idRemembered }) => {
         className="btn btn-blue w-auto"
         type="button"
       >
-        <FaPlus className="inline-block" /> Add New Post
+        <FaPlus className="inline-block" /> {t("Add New Post")}
       </button>
 
       {/* Add Post Modal */}
       <AddPostModal
         setClearCache={setTempSelectedGalleryImageInfo}
-        titleModal={"Add Post"}
+        titleModal={t("Add Post")}
         handleSubmit={handleSubmitCreatePost}
         setOpenModal={setOpenModalCreatePost}
         openModal={openModalCreatePost}
@@ -81,8 +82,8 @@ const UploadPost = ({ galleryImages, statusPlan, isOwner, idRemembered }) => {
             setClearCache={setTempSelectedGalleryImageInfo}
             setOpenModal={setOpenModalCreatePost}
             isPending={createPostMutation?.isPending}
-            statusOn={"Creating..."}
-            statusOff={"Create"}
+            statusOn={t("Creating...")}
+            statusOff={t("Create")}
           />
         }
       >

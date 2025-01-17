@@ -589,7 +589,9 @@ const ProfileRemembered = () => {
                           <span className="block mt-4">
                             {data?.data?.remembered_profile?.status_plan ===
                             "free"
-                              ? t("Go to buy the Premium plan to publish posts and more!")
+                              ? t(
+                                  "Go to buy the Premium plan to publish posts and more!"
+                                )
                               : null}
                           </span>
                         </h2>
@@ -621,10 +623,11 @@ const ProfileRemembered = () => {
                     >
                       <div className="flex flex-col sm:flex-row justify-between items-center bg-white p-3 rounded-lg shadow-lg mb-7">
                         <h2 className="text-primary-color font-bold text-xl">
-                          Photos{" "}
+                          {t("Photos")}{" "}
                         </h2>
 
                         <UploadGalleryImage
+                          t={t}
                           params={params}
                           isOwner={data?.data?.is_owner}
                           idRemembered={data?.data?.remembered_profile?.id}
@@ -661,6 +664,7 @@ const ProfileRemembered = () => {
                       idTab={"#condolences"}
                     >
                       <CondolenceHeader
+                        t={t}
                         userInfo={userInfo}
                         isOwner={data?.data?.is_owner}
                         isAlbertEinstein={isAlbertEinstein}
@@ -669,7 +673,7 @@ const ProfileRemembered = () => {
 
                       {!data?.data?.remembered_profile?.condolences?.length ? (
                         <h2 className="text-center font-bold text-xl text-primary-color my-5">
-                          There's no condolences in this profile yet...
+                          {t("There's no condolences in this profile yet...")}
                         </h2>
                       ) : (
                         <Condolences

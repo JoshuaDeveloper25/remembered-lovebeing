@@ -9,6 +9,7 @@ import lgShare from "lightgallery/plugins/share";
 import lgHash from "lightgallery/plugins/hash";
 import lgZoom from "lightgallery/plugins/zoom";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const RememberedMedia = ({
   onClickImage,
@@ -19,6 +20,7 @@ const RememberedMedia = ({
   isOwner,
 }) => {
   const [selectedImageGallery, setSelectedImageGallery] = useState(null);
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
 
   // Check if image is in a post
@@ -92,7 +94,9 @@ const RememberedMedia = ({
   return (
     <section
       className="relative pics"
-      data-sub-html={`<h4>Uploaded by - ${ownerName}</h4><p> This is a souvenir from this lovebeing...</p>`}
+      data-sub-html={`<h4>${t("Uploaded by")} - ${ownerName}</h4><p> ${t(
+        "This is a souvenir from this lovebeing..."
+      )}</p>`}
       data-src={`${galleryItem?.cloud_front_domain}/${galleryItem?.aws_file_name}`}
       plugins={[lgZoom, lgShare, lgHash]}
       ref={refGallery}

@@ -64,9 +64,12 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
   const { t } = useTranslation();
   const { userInfo, languageSelected } = useContext(AppContext);
   const postLikesMapeados = post?.post_likes?.map((item) => item?.owner?.name);
-  const postLikesWithItsNames = postLikesMapeados?.map((item, index) => (
-    <p key={index}>{item}</p>
-  ));
+  const postLikesWithItsNamesLimited = postLikesMapeados
+    ?.slice(0, 10)
+    .map((item, index) => <p key={index}>{item}</p>);
+  const postLikesWithItsNamesNotLimited = postLikesMapeados?.map(
+    (item, index) => <p key={index}>{item}</p>
+  );
   const alreadyLikedPost = post?.post_likes?.find(
     (item) => item?.owner?.email === userInfo?.email
   );
@@ -183,7 +186,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
         <div className="flex justify-between items-center gap-3">
           <div className="flex items-center gap-3">
             <img
-              className="w-16 h-16 rounded-full"
+              className="w-12 h-12 object-cover rounded-full"
               src={
                 post?.remembered?.profile_images
                   ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
@@ -280,7 +283,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
             <Tooltip
               content={
                 <>
-                  {postLikesWithItsNames}
+                  {postLikesWithItsNamesLimited}
 
                   <button onClick={() => setOpenModal(true)}>
                     {t("See more...")}
@@ -296,8 +299,8 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                     </ModalFlowbite.Header>
 
                     <ModalFlowbite.Body>
-                      <div className="space-y-2 overflow-y-auto max-h-72">
-                        {postLikesWithItsNames}
+                      <div className="grid sm:grid-cols-3 md:grid-cols-4 grid-cols-2 overflow-y-auto max-h-72">
+                        <div>{postLikesWithItsNamesNotLimited}</div>
                       </div>
                     </ModalFlowbite.Body>
                   </ModalFlowbite>
@@ -475,7 +478,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                   <div className="px-4 py-4 bg-gray-300 7">
                     <div className="flex items-center gap-3">
                       <img
-                        className="w-14 h-14 object-cover rounded-full"
+                        className="w-12 h-12 object-cover rounded-full"
                         src={
                           post?.remembered?.profile_images
                             ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
@@ -514,7 +517,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                   <div className="px-4 py-4 bg-gray-300 md:sticky static top-0 z-[9999]">
                     <div className="flex items-center gap-3">
                       <img
-                        className="w-14 h-14 object-cover rounded-full"
+                        className="w-12 h-12 object-cover rounded-full"
                         src={
                           post?.remembered?.profile_images
                             ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`

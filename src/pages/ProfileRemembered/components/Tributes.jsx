@@ -167,7 +167,7 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
                   ? `${tribute?.user_profile_image?.cloud_front_domain}/${tribute?.user_profile_image?.aws_file_name}`
                   : `https://i.pinimg.com/474x/51/f6/fb/51f6fb256629fc755b8870c801092942.jpg`
               }
-              className="w-14 h-14 object-cover rounded-full"
+              className="w-12 h-12 object-cover rounded-full"
             />
           </div>
 

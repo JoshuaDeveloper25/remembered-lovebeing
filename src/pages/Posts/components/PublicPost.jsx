@@ -4,6 +4,7 @@ import CarouselCommentPosts from "../../../components/CarouselCommentPosts";
 import NavbarDropdownLink from "../../../components/NavbarDropdownLink";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
+import SignInModal from "../../../components/SignInModal";
 import { BsThreeDots, BsHearts } from "react-icons/bs";
 import AppContext from "../../../context/AppProvider";
 import formatDate from "../../../utils/formatDate";
@@ -15,11 +16,9 @@ import { useContext, useState } from "react";
 import { Button } from "@nextui-org/react";
 import { IoMdHeart } from "react-icons/io";
 import { IoSend } from "react-icons/io5";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import axios from "axios";
-import SignInModal from "../../../components/SignInModal";
 
 export const HeartIcon = ({
   fill = "currentColor",
@@ -52,9 +51,12 @@ export const HeartIcon = ({
 const PublicPost = ({ post, ownerName }) => {
   const { t } = useTranslation();
   const postLikesMapeados = post?.post_likes?.map((item) => item?.owner?.name);
-  const postLikesWithItsNames = postLikesMapeados?.map((item, index) => (
-    <p key={index}>{item}</p>
-  ));
+  const postLikesWithItsNamesLimited = postLikesMapeados
+    ?.slice(0, 10)
+    .map((item, index) => <p key={index}>{item}</p>);
+  const postLikesWithItsNamesNotLimited = postLikesMapeados?.map(
+    (item, index) => <p className="mb-2" key={index}>{item}</p>
+  );
   const { userInfo, languageSelected } = useContext(AppContext);
 
   const alreadyLikedPost = post?.post_likes?.find(
@@ -127,7 +129,7 @@ const PublicPost = ({ post, ownerName }) => {
         <div className="flex justify-between items-center gap-3">
           <div className="flex items-center gap-3">
             <img
-              className="w-16 h-16 rounded-full"
+              className="w-12 h-12 object-cover rounded-full"
               src={
                 post?.remembered?.profile_images
                   ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
@@ -168,7 +170,7 @@ const PublicPost = ({ post, ownerName }) => {
             <Tooltip
               content={
                 <>
-                  {postLikesWithItsNames}
+                  {postLikesWithItsNamesLimited}
 
                   <button onClick={() => setOpenModal(true)}>
                     {t("See more...")}
@@ -184,8 +186,8 @@ const PublicPost = ({ post, ownerName }) => {
                     </Modal.Header>
 
                     <Modal.Body>
-                      <div className="space-y-2 overflow-y-auto max-h-72">
-                        {postLikesWithItsNames}
+                      <div className="grid sm:grid-cols-3 md:grid-cols-4 grid-cols-2 overflow-y-auto max-h-72">
+                        <div>{postLikesWithItsNamesNotLimited}</div>
                       </div>
                     </Modal.Body>
                   </Modal>
@@ -358,7 +360,7 @@ const PublicPost = ({ post, ownerName }) => {
                   <div className="px-4 py-4 bg-gray-300 7">
                     <div className="flex items-center gap-3">
                       <img
-                        className="w-16 rounded-full"
+                        className="w-12 h-12 object-cover rounded-full"
                         src={
                           post?.remembered?.profile_images
                             ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`
@@ -397,7 +399,7 @@ const PublicPost = ({ post, ownerName }) => {
                   <div className="px-4 py-4 bg-gray-300 md:sticky static top-0 z-[9999]">
                     <div className="flex items-center gap-3">
                       <img
-                        className="w-16 rounded-full"
+                        className="w-12 h-12 rounded-full"
                         src={
                           post?.remembered?.profile_images
                             ? `${post?.remembered?.profile_images?.cloud_front_domain}/${post?.remembered?.profile_images?.aws_file_name}`

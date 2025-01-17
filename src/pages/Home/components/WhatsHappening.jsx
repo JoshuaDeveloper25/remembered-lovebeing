@@ -10,7 +10,8 @@ const WhatsHappening = () => {
       <div className="container-page sticky">
         <div className="text-center sm:pb-8 pb-2">
           <h2 className="font-mono text-4xl sm:text-5xl font-semibold text-primary-color tracking-wider">
-            {t("Our Community Today")}
+            {/* {t("Our Community Today")} */}
+            {t("Goals For Our Community")}
           </h2>
           <div className="bg-yellow-500 h-2 w-24 sm:my-3 my-0 mx-auto"></div>
           {/* <p className="text-xl max-w-2xl mx-auto mt-2 mb-8 text-muted-color">

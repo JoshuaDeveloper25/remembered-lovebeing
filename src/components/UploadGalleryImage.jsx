@@ -74,7 +74,7 @@ const UploadGalleryImage = ({
             <span></span>
             <span></span>
             <span></span> <MdWorkspacePremium className="inline-block size-6" />{" "}
-            {t("Go Pro")} / <span className="font-bold">$19.99</span> {t("for life")}
+            {t("Go Pro")} / <span className="font-bold">$4.99</span> {t("lifetime plan")}
           </Link>
         </>
       ) : (

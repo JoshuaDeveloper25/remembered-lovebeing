@@ -79,7 +79,7 @@ export const websiteAnalytics = [
     analyticIcon: (
       <GiCandleHolder className="text-yellow-400 mx-auto my-3" size={40} />
     ),
-    analyticNumber: "1,384",
+    analyticNumber: "50",
     analyticName: "Memorials",
   },
 
@@ -87,7 +87,7 @@ export const websiteAnalytics = [
     analyticIcon: (
       <GiFlowerPot className="text-red-400 mx-auto my-3" size={40} />
     ),
-    analyticNumber: "1,542",
+    analyticNumber: "120",
     analyticName: "Tributes",
   },
 
@@ -98,7 +98,7 @@ export const websiteAnalytics = [
         size={40}
       />
     ),
-    analyticNumber: 845,
+    analyticNumber: 100,
     analyticName: "Posts",
   },
 
@@ -106,15 +106,15 @@ export const websiteAnalytics = [
     analyticIcon: (
       <LiaUsersSolid className="text-primary-color mx-auto my-3" size={40} />
     ),
-    analyticNumber: "35,879",
+    analyticNumber: "1,000",
     analyticName: "Visitors",
   },
 ];
 
 export const causeOfDeaths = [
   {
-    value: "prefer_not_to_say",
-    causeDeath: "Prefer not to say",
+    value: "prefer_not_to_say_or_other",
+    causeDeath: "Prefer not to say or other",
   },
 
   {
@@ -172,8 +172,8 @@ export const relationships = [
   },
 
   {
-    value: "prefer_not_to_say",
-    relationship: "Prefer not to say",
+    value: "prefer_not_to_say_or_other",
+    relationship: "Prefer not to say or other",
   },
 
   {

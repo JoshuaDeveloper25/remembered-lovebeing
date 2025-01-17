@@ -58,7 +58,7 @@ const PricesPlan = ({ packageName }) => {
   const generatePaymentURL = () => {
     generatePaymentURLMutation?.mutate({
       ern: ern,
-      amount: packageName === "singlePackage" ? 5.0 : 11.99,
+      amount: packageName === "singlePackage" ? 4.99 : 11.99,
       currency: "USD",
       details: [
         {
@@ -67,7 +67,7 @@ const PricesPlan = ({ packageName }) => {
             packageName === "singlePackage"
               ? t("Purchase of SinglePackage (Includes 1 Premium Profile)")
               : t("Purchase of TertiaryPackage (Includes 3 Premium Profiles)"),
-          price: packageName === "singlePackage" ? 5.0 : 11.99,
+          price: packageName === "singlePackage" ? 4.99 : 11.99,
         },
       ],
       custom_params: {

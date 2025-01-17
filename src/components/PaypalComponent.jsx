@@ -92,7 +92,7 @@ const PaypalComponent = ({ packageName, rememberedId }) => {
           {
             description: t("Paying in Eternal MemoriesX"),
             amount: {
-              value: rememberedId ? 1 : packageName === "singlePackage" ? 1 : 5,
+              value: rememberedId ? 4.99 : packageName === "singlePackage" ? 4.99 : 11.99,
             },
             custom_id: JSON.stringify({
               id: userInfo?.email,

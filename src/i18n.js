@@ -673,10 +673,14 @@ const resources = {
         "Go to buy the Premium plan to publish posts and more!",
       "Edit Post": "Edit Post",
       "Delete Post": "Delete Post",
+      Content: "Content",
+      "Description of the post.": "Description of the post.",
     },
   },
   es: {
     translation: {
+      "Description of the post.": "Descripción de la publicación.",
+      Content: "Contenido",
       "Delete Post": "Eliminar Publicación",
       "Edit Post": "Editar Publicación",
       "Go to buy the Premium plan to publish posts and more!":

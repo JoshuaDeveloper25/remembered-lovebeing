@@ -5,21 +5,20 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import CarouselCommentPosts from "./CarouselCommentPosts";
 import getFastApiErrors from "../utils/getFastApiErrors";
 import NavbarDropdownLink from "./NavbarDropdownLink";
-import Modal from "./Modal";
 import AppContext from "../context/AppProvider";
 import formatDate from "../utils/formatDate";
 import { useContext, useState } from "react";
 import { createPortal } from "react-dom";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import Modal from "./Modal";
 import axios from "axios";
 
 // Nextui imports
 import { Button } from "@nextui-org/react";
 
 // Flowbite imports
-import { Alert, Modal as ModalFlowbite, Tooltip } from "flowbite-react";
+import { Modal as ModalFlowbite, Tooltip } from "flowbite-react";
 import SignInModal from "./SignInModal";
 
 // Icons
@@ -197,7 +196,11 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                 {post?.owner?.name}
               </h3>
               <h4 className="text-xs text-tertiary-color">
-                {t("Created")}: {formatDate(post?.created_at, languageSelected === 'es' ? 'spanish' : "english")}
+                {t("Created")}:{" "}
+                {formatDate(
+                  post?.created_at,
+                  languageSelected === "es" ? "spanish" : "english"
+                )}
               </h4>
             </div>
           </div>
@@ -240,6 +243,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                       />
 
                       <EditPostLogic
+                        t={t}
                         setOpenModalEditPost={setOpenModalEditPost}
                         openModalEditPost={openModalEditPost}
                         post={post}
@@ -397,7 +401,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                   >
                     <div className="relative flex items-center">
                       <img
-                        className="absolute top-1 left-1 transform w-8 rounded-full border-2 border-green-500"
+                        className="absolute top-1 left-1 transform w-8 h-8 object-cover rounded-full border-2 border-green-500"
                         src={
                           userInfo?.profile_image
                             ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
@@ -418,7 +422,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                             200
                           )}px`; // Ajusta la altura con un máximo de 200px
                         }}
-                        placeholder="Comment something..."
+                        placeholder={t("Comment something...")}
                         ref={(textarea) => {
                           if (textarea && comment === "") {
                             textarea.style.height = "auto"; // Restablece la altura cuando el comentario se limpia
@@ -484,7 +488,11 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                           {post?.owner?.name}
                         </h3>
                         <h4 className="text-xs text-tertiary-color ">
-                          Created: {formatDate(post?.created_at)}
+                          {t("Created")}:{" "}
+                          {formatDate(
+                            post?.created_at,
+                            languageSelected === "es" ? "spanish" : "english"
+                          )}
                         </h4>
                       </div>
                     </div>
@@ -495,7 +503,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                   </div>
                   <div className="flex justify-center items-center h-full">
                     <p className="py-3 px-4 text-center text-xl font-bold">
-                      No comments added yet...{" "}
+                      {t("No comments added yet...")}{" "}
                     </p>
                   </div>
                 </>
@@ -519,7 +527,11 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                           {post?.owner?.name}
                         </h3>
                         <h4 className="text-xs text-tertiary-color ">
-                          Created: {formatDate(post?.created_at)}
+                          {t("Created")}:{" "}
+                          {formatDate(
+                            post?.created_at,
+                            languageSelected === "es" ? "spanish" : "english"
+                          )}
                         </h4>
                       </div>
                     </div>
@@ -534,6 +546,8 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                     {post?.comments?.map((comment) => {
                       return (
                         <SingleComment
+                          languageSelected={languageSelected}
+                          t={t}
                           userInfo={userInfo}
                           key={comment?.id}
                           post={post}
@@ -554,7 +568,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                   >
                     <div className="relative flex items-center">
                       <img
-                        className="absolute top-1 left-1 transform w-8 rounded-full border-2 border-green-500"
+                        className="absolute top-1 left-1 transform w-8 h-8 object-cover rounded-full border-2 border-green-500"
                         src={
                           userInfo?.profile_image
                             ? `${userInfo?.profile_image?.cloud_front_domain}/${userInfo?.profile_image?.aws_file_name}`
@@ -575,7 +589,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                             200
                           )}px`; // Ajusta la altura con un máximo de 200px
                         }}
-                        placeholder="Comment something..."
+                        placeholder={t("Comment something...")}
                         ref={(textarea) => {
                           if (textarea && comment === "") {
                             textarea.style.height = "auto"; // Restablece la altura cuando el comentario se limpia
@@ -607,7 +621,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                 ) : (
                   <div className="text-center bg-muted-color/20 py-4">
                     <h2 className="text-lg font-semibold">
-                      Want to comment something?
+                      {t("Want to comment something?")}
                     </h2>
                     <p>
                       {t("Please")},{" "}
@@ -632,7 +646,12 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
 export default Post;
 
 // Edit Post
-const EditPostLogic = ({ setOpenModalEditPost, openModalEditPost, post }) => {
+const EditPostLogic = ({
+  setOpenModalEditPost,
+  openModalEditPost,
+  post,
+  t,
+}) => {
   const queryClient = useQueryClient();
 
   const editPostMutation = useMutation({
@@ -668,13 +687,14 @@ const EditPostLogic = ({ setOpenModalEditPost, openModalEditPost, post }) => {
   return (
     <>
       <Modal
-        titleModal={"Edit Post"}
+        titleModal={t("Edit Post")}
         handleSubmit={handleSubmitEditPost}
         setOpenModal={setOpenModalEditPost}
         openModal={openModalEditPost}
         modalForm={true}
       >
         <EditPostForm
+          t={t}
           setOpenModalEditPost={setOpenModalEditPost}
           post={post}
           editPostMutation={editPostMutation}
@@ -685,7 +705,7 @@ const EditPostLogic = ({ setOpenModalEditPost, openModalEditPost, post }) => {
 };
 
 // Single Comment
-const SingleComment = ({ post, comment, userInfo }) => {
+const SingleComment = ({ post, comment, userInfo, t, languageSelected }) => {
   const [toggleComment, setToggleComment] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const queryClient = useQueryClient();
@@ -776,7 +796,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
       <div className="flex items-center gap-2 border-b border-tertiary-color/30 pb-3">
         {" "}
         <img
-          className="h-10 w-10 rounded-full border-2 border-primary-color/50"
+          className="h-10 w-10 object-cover rounded-full border-2 border-primary-color/50"
           src={
             comment?.owner?.user_profile_image
               ? `${comment?.owner?.user_profile_image?.cloud_front_domain}/${comment?.owner?.user_profile_image?.aws_file_name}`
@@ -807,7 +827,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
               disabled={editCommentMutation?.isPending}
               type="submit"
             >
-              {editCommentMutation?.isPending ? "Saving..." : "Save"}
+              {editCommentMutation?.isPending ? t("Saving...") : t("Save")}
             </button>
           </form>
         ) : (
@@ -846,7 +866,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
                           setIsEditing(!isEditing);
                           setToggleComment(!toggleComment);
                         }}
-                        linkText={"Edit"}
+                        linkText={t("Edit")}
                       />
 
                       <NavbarDropdownLink
@@ -854,7 +874,7 @@ const SingleComment = ({ post, comment, userInfo }) => {
                           "hover:bg-red-500 hover:text-white text-xs"
                         }
                         onClick={handleDeleteComment}
-                        linkText={"Delete"}
+                        linkText={t("Delete")}
                       />
                     </ul>
                   </>
@@ -866,7 +886,12 @@ const SingleComment = ({ post, comment, userInfo }) => {
       </div>
 
       <div className="flex justify-between items-center mt-2">
-        <h2 className="text-xs">{formatDate(comment?.created_at)}</h2>
+        <h2 className="text-xs">
+          {formatDate(
+            comment?.created_at,
+            languageSelected === "es" ? "spanish" : "english"
+          )}
+        </h2>
       </div>
     </div>
   );

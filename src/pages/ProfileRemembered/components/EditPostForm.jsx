@@ -1,14 +1,14 @@
 import ButtonForm from "../../../components/ButtonForm";
 
-const EditPostForm = ({ setOpenModalEditPost, post, editPostMutation }) => {
+const EditPostForm = ({ setOpenModalEditPost, post, editPostMutation, t }) => {
   return (
     <>
       <div className="p-4">
         <label htmlFor="content">
-          <span className="w-full inline-block text-start">Content</span>
+          <span className="w-full inline-block text-start">{t("Content")}</span>
           <textarea
             className="border border-gray-200 form-input h-24"
-            placeholder={"Description of the post."}
+            placeholder={t("Description of the post.")}
             id="content"
             name="content"
             defaultValue={post?.content}
@@ -19,8 +19,8 @@ const EditPostForm = ({ setOpenModalEditPost, post, editPostMutation }) => {
       <ButtonForm
         setOpenModal={setOpenModalEditPost}
         isPending={editPostMutation?.isPending}
-        statusOn={"Saving..."}
-        statusOff={"Save Changes"}
+        statusOn={t("Saving...")}
+        statusOff={t("Save changes")}
       />
     </>
   );

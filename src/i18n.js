@@ -743,10 +743,20 @@ const resources = {
       "Add New Tribute": "Add New Tribute",
       "Add Tribute": "Add Tribute",
       "Description of the tribute.": "Description of the tribute.",
+      "Read Less": "Read Less",
+      "There's no comments in this tribute yet...":
+        "There's no comments in this tribute yet...",
+      "Comment on this tribute...": "Comment on this tribute...",
+      "Sending comment...": "Sending comment...",
     },
   },
   es: {
     translation: {
+      "Sending comment...": "Enviando comentario...",
+      "Comment on this tribute...": "Comentar en este tributo...",
+      "There's no comments in this tribute yet...":
+        "Aún no hay comentarios en este tributo...",
+      "Read Less": "Leer Menos",
       "Description of the tribute.": "Descripción del tributo.",
       "Add Tribute": "Agregar Tributo",
       "Add New Tribute": "Agregar Nuevo Tributo",

@@ -4,6 +4,7 @@ import AlertUserExample from "../../../components/AlertUserExample";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import AppContext from "../../../context/AppProvider";
 import formatDate from "../../../utils/formatDate";
+import { useTranslation } from "react-i18next";
 import { useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { FaEdit } from "react-icons/fa";
@@ -39,8 +40,9 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
   const [commentingTribute, setCommentingTribute] = useState(false);
   const [edititingTribute, setEditingTribute] = useState(false);
   const [readMoreTribute, setReadMoreTribute] = useState(false);
-  const { userInfo } = useContext(AppContext);
+  const { userInfo, languageSelected } = useContext(AppContext);
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
 
   // Reply a Tribute Answer/Comment
   const replyTributeMutation = useMutation({
@@ -175,10 +177,13 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
             </h2>
 
             <h4 className="text-tertiary-color text-[.7rem] font-medium">
-              Created:{" "}
+              {t("Created")}:{" "}
               <span className="font-bold">
                 {" "}
-                {formatDate(tribute?.created_at)}
+                {formatDate(
+                  tribute?.created_at,
+                  languageSelected === "es" ? "spanish" : "english"
+                )}
               </span>
             </h4>
           </div>
@@ -212,13 +217,13 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
                 <ul className="absolute right-5 shadow-lg bg-white z-[1000] w-max rounded max-h-96 overflow-auto">
                   <NavbarDropdownLink
                     hoverBgLink={"hover:bg-secondary-color hover:text-white"}
-                    linkText={"Edit"}
+                    linkText={t("Edit")}
                     onClick={() => setEditingTribute(!edititingTribute)}
                   />
 
                   <NavbarDropdownLink
                     hoverBgLink={"hover:bg-red-500 hover:text-white"}
-                    linkText={"Delete"}
+                    linkText={t("Delete")}
                     onClick={handleDeleteTribute}
                     linkTo={"#"}
                   />
@@ -245,8 +250,8 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
             type="submit"
           >
             {editTributeMutation?.isPending
-              ? "Saving Changes..."
-              : "Save Changes"}
+              ? t("Saving Changes...")
+              : t("Save Changes")}
           </button>
         </form>
       ) : (
@@ -265,7 +270,7 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
                     onClick={() => setReadMoreTribute(!readMoreTribute)}
                     type="button"
                   >
-                    Read More
+                    {t("Read More")}
                   </button>
                 </div>
               )}
@@ -283,7 +288,7 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
                     onClick={() => setReadMoreTribute(!readMoreTribute)}
                     type="button"
                   >
-                    Read Less
+                    {t("Read Less")}
                   </button>
                 </div>
               )}
@@ -293,16 +298,18 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
       )}
 
       {/* Comment Section Tribute */}
-      <h2 className="mb-2 font-semibold">Comments:</h2>
+      <h2 className="mb-2 font-semibold">{t("Comments")}:</h2>
 
       <h3 className="font-medium text-sm">
         {!tribute.tribute_comments?.length &&
-          `There's no comments in this tribute yet...`}
+          t(`There's no comments in this tribute yet...`)}
       </h3>
 
       {tribute.tribute_comments?.map((tributeComment) => {
         return (
           <TributeComment
+            languageSelected={languageSelected}
+            t={t}
             tributeComment={tributeComment}
             key={tributeComment?.id}
             userInfo={userInfo}
@@ -316,7 +323,7 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
             {!userInfo?.access_token ? null : (
               <textarea
                 name="content"
-                placeholder="Comment on this memory..."
+                placeholder={t("Comment on this tribute...")}
                 className="w-full animation-fade rounded-sm border border-tertiary-color/30 px-2 py-2 resize-none text-tertiary-color text-sm my-1 outline-none"
                 onClick={() => setCommentingTribute(true)}
                 rows={0}
@@ -329,7 +336,7 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
               <>
                 <textarea
                   name="content"
-                  placeholder="Comment on this memory..."
+                  placeholder={t("Comment on this tribute...")}
                   className="w-full animation-fade rounded-sm border border-tertiary-color/30 px-2 py-2 resize-none text-tertiary-color text-sm my-1 outline-none"
                   onClick={() => setCommentingTribute(true)}
                   rows={5}
@@ -341,7 +348,7 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
                       className="flex-1 animation-fade py-1 text-sm font-medium px-2 rounded text-white bg-secondary-color pointer-events-none"
                       type="button"
                     >
-                      Send
+                      {t("Send")}
                     </button>
                   </AlertUserExample>
                 ) : (
@@ -351,8 +358,8 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
                     type="submit"
                   >
                     {replyTributeMutation?.isPending
-                      ? "Sending comment..."
-                      : "Send"}
+                      ? t("Sending comment...")
+                      : t("Send")}
                   </button>
                 )}
               </>
@@ -365,7 +372,7 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
 };
 
 // Individual tribute comment
-const TributeComment = ({ tributeComment, userInfo }) => {
+const TributeComment = ({ tributeComment, userInfo, t, languageSelected }) => {
   const [openTributeCommentOptions, setOpenTributeCommentOptions] =
     useState(false);
   const [edititingTributeComment, setEditingTributeComment] = useState(false);
@@ -472,9 +479,12 @@ const TributeComment = ({ tributeComment, userInfo }) => {
               {tributeComment?.owner?.name}
             </h3>
             <h4 className="text-[.7rem] text-tertiary-color">
-              Created:{" "}
+              {t("Created")}:{" "}
               <span className="font-bold">
-                {formatDate(tributeComment?.created_at)}
+                {formatDate(
+                  tributeComment?.created_at,
+                  languageSelected === "es" ? "spanish" : "english"
+                )}
               </span>
             </h4>
             <h5 className="text-[.7rem] text-tertiary-color font-semibold">
@@ -515,7 +525,7 @@ const TributeComment = ({ tributeComment, userInfo }) => {
                 <ul className="absolute right-5 shadow-lg bg-white z-[1000] w-max rounded max-h-96 overflow-auto">
                   <NavbarDropdownLink
                     hoverBgLink={"hover:bg-secondary-color hover:text-white"}
-                    linkText={"Edit"}
+                    linkText={t("Edit")}
                     onClick={() =>
                       setEditingTributeComment(!edititingTributeComment)
                     }
@@ -523,7 +533,7 @@ const TributeComment = ({ tributeComment, userInfo }) => {
 
                   <NavbarDropdownLink
                     hoverBgLink={"hover:bg-red-500 hover:text-white"}
-                    linkText={"Delete"}
+                    linkText={t("Delete")}
                     onClick={handleDeleteCommentTribute}
                     linkTo={"#"}
                   />
@@ -550,8 +560,8 @@ const TributeComment = ({ tributeComment, userInfo }) => {
             type="submit"
           >
             {editTributeCommentMutation?.isPending
-              ? "Saving Changes..."
-              : "Save Changes"}
+              ? t("Saving Changes...")
+              : t("Save Changes")}
           </button>
         </form>
       ) : (
@@ -572,7 +582,7 @@ const TributeComment = ({ tributeComment, userInfo }) => {
                     }
                     type="button"
                   >
-                    Read More
+                    {t("Read More")}
                   </button>
                 </div>
               )}
@@ -592,7 +602,7 @@ const TributeComment = ({ tributeComment, userInfo }) => {
                     }
                     type="button"
                   >
-                    Read Less
+                    {t("Read Less")}
                   </button>
                 </div>
               )}

@@ -302,15 +302,15 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
               </p>
             </div>
 
-            {/* {!rememberedProfileInfo?.dad_name &&
+             {!rememberedProfileInfo?.dad_name &&
             !rememberedProfileInfo?.mom_name ? null : (
               <div>
-                <h3 className="font-bold">Parent names:</h3>
+                <h3 className="font-bold">{t("Parent Names")}:</h3>
 
                 {rememberedProfileInfo?.dad_name ? (
                   <>
                     <p>
-                      <span className="font-bold">Dad:</span>{" "}
+                      <span className="font-bold">{t("Father")}:</span>{" "}
                       {rememberedProfileInfo?.dad_name}
                     </p>
                   </>
@@ -318,12 +318,12 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
 
                 {rememberedProfileInfo?.mom_name ? (
                   <p>
-                    <span className="font-bold">Mom:</span>{" "}
+                    <span className="font-bold">{t("Mother")}:</span>{" "}
                     {rememberedProfileInfo?.mom_name}
                   </p>
                 ) : null}
               </div>
-            )} */}
+            )} 
 
             <AboutRememberedProfileModal
               titleModal={t("Edit life journey profile")}

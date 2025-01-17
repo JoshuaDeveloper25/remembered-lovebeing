@@ -19,7 +19,7 @@ const Memorial = ({ item, t }) => {
       {/* Profile */}
       <div>
         <img
-          className="profile-image border-2 border-white mx-auto -mt-14 sticky z-50 w-24 h-24 rounded-full"
+          className="profile-image border-2 border-white mx-auto -mt-14 sticky z-50 w-24 h-24 object-cover rounded-full"
           src={
             item?.profile_images
               ? `${item?.profile_images?.cloud_front_domain}/${item?.profile_images?.aws_file_name}`

@@ -9,10 +9,12 @@ import { FaPlus } from "react-icons/fa6";
 import { useState, useRef } from "react";
 import { toast } from "react-toastify";
 import { saveAs } from "file-saver";
-import axios from "axios";
 import Swal from "sweetalert2";
+import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
+  const { t } = useTranslation();
   const [generatedCode, setGeneratedCode] = useState("");
   const queryClient = useQueryClient();
   const location = useLocation();
@@ -92,7 +94,7 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
     <>
       <div className="flex flex-col sm:flex-row justify-between items-center mb-7 bg-white shadow-lg rounded-lg p-3">
         <h2 className="text-primary-color font-bold text-xl sm:my-0 my-3">
-          QR Code
+          {t("QR Code")}
         </h2>
 
         {statusPlan === "free" && isOwner && (
@@ -105,7 +107,8 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
             <span></span>
             <span></span>
             <span></span> <MdWorkspacePremium className="inline-block size-6" />{" "}
-            Go Pro / <span className="font-bold">$1.00</span> Lifetime
+            {t("Go Pro")} / <span className="font-bold">$1.00</span>{" "}
+            {t("for life")}
           </Link>
         )}
 
@@ -135,13 +138,13 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
                       fill="currentFill"
                     />
                   </svg>{" "}
-                  Generating QR Code...
-                  <span className="sr-only">Generating QR Code...</span>
+                  {t("Generating QR Code...")}
+                  <span className="sr-only">{t("Generating QR Code...")}</span>
                 </div>
               </>
             ) : (
               <>
-                <FaPlus className="inline-block" /> Generate QR Code
+                <FaPlus className="inline-block" /> {t("Generate QR Code")}
               </>
             )}
           </button>
@@ -159,7 +162,7 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
       {qrImages ? (
         <div className="shadow-lg bg-white rounded-md py-8">
           <h2 className="text-center text-primary-color font-semibold text-2xl mb-4 font-mono tracking-tighter">
-            Congrats! This is going to be your QR Code for life!
+            {t("Congrats! This is going to be your QR Code for life!")}
           </h2>
           <img
             loading="lazy"
@@ -167,7 +170,7 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
             src={
               qrImages
                 ? `${qrImages?.cloud_front_domain}/${qrImages?.aws_file_name}`
-                : `There's no qr code yet...`
+                : t(`There's no qr code yet...`)
             }
             className="border-2 border-gray-100 shadow-lg mx-auto"
           />
@@ -177,14 +180,14 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
               type="button"
               className="btn btn-blue w-auto text-center"
             >
-              Download
+              {t("Download")}
             </button>
           </div>
         </div>
       ) : statusPlan === "premium" ? (
         <div className="bg-white shadow-lg py-6 rounded-sm">
           <h2 className="text-center text-primary-color font-semibold text-2xl mb-4 font-mono tracking-tighter">
-            You haven't generated a QR Code yet...
+            {t("You haven't generated a QR Code yet...")}
           </h2>
         </div>
       ) : (
@@ -192,7 +195,9 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
           {isOwner && (
             <h3 className="font-semibold text-center py-2.5 shadow-lg rounded-sm text-gray-900 text-lg  bg-yellow-400 animate-pulse ">
               <IoIosWarning className="inline-block size-8 me-1.5 align-middle" />
-              You have to upgrade to the premium plan to generate a QR Code!
+              {t(
+                "You have to upgrade to the premium plan to generate a QR Code!"
+              )}
             </h3>
           )}
         </div>

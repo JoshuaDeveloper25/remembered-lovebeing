@@ -724,10 +724,28 @@ const resources = {
       "Write your condolence here...": "Write your condolence here...",
       "Reply?": "Reply?",
       "Stop Editing": "Stop Editing",
+      "Generating QR Code...": "Generating QR Code...",
+      "Congrats! This is going to be your QR Code for life!":
+        "Congrats! This is going to be your QR Code for life!",
+      "There's no qr code yet...": "There's no qr code yet...",
+      Download: "Download",
+      "You haven't generated a QR Code yet...":
+        "You haven't generated a QR Code yet...",
+      "You have to upgrade to the premium plan to generate a QR Code!":
+        "You have to upgrade to the premium plan to generate a QR Code!",
     },
   },
   es: {
     translation: {
+      "You have to upgrade to the premium plan to generate a QR Code!":
+        "¡Tienes que actualizarte al plan premium para generar un Código QR!",
+      "You haven't generated a QR Code yet...":
+        "Aún no has generado un Código QR...",
+      Download: "Descargar",
+      "There's no qr code yet...": "Aún no hay un código qr...",
+      "Congrats! This is going to be your QR Code for life!":
+        "¡Felicidades! ¡Este será tu Código QR de por vida!",
+      "Generating QR Code...": "Generando Código QR...",
       "Stop Editing": "Dejar de Editar",
       "Reply?": "¿Responder?",
       "Write your condolence here...": "Escribe tu condolencia aquí...",

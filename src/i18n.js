@@ -748,10 +748,12 @@ const resources = {
         "There's no comments in this tribute yet...",
       "Comment on this tribute...": "Comment on this tribute...",
       "Sending comment...": "Sending comment...",
+      "Find the Perfect Plan": "Find the Perfect Plan",
     },
   },
   es: {
     translation: {
+      "Find the Perfect Plan": "Encuentra el Plan Perfecto",
       "Sending comment...": "Enviando comentario...",
       "Comment on this tribute...": "Comentar en este tributo...",
       "There's no comments in this tribute yet...":

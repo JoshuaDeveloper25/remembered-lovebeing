@@ -59,7 +59,7 @@ const Prices = () => {
 
       <div className="text-center">
         <h2 className="font-mono tracking-wider text-4xl text-primary-color uppercase font-semibold">
-          {t("Pricing Plans")}
+          {t("Find the Perfect Plan")}
         </h2>
         <div className="bg-yellow-500 h-2 w-24 my-3 mx-auto"></div>
         <p className="text-xl max-w-2xl mx-auto  text-muted-color">
@@ -179,7 +179,7 @@ const Prices = () => {
           <div className="mt-5">
             <h2 className="font-bold text-primary-color-light text-5xl tracking-tighter">
               <span className="align-text-top text-4xl me-3">$</span>
-              <span>1.00</span>
+              <span>5.00</span>
             </h2>
 
             {currency ? (
@@ -187,7 +187,7 @@ const Prices = () => {
                 {t("Aprox.")} {currencySymbol}{" "}
                 <span className="font-extrabold">
                   {(
-                    getCurrencyMutation?.data?.data?.conversion_rate * 1.00
+                    getCurrencyMutation?.data?.data?.conversion_rate * 5.00
                   ).toFixed("2")}
                 </span>
               </h4>
@@ -270,7 +270,7 @@ const Prices = () => {
             </button>
           </Link>
         </div>
-        {/* 
+         
         <div className="min-w-[20rem] hover:shadow-2xl animation-fade border shadow-xl rounded-md text-center py-11 px-7 bg-white">
           <span className="font-semibold text-primary-color-light uppercase tracking-wider">
             {t("Tertiary Package")}
@@ -366,7 +366,7 @@ const Prices = () => {
               {t("Select Plan")}
             </button>
           </Link>
-        </div> */}
+        </div> 
       </div>
     </section>
   );

@@ -1,6 +1,8 @@
 import { Select, SelectItem, Avatar } from "@nextui-org/react";
+import { PiCoinFill } from "react-icons/pi";
+import { useState } from "react";
 
-const SelectCurrency = ({ handleChangeCurrency, currency, t  }) => {
+const SelectCurrency = ({ handleChangeCurrency, currency, t }) => {
   let countrySelected;
 
   if (currency === "HNL") {
@@ -49,9 +51,17 @@ const SelectCurrency = ({ handleChangeCurrency, currency, t  }) => {
     <Select
       onChange={handleChangeCurrency}
       defaultSelectedKeys={["united_states"]}
-      classNames={{ trigger: "bg-white" }}
+      classNames={{
+        trigger: "bg-primary-color data-[hover=true]:bg-primary-color/90",
+        selectorIcon: "text-white",
+      }}
       startContent={countrySelected}
-      label={t("Select currency")}
+      label={
+        <div className="flex items-center gap-1.5 text-white">
+          <PiCoinFill className="text-yellow-300" size={20} />
+          {t("Select currency")}
+        </div>
+      }
       className="max-w-xs"
     >
       <SelectItem
@@ -67,7 +77,6 @@ const SelectCurrency = ({ handleChangeCurrency, currency, t  }) => {
       >
         Honduras
       </SelectItem>
-
       <SelectItem
         value={currency}
         key="GTQ"
@@ -81,7 +90,6 @@ const SelectCurrency = ({ handleChangeCurrency, currency, t  }) => {
       >
         Guatemala
       </SelectItem>
-
       <SelectItem
         value={currency}
         key="NIO"
@@ -95,7 +103,6 @@ const SelectCurrency = ({ handleChangeCurrency, currency, t  }) => {
       >
         Nicaragua
       </SelectItem>
-
       <SelectItem
         value={currency}
         key="CRC"
@@ -109,7 +116,6 @@ const SelectCurrency = ({ handleChangeCurrency, currency, t  }) => {
       >
         Costa Rica
       </SelectItem>
-
       <SelectItem
         value={currency}
         key="MXN"

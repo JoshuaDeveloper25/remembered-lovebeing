@@ -10,6 +10,7 @@ import { useContext } from "react";
 
 const New = ({ item, t }) => {
   const { languageSelected } = useContext(AppContext);
+  console.log(item.description.split("has"))
 
   const statusIcons = [
     {

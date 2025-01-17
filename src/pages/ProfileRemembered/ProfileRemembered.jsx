@@ -692,6 +692,7 @@ const ProfileRemembered = () => {
                       idTab={"#tributes"}
                     >
                       <TributeHeader
+                        t={t}
                         isOwner={data?.data?.is_owner}
                         isAlbertEinstein={isAlbertEinstein}
                         userInfo={userInfo}
@@ -700,7 +701,7 @@ const ProfileRemembered = () => {
 
                       {!data?.data?.remembered_profile?.tributes?.length ? (
                         <h2 className="text-center font-bold text-xl text-primary-color my-5">
-                          There's no tributes in this profile yet...
+                          {t("There's no tributes in this profile yet...")}
                         </h2>
                       ) : (
                         <Tributes

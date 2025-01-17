@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const TributeHeader = ({
+  t,
   userInfo,
   idRemembered,
   isAlbertEinstein,
@@ -22,7 +23,7 @@ const TributeHeader = ({
               onClick={() => setTributeDesc(!tributeDesc)}
               type="button"
             >
-              Tributes: A Personal Tribute
+              {t("Tributos: Un Tributo Personal")}
               {tributeDesc ? (
                 <FaChevronUp className="text-white inline" />
               ) : (
@@ -40,16 +41,18 @@ const TributeHeader = ({
                 }
               >
                 <div className={`bg-black/60 p-5 backdrop-blur-lg`}>
-                  <strong>Description: </strong>This section is designed for
-                  family and friends to share memories and special messages
-                  about their loved one. Here those who knew them can express
-                  their feelings and cherish significant moments.{" "}
+                  <strong>{t("Description")}: </strong>
+                  {
+                    t("This section is designed for family and friends to share memories and special messages about their loved one. Here those who knew them can express their feelings and cherish significant moments.")
+                  }{" "}
                   <span className="block mt-3">
-                    <strong>Example:</strong>{" "}
+                    <strong>{t("Example")}:</strong>{" "}
                     <i>
-                      “I will always remember how John made us laugh with his
-                      funny stories. His warmth and kindness made every
-                      encounter special. We will miss you so much.”
+                      “
+                      {t(
+                        "I will always remember how Jennifer made us laugh with her funny stories. Her warmth and kindness made every encounter special. We will miss you so much."
+                      )}
+                      ”
                     </i>
                   </span>
                 </div>
@@ -61,13 +64,13 @@ const TributeHeader = ({
 
       {!userInfo?.access_token && (
         <h4 className="font-medium text-tertiary-color">
-          Please,{" "}
+          {t("Please")},{" "}
           <span>
             <Link className="text-secondary-color underline" to={"/sign-in"}>
-              Log In
+              {t("Log in")}
             </Link>
           </span>
-          , to leave a tribute.
+          , {t("to leave a tribute")}.
         </h4>
       )}
 

@@ -733,10 +733,30 @@ const resources = {
         "You haven't generated a QR Code yet...",
       "You have to upgrade to the premium plan to generate a QR Code!":
         "You have to upgrade to the premium plan to generate a QR Code!",
+      "There's no tributes in this profile yet...":
+        "There's no tributes in this profile yet...",
+      "to leave a tribute": "to leave a tribute",
+      "I will always remember how Jennifer made us laugh with her funny stories. Her warmth and kindness made every encounter special. We will miss you so much.":
+        "I will always remember how Jennifer made us laugh with her funny stories. Her warmth and kindness made every encounter special. We will miss you so much.",
+      "This section is designed for family and friends to share memories and special messages about their loved one. Here those who knew them can express their feelings and cherish significant moments.":
+        "This section is designed for family and friends to share memories and special messages about their loved one. Here those who knew them can express their feelings and cherish significant moments.",
+      "Add New Tribute": "Add New Tribute",
+      "Add Tribute": "Add Tribute",
+      "Description of the tribute.": "Description of the tribute.",
     },
   },
   es: {
     translation: {
+      "Description of the tribute.": "Descripción del tributo.",
+      "Add Tribute": "Agregar Tributo",
+      "Add New Tribute": "Agregar Nuevo Tributo",
+      "This section is designed for family and friends to share memories and special messages about their loved one. Here those who knew them can express their feelings and cherish significant moments.":
+        "Esta sección está diseñada para que familiares y amigos compartan recuerdos y mensajes especiales sobre su ser querido. Aquí, aquellos que los conocieron pueden expresar sus sentimientos y atesorar momentos significativos.",
+      "I will always remember how Jennifer made us laugh with her funny stories. Her warmth and kindness made every encounter special. We will miss you so much.":
+        "Siempre recordaré cómo Jennifer nos hacía reír con sus historias divertidas. Su calidez y amabilidad hacían que cada encuentro fuera especial. Te extrañaremos mucho.",
+      "to leave a tribute": "para dejar un tributo",
+      "There's no tributes in this profile yet...":
+        "Aún no hay tributos en este perfil...",
       "You have to upgrade to the premium plan to generate a QR Code!":
         "¡Tienes que actualizarte al plan premium para generar un Código QR!",
       "You haven't generated a QR Code yet...":

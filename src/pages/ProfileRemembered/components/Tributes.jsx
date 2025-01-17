@@ -1,15 +1,15 @@
 import NavbarDropdownLink from "../../../components/NavbarDropdownLink";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import AlertUserExample from "../../../components/AlertUserExample";
 import getFastApiErrors from "../../../utils/getFastApiErrors";
 import AppContext from "../../../context/AppProvider";
-import { useContext, useState } from "react";
 import formatDate from "../../../utils/formatDate";
+import { useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
-import axios from "axios";
 import Swal from "sweetalert2";
-import AlertUserExample from "../../../components/AlertUserExample";
+import axios from "axios";
 
 // All Tributes
 const Tributes = ({ isAlbertEinstein, tributes, isOwner }) => {

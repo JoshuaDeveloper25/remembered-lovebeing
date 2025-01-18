@@ -45,7 +45,7 @@ const UploadTribute = ({ isAlbertEinstein, idRemembered, isOwner }) => {
     };
 
     if (!tributeInfo?.content?.trim(" "))
-      return toast.error("Fill up the blanks available!");
+      return toast.error(t("Fill up the blanks!"));
 
     createTributeMutation?.mutate(tributeInfo);
   };

@@ -66,7 +66,7 @@ const Form = ({ onSuccess = null }) => {
 
     // Form validation
     if ([formData.get("username"), formData.get("password")].includes("")) {
-      return toast.error("¡Fill up the blanks available!");
+      return toast.error(t("Fill up the blanks!"));
     }
 
     // Sign in user

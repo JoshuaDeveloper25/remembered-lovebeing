@@ -50,7 +50,7 @@ const UploadGalleryImage = ({
     e.preventDefault();
 
     if (images?.length === 0) {
-      return toast.error(`Upload 1 image at least!`);
+      return toast.error(t(`Upload 1 image at least!`));
     }
 
     const formData = new FormData();

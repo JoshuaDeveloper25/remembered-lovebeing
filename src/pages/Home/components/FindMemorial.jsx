@@ -18,7 +18,7 @@ const FindMemorial = () => {
     };
 
     if (!memorialInfo?.memorialName.trim("")) {
-      return toast.error("Input a name of a memorial please!");
+      return toast.error(t("Input a name of a memorial please!"));
     }
 
     navigate(`/memorials?search=${memorialInfo?.memorialName}`);

@@ -97,7 +97,7 @@ const PublicPost = ({ post, ownerName }) => {
 
     // Form validation
     if (!commentInfo?.content.trim(" "))
-      return toast.error(`Fill up the blank!`);
+      return toast.error(t(`Fill up the blank!`));
 
     publishCommentPostMutation.mutate(commentInfo);
 
@@ -561,7 +561,7 @@ const SingleComment = ({ post, comment, userInfo, languageSelected, t }) => {
 
     // Form validation
     if (!commentInfo?.content)
-      return toast.error(`Fill up the blanks available!`);
+      return toast.error(t(`Fill up the blanks!`));
 
     editCommentMutation.mutate(commentInfo);
   };

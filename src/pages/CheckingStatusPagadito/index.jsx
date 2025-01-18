@@ -136,7 +136,7 @@ const CheckingStatusPagadito = () => {
 
     if (Object?.keys(invoiceInfo)?.includes("")) {
       return toast.error(
-        "Any of the provided fields are empty, we coudn't send the invoice to email!"
+        t("Any of the provided fields are empty, we coudn't send the invoice to email!")
       );
     }
 

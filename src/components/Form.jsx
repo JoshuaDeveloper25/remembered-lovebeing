@@ -15,7 +15,7 @@ const Form = ({ children, setIsLoading }) => {
     setIsLoading(true);
 
     if (!form.current) {
-      return toast.error(t("Fill in the blanks"));
+      return toast.error(t("Fill up the blanks!"));
     }
 
     try {

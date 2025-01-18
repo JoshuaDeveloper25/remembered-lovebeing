@@ -45,7 +45,7 @@ const UploadCondolence = ({ isAlbertEinstein, isOwner, idRemembered }) => {
     };
 
     if (!condolenceInfo?.content?.trim(" "))
-      return toast.error(`Fill up the blank!`);
+      return toast.error(t(`Fill up the blank!`));
 
     createCondolenceMutation?.mutate(condolenceInfo);
   };

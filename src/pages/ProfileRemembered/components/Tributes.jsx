@@ -70,7 +70,7 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
     };
 
     // Form validation
-    if (!commentInfo?.content) return toast.error(`Fill up the blank!`);
+    if (!commentInfo?.content) return toast.error(t(`Fill up the blank!`));
 
     replyTributeMutation.mutate(commentInfo);
 
@@ -103,7 +103,7 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
     };
 
     // Form validation
-    if (!commentInfo?.content) return toast.error(`Fill up the blank!`);
+    if (!commentInfo?.content) return toast.error(t(`Fill up the blank!`));
 
     editTributeMutation.mutate(commentInfo);
   };
@@ -407,7 +407,7 @@ const TributeComment = ({ tributeComment, userInfo, t, languageSelected }) => {
     };
 
     // Form validation
-    if (!commentInfo?.content) return toast.error(`Fill up the blank!`);
+    if (!commentInfo?.content) return toast.error(t(`Fill up the blank!`));
 
     editTributeCommentMutation.mutate(commentInfo);
   };

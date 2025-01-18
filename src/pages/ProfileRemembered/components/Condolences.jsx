@@ -97,7 +97,7 @@ const Condolence = ({ condolence, isOwner }) => {
     };
 
     // Form validation
-    if (!commentInfo?.owner_reply) return toast.error(`Fill up the blank!`);
+    if (!commentInfo?.owner_reply) return toast.error(t(`Fill up the blank!`));
 
     replyCondolenceMutation.mutate(commentInfo);
   };
@@ -128,7 +128,7 @@ const Condolence = ({ condolence, isOwner }) => {
     };
 
     // Form validation
-    if (!commentInfo?.content) return toast.error(`Fill up the blank!`);
+    if (!commentInfo?.content) return toast.error(t(`Fill up the blank!`));
 
     editCondolenceMutation.mutate(commentInfo);
   };

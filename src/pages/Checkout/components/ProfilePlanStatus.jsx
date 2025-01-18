@@ -49,7 +49,7 @@ const ProfilePlanStatus = () => {
       if (paymentUrl) {
         window.location.href = `${paymentUrl}`;
       } else {
-        toast.error("Didn't receive a valid url.");
+        toast.error(t("Didn't receive a valid url."));
       }
     },
     onError: (err) => {

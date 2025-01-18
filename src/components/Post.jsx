@@ -106,7 +106,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
 
     // Form validation
     if (!commentInfo?.content.trim(" "))
-      return toast.error(`Fill up the blank!`);
+      return toast.error(t(`Fill up the blank!`));
 
     publishCommentPostMutation.mutate(commentInfo);
 
@@ -290,9 +290,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
                       {t("See more...")}
                     </button>
                   ) : (
-                    <button>
-                      {t("No results...")}
-                    </button>
+                    <button>{t("No results...")}</button>
                   )}
 
                   <ModalFlowbite
@@ -688,7 +686,7 @@ const EditPostLogic = ({
     };
 
     // Form validation
-    if (!commentInfo?.content) return toast.error(`Fill up the blank!`);
+    if (!commentInfo?.content) return toast.error(t(`Fill up the blank!`));
 
     editPostMutation.mutate(commentInfo);
   };
@@ -746,7 +744,7 @@ const SingleComment = ({ post, comment, userInfo, t, languageSelected }) => {
 
     // Form validation
     if (!commentInfo?.content)
-      return toast.error(`Fill up the blanks available!`);
+      return toast.error(t(`Fill up the blanks!`));
 
     editCommentMutation.mutate(commentInfo);
   };

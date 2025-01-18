@@ -164,7 +164,7 @@ const Profile = ({ item, isPending }) => {
     };
 
     if (profileInfo?.birth_date > profileInfo?.death_date) {
-      return toast.error(`Birth can't be higher than death date!`);
+      return toast.error(t(`Birth can't be higher than death date!`));
     }
 
     createLifeTimeMutation?.mutate(profileInfo);

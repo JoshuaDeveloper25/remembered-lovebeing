@@ -52,7 +52,7 @@ const UploadPost = ({ galleryImages, statusPlan, isOwner, idRemembered }) => {
         t("Please, upload/add images if you want to create a post.")
       );
     } else if (!postInfo?.content?.trim(" "))
-      return toast.error("Fill up the blanks available!");
+      return toast.error(t("Fill up the blanks!"));
 
     setError("");
 

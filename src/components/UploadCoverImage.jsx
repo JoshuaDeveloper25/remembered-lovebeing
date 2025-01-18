@@ -102,7 +102,7 @@ const UploadCoverImage = ({ idRemembered }) => {
     e.preventDefault();
 
     if (!imgRef.current) {
-      return toast.error("Upload an image before uploading!");
+      return toast.error(t("Upload an image before uploading!"));
     }
 
     const canvas = imgRef.current?.getCanvas();

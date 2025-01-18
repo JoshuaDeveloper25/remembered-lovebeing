@@ -52,11 +52,11 @@ const SignUp = () => {
         e?.target?.repeatPassword?.value,
       ].includes("")
     ) {
-      return toast.error("¡Fill up the blanks available!");
+      return toast.error(t("Fill up the blanks!"));
     } else if (
       e?.target?.password?.value !== e?.target?.repeatPassword?.value
     ) {
-      return toast.error("¡Passwords are not the same!");
+      return toast.error(t("Passwords are not the same!"));
     }
 
     // Sign up user

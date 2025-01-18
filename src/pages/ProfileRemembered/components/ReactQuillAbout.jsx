@@ -86,7 +86,7 @@ const ReactQuillAbout = ({ rememberedProfile, owner }) => {
 
     // Form validation
     if (!historyInfo?.content)
-      return toast.error(`Fill up the blank available!`);
+      return toast.error(t(`Fill up the blank!`));
 
     editHistoryMutation.mutate(historyInfo);
   };

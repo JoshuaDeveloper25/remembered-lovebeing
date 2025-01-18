@@ -7,14 +7,11 @@ import {
 } from "@nextui-org/react";
 
 import { useTranslation } from "react-i18next";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { MdSort } from "react-icons/md";
 
-const SortSelect = () => {
+const SortSelect = ({ selectedKeys, setSelectedKeys }) => {
   const { t } = useTranslation();
-  const [selectedKeys, setSelectedKeys] = useState(new Set([t("All")]));
-  const selectedSort = [...selectedKeys][0];
-  console.log(selectedSort);
 
   const selectedValue = useMemo(
     () => Array.from(selectedKeys).join(", ").replace(/_/g, ""),

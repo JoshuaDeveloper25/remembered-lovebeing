@@ -3,6 +3,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { GoPlus } from "react-icons/go";
 import { Link } from "react-router-dom";
 import SortSelect from "./SortSelect";
+import { useState } from "react";
 import Profile from "./Profile";
 
 const Profiles = ({
@@ -14,6 +15,17 @@ const Profiles = ({
   setStatusPlan,
 }) => {
   const { t } = useTranslation();
+
+  const [selectedKeys, setSelectedKeys] = useState(new Set([t("All")]));
+  const selectedSort = [...selectedKeys][0];
+
+  const filteredProfiles = profiles?.filter((profile) =>
+    selectedSort === t("All")
+      ? profile
+      : selectedSort === t("Premium")
+      ? profile?.status_plan === "premium"
+      : selectedSort === t("Free") && profile?.status_plan === "free"
+  );
 
   const handleCreatePremiumProfile = () => {
     setOpenPremiumModal(true);
@@ -103,11 +115,14 @@ const Profiles = ({
               </div>
 
               <div className="my-3">
-                <SortSelect />
+                <SortSelect
+                  setSelectedKeys={setSelectedKeys}
+                  selectedKeys={selectedKeys}
+                />
               </div>
 
               <article className="grid min-[1043px]:grid-cols-2 grid-cols-1 gap-4 col-span-3">
-                {profiles?.map((item) => {
+                {filteredProfiles?.map((item) => {
                   return (
                     <Profile isPending={isPending} item={item} key={item?.id} />
                   );

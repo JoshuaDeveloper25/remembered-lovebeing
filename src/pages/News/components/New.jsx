@@ -10,7 +10,6 @@ import { useContext } from "react";
 
 const New = ({ item, t }) => {
   const { languageSelected } = useContext(AppContext);
-  console.log(item.description.split("has"))
 
   const statusIcons = [
     {
@@ -87,7 +86,7 @@ const New = ({ item, t }) => {
       </h4>
 
       <p className="max-w-[18rem] text-sm mx-auto text-tertiary-color">
-        {item?.description}
+        {item.description}
       </p>
     </article>
   );

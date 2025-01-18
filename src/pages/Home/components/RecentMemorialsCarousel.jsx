@@ -41,7 +41,7 @@ const RecentMemorialsCarousel = () => {
 
   return (
     <section className="bg-white">
-      <div className="container-page px-3 sm:py-14 py-3">
+      <div className="container-page px-3 sm:py-14 py-6">
         <h2 className="tracking-wider font-mono sm:text-4xl text-3xl text-primary-color text-center uppercase font-semibold">
           {t("Recent online memorials")}
         </h2>

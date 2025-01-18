@@ -274,7 +274,6 @@ body {
 .modernDesigns .swiper-pagination-bullet-active,
 .modernDesignsResponsive .swiper-pagination-bullet-active {
   background: #04bffa !important;
-  transition: all 0.2s;
   border-radius: 1rem !important;
   font-size: 4rem !important;
   width: 2rem !important;

@@ -191,7 +191,11 @@ const Form = ({ onSuccess = null }) => {
 
         <div>
           <button
-            className="border-2 flex items-center gap-4 hover:bg-black hover:text-white justify-center border-fourth-color/70 text-fourth-color/70 rounded-full p-1 w-full hover:shadow-lg animation-fade"
+            className={`${
+              isLoginGooglePending
+                ? "border-2 flex items-center gap-4 animate-pulse pointer-events-none bg-black text-white justify-center border-fourth-color/70 text-fourth-color/70 rounded-full p-1 w-full hover:shadow-lg animation-fade"
+                : "border-2 flex items-center gap-4 hover:bg-black hover:text-white justify-center border-fourth-color/70 text-fourth-color/70 rounded-full p-1 w-full hover:shadow-lg animation-fade"
+            } `}
             disabled={isLoginGooglePending}
             onClick={() => login()}
             type="button"

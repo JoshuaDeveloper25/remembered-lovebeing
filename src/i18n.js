@@ -841,6 +841,7 @@ const resources = {
         "There was a problem trying to remove the tribute.",
       "Do you really want to delete this tribute? This action cannot be undone.":
         "Do you really want to delete this tribute? This action cannot be undone.",
+  
     },
   },
   es: {

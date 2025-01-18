@@ -6,7 +6,7 @@ const CreateMemorial = () => {
   const { t } = useTranslation(); // Hook para traducciones
 
   return (
-    <section className="px-3 sm:py-14 py-3 sm:border-none border-gray-400 border">
+    <section className="px-3 sm:py-14 py-6 sm:border-none border-gray-300 border">
       <div className="container-page">
         <div className="flex flex-col md:flex-row items-center text-modern-color gap-3">
           <div className="flex-1">
@@ -15,7 +15,7 @@ const CreateMemorial = () => {
             </h4>
             <h2 className="sm:text-4xl text-3xl text-fourth-color font-semibold my-4">
               {t("Create an online memorial")}{" "}
-              <span className="text-modern-color block font-medium sm:text-3xl text-2xl">
+              <span className="text-modern-color block font-medium sm:text-3xl text-xl">
                 {t(`Share your loved one's story`)}.
               </span>
             </h2>

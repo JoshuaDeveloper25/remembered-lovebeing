@@ -83,7 +83,7 @@ const Header = () => {
                 >
                   <button
                     type="button"
-                    className="btn btn-blue border-2 border-white w-full block rounded-sm hover:bg-black text-white hover:border-black"
+                    className="btn bg-primary-color-light border-2 border-primary-color-light w-full block rounded-sm hover:opacity-75 text-white "
                   >
                     {t("Create memorial")}
                   </button>

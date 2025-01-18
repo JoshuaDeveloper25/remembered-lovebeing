@@ -15,7 +15,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-primary-color text-white">
-      <div className="w-full max-w-[1200px] mx-auto sm:px-2 px-6 sm:pb-4 pb-12 py-4 lg:py-8">
+      <div className="w-full max-w-[1200px] mx-auto sm:px-2 px-6 sm:pb-4 pb-20 py-4 lg:py-8">
         <div className="flex flex-col md:flex-row justify-between gap-2 sm:gap-6">
           <div className="mb-6 md:mb-0">
             <img className="w-72 rounded" src={logo} alt={"Logo"} />

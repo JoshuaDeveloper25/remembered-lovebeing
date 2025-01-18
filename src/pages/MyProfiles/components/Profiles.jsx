@@ -1,10 +1,9 @@
-import FormCreateProfile from "./FormCreateProfile";
 import { useTranslation } from "react-i18next";
-import Modal from "../../../components/Modal";
 import { IoCartOutline } from "react-icons/io5";
-import Profile from "./Profile";
 import { GoPlus } from "react-icons/go";
 import { Link } from "react-router-dom";
+import SortSelect from "./SortSelect";
+import Profile from "./Profile";
 
 const Profiles = ({
   handleCreateFreeProfile,
@@ -92,7 +91,7 @@ const Profiles = ({
         {profiles?.length !== 0 ? (
           <div>
             <div className="border-b-2 pb-8">
-              <div className="mb-3">
+              <div>
                 <h2 className="font-light text-base text-yellow-500 tracking-wider font-mono">
                   <span className="text-2xl">{t("My")}</span>{" "}
                   <span className="text-primary-color-light tracking-tighter">
@@ -101,6 +100,10 @@ const Profiles = ({
                 </h2>
 
                 <div className="h-1 w-28 bg-yellow-500 rounded-sm"></div>
+              </div>
+
+              <div className="my-3">
+                <SortSelect />
               </div>
 
               <article className="grid min-[1043px]:grid-cols-2 grid-cols-1 gap-4 col-span-3">

@@ -841,11 +841,12 @@ const resources = {
         "There was a problem trying to remove the tribute.",
       "Do you really want to delete this tribute? This action cannot be undone.":
         "Do you really want to delete this tribute? This action cannot be undone.",
-  
+      "Filter by": "Filter by",
     },
   },
   es: {
     translation: {
+      "Filter by": "Filtrar por",
       "Do you really want to delete this tribute? This action cannot be undone.":
         "¿De verdad quieres eliminar este tributo? Esta acción no puede revertirse.",
       "There was a problem trying to remove the tribute.":

@@ -10,6 +10,7 @@ import axios from "axios";
 import { MdWorkspacePremium } from "react-icons/md";
 import AddImagesToMediaGalleryModal from "../pages/ProfileRemembered/components/AddImagesToMediaGalleryModal";
 import ButtonForm from "./ButtonForm";
+import { useTranslation } from "react-i18next";
 
 const UploadGalleryImage = ({
   imagesGallery,
@@ -34,7 +35,7 @@ const UploadGalleryImage = ({
         imageInfo
       ),
     onSuccess: (res) => {
-      toast.success("Upload successfull!");
+      toast.success(t("Upload successfull!"));
       queryClient.invalidateQueries(["ownProfiles"]);
       setOpenModalGallery(false);
       setImages([]);
@@ -74,7 +75,8 @@ const UploadGalleryImage = ({
             <span></span>
             <span></span>
             <span></span> <MdWorkspacePremium className="inline-block size-6" />{" "}
-            {t("Go Pro")} / <span className="font-bold">$4.99</span> {t("lifetime plan")}
+            {t("Go Pro")} / <span className="font-bold">$4.99</span>{" "}
+            {t("lifetime plan")}
           </Link>
         </>
       ) : (

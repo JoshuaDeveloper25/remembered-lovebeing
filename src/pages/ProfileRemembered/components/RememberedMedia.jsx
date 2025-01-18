@@ -81,7 +81,7 @@ const RememberedMedia = ({
         }/remembereds/delete-gallery-image/${idRemembered}/${galleryItem?.id}`
       ),
     onSuccess: (res) => {
-      toast.success("¡Successfully image gallery deleted!");
+      toast.success(t("Successfully image gallery deleted!"));
       queryClient.invalidateQueries({ queryKey: ["profile"] });
       queryClient.invalidateQueries({ queryKey: ["posts"] });
     },

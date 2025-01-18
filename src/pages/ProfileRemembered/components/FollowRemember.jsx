@@ -30,7 +30,7 @@ const FollowRemember = ({ idRemembered, t }) => {
       ),
     onSuccess: (res) => {
       console.log(res);
-      toast.success("Successfully profile followed!");
+      toast.success(t("Successfully profile followed!"));
       queryClient.invalidateQueries({ queryKey: ["favouritesProfiles"] });
     },
     onError: (err) => {
@@ -48,7 +48,7 @@ const FollowRemember = ({ idRemembered, t }) => {
       ),
     onSuccess: (res) => {
       console.log(res);
-      toast.success("You aren't following this user anymore...");
+      toast.success(t("You aren't following this user anymore..."));
       queryClient.invalidateQueries({ queryKey: ["favouritesProfiles"] });
     },
     onError: (err) => {

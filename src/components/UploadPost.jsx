@@ -28,7 +28,7 @@ const UploadPost = ({ galleryImages, statusPlan, isOwner, idRemembered }) => {
         info
       ),
     onSuccess: (res) => {
-      toast.success("Upload successfull!");
+      toast.success(t("Upload successfull!"));
       queryClient.invalidateQueries(["posts"]);
       setOpenModalCreatePost(false);
       setError("");

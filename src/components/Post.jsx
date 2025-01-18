@@ -88,7 +88,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
         commentInfo
       ),
     onSuccess: (res) => {
-      toast.success("Comment published successfully!");
+      toast.success(t("Comment published successfully!"));
       queryClient.invalidateQueries(["posts"]);
     },
     onError: (err) => {
@@ -119,7 +119,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
     mutationFn: async () =>
       await axios.delete(`${import.meta.env.VITE_BASE_URL}/posts/${post?.id}`),
     onSuccess: (res) => {
-      toast.success("Post deleted successfully!");
+      toast.success(t("Post deleted successfully!"));
       queryClient.invalidateQueries(["posts"]);
     },
     onError: (err) => {
@@ -166,7 +166,7 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
         commentInfo
       ),
     onSuccess: (res) => {
-      toast.success("Heart given successfully!");
+      toast.success(t("Heart given successfully!"));
       queryClient.invalidateQueries(["posts"]);
     },
     onError: (err) => {
@@ -670,7 +670,7 @@ const EditPostLogic = ({
         commentInfo
       ),
     onSuccess: (res) => {
-      toast.success("Post edited successfully!");
+      toast.success(t("Post edited successfully!"));
       queryClient.invalidateQueries(["posts"]);
       setOpenModalEditPost(!openModalEditPost);
     },
@@ -727,7 +727,7 @@ const SingleComment = ({ post, comment, userInfo, t, languageSelected }) => {
         commentInfo
       ),
     onSuccess: (res) => {
-      toast.success("Comment edited successfully!");
+      toast.success(t("Comment edited successfully!"));
       queryClient.invalidateQueries(["posts"]);
       setIsEditing(false);
     },
@@ -758,7 +758,7 @@ const SingleComment = ({ post, comment, userInfo, t, languageSelected }) => {
         `${import.meta.env.VITE_BASE_URL}/posts/comment/${comment?.id}`
       ),
     onSuccess: (res) => {
-      toast.success("Comment deleted successfully!");
+      toast.success(t("Comment deleted successfully!"));
       queryClient.invalidateQueries(["posts"]);
     },
     onError: (err) => {

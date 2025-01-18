@@ -31,7 +31,7 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
         qrInfo
       ),
     onSuccess: (res) => {
-      toast.success("QR successfully created!");
+      toast.success(t("QR successfully created!"));
       queryClient.invalidateQueries(["profile"]);
     },
     onError: (err) => {

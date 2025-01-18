@@ -52,7 +52,7 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
         commentInfo
       ),
     onSuccess: (res) => {
-      toast.success("Replied to a tribute!");
+      toast.success(t("Replied to a tribute!"));
       queryClient.invalidateQueries(["profile"]);
       setCommentingTribute(false);
     },
@@ -85,7 +85,7 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
         commentInfo
       ),
     onSuccess: (res) => {
-      toast.success("Tribute edited!");
+      toast.success(t("Tribute edited!"));
       queryClient.invalidateQueries(["profile"]);
       setEditingTribute(!edititingTribute);
     },
@@ -115,7 +115,7 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
         `${import.meta.env.VITE_BASE_URL}/tributes/${tribute?.id}`
       ),
     onSuccess: (res) => {
-      toast.success("Tribute deleted successfully!");
+      toast.success(t("Tribute deleted successfully!"));
       queryClient.invalidateQueries(["profile"]);
     },
     onError: (err) => {
@@ -389,7 +389,7 @@ const TributeComment = ({ tributeComment, userInfo, t, languageSelected }) => {
         commentInfo
       ),
     onSuccess: (res) => {
-      toast.success("Tribute comment edited!");
+      toast.success(t("Tribute comment edited!"));
       queryClient.invalidateQueries(["profile"]);
       setEditingTributeComment(!edititingTributeComment);
     },
@@ -419,7 +419,7 @@ const TributeComment = ({ tributeComment, userInfo, t, languageSelected }) => {
         `${import.meta.env.VITE_BASE_URL}/tributescomment/${tributeComment?.id}`
       ),
     onSuccess: (res) => {
-      toast.success("Tribute comment deleted successfully!");
+      toast.success(t("Tribute comment deleted successfully!"));
       queryClient.invalidateQueries(["profile"]);
     },
     onError: (err) => {

@@ -36,7 +36,7 @@ const FormKnownFor = ({
         knownForInfo
       ),
     onSuccess: (res) => {
-      toast.success("Known for edited successfully!");
+      toast.success(t("Known for edited successfully!"));
       queryClient.invalidateQueries(["profile"]);
       setBestKnownInfoObject({});
     },
@@ -166,7 +166,7 @@ const KnownFor = ({ knownFor, setBestKnownInfoObject }) => {
         }`
       ),
     onSuccess: (res) => {
-      toast.success("Quality deleted successfully!");
+      toast.success(t("Quality deleted successfully!"));
       queryClient.invalidateQueries(["profile"]);
     },
     onError: (err) => {

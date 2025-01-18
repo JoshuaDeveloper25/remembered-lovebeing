@@ -87,7 +87,7 @@ const ProfileRemembered = () => {
         profileInfo
       ),
     onSuccess: (res) => {
-      toast.success("Successfully profile edited!");
+      toast.success(t("Successfully profile edited!"));
       queryClient.invalidateQueries({ queryKey: ["profile"] });
       setEditRememberedProfile(false);
     },
@@ -136,7 +136,7 @@ const ProfileRemembered = () => {
         profileInfo
       ),
     onSuccess: (res) => {
-      toast.success("Successfully status changed!");
+      toast.success(t("Successfully status changed!"));
       queryClient.invalidateQueries({ queryKey: ["profile"] });
       setChangeStatusModal(false);
     },

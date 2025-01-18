@@ -70,7 +70,7 @@ const UploadUserProfileImage = ({ iconClassname }) => {
         imageInfo
       ),
     onSuccess: (res) => {
-      toast.success("¡Image uploaded successfully!");
+      toast.success(t("Image uploaded successfully!"));
       queryClient.invalidateQueries(["profile"]);
       setOpenModalProfile(false);
 

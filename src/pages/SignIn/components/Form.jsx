@@ -26,7 +26,7 @@ const Form = ({ onSuccess = null }) => {
         userInfo
       ),
     onSuccess: (res) => {
-      toast.success("¡Successfully logged in!");
+      toast.success(t("Successfully logged in!"));
       localStorage.setItem("userInfo", JSON.stringify(res.data));
       setUserInfo(res.data);
 
@@ -87,7 +87,7 @@ const Form = ({ onSuccess = null }) => {
           }
         );
 
-        toast.success("User Authenticated!");
+        toast.success(t("User authenticated!"));
         localStorage.setItem("userInfo", JSON.stringify(data));
         setUserInfo(data);
 

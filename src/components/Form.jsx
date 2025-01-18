@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import { useRef } from "react";
 
 const Form = ({ children, setIsLoading }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const form = useRef();
 
   const handleSubmit = async (e) => {
@@ -13,7 +15,7 @@ const Form = ({ children, setIsLoading }) => {
     setIsLoading(true);
 
     if (!form.current) {
-      return toast.error("¡Llena los espacios en blanco!");
+      return toast.error(t("Fill in the blanks"));
     }
 
     try {

@@ -61,7 +61,7 @@ const Profile = ({ item, isPending }) => {
         profileInfo
       ),
     onSuccess: (res) => {
-      toast.success("Successfully status changed!");
+      toast.success(t("Successfully status changed!"));
       queryClient.invalidateQueries({ queryKey: ["profile"] });
       queryClient.invalidateQueries({ queryKey: ["ownProfiles"] });
       setChangeStatusModal(false);
@@ -90,7 +90,7 @@ const Profile = ({ item, isPending }) => {
         }/remembereds/delete-remembered-profile/${item?.id}`
       ),
     onSuccess: (res) => {
-      toast.success("¡Successfully profile deleted!");
+      toast.success(t("Successfully profile deleted!"));
       queryClient.invalidateQueries({ queryKey: ["ownProfiles"] });
     },
     onError: (err) => {
@@ -137,7 +137,7 @@ const Profile = ({ item, isPending }) => {
         profileInfo
       ),
     onSuccess: (res) => {
-      toast.success("Successfully lifetime created!");
+      toast.success(t("Successfully lifetime created!"));
       queryClient.invalidateQueries({ queryKey: ["ownProfiles"] });
       setOpenLifeTimeModal(false);
     },

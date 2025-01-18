@@ -79,7 +79,7 @@ const PublicPost = ({ post, ownerName }) => {
         commentInfo
       ),
     onSuccess: (res) => {
-      toast.success("Comment published successfully!");
+      toast.success(t("Comment published successfully!"));
       queryClient.invalidateQueries(["posts"]);
     },
     onError: (err) => {
@@ -113,7 +113,7 @@ const PublicPost = ({ post, ownerName }) => {
         commentInfo
       ),
     onSuccess: (res) => {
-      toast.success("Heart given successfully!");
+      toast.success(t("Heart given successfully!"));
       queryClient.invalidateQueries(["posts"]);
     },
     onError: (err) => {
@@ -542,7 +542,7 @@ const SingleComment = ({ post, comment, userInfo, languageSelected, t }) => {
         commentInfo
       ),
     onSuccess: (res) => {
-      toast.success("Comment edited successfully!");
+      toast.success(t("Comment edited successfully!"));
       queryClient.invalidateQueries(["posts"]);
       setIsEditing(false);
     },
@@ -573,7 +573,7 @@ const SingleComment = ({ post, comment, userInfo, languageSelected, t }) => {
         `${import.meta.env.VITE_BASE_URL}/posts/comment/${comment?.id}`
       ),
     onSuccess: (res) => {
-      toast.success("Comment deleted successfully!");
+      toast.success(t("Comment deleted successfully!"));
       queryClient.invalidateQueries(["posts"]);
     },
     onError: (err) => {

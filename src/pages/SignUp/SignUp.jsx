@@ -25,7 +25,7 @@ const SignUp = () => {
       );
     },
     onSuccess: (res) => {
-      toast.success("¡Successfully registered!");
+      toast.success(t("Successfully registered!"));
       navigate("/check-mailbox");
     },
     onError: (err) => {
@@ -78,7 +78,7 @@ const SignUp = () => {
         );
 
         navigate("/my-profiles/");
-        toast.success("User Authenticated!");
+        toast.success(t("User authenticated!"));
         localStorage.setItem("userInfo", JSON.stringify(data));
 
         setUserInfo(data);

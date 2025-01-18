@@ -66,7 +66,7 @@ const ReactQuillAbout = ({ rememberedProfile, owner }) => {
         historyInfo
       ),
     onSuccess: (res) => {
-      toast.success("History edited successfully!");
+      toast.success(t("History edited successfully!"));
       queryClient.invalidateQueries(["profile"]);
       setIsEditing(false);
     },

@@ -27,7 +27,7 @@ const UploadCondolence = ({ isAlbertEinstein, isOwner, idRemembered }) => {
         info
       ),
     onSuccess: (res) => {
-      toast.success("Condolence uploaded!");
+      toast.success(t("Condolence uploaded!"));
       queryClient.invalidateQueries(["profile"]);
       setOpenModalCreateCondolence(false);
     },

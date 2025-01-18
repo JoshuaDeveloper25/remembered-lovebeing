@@ -79,7 +79,7 @@ const Condolence = ({ condolence, isOwner }) => {
         commentInfo
       ),
     onSuccess: (res) => {
-      toast.success("Replied to a condolence!");
+      toast.success(t("Replied to a condolence!"));
       queryClient.invalidateQueries(["profile"]);
       setReply(!reply);
     },
@@ -110,7 +110,7 @@ const Condolence = ({ condolence, isOwner }) => {
         commentInfo
       ),
     onSuccess: (res) => {
-      toast.success("Condolence edited!");
+      toast.success(t("Condolence edited!"));
       queryClient.invalidateQueries(["profile"]);
       setEditingCondolence(!edititingCondolence);
     },
@@ -140,7 +140,7 @@ const Condolence = ({ condolence, isOwner }) => {
         `${import.meta.env.VITE_BASE_URL}/condolences/${condolence?.id}`
       ),
     onSuccess: (res) => {
-      toast.success("Condolence deleted successfully!");
+      toast.success(t("Condolence deleted successfully!"));
       queryClient.invalidateQueries(["profile"]);
     },
     onError: (err) => {

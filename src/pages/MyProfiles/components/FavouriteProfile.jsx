@@ -21,7 +21,7 @@ const FavouriteProfile = ({ item, isPending }) => {
       ),
     onSuccess: (res) => {
       console.log(res);
-      toast.success("You aren't following this user anymore...");
+      toast.success(t("You aren't following this user anymore..."));
       queryClient.invalidateQueries({ queryKey: ["ownProfiles"] });
     },
     onError: (err) => {

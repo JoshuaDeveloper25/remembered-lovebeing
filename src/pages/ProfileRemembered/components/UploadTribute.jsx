@@ -27,7 +27,7 @@ const UploadTribute = ({ isAlbertEinstein, idRemembered, isOwner }) => {
         info
       ),
     onSuccess: (res) => {
-      toast.success("tribute uploaded!");
+      toast.success(t("Tribute uploaded!"));
       queryClient.invalidateQueries(["profile"]);
       setOpenModalCreateTribute(false);
     },

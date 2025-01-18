@@ -56,7 +56,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
         journeyInfo
       ),
     onSuccess: (res) => {
-      toast.success("Successfully journey life edited!");
+      toast.success(t("Successfully journey life edited!"));
       queryClient.invalidateQueries({ queryKey: ["profile"] });
       setOpenLifeJourneyModal(false);
     },
@@ -75,7 +75,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
         knownForInfo
       ),
     onSuccess: (res) => {
-      toast.success("Successfully quality created!");
+      toast.success(t("Successfully quality created!"));
       queryClient.invalidateQueries({ queryKey: ["profile"] });
     },
     onError: (err) => {

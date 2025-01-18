@@ -10,6 +10,7 @@ import axios from "axios";
 import { Button } from "@nextui-org/react";
 import CoverRememberedModal from "../pages/ProfileRemembered/components/CoverRememberedModal";
 import ImagesHandleCrop from "./ImagesHandleCrop";
+import { useTranslation } from "react-i18next";
 
 export const CameraIcon = ({
   fill = "currentColor",
@@ -68,6 +69,7 @@ const UploadCoverImage = ({ idRemembered }) => {
   const previewCanvasRef = useRef(null);
   const queryClient = useQueryClient();
   const [crop, setCrop] = useState();
+  const { t } = useTranslation();
   const imgRef = useRef(null);
   const avatarUrl = useRef(
     "https://i.pinimg.com/474x/51/f6/fb/51f6fb256629fc755b8870c801092942.jpg"
@@ -86,7 +88,7 @@ const UploadCoverImage = ({ idRemembered }) => {
         imageInfo
       ),
     onSuccess: (res) => {
-      toast.success("¡Image uploaded successfully!");
+      toast.success(t("Image uploaded successfully!"));
       queryClient.invalidateQueries(["profile"]);
       setOpenModalCover(false);
     },

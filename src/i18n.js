@@ -806,17 +806,79 @@ const resources = {
       "Upload 1 image at least!": "Upload 1 image at least!",
       "Any of the provided fields are empty, we coudn't send the invoice to email!":
         "Any of the provided fields are empty, we coudn't send the invoice to email!",
-        "Didn't receive a valid url.": "Didn't receive a valid url.",
-        "Input a name of a memorial please!": "Input a name of a memorial please!",
-        "Birth can't be higher than death date!": "Birth can't be higher than death date!",
-        "Passwords are not the same!": "Passwords are not the same!",
+      "Didn't receive a valid url.": "Didn't receive a valid url.",
+      "Input a name of a memorial please!":
+        "Input a name of a memorial please!",
+      "Birth can't be higher than death date!":
+        "Birth can't be higher than death date!",
+      "Passwords are not the same!": "Passwords are not the same!",
+      "Are you sure?": "Are you sure?",
+      "You won't be able to revert this!": "You won't be able to revert this!",
+      "Yes, delete it!": "Yes, delete it!",
+      "Error!": "Error!",
+      "There was an issue deleting your post.":
+        "There was an issue deleting your post.",
+      "Do you want to upload the image?": "Do you want to upload the image?",
+      "Yes, upload it!": "Yes, upload it!",
+      "There was an issue uploading your profile image.":
+        "There was an issue uploading your profile image.",
+      "There was an issue deleting your profile.":
+        "There was an issue deleting your profile.",
+      "Do you really want to delete this comment? This action cannot be undone.":
+        "Do you really want to delete this comment? This action cannot be undone.",
+      "There was an issue deleting the comment.":
+        "There was an issue deleting the comment.",
+      "Do you really want to delete this condolence? This action cannot be undone.":
+        "Do you really want to delete this condolence? This action cannot be undone.",
+      "There was an issue deleting the condolence.":
+        "There was an issue deleting the condolence.",
+      "Yes, generate!": "Yes, generate!",
+      "Are you sure about performing this action?":
+        "Are you sure about performing this action?",
+      "This image is in a post, you won't be able to revert this!":
+        "This image is in a post, you won't be able to revert this!",
+      "There was a problem trying to remove the tribute.":
+        "There was a problem trying to remove the tribute.",
+      "Do you really want to delete this tribute? This action cannot be undone.":
+        "Do you really want to delete this tribute? This action cannot be undone.",
     },
   },
   es: {
     translation: {
+      "Do you really want to delete this tribute? This action cannot be undone.":
+        "¿De verdad quieres eliminar este tributo? Esta acción no puede revertirse.",
+      "There was a problem trying to remove the tribute.":
+        "Hubo un problema al intentar eliminar el tributo.",
+      "This image is in a post, you won't be able to revert this!":
+        "Esta imagen está en una publicación, ¡no podrás revertir esto!",
+      "Are you sure about performing this action?":
+        "¿Estás seguro de realizar esta acción?",
+      "Yes, generate!": "¡Sí, generar!",
+      "There was an issue deleting the condolence.":
+        "Hubo un problema al eliminar la condolencia.",
+      "Do you really want to delete this condolence? This action cannot be undone.":
+        "¿De verdad quieres eliminar esta condolencia? Esta acción no puede revertirse.",
+      "There was an issue deleting the comment.":
+        "Hubo un problema al eliminar el comentario.",
+      "Do you really want to delete this comment? This action cannot be undone.":
+        "¿De verdad quieres eliminar este comentario? Esta acción no puede revertirse.",
+      "There was an issue deleting your profile.":
+        "Hubo un problema al eliminar tu perfil.",
+      "There was an issue uploading your profile image.":
+        "Ha habido un problema al subir tu imagen de perfil.",
+      "Yes, upload it!": "¡Sí, súbela!",
+      "Do you want to upload the image?": "¿Quieres subir la imagen?",
+      "There was an issue deleting your post.":
+        "Hubo un problema al eliminar tu mensaje.",
+      "Error!": "¡Error!",
+      "Yes, delete it!": "¡Sí, elimínalo!",
+      "You won't be able to revert this!": "¡No podrás revertir esto!",
+      "Are you sure?": "¿Estás seguro?",
       "Passwords are not the same!": "¡Las contraseñas no coinciden!",
-      "Birth can't be higher than death date!": "¡La fecha de nacimiento no puede ser superior a la fecha de fallecimiento!",
-      "Input a name of a memorial please!": "¡Por favor, ingresa el nombre de un memorial!",
+      "Birth can't be higher than death date!":
+        "¡La fecha de nacimiento no puede ser superior a la fecha de fallecimiento!",
+      "Input a name of a memorial please!":
+        "¡Por favor, ingresa el nombre de un memorial!",
       "Didn't receive a valid url.": "No se recibió una URL válida.",
       "Any of the provided fields are empty, we coudn't send the invoice to email!":
         "Alguno de los campos proporcionados está vacío, no pudimos enviar la factura al correo electrónico.",

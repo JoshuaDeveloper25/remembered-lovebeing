@@ -126,13 +126,15 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
 
   const handleDeleteTribute = () => {
     Swal.fire({
-      title: "¿Estás seguro?",
-      text: "¿Deseas eliminar este tributo? Esta acción no se puede deshacer.",
+      title: t("Are you sure?"),
+      text: t(
+        "Do you really want to delete this tribute? This action cannot be undone."
+      ),
       // icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, eliminar",
+      confirmButtonText: t("Yes, delete it!"),
     }).then((result) => {
       if (result.isConfirmed) {
         deleteTributeMutation.mutate({
@@ -145,8 +147,8 @@ const Tribute = ({ tribute, isOwner, isAlbertEinstein }) => {
           },
           onError: () => {
             Swal.fire({
-              title: "¡Error!",
-              text: "Hubo un problema al intentar eliminar el tributo.",
+              title: t("Error!"),
+              text: t("There was a problem trying to remove the tribute."),
               icon: "error",
             });
           },

@@ -175,6 +175,7 @@ const KnownFor = ({ knownFor, setBestKnownInfoObject }) => {
     },
   });
 
+  {/*
   const handleDeleteBestKnownFor = () => {
     Swal.fire({
       title: "¿Estás seguro?",
@@ -205,6 +206,7 @@ const KnownFor = ({ knownFor, setBestKnownInfoObject }) => {
       }
     });
   };
+*/}
 
   return (
     <li className="flex items-center mb-3 gap-4">

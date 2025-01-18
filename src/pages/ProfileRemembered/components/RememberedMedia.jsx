@@ -42,12 +42,12 @@ const RememberedMedia = ({
 
       if (!isInPost) {
         Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
+          title: t("Are you sure?"),
+          text: t("You won't be able to revert this!"),
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
+          confirmButtonText: t("Yes, delete it!"),
         }).then((result) => {
           if (result.isConfirmed) {
             deleteImageGalleryMutation.mutate();
@@ -55,12 +55,12 @@ const RememberedMedia = ({
         });
       } else {
         Swal.fire({
-          title: "Are you sure?",
-          text: "This image is in a post, you won't be able to revert this!",
+          title: t("Are you sure?"),
+          text: t("This image is in a post, you won't be able to revert this!"),
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
+          confirmButtonText: t("Yes, delete it!"),
         }).then((result) => {
           if (result.isConfirmed) {
             deleteImageGalleryMutation.mutate();

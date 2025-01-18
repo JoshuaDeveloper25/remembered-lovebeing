@@ -130,12 +130,12 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
 
   const handleDeletePost = () => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: t("Are you sure?"),
+      text: t("You won't be able to revert this!"),
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: t("Yes, delete it!"),
     }).then((result) => {
       if (result.isConfirmed) {
         deletePostMutation.mutate(null, {
@@ -148,8 +148,8 @@ const Post = ({ isOwner, post, rememberName, isAlbertEinstein }) => {
           },
           onError: () => {
             Swal.fire({
-              title: "Error!",
-              text: "There was an issue deleting your post.",
+              title: t("Error!"),
+              text: t("There was an issue deleting your post."),
               icon: "error",
             });
           },

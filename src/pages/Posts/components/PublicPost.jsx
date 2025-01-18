@@ -586,13 +586,13 @@ const SingleComment = ({ post, comment, userInfo, languageSelected, t }) => {
     setToggleComment(false);
 
     Swal.fire({
-      title: "Are you sure?",
-      text: "Do you really want to delete this comment? This action cannot be undone.",
+      title: t("Are you sure?"),
+      text: t("Do you really want to delete this comment? This action cannot be undone."),
       // icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: t("Yes, delete it!"),
     }).then((result) => {
       if (result.isConfirmed) {
         deleteCommentMutation.mutate({
@@ -605,8 +605,8 @@ const SingleComment = ({ post, comment, userInfo, languageSelected, t }) => {
           },
           onError: () => {
             Swal.fire({
-              title: "Error!",
-              text: "There was an issue deleting the comment.",
+              title: t("Error!"),
+              text: t("There was an issue deleting the comment."),
               icon: "error",
             });
           },

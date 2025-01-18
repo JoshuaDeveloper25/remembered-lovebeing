@@ -49,13 +49,13 @@ const QRCodeGenerate = ({ isOwner, statusPlan, qrImages, idRemembered }) => {
 
   const handleGenerateQRCode = () => {
     Swal.fire({
-      title: "¿Estás seguro?",
-      text: "¿Estás seguro de realizar esta acción?",
+      title: t("Are you sure?"),
+      text: t("Are you sure about performing this action?"),
       // icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, generar",
+      confirmButtonText: t("Yes, generate!"),
     }).then((result) => {
       if (result.isConfirmed) {
         setGeneratedCode(`${location?.pathname}`);

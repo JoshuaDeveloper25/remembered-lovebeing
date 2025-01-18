@@ -151,13 +151,13 @@ const Condolence = ({ condolence, isOwner }) => {
 
   const handleDeleteCondolence = () => {
     Swal.fire({
-      title: "¿Estás seguro?",
-      text: "¿Deseas eliminar este mensaje de condolencia? Esta acción no se puede deshacer.",
+      title: t("Are you sure?"),
+      text: t("Do you really want to delete this condolence? This action cannot be undone."),
       // icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, eliminar",
+      confirmButtonText: t("Yes, delete it!"),
     }).then((result) => {
       if (result.isConfirmed) {
         deleteCondolenceMutation.mutate({
@@ -170,8 +170,8 @@ const Condolence = ({ condolence, isOwner }) => {
           },
           onError: () => {
             Swal.fire({
-              title: "¡Error!",
-              text: "Hubo un problema al intentar eliminar el mensaje de condolencia.",
+              title: t("Error!"),
+              text: t("There was an issue deleting the condolence."),
               icon: "error",
             });
           },

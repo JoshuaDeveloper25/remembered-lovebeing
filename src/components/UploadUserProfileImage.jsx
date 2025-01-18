@@ -97,12 +97,12 @@ const UploadUserProfileImage = ({ iconClassname }) => {
     }
 
     Swal.fire({
-      title: "Are you sure?",
-      text: "Do you want to upload the image?",
+      title: t("Are you sure?"),
+      text: t("Do you want to upload the image?"),
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, upload it!",
+      confirmButtonText: t("Yes, upload it!"),
     }).then(async (result) => {
       if (result.isConfirmed) {
         const canvas = imgRef.current?.getCanvas();
@@ -126,8 +126,8 @@ const UploadUserProfileImage = ({ iconClassname }) => {
           },
           onError: () => {
             Swal.fire({
-              title: "Error!",
-              text: "There was an issue uploading your profile image.",
+              title: t("Error!"),
+              text: t("There was an issue uploading your profile image."),
               icon: "error",
             });
           },

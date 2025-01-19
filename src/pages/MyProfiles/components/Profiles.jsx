@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { IoCartOutline } from "react-icons/io5";
+import { useEffect, useState } from "react";
 import { GoPlus } from "react-icons/go";
 import { Link } from "react-router-dom";
 import SortSelect from "./SortSelect";
-import { useState } from "react";
 import Profile from "./Profile";
 
 const Profiles = ({
@@ -14,9 +14,14 @@ const Profiles = ({
   isPending,
   setStatusPlan,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n  } = useTranslation();
 
   const [selectedKeys, setSelectedKeys] = useState(new Set([t("All")]));
+
+  useEffect(() => {
+    setSelectedKeys(new Set([t("All")]));
+  }, [i18n?.language]);
+
   const selectedSort = [...selectedKeys][0];
 
   const filteredProfiles = profiles?.filter((profile) =>

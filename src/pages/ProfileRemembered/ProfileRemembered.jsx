@@ -225,7 +225,7 @@ const ProfileRemembered = () => {
                   />
 
                   {!data?.data?.is_owner ? null : (
-                    <div className="min-[870px]:block hidden absolute bottom-0 left-16 z-[100] cursor-pointer">
+                    <div className="min-[870px]:block hidden absolute bottom-3 left-16 z-[100] cursor-pointer">
                       <UploadProfileImage
                         idRemembered={data?.data?.remembered_profile?.id}
                       />
@@ -343,7 +343,7 @@ const ProfileRemembered = () => {
                             : `https://i.pinimg.com/474x/51/f6/fb/51f6fb256629fc755b8870c801092942.jpg`
                         }
                       />
-                      <div className="absolute bottom-3 right-14 z-[100]">
+                      <div className="absolute -translate-y-1/2 -translate-x-[100%] -bottom-3 right-0 z-[100]">
                         <UploadProfileImage
                           idRemembered={data?.data?.remembered_profile?.id}
                         />

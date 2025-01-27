@@ -343,7 +343,7 @@ const ProfileRemembered = () => {
                             : `https://i.pinimg.com/474x/51/f6/fb/51f6fb256629fc755b8870c801092942.jpg`
                         }
                       />
-                      <div className="absolute -translate-y-1/2 -translate-x-[100%] -bottom-3 right-0 z-[100]">
+                      <div className="absolute -translate-y-1/2 -translate-x-[100%] -bottom-5 right-0 z-[100]">
                         <UploadProfileImage
                           idRemembered={data?.data?.remembered_profile?.id}
                         />

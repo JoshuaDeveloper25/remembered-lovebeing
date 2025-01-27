@@ -842,10 +842,26 @@ const resources = {
       "Do you really want to delete this tribute? This action cannot be undone.":
         "Do you really want to delete this tribute? This action cannot be undone.",
       "Filter by": "Filter by",
+      "Our story began as a result of a personal experience that deeply impacted our lives: the loss of a loved one. This profound pain led us to reflect on the importance of preserving the memories of those who have passed and how technology could help us create something special in their honor.":
+        "Our story began as a result of a personal experience that deeply impacted our lives: the loss of a loved one. This profound pain led us to reflect on the importance of preserving the memories of those who have passed and how technology could help us create something special in their honor.",
+      "As programmers, we had the tools and the passion to build a platform that would not only be useful but also deeply meaningful. This is how Eternal MemoriesX was born—a space designed to honor and keep alive the legacies of those we love.":
+        "As programmers, we had the tools and the passion to build a platform that would not only be useful but also deeply meaningful. This is how Eternal MemoriesX was born—a space designed to honor and keep alive the legacies of those we love.",
+      "We believe that every story deserves to be remembered and shared, and our goal is to offer a place where these memories can transcend time. Eternal MemoriesX is not just an app; it is a heartfelt tribute created by people who understand the importance of keeping memories alive.":
+        "We believe that every story deserves to be remembered and shared, and our goal is to offer a place where these memories can transcend time. Eternal MemoriesX is not just an app; it is a heartfelt tribute created by people who understand the importance of keeping memories alive.",
+      "We are committed to combining technology and innovation to provide an intuitive, empathetic, and meaningful experience. Our mission is for this platform to not only connect people with their memories but also serve as a beacon of comfort and hope for those navigating grief.":
+        "We are committed to combining technology and innovation to provide an intuitive, empathetic, and meaningful experience. Our mission is for this platform to not only connect people with their memories but also serve as a beacon of comfort and hope for those navigating grief.",
     },
   },
   es: {
     translation: {
+      "We are committed to combining technology and innovation to provide an intuitive, empathetic, and meaningful experience. Our mission is for this platform to not only connect people with their memories but also serve as a beacon of comfort and hope for those navigating grief.":
+        "Estamos comprometidos a combinar tecnología e innovación para brindar una experiencia intuitiva, empática y significativa. Nuestra misión es que esta plataforma no solo conecte a las personas con sus memorias, sino que también sea un faro de consuelo y esperanza para quienes atraviesan el duelo.",
+      "We believe that every story deserves to be remembered and shared, and our goal is to offer a place where these memories can transcend time. Eternal MemoriesX is not just an app; it is a heartfelt tribute created by people who understand the importance of keeping memories alive.":
+        "Creemos que cada historia merece ser recordada y compartida, y nuestro objetivo es ofrecer un lugar donde esas memorias puedan trascender el tiempo. Eternal MemoriesX no es solo una aplicación; es un homenaje creado desde el corazón, por personas que entienden la importancia de mantener vivos los recuerdos.",
+      "As programmers, we had the tools and the passion to build a platform that would not only be useful but also deeply meaningful. This is how Eternal MemoriesX was born—a space designed to honor and keep alive the legacies of those we love.":
+        "Como programadores, teníamos las herramientas y la pasión para crear una plataforma que no solo fuera útil, sino también profundamente significativa. Así nació Eternal MemoriesX, un espacio diseñado para honrar y mantener vivos los legados de quienes amamos.",
+      "Our story began as a result of a personal experience that deeply impacted our lives: the loss of a loved one. This profound pain led us to reflect on the importance of preserving the memories of those who have passed and how technology could help us create something special in their honor.":
+        "Nuestra historia comenzó a raíz de una experiencia personal que marcó nuestras vidas: la pérdida de un ser querido. Este dolor profundo nos hizo reflexionar sobre la importancia de preservar los recuerdos de quienes han partido, y cómo la tecnología podría ayudarnos a construir algo especial en su honor.",
       "Filter by": "Filtrar por",
       "Do you really want to delete this tribute? This action cannot be undone.":
         "¿De verdad quieres eliminar este tributo? Esta acción no puede revertirse.",

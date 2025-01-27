@@ -35,19 +35,25 @@ const AboutUs = () => {
       <div className="mt-20 text-primary-color font-light border-t-2 pt-10">
         <p className="font-mono">
           {t(
-            "Our story began while working on independent projects for clients, where we were often asked for examples of our work or a personal portfolio. Although we had experience and achievements to showcase, we realized we didn’t have a project of our own that fully reflected our skills and creativity."
+            "Our story began as a result of a personal experience that deeply impacted our lives: the loss of a loved one. This profound pain led us to reflect on the importance of preserving the memories of those who have passed and how technology could help us create something special in their honor."
           )}
         </p>
 
         <p className="font-mono my-10">
           {t(
-            "That search led us to reflect on what we could create that would not only be useful but also have a positive impact on people. This is how the idea for Eternal Memories was born—a platform to preserve and honor the memories of those who have passed away. We believe every story deserves to be remembered and shared, and our goal is to provide a space where memories can transcend time."
+            "As programmers, we had the tools and the passion to build a platform that would not only be useful but also deeply meaningful. This is how Eternal MemoriesX was born—a space designed to honor and keep alive the legacies of those we love."
           )}
         </p>
 
         <p className="font-mono">
           {t(
-            "Our commitment is to combine technology and innovation to deliver an intuitive and meaningful experience. Eternal Memories is more than just an app; it is a tribute to human legacy, created from the heart by people who understand the importance of keeping memories alive."
+            "We believe that every story deserves to be remembered and shared, and our goal is to offer a place where these memories can transcend time. Eternal MemoriesX is not just an app; it is a heartfelt tribute created by people who understand the importance of keeping memories alive."
+          )}
+        </p>
+
+        <p className="font-mono mt-10">
+          {t(
+            "We are committed to combining technology and innovation to provide an intuitive, empathetic, and meaningful experience. Our mission is for this platform to not only connect people with their memories but also serve as a beacon of comfort and hope for those navigating grief."
           )}
         </p>
       </div>

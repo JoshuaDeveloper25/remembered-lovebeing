@@ -41,7 +41,7 @@ const FormCreateProfile = ({
 
   return (
     <>
-      <div className="">
+      <div>
         <div className="p-4 md:p-5">
           <div className="flex flex-col sm:flex-row gap-6 mb-3">
             <div className="flex-1">

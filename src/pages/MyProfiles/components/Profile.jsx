@@ -51,7 +51,7 @@ const Profile = ({ item, isPending }) => {
     "December",
   ];
 
-  // Change status memorial OPTION
+  // Change status memorial option
   const changeStatusMutation = useMutation({
     mutationFn: async (profileInfo) =>
       await axios.patch(

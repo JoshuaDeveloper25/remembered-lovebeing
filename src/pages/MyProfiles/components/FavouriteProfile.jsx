@@ -12,7 +12,7 @@ const FavouriteProfile = ({ item, isPending }) => {
   const [isHovered, setIsHovered] = useState(false);
   const queryClient = useQueryClient();
 
-  // --> Unfollow remembered...
+  // --> Unfollow remembered
   const unfollowRememberedsMutation = useMutation({
     mutationFn: (favouriteInfo) =>
       axios.delete(

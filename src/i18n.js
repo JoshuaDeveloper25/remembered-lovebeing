@@ -542,6 +542,7 @@ const resources = {
       Dad: "Dad",
       Mom: "Mom",
       Son: "Son",
+      Friends: "Friends",
       Sister: "Sister",
       Stepsister: "Stepsister",
       Stepbrother: "Stepbrother",
@@ -1641,6 +1642,7 @@ const resources = {
         "Si planeas expandirte internacionalmente o incluir usuarios de fuera de Honduras, puedes agregar una sección específica sobre transferencias internacionales de datos.",
       "If you use a hosting provider (such as AWS or Azure), mention that data is stored on secure servers, possibly located outside of Honduras.":
         "Si usas un proveedor de alojamiento (como AWS o Azure), menciona que los datos se almacenan en servidores seguros, posiblemente ubicados fuera de Honduras.",
+      Friends: "Amigos",
     },
   },
 };

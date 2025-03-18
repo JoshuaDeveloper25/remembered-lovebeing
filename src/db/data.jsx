@@ -222,7 +222,7 @@ export const relationships = [
   },
 
   {
-    value: "Grandfather",
-    relationship: "Grandfather",
+    value: "Friends",
+    relationship: "Friends",
   },
 ];

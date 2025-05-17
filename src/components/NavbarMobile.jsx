@@ -108,10 +108,8 @@ const NavbarMobile = ({
                 />
 
                   <h3 className="text-base font-semibold text-white pe-2">
-                    {/* {userInfo?.name}  */}
-                    Manuel arnaldo antunez  
+                    {userInfo?.name} 
                   </h3>
-                
               </button>
             </div>
           )}

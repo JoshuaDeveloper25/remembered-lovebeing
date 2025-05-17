@@ -175,7 +175,7 @@ const AboutRemembered = ({ owner, rememberedProfile, idRemembered }) => {
         <h2>
           <span className="font-bold text-5xl">{t("Who Was")}</span>{" "}
           <span className="font-medium block">
-            {rememberedProfileInfo?.user_relationship === "prefer_not_to_say" ||
+            {rememberedProfileInfo?.user_relationship === "prefer_not_to_say_or_other" ||
             rememberedProfileInfo?.user_relationship === null
               ? null
               : `${t("my")} ${t(
